@@ -220,6 +220,10 @@ def members(farm_id: str, actor: Actor, db: DB):
                 "user": public_user(db.get(User, p.user_id)),
                 "season_id": p.season_id,
                 "operation_id": p.operation_id,
+                "season_name": db.get(Season, p.season_id).name if p.season_id else None,
+                "operation_name": db.get(Operation, p.operation_id).name
+                if p.operation_id
+                else None,
             }
         )
     return entries

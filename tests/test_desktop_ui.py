@@ -89,6 +89,8 @@ def test_desktop_login_farm_and_real_invitation_flow(api, qt, monkeypatch):
             qt.processEvents()
         click(window, "Carregar usuários e permissões")
         assert window.member_list.count() == 2
+        assert "Plantio" in window.member_list.item(1).text()
+        assert "2026/2027" in window.member_list.item(1).text()
         window.member_list.setCurrentRow(1)
         click(window, "Revogar permissão selecionada")
         assert window.member_list.count() == 1

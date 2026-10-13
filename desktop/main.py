@@ -441,9 +441,9 @@ class MainWindow(QMainWindow):
                 self.member_list.clear()
                 for entry in data:
                     scope = (
-                        "operação"
+                        f"{entry['season_name']} — {entry['operation_name']}"
                         if entry["operation_id"]
-                        else "safra"
+                        else entry["season_name"]
                         if entry["season_id"]
                         else "fazenda inteira"
                     )
