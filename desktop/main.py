@@ -82,6 +82,7 @@ class MainWindow(PageBuilders, QMainWindow):
         self.pages = QStackedWidget()
         self.navigation = QListWidget()
         self.navigation.setObjectName("Navigation")
+        self.navigation.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         self.navigation.setIconSize(QSize(19, 19))
         self.sidebar = QFrame()
         self.sidebar.setObjectName("Sidebar")
