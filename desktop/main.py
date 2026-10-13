@@ -805,6 +805,9 @@ class MainWindow(PageBuilders, QMainWindow):
             return
         farm_id = self.share_farm.currentData()
         if farm_id:
+            selected_seasons = {i.data(Qt.UserRole) for i in self.season_list.selectedItems()}
+            selected_season = self.operation_season.currentData()
+            selected_operations = {i.data(Qt.UserRole) for i in self.operation_list.selectedItems()}
 
             def loaded(data):
                 if self.share_farm.currentData() != farm_id:
@@ -817,9 +820,15 @@ class MainWindow(PageBuilders, QMainWindow):
                     self.season_list.item(self.season_list.count() - 1).setData(
                         Qt.UserRole, season["id"]
                     )
+                    self.season_list.item(self.season_list.count() - 1).setSelected(
+                        season["id"] in selected_seasons
+                    )
                     self.operation_season.addItem(season["name"], season["id"])
+                index = self.operation_season.findData(selected_season)
+                if index >= 0:
+                    self.operation_season.setCurrentIndex(index)
                 self.operation_season.blockSignals(False)
-                self.load_operations()
+                self.load_operations(selected=selected_operations)
                 if not data:
                     self.scope_notice.setText(
                         "Nenhuma safra cadastrada. Crie a safra na tela Propriedades "
@@ -830,9 +839,14 @@ class MainWindow(PageBuilders, QMainWindow):
                 lambda: self.client.request("GET", f"/farms/{farm_id}/seasons"), loaded, defer=True
             )
 
-    def load_operations(self, *_):
+    def load_operations(self, *_, selected=None):
         if self._populating:
             return
+        selected = (
+            {i.data(Qt.UserRole) for i in self.operation_list.selectedItems()}
+            if selected is None
+            else selected
+        )
         self.operation_list.clear()
         farm_id, season_id = self.share_farm.currentData(), self.operation_season.currentData()
         if farm_id and season_id:
@@ -843,10 +857,14 @@ class MainWindow(PageBuilders, QMainWindow):
                     season_id,
                 ):
                     return
+                self.operation_list.clear()
                 for operation in data:
                     self.operation_list.addItem(operation["name"])
                     self.operation_list.item(self.operation_list.count() - 1).setData(
                         Qt.UserRole, operation["id"]
+                    )
+                    self.operation_list.item(self.operation_list.count() - 1).setSelected(
+                        operation["id"] in selected
                     )
 
             self.call(

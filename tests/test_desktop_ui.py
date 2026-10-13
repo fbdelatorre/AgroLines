@@ -75,6 +75,11 @@ def test_desktop_login_farm_and_real_invitation_flow(api, qt, monkeypatch):
         window.operation_list.item(0).setSelected(True)
         click(window, "Continuar")
         assert "Plantio" in window.share_review.text()
+        click(window, "Voltar")
+        assert len(window.operation_list.selectedItems()) == 1
+        assert window.operation_list.count() == 1
+        click(window, "Continuar")
+        assert "Plantio" in window.share_review.text()
         assert not window.sharing_flow.submit_button.isEnabled()
         window.share_confirmed.setChecked(True)
         click(window, "Enviar convite")
