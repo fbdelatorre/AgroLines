@@ -1,62 +1,110 @@
 # AgroLines
-Etapa 1: esqueleto de aplicativo nativo Windows e servidor próprio. Todas as telas
-estão **Em desenvolvimento**. Não há login, cadastros persistentes, sincronização,
-planejamento geométrico nem exportadores. Não usa Supabase.
+Aplicativo nativo Windows para planejamento agrícola, com servidor próprio, sem Supabase.
+A **Etapa 2** implementa contas, autenticação, propriedades, safras/operações mínimas
+para escopos, convites e permissões persistentes. A navegação da Etapa 1 e seu
+healthcheck foram preservados. Talhões, equipamentos, geometria, planos, exportadores
+e sincronização completa continuam **Em desenvolvimento**.
 
-## Desenvolvimento (Python 3.12)
-Linux:
+## Windows 11 — sem Docker
+Instale Python 3.12 e PostgreSQL 16 com a extensão PostGIS compatível (por exemplo,
+instalador PostgreSQL e PostGIS pelo Stack Builder). Docker é opcional.
+
+No PowerShell, na raiz do checkout:
+```powershell
+# Se a política local impedir scripts, apenas nesta sessão:
+Set-ExecutionPolicy -Scope Process RemoteSigned
+.\scripts\Configure.ps1 -Desktop
+```
+Para **um banco novo**, configure uma conta própria e o banco. Não execute criação
+novamente se já existirem; não apague o banco da Etapa 1. Ajuste o caminho à instalação:
+```powershell
+$env:Path = 'C:\Program Files\PostgreSQL\16\bin;' + $env:Path
+psql --host 127.0.0.1 --username postgres --dbname postgres --password
+```
+No prompt psql:
+```sql
+CREATE ROLE agrolines LOGIN;
+\password agrolines
+CREATE DATABASE agrolines OWNER agrolines;
+\connect agrolines
+CREATE EXTENSION IF NOT EXISTS postgis;
+\quit
+```
+`\password` solicita a senha sem incluí-la no comando. A aplicação não precisa de
+superusuário. A instalação da extensão deve ser feita pelo administrador do banco.
+
+Antes de atualizar um banco existente, siga [backup/restauração](docs/backup.md).
+O script abaixo solicita a senha PostgreSQL de forma protegida, configura a URL
+somente no processo, executa `alembic upgrade head` e inicia a API em loopback:
+```powershell
+.\scripts\Start-Server.ps1
+# Para nomes diferentes:
+# .\scripts\Start-Server.ps1 -DatabaseName meu_banco -DatabaseUser meu_usuario
+```
+Se `AGROLINES_DATABASE_URL` já estiver configurada, ela será reutilizada. O script
+não cria, apaga nem recria o banco. Falhas de migração impedem a inicialização.
+
+Em outro PowerShell, na raiz:
+```powershell
+Invoke-RestMethod http://127.0.0.1:8000/health
+$env:AGROLINES_API_URL = 'http://127.0.0.1:8000'
+.\.venv\Scripts\python.exe -m desktop.main
+```
+Crie uma conta e entre. Em **Minhas propriedades**, cadastre sua fazenda. Em
+**Compartilhar propriedade**, selecione fazenda, perfil e escopos; cadastre safras
+mínimas e operações pelo nome quando necessário. O destinatário precisa de conta
+existente e aceita em **Convites recebidos e enviados**. Consulte ou altere perfis
+em **Usuários e permissões**. Só o proprietário transfere titularidade, com confirmação.
+A identificação por e-mail localiza uma conta; não comprova posse da caixa postal.
+Convites ficam no aplicativo, sem envio automático de e-mail nesta etapa.
+
+## Desenvolvimento Linux / execução direta
 ```sh
 python3.12 -m venv .venv
 . .venv/bin/activate
 python -m pip install -e '.[dev,desktop]'
-ruff check .
-ruff format --check .
-pytest
+# Configure AGROLINES_DATABASE_URL com seu provedor seguro de variáveis:
+# formato postgresql+psycopg://usuario:senha-codificada@127.0.0.1:5432/agrolines
+alembic upgrade head
 python -m uvicorn server.main:app --host 127.0.0.1 --port 8000
 ```
-Windows PowerShell:
+A URL é segredo; não a publique nem a versione. Fora de loopback, o desktop exige HTTPS.
+No Linux a sessão fica somente em memória; persistência protegida usa DPAPI no Windows.
+`GET /health` mantém o contrato da Etapa 1 e é liveness, sem prometer banco saudável.
+Endpoints autenticados exigem banco migrado. A API não cria tabelas automaticamente.
+
+## Docker opcional
+Copie `.env.example` para `.env` e preencha senha e URL correspondente localmente.
+```sh
+docker compose --env-file .env -f infra/compose.yaml up --build -d --wait
+curl http://127.0.0.1:8000/health
+```
+Banco sem porta publicada; API apenas em `127.0.0.1:8000`; volume `postgres_data`
+persistente. A API usa usuário de sistema sem privilégios e aplica migrações aditivas.
+Não use `down -v` em dados reais. HTTPS/reverse proxy autenticado ou VPN e operação
+segura continuam necessários antes de disponibilizar o serviço a terceiros.
+
+## Testes
 ```powershell
-py -3.12 -m venv .venv
-.\.venv\Scripts\Activate.ps1
-python -m pip install -e ".[dev,desktop]"
-ruff check .
-ruff format --check .
-pytest
-python -m uvicorn server.main:app --host 127.0.0.1 --port 8000
+.\.venv\Scripts\python.exe -m ruff check .
+.\.venv\Scripts\python.exe -m ruff format --check .
+.\.venv\Scripts\python.exe -m pytest
 ```
-Em outro terminal ativado, execute `python -m desktop.main`.
-`AGROLINES_API_URL` define o endereço do servidor (padrão http://127.0.0.1:8000).
-A verificação ocorre a cada 10 segundos, com timeout de 3 segundos, fora da thread
-principal. Não há indicador fictício de sincronização.
+Linux: `ruff check .`, `ruff format --check .`, `pytest` após ativar o ambiente.
+Para API com **banco de teste** migrado: `python scripts/integration_check.py`.
+Esse smoke test cria dados sintéticos e não limpa nem redefine o banco.
 
-## API e banco
-`GET /health` retorna `{"status":"ok","service":"agrolines","version":"0.1.0"}`.
-É liveness do processo, não prova de conectividade com banco. A API isolada não exige
-banco nesta etapa. Não há endpoints de domínio ou autenticação.
-Configuração por `AGROLINES_APP_NAME` e `AGROLINES_DATABASE_URL` (PostgreSQL com psycopg).
-A URL é tratada como segredo e não é devolvida pela API.
+CI: Linux/Windows, teste Qt offscreen, DPAPI real no Windows, migração de `0001`
+para `0002` preservando marcador anterior, fluxo HTTP/PostgreSQL e backup/restauração.
+SQLite é usado apenas como banco isolado dos testes unitários; servidor real usa PostgreSQL.
 
-Com Docker e Compose instalados:
-1. Copie `.env.example` para `.env` na raiz e preencha senha e URL correspondente.
-2. Execute `docker compose --env-file .env -f infra/compose.yaml up --build -d`.
-3. Execute `curl http://127.0.0.1:8000/health` (PowerShell: `Invoke-RestMethod`).
-4. Inspecione `docker compose --env-file .env -f infra/compose.yaml logs api` em caso de erro.
+Checklist manual Windows: criar conta, entrar/sair, reiniciar desktop e confirmar
+sessão lembrada, compartilhar só Plantio de uma safra, aceitar em outra conta,
+confirmar ausência de outras safras/operações, alterar perfil, revogar, perder
+conexão, conferir bloqueio de alterações e prazo local; reconectar e confirmar
+remoção do acesso revogado. Conferir escala/acentos, janela responsiva durante
+consultas e encerramento com consulta em andamento. Offscreen não substitui esse teste.
 
-O banco não publica portas. A API publica apenas em loopback. Não exponha esta API
-sem autenticação à internet. A migração `0001` habilita PostGIS e mantém a extensão
-em downgrade para preservar dados. Execução manual: `alembic upgrade head`, com
-`AGROLINES_DATABASE_URL` definido para um banco autorizado. Não existem tabelas
-de domínio ainda. PostgreSQL usa volume persistente; **não use `down -v` em dados reais**.
-
-## Validação Windows manual
-- Iniciar API e desktop; confirmar janela, navegação e rótulos em português.
-- Confirmar Servidor online após resposta real de `/health`.
-- Parar a API e aguardar próxima consulta; confirmar Servidor offline e UI responsiva.
-- Reiniciar API; confirmar recuperação automática.
-- Fechar janela durante consulta; confirmar encerramento sem thread destruída.
-- Conferir escala de tela/acentos e instalação em máquina Windows limpa.
-
-A CI executa lint e testes sem GUI em Linux e Windows. GUI nativa Windows exige
-checklist manual; um teste offscreen Linux não demonstra compatibilidade Windows.
-Veja [arquitetura](docs/architecture.md), [permissões](docs/permissions.md),
-[roadmap](docs/roadmap.md) e [backup](docs/backup.md) e [dependências/licenças](docs/dependencies.md).
+Veja [autenticação e configuração](docs/authentication.md), [permissões](docs/permissions.md),
+[arquitetura](docs/architecture.md), [roadmap](docs/roadmap.md), [backup](docs/backup.md)
+e [dependências/licenças](docs/dependencies.md). Não avançar à Etapa 3 sem aprovação.

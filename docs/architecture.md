@@ -1,22 +1,42 @@
-# Arquitetura inicial
-`core/` contém modelos Python tipados, sem imports de UI ou banco. `desktop/` contém
-PySide6 e cliente de saúde. `server/` contém FastAPI, configuração, SQLAlchemy e
-Alembic. `exporters/` será composto por adaptadores versionados. `infra/` executa
-API e PostgreSQL/PostGIS, com volume persistente. SQLite será o armazenamento local
-na etapa de persistência; nenhum arquivo de dados é criado nesta etapa.
+# Arquitetura atual — Etapa 2
+`core/` preserva modelos Python puros, sem UI ou persistência. `desktop/` contém
+PySide6, cliente HTTP e cofre de sessão DPAPI. `server/` contém FastAPI, SQLAlchemy,
+Alembic, autenticação, propriedades e autorização por escopo. `exporters/` segue
+isolado para adaptadores futuros. PostgreSQL/PostGIS é o banco servidor; SQLite
+local será usado na persistência agrícola/fila offline, sem segredos em texto puro.
 
-Esquema proposto: produtor → fazenda → talhão → versões de limite; safra/operação,
-equipamentos, planos versionados, pacotes de exportação e concessões de acesso.
-Somente Producer, Farm e Field têm modelos iniciais; nenhuma tabela de domínio
-foi criada. O contrato HTTP atual é apenas GET /health, sem dependência de banco.
+## Persistência e contratos
+Tabelas `users`, `credentials`, `sessions`, `refresh_tokens`, `password_resets`,
+`rate_buckets`, `farms`, `seasons`, `operations`, `invitations`, `invitation_scopes`,
+`permissions`, `audit_events`. IDs UUID imutáveis e foreign keys preparam relações
+com talhões, equipamentos e planos futuros. Safras/operações são apenas nomes e
+identificadores para controle de acesso, sem dados agrícolas avançados.
 
-Offline: fila durável, UUIDs imutáveis, idempotência, versões e resolução explícita
-de conflitos serão implementados na etapa 9. Convites/revogação exigem servidor.
-A validade de autorização em cache precisa ser definida antes de liberar dados offline.
-Geometria futura usará Shapely/PyProj, preservará CRS original e medirá em CRS métrico.
-GDAL será avaliado quando formatos reais forem necessários, sem instalação prematura.
+`auth.py` gerencia contas/sessões; `permissions.py` centraliza matriz/hierarquia;
+`properties.py` filtra consultas e valida cada mutação. `dependencies.py` mantém uma
+transação por requisição, confirmada antes de devolver sucesso HTTP. Cada requisição autenticada consulta sessão e autorização
+atuais. `/health` preserva liveness da Etapa 1; `/docs` documenta contratos reais.
 
-Decisões pendentes antes das etapas correspondentes: prazo de autorização offline,
-provedor/licença de tiles, fixtures reais ISOXML e matriz modelo/firmware. Nenhuma
-impede o esqueleto atual. API HTTPS e VPN/reverse proxy autenticado serão requisitos
-para publicação; o Compose atual serve apenas desenvolvimento local.
+Migração `0001` habilita PostGIS; `0002` adiciona tabelas sem apagar dados. O servidor
+não cria tabelas automaticamente. Autogeração ignora tabelas externas sem modelo,
+para não propor remoção de `spatial_ref_sys` ou tabelas de terceiros. Downgrade
+`0002` é bloqueado por ser destrutivo; rollback requer restauração em banco isolado.
+
+## Desktop e offline
+Consultas HTTP e healthcheck executam em threads, sem bloquear a interface.
+A autorização local guarda apenas resumo mínimo, com até 15 minutos de validade.
+DPAPI por usuário protege tokens persistentes no Windows; sem DPAPI, só memória.
+Reconexão invalida resumo e consulta `/auth/me` e `/farms` antes de restaurar acesso.
+Não há fila de escritas nem sincronização completa. A detecção online/offline segue real.
+
+## Futuras etapas
+Dados agrícolas e versões de limites formarão produtor → fazenda → talhão, com
+planos por safra/operação/equipamentos. Geometria usará Shapely/PyProj e CRS métrico,
+preservando CRS original; GDAL será instalado conforme formatos efetivamente usados.
+Exportadores terão fixtures, versão e matriz de compatibilidade por monitor/firmware.
+Fila offline durável exigirá idempotência e resolução explícita de conflitos.
+
+Prazos agrícolas offline, licença de tiles e fixtures ISOXML permanecem decisões
+pendentes antes dos módulos correspondentes. Serviço exposto exige HTTPS e acesso
+seguro por VPN/reverse proxy, autenticação própria, backups externos criptografados
+e retenção de auditoria. O Compose atual destina-se ao desenvolvimento local.

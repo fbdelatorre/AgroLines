@@ -1,6 +1,6 @@
 # Roadmap incremental
 1. Esqueleto, saúde da API, janela, infraestrutura, testes e documentação (esta entrega).
-2. Autenticação, autorização, compartilhamento e auditoria.
+2. Autenticação, autorização, compartilhamento e auditoria (implementada nesta entrega).
 3. Cadastros, persistência, importação e versionamento de geometrias.
 4. Mapa com provedor licenciado e cache autorizado.
 5. Cabeceiras e limites internos, testes geométricos.
