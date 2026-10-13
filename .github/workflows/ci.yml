@@ -91,3 +91,22 @@ jobs:
       - name: Encerrar serviços
         if: always()
         run: docker compose --env-file .env -f infra/compose.yaml down
+  windows-visual:
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        scale: ['1', '1.25', '1.5']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -e ".[dev,desktop]"
+      - name: Capturar Qt nativo Windows
+        run: python -m scripts.render_desktop --scale ${{ matrix.scale }} --output visual-windows
+      - uses: actions/upload-artifact@v4
+        with:
+          name: windows-visual-${{ matrix.scale }}
+          path: visual-windows/
+          if-no-files-found: error

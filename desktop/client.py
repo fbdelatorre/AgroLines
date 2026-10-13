@@ -8,9 +8,10 @@ from desktop.vault import WindowsVault
 
 
 class ApiError(Exception):
-    def __init__(self, message, status=0):
+    def __init__(self, message, status=0, field_errors=None):
         super().__init__(message)
         self.status = status
+        self.field_errors = field_errors or {}
 
 
 class NoRedirect(HTTPRedirectHandler):
@@ -59,7 +60,22 @@ class ApiClient:
             except (ValueError, AttributeError):
                 detail = None
             message = detail if isinstance(detail, str) else "Confira os dados informados."
-            raise ApiError(message, exc.code) from None
+            fields = {}
+            if isinstance(detail, list):
+                for error in detail:
+                    location = error.get("loc", [])
+                    if len(location) >= 2 and location[0] == "body":
+                        key = location[1]
+                        kind = error.get("type", "")
+                        if key == "password" and kind == "string_too_short":
+                            fields[key] = "Use pelo menos 6 caracteres."
+                        elif key == "password" and kind == "string_too_long":
+                            fields[key] = "Use até 128 caracteres."
+                        elif key == "email":
+                            fields[key] = "Informe um e-mail válido."
+                        else:
+                            fields[key] = "Confira este campo."
+            raise ApiError(message, exc.code, fields) from None
         except (URLError, OSError, ValueError):
             raise ApiError("Servidor indisponível. Nenhuma alteração foi confirmada.") from None
 

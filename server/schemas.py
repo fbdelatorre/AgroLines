@@ -2,13 +2,15 @@ from typing import Literal
 
 from pydantic import BaseModel, EmailStr, Field, field_validator, model_validator
 
+from core.passwords import MAX_PASSWORD_LENGTH, MIN_PASSWORD_LENGTH
+
 Role = Literal["administrator", "editor", "operator", "viewer"]
 
 
 class Registration(BaseModel):
     name: str = Field(min_length=1, max_length=120)
     email: EmailStr
-    password: str = Field(min_length=12, max_length=128)
+    password: str = Field(min_length=MIN_PASSWORD_LENGTH, max_length=MAX_PASSWORD_LENGTH)
 
     @field_validator("name")
     @classmethod
@@ -32,7 +34,7 @@ class Recovery(BaseModel):
 
 
 class Reset(TokenInput):
-    password: str = Field(min_length=12, max_length=128)
+    password: str = Field(min_length=MIN_PASSWORD_LENGTH, max_length=MAX_PASSWORD_LENGTH)
 
 
 class Named(BaseModel):
