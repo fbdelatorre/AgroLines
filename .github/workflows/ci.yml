@@ -25,6 +25,11 @@ jobs:
         run: |
           import subprocess
           import sys
+          import os
+          if sys.platform.startswith('linux'):
+              # Synthetic, isolated offscreen runner only; Windows/app keep Chromium sandbox.
+              os.environ['QTWEBENGINE_DISABLE_SANDBOX'] = '1'
+              os.environ['QTWEBENGINE_CHROMIUM_FLAGS'] = '--disable-gpu --disable-dev-shm-usage'
           result = subprocess.run([sys.executable, '-m', 'pytest'], capture_output=True, text=True)
           print(result.stdout)
           print(result.stderr, file=sys.stderr)
@@ -33,6 +38,12 @@ jobs:
               detail = detail.replace('%', '%25').replace('\r', '%0D').replace('\n', '%0A')
               print('::error title=Falha nos testes::' + detail)
           sys.exit(result.returncode)
+      - name: Relatório de precisão
+        run: python -m scripts.precision_report --output precision-report.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: precision-${{ matrix.os }}
+          path: precision-report.json
       - name: Validar sintaxe PowerShell
         if: matrix.os == 'windows-latest'
         shell: pwsh
@@ -44,6 +55,13 @@ jobs:
             if ($errors.Count) { throw ($errors | Out-String) }
           }
   integration:
+    strategy:
+      fail-fast: false
+      matrix:
+        postgis: ['16-3.4', '18-3.6']
+    env:
+      AGROLINES_POSTGIS_IMAGE: postgis/postgis:${{ matrix.postgis }}
+      AGROLINES_PGDATA: /var/lib/postgresql/data/pgdata
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -63,11 +81,16 @@ jobs:
           set -euo pipefail
           docker compose --env-file .env -f infra/compose.yaml up -d --wait db
           docker compose --env-file .env -f infra/compose.yaml build api
-          docker compose --env-file .env -f infra/compose.yaml run --rm api alembic upgrade 0001
+          docker compose --env-file .env -f infra/compose.yaml run --rm api alembic upgrade 0002
           docker compose --env-file .env -f infra/compose.yaml exec -T db psql -U agrolines -d agrolines -c "CREATE TABLE preservation_marker (value text); INSERT INTO preservation_marker VALUES ('keep');"
+          docker compose --env-file .env -f infra/compose.yaml run --rm api python -m scripts.preservation_check
           docker compose --env-file .env -f infra/compose.yaml up --no-build -d --wait
+          docker compose --env-file .env -f infra/compose.yaml exec -T api python -m scripts.preservation_check --verify
           test "$(docker compose --env-file .env -f infra/compose.yaml exec -T db psql -U agrolines -d agrolines -Atc 'SELECT value FROM preservation_marker')" = 'keep'
           python scripts/integration_check.py
+          docker compose --env-file .env -f infra/compose.yaml exec -T api python -m scripts.geography_check
+          docker compose --env-file .env -f infra/compose.yaml restart api
+          docker compose --env-file .env -f infra/compose.yaml exec -T api python -m scripts.geography_check --verify
           python - <<'PY'
           import json
           import urllib.request
@@ -76,7 +99,7 @@ jobs:
           PY
           docker compose --env-file .env -f infra/compose.yaml exec -T api alembic upgrade head
           docker compose --env-file .env -f infra/compose.yaml exec -T api alembic check
-          test "$(docker compose --env-file .env -f infra/compose.yaml exec -T db psql -U agrolines -d agrolines -Atc 'SELECT version_num FROM alembic_version')" = '0002'
+          test "$(docker compose --env-file .env -f infra/compose.yaml exec -T db psql -U agrolines -d agrolines -Atc 'SELECT version_num FROM alembic_version')" = '0004'
           docker compose --env-file .env -f infra/compose.yaml exec -T db psql -U agrolines -d agrolines -c 'SELECT PostGIS_Version();'
       - name: Backup e restauração isolada
         run: |
@@ -85,7 +108,7 @@ jobs:
           docker compose --env-file .env -f infra/compose.yaml exec -T db pg_dump -U agrolines -d agrolines -Fc > backups/test.dump
           docker compose --env-file .env -f infra/compose.yaml exec -T db createdb -U agrolines agrolines_restore
           docker compose --env-file .env -f infra/compose.yaml exec -T db pg_restore -U agrolines -d agrolines_restore --exit-on-error < backups/test.dump
-          test "$(docker compose --env-file .env -f infra/compose.yaml exec -T db psql -U agrolines -d agrolines_restore -Atc 'SELECT version_num FROM alembic_version')" = '0002'
+          test "$(docker compose --env-file .env -f infra/compose.yaml exec -T db psql -U agrolines -d agrolines_restore -Atc 'SELECT version_num FROM alembic_version')" = '0004'
           test "$(docker compose --env-file .env -f infra/compose.yaml exec -T db psql -U agrolines -d agrolines -Atc 'SELECT count(*) FROM users')" = "$(docker compose --env-file .env -f infra/compose.yaml exec -T db psql -U agrolines -d agrolines_restore -Atc 'SELECT count(*) FROM users')"
           test "$(docker compose --env-file .env -f infra/compose.yaml exec -T db psql -U agrolines -d agrolines -Atc 'SELECT count(*) FROM credentials')" = "$(docker compose --env-file .env -f infra/compose.yaml exec -T db psql -U agrolines -d agrolines_restore -Atc 'SELECT count(*) FROM credentials')"
       - name: Encerrar serviços

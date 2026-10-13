@@ -12,7 +12,7 @@ def test_additive_migration_sql_and_revision_chain(monkeypatch):
     get_settings.cache_clear()
     output = StringIO()
     config = Config("alembic.ini", output_buffer=output)
-    assert ScriptDirectory.from_config(config).get_current_head() == "0002"
+    assert ScriptDirectory.from_config(config).get_current_head() == "0004"
     command.upgrade(config, "head", sql=True)
     sql = output.getvalue()
     for table in (
@@ -32,5 +32,7 @@ def test_additive_migration_sql_and_revision_chain(monkeypatch):
     assert "CREATE EXTENSION IF NOT EXISTS postgis" in sql
     assert "DROP TABLE" not in sql
     assert "DELETE FROM" not in sql
-    assert "'0002'" in sql
+    assert "'0004'" in sql
+    assert "geometry(MULTIPOLYGON,4326)" in sql
+    assert "USING gist" in sql
     get_settings.cache_clear()

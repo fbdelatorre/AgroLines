@@ -54,6 +54,7 @@ QLabel#Brand { font-size: 14pt; font-weight: 600; color: #e2eaf0; }
 QLabel#SectionLabel { color: #8297a7; font-size: 8pt; }
 QFrame#Card { background: #101c24; border: 1px solid #2a3a47; border-radius: 8px; }
 QFrame#Sidebar { background: #0e171e; border-right: 1px solid #293944; }
+QPlainTextEdit { background: #101d27; border: 1px solid #354754; border-radius: 5px; }
 QLineEdit, QComboBox { background: #101d27; border: 1px solid #354754;
     border-radius: 5px; padding: 4px 8px; min-height: 19px; }
 QLineEdit:focus, QComboBox:focus { border-color: #5dc58a; }

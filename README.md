@@ -2,8 +2,9 @@
 Aplicativo nativo Windows para planejamento agrícola, com servidor próprio, sem Supabase.
 A **Etapa 2.1** refina a interface escura e adota senhas de 6–128 caracteres.
 A identidade visual segue a referência fornecida: barra superior, menu compacto
-e estrutura central de mapa com painéis redimensionáveis/recolhíveis. A seção
-**Mapa** é preparação visual explícita; cartografia continua não implementada.
+e estrutura central de mapa com painéis redimensionáveis/recolhíveis. A **Etapa 3.1** acrescenta mapa vetorial, importação de polígonos e edição numérica
+como primeiro incremento da Etapa 3; veja [cartografia](docs/geography.md) e
+[precisão](docs/precision.md). A Etapa 3 completa ainda não foi aprovada.
 A **Etapa 2** implementa contas, autenticação, propriedades, safras/operações mínimas
 para escopos, convites e permissões persistentes. A navegação da Etapa 1 e seu
 healthcheck foram preservados. Talhões, equipamentos, geometria, planos, exportadores

@@ -16,5 +16,9 @@ em `pyproject.toml`; os extras `dev` e `desktop` separam ferramentas e interface
 
 Antes de distribuir o instalador, conferir licenças dos módulos Qt efetivamente
 empacotados, avisos e obrigações de redistribuição. Esta etapa não produz instalador
-nem define a licença do código do projeto. Shapely, PyProj e GDAL serão introduzidos
-quando a etapa de geometria/importação exigir; não são necessários para o esqueleto.
+nem define a licença do código do projeto. A Etapa 3.1 usa Shapely/GEOS (BSD/LGPL),
+pyproj/PROJ (MIT), Fiona/GDAL (BSD/MIT) e DefusedXML (PSF). Leaflet 1.9.4 é incluído
+localmente sob BSD-2-Clause, com aviso em desktop/map_assets/LEAFLET-LICENSE.
+Qt WebEngine inclui Chromium e seus avisos de terceiros; o instalador deverá
+redistribuir esses avisos e cumprir as obrigações dos módulos Qt efetivamente usados.
+As wheels de Fiona/PROJ/GEOS trazem bibliotecas nativas; não é exigido um QGIS instalado.
