@@ -218,3 +218,33 @@ def test_transfer_owner_and_pending_invites_recheck_authority(api):
         == recipient["id"]
     )
     assert owner_user["id"] != recipient["id"]
+
+
+def test_revoked_invitation_does_not_leak_updated_resource_names(api):
+    _, recipient, owner, invited, _, farm, _, s1, _, o1, _ = prepare(api)
+    invitation_id = share(
+        api,
+        farm,
+        recipient,
+        owner,
+        invited,
+        [{"role": "viewer", "season_id": s1["id"], "operation_id": o1["id"]}],
+    )
+    api.post("/invitations/" + invitation_id + "/revoke", headers=owner)
+    api.patch("/farms/" + farm["id"], headers=owner, json={"name": "Nome privado atualizado"})
+    api.patch(
+        f"/farms/{farm['id']}/seasons/{s1['id']}",
+        headers=owner,
+        json={"name": "Safra privada atualizada"},
+    )
+    api.patch(
+        f"/farms/{farm['id']}/seasons/{s1['id']}/operations/{o1['id']}",
+        headers=owner,
+        json={"name": "Operação privada atualizada"},
+    )
+    history = api.get("/invitations", headers=invited)
+    assert "privad" not in history.text
+    assert history.json()[0]["farm_name"] == "Propriedade indisponível"
+    assert history.json()[0]["scopes"][0]["season_name"] is None
+    assert history.json()[0]["scopes"][0]["operation_name"] is None
+    assert "Operação privada atualizada" in api.get("/invitations", headers=owner).text

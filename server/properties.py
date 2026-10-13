@@ -255,38 +255,56 @@ def invite(farm_id: str, body: InviteInput, actor: Actor, db: DB):
     return {"id": invitation.id, "status": invitation.status, "recipient_id": recipient.id}
 
 
-def invitation_json(db, i):
+def invitation_json(db, i, actor_id):
+    farm = db.get(Farm, i.farm_id)
+    pending_recipient = (
+        i.recipient_id == actor_id
+        and i.status == "pending"
+        and i.expires > security.now()
+        and can(db, i.inviter_id, farm, "manage")
+    )
+    manager = can(db, actor_id, farm, "manage")
+    farm_visible = pending_recipient or visible(db, actor_id, farm)
+    scopes = []
+    for scope in db.scalars(select(InvitationScope).where(InvitationScope.invitation_id == i.id)):
+        allowed = (
+            pending_recipient
+            or manager
+            or can(db, actor_id, farm, "read", scope.season_id, scope.operation_id)
+        )
+        scopes.append(
+            {
+                "role": scope.role,
+                "season_id": scope.season_id,
+                "operation_id": scope.operation_id,
+                "season_name": db.get(Season, scope.season_id).name
+                if allowed and scope.season_id
+                else None,
+                "operation_name": db.get(Operation, scope.operation_id).name
+                if allowed and scope.operation_id
+                else None,
+            }
+        )
     return {
         "id": i.id,
         "farm_id": i.farm_id,
-        "farm_name": db.get(Farm, i.farm_id).name,
+        "farm_name": farm.name if farm_visible else "Propriedade indisponível",
         "inviter_id": i.inviter_id,
-        "inviter_name": db.get(User, i.inviter_id).name,
+        "inviter_name": db.get(User, i.inviter_id).name if farm_visible else "Usuário indisponível",
         "recipient_id": i.recipient_id,
-        "recipient_name": db.get(User, i.recipient_id).name,
+        "recipient_name": db.get(User, i.recipient_id).name
+        if farm_visible
+        else "Usuário indisponível",
         "status": "expired" if i.status == "pending" and i.expires <= security.now() else i.status,
         "expires": i.expires,
-        "scopes": [
-            {
-                "role": s.role,
-                "season_id": s.season_id,
-                "operation_id": s.operation_id,
-                "season_name": db.get(Season, s.season_id).name if s.season_id else None,
-                "operation_name": db.get(Operation, s.operation_id).name
-                if s.operation_id
-                else None,
-            }
-            for s in db.scalars(
-                select(InvitationScope).where(InvitationScope.invitation_id == i.id)
-            )
-        ],
+        "scopes": scopes,
     }
 
 
 @router.get("/invitations")
 def list_invitations(actor: Actor, db: DB):
     return [
-        invitation_json(db, i)
+        invitation_json(db, i, actor[0].id)
         for i in db.scalars(
             select(Invitation).where(
                 or_(Invitation.recipient_id == actor[0].id, Invitation.inviter_id == actor[0].id)
@@ -334,7 +352,7 @@ def decide_invitation(invitation_id: str, decision: str, actor: Actor, db: DB):
     else:
         raise HTTPException(400, "Ação inválida.")
     security.audit(db, actor[0].id, "invitation." + decision, invitation.id, farm.id)
-    return invitation_json(db, invitation)
+    return invitation_json(db, invitation, actor[0].id)
 
 
 @router.patch("/permissions/{permission_id}")

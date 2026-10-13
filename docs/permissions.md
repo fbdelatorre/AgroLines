@@ -52,3 +52,7 @@ e do antigo proprietário, e retira o acesso anterior de proprietário. Convites
 do antigo titular não poderão ser aceitos se ele perdeu poder de gestão.
 Auditoria registra ator, ação, recurso e instante, sem senha, e-mail de login ou tokens.
 A capacidade `export` é autorização futura: nenhum exportador foi implementado.
+
+Convites históricos não permitem consultar nomes atuais de escopos revogados.
+Metadados são redigidos quando o usuário perdeu autorização; destinatário de convite
+pendente válido pode ver apenas os escopos propostos por emissor ainda autorizado.

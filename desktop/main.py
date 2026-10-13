@@ -639,9 +639,10 @@ class MainWindow(QMainWindow):
                     ROLE_NAMES[scope["role"]]
                     + " / "
                     + (
-                        f"{scope['season_name']} — {scope['operation_name']}"
+                        f"{scope['season_name'] or 'Safra indisponível'} — "
+                        f"{scope['operation_name'] or 'Operação indisponível'}"
                         if scope["operation_id"]
-                        else scope["season_name"]
+                        else scope["season_name"] or "Safra indisponível"
                         if scope["season_id"]
                         else "fazenda inteira"
                     )
