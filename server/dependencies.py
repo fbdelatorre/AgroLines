@@ -24,7 +24,7 @@ def database(request: Request):
             raise
 
 
-DB = Annotated[Session, Depends(database)]
+DB = Annotated[Session, Depends(database, scope="function")]
 
 
 def authenticated(

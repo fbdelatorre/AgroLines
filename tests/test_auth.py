@@ -198,3 +198,35 @@ def test_invite_expiration(api, monkeypatch):
     )
     assert api.get("/invitations", headers=invited).json()[0]["status"] == "expired"
     assert user["id"] != recipient["id"]
+
+
+def test_password_work_is_bounded(monkeypatch):
+    from threading import BoundedSemaphore
+
+    from fastapi import HTTPException
+
+    monkeypatch.setattr(security, "password_slots", BoundedSemaphore(0))
+    with pytest.raises(HTTPException) as error:
+        security.hash_password("Synthetic password 123!")
+    assert error.value.status_code == 429
+    with pytest.raises(HTTPException):
+        security.verify_password(security.DUMMY_HASH, "Synthetic password 123!")
+
+
+def test_failed_commit_is_not_reported_as_success(api):
+    from fastapi.testclient import TestClient
+    from sqlalchemy import event
+
+    _, headers, _ = account(api)
+
+    def fail_commit(connection):
+        raise RuntimeError("Synthetic commit failure")
+
+    event.listen(api.app.state.engine, "commit", fail_commit)
+    try:
+        with TestClient(api.app, raise_server_exceptions=False) as client:
+            response = client.post("/farms", headers=headers, json={"name": "Must roll back"})
+        assert response.status_code == 500
+    finally:
+        event.remove(api.app.state.engine, "commit", fail_commit)
+    assert api.get("/farms", headers=headers).json() == []

@@ -1,6 +1,8 @@
 import hashlib
 import secrets
 import time
+from contextlib import contextmanager
+from threading import BoundedSemaphore
 
 from argon2 import PasswordHasher
 from argon2.exceptions import InvalidHashError, VerificationError
@@ -11,6 +13,17 @@ from server.models import AuditEvent, RateBucket
 
 hasher = PasswordHasher(time_cost=3, memory_cost=65536, parallelism=2)
 DUMMY_HASH = hasher.hash(secrets.token_urlsafe(32))
+password_slots = BoundedSemaphore(4)
+
+
+@contextmanager
+def password_work():
+    if not password_slots.acquire(blocking=False):
+        raise HTTPException(429, "Servidor ocupado. Tente novamente.", headers={"Retry-After": "1"})
+    try:
+        yield
+    finally:
+        password_slots.release()
 
 
 def now() -> int:
@@ -26,14 +39,16 @@ def token() -> str:
 
 
 def hash_password(password: str) -> str:
-    return hasher.hash(password)
+    with password_work():
+        return hasher.hash(password)
 
 
 def verify_password(encoded: str, password: str) -> bool:
-    try:
-        return hasher.verify(encoded, password)
-    except (VerificationError, InvalidHashError):
-        return False
+    with password_work():
+        try:
+            return hasher.verify(encoded, password)
+        except (VerificationError, InvalidHashError):
+            return False
 
 
 def audit(db, actor_id, action, resource_id=None, farm_id=None):

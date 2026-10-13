@@ -14,7 +14,7 @@ identificadores para controle de acesso, sem dados agrícolas avançados.
 
 `auth.py` gerencia contas/sessões; `permissions.py` centraliza matriz/hierarquia;
 `properties.py` filtra consultas e valida cada mutação. `dependencies.py` mantém uma
-transação por requisição. Cada requisição autenticada consulta sessão e autorização
+transação por requisição, confirmada antes de devolver sucesso HTTP. Cada requisição autenticada consulta sessão e autorização
 atuais. `/health` preserva liveness da Etapa 1; `/docs` documenta contratos reais.
 
 Migração `0001` habilita PostGIS; `0002` adiciona tabelas sem apagar dados. O servidor

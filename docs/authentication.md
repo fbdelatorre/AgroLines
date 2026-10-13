@@ -25,6 +25,9 @@ Reutilização de refresh antigo revoga a sessão inteira, incluindo tokens novo
 Perda da resposta durante rotação pode exigir novo login; não repetir silenciosamente
 renovação com token antigo. Logout e redefinição invalidam sessões no servidor.
 
+Hash/verificação têm limite de quatro operações simultâneas por processo (até
+256 MiB de memória Argon2), retornando 429 quando saturado.
+
 Bloqueio de login por conta e IP usa buckets persistentes e locks no PostgreSQL,
 funciona entre workers e permanece após falhas de autenticação. Não confiar em
 X-Forwarded-For arbitrário: configure proxy/hosts confiáveis ao implantar. Cadastro

@@ -3,6 +3,7 @@ on: [push, pull_request]
 jobs:
   checks:
     strategy:
+      fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
@@ -11,10 +12,27 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Bibliotecas Qt no Linux
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends libegl1 libopengl0
       - run: python -m pip install -e ".[dev,desktop]"
       - run: ruff check .
       - run: ruff format --check .
-      - run: pytest
+      - name: Pytest
+        shell: python
+        run: |
+          import subprocess
+          import sys
+          result = subprocess.run([sys.executable, '-m', 'pytest'], capture_output=True, text=True)
+          print(result.stdout)
+          print(result.stderr, file=sys.stderr)
+          if result.returncode:
+              detail = (result.stdout + result.stderr)[-14000:]
+              detail = detail.replace('%', '%25').replace('\r', '%0D').replace('\n', '%0A')
+              print('::error title=Falha nos testes::' + detail)
+          sys.exit(result.returncode)
       - name: Validar sintaxe PowerShell
         if: matrix.os == 'windows-latest'
         shell: pwsh
