@@ -15,3 +15,42 @@ jobs:
       - run: ruff check .
       - run: ruff format --check .
       - run: pytest
+  integration:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configuração efêmera de teste
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import secrets
+          password = secrets.token_hex(24)
+          Path('.env').write_text(
+              f'POSTGRES_PASSWORD={password}\n'
+              f'AGROLINES_DATABASE_URL=postgresql+psycopg://agrolines:{password}@db:5432/agrolines\n'
+          )
+          PY
+      - name: Build, migração e saúde
+        run: |
+          set -euo pipefail
+          docker compose --env-file .env -f infra/compose.yaml up --build -d --wait
+          python - <<'PY'
+          import json
+          import urllib.request
+          with urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=5) as response:
+              assert json.load(response) == {'status': 'ok', 'service': 'agrolines', 'version': '0.1.0'}
+          PY
+          docker compose --env-file .env -f infra/compose.yaml exec -T api alembic upgrade head
+          test "$(docker compose --env-file .env -f infra/compose.yaml exec -T db psql -U agrolines -d agrolines -Atc 'SELECT version_num FROM alembic_version')" = '0001'
+          docker compose --env-file .env -f infra/compose.yaml exec -T db psql -U agrolines -d agrolines -c 'SELECT PostGIS_Version();'
+      - name: Backup e restauração isolada
+        run: |
+          set -euo pipefail
+          mkdir -p backups
+          docker compose --env-file .env -f infra/compose.yaml exec -T db pg_dump -U agrolines -d agrolines -Fc > backups/test.dump
+          docker compose --env-file .env -f infra/compose.yaml exec -T db createdb -U agrolines agrolines_restore
+          docker compose --env-file .env -f infra/compose.yaml exec -T db pg_restore -U agrolines -d agrolines_restore --exit-on-error < backups/test.dump
+          test "$(docker compose --env-file .env -f infra/compose.yaml exec -T db psql -U agrolines -d agrolines_restore -Atc 'SELECT version_num FROM alembic_version')" = '0001'
+      - name: Encerrar serviços
+        if: always()
+        run: docker compose --env-file .env -f infra/compose.yaml down

@@ -59,4 +59,4 @@ de domínio ainda. PostgreSQL usa volume persistente; **não use `down -v` em da
 A CI executa lint e testes sem GUI em Linux e Windows. GUI nativa Windows exige
 checklist manual; um teste offscreen Linux não demonstra compatibilidade Windows.
 Veja [arquitetura](docs/architecture.md), [permissões](docs/permissions.md),
-[roadmap](docs/roadmap.md) e [backup](docs/backup.md).
+[roadmap](docs/roadmap.md) e [backup](docs/backup.md) e [dependências/licenças](docs/dependencies.md).

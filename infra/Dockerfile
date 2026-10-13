@@ -6,7 +6,7 @@ COPY core ./core
 COPY desktop ./desktop
 COPY exporters ./exporters
 RUN pip install --no-cache-dir .
-RUN useradd --create-home agrolines
+RUN useradd --create-home agrolines && chmod -R a+rX /app
 USER agrolines
 EXPOSE 8000
 CMD ["uvicorn", "server.main:app", "--host", "0.0.0.0", "--port", "8000"]
