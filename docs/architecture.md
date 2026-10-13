@@ -40,3 +40,16 @@ Prazos agrícolas offline, licença de tiles e fixtures ISOXML permanecem decis�
 pendentes antes dos módulos correspondentes. Serviço exposto exige HTTPS e acesso
 seguro por VPN/reverse proxy, autenticação própria, backups externos criptografados
 e retenção de auditoria. O Compose atual destina-se ao desenvolvimento local.
+
+## Estrutura visual da Etapa 2.1
+
+`desktop/workspace.py` hospeda um `QMainWindow` interno com painéis `QDockWidget`,
+mantendo a navegação fora da área acoplável. O `QStackedWidget` central recebe
+formulários ou `MapViewport`. `set_map_component()` substitui o componente central
+preservando índices da navegação; a implementação GIS pertence às próximas etapas.
+Painéis periféricos usam rolagem e escolhas de visibilidade por faixa de resolução.
+O mapa recebe o espaço restante quando o usuário recolhe os painéis.
+
+A estrutura visual não conhece o banco nem os tokens. Recebe apenas o contexto
+autorizado da sessão, limpo pelo mesmo fluxo de revogação/logout das outras telas.
+Ferramentas, valores e geração cartográfica permanecem indisponíveis explicitamente.

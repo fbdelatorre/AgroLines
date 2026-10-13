@@ -1,13 +1,19 @@
 # AgroLines
 Aplicativo nativo Windows para planejamento agrícola, com servidor próprio, sem Supabase.
+A **Etapa 2.1** refina a interface escura e adota senhas de 6–128 caracteres.
+A identidade visual segue a referência fornecida: barra superior, menu compacto
+e estrutura central de mapa com painéis redimensionáveis/recolhíveis. A seção
+**Mapa** é preparação visual explícita; cartografia continua não implementada.
 A **Etapa 2** implementa contas, autenticação, propriedades, safras/operações mínimas
 para escopos, convites e permissões persistentes. A navegação da Etapa 1 e seu
 healthcheck foram preservados. Talhões, equipamentos, geometria, planos, exportadores
 e sincronização completa continuam **Em desenvolvimento**.
 
 ## Windows 11 — sem Docker
-Instale Python 3.12 e PostgreSQL 16 com a extensão PostGIS compatível (por exemplo,
+Instale Python 3.12 e PostgreSQL com a extensão PostGIS compatível (por exemplo,
 instalador PostgreSQL e PostGIS pelo Stack Builder). Docker é opcional.
+A Etapa 2 foi validada pelo usuário com PostgreSQL 18/PostGIS 3.6.2 no Windows 11;
+o ambiente de integração automatizado usa PostgreSQL 16/PostGIS 3.4.
 
 No PowerShell, na raiz do checkout:
 ```powershell
@@ -50,11 +56,14 @@ Invoke-RestMethod http://127.0.0.1:8000/health
 $env:AGROLINES_API_URL = 'http://127.0.0.1:8000'
 .\.venv\Scripts\python.exe -m desktop.main
 ```
-Crie uma conta e entre. Em **Minhas propriedades**, cadastre sua fazenda. Em
-**Compartilhar propriedade**, selecione fazenda, perfil e escopos; cadastre safras
-mínimas e operações pelo nome quando necessário. O destinatário precisa de conta
-existente e aceita em **Convites recebidos e enviados**. Consulte ou altere perfis
-em **Usuários e permissões**. Só o proprietário transfere titularidade, com confirmação.
+Crie uma conta e entre. Em **Minhas propriedades**, cadastre sua fazenda e use
+as abas **Safras** e **Operações** para os cadastros mínimos pelo nome. As ações
+de renomear, compartilhar e transferir ficam junto à tabela de propriedades.
+Em **Compartilhar propriedade**, avance por propriedade, destinatário, perfil,
+escopo e confirmação. O destinatário precisa de conta existente e aceita em
+**Convites recebidos e enviados**; filtre por direção e situação para consultar
+os escopos. Consulte, altere perfis ou revogue acessos em **Usuários e permissões**.
+Só o proprietário transfere titularidade, com confirmação.
 A identificação por e-mail localiza uma conta; não comprova posse da caixa postal.
 Convites ficam no aplicativo, sem envio automático de e-mail nesta etapa.
 
@@ -96,6 +105,8 @@ Esse smoke test cria dados sintéticos e não limpa nem redefine o banco.
 
 CI: Linux/Windows, teste Qt offscreen, DPAPI real no Windows, migração de `0001`
 para `0002` preservando marcador anterior, fluxo HTTP/PostgreSQL e backup/restauração.
+Capturas Qt nativas Windows em escalas 100%, 125% e 150% são publicadas como
+artefatos do CI para revisão visual; ver [validação visual](docs/visual-validation.md).
 SQLite é usado apenas como banco isolado dos testes unitários; servidor real usa PostgreSQL.
 
 Checklist manual Windows: criar conta, entrar/sair, reiniciar desktop e confirmar

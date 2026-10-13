@@ -5,7 +5,7 @@ Documentação interativa local em `/docs`; contratos de entrada/saída em OpenA
 
 | Rota | Comportamento |
 |---|---|
-| POST /auth/register | Nome, e-mail único normalizado, senha de 12–128 caracteres |
+| POST /auth/register | Nome, e-mail único normalizado, senha de 6–128 caracteres |
 | POST /auth/login | E-mail/senha; acesso e renovação opacos |
 | POST /auth/refresh | `{ "token": "..." }`; rotação, prazo absoluto preservado |
 | POST /auth/logout | Revoga a sessão atual; 204 |
@@ -19,6 +19,11 @@ Use `Authorization: Bearer <access_token>` nas rotas protegidas. Tokens não sã
 256 bits aleatórios, somente SHA-256 no banco. Cada consulta verifica sessão ativa,
 prazo e autorização vigente; permissões não ficam embutidas no token. Argon2id usa
 64 MiB, três iterações e paralelismo 2. Rehash ocorre após login quando necessário.
+
+Cadastro e redefinição aceitam senhas de 6 a 128 caracteres, sem alteração do
+hash Argon2id. A atualização não modifica credenciais nem invalida sessões
+existentes. Login continua verificando a senha armazenada, sem impor o mínimo
+novo a credenciais antigas. Senhas nunca são registradas em logs.
 
 A renovação troca ambos os tokens sob lock da sessão. O acesso anterior é invalidado.
 Reutilização de refresh antigo revoga a sessão inteira, incluindo tokens novos.

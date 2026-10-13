@@ -1,41 +1,35 @@
 import os
 import sys
+from uuid import UUID
 
-from PySide6.QtCore import Qt, QThread, QTimer, Signal
+from email_validator import EmailNotValidError, validate_email
+from PySide6.QtCore import QSize, Qt, QThread, QTimer, Signal
 from PySide6.QtWidgets import (
-    QAbstractItemView,
     QApplication,
     QComboBox,
-    QFormLayout,
+    QDialog,
+    QDialogButtonBox,
+    QFrame,
     QHBoxLayout,
-    QLabel,
-    QLineEdit,
     QListWidget,
+    QListWidgetItem,
     QMainWindow,
-    QPushButton,
+    QMessageBox,
     QScrollArea,
+    QSizePolicy,
     QStackedWidget,
-    QTabWidget,
+    QToolButton,
     QVBoxLayout,
-    QWidget,
 )
 
+from core.passwords import MAX_PASSWORD_LENGTH, MIN_PASSWORD_LENGTH
 from desktop.client import ApiClient, ApiError
 from desktop.health import check_health
-
-SECTIONS = (
-    "Painel",
-    "Produtores",
-    "Fazendas",
-    "Talhões",
-    "Safras",
-    "Operações",
-    "Máquinas",
-    "Implementos",
-    "Planejamentos",
-    "Exportações",
-    "Configurações",
-)
+from desktop.icons import icon
+from desktop.labels import ROLE_DESCRIPTIONS, ROLE_NAMES, SECTIONS, STATUSES, scope_text
+from desktop.pages import PageBuilders
+from desktop.ui import THEME, Card, Page, apply_theme, error_for, field, form_layout, label
+from desktop.workspace import VisualWorkspace
 
 
 class HealthWorker(QThread):
@@ -47,22 +41,6 @@ class HealthWorker(QThread):
 
     def run(self):
         self.checked.emit(check_health(self.url))
-
-
-ROLE_NAMES = {
-    "owner": "Proprietário",
-    "administrator": "Administrador",
-    "editor": "Editor",
-    "operator": "Operador",
-    "viewer": "Visualizador",
-}
-STATUSES = {
-    "pending": "Pendente",
-    "accepted": "Aceito",
-    "declined": "Recusado",
-    "revoked": "Revogado",
-    "expired": "Expirado",
-}
 
 
 class Job(QThread):
@@ -85,66 +63,113 @@ class Job(QThread):
             self.function = None
 
 
-def button(text, action, layout):
-    widget = QPushButton(text)
-    widget.clicked.connect(action)
-    layout.addWidget(widget)
-    return widget
-
-
-def field(layout, label, secret=False):
-    widget = QLineEdit()
-    if secret:
-        widget.setEchoMode(QLineEdit.Password)
-    layout.addRow(label, widget)
-    return widget
-
-
-class MainWindow(QMainWindow):
+class MainWindow(PageBuilders, QMainWindow):
     def __init__(self, client=None):
         super().__init__()
+        apply_theme()
         self.client = client or ApiClient(os.getenv("AGROLINES_API_URL", "http://127.0.0.1:8000"))
         self.online = None
         self.job = None
+        self.pending_read = None
         self.farms = []
-        self.setWindowTitle("AgroLines")
-        self.resize(1120, 720)
-        self.setStyleSheet(
-            "QWidget { background:#18212b; color:#e7edf4; font-size:14px; }"
-            "QLineEdit,QListWidget,QComboBox { background:#253443; padding:8px;"
-            "border:1px solid #465867; }"
-            "QPushButton { background:#256b4d; padding:9px; border-radius:4px; }"
-            "QPushButton:disabled { background:#39434c; color:#89939e; }"
-            "QTabBar::tab { padding:10px; }"
-        )
-        self.connection = QLabel("Verificando servidor…")
-        self.message = QLabel("Sincronização completa não implementada.")
-        self.message.setWordWrap(True)
-        self.pages = QStackedWidget()
-        self.navigation = QListWidget()
-        self.page_indices = {}
+        self.invite_records = []
+        self._populating = False
+        self.responsive_splits = []
         self.farm_selectors = []
-        self.add_page("Entrar / Cadastro", self.auth_page())
-        self.add_page("Minha conta", self.account_page())
-        self.add_page("Minhas propriedades", self.farms_page(False))
-        self.add_page("Compartilhadas comigo", self.farms_page(True))
-        self.add_page("Usuários e permissões", self.members_page())
-        self.add_page("Compartilhar propriedade", self.sharing_page())
-        self.add_page("Convites recebidos e enviados", self.invites_page())
+        self.page_indices = {}
+        self.nav_rows = {}
+        self.setWindowTitle("AgroLines")
+        self.setMinimumSize(640, 480)
+        self.setStyleSheet(THEME)
+        self.pages = QStackedWidget()
+        self.workspace = VisualWorkspace(self.pages)
+        self.workspace.openProperty.connect(self.open_context_property)
+        self._menu_collapsed = False
+        self.navigation = QListWidget()
+        self.navigation.setObjectName("Navigation")
+        self.navigation.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.navigation.setIconSize(QSize(19, 19))
+        self.sidebar = QFrame()
+        self.sidebar.setObjectName("Sidebar")
+        aside = QVBoxLayout(self.sidebar)
+        aside.setContentsMargins(3, 10, 3, 8)
+        aside.setSpacing(6)
+        aside.addWidget(self.navigation, 1)
+        self.collapse_menu = QToolButton()
+        self.collapse_menu.setIcon(icon("collapse"))
+        self.collapse_menu.setToolTip("Recolher ou expandir menu")
+        self.collapse_menu.clicked.connect(self.toggle_menu)
+        aside.addWidget(self.collapse_menu)
+        self.add_page("Entrar / Cadastro", self.auth_page(), "Entrar", "lock")
+        dashboard = Page("Painel", "Esta seção faz parte das próximas etapas do AgroLines.")
+        dashboard.body.addWidget(Card("Em desenvolvimento"))
+        dashboard.body.addStretch()
+        self.add_page("Painel", dashboard, image="home", future=True)
+        self.add_page("Mapa", self.workspace.map_viewport, image="map", future=True)
+        self.add_page("Minhas propriedades", self.farms_page(False), "Propriedades", "farm")
+        self.add_page("Compartilhadas comigo", self.farms_page(True), "Compartilhadas", "share")
+        self.add_page("Usuários e permissões", self.members_page(), "Permissões", "users")
+        self.add_page("Compartilhar propriedade", self.sharing_page(), "Compartilhar", "share")
+        self.add_page("Convites recebidos e enviados", self.invites_page(), "Convites", "mail")
         for section in SECTIONS:
-            self.add_page(section, QLabel(f"{section} — Em desenvolvimento"))
-        self.navigation.currentRowChanged.connect(self.pages.setCurrentIndex)
+            if section == "Painel":
+                continue
+            page = Page(section, "Esta seção faz parte das próximas etapas do AgroLines.")
+            card = Card(
+                "Em desenvolvimento",
+                "Os cadastros mínimos de safras e operações estão na tela Propriedades.",
+            )
+            page.body.addWidget(card)
+            page.body.addStretch()
+            image = {
+                "Painel": "home",
+                "Fazendas": "farm",
+                "Safras": "calendar",
+                "Operações": "lines",
+                "Configurações": "settings",
+                "Produtores": "users",
+            }.get(section, "layers")
+            self.add_page(section, page, image=image, future=True)
+        self.add_page("Minha conta", self.account_page(), image="user")
+        self.navigation.currentRowChanged.connect(self.navigate_row)
         self.navigation.setCurrentRow(0)
+        shell = QFrame()
+        shell.setObjectName("Shell")
+        column = QVBoxLayout(shell)
+        column.setContentsMargins(0, 0, 0, 0)
+        column.setSpacing(0)
         row = QHBoxLayout()
-        row.addWidget(self.navigation, 1)
-        row.addWidget(self.pages, 4)
-        layout = QVBoxLayout()
-        layout.addWidget(self.connection)
-        layout.addWidget(self.message)
-        layout.addLayout(row)
-        container = QWidget()
-        container.setLayout(layout)
-        self.setCentralWidget(container)
+        row.setContentsMargins(0, 0, 0, 0)
+        row.setSpacing(0)
+        row.addWidget(self.sidebar)
+        row.addWidget(self.workspace, 1)
+        column.addWidget(self.top_bar())
+        column.addLayout(row, 1)
+        footer = QFrame()
+        footer.setObjectName("Footer")
+        row = QHBoxLayout(footer)
+        row.setContentsMargins(14, 7, 14, 7)
+        self.connection = label("● Verificando servidor", "Hint")
+        self.connection.setWordWrap(False)
+        self.message = label("", "Notice")
+        self.message.setWordWrap(False)
+        self.message.setSizePolicy(QSizePolicy.Ignored, QSizePolicy.Preferred)
+        self.sync_status = label("Sincronização não implementada", "Hint")
+        self.sync_status.setWordWrap(False)
+        self.sync_status.setToolTip(
+            "Não há sincronização completa ou fila de alterações offline nesta etapa."
+        )
+        row.addWidget(self.connection)
+        row.addWidget(self.message, 1)
+        row.addWidget(self.sync_status)
+        column.addWidget(footer)
+        self.setCentralWidget(shell)
+        available = QApplication.primaryScreen().availableGeometry()
+        self.resize(
+            max(640, min(1180, int(available.width() * 0.94))),
+            max(480, min(780, int(available.height() * 0.92))),
+        )
+        self.adapt_layout()
         self.worker = HealthWorker(self.client.url, self)
         self.worker.checked.connect(self.show_health)
         self.timer = QTimer(self)
@@ -152,260 +177,410 @@ class MainWindow(QMainWindow):
         self.timer.start(10000)
         self.refresh()
 
-    def add_page(self, title, page):
-        self.page_indices[title] = self.pages.count()
-        self.navigation.addItem(title)
-        scroll = QScrollArea()
-        scroll.setWidgetResizable(True)
-        scroll.setWidget(page)
-        self.pages.addWidget(scroll)
+    def add_page(self, title, page, caption=None, image="layers", future=False):
+        index = (
+            self.workspace.map_index if page is self.workspace.map_viewport else self.pages.count()
+        )
+        self.page_indices[title] = index
+        self.nav_rows[title] = self.navigation.count()
+        item = QListWidgetItem(icon(image), caption or title)
+        item.setData(Qt.UserRole, {"page": index, "title": title, "image": image})
+        item.setToolTip(title + (" — Em desenvolvimento" if future else ""))
+        self.navigation.addItem(item)
+        if page is not self.workspace.map_viewport:
+            scroll = QScrollArea()
+            scroll.setWidgetResizable(True)
+            scroll.setWidget(page)
+            self.pages.addWidget(scroll)
 
-    def call(self, function, callback=None, protected=True):
+    def navigate_row(self, row):
+        if row < 0:
+            return
+        for index in range(self.navigation.count()):
+            item = self.navigation.item(index)
+            item.setIcon(
+                icon(item.data(Qt.UserRole)["image"], "#8fe1af" if index == row else "#91a6b2")
+            )
+        self.pages.setCurrentIndex(self.navigation.item(row).data(Qt.UserRole)["page"])
+        title = self.navigation.item(row).data(Qt.UserRole)["title"]
+        self.workspace.activate_map(title == "Mapa")
+        if hasattr(self, "section_title"):
+            self.section_title.setText(title + (" · Em desenvolvimento" if title == "Mapa" else ""))
+        if title == "Convites recebidos e enviados" and self.client.state.get("access_token"):
+            self.load_invites()
+        elif title == "Usuários e permissões" and self.member_farm.currentData():
+            self.load_members()
+
+    def navigate_to(self, title):
+        self.navigation.setCurrentRow(self.nav_rows[title])
+
+    def top_bar(self):
+        bar = QFrame()
+        bar.setObjectName("TopBar")
+        row = QHBoxLayout(bar)
+        row.setContentsMargins(8, 7, 12, 7)
+        row.setSpacing(10)
+        self.brand_box = QFrame()
+        brand_row = QHBoxLayout(self.brand_box)
+        brand_row.setContentsMargins(0, 0, 0, 0)
+        logo = label()
+        logo.setPixmap(icon("leaf", "#30b579").pixmap(24, 24))
+        self.brand = label("AgroLines", "Brand")
+        self.brand.setWordWrap(False)
+        brand_row.addWidget(logo)
+        brand_row.addWidget(self.brand, 1)
+        row.addWidget(self.brand_box)
+        self.context_property = QComboBox()
+        self.context_property.setMinimumWidth(100)
+        self.context_property.setPlaceholderText("Propriedade")
+        self.context_property.setSizePolicy(QSizePolicy.Ignored, QSizePolicy.Preferred)
+        self.context_property.setToolTip("Contexto da propriedade · somente acessos autorizados")
+        self.context_property.setAccessibleName("Contexto da propriedade")
+        self.context_property.currentIndexChanged.connect(self.context_changed)
+        row.addWidget(self.context_property, 1)
+        self.section_title = label("Entrar / Cadastro", "Hint")
+        self.section_title.setWordWrap(False)
+        row.addWidget(self.section_title)
+        for toggle in self.workspace.toggles.values():
+            button = QToolButton()
+            button.setDefaultAction(toggle)
+            button.setToolTip(toggle.text() + " · mostrar ou recolher painel")
+            row.addWidget(button)
+        self.account_button = QToolButton()
+        self.account_button.setIcon(icon("user", "#72d6a3"))
+        self.account_button.setToolButtonStyle(Qt.ToolButtonTextBesideIcon)
+        self.account_button.setText("Minha conta")
+        self.account_button.setMaximumWidth(150)
+        self.account_button.clicked.connect(lambda: self.navigate_to("Minha conta"))
+        row.addWidget(self.account_button)
+        return bar
+
+    def context_changed(self, *_):
+        farm_id = self.context_property.currentData()
+        farm = next((f for f in self.farms if f["id"] == farm_id), None)
+        self.workspace.set_context(farm)
+
+    def open_context_property(self, farm_id):
+        farm = next((f for f in self.farms if f["id"] == farm_id), None)
+        if not farm:
+            return
+        table = self.owned_list if farm["owned"] else self.shared_list
+        self.navigate_to("Minhas propriedades" if farm["owned"] else "Compartilhadas comigo")
+        for row in range(table.count()):
+            if table.item(row).data(Qt.UserRole)["id"] == farm_id:
+                table.setCurrentRow(row)
+                break
+
+    def toggle_menu(self):
+        self._menu_collapsed = not self._menu_collapsed
+        self.adapt_layout()
+
+    def resizeEvent(self, event):
+        super().resizeEvent(event)
+        if hasattr(self, "context_property"):
+            self.adapt_layout()
+
+    def adapt_layout(self):
+        compact = self.width() < 900 or self._menu_collapsed
+        self.sidebar.setFixedWidth(56 if compact else 176)
+        self.brand_box.setFixedWidth(56 if compact else 176)
+        self.brand.setVisible(not compact)
+        self.collapse_menu.setText("" if compact else "Recolher menu")
+        self.collapse_menu.setToolButtonStyle(
+            Qt.ToolButtonIconOnly if compact else Qt.ToolButtonTextBesideIcon
+        )
+        for index in range(self.navigation.count()):
+            item = self.navigation.item(index)
+            item.setText(
+                ""
+                if compact
+                else {
+                    "Entrar / Cadastro": "Entrar",
+                    "Minhas propriedades": "Propriedades",
+                    "Compartilhadas comigo": "Compartilhadas",
+                    "Usuários e permissões": "Permissões",
+                    "Compartilhar propriedade": "Compartilhar",
+                    "Convites recebidos e enviados": "Convites",
+                }.get(item.data(Qt.UserRole)["title"], item.data(Qt.UserRole)["title"])
+            )
+        for split in self.responsive_splits:
+            split.setOrientation(Qt.Horizontal if self.width() >= 1100 else Qt.Vertical)
+        self.workspace.adapt(self.width() < 1050)
+        self.section_title.setVisible(self.width() >= 1100)
+        self.account_button.setToolButtonStyle(
+            Qt.ToolButtonIconOnly if self.width() < 900 else Qt.ToolButtonTextBesideIcon
+        )
+        if hasattr(self, "sync_status"):
+            self.sync_status.setVisible(self.width() >= 900)
+
+    def notice(self, text):
+        self.message.setText(text)
+        self.message.setToolTip(text)
+
+    def call(
+        self, function, callback=None, protected=True, fields=None, defer=False, on_error=None
+    ):
         if self.job is not None:
-            self.message.setText("Aguarde a solicitação em andamento.")
+            if defer:
+                self.pending_read = (function, callback, protected, fields, on_error)
+            else:
+                self.notice("Aguarde a solicitação em andamento.")
             return
         if protected and not self.online:
-            self.message.setText("Esta ação exige conexão com o servidor.")
+            self.notice("Esta ação exige conexão com o servidor.")
             return
         self.job = Job(function, self)
         current = self.job
-        self.message.setText("Consultando servidor…")
+        self.notice("Consultando servidor…")
 
         def completed():
             self.job = None
             if current.error:
-                self.message.setText(str(current.error))
+                self.notice(str(current.error))
+                for key, message in getattr(current.error, "field_errors", {}).items():
+                    if fields and key in fields:
+                        error_for(fields[key], message)
                 if current.error.status == 401:
+                    self.pending_read = None
                     self.clear_views()
-                    self.navigation.setCurrentRow(0)
+                    self.navigate_to("Entrar / Cadastro")
+                elif on_error:
+                    on_error(current.error)
             else:
-                self.message.setText(
-                    "Solicitação concluída. Sincronização completa não implementada."
-                )
+                self.notice("Solicitação concluída.")
                 if callback:
                     callback(current.result)
             current.deleteLater()
+            if self.job is None and self.pending_read:
+                pending = self.pending_read
+                self.pending_read = None
+                self.call(pending[0], pending[1], pending[2], pending[3], on_error=pending[4])
 
         current.finished.connect(completed)
         current.start()
 
-    def public_request(self, method, path, body, callback=None):
-        self.call(lambda: self.client.raw(method, path, body), callback, False)
-
-    def private_request(self, method, path, body=None, callback=None):
-        self.call(lambda: self.client.request(method, path, body), callback)
-
-    def auth_page(self):
-        tabs = QTabWidget()
-        login = QWidget()
-        form = QFormLayout(login)
-        self.login_email = field(form, "E-mail")
-        self.login_password = field(form, "Senha", True)
-        sign_in = QPushButton("Entrar")
-        form.addRow(sign_in)
-        sign_in.clicked.connect(self.sign_in)
-        tabs.addTab(login, "Login")
-        register = QWidget()
-        form = QFormLayout(register)
-        self.register_name = field(form, "Nome")
-        self.register_email = field(form, "E-mail")
-        self.register_password = field(form, "Senha (mínimo 12 caracteres)", True)
-        sign_up = QPushButton("Criar conta")
-        form.addRow(sign_up)
-        sign_up.clicked.connect(self.sign_up)
-        tabs.addTab(register, "Cadastro")
-        recovery = QWidget()
-        form = QFormLayout(recovery)
-        self.recovery_email = field(form, "E-mail da conta")
-        send = QPushButton("Solicitar código por e-mail")
-        form.addRow(send)
-        send.clicked.connect(
-            lambda: self.public_request(
-                "POST",
-                "/auth/recover",
-                {"email": self.recovery_email.text()},
-                lambda data: self.message.setText(data["message"]),
-            )
+    def public_request(self, method, path, body, callback=None, fields=None, on_error=None):
+        self.call(
+            lambda: self.client.raw(method, path, body), callback, False, fields, on_error=on_error
         )
-        self.reset_token = field(form, "Código recebido", True)
-        self.reset_password = field(form, "Nova senha (mínimo 12 caracteres)", True)
-        reset = QPushButton("Redefinir senha")
-        form.addRow(reset)
-        reset.clicked.connect(self.reset_password_now)
-        tabs.addTab(recovery, "Recuperar senha")
-        return tabs
+
+    def private_request(self, method, path, body=None, callback=None, fields=None):
+        self.call(lambda: self.client.request(method, path, body), callback, fields=fields)
+
+    def valid_name(self, widget):
+        text = widget.text().strip()
+        return error_for(
+            widget,
+            "Informe um nome."
+            if not text
+            else "Use até 120 caracteres."
+            if len(text) > 120
+            else "",
+        )
+
+    def valid_email(self, widget):
+        try:
+            validate_email(widget.text().strip(), check_deliverability=False)
+        except EmailNotValidError:
+            return error_for(widget, "Informe um e-mail válido.")
+        return error_for(widget)
+
+    def valid_password(self, widget):
+        length = len(widget.text())
+        return error_for(
+            widget,
+            f"Use pelo menos {MIN_PASSWORD_LENGTH} caracteres."
+            if length < MIN_PASSWORD_LENGTH
+            else f"Use até {MAX_PASSWORD_LENGTH} caracteres."
+            if length > MAX_PASSWORD_LENGTH
+            else "",
+        )
 
     def sign_in(self):
-        email, password = self.login_email.text(), self.login_password.text()
+        if not self.valid_email(self.login_email):
+            return
+        if not error_for(
+            self.login_password, "Informe sua senha." if not self.login_password.text() else ""
+        ):
+            return
+        email, password = self.login_email.text().strip(), self.login_password.text()
         self.login_password.clear()
-        self.call(lambda: self.client.authenticate(email, password), self.apply_snapshot, False)
+        self.call(
+            lambda: self.client.authenticate(email, password),
+            self.apply_snapshot,
+            False,
+            {"email": self.login_email, "password": self.login_password},
+        )
 
     def sign_up(self):
+        checks = (
+            self.valid_name(self.register_name),
+            self.valid_email(self.register_email),
+            self.valid_password(self.register_password),
+        )
+        if not all(checks):
+            return
         body = {
-            "name": self.register_name.text(),
-            "email": self.register_email.text(),
+            "name": self.register_name.text().strip(),
+            "email": self.register_email.text().strip(),
             "password": self.register_password.text(),
         }
         self.register_password.clear()
 
         def created(user):
             self.login_email.setText(user["email"])
-            self.message.setText("Conta criada. Entre com sua senha na aba Login.")
+            self.auth_tabs.setCurrentIndex(0)
+            self.notice("Conta criada. Entre com sua senha.")
 
-        self.call(lambda: self.client.raw("POST", "/auth/register", body), created, False)
+        self.public_request(
+            "POST",
+            "/auth/register",
+            body,
+            created,
+            {
+                "name": self.register_name,
+                "email": self.register_email,
+                "password": self.register_password,
+            },
+            lambda error: error_for(self.register_email, str(error))
+            if error.status == 409
+            else None,
+        )
+
+    def recover_password(self):
+        if self.valid_email(self.recovery_email):
+            self.public_request(
+                "POST",
+                "/auth/recover",
+                {"email": self.recovery_email.text().strip()},
+                lambda result: self.notice(result["message"]),
+                {"email": self.recovery_email},
+            )
 
     def reset_password_now(self):
+        if not self.valid_password(self.reset_password):
+            return
+        if not error_for(
+            self.reset_token,
+            "Informe o código recebido." if len(self.reset_token.text()) < 20 else "",
+        ):
+            return
         body = {"token": self.reset_token.text(), "password": self.reset_password.text()}
         self.reset_token.clear()
         self.reset_password.clear()
-        self.call(
-            lambda: self.client.raw("POST", "/auth/reset", body),
-            lambda _: self.message.setText("Senha redefinida. Entre novamente."),
-            False,
+        self.public_request(
+            "POST",
+            "/auth/reset",
+            body,
+            lambda _: self.notice("Senha redefinida. Entre novamente."),
+            {"token": self.reset_token, "password": self.reset_password},
         )
 
-    def account_page(self):
-        page = QWidget()
-        form = QFormLayout(page)
-        self.account_name = field(form, "Nome")
-        self.account_email = field(form, "E-mail")
-        self.account_email.setReadOnly(True)
-        self.account_id = field(form, "Seu identificador para convites")
-        self.account_id.setReadOnly(True)
-        save = QPushButton("Salvar nome")
-        form.addRow(save)
-        save.clicked.connect(
-            lambda: self.private_request(
+    def save_account(self):
+        if self.valid_name(self.account_name):
+            self.private_request(
                 "PATCH",
                 "/auth/me",
-                {"name": self.account_name.text()},
+                {"name": self.account_name.text().strip()},
                 lambda _: self.reload_access(),
-            )
-        )
-        leave = QPushButton("Sair da conta")
-        form.addRow(leave)
-
-        def logout():
-            self.call(
-                self.client.logout,
-                lambda text: (
-                    self.clear_views(),
-                    self.message.setText(text),
-                    self.navigation.setCurrentRow(0),
-                ),
-                False,
+                {"name": self.account_name},
             )
 
-        leave.clicked.connect(logout)
-        return page
+    def copy_identifier(self):
+        QApplication.clipboard().setText(self.account_id.text())
+        self.notice("Identificador copiado.")
 
-    def farms_page(self, shared):
-        page = QWidget()
-        layout = QVBoxLayout(page)
-        listing = QListWidget()
-        if shared:
-            self.shared_list = listing
-            layout.addWidget(QLabel("Propriedades e escopos atualmente autorizados pelo servidor."))
-        else:
-            self.owned_list = listing
-            self.farm_name = QLineEdit()
-            self.farm_name.setPlaceholderText("Nome da propriedade")
-            layout.addWidget(self.farm_name)
-            button(
-                "Cadastrar propriedade",
-                lambda: self.private_request(
-                    "POST",
-                    "/farms",
-                    {"name": self.farm_name.text()},
-                    lambda _: self.reload_access(),
-                ),
-                layout,
-            )
-            button("Renomear propriedade selecionada", self.rename_farm, layout)
-            self.transfer_user = QLineEdit()
-            self.transfer_user.setPlaceholderText("Identificador do novo proprietário")
-            layout.addWidget(self.transfer_user)
-            button("Transferir titularidade da propriedade selecionada", self.transfer_farm, layout)
-        layout.addWidget(listing)
-        if shared:
-            self.authorized_seasons = QListWidget()
-            self.authorized_operations = QListWidget()
-            listing.currentRowChanged.connect(
-                lambda _: (self.authorized_seasons.clear(), self.authorized_operations.clear())
-            )
-            button("Consultar safras autorizadas", self.read_shared_seasons, layout)
-            layout.addWidget(self.authorized_seasons)
-            button("Consultar operações autorizadas", self.read_shared_operations, layout)
-            layout.addWidget(self.authorized_operations)
-        button("Atualizar acesso", self.reload_access, layout)
-        return page
+    def logout(self):
+        def done(text):
+            self.clear_views()
+            self.notice(text)
+            self.navigate_to("Entrar / Cadastro")
 
-    def read_shared_seasons(self):
-        item = self.shared_list.currentItem()
-        if item:
-            farm_id = item.data(Qt.UserRole)["id"]
+        self.call(self.client.logout, done, False)
 
-            def loaded(data):
-                current = self.shared_list.currentItem()
-                if not current or current.data(Qt.UserRole)["id"] != farm_id:
-                    return
-                self.authorized_seasons.clear()
-                self.authorized_operations.clear()
-                for season in data:
-                    self.authorized_seasons.addItem(season["name"])
-                    self.authorized_seasons.item(self.authorized_seasons.count() - 1).setData(
-                        Qt.UserRole, season["id"]
-                    )
+    def create_farm(self):
+        if self.valid_name(self.farm_name):
 
-            self.call(lambda: self.client.request("GET", f"/farms/{farm_id}/seasons"), loaded)
+            def created(farm):
+                self._select_after_refresh = farm["id"]
+                self.farm_name.clear()
+                self.reload_access()
 
-    def read_shared_operations(self):
-        farm, season = self.shared_list.currentItem(), self.authorized_seasons.currentItem()
-        if farm and season:
-            farm_id, season_id = farm.data(Qt.UserRole)["id"], season.data(Qt.UserRole)
-
-            def loaded(data):
-                self.authorized_operations.clear()
-                for operation in data:
-                    self.authorized_operations.addItem(operation["name"])
-
-            self.call(
-                lambda: self.client.request(
-                    "GET", f"/farms/{farm_id}/seasons/{season_id}/operations"
-                ),
-                loaded,
+            self.private_request(
+                "POST",
+                "/farms",
+                {"name": self.farm_name.text().strip()},
+                created,
+                {"name": self.farm_name},
             )
 
     def rename_farm(self):
         item = self.owned_list.currentItem()
-        if item:
+        if item and self.valid_name(self.farm_name):
             farm_id = item.data(Qt.UserRole)["id"]
             self.private_request(
                 "PATCH",
                 "/farms/" + farm_id,
-                {"name": self.farm_name.text()},
+                {"name": self.farm_name.text().strip()},
                 lambda _: self.reload_access(),
+                {"name": self.farm_name},
             )
+        elif not item:
+            self.notice("Selecione uma propriedade para renomear.")
+
+    def share_selected_property(self):
+        item = self.owned_list.currentItem()
+        if item:
+            self.navigate_to("Compartilhar propriedade")
+            self.share_farm.setCurrentIndex(self.share_farm.findData(item.data(Qt.UserRole)["id"]))
+            self.sharing_flow.show_step(0)
+        else:
+            self.notice("Selecione uma propriedade para compartilhar.")
 
     def transfer_farm(self):
-        from PySide6.QtWidgets import QMessageBox
-
         item = self.owned_list.currentItem()
-        if (
-            item
-            and QMessageBox.question(
-                self,
-                "Transferir titularidade",
-                "Você perderá o acesso de proprietário. Confirma a transferência?",
-            )
-            == QMessageBox.Yes
-        ):
-            farm_id = item.data(Qt.UserRole)["id"]
-            user_id = self.transfer_user.text()
-            self.call(
-                lambda: self.client.request(
-                    "POST", "/farms/" + farm_id + "/transfer", {"user_id": user_id}
+        if not item:
+            self.notice("Selecione uma propriedade para transferir.")
+            return
+        farm = item.data(Qt.UserRole)
+        dialog = QDialog(self)
+        dialog.setWindowTitle("Transferir titularidade")
+        body = QVBoxLayout(dialog)
+        body.addWidget(label(f"Propriedade: {farm['name']}", "CardTitle"))
+        body.addWidget(
+            label(
+                (
+                    "O novo proprietário terá controle total. Seu acesso de "
+                    "proprietário será removido."
                 ),
+                "Description",
+            )
+        )
+        holder = QFrame()
+        form = form_layout(holder)
+        self.transfer_user = field(form, "Novo proprietário", "Identificador da conta")
+        body.addWidget(holder)
+        buttons = QDialogButtonBox(QDialogButtonBox.Ok | QDialogButtonBox.Cancel)
+        buttons.button(QDialogButtonBox.Ok).setText("Transferir titularidade")
+        buttons.button(QDialogButtonBox.Cancel).setText("Cancelar")
+
+        def confirm():
+            try:
+                UUID(self.transfer_user.text().strip())
+            except ValueError:
+                error_for(self.transfer_user, "Informe um identificador válido.")
+                return
+            dialog.accept()
+
+        buttons.accepted.connect(confirm)
+        buttons.rejected.connect(dialog.reject)
+        body.addWidget(buttons)
+        if dialog.exec() == QDialog.Accepted:
+            user_id = str(UUID(self.transfer_user.text().strip()))
+            self.private_request(
+                "POST",
+                "/farms/" + farm["id"] + "/transfer",
+                {"user_id": user_id},
                 lambda _: self.reload_access(),
             )
 
@@ -415,44 +590,181 @@ class MainWindow(QMainWindow):
         layout.addWidget(selector)
         return selector
 
-    def members_page(self):
-        page = QWidget()
-        layout = QVBoxLayout(page)
-        self.member_farm = self.farm_selector(layout)
-        button("Carregar usuários e permissões", self.load_members, layout)
-        self.member_list = QListWidget()
-        self.member_farm.currentIndexChanged.connect(lambda _: self.member_list.clear())
-        layout.addWidget(self.member_list)
-        self.member_role = QComboBox()
-        for role in ("administrator", "editor", "operator", "viewer"):
-            self.member_role.addItem(ROLE_NAMES[role], role)
-        layout.addWidget(self.member_role)
-        button("Alterar perfil da permissão selecionada", self.change_member, layout)
-        button("Revogar permissão selecionada", self.revoke_member, layout)
-        return page
+    def select_owned_property(self, *_):
+        if self._populating:
+            return
+        item = self.owned_list.currentItem()
+        if item:
+            self.property_farm.setCurrentIndex(
+                self.property_farm.findData(item.data(Qt.UserRole)["id"])
+            )
 
-    def load_members(self):
+    def load_property_seasons(self, *_):
+        if self._populating:
+            return
+        farm_id = self.property_farm.currentData()
+        self.property_seasons.clear()
+        self.property_operations.clear()
+        if not farm_id:
+            self.property_season.clear()
+            return
+
+        def loaded(data):
+            if self.property_farm.currentData() != farm_id:
+                return
+            selected = self.property_season.currentData()
+            self.property_seasons.replace([(s, [s["name"]]) for s in data])
+            self.property_season.blockSignals(True)
+            self.property_season.clear()
+            for season in data:
+                self.property_season.addItem(season["name"], season["id"])
+            index = self.property_season.findData(selected)
+            if index >= 0:
+                self.property_season.setCurrentIndex(index)
+            self.property_season.blockSignals(False)
+            self.load_property_operations()
+
+        self.call(
+            lambda: self.client.request("GET", f"/farms/{farm_id}/seasons"), loaded, defer=True
+        )
+
+    def select_property_season(self, *_):
+        item = self.property_seasons.currentItem()
+        if item:
+            self.property_season.setCurrentIndex(
+                self.property_season.findData(item.data(Qt.UserRole)["id"])
+            )
+            self.property_tabs.setCurrentIndex(1)
+
+    def load_property_operations(self, *_):
+        if self._populating:
+            return
+        farm_id, season_id = self.property_farm.currentData(), self.property_season.currentData()
+        self.property_operations.clear()
+        if farm_id and season_id:
+
+            def loaded(data):
+                if (self.property_farm.currentData(), self.property_season.currentData()) == (
+                    farm_id,
+                    season_id,
+                ):
+                    self.property_operations.replace([(o, [o["name"]]) for o in data])
+
+            self.call(
+                lambda: self.client.request(
+                    "GET", f"/farms/{farm_id}/seasons/{season_id}/operations"
+                ),
+                loaded,
+                defer=True,
+            )
+
+    def create_scope_season(self):
+        farm_id = self.property_farm.currentData()
+        if farm_id and self.valid_name(self.new_season_name):
+            self.private_request(
+                "POST",
+                f"/farms/{farm_id}/seasons",
+                {"name": self.new_season_name.text().strip()},
+                lambda _: (self.new_season_name.clear(), self.load_property_seasons()),
+                {"name": self.new_season_name},
+            )
+
+    def create_scope_operation(self):
+        farm_id, season_id = self.property_farm.currentData(), self.property_season.currentData()
+        if farm_id and season_id and self.valid_name(self.new_operation_name):
+            self.private_request(
+                "POST",
+                f"/farms/{farm_id}/seasons/{season_id}/operations",
+                {"name": self.new_operation_name.text().strip()},
+                lambda _: (self.new_operation_name.clear(), self.load_property_operations()),
+                {"name": self.new_operation_name},
+            )
+        elif not season_id:
+            self.notice("Cadastre e selecione uma safra antes de criar a operação.")
+
+    def read_shared_seasons(self, *_):
+        if self._populating:
+            return
+        self.authorized_seasons.clear()
+        self.authorized_operations.clear()
+        item = self.shared_list.currentItem()
+        if item:
+            farm_id = item.data(Qt.UserRole)["id"]
+
+            def loaded(data):
+                current = self.shared_list.currentItem()
+                if current and current.data(Qt.UserRole)["id"] == farm_id:
+                    self.authorized_seasons.replace([(s, [s["name"]]) for s in data])
+
+            self.call(
+                lambda: self.client.request("GET", f"/farms/{farm_id}/seasons"), loaded, defer=True
+            )
+
+    def read_shared_operations(self, *_):
+        if self._populating:
+            return
+        self.authorized_operations.clear()
+        farm, season = self.shared_list.currentItem(), self.authorized_seasons.currentItem()
+        if farm and season:
+            farm_id, season_id = farm.data(Qt.UserRole)["id"], season.data(Qt.UserRole)["id"]
+
+            def loaded(data):
+                current_farm, current_season = (
+                    self.shared_list.currentItem(),
+                    self.authorized_seasons.currentItem(),
+                )
+                if (
+                    current_farm
+                    and current_season
+                    and current_farm.data(Qt.UserRole)["id"] == farm_id
+                    and current_season.data(Qt.UserRole)["id"] == season_id
+                ):
+                    self.authorized_operations.replace([(o, [o["name"]]) for o in data])
+
+            self.call(
+                lambda: self.client.request(
+                    "GET", f"/farms/{farm_id}/seasons/{season_id}/operations"
+                ),
+                loaded,
+                defer=True,
+            )
+
+    def load_members(self, *_):
+        if self._populating:
+            return
         farm_id = self.member_farm.currentData()
+        if getattr(self, "_member_source", None) != farm_id:
+            self.member_list.clear()
+        self._member_source = farm_id
         if farm_id:
 
             def loaded(data):
-                if self.member_farm.currentData() != farm_id:
-                    return
-                self.member_list.clear()
-                for entry in data:
-                    scope = (
-                        f"{entry['season_name']} — {entry['operation_name']}"
-                        if entry["operation_id"]
-                        else entry["season_name"]
-                        if entry["season_id"]
-                        else "fazenda inteira"
+                if self.member_farm.currentData() == farm_id:
+                    self.member_list.replace(
+                        [
+                            (
+                                entry,
+                                [
+                                    entry["user"]["name"],
+                                    ROLE_NAMES[entry["role"]],
+                                    scope_text(entry),
+                                ],
+                            )
+                            for entry in data
+                        ]
                     )
-                    self.member_list.addItem(
-                        f"{entry['user']['name']} — {ROLE_NAMES[entry['role']]} — {scope}"
-                    )
-                    self.member_list.item(self.member_list.count() - 1).setData(Qt.UserRole, entry)
+                    self.select_member()
 
-            self.call(lambda: self.client.request("GET", "/farms/" + farm_id + "/members"), loaded)
+            self.call(
+                lambda: self.client.request("GET", f"/farms/{farm_id}/members"), loaded, defer=True
+            )
+
+    def select_member(self, *_):
+        item = self.member_list.currentItem()
+        if item and item.data(Qt.UserRole).get("id"):
+            self.member_role.setCurrentIndex(
+                self.member_role.findData(item.data(Qt.UserRole)["role"])
+            )
 
     def change_member(self):
         item = self.member_list.currentItem()
@@ -463,104 +775,170 @@ class MainWindow(QMainWindow):
                 "season_id": data["season_id"],
                 "operation_id": data["operation_id"],
             }
-            self.call(
-                lambda: self.client.request("PATCH", "/permissions/" + data["id"], body),
-                lambda _: self.load_members(),
+            if body["role"] == "administrator" and body["season_id"]:
+                self.notice(
+                    "Administrador exige acesso à propriedade inteira. Use outro "
+                    "perfil neste escopo."
+                )
+                return
+            self.private_request(
+                "PATCH", "/permissions/" + data["id"], body, lambda _: self.load_members()
+            )
+        else:
+            self.notice(
+                "Selecione uma concessão de acesso; titularidade é "
+                "transferida na tela Propriedades."
             )
 
     def revoke_member(self):
         item = self.member_list.currentItem()
         if item and item.data(Qt.UserRole).get("id"):
-            grant_id = item.data(Qt.UserRole)["id"]
-            self.call(
-                lambda: self.client.request("DELETE", "/permissions/" + grant_id),
-                lambda _: self.load_members(),
+            data = item.data(Qt.UserRole)
+            confirmation = QMessageBox(self)
+            confirmation.setWindowTitle("Revogar acesso")
+            confirmation.setIcon(QMessageBox.Question)
+            confirmation.setTextFormat(Qt.PlainText)
+            confirmation.setText(
+                f"Revogar a concessão de {data['user']['name']} para {scope_text(data)}?"
+            )
+            confirmation.setStandardButtons(QMessageBox.Yes | QMessageBox.Cancel)
+            confirmation.setDefaultButton(QMessageBox.Cancel)
+            answer = confirmation.exec()
+            if answer == QMessageBox.Yes:
+                self.private_request(
+                    "DELETE", "/permissions/" + data["id"], callback=lambda _: self.load_members()
+                )
+        else:
+            self.notice("Selecione uma concessão de acesso para revogar.")
+
+    def reset_share_scopes(self, *_):
+        self.season_list.clear()
+        self.operation_list.clear()
+        self.operation_season.blockSignals(True)
+        self.operation_season.clear()
+        self.operation_season.blockSignals(False)
+        self.share_confirmed.setChecked(False)
+        self.scope_notice.clear()
+
+    def update_share_role(self, *_):
+        role = self.share_role.currentData()
+        self.role_description.setText(ROLE_DESCRIPTIONS[role])
+        self.share_scope.setEnabled(role != "administrator")
+        if role == "administrator":
+            self.share_scope.setCurrentIndex(0)
+
+    def selected_scopes(self):
+        role = self.share_role.currentData()
+        kind = self.share_scope.currentIndex()
+        if kind == 1:
+            return [
+                {"role": role, "season_id": i.data(Qt.UserRole)}
+                for i in self.season_list.selectedItems()
+            ]
+        if kind == 2:
+            return [
+                {
+                    "role": role,
+                    "season_id": self.operation_season.currentData(),
+                    "operation_id": i.data(Qt.UserRole),
+                }
+                for i in self.operation_list.selectedItems()
+            ]
+        return [{"role": role}]
+
+    def validate_share_step(self, step):
+        if step == 0 and not self.share_farm.currentData():
+            self.notice("Selecione uma propriedade sob sua gestão.")
+            return False
+        if step == 1:
+            text = self.recipient.text().strip()
+            if "@" in text:
+                return self.valid_email(self.recipient)
+            try:
+                UUID(text)
+            except ValueError:
+                return error_for(self.recipient, "Informe um e-mail ou identificador válido.")
+            return error_for(self.recipient)
+        if step == 3 and not self.selected_scopes():
+            self.scope_notice.setText("Selecione ao menos uma safra ou operação.")
+            return False
+        return True
+
+    def enter_share_step(self, step):
+        if step == 3:
+            self.scope_notice.clear()
+            self.load_seasons()
+        elif step == 4:
+            self.share_confirmed.setChecked(False)
+            kind = self.share_scope.currentIndex()
+            names = (
+                "Propriedade inteira"
+                if kind == 0
+                else ", ".join(
+                    i.text()
+                    for i in (
+                        self.season_list.selectedItems()
+                        if kind == 1
+                        else self.operation_list.selectedItems()
+                    )
+                )
+            )
+            if kind == 2:
+                names = f"{self.operation_season.currentText()} — {names}"
+            self.share_review.setText(
+                f"Propriedade: {self.share_farm.currentText()}\n\n"
+                f"Destinatário: {self.recipient.text().strip()}\n\n"
+                f"Perfil: {self.share_role.currentText()}\n\nEscopo: {names}"
             )
 
-    def sharing_page(self):
-        page = QWidget()
-        layout = QVBoxLayout(page)
-        self.share_farm = self.farm_selector(layout)
-        self.recipient = QLineEdit()
-        self.recipient.setPlaceholderText("E-mail de conta existente ou identificador do usuário")
-        layout.addWidget(self.recipient)
-        self.share_role = QComboBox()
-        for role in ("viewer", "operator", "editor", "administrator"):
-            self.share_role.addItem(ROLE_NAMES[role], role)
-        layout.addWidget(self.share_role)
-        self.new_season_name = QLineEdit()
-        self.new_season_name.setPlaceholderText("Nome da nova safra")
-        layout.addWidget(self.new_season_name)
-        button("Cadastrar safra nesta propriedade", self.create_scope_season, layout)
-        self.new_operation_name = QLineEdit()
-        self.new_operation_name.setPlaceholderText("Nome da nova operação na safra selecionada")
-        layout.addWidget(self.new_operation_name)
-        button("Cadastrar operação na safra selecionada", self.create_scope_operation, layout)
-        self.share_scope = QComboBox()
-        self.share_scope.addItems(
-            ["Fazenda inteira", "Safras selecionadas", "Operações selecionadas"]
-        )
-        layout.addWidget(self.share_scope)
-        button("Carregar safras para selecionar escopos", self.load_seasons, layout)
-        self.season_list = QListWidget()
-        self.season_list.setSelectionMode(QAbstractItemView.MultiSelection)
-        layout.addWidget(self.season_list)
-        self.operation_season = QComboBox()
-        layout.addWidget(self.operation_season)
-        button("Carregar operações da safra selecionada", self.load_operations, layout)
-        self.operation_list = QListWidget()
-        self.operation_list.setSelectionMode(QAbstractItemView.MultiSelection)
-        layout.addWidget(self.operation_list)
-        self.share_farm.currentIndexChanged.connect(
-            lambda _: (
-                self.season_list.clear(),
-                self.operation_season.clear(),
-                self.operation_list.clear(),
-            )
-        )
-        self.operation_season.currentIndexChanged.connect(lambda _: self.operation_list.clear())
-        button("Enviar convite", self.send_invite, layout)
-        return page
-
-    def create_scope_season(self):
+    def load_seasons(self, *_):
+        if self._populating:
+            return
         farm_id = self.share_farm.currentData()
         if farm_id:
-            self.private_request(
-                "POST",
-                f"/farms/{farm_id}/seasons",
-                {"name": self.new_season_name.text()},
-                lambda _: self.load_seasons(),
-            )
-
-    def create_scope_operation(self):
-        farm_id, season_id = self.share_farm.currentData(), self.operation_season.currentData()
-        if farm_id and season_id:
-            self.private_request(
-                "POST",
-                f"/farms/{farm_id}/seasons/{season_id}/operations",
-                {"name": self.new_operation_name.text()},
-                lambda _: self.load_operations(),
-            )
-
-    def load_seasons(self):
-        farm_id = self.share_farm.currentData()
-        if farm_id:
+            selected_seasons = {i.data(Qt.UserRole) for i in self.season_list.selectedItems()}
+            selected_season = self.operation_season.currentData()
+            selected_operations = {i.data(Qt.UserRole) for i in self.operation_list.selectedItems()}
 
             def loaded(data):
                 if self.share_farm.currentData() != farm_id:
                     return
                 self.season_list.clear()
+                self.operation_season.blockSignals(True)
                 self.operation_season.clear()
                 for season in data:
                     self.season_list.addItem(season["name"])
                     self.season_list.item(self.season_list.count() - 1).setData(
                         Qt.UserRole, season["id"]
                     )
+                    self.season_list.item(self.season_list.count() - 1).setSelected(
+                        season["id"] in selected_seasons
+                    )
                     self.operation_season.addItem(season["name"], season["id"])
+                index = self.operation_season.findData(selected_season)
+                if index >= 0:
+                    self.operation_season.setCurrentIndex(index)
+                self.operation_season.blockSignals(False)
+                self.load_operations(selected=selected_operations)
+                if not data:
+                    self.scope_notice.setText(
+                        "Nenhuma safra cadastrada. Crie a safra na tela Propriedades "
+                        "ou compartilhe a propriedade inteira."
+                    )
 
-            self.call(lambda: self.client.request("GET", "/farms/" + farm_id + "/seasons"), loaded)
+            self.call(
+                lambda: self.client.request("GET", f"/farms/{farm_id}/seasons"), loaded, defer=True
+            )
 
-    def load_operations(self):
+    def load_operations(self, *_, selected=None):
+        if self._populating:
+            return
+        selected = (
+            {i.data(Qt.UserRole) for i in self.operation_list.selectedItems()}
+            if selected is None
+            else selected
+        )
+        self.operation_list.clear()
         farm_id, season_id = self.share_farm.currentData(), self.operation_season.currentData()
         if farm_id and season_id:
 
@@ -576,103 +954,128 @@ class MainWindow(QMainWindow):
                     self.operation_list.item(self.operation_list.count() - 1).setData(
                         Qt.UserRole, operation["id"]
                     )
+                    self.operation_list.item(self.operation_list.count() - 1).setSelected(
+                        operation["id"] in selected
+                    )
 
             self.call(
                 lambda: self.client.request(
                     "GET", f"/farms/{farm_id}/seasons/{season_id}/operations"
                 ),
                 loaded,
+                defer=True,
             )
 
     def send_invite(self):
-        farm_id = self.share_farm.currentData()
-        role = self.share_role.currentData()
-        kind = self.share_scope.currentIndex()
-        scopes = [{"role": role}]
-        if kind == 1:
-            scopes = [
-                {"role": role, "season_id": i.data(Qt.UserRole)}
-                for i in self.season_list.selectedItems()
-            ]
-        elif kind == 2:
-            scopes = [
-                {
-                    "role": role,
-                    "season_id": self.operation_season.currentData(),
-                    "operation_id": i.data(Qt.UserRole),
-                }
-                for i in self.operation_list.selectedItems()
-            ]
-        if not farm_id or not scopes:
-            self.message.setText("Selecione propriedade e escopos do convite.")
+        if not all(self.validate_share_step(step) for step in (0, 1, 3)):
+            return
+        if self.sharing_flow.currentIndex() != 4 or not self.share_confirmed.isChecked():
+            self.notice("Revise e confirme o convite antes de enviar.")
             return
         recipient = self.recipient.text().strip()
-        body = {"email" if "@" in recipient else "user_id": recipient, "scopes": scopes}
+        body = {
+            "email" if "@" in recipient else "user_id": recipient
+            if "@" in recipient
+            else str(UUID(recipient)),
+            "scopes": self.selected_scopes(),
+        }
+        farm_id = self.share_farm.currentData()
+
+        def done(_):
+            self.recipient.clear()
+            self.sharing_flow.show_step(0)
+            self.notice("Convite criado. Ele fica disponível na conta do destinatário.")
+
+        def failed(error):
+            if error.status == 400:
+                self.sharing_flow.show_step(1)
+                error_for(self.recipient, str(error))
+
         self.call(
-            lambda: self.client.request("POST", "/farms/" + farm_id + "/invitations", body),
-            lambda _: self.message.setText(
-                "Convite criado. O destinatário pode aceitar na própria conta."
-            ),
+            lambda: self.client.request("POST", f"/farms/{farm_id}/invitations", body),
+            done,
+            on_error=failed,
         )
 
-    def invites_page(self):
-        page = QWidget()
-        layout = QVBoxLayout(page)
-        button("Atualizar convites", self.load_invites, layout)
-        self.invite_list = QListWidget()
-        layout.addWidget(self.invite_list)
-        for label, decision in (
-            ("Aceitar", "accept"),
-            ("Recusar", "decline"),
-            ("Revogar", "revoke"),
-        ):
-            button(label, lambda checked=False, d=decision: self.decide_invite(d), layout)
-        return page
+    def load_invites(self, *_):
+        self.call(
+            lambda: self.client.request("GET", "/invitations"), self.received_invites, defer=True
+        )
 
-    def load_invites(self):
-        def loaded(data):
-            self.invite_list.clear()
-            user_id = self.client.state.get("user", {}).get("id")
-            for invite in data:
-                direction = "Recebido" if invite["recipient_id"] == user_id else "Enviado"
-                scopes = ", ".join(
-                    ROLE_NAMES[scope["role"]]
-                    + " / "
-                    + (
-                        f"{scope['season_name'] or 'Safra indisponível'} — "
-                        f"{scope['operation_name'] or 'Operação indisponível'}"
-                        if scope["operation_id"]
-                        else scope["season_name"] or "Safra indisponível"
-                        if scope["season_id"]
-                        else "fazenda inteira"
-                    )
-                    for scope in invite["scopes"]
-                )
-                contact = (
-                    invite["inviter_name"] if direction == "Recebido" else invite["recipient_name"]
-                )
-                self.invite_list.addItem(
-                    f"{direction} • {contact} • {invite['farm_name']} • "
-                    f"{STATUSES[invite['status']]} • {scopes}"
-                )
-                self.invite_list.item(self.invite_list.count() - 1).setData(Qt.UserRole, invite)
+    def received_invites(self, data):
+        self.invite_records = data
+        self.render_invites()
 
-        self.call(lambda: self.client.request("GET", "/invitations"), loaded)
+    def render_invites(self, *_):
+        user_id = self.client.state.get("user", {}).get("id")
+        received = self.invite_direction.currentIndex() == 0
+        status = self.invite_status.currentData()
+        rows = []
+        for entry in self.invite_records:
+            if (entry["recipient_id"] == user_id) != received or (
+                status and entry["status"] != status
+            ):
+                continue
+            rows.append(
+                (
+                    entry,
+                    [
+                        entry["farm_name"],
+                        entry["inviter_name"] if received else entry["recipient_name"],
+                        STATUSES[entry["status"]],
+                    ],
+                )
+            )
+        self.invite_list.replace(rows)
+        self.select_invite()
+
+    def select_invite(self, *_):
+        item = self.invite_list.currentItem()
+        entry = item.data(Qt.UserRole) if item else None
+        received = (
+            entry["recipient_id"] == self.client.state.get("user", {}).get("id")
+            if entry
+            else self.invite_direction.currentIndex() == 0
+        )
+        pending = bool(entry and entry["status"] == "pending")
+        self.accept_invite_button.setVisible(received)
+        self.decline_invite_button.setVisible(received)
+        self.revoke_invite_button.setVisible(not received)
+        self.accept_invite_button.setEnabled(pending)
+        self.decline_invite_button.setEnabled(pending)
+        self.revoke_invite_button.setEnabled(
+            bool(entry and entry["status"] in ("pending", "accepted"))
+        )
+        self.invite_details.setText(
+            "\n".join(ROLE_NAMES[s["role"]] + " · " + scope_text(s) for s in entry["scopes"])
+            if entry
+            else "Selecione um convite para consultar o perfil e o escopo."
+        )
 
     def decide_invite(self, decision):
         item = self.invite_list.currentItem()
         if item:
             invitation_id = item.data(Qt.UserRole)["id"]
-            self.call(
-                lambda: self.client.request("POST", f"/invitations/{invitation_id}/{decision}"),
-                lambda _: self.reload_access(),
-            )
+
+            def done(_):
+                self.reload_access()
+                self.pending_read = (
+                    lambda: self.client.request("GET", "/invitations"),
+                    self.received_invites,
+                    True,
+                    None,
+                    None,
+                )
+
+            self.private_request("POST", f"/invitations/{invitation_id}/{decision}", callback=done)
 
     def apply_snapshot(self, data):
         if not data or not data.get("user"):
             self.clear_views()
             return
         changed = self.farms != data["farms"]
+        context_selected = self.context_property.currentData()
+        chosen = getattr(self, "_select_after_refresh", None) or self.property_farm.currentData()
         if changed:
             self.clear_views()
         user = data["user"]
@@ -681,17 +1084,39 @@ class MainWindow(QMainWindow):
         self.account_email.setText(user["email"])
         self.account_id.setText(user["id"])
         self.farms = data["farms"]
+        self.account_button.setText(user["name"])
+        self.account_button.setToolTip("Minha conta · " + user["name"])
         if changed:
-            self.owned_list.clear()
-            self.shared_list.clear()
+            self.context_property.blockSignals(True)
+            self.context_property.clear()
             for farm in self.farms:
-                listing = self.owned_list if farm["owned"] else self.shared_list
-                roles = ", ".join(ROLE_NAMES[p["role"]] for p in farm["permissions"])
-                listing.addItem(f"{farm['name']} — {roles}")
-                listing.item(listing.count() - 1).setData(Qt.UserRole, farm)
+                self.context_property.addItem(farm["name"], farm["id"])
+            index = self.context_property.findData(context_selected)
+            self.context_property.setCurrentIndex(index if index >= 0 else 0)
+            self.context_property.blockSignals(False)
+            self.context_changed()
         if changed:
+            self._populating = True
+            owned, shared = [], []
+            for farm in self.farms:
+                roles = ", ".join(ROLE_NAMES[p["role"]] for p in farm["permissions"])
+                if farm["owned"]:
+                    owned.append((farm, [farm["name"], roles]))
+                else:
+                    shared.append(
+                        (
+                            farm,
+                            [
+                                farm["name"],
+                                roles,
+                                ", ".join(scope_text(p) for p in farm["permissions"]),
+                            ],
+                        )
+                    )
+            self.owned_list.replace(owned)
+            self.shared_list.replace(shared)
             for selector in self.farm_selectors:
-                selected = selector.currentData()
+                selected = chosen if selector is self.property_farm else selector.currentData()
                 selector.clear()
                 for farm in self.farms:
                     if any("manage" in p["actions"] for p in farm["permissions"]):
@@ -699,16 +1124,27 @@ class MainWindow(QMainWindow):
                 index = selector.findData(selected)
                 if index >= 0:
                     selector.setCurrentIndex(index)
+            if chosen:
+                for row in range(self.owned_list.count()):
+                    if self.owned_list.item(row).data(Qt.UserRole)["id"] == chosen:
+                        self.owned_list.setCurrentRow(row)
+                        break
+            self._populating = False
+            self._select_after_refresh = None
+            self.load_property_seasons()
         if not self.client.vault.available:
-            self.message.setText(
-                "Sessão somente em memória: proteção Windows indisponível. "
-                "Sincronização não implementada."
+            self.notice(
+                "Sessão somente em memória neste sistema. Persistência "
+                "protegida disponível no Windows."
             )
         if self.navigation.currentRow() == 0:
-            self.navigation.setCurrentRow(self.page_indices["Minha conta"])
+            self.navigate_to("Minha conta")
 
     def clear_views(self):
+        self._populating = True
+        self.pending_read = None
         self.farms = []
+        self.invite_records = []
         for listing in (
             self.owned_list,
             self.shared_list,
@@ -718,18 +1154,28 @@ class MainWindow(QMainWindow):
             self.operation_list,
             self.authorized_seasons,
             self.authorized_operations,
+            self.property_seasons,
+            self.property_operations,
         ):
             listing.clear()
         for selector in self.farm_selectors:
             selector.clear()
         self.operation_season.clear()
+        self.property_season.clear()
         self.account_name.clear()
         self.account_email.clear()
         self.account_id.clear()
+        self.context_property.clear()
+        self.workspace.set_context(None)
+        self.account_button.setText("Minha conta")
+        self.account_button.setToolTip("Minha conta")
+        self.invite_details.setText("Selecione um convite para consultar o perfil e o escopo.")
+        self.share_confirmed.setChecked(False)
+        self._populating = False
 
     def reload_access(self):
         self.clear_views()
-        self.call(self.client.synchronize_access, self.apply_snapshot)
+        self.call(self.client.synchronize_access, self.apply_snapshot, defer=True)
 
     def refresh(self):
         if not self.worker.isRunning():
@@ -737,13 +1183,15 @@ class MainWindow(QMainWindow):
         if self.online is False and not self.client.offline_snapshot():
             self.clear_views()
 
-    def show_health(self, online: bool):
+    def show_health(self, online):
         was_online = self.online
         self.online = online
-        self.connection.setText(
-            "Servidor online — sincronização completa não implementada"
+        self.connection.setText("● Servidor online" if online else "● Servidor offline")
+        self.connection.setStyleSheet("color: #7dda9f" if online else "color: #ecaa80")
+        self.connection.setToolTip(
+            "Servidor disponível. Sincronização completa ainda não implementada."
             if online
-            else "Servidor offline — resumo local por até 15 minutos; alterações bloqueadas"
+            else "Alterações bloqueadas. Resumo local disponível por até 15 minutos."
         )
         if online and self.client.state.get("access_token") and self.job is None:
             if was_online is not True:
@@ -756,7 +1204,7 @@ class MainWindow(QMainWindow):
             if snapshot:
                 self.apply_snapshot(snapshot)
             else:
-                self.message.setText("Sem autorização local válida. O login inicial exige conexão.")
+                self.notice("Sem autorização local válida. O login inicial exige conexão.")
 
     def closeEvent(self, event):
         self.timer.stop()
@@ -771,8 +1219,6 @@ def main():
     try:
         window = MainWindow()
     except ValueError as exc:
-        from PySide6.QtWidgets import QMessageBox
-
         QMessageBox.critical(None, "Configuração inválida", str(exc))
         return 1
     window.show()
