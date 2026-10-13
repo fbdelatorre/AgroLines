@@ -1,6 +1,9 @@
 # AgroLines
 Aplicativo nativo Windows para planejamento agrícola, com servidor próprio, sem Supabase.
 A **Etapa 2.1** refina a interface escura e adota senhas de 6–128 caracteres.
+A identidade visual segue a referência fornecida: barra superior, menu compacto
+e estrutura central de mapa com painéis redimensionáveis/recolhíveis. A seção
+**Mapa** é preparação visual explícita; cartografia continua não implementada.
 A **Etapa 2** implementa contas, autenticação, propriedades, safras/operações mínimas
 para escopos, convites e permissões persistentes. A navegação da Etapa 1 e seu
 healthcheck foram preservados. Talhões, equipamentos, geometria, planos, exportadores

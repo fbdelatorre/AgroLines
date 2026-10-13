@@ -14,7 +14,10 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--output", required=True)
 parser.add_argument("--scale", default="1")
 parser.add_argument("--reference", action="store_true")
+parser.add_argument("--reference-size", nargs=2, type=int, metavar=("WIDTH", "HEIGHT"))
 args = parser.parse_args()
+if args.reference_size and not args.reference:
+    raise SystemExit("An arbitrary capture size is supported for design references only.")
 if platform.system() != "Windows" and not args.reference:
     raise SystemExit("Native visual validation requires Windows.")
 os.environ["QT_QPA_PLATFORM"] = "offscreen" if args.reference else "windows"
@@ -137,6 +140,8 @@ def main():
         available = app.primaryScreen().availableGeometry()
         width = max(640, min(1180, available.width() - 40))
         height = max(480, min(780, available.height() - 60))
+        if args.reference_size:
+            width, height = args.reference_size
         window.resize(width, height)
         window.move(available.x() + 10, available.y() + 10)
         window.show()
@@ -229,11 +234,22 @@ def main():
             if window.authorized_seasons.count():
                 window.authorized_seasons.setCurrentRow(0)
         capture("11-shared-properties")
+        window.navigate_to("Mapa")
+        if window.width() >= 900:
+            for name, dock in window.workspace.docks.items():
+                if not dock.isVisible():
+                    window.workspace.toggles[name].trigger()
+        capture("12-map-workspace")
+        window.workspace.toggles["layers"].trigger()
+        capture("13-map-panels-toggle")
+        window.workspace.toggles["layers"].trigger()
         window.navigate_to("Minhas propriedades")
         window.resize(
             max(640, min(820, available.width() - 40)), max(480, min(600, available.height() - 60))
         )
-        capture("12-compact-layout")
+        capture("14-compact-layout")
+        window.navigate_to("Mapa")
+        capture("15-compact-map")
         window.close()
         app.processEvents()
     engine.dispose()

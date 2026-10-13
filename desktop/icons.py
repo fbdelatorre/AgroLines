@@ -7,6 +7,11 @@ from PySide6.QtGui import QIcon, QPainter, QPixmap
 from PySide6.QtSvg import QSvgRenderer
 
 PATHS = {
+    "leaf": "M12 21V10 M12 16C2 16 2 8 3 3c8 0 9 6 9 13 M12 12c0-8 4-10 9-10 0 8-2 13-9 13",
+    "map": "M3 5l6-2 6 2 6-2v16l-6 2-6-2-6 2z M9 3v16 M15 5v16",
+    "select": "M4 3v17l5-5 4 7 3-2-4-7h7z",
+    "measure": "M3 15 15 3l6 6L9 21z M7 11l3 3 M11 7l3 3 M15 5l3 3",
+    "collapse": "M15 5l-7 7 7 7",
     "home": "M3 10 12 3 21 10 M5 9v12h14V9 M9 21v-8h6v8",
     "farm": "M3 11 12 5 21 11 M5 10v8h14v-8 M3 21h18 M9 14h6 M12 14v4",
     "user": "M16 7a4 4 0 1 1-8 0a4 4 0 1 1 8 0 M4 21v-2a8 8 0 0 1 16 0v2",
@@ -27,6 +32,8 @@ PATHS = {
         "M12 8a4 4 0 1 1 0 8a4 4 0 1 1 0-8 M12 2v3 M12 "
         "19v3 M2 12h3 M19 12h3 M5 5l2 2 M17 17l2 2 M19 5l-2 2 M7 17l-2 2"
     ),
+    "minus": "M5 12h14",
+    "frame": "M8 3H3v5 M16 3h5v5 M3 16v5h5 M21 16v5h-5",
     "plus": "M12 5v14 M5 12h14",
     "refresh": "M20 10a8 8 0 0 0-14-4L3 9 M3 4v5h5 M4 14a8 8 0 0 0 14 4l3-3 M21 20v-5h-5",
     "edit": "M4 16 16 4l4 4L8 20H4z M13 7l4 4",

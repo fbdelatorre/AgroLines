@@ -23,7 +23,26 @@ from PySide6.QtWidgets import (
 from desktop.icons import icon
 
 THEME = """
-QMainWindow, QWidget#Shell, QWidget#Page { background: #101a23; }
+QFrame#TopBar { background: #0b1319; border-bottom: 1px solid #24323c; }
+QMainWindow#VisualWorkspace { background: #0c151c; }
+QFrame#MapViewport { background: #111f26; border: 1px solid #293b43; }
+QLabel#MapTitle { font-size: 22pt; color: #526e79; font-weight: 600; }
+QLabel#PanelHeading { font-weight: 600; color: #cad8df; }
+QLabel#Unavailable { color: #87a99a; font-size: 8pt; }
+QDockWidget { color: #d9e4e9; border: 1px solid #293841; }
+QDockWidget::title { background: #101c24; padding: 7px 10px;
+    border-bottom: 1px solid #283740; text-align: left; }
+QDockWidget > QWidget { background: #0e1921; }
+QMainWindow::separator { background: #26363e; width: 5px; height: 5px; }
+QMainWindow::separator:hover { background: #2e9569; }
+QTabWidget#ParameterTabs QTabBar::tab { font-size: 8pt; padding: 6px 7px; }
+QToolButton { color: #d4e1e7; background: transparent; border: 1px solid transparent;
+    border-radius: 3px; padding: 5px; }
+QToolButton:hover { background: #1b3039; border-color: #344954; }
+QToolButton:checked { background: #224b39; border-color: #2b9364; }
+QToolButton:disabled { color: #596d78; }
+
+QMainWindow, QWidget#Shell, QWidget#Page { background: #0c151c; }
 QWidget { color: #e2eaf0; }
 QLabel { background: transparent; border: none; }
 QLabel#PageTitle { font-size: 17pt; font-weight: 600; }
@@ -31,10 +50,10 @@ QLabel#CardTitle { font-size: 11pt; font-weight: 600; }
 QLabel#Description, QLabel#Hint { color: #92a6b5; }
 QLabel#Hint { font-size: 8pt; }
 QLabel#FieldError { color: #ff969b; font-size: 8pt; }
-QLabel#Brand { font-size: 15pt; font-weight: 600; color: #80d7a3; }
+QLabel#Brand { font-size: 14pt; font-weight: 600; color: #e2eaf0; }
 QLabel#SectionLabel { color: #8297a7; font-size: 8pt; }
-QFrame#Card { background: #17242e; border: 1px solid #2a3a47; border-radius: 8px; }
-QFrame#Sidebar { background: #14212a; border-right: 1px solid #293944; }
+QFrame#Card { background: #101c24; border: 1px solid #2a3a47; border-radius: 8px; }
+QFrame#Sidebar { background: #0e171e; border-right: 1px solid #293944; }
 QLineEdit, QComboBox { background: #101d27; border: 1px solid #354754;
     border-radius: 5px; padding: 4px 8px; min-height: 19px; }
 QLineEdit:focus, QComboBox:focus { border-color: #5dc58a; }
@@ -46,13 +65,13 @@ QPushButton { background: #22343f; border: 1px solid #3a4e5a; border-radius: 5px
     padding: 5px 10px; min-height: 18px; }
 QPushButton:hover { background: #2a4250; border-color: #597786; }
 QPushButton:pressed { background: #182c36; }
-QPushButton[variant="primary"] { background: #287347; border-color: #3b9860; color: #f3fff7; }
+QPushButton[variant="primary"] { background: #23885a; border-color: #2a9d68; color: #f3fff7; }
 QPushButton[variant="primary"]:hover { background: #318557; }
 QPushButton[variant="danger"] { color: #ffb0b4; background: #35272e; border-color: #66434b; }
 QPushButton:disabled, QComboBox:disabled { color: #6f8492; background: #1b2a34;
     border-color: #2d3d49; }
 QListWidget#Navigation { background: transparent; border: none; outline: 0; }
-QListWidget#Navigation::item { height: 30px; padding: 2px 10px; margin: 1px 5px;
+QListWidget#Navigation::item { height: 27px; padding: 2px 6px; margin: 1px 3px;
     border-radius: 5px; border-left: 3px solid transparent; }
 QListWidget#Navigation::item:hover { background: #20323c; }
 QListWidget#Navigation::item:selected { background: #203c30; color: #9ee8b9;
@@ -78,7 +97,7 @@ QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical { height: 0; }
 QScrollBar:horizontal { background: transparent; height: 8px; }
 QScrollBar::handle:horizontal { background: #3b5361; border-radius: 3px; min-width: 28px; }
 QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal { width: 0; }
-QFrame#Footer { background: #14212a; border-top: 1px solid #293944; }
+QFrame#Footer { background: #0e171e; border-top: 1px solid #293944; }
 QLabel#Notice { color: #b6c8d2; font-size: 8pt; }
 QLabel#Step { color: #8097a6; padding: 5px 3px; border-bottom: 2px solid #2c3e49; }
 QLabel#Step[active="true"] { color: #a3eaba; border-color: #64cb8e; }
@@ -92,7 +111,7 @@ def apply_theme():
     app.setFont(QFont("Segoe UI", 9))
     palette = QPalette()
     for role, value in (
-        (QPalette.Window, "#101a23"),
+        (QPalette.Window, "#0c151c"),
         (QPalette.Base, "#14222c"),
         (QPalette.AlternateBase, "#192933"),
         (QPalette.Button, "#22343f"),

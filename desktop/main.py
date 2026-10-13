@@ -18,6 +18,7 @@ from PySide6.QtWidgets import (
     QScrollArea,
     QSizePolicy,
     QStackedWidget,
+    QToolButton,
     QVBoxLayout,
 )
 
@@ -28,6 +29,7 @@ from desktop.icons import icon
 from desktop.labels import ROLE_DESCRIPTIONS, ROLE_NAMES, SECTIONS, STATUSES, scope_text
 from desktop.pages import PageBuilders
 from desktop.ui import THEME, Card, Page, apply_theme, error_for, field, form_layout, label
+from desktop.workspace import VisualWorkspace
 
 
 class HealthWorker(QThread):
@@ -80,6 +82,9 @@ class MainWindow(PageBuilders, QMainWindow):
         self.setMinimumSize(640, 480)
         self.setStyleSheet(THEME)
         self.pages = QStackedWidget()
+        self.workspace = VisualWorkspace(self.pages)
+        self.workspace.openProperty.connect(self.open_context_property)
+        self._menu_collapsed = False
         self.navigation = QListWidget()
         self.navigation.setObjectName("Navigation")
         self.navigation.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
@@ -87,24 +92,28 @@ class MainWindow(PageBuilders, QMainWindow):
         self.sidebar = QFrame()
         self.sidebar.setObjectName("Sidebar")
         aside = QVBoxLayout(self.sidebar)
-        aside.setContentsMargins(8, 18, 8, 12)
-        aside.setSpacing(10)
-        self.brand = label("AgroLines", "Brand")
-        self.brand.setContentsMargins(10, 0, 0, 0)
-        aside.addWidget(self.brand)
-        self.brand_caption = label("Planejamento agrícola", "Hint")
-        self.brand_caption.setContentsMargins(10, 0, 0, 0)
-        aside.addWidget(self.brand_caption)
+        aside.setContentsMargins(3, 10, 3, 8)
+        aside.setSpacing(6)
         aside.addWidget(self.navigation, 1)
-        aside.addWidget(label("Servidor próprio", "Hint"))
+        self.collapse_menu = QToolButton()
+        self.collapse_menu.setIcon(icon("collapse"))
+        self.collapse_menu.setToolTip("Recolher ou expandir menu")
+        self.collapse_menu.clicked.connect(self.toggle_menu)
+        aside.addWidget(self.collapse_menu)
         self.add_page("Entrar / Cadastro", self.auth_page(), "Entrar", "lock")
-        self.add_page("Minha conta", self.account_page(), image="user")
+        dashboard = Page("Painel", "Esta seção faz parte das próximas etapas do AgroLines.")
+        dashboard.body.addWidget(Card("Em desenvolvimento"))
+        dashboard.body.addStretch()
+        self.add_page("Painel", dashboard, image="home", future=True)
+        self.add_page("Mapa", self.workspace.map_viewport, image="map", future=True)
         self.add_page("Minhas propriedades", self.farms_page(False), "Propriedades", "farm")
         self.add_page("Compartilhadas comigo", self.farms_page(True), "Compartilhadas", "share")
         self.add_page("Usuários e permissões", self.members_page(), "Permissões", "users")
         self.add_page("Compartilhar propriedade", self.sharing_page(), "Compartilhar", "share")
         self.add_page("Convites recebidos e enviados", self.invites_page(), "Convites", "mail")
         for section in SECTIONS:
+            if section == "Painel":
+                continue
             page = Page(section, "Esta seção faz parte das próximas etapas do AgroLines.")
             card = Card(
                 "Em desenvolvimento",
@@ -121,6 +130,7 @@ class MainWindow(PageBuilders, QMainWindow):
                 "Produtores": "users",
             }.get(section, "layers")
             self.add_page(section, page, image=image, future=True)
+        self.add_page("Minha conta", self.account_page(), image="user")
         self.navigation.currentRowChanged.connect(self.navigate_row)
         self.navigation.setCurrentRow(0)
         shell = QFrame()
@@ -132,7 +142,8 @@ class MainWindow(PageBuilders, QMainWindow):
         row.setContentsMargins(0, 0, 0, 0)
         row.setSpacing(0)
         row.addWidget(self.sidebar)
-        row.addWidget(self.pages, 1)
+        row.addWidget(self.workspace, 1)
+        column.addWidget(self.top_bar())
         column.addLayout(row, 1)
         footer = QFrame()
         footer.setObjectName("Footer")
@@ -158,6 +169,7 @@ class MainWindow(PageBuilders, QMainWindow):
             max(640, min(1180, int(available.width() * 0.94))),
             max(480, min(780, int(available.height() * 0.92))),
         )
+        self.adapt_layout()
         self.worker = HealthWorker(self.client.url, self)
         self.worker.checked.connect(self.show_health)
         self.timer = QTimer(self)
@@ -166,17 +178,20 @@ class MainWindow(PageBuilders, QMainWindow):
         self.refresh()
 
     def add_page(self, title, page, caption=None, image="layers", future=False):
-        index = self.pages.count()
+        index = (
+            self.workspace.map_index if page is self.workspace.map_viewport else self.pages.count()
+        )
         self.page_indices[title] = index
         self.nav_rows[title] = self.navigation.count()
         item = QListWidgetItem(icon(image), caption or title)
         item.setData(Qt.UserRole, {"page": index, "title": title, "image": image})
         item.setToolTip(title + (" — Em desenvolvimento" if future else ""))
         self.navigation.addItem(item)
-        scroll = QScrollArea()
-        scroll.setWidgetResizable(True)
-        scroll.setWidget(page)
-        self.pages.addWidget(scroll)
+        if page is not self.workspace.map_viewport:
+            scroll = QScrollArea()
+            scroll.setWidgetResizable(True)
+            scroll.setWidget(page)
+            self.pages.addWidget(scroll)
 
     def navigate_row(self, row):
         if row < 0:
@@ -188,6 +203,9 @@ class MainWindow(PageBuilders, QMainWindow):
             )
         self.pages.setCurrentIndex(self.navigation.item(row).data(Qt.UserRole)["page"])
         title = self.navigation.item(row).data(Qt.UserRole)["title"]
+        self.workspace.activate_map(title == "Mapa")
+        if hasattr(self, "section_title"):
+            self.section_title.setText(title + (" · Em desenvolvimento" if title == "Mapa" else ""))
         if title == "Convites recebidos e enviados" and self.client.state.get("access_token"):
             self.load_invites()
         elif title == "Usuários e permissões" and self.member_farm.currentData():
@@ -196,14 +214,81 @@ class MainWindow(PageBuilders, QMainWindow):
     def navigate_to(self, title):
         self.navigation.setCurrentRow(self.nav_rows[title])
 
+    def top_bar(self):
+        bar = QFrame()
+        bar.setObjectName("TopBar")
+        row = QHBoxLayout(bar)
+        row.setContentsMargins(8, 7, 12, 7)
+        row.setSpacing(10)
+        self.brand_box = QFrame()
+        brand_row = QHBoxLayout(self.brand_box)
+        brand_row.setContentsMargins(0, 0, 0, 0)
+        logo = label()
+        logo.setPixmap(icon("leaf", "#30b579").pixmap(24, 24))
+        self.brand = label("AgroLines", "Brand")
+        self.brand.setWordWrap(False)
+        brand_row.addWidget(logo)
+        brand_row.addWidget(self.brand, 1)
+        row.addWidget(self.brand_box)
+        self.context_property = QComboBox()
+        self.context_property.setMinimumWidth(100)
+        self.context_property.setPlaceholderText("Propriedade")
+        self.context_property.setSizePolicy(QSizePolicy.Ignored, QSizePolicy.Preferred)
+        self.context_property.setToolTip("Contexto da propriedade · somente acessos autorizados")
+        self.context_property.setAccessibleName("Contexto da propriedade")
+        self.context_property.currentIndexChanged.connect(self.context_changed)
+        row.addWidget(self.context_property, 1)
+        self.section_title = label("Entrar / Cadastro", "Hint")
+        self.section_title.setWordWrap(False)
+        row.addWidget(self.section_title)
+        for toggle in self.workspace.toggles.values():
+            button = QToolButton()
+            button.setDefaultAction(toggle)
+            button.setToolTip(toggle.text() + " · mostrar ou recolher painel")
+            row.addWidget(button)
+        self.account_button = QToolButton()
+        self.account_button.setIcon(icon("user", "#72d6a3"))
+        self.account_button.setToolButtonStyle(Qt.ToolButtonTextBesideIcon)
+        self.account_button.setText("Minha conta")
+        self.account_button.setMaximumWidth(150)
+        self.account_button.clicked.connect(lambda: self.navigate_to("Minha conta"))
+        row.addWidget(self.account_button)
+        return bar
+
+    def context_changed(self, *_):
+        farm_id = self.context_property.currentData()
+        farm = next((f for f in self.farms if f["id"] == farm_id), None)
+        self.workspace.set_context(farm)
+
+    def open_context_property(self, farm_id):
+        farm = next((f for f in self.farms if f["id"] == farm_id), None)
+        if not farm:
+            return
+        table = self.owned_list if farm["owned"] else self.shared_list
+        self.navigate_to("Minhas propriedades" if farm["owned"] else "Compartilhadas comigo")
+        for row in range(table.count()):
+            if table.item(row).data(Qt.UserRole)["id"] == farm_id:
+                table.setCurrentRow(row)
+                break
+
+    def toggle_menu(self):
+        self._menu_collapsed = not self._menu_collapsed
+        self.adapt_layout()
+
     def resizeEvent(self, event):
         super().resizeEvent(event)
-        if not hasattr(self, "sidebar"):
-            return
-        compact = self.width() < 900
-        self.sidebar.setFixedWidth(68 if compact else 207)
-        self.brand.setText("AL" if compact else "AgroLines")
-        self.brand_caption.setVisible(not compact)
+        if hasattr(self, "context_property"):
+            self.adapt_layout()
+
+    def adapt_layout(self):
+        compact = self.width() < 900 or self._menu_collapsed
+        self.sidebar.setFixedWidth(56 if compact else 176)
+        self.brand_box.setFixedWidth(56 if compact else 176)
+        self.brand.setVisible(not compact)
+        self.collapse_menu.setText("" if compact else "Recolher menu")
+        self.collapse_menu.setToolButtonStyle(
+            Qt.ToolButtonIconOnly if compact else Qt.ToolButtonTextBesideIcon
+        )
         for index in range(self.navigation.count()):
             item = self.navigation.item(index)
             item.setText(
@@ -220,6 +305,11 @@ class MainWindow(PageBuilders, QMainWindow):
             )
         for split in self.responsive_splits:
             split.setOrientation(Qt.Horizontal if self.width() >= 1100 else Qt.Vertical)
+        self.workspace.adapt(self.width() < 1050)
+        self.section_title.setVisible(self.width() >= 1100)
+        self.account_button.setToolButtonStyle(
+            Qt.ToolButtonIconOnly if self.width() < 900 else Qt.ToolButtonTextBesideIcon
+        )
         if hasattr(self, "sync_status"):
             self.sync_status.setVisible(self.width() >= 900)
 
@@ -984,6 +1074,7 @@ class MainWindow(PageBuilders, QMainWindow):
             self.clear_views()
             return
         changed = self.farms != data["farms"]
+        context_selected = self.context_property.currentData()
         chosen = getattr(self, "_select_after_refresh", None) or self.property_farm.currentData()
         if changed:
             self.clear_views()
@@ -993,6 +1084,17 @@ class MainWindow(PageBuilders, QMainWindow):
         self.account_email.setText(user["email"])
         self.account_id.setText(user["id"])
         self.farms = data["farms"]
+        self.account_button.setText(user["name"])
+        self.account_button.setToolTip("Minha conta · " + user["name"])
+        if changed:
+            self.context_property.blockSignals(True)
+            self.context_property.clear()
+            for farm in self.farms:
+                self.context_property.addItem(farm["name"], farm["id"])
+            index = self.context_property.findData(context_selected)
+            self.context_property.setCurrentIndex(index if index >= 0 else 0)
+            self.context_property.blockSignals(False)
+            self.context_changed()
         if changed:
             self._populating = True
             owned, shared = [], []
@@ -1063,6 +1165,10 @@ class MainWindow(PageBuilders, QMainWindow):
         self.account_name.clear()
         self.account_email.clear()
         self.account_id.clear()
+        self.context_property.clear()
+        self.workspace.set_context(None)
+        self.account_button.setText("Minha conta")
+        self.account_button.setToolTip("Minha conta")
         self.invite_details.setText("Selecione um convite para consultar o perfil e o escopo.")
         self.share_confirmed.setChecked(False)
         self._populating = False

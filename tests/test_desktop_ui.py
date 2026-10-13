@@ -4,7 +4,7 @@ import time
 import pytest
 
 os.environ.setdefault("QT_QPA_PLATFORM", "offscreen")
-from PySide6.QtCore import QTimer
+from PySide6.QtCore import Qt, QTimer
 from PySide6.QtTest import QTest
 from PySide6.QtWidgets import QApplication, QMessageBox, QPushButton
 
@@ -181,3 +181,77 @@ def test_desktop_password_validation_near_field(api, qt, monkeypatch, password, 
     finally:
         window.close()
         qt.processEvents()
+
+
+def test_reference_workspace_panels_and_authorized_context(api, qt, monkeypatch):
+    user, headers, _ = account(api)
+    farm = api.post("/farms", headers=headers, json={"name": "Contexto autorizado"}).json()
+    monkeypatch.setattr("desktop.main.check_health", lambda url: True)
+    client = client_for(api)
+    snapshot = client.authenticate(user["email"], "Senha sintetica 123!")
+    window = MainWindow(client)
+    window.timer.stop()
+    window.worker.wait()
+    qt.processEvents()
+    wait_for_idle(window)
+    window.apply_snapshot(snapshot)
+    window.resize(1440, 900)
+    window.show()
+    try:
+        window.navigate_to("Mapa")
+        QTest.qWait(30)
+        workspace = window.workspace
+        assert window.pages.currentWidget() is workspace.map_viewport
+        assert window.page_indices["Mapa"] == workspace.map_index
+        assert all(d.isVisible() for d in workspace.docks.values())
+        assert workspace.map_viewport.width() > workspace.layers.width()
+        assert workspace.map_viewport.width() > workspace.parameters.width()
+        assert workspace.context_farm["id"] == farm["id"]
+        assert workspace.context_table.item(0, 0).text() == "Proprietário"
+        workspace.toggles["layers"].trigger()
+        assert not workspace.layers.isVisible()
+        window.navigate_to("Minhas propriedades")
+        assert all(not d.isVisible() for d in workspace.docks.values())
+        window.navigate_to("Mapa")
+        assert not workspace.layers.isVisible()
+        assert workspace.parameters.isVisible()
+        workspace.open_button.click()
+        wait_for_idle(window)
+        assert window.owned_list.currentItem().data(Qt.UserRole)["id"] == farm["id"]
+        window.navigate_to("Mapa")
+        window.resize(760, 540)
+        QTest.qWait(20)
+        assert all(not d.isVisible() for d in workspace.docks.values())
+        workspace.toggles["layers"].trigger()
+        assert workspace.layers.isVisible()
+        window.resize(780, 550)
+        QTest.qWait(20)
+        assert workspace.layers.isVisible()
+        window.navigate_to("Minha conta")
+        window.navigate_to("Mapa")
+        assert workspace.layers.isVisible()
+        # Revoked/expired authorization cannot survive in the top or bottom panels.
+        window.clear_views()
+        assert window.context_property.count() == 0
+        assert workspace.context_farm is None
+        assert workspace.context_table.count() == 0
+        assert not workspace.open_button.isEnabled()
+    finally:
+        window.close()
+        qt.processEvents()
+
+
+def test_future_map_replacement_keeps_existing_navigation(qt):
+    from PySide6.QtWidgets import QFrame, QStackedWidget
+
+    from desktop.workspace import VisualWorkspace
+
+    pages = QStackedWidget()
+    workspace = VisualWorkspace(pages)
+    form = QFrame()
+    form_index = pages.addWidget(form)
+    replacement = QFrame()
+    workspace.set_map_component(replacement)
+    assert pages.widget(form_index) is form
+    assert pages.widget(workspace.map_index) is replacement
+    workspace.close()
