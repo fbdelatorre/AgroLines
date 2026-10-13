@@ -52,6 +52,12 @@ def test_desktop_login_farm_and_real_invitation_flow(api, qt, monkeypatch):
         window.farm_name.setText("Propriedade desktop")
         click(window, "Cadastrar propriedade")
         assert window.owned_list.count() == 1
+        window.owned_list.setCurrentRow(0)
+        QTest.keyClicks(window.account_name, " rascunho")
+        draft_name = window.account_name.text()
+        window.apply_snapshot({"user": client.state["user"], "farms": client.state["farms"]})
+        assert window.account_name.text() == draft_name
+        assert window.owned_list.currentItem() is not None
         window.new_season_name.setText("2026/2027")
         click(window, "Cadastrar safra nesta propriedade")
         assert window.season_list.count() == 1

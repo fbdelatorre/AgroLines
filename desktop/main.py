@@ -676,17 +676,19 @@ class MainWindow(QMainWindow):
         if changed:
             self.clear_views()
         user = data["user"]
-        self.account_name.setText(user["name"])
+        if not self.account_name.isModified() or self.account_id.text() != user["id"]:
+            self.account_name.setText(user["name"])
         self.account_email.setText(user["email"])
         self.account_id.setText(user["id"])
         self.farms = data["farms"]
-        self.owned_list.clear()
-        self.shared_list.clear()
-        for farm in self.farms:
-            listing = self.owned_list if farm["owned"] else self.shared_list
-            roles = ", ".join(ROLE_NAMES[p["role"]] for p in farm["permissions"])
-            listing.addItem(f"{farm['name']} — {roles}")
-            listing.item(listing.count() - 1).setData(Qt.UserRole, farm)
+        if changed:
+            self.owned_list.clear()
+            self.shared_list.clear()
+            for farm in self.farms:
+                listing = self.owned_list if farm["owned"] else self.shared_list
+                roles = ", ".join(ROLE_NAMES[p["role"]] for p in farm["permissions"])
+                listing.addItem(f"{farm['name']} — {roles}")
+                listing.item(listing.count() - 1).setData(Qt.UserRole, farm)
         if changed:
             for selector in self.farm_selectors:
                 selected = selector.currentData()
