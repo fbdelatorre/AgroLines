@@ -21,3 +21,17 @@ precisam ser configurados pelo operador; não estão automatizados nesta etapa.
 Nunca versionar dumps, SQLite, credenciais ou dados de clientes. Restringir acesso
 ao host; PostgreSQL não tem porta publicada. Produção exige TLS e reverse proxy
  autenticado/VPN, autenticação da aplicação e conta de banco com menor privilégio.
+
+## Atualização para Etapa 2
+Faça backup **antes** de `alembic upgrade head`. A revisão `0002` adiciona tabelas de
+contas e autorização e não remove tabelas/volumes. Seu downgrade é bloqueado para
+não destruir usuários/sessões. Para rollback, restaure backup em outro banco,
+valide versão e registros e planeje troca de conexão; nunca resetar o banco atual.
+Dumps passam a conter hashes de credenciais e identificadores pessoais: proteger
+permissões do arquivo, criptografar backups externos e definir retenção.
+
+Após restauração, conferir `SELECT count(*) FROM users;` e
+`SELECT count(*) FROM credentials;`, comparando com o banco original, além da versão.
+A CI valida migração de 0001 com marcador pré-existente, fluxo de contas/escopos e
+restauração de versão e contagens. Produção precisa testar restauração dos dados reais
+em ambiente protegido e isolado; esses dados nunca devem entrar no repositório.

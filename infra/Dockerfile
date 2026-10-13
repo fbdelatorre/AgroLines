@@ -5,6 +5,7 @@ COPY server ./server
 COPY core ./core
 COPY desktop ./desktop
 COPY exporters ./exporters
+COPY scripts ./scripts
 RUN pip install --no-cache-dir .
 RUN useradd --create-home agrolines && chmod -R a+rX /app
 USER agrolines
