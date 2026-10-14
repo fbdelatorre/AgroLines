@@ -6,7 +6,11 @@
 - [Procedimento manual de suporte e retenção de 90 dias](procedimento-suporte.md)
 - [Pendências legais, operacionais e técnicas](pendencias.md)
 
-Nome, contato, canal Gmail, grupo Partner Center e retenção foram confirmados.
+Contato oficial confirmado: **fabricio.grupodelatorre@gmail.com**, para privacidade,
+suporte e solicitações referentes ao programa de testes. Nome, canal Gmail, grupo
+Partner Center e retenção permanecem conforme as decisões aprovadas.
+Nenhum campo de contato próprio continua pendente na edição offline; consultar
+`pendencias.md` para fornecedores e procedimentos ainda não validados.
 Os campos CONFIRMAR restantes impedem considerar a política pronta para publicação.
 HTML sem scripts ou recursos externos; TXT não substitui a URL exigida para desktop.
 Para atualizar as cópias após editar Markdown:
