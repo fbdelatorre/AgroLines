@@ -57,3 +57,9 @@ Testes unitários para geometria, limites de permissão e serialização; integr
 - Seguir docs/offline-and-licensing.md e ADR 0004: SQLite integrado, originais/SRC/precisão preservados, revisões imutáveis, backups e conflitos explícitos; PostgreSQL/PostGIS é serviço opcional de colaboração.
 - Licenciamento é independente do núcleo agrícola; manter desenvolvimento desbloqueado. Chaves privadas de emissão nunca entram no aplicativo. Licenças offline válidas não exigem heartbeat remoto; não coletar hardware/PII sem necessidade e transparência.
 - Fundação offline foi autorizada como incremento atual; novos algoritmos agrícolas continuam condicionados à validação Windows/SAC. Aceitação offline exige Windows real desconectado, sem Python/PostgreSQL instalados, não apenas documentação/CI.
+
+## Microsoft Store
+- Preservar exatamente a identidade oficial em distribution/windows/msix/identity.json e AppxManifest.xml; não adaptar Publisher a certificados diferentes.
+- Seguir docs/microsoft-store-msix.md: pacote x64 completo, dados fora da instalação, exclusão AppData restrita e avaliação das capacidades pela Store.
+- Nunca publicar/cobrar automaticamente. Não usar certificados autoassinados, AllowUnsigned, Developer Mode ou alterações de segurança para instalar candidatos.
+- Execução de MSIX extraído e CI não comprovam instalação/Qt sob identidade/SAC; exigir pacotes confiáveis e Windows 11 real, sem Python/PostgreSQL e fisicamente desconectado.

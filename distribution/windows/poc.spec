@@ -12,6 +12,7 @@ a = Analysis(
         (str(root / 'desktop/map_assets'), 'desktop/map_assets'),
         (str(root / 'distribution/windows/brand.svg'), 'distribution/windows'),
         (str(prepared / 'metadata.json'), 'distribution/windows'),
+        (str(root / 'distribution/windows/msix/identity.json'), 'distribution/windows/msix'),
     ] + collect_data_files('pyproj') + collect_data_files('fiona'),
     hiddenimports=[],
     hookspath=[],

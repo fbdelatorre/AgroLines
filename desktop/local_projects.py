@@ -22,6 +22,7 @@ from PySide6.QtWidgets import (
 from core.local_projects import LocalProject
 from core.precision import VertexEditor
 from desktop.gis_map import WebMap
+from desktop.storage import project_directory
 from desktop.ui import THEME
 
 
@@ -185,7 +186,9 @@ class LocalProjectsWindow(QMainWindow):
         )
         if not ok:
             return
-        path, _ = QFileDialog.getSaveFileName(self, "Criar projeto", "", "AgroLines (*.agrolines)")
+        path, _ = QFileDialog.getSaveFileName(
+            self, "Criar projeto", str(project_directory()), "AgroLines (*.agrolines)"
+        )
         if path:
 
             def create():
@@ -196,7 +199,9 @@ class LocalProjectsWindow(QMainWindow):
             self.run(create)
 
     def open_project(self):
-        path, _ = QFileDialog.getOpenFileName(self, "Abrir projeto", "", "AgroLines (*.agrolines)")
+        path, _ = QFileDialog.getOpenFileName(
+            self, "Abrir projeto", str(project_directory()), "AgroLines (*.agrolines)"
+        )
         if path:
             self.run(lambda: self.load(path))
 
@@ -236,18 +241,20 @@ class LocalProjectsWindow(QMainWindow):
 
     def backup(self):
         if self.project:
-            path, _ = QFileDialog.getSaveFileName(self, "Backup", "", "AgroLines (*.agrolines)")
+            path, _ = QFileDialog.getSaveFileName(
+                self, "Backup", str(project_directory()), "AgroLines (*.agrolines)"
+            )
             if path:
                 self.run(lambda: self.project.backup(path))
 
     def restore(self):
         source, _ = QFileDialog.getOpenFileName(
-            self, "Escolher backup", "", "AgroLines (*.agrolines)"
+            self, "Escolher backup", str(project_directory()), "AgroLines (*.agrolines)"
         )
         if not source:
             return
         target, _ = QFileDialog.getSaveFileName(
-            self, "Restaurar em novo arquivo", "", "AgroLines (*.agrolines)"
+            self, "Restaurar em novo arquivo", str(project_directory()), "AgroLines (*.agrolines)"
         )
         if target:
 

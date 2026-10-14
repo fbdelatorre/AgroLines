@@ -15,7 +15,21 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--smoke-report", type=Path, help="Maintainer CI output; auto closes")
     parser.add_argument("--local", action="store_true", help="Open offline projects without login")
+    parser.add_argument(
+        "--require-msix", action="store_true", help="Fail without official package identity"
+    )
+    parser.add_argument(
+        "--offline-project-root", type=Path, help="Maintainer durable synthetic fixture"
+    )
     args = parser.parse_args()
+    initial_assets = (
+        Path(sys._MEIPASS) / "distribution/windows"
+        if getattr(sys, "frozen", False)
+        else Path(__file__).parent / "windows"
+    )
+    initial_metadata = json.loads((initial_assets / "metadata.json").read_text(encoding="utf-8"))
+    if initial_metadata.get("distribution_channel") == "microsoft-store" and not args.smoke_report:
+        args.local = True
     if (
         args.local
         and sys.platform == "win32"
@@ -45,9 +59,9 @@ def main():
         local_window = LocalProjectsWindow()
         local_window.show()
         return local_app.exec()
-    directory = (
-        Path(os.getenv("LOCALAPPDATA", str(Path.home()))) / "AgroLinesDistributionPoC" / "evidence"
-    )
+    from desktop.storage import data_directory
+
+    directory = data_directory() / "Evidence"
     output = args.smoke_report or directory / (uuid.uuid4().hex + ".json")
     output.parent.mkdir(parents=True, exist_ok=True)
     report = {
@@ -118,10 +132,10 @@ def main():
         result = run_checks()
         from distribution.offline_checks import run_offline_checks
 
-        report["offline_projects"] = run_offline_checks()
+        report["offline_projects"] = run_offline_checks(args.offline_project_root)
         report.update(result)
         report["evidence_before"] = collect(STARTED, ["AgroLinesPoC.exe"])
-        web_map = WebMap()
+        web_map = WebMap(offline=bool(metadata.get("store_identity")) or args.require_msix)
         layout.addWidget(web_map, 1)
         web_map.set_collection(
             {
@@ -186,6 +200,31 @@ def main():
                     and web_map.is_ready
                     and report["offline_projects"]["passed"]
                 )
+                from distribution.package_runtime import package_evidence, qt_helper_evidence
+
+                package = package_evidence()
+                report["package_identity"] = package
+                report["qt_helpers"] = qt_helper_evidence(package.get("install_path"))
+                project_external = bool(
+                    args.offline_project_root
+                    and package.get("install_path")
+                    and not args.offline_project_root.resolve().is_relative_to(
+                        Path(package["install_path"]).resolve()
+                    )
+                    and "packages" not in [p.casefold() for p in args.offline_project_root.parts]
+                )
+                report["project_directory_external"] = project_external
+                report["msix_validation_passed"] = bool(
+                    report["checks_passed"]
+                    and package["official_identity_matches"]
+                    and report["qt_helpers"]
+                    and all(h["inside_package"] for h in report["qt_helpers"])
+                    and project_external
+                )
+                if args.require_msix:
+                    report["checks_passed"] = (
+                        report["checks_passed"] and report["msix_validation_passed"]
+                    )
                 report["qt_webengine_map_ready"] = web_map.is_ready
                 after = report["evidence_after"]
                 report["sac_run_observed"] = (

@@ -1,8 +1,10 @@
 """Reproducible frozen client exercise; not physical-disconnection/SAC acceptance."""
 
+import hashlib
 import json
 import socket
 import tempfile
+from contextlib import ExitStack
 from pathlib import Path
 from unittest.mock import patch
 
@@ -12,7 +14,26 @@ from core.local_projects import LocalProject
 from desktop.local_projects import LocalVertexDialog
 
 
-def run_offline_checks():
+def existing_project(root):
+    project = LocalProject(root / "project.agrolines")
+    try:
+        assert project.name == "Offline"
+        feature = project.features()[0]
+        assert len(project.features()) == 1 and len(project.history(feature["id"])) == 2
+        assert abs(feature["original_geometry"]["coordinates"][0][0][0] - 300000.001123) < 1e-9
+    finally:
+        project.close()
+    digest = hashlib.sha256((root / "project.agrolines").read_bytes()).hexdigest()
+    for name in ("backup.agrolines", "restored.agrolines"):
+        copied = LocalProject(root / name)
+        try:
+            assert copied.features()[0]["original_geometry"] == feature["original_geometry"]
+        finally:
+            copied.close()
+    return digest
+
+
+def run_offline_checks(project_directory=None):
     def forbidden(*args, **kwargs):
         raise RuntimeError("Network prohibited during offline project probe")
 
@@ -20,9 +41,20 @@ def run_offline_checks():
         patch.object(socket.socket, "connect", forbidden),
         patch.object(socket, "create_connection", forbidden),
         patch.object(socket, "getaddrinfo", forbidden),
-        tempfile.TemporaryDirectory() as directory,
+        ExitStack() as contexts,
     ):
+        directory = project_directory or contexts.enter_context(tempfile.TemporaryDirectory())
         root = Path(directory)
+        root.mkdir(parents=True, exist_ok=True)
+        if (root / "project.agrolines").exists():
+            return {
+                "passed": True,
+                "network_calls_denied": True,
+                "reopened_exact": True,
+                "existing_project_preserved": True,
+                "project_sha256": existing_project(root),
+                "physical_disconnection_validated": False,
+            }
         source = root / "synthetic.geojson"
         geometry = {
             "type": "Polygon",
@@ -82,4 +114,6 @@ def run_offline_checks():
         "reopened_exact": True,
         "backup_restored": True,
         "physical_disconnection_validated": False,
+        "existing_project_preserved": False,
+        "project_sha256": existing_project(root) if project_directory else None,
     }

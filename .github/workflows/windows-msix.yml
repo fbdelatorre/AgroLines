@@ -1,0 +1,65 @@
+name: Microsoft Store MSIX candidate (no publication)
+on:
+  push:
+    paths: ['distribution/**', 'core/**', 'desktop/**', '.github/workflows/windows-msix.yml']
+  pull_request:
+    paths: ['distribution/**', 'core/**', 'desktop/**', '.github/workflows/windows-msix.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  msix-candidate:
+    runs-on: windows-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.10'
+          architecture: x64
+      - name: Parse scripts and compile package activation bridge
+        shell: pwsh
+        run: |
+          foreach ($file in (Get-ChildItem distribution/windows -Recurse -Filter '*.ps1')) {
+            $tokens = $null; $errors = $null
+            [System.Management.Automation.Language.Parser]::ParseFile($file.FullName, [ref]$tokens, [ref]$errors) | Out-Null
+            if ($errors.Count) { throw ($errors | Out-String) }
+          }
+          . ./distribution/windows/msix/Activate-Packaged.ps1
+          Initialize-AgroPackageActivation
+      - name: Exact hashed native build environment
+        run: |
+          python -m venv build-env
+          ./build-env/Scripts/python.exe -m pip install --require-hashes --only-binary=:all: -r distribution/windows/requirements.lock
+          ./build-env/Scripts/python.exe -m pip check
+      - name: Build official Store payload (no signing or publication)
+        run: ./build-env/Scripts/python.exe -m distribution.build --store --version 1.0.0.0 --manufacturer "Delatorre COrporation"
+      - name: Audit all native payload files
+        run: ./build-env/Scripts/python.exe -m distribution.payload --root dist/AgroLinesPoC --output evidence/native-inventory.json
+      - name: Native signatures (report, not SAC acceptance)
+        shell: pwsh
+        run: ./scripts/Audit-NativeWindows.ps1 -Inventory evidence/native-inventory.json -Output evidence/native-signatures.json
+      - name: Freeze final payload hashes
+        run: ./build-env/Scripts/python.exe -m distribution.payload --root dist/AgroLinesPoC --manifest --output dist/AgroLinesPoC/payload-manifest.json
+      - name: SDK schema validation, MSIX pack and unpack integrity
+        shell: pwsh
+        run: ./distribution/windows/msix/Build-MSIX.ps1 -Version 1.0.0.0
+      - name: Unpacked runtime regression (NOT installed MSIX validation)
+        shell: pwsh
+        run: |
+          . ./distribution/windows/Run-Frozen.ps1
+          Invoke-AgroFrozenProbe -Executable build/msix-unpacked/1.0.0.0/VFS/ProgramFilesX64/AgroLines/AgroLinesPoC.exe -Report evidence/msix/unpacked-runtime.json
+          $result = Get-Content evidence/msix/unpacked-runtime.json -Raw | ConvertFrom-Json
+          if (-not $result.frozen -or -not $result.checks_passed -or -not $result.payload_integrity_verified) { throw 'Runtime incompleto.' }
+          if ($result.package_identity.packaged -or $result.msix_validation_passed) { throw 'Probe unpacked nao pode declarar instalacao MSIX.' }
+          Write-Output '::warning::Pacote sem assinatura: instalacao MSIX/Qt em identidade/SAC pendentes de pacote confiavel e bancada real.'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: agrolines-official-store-msix-UNSIGNED-submission-candidate
+          path: |
+            dist/msix/*.msix
+            evidence/
+            distribution/windows/msix/AppxManifest.xml
+            distribution/windows/msix/identity.json
+          if-no-files-found: error
