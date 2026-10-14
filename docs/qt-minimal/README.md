@@ -74,3 +74,46 @@ O workflow passa a executar builds automáticos de branch por PR, push apenas em
 main, mantendo o dispatch manual, para evitar dois builds da mesma alteração.
 A compilação dupla no mesmo job é intencional: prova reprodução dos bytes neste
 builder/epoch, não reprodutibilidade independente entre máquinas.
+
+## Perfil final e critérios de classificação
+
+A política revisada passa a listar **179 caminhos PE esperados**: exclui também
+os 12 plugins `qmltooling/qmldbg_*` de debug, profiler e transporte. A aplicação
+Widgets/WebEngine release não habilita uma interface de depuração QML, não tem
+assets/imports QML próprios e não fornece essa função ao cliente. A contagem real
+e a execução desse perfil devem corresponder no gate; não é ajuste automático
+ao que o CI encontrar. QtQuick/QtQml nativos e `opengl32sw.dll` continuam: o último
+é um fallback dinâmico de renderização, mesmo sem import PE direto ou observação.
+
+| Classificação | Componentes / evidência | Decisão |
+|---|---|---|
+| Necessário e observado | Core/Gui/Widgets/Svg, bindings e módulos nativos usados pelo mapa; fases por arquivo no inventário atual | Manter |
+| Necessário por dependência comprovada | QtNetwork/OpenGL/PrintSupport/Qml/Quick/QuickWidgets/WebChannel/Positioning; imports PE e hooks upstream preservados, incluindo helper/recursos WebEngine | Manter a análise transitiva e os arquivos requeridos |
+| Potencialmente necessário em configuração não exercitada | Plugins Windows, estilos, imagens/SVG/PDF, impressão, Schannel, provedores Positioning/SerialPort e fallback OpenGL | Manter conservadoramente; alguns respondem a escolhas de plataforma/dispositivo |
+| Dispensável com evidência | Seis famílias listadas, árvore QML externa sem consumidor, seus dependentes sem raiz de uso e ferramentas de debug QML não habilitadas | Remoção revisada por hash; guards impedem retorno em Python, PE, plugins, QML/dados e archive |
+| Indeterminado para licenciamento/substituição | Fontes/build/notices de WebEngine/Chromium/terceiros, mecanismo LGPL e direitos Microsoft | Bloquear promoção; não excluir bibliotecas GIS ou atribuir licença por nome |
+
+O teste normal de janela da execução `38642374311` atingiu o corte antigo de
+15 segundos; o processo foi encerrado pelo observador, não se constatou crash de
+GIS. Os dois probes com término próprio saíram zero (mapa, precisão, cinco formatos,
+edição e backup). Relatórios foram reutilizados **sem recompilar/instalar/executar
+o pacote**, em `38643840250`, para diagnosticar o bloqueio. A correção atualiza
+`Process.MainWindowHandle` via `Refresh()` e usa o deadline global já existente
+de 120 segundos, com seis segundos após janela AgroLines visível antes de pedir
+fechamento. Exige HWND observado, fechamento solicitado e saída zero; qualquer erro
+de módulos, timeout, helper ausente ou runtime externo não aceito continua fatal.
+Isso corrige a observação de abertura assíncrona e não aprova SAC/UI física.
+
+O workflow `native-store-audit.yml` agora mantém a reauditoria original e a leitura
+de JSONs de um candidato existente como modos manuais separados. O baseline
+original foi revalidado em `38642366564` sem alteração de seus bytes. A cadeia
+automática corrente audita o payload atual, reutilizando os hashes históricos.
+O coletor por arquivo substitui linhas agregadas extensas por NDJSON legível.
+
+O candidato final entrega `evidence/README.md` e `technical-summary.json` gerados
+de XML de testes Windows da mesma execução, inventário, probes e binding real.
+Esse é o relatório por artefato: nome/SHA/commit/versões/contagens e bloqueios
+reais, sem inferir aprovação Linux, LGPL, assinatura de produção ou SAC. A
+suíte Linux fica na execução Qualidade correspondente; o PR registra seus links
+e resultados após conclusão. Não atualizar a política com uma suposta aprovação
+só porque um build técnico passou.

@@ -54,6 +54,16 @@ def test_python_module_guard(tmp_path):
         inspect_tree(tmp_path, ["PySide6.QtCharts"])
 
 
+def test_qml_debug_server_is_not_a_release_dependency(tmp_path):
+    path = "PySide6/plugins/qmltooling/qmldbg_server.dll"
+    assert filter_collected([(path, "PySide6/plugins/qmltooling")]) == []
+    file = tmp_path / path
+    file.parent.mkdir(parents=True)
+    file.write_bytes(b"inert reintroduced debugger fixture")
+    with pytest.raises(ValueError, match="reintroduced"):
+        inspect_tree(tmp_path)
+
+
 def test_external_qml_cannot_return_without_deployment_review(tmp_path):
     file = tmp_path / "PySide6/qml/QtQuick/Controls/qmldir"
     file.parent.mkdir(parents=True)

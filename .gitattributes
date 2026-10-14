@@ -7,3 +7,4 @@ distribution/windows/signing/native-policy.json text eol=lf
 distribution/windows/requirements.lock text eol=lf
 distribution/windows/third-party/* text eol=lf
 distribution/windows/signing/retired-system-copies.json text eol=lf
+docs/qt-minimal/*.csv text eol=lf

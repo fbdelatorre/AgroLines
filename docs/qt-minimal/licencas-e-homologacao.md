@@ -28,7 +28,7 @@ adicional como suposta solução LGPL. Compra Qt/certificado não autorizada.
 
 | Componente | Evidência / condições a conferir | Risco ainda aberto |
 |---|---|---|
-| PySide6/Shiboken/QtBase, Svg, WebChannel, Positioning, Qml/Quick/QuickWidgets e plugins retidos | Headers e alternativas por módulo em `docs/native-store-audit/fontes.json`; comparação com os wheels fixados e imports PE desta revisão | **Alto jurídico:** avisos completos, fonte correspondente e mecanismo LGPLv3 §4 não comprovados; não tratar todo Qt como LGPL por inferência |
+| PySide6/Shiboken/QtBase, Svg, WebChannel, Positioning, Qml/Quick/QuickWidgets/SerialPort e plugins retidos | Headers e alternativas por módulo em `docs/native-store-audit/fontes.json`; comparação com os wheels fixados e imports PE desta revisão | **Alto jurídico:** avisos completos, fonte correspondente e mecanismo LGPLv3 §4 não comprovados; não tratar todo Qt como LGPL por inferência |
 | Charts, Graphs, Data Visualization, Quick 3D, Virtual Keyboard, Quick Timeline | Removidos antes da expansão de dependências; guards em módulos Python, DLL/plugins, QML/dados e archive final | Reintrodução bloqueada; ausência dessas seis famílias não aprova o restante de Qt |
 | Qt WebEngine/Chromium/helper | Preservados recursos/processo auxiliar; probe reporta versão real do engine e Chromium, separadamente da versão PySide6 | **Alto jurídico/técnico:** fonte exata, patches/configuração de build, notices completos Chromium/codecs e homologação sob identidade/SAC. `dev` ou tag RC não é fonte exata comprovada do wheel final |
 | CPython 3.12.10 e seus componentes | Inputs da instalação Python fixada; LICENSE.txt copiado; assinaturas upstream preservadas | PSF e licenças dos componentes embutidos, incluindo OpenSSL; cadeia/timestamp no runner não é SAC físico |
@@ -95,3 +95,12 @@ licenças, assinatura GIS ou SAC. Sem compra/contato automático nesta tarefa.
 Não adquirir certificado agora por inferência. A primeira rota a avaliar é MSIX
 assinado pela Store, após saneamento jurídico e autorização. O pacote técnico
 não é instalável/entregável aos testadores nem aprovado para envio/comercialização.
+
+Versões observadas nos probes Windows do candidato intermediário `6077ee5`:
+GEOS da cópia Shapely **3.14.1**, PROJ da cópia pyproj **9.8.1**, Qt WebEngine
+**6.140.0**, Chromium **140.0.7339.225**. Probes saíram com código zero e mapa/GIS
+passaram; o job completo foi bloqueado pelo encerramento da janela normal. Não
+atribuir essas versões às outras cópias vendorizadas por inferência. As refs
+oficiais consultadas de WebEngine 6.140 tinham beta/RC, sem tag final correspondente
+comprovada ao wheel; confirmar fonte/build exatos com fornecedor. Header QtSerialPort
+v6.12.0 lido declara alternativas LGPL/GPL/comercial, sem aprovar o build inteiro.

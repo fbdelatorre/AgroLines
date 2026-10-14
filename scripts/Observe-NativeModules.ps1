@@ -25,6 +25,7 @@ function Observe-Probe {
     $known = [Collections.Generic.HashSet[int]]::new()
     $seen = @{}; $errorKeys = [Collections.Generic.HashSet[string]]::new()
     $timer = [Diagnostics.Stopwatch]::StartNew(); $closeSent = $false
+    $windowObserved = $false; $firstWindowMs = $null
     try {
         $proc.Start() | Out-Null
         $known.Add($proc.Id) | Out-Null
@@ -65,16 +66,28 @@ function Observe-Probe {
                     }
                 } finally { if ($null -ne $target) { $target.Dispose() } }
             }
-            if (-not $Argument -and $timer.ElapsedMilliseconds -gt 6000 -and -not $closeSent) {
-                $closeSent = $proc.CloseMainWindow()
+            if (-not $Argument -and -not $proc.HasExited) {
+                # Process caches MainWindowHandle (including zero). Refresh before
+                # looking for a cold-start window; never kill merely because the
+                # first six-second lookup happened before Qt created its HWND.
+                $proc.Refresh()
+                if ($proc.MainWindowHandle -ne [IntPtr]::Zero -and
+                    $proc.MainWindowTitle.StartsWith('AgroLines', [StringComparison]::OrdinalIgnoreCase)) {
+                    if (-not $windowObserved) { $windowObserved = $true; $firstWindowMs = $timer.ElapsedMilliseconds }
+                    if (-not $closeSent -and $timer.ElapsedMilliseconds - $firstWindowMs -ge 6000) {
+                        $closeSent = $proc.CloseMainWindow()
+                    }
+                }
             }
-            if (-not $Argument -and $timer.ElapsedMilliseconds -gt 15000) { break }
             Start-Sleep -Milliseconds 100
         }
         if (-not $proc.HasExited) { $allErrors.Add(@{phase = $Name; error = 'timeout-or-no-graceful-close'}); $proc.Kill($true); $proc.WaitForExit() }
         $exit = $proc.ExitCode
+        if (-not $Argument -and (-not $windowObserved -or -not $closeSent)) {
+            $allErrors.Add(@{phase=$Name; error='main-window-or-graceful-close-not-observed'})
+        }
         if ($Argument -and $exit -ne 0) { throw "Synthetic probe failed: $Name" }
-        return @{name = $Name; exit_code = $exit; modules = @($seen.Values); duration_ms = $timer.ElapsedMilliseconds; configured_poll_ms = 100; not_complete_image_load_trace = $true}
+        return @{name = $Name; exit_code = $exit; modules = @($seen.Values); duration_ms = $timer.ElapsedMilliseconds; configured_poll_ms = 100; not_complete_image_load_trace = $true; normal_window_observed=$windowObserved; normal_first_window_ms=$firstWindowMs; normal_close_requested=$closeSent}
     } finally {
         if ($proc.Id -and -not $proc.HasExited) { $proc.Kill($true); $proc.WaitForExit() }
         $proc.Dispose()
@@ -90,6 +103,10 @@ $phases = @(
     method = 'Read-only Process.Modules snapshots and descendant discovery; transient loads/access failures may be missed'
     installed_msix_validated = $false
 } | ConvertTo-Json -Depth 12 | Set-Content -LiteralPath (Join-Path $directory 'loads.json') -Encoding utf8
+Write-Output ('AGROLINES_OBSERVATION_ERRORS=' + (ConvertTo-Json -InputObject @($allErrors.ToArray()) -Compress -Depth 6))
+foreach ($phase in $phases) {
+    Write-Output ('AGROLINES_OBSERVATION_PHASE=' + (@{name=$phase.name; exit_code=$phase.exit_code; duration_ms=$phase.duration_ms; normal_window_observed=$phase.normal_window_observed; normal_first_window_ms=$phase.normal_first_window_ms; normal_close_requested=$phase.normal_close_requested} | ConvertTo-Json -Compress))
+}
 if (@($phases | Where-Object { $_.exit_code -ne 0 }).Count -or $allErrors.Count) {
     throw 'Startup/probe/module observation failed; see loads.json. No acceptance claim.'
 }

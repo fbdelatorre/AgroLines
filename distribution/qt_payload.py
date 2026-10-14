@@ -30,7 +30,16 @@ def forbidden_family(path):
 
 def filter_collected(entries):
     """PyInstaller hook tuples are (source, destination directory)."""
-    return [entry for entry in entries if not forbidden_family(entry[0])]
+    return [
+        entry
+        for entry in entries
+        if not forbidden_family(entry[0]) and not qml_debug_tool(entry[0])
+    ]
+
+
+def qml_debug_tool(path):
+    value = str(path).replace("\\", "/").casefold()
+    return "/plugins/qmltooling/" in "/" + value or value.split("/")[-1].startswith("qmldbg_")
 
 
 def external_qml(path):
@@ -79,7 +88,11 @@ def omit_system_copies(analysis, retired):
 def inspect_tree(root, python_modules=()):
     root = Path(root)
     files = [p.relative_to(root).as_posix() for p in root.rglob("*") if p.is_file()]
-    rejected = [p for p in files + list(python_modules) if forbidden_family(p) or external_qml(p)]
+    rejected = [
+        p
+        for p in files + list(python_modules)
+        if forbidden_family(p) or external_qml(p) or qml_debug_tool(p)
+    ]
     if rejected:
         raise ValueError("Forbidden Qt family reintroduced: " + ", ".join(rejected))
     return {"forbidden_components": [], "files_scanned": len(files), "passed": True}
@@ -93,7 +106,11 @@ def record_analysis(analysis, output):
 
     records = []
     for destination, source, kind in analysis.binaries:
-        if forbidden_family(destination) or external_qml(destination):
+        if (
+            forbidden_family(destination)
+            or external_qml(destination)
+            or qml_debug_tool(destination)
+        ):
             raise ValueError("Forbidden Qt binary after dependency expansion: " + destination)
         path = Path(source)
         if path.suffix.lower() not in (".dll", ".pyd", ".exe"):
@@ -112,7 +129,7 @@ def record_analysis(analysis, output):
                     for item in getattr(binary, key, [])
                 }
             )
-        if any(forbidden_family(name) for name in imports):
+        if any(forbidden_family(name) or qml_debug_tool(name) for name in imports):
             raise ValueError("Retained binary depends on excluded Qt library: " + destination)
         records.append(
             {
@@ -127,7 +144,11 @@ def record_analysis(analysis, output):
         if forbidden_family(name):
             raise ValueError("Forbidden Qt Python module: " + name)
     for destination, _source, _kind in analysis.datas:
-        if forbidden_family(destination) or external_qml(destination):
+        if (
+            forbidden_family(destination)
+            or external_qml(destination)
+            or qml_debug_tool(destination)
+        ):
             raise ValueError("Forbidden Qt QML/resource after collection: " + destination)
     Path(output).parent.mkdir(parents=True, exist_ok=True)
     Path(output).write_text(

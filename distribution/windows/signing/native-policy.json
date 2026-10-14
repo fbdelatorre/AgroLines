@@ -2247,234 +2247,6 @@
       "blocker": null
     },
     {
-      "path": "_internal/PySide6/plugins/qmltooling/qmldbg_debugger.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Essentials",
-          "version": "6.12.0",
-          "input_relative": "PySide6/plugins/qmltooling/qmldbg_debugger.dll"
-        }
-      ],
-      "baseline_sha256": "3e869b65f518b810fda744c0b238075835c3d27f59358c55531d77c6d6b344e8",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/plugins/qmltooling/qmldbg_inspector.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Essentials",
-          "version": "6.12.0",
-          "input_relative": "PySide6/plugins/qmltooling/qmldbg_inspector.dll"
-        }
-      ],
-      "baseline_sha256": "4e00478ef8563e7ad14b58a944ad8076f9b5b748ef40180d023c49a5bdbe3c3f",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/plugins/qmltooling/qmldbg_local.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Essentials",
-          "version": "6.12.0",
-          "input_relative": "PySide6/plugins/qmltooling/qmldbg_local.dll"
-        }
-      ],
-      "baseline_sha256": "e98f4e4773cf8068b860c0354367d15a560a9523e5e75e6589f720316094ea58",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/plugins/qmltooling/qmldbg_messages.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Essentials",
-          "version": "6.12.0",
-          "input_relative": "PySide6/plugins/qmltooling/qmldbg_messages.dll"
-        }
-      ],
-      "baseline_sha256": "c20f87325ee8e6cb9f6172973a4147ec813885db893ebb6f52227559021aff6e",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/plugins/qmltooling/qmldbg_native.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Essentials",
-          "version": "6.12.0",
-          "input_relative": "PySide6/plugins/qmltooling/qmldbg_native.dll"
-        }
-      ],
-      "baseline_sha256": "4a9a92e2ed6f9669d22c07f940b6befaab07c4fbb913b36c81d4a29974079104",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/plugins/qmltooling/qmldbg_nativedebugger.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Essentials",
-          "version": "6.12.0",
-          "input_relative": "PySide6/plugins/qmltooling/qmldbg_nativedebugger.dll"
-        }
-      ],
-      "baseline_sha256": "5ebb1b414979c9f5bf2b78054f2ce4233692ec9e6137fb7645703660252120e8",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/plugins/qmltooling/qmldbg_preview.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Essentials",
-          "version": "6.12.0",
-          "input_relative": "PySide6/plugins/qmltooling/qmldbg_preview.dll"
-        }
-      ],
-      "baseline_sha256": "6d9eec4a791b4663f1c8042fe1b8f2c4364261988e311412750ada290b21c722",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/plugins/qmltooling/qmldbg_profiler.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Essentials",
-          "version": "6.12.0",
-          "input_relative": "PySide6/plugins/qmltooling/qmldbg_profiler.dll"
-        }
-      ],
-      "baseline_sha256": "e3772d71561a88bf8373aa14ec5b5cae6cc193db68c7ec1ca6f55d802f03e2dc",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/plugins/qmltooling/qmldbg_quickeventreplay.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Essentials",
-          "version": "6.12.0",
-          "input_relative": "PySide6/plugins/qmltooling/qmldbg_quickeventreplay.dll"
-        }
-      ],
-      "baseline_sha256": "266966732beb1f3bf3609a16933f2c7f6a9c25a77bd5b18ac568a183aa8caad4",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/plugins/qmltooling/qmldbg_quickprofiler.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Essentials",
-          "version": "6.12.0",
-          "input_relative": "PySide6/plugins/qmltooling/qmldbg_quickprofiler.dll"
-        }
-      ],
-      "baseline_sha256": "00301bfeab6ab0d4b03452a91e5c016ba74a31befd8eaa1a2308d9871d56f301",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/plugins/qmltooling/qmldbg_server.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Essentials",
-          "version": "6.12.0",
-          "input_relative": "PySide6/plugins/qmltooling/qmldbg_server.dll"
-        }
-      ],
-      "baseline_sha256": "2e674119b592d1f8a952e78cb890ff718ec4b6f2fa14b5ac5543171a1188fda0",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/plugins/qmltooling/qmldbg_tcp.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Essentials",
-          "version": "6.12.0",
-          "input_relative": "PySide6/plugins/qmltooling/qmldbg_tcp.dll"
-        }
-      ],
-      "baseline_sha256": "38835acb174be35a612cb28ea2f447badfa0d198f53b1c9e7194d49c25e1868c",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
       "path": "_internal/PySide6/plugins/styles/qmodernwindowsstyle.dll",
       "group": "qt",
       "packages": [
@@ -5203,6 +4975,78 @@
         "sha256": "2e5fb14b7bf8540278f3614a12f0226e56a7cc9e64b81cbd976c6fcf2f71cbfb",
         "family": null,
         "reason": "Windows 11 system UCRT/API contracts; exact incidental JDK copy omitted"
+      },
+      {
+        "path": "_internal/PySide6/plugins/qmltooling/qmldbg_debugger.dll",
+        "sha256": "3e869b65f518b810fda744c0b238075835c3d27f59358c55531d77c6d6b344e8",
+        "family": null,
+        "reason": "QML debugger/profiler/transport plugin; release Widgets/WebEngine app has no QML debugging interface"
+      },
+      {
+        "path": "_internal/PySide6/plugins/qmltooling/qmldbg_inspector.dll",
+        "sha256": "4e00478ef8563e7ad14b58a944ad8076f9b5b748ef40180d023c49a5bdbe3c3f",
+        "family": null,
+        "reason": "QML debugger/profiler/transport plugin; release Widgets/WebEngine app has no QML debugging interface"
+      },
+      {
+        "path": "_internal/PySide6/plugins/qmltooling/qmldbg_local.dll",
+        "sha256": "e98f4e4773cf8068b860c0354367d15a560a9523e5e75e6589f720316094ea58",
+        "family": null,
+        "reason": "QML debugger/profiler/transport plugin; release Widgets/WebEngine app has no QML debugging interface"
+      },
+      {
+        "path": "_internal/PySide6/plugins/qmltooling/qmldbg_messages.dll",
+        "sha256": "c20f87325ee8e6cb9f6172973a4147ec813885db893ebb6f52227559021aff6e",
+        "family": null,
+        "reason": "QML debugger/profiler/transport plugin; release Widgets/WebEngine app has no QML debugging interface"
+      },
+      {
+        "path": "_internal/PySide6/plugins/qmltooling/qmldbg_native.dll",
+        "sha256": "4a9a92e2ed6f9669d22c07f940b6befaab07c4fbb913b36c81d4a29974079104",
+        "family": null,
+        "reason": "QML debugger/profiler/transport plugin; release Widgets/WebEngine app has no QML debugging interface"
+      },
+      {
+        "path": "_internal/PySide6/plugins/qmltooling/qmldbg_nativedebugger.dll",
+        "sha256": "5ebb1b414979c9f5bf2b78054f2ce4233692ec9e6137fb7645703660252120e8",
+        "family": null,
+        "reason": "QML debugger/profiler/transport plugin; release Widgets/WebEngine app has no QML debugging interface"
+      },
+      {
+        "path": "_internal/PySide6/plugins/qmltooling/qmldbg_preview.dll",
+        "sha256": "6d9eec4a791b4663f1c8042fe1b8f2c4364261988e311412750ada290b21c722",
+        "family": null,
+        "reason": "QML debugger/profiler/transport plugin; release Widgets/WebEngine app has no QML debugging interface"
+      },
+      {
+        "path": "_internal/PySide6/plugins/qmltooling/qmldbg_profiler.dll",
+        "sha256": "e3772d71561a88bf8373aa14ec5b5cae6cc193db68c7ec1ca6f55d802f03e2dc",
+        "family": null,
+        "reason": "QML debugger/profiler/transport plugin; release Widgets/WebEngine app has no QML debugging interface"
+      },
+      {
+        "path": "_internal/PySide6/plugins/qmltooling/qmldbg_quickeventreplay.dll",
+        "sha256": "266966732beb1f3bf3609a16933f2c7f6a9c25a77bd5b18ac568a183aa8caad4",
+        "family": null,
+        "reason": "QML debugger/profiler/transport plugin; release Widgets/WebEngine app has no QML debugging interface"
+      },
+      {
+        "path": "_internal/PySide6/plugins/qmltooling/qmldbg_quickprofiler.dll",
+        "sha256": "00301bfeab6ab0d4b03452a91e5c016ba74a31befd8eaa1a2308d9871d56f301",
+        "family": null,
+        "reason": "QML debugger/profiler/transport plugin; release Widgets/WebEngine app has no QML debugging interface"
+      },
+      {
+        "path": "_internal/PySide6/plugins/qmltooling/qmldbg_server.dll",
+        "sha256": "2e674119b592d1f8a952e78cb890ff718ec4b6f2fa14b5ac5543171a1188fda0",
+        "family": null,
+        "reason": "QML debugger/profiler/transport plugin; release Widgets/WebEngine app has no QML debugging interface"
+      },
+      {
+        "path": "_internal/PySide6/plugins/qmltooling/qmldbg_tcp.dll",
+        "sha256": "38835acb174be35a612cb28ea2f447badfa0d198f53b1c9e7194d49c25e1868c",
+        "family": null,
+        "reason": "QML debugger/profiler/transport plugin; release Widgets/WebEngine app has no QML debugging interface"
       }
     ],
     "evidence": "docs/qt-minimal/README.md; evidence/qt-minimal/build-inputs.json and native-current.json in Actions",

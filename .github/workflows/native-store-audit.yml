@@ -1,7 +1,5 @@
 name: Native audit of immutable Store candidate (no signing or installation)
 on:
-  push:
-    paths: ['.github/workflows/native-store-audit.yml']
   workflow_dispatch:
     inputs:
       mode:
@@ -102,7 +100,7 @@ jobs:
           if-no-files-found: error
 
   inspect-existing-report:
-    if: github.event_name == 'push' || inputs.mode == 'report'
+    if: github.event_name == 'workflow_dispatch' && inputs.mode == 'report'
     runs-on: windows-latest
     timeout-minutes: 5
     steps:
@@ -135,5 +133,5 @@ jobs:
               path = root / (name + '-probe.json')
               if path.exists():
                   probe = json.loads(path.read_text(encoding='utf-8-sig'))
-                  print('AGROLINES_REUSED_PROBE=' + json.dumps({'name': name, 'result': probe}))
+                  print('AGROLINES_REUSED_PROBE=' + json.dumps({'name': name, 'result': {key: probe[key] for key in ('frozen', 'checks_passed', 'payload_integrity_verified', 'qt_webengine_map_ready', 'passed', 'errors', 'local_formats', 'webengine_ready') if key in probe}, 'engines': probe.get('components', {}).get('engine_versions')}))
           print('Evidence reused without signing, payload execution, acceptance or publication.')

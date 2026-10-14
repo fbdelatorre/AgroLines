@@ -10,7 +10,7 @@ from zipfile import ZipFile
 
 from distribution.build import PRIVACY_FILES, ROOT
 from distribution.msix import NS, identity, package_family_name
-from distribution.qt_payload import external_qml, forbidden_family
+from distribution.qt_payload import external_qml, forbidden_family, qml_debug_tool
 
 PREFIX = "VFS/ProgramFilesX64/AgroLines/"
 COMPONENTS = {
@@ -29,7 +29,9 @@ def inspect_package(path):
     official = identity()
     with ZipFile(path) as archive:
         names = archive.namelist()
-        if any(forbidden_family(name) or external_qml(name) for name in names):
+        if any(
+            forbidden_family(name) or external_qml(name) or qml_debug_tool(name) for name in names
+        ):
             raise ValueError("Forbidden Qt component in actual MSIX archive")
         if "AppxSignature.p7x" in names:
             raise ValueError("Expected unsigned Store submission candidate")

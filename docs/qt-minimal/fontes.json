@@ -68,5 +68,27 @@
     "sha256": "aac514ba77010fceeff82a400f496c2a8d001806b58f56137af62427127646c4",
     "bytes": 53739,
     "accessed_utc": "2026-10-14"
+  },
+  {
+    "name": "qt-serialport-retained",
+    "url": "https://github.com/qt/qtserialport/blob/v6.12.0/src/serialport/qserialport.cpp",
+    "blob_sha": "e673bc40d4c85aae12ef88c2277a81315e3b3a72",
+    "sha256": "d7cd4b8682dece4b05f9b4442a631e27b460dba2589e17d154d0001d3d8e70e3",
+    "status": "read",
+    "accessed_utc": "2026-10-14",
+    "scope": "Upstream header v6.12.0; does not replace full wheel source/license review"
+  },
+  {
+    "name": "qtwebengine-6.140-tags",
+    "url": "https://api.github.com/repos/qt/qtwebengine/git/matching-refs/tags/v6.140",
+    "status": "read",
+    "accessed_utc": "2026-10-14",
+    "refs": [
+      "v6.140.0-beta1",
+      "v6.140.0-beta2",
+      "v6.140.0-rc"
+    ],
+    "final_ref_found": false,
+    "scope": "Runtime reports 6.140.0; beta/RC source is not verified corresponding source for final wheel"
   }
 ]
