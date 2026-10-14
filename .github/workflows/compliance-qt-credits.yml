@@ -1,0 +1,45 @@
+name: Read built-in Windows Qt credits (no MSIX installation)
+on:
+  workflow_dispatch:
+  push:
+    branches: [compliance/lgpl-store-dossier]
+    paths:
+      - '.github/workflows/compliance-qt-credits.yml'
+      - 'scripts/qt_credits.py'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  credits:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.12.10'
+          architecture: x64
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: agrolines-signing-validation-NOT-FOR-SUBMISSION
+          run-id: 38647878392
+          github-token: ${{ github.token }}
+          path: reference
+      - name: Reuse the hashed development build inputs, never install an unsigned MSIX
+        run: |
+          python -m venv build-env
+          ./build-env/Scripts/python.exe -m pip install --require-hashes --only-binary=:all: -r distribution/windows/requirements.lock
+      - name: Read built-in credits after verifying exact reference Qt bytes
+        run: >-
+          ./build-env/Scripts/python.exe -m scripts.qt_credits
+          --package reference/dist/msix/AgroLines-1.0.0.0-x64-DIAGNOSTICO-ASSINATURA-PENDENTE.msix
+          --native reference/evidence/qt-minimal/native-current.json
+          --output build/qt-credits
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: success()
+        with:
+          name: agrolines-reference-qt-legal-credits-NOT-SOURCE-CLOSURE
+          path: build/qt-credits/
+          if-no-files-found: error
