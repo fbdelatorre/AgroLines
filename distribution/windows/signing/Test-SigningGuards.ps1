@@ -20,4 +20,14 @@ try {
     if (-not $caught) { throw 'Blocked signing unexpectedly proceeded.' }
     }
     Write-Output 'Blocked policy stopped before tool/certificate/key access. No test certificate created.'
+    . (Join-Path $PSScriptRoot 'Signing-Helpers.ps1')
+    $rootBlocked = $false
+    try {
+        Get-AgroPublicSigningCertificate -Thumbprint ('0' * 40) -Subject 'NOT-A-CERTIFICATE' -Provider 'NOT-A-PROVIDER' -ApprovedRoots @() | Out-Null
+    } catch {
+        if ($_.Exception.Message -notlike 'Approved public CA root dossier/allowlist missing*') { throw }
+        $rootBlocked = $true
+    }
+    if (-not $rootBlocked) { throw 'Missing public root dossier did not stop certificate/key access.' }
+    Write-Output 'Unconfigured public-root trust stopped before certificate lookup/private provider access.'
 } finally { Remove-Item -LiteralPath $temporary -Recurse -Force }
