@@ -42,6 +42,10 @@ def policy_records(policy):
             raise ValueError("Duplicate Windows policy path")
         if row["action"] not in ("preserve_original", "sign_own", "sign_third_party", "blocked"):
             raise ValueError("Unknown signing action")
+        if any(
+            type(row.get(flag)) is not bool for flag in ("rights_confirmed", "origin_confirmed")
+        ):
+            raise ValueError("Rights/origin decisions must be explicit booleans")
         if not re.fullmatch(r"[a-f0-9]{64}", row["baseline_sha256"]):
             raise ValueError("Missing exact baseline SHA256")
         rows[key] = row
@@ -308,6 +312,8 @@ def bind(package, plan, source_commit, lock, policy):
         raise ValueError("Signing input does not match approved source/policy")
     return {
         "source_commit": source_commit,
+        "package_file": Path(package).name,
+        "size_bytes": Path(package).stat().st_size,
         "package_sha256": file_hash(package),
         "policy_sha256": file_hash(policy),
         "lock_sha256": file_hash(lock),
@@ -469,6 +475,8 @@ def main():
         )
         if data["violations"]:
             raise SystemExit(1)
+    elif args.command in ("reproduce", "bind"):
+        print("AGROLINES_SIGNING_" + args.command.upper() + "=" + json.dumps(data))
 
 
 if __name__ == "__main__":
