@@ -19,12 +19,15 @@ from PySide6.QtWebEngineWidgets import QWebEngineView
 from PySide6.QtWidgets import QHBoxLayout, QLabel, QVBoxLayout, QWidget
 
 from core.geography import exact_transform
+from core.offline_policy import is_offline_only
 from desktop.ui import action, label
 
 ASSETS = Path(__file__).parent / "map_assets"
 
 
 def imagery_configuration():
+    if is_offline_only():
+        return None
     if os.getenv("AGROLINES_TILE_AUTHORIZED") != "1":
         return None
     url = os.getenv("AGROLINES_TILE_URL", "")
@@ -57,6 +60,7 @@ class Requests(QWebEngineUrlRequestInterceptor):
     def __init__(self, config, parent):
         super().__init__(parent)
         self.host = urlsplit(config["url"]).hostname if config else None
+        self.offline_only = is_offline_only()
         self.online = False
 
     def interceptRequest(self, info):
@@ -69,7 +73,8 @@ class Requests(QWebEngineUrlRequestInterceptor):
         else:
             info.block(
                 not (
-                    self.online
+                    not self.offline_only
+                    and self.online
                     and self.host
                     and url.scheme() == "https"
                     and url.host() == self.host
@@ -79,10 +84,10 @@ class Requests(QWebEngineUrlRequestInterceptor):
 
 class LocalPage(QWebEnginePage):
     def acceptNavigationRequest(self, url, kind, is_main_frame):
-        return (
-            url.scheme() == "file"
-            and Path(url.toLocalFile()).resolve() == (ASSETS / "map.html").resolve()
-        )
+        return url.scheme() == "file" and Path(url.toLocalFile()).resolve() in {
+            (ASSETS / "map.html").resolve(),
+            (ASSETS / "map-offline.html").resolve(),
+        }
 
 
 class Bridge(QObject):
@@ -114,7 +119,8 @@ class WebMap(QWidget):
         self.fit_pending = False
         self.current_id = None
         self.set_work_crs("EPSG:32723")
-        self.imagery = None if offline else imagery_configuration()
+        self.offline_only = is_offline_only()
+        self.imagery = None if offline or self.offline_only else imagery_configuration()
         body = QVBoxLayout(self)
         body.setContentsMargins(0, 0, 0, 0)
         body.setSpacing(0)
@@ -151,7 +157,8 @@ class WebMap(QWidget):
         self.state_label.setTextFormat(Qt.PlainText)
         self.state_label.setObjectName("Hint")
         body.addWidget(self.state_label)
-        self.view.load(QUrl.fromLocalFile(str(ASSETS / "map.html")))
+        page_file = "map-offline.html" if self.offline_only else "map.html"
+        self.view.load(QUrl.fromLocalFile(str(ASSETS / page_file)))
 
     def set_work_crs(self, value):
         self.work_crs = value
@@ -217,8 +224,8 @@ class WebMap(QWidget):
             self.featureSelected.emit(feature)
 
     def set_online(self, online):
-        self.interceptor.online = bool(online)
-        self.run("online", bool(online))
+        self.interceptor.online = bool(online) and not self.offline_only
+        self.run("online", self.interceptor.online)
 
     def clear(self):
         self.set_collection({"type": "FeatureCollection", "features": []})

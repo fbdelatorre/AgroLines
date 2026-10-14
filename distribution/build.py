@@ -37,7 +37,10 @@ def prepare(output, version, manufacturer, store=False):
                 "Store build requires official publisher display name and revision zero"
             )
         metadata.update(
-            name="AgroLines", distribution_channel="microsoft-store", store_identity=official
+            name="AgroLines",
+            distribution_channel="microsoft-store",
+            store_identity=official,
+            offline_only=True,
         )
     (output / "metadata.json").write_text(
         json.dumps(metadata, ensure_ascii=False), encoding="utf-8"

@@ -12,6 +12,7 @@ from pyproj import CRS, network
 from core.geography import inspect_polygon
 from core.imports import import_polygons
 from core.licensing import DevelopmentLicense, Module
+from core.offline_policy import require_local_path
 
 SCHEMA = """
 CREATE TABLE project(id TEXT PRIMARY KEY, name TEXT NOT NULL, work_crs TEXT NOT NULL);
@@ -44,6 +45,7 @@ class RevisionConflict(ValueError):
 
 class LocalProject:
     def __init__(self, path, license_verifier=None):
+        require_local_path(path)
         network.set_network_enabled(False)
         self.path = Path(path)
         self.license = license_verifier or DevelopmentLicense()
@@ -72,6 +74,7 @@ class LocalProject:
         crs = CRS.from_user_input(work_crs)
         if not crs.is_projected or any(a.unit_name != "metre" for a in crs.axis_info):
             raise ValueError("O SRC de trabalho deve ser projetado em metros.")
+        require_local_path(path)
         path = Path(path)
         # Exclusive creation: never overwrite an existing project.
         with path.open("xb"):
@@ -172,6 +175,7 @@ class LocalProject:
 
     def backup(self, destination):
         self._require(Module.BACKUP)
+        require_local_path(destination)
         destination = Path(destination)
         with destination.open("xb"):
             pass
@@ -186,6 +190,8 @@ class LocalProject:
 
     @classmethod
     def restore(cls, backup, destination, license_verifier=None):
+        require_local_path(backup)
+        require_local_path(destination)
         source = cls(backup, license_verifier)
         try:
             source.backup(destination)
