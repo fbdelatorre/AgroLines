@@ -20,7 +20,7 @@ def version_tuple(value):
     return tuple(int(p) for p in pieces)
 
 
-def prepare(output, version, manufacturer):
+def prepare(output, version, manufacturer, store=False):
     parts = version_tuple(version)
     if not manufacturer or len(manufacturer) > 120 or any(c in manufacturer for c in '\r\n"'):
         raise ValueError("Manufacturer must be a plain single-line name")
@@ -28,6 +28,17 @@ def prepare(output, version, manufacturer):
     output.mkdir(parents=True, exist_ok=True)
     metadata = json.loads((ROOT / "distribution/windows/metadata.json").read_text())
     metadata.update(version=version, manufacturer=manufacturer)
+    if store:
+        from distribution.msix import identity
+
+        official = identity()
+        if manufacturer != official["publisher_display_name"] or parts[3] != 0 or parts[0] == 0:
+            raise ValueError(
+                "Store build requires official publisher display name and revision zero"
+            )
+        metadata.update(
+            name="AgroLines", distribution_channel="microsoft-store", store_identity=official
+        )
     (output / "metadata.json").write_text(
         json.dumps(metadata, ensure_ascii=False), encoding="utf-8"
     )
@@ -91,10 +102,11 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--version", default="0.1.0.1")
     parser.add_argument("--manufacturer", default="Delatorre Corporation")
+    parser.add_argument("--store", action="store_true")
     args = parser.parse_args()
     if sys.platform != "win32":
         raise SystemExit("Windows build requires a Windows builder")
-    prepare(ROOT / "build/distribution", args.version, args.manufacturer)
+    prepare(ROOT / "build/distribution", args.version, args.manufacturer, store=args.store)
     subprocess.run(
         [
             sys.executable,

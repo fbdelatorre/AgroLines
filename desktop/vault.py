@@ -2,16 +2,15 @@
 
 import ctypes
 import json
-import os
 import sys
 from pathlib import Path
+
+from desktop.storage import data_directory
 
 
 class WindowsVault:
     def __init__(self, path=None):
-        self.path = Path(
-            path or Path(os.getenv("LOCALAPPDATA", Path.home())) / "AgroLines" / "session.dpapi"
-        )
+        self.path = Path(path or data_directory() / "session.dpapi")
         self.available = sys.platform == "win32"
 
     @staticmethod

@@ -22,6 +22,7 @@ def test_local_workspace_controls_without_remote_client(tmp_path, monkeypatch):
     from desktop.local_projects import LocalProjectsWindow
 
     app = QApplication.instance() or QApplication([])
+    monkeypatch.setattr("desktop.storage.local_app_data", lambda: tmp_path)
     project_path = tmp_path / "local.agrolines"
     source = tmp_path / "source.geojson"
     source.write_text(
