@@ -43,8 +43,10 @@ function Observe-Probe {
                 try {
                     $target = [Diagnostics.Process]::GetProcessById([int]$entry.ProcessId)
                     foreach ($module in $target.Modules) {
-                        $path = $module.FileName
-                        if (-not $path) { continue }
+                        if (-not $module.FileName) { continue }
+                        # Qt helper image paths can use forward slashes. Normalize
+                        # before attributing an image to the immutable payload.
+                        $path = [IO.Path]::GetFullPath($module.FileName)
                         $key = "$($entry.ProcessId)|$path"
                         $relative = $null; $scope = 'external'
                         if ($path.StartsWith($prefix,[StringComparison]::OrdinalIgnoreCase)) { $scope = 'payload'; $relative = $path.Substring($prefix.Length).Replace('\','/') }
