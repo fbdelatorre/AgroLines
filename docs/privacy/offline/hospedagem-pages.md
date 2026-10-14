@@ -1,7 +1,13 @@
 # GitHub Pages — preparado, sem ativação pública
 
 URL esperada: **https://fbdelatorre.github.io/AgroLines/privacidade/**.
-Ainda não é URL publicada/validada. O HTML jurídico do PR #12 não foi reescrito.
+Ainda não é URL publicada/validada. O conteúdo jurídico do PR #12 foi preservado;
+o contato foi padronizado conforme confirmação do responsável.
+
+Contato oficial de privacidade, suporte e programa de testes:
+**fabricio.grupodelatorre@gmail.com**. Não há campo de contato próprio pendente
+na edição offline. Confirmar esse e-mail não valida acesso à conta, fornecedores
+ou transferências internacionais, nem autoriza publicar a política.
 Existem campos pendentes de vigência, bases legais, transferências e URL; portanto
 **a política não está juridicamente finalizada nem autorizada para publicação**.
 
