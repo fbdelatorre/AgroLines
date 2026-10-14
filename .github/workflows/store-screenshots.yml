@@ -32,6 +32,13 @@ jobs:
         env:
           QT_QPA_PLATFORM: windows
         run: ./capture-env/Scripts/python.exe -m scripts.capture_store_windows --output store-capture --revision ${{ github.sha }}
+      - name: Publish bounded readiness evidence in job log
+        shell: pwsh
+        run: |
+          $report = Get-Content store-capture/capture-evidence.json -Raw | ConvertFrom-Json
+          Write-Output 'AGROLINES_CAPTURE_EVIDENCE_BEGIN'
+          $report | ConvertTo-Json -Depth 8
+          Write-Output 'AGROLINES_CAPTURE_EVIDENCE_END'
       - name: No substitute screenshots
         if: steps.capture.outcome != 'success'
         shell: pwsh
