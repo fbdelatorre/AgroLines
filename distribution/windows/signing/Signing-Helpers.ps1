@@ -56,8 +56,9 @@ function Get-AgroApprovedSigningSet {
     return @($approved.ToArray())
 }
 function Get-AgroPublicSigningCertificate {
-    param([string]$Thumbprint,[string]$Subject,[string]$Provider)
+    param([string]$Thumbprint,[string]$Subject,[string]$Provider,[object[]]$ApprovedRoots)
     if ($Thumbprint -notmatch '^[0-9a-fA-F]{40}$' -or -not $Subject -or -not $Provider) { throw 'Configure public certificate identity and CA-approved hardware/KSP provider.' }
+    if (-not $ApprovedRoots.Count) { throw 'Approved public CA root dossier/allowlist missing; no key access.' }
     $cert = Get-Item -LiteralPath "Cert:\CurrentUser\My\$Thumbprint"
     if (-not $cert.HasPrivateKey -or $cert.Subject -cne $Subject -or $cert.Issuer -eq $cert.Subject -or
         $cert.NotBefore.ToUniversalTime() -gt [DateTime]::UtcNow -or $cert.NotAfter.ToUniversalTime() -le [DateTime]::UtcNow) { throw 'Real valid non-self-signed private-key certificate required.' }
@@ -70,7 +71,11 @@ function Get-AgroPublicSigningCertificate {
         $chain.ChainPolicy.RevocationFlag = 'ExcludeRoot'
         $chain.ChainPolicy.UrlRetrievalTimeout = [TimeSpan]::FromSeconds(10)
         $chain.ChainPolicy.ApplicationPolicy.Add([Security.Cryptography.Oid]::new('1.3.6.1.5.5.7.3.3'))
-        if (-not $chain.Build($cert)) { throw 'Current signing certificate public chain/revocation not accepted; no overrides.' }
+        if (-not $chain.Build($cert)) { throw 'Current signing certificate chain/revocation not accepted; no overrides.' }
+        $anchor = $chain.ChainElements[$chain.ChainElements.Count - 1].Certificate
+        $rootHash = [Convert]::ToHexString([Security.Cryptography.SHA256]::HashData($anchor.RawData)).ToLowerInvariant()
+        $approved = @($ApprovedRoots | Where-Object { $_.sha256 -cmatch '^[a-f0-9]{64}$' -and $_.sha256 -ceq $rootHash -and $_.evidence })
+        if ($approved.Count -ne 1) { throw 'Root not pinned by reviewed public CA dossier; local/private trust alone is insufficient.' }
     } finally { $chain.Dispose() }
     $private = $null
     try {

@@ -52,7 +52,13 @@ Hoje esse fluxo é bloqueado também pelos 46 registros de origem ainda não fec
    reais e action sign_third_party para **aquele hash**. Não marcar todos como
    permitidos por serem open source. Preservar signatures/bytes upstream válidos.
    Não resolver ou aprovar automaticamente o licenciamento Qt/LGPL por esse caminho.
-6. No ambiente protegido, configurar **variáveis públicas de identificação**:
+6. Conferir a inclusão da CA no programa público Windows e seus roots por fontes
+   oficiais/atestados. Registrar hashes SHA-256 e referências não sensíveis em
+   approved_public_roots da política, com revisão em main. A lista está vazia;
+   cadeia aceita apenas por um root privado/local não basta nem libera a chave.
+   Esse pin identifica a âncora aprovada, não substitui a verificação documental
+   de participação no programa público. Não instalar roots de laboratório.
+   No ambiente protegido, configurar **variáveis públicas de identificação**:
    AGROLINES_PE_SIGNING_THUMBPRINT, AGROLINES_PE_SIGNER_SUBJECT,
    AGROLINES_PE_KEY_PROVIDER e AGROLINES_TIMESTAMP_URL. Devem corresponder ao
    certificado real em CurrentUser/My da conta do runner e a endpoint HTTPS RFC3161.

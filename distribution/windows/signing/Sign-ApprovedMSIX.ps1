@@ -27,7 +27,8 @@ try {
 } finally { $archive.Dispose() }
 Assert-AgroTimestampEndpoint $TimestampUrl
 $tools = Get-AgroSigningTools
-$cert = Get-AgroPublicSigningCertificate -Thumbprint $CertificateThumbprint -Subject $identity.publisher -Provider $ExpectedKeyProvider
+$roots = @((Get-Content (Join-Path $PSScriptRoot 'native-policy.json') -Raw | ConvertFrom-Json).approved_public_roots)
+$cert = Get-AgroPublicSigningCertificate -ApprovedRoots $roots -Thumbprint $CertificateThumbprint -Subject $identity.publisher -Provider $ExpectedKeyProvider
 & $tools.signtool sign /sha1 $cert.Thumbprint /s My /fd SHA256 /tr $TimestampUrl /td SHA256 $Package
 if ($LASTEXITCODE) { throw 'MSIX signing failed.' }
 & $tools.signtool verify /pa /all /v /tw $Package

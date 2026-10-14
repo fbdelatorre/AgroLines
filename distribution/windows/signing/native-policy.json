@@ -8329,5 +8329,6 @@
       "origin_confirmed": true,
       "blocker": null
     }
-  ]
+  ],
+  "approved_public_roots": []
 }

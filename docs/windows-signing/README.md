@@ -91,7 +91,8 @@ A política exige:
    autorização jurídica nem a estende a módulos Qt/GPL.
 5. Preflight completo antes de acessar chave; certificado público, EKU Code Signing,
    sujeito/thumbprint/provider esperados, validade/revogação/cadeia sem overrides,
-   não exportável e provider aprovado. Nome do provider não comprova certificação
+   não exportável, provider aprovado e root de CA fixado na política após revisão
+   documental do programa público (lista ainda vazia). Confiança privada/local não basta. Nome do provider não comprova certificação
    HSM por si só: atestado/contrato da CA é pré-requisito manual. RSA/ECC são aceitos
    pelo código, sujeitos ao SDK e ao Windows alvo.
 6. Assinar só os hashes autorizados com SHA-256 e timestamp RFC3161 HTTPS. Verificar

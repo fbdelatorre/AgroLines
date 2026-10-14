@@ -20,7 +20,8 @@ foreach ($record in $before.files | Where-Object action -EQ 'preserve_original')
     & $tools.signtool verify /pa /all /v /tw (Join-Path $Payload $record.path)
     if ($LASTEXITCODE -ne 0) { throw 'Upstream signature no longer accepted; no key access or overwrite.' }
 }
-$cert = Get-AgroPublicSigningCertificate -Thumbprint $CertificateThumbprint -Subject $ExpectedSignerSubject -Provider $ExpectedKeyProvider
+$roots = @((Get-Content -LiteralPath $Policy -Raw | ConvertFrom-Json).approved_public_roots)
+$cert = Get-AgroPublicSigningCertificate -ApprovedRoots $roots -Thumbprint $CertificateThumbprint -Subject $ExpectedSignerSubject -Provider $ExpectedKeyProvider
 foreach ($file in $files) {
     if ((Get-FileHash -LiteralPath $file.path -Algorithm SHA256).Hash.ToLowerInvariant() -cne $file.sha256 -or
         (Get-AuthenticodeSignature -LiteralPath $file.path).Status -ne 'NotSigned') { throw 'Approved input changed or already signed; never overwrite vendor signature.' }
