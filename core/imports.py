@@ -53,7 +53,7 @@ def datasets(path, override):
     if suffix in (".json", ".geojson"):
         raw = json.loads(file_bytes(path))
         declared = raw.get("crs", {}).get("properties", {}).get("name")
-        crs = override or declared
+        crs = declared or override
         if not crs:
             raise ValueError("GeoJSON sem declaração de SRC: informe o SRC, inclusive EPSG:4326.")
         features = raw.get("features", []) if raw.get("type") == "FeatureCollection" else [raw]
@@ -81,7 +81,7 @@ def datasets(path, override):
         with fiona.open(str(path), layer=layer, allow_unsupported_drivers=True) as source:
             # KML declares geographic WGS84 by specification; other formats must
             # carry a CRS or receive an explicit operator override.
-            crs = override or ("EPSG:4326" if suffix == ".kml" else source.crs_wkt)
+            crs = "EPSG:4326" if suffix == ".kml" else (source.crs_wkt or override)
             if not crs:
                 raise ValueError("SRC ausente: informe o SRC de origem.")
             features = []

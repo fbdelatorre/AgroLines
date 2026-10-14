@@ -51,3 +51,9 @@ Testes unitários para geometria, limites de permissão e serialização; integr
 - Produto final Windows deve embutir runtime/dependências e ter instalador, identidade, versão, atualização e desinstalação; clientes não precisam de Python, pip, PowerShell ou PostgreSQL local configurado manualmente.
 - Preservar Python/PySide6 e o núcleo GIS. Prova de distribuição só é aprovada com assinatura/auditoria e validação Windows 11 real com SAC ativo; CI hospedado não substitui essa evidência.
 - Seguir docs/windows-distribution-poc.md; não iniciar funcionalidades agrícolas seguintes antes da validação dessa fundação. Não usar publisher/certificado fictício nem adquirir serviços pagos sem autorização.
+
+## Offline e licenciamento
+- Projetos de propriedade local devem abrir e funcionar sem conta ou autenticação remota; dados compartilhados mantêm a política de autorização/revogação da ADR 0002.
+- Seguir docs/offline-and-licensing.md e ADR 0004: SQLite integrado, originais/SRC/precisão preservados, revisões imutáveis, backups e conflitos explícitos; PostgreSQL/PostGIS é serviço opcional de colaboração.
+- Licenciamento é independente do núcleo agrícola; manter desenvolvimento desbloqueado. Chaves privadas de emissão nunca entram no aplicativo. Licenças offline válidas não exigem heartbeat remoto; não coletar hardware/PII sem necessidade e transparência.
+- Fundação offline foi autorizada como incremento atual; novos algoritmos agrícolas continuam condicionados à validação Windows/SAC. Aceitação offline exige Windows real desconectado, sem Python/PostgreSQL instalados, não apenas documentação/CI.

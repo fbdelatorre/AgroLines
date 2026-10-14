@@ -1272,7 +1272,12 @@ class MainWindow(PageBuilders, QMainWindow):
 def main():
     app = QApplication(sys.argv)
     try:
-        window = MainWindow()
+        if "--remote" not in sys.argv:
+            from desktop.local_projects import LocalProjectsWindow
+
+            window = LocalProjectsWindow()
+        else:
+            window = MainWindow()
     except ValueError as exc:
         QMessageBox.critical(None, "Configuração inválida", str(exc))
         return 1
