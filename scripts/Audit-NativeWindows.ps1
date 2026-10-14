@@ -71,7 +71,7 @@ foreach ($group in ($results | Group-Object { if ($_.packages.Count) { $_.packag
     $unsigned = @($group.Group | Where-Object { $_.status -eq 'NotSigned' }).Count
     Write-Output "$($group.Name): total=$($group.Count), assinaturaValid=$valid, NotSigned=$unsigned"
 }
-if ($env:GITHUB_ACTIONS -eq 'true') {
+if ($env:GITHUB_ACTIONS -eq 'true' -and -not $Strict) {
     $summary = @($results | Group-Object { if ($_.packages.Count) { $_.packages[0].name } else { 'runtime/unowned' } } | ForEach-Object {
         @{
             package = $_.Name

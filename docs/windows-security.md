@@ -60,6 +60,48 @@ do cliente. O pipeline deve conferir suporte do SAC ao certificado/algoritmo esc
 na documentação vigente; preferir RSA e SHA-256 para essa avaliação. Uma wheel
 assinada como arquivo ZIP não substitui a confiança dos PE carregados do seu conteúdo.
 
+## Resultado observado no CI
+
+A [execução 38492523662](https://github.com/fbdelatorre/AgroLines/actions/runs/38492523662)
+auditou CPython 3.12.10 e o ambiente de desenvolvimento instalado no runner Windows.
+Foram **650 arquivos PE**, **494 resultados Authenticode Valid**, **442 cadeias atuais
+confirmadas** e **156 NotSigned**, sem erro de inspeção. A aprovação do job significa
+que a auditoria executou; o job registra componentes não verificados como advertência,
+não aprovação para distribuição. O relatório detalhado é o artefato
+`windows-native-evidence`, arquivos `native-inventory.json`/`native-signatures.json`.
+
+| Distribuição observada | Versão | PE | Authenticode Valid | Cadeia atual confirmada | NotSigned |
+|---|---|---:|---:|---:|---:|
+| NumPy | 2.5.4 | 23 | 1 | 0 | 22 |
+| Shapely / GEOS | 2.2.0 | 6 | 1 | 1 | 5 |
+| Fiona / GDAL | 1.10.1 | 44 | 1 | 0 | 43 |
+| pyproj / PROJ | 3.8.0 | 19 | 1 | 1 | 18 |
+| PySide6 Essentials | 6.12.0 | 265 | 242 | 242 | 23 |
+| PySide6 Addons | 6.12.0 | 171 | 171 | 171 | 0 |
+| PySide6 WebEngine | 6.12.0.140 | 10 | 10 | 10 | 0 |
+| PySide6 PDF | 6.12.0.140 | 5 | 5 | 5 | 0 |
+| Shiboken6 | 6.12.0 | 12 | 12 | 12 | 0 |
+| Psycopg binary | 3.3.6 | 5 | 0 | 0 | 5 |
+| Argon2 bindings | 26.1.0 | 1 | 0 | 0 | 1 |
+| CFFI | 2.1.1 | 2 | 0 | 0 | 2 |
+| Pydantic core | 2.50.1 | 1 | 0 | 0 | 1 |
+| SQLAlchemy | 2.1.4 | 8 | 0 | 0 | 8 |
+| Runtime/outros sem proprietário Python identificado | — | 52 | 50 | 0 | 2 |
+
+Os demais registros incluem executáveis launcher de pip/pytest/Ruff/FastAPI e outros
+pacotes: estar nesta tabela não significa que cada PE é uma extensão de cálculo.
+As 52 assinaturas Valid sem cadeia **atual** confirmada requerem exame dos estados de
+cadeia/timestamp; não se conclui assinatura inválida ou revogação a partir desse total.
+Os números são uma amostra versionada, não uma lista permanente de fornecedores
+confiáveis. Python, Qt ou um módulo assinado não tornam o conjunto inteiro aceito pelo SAC.
+
+A varredura cobre diretórios e arquivos declarados pelos metadados dos pacotes.
+Ela não resolve automaticamente todo o grafo de imports PE, DLLs de sistema/CRT
+ou plugins externos. Para release, conferir também módulos efetivamente carregados
+pelos processos com ferramentas de diagnóstico confiáveis, incluir seu payload
+no inventário e validar componentes do sistema. Os probes e eventos complementam
+a varredura; nenhum relatório desta entrega afirma cobertura universal.
+
 ## Desenvolvimento enquanto a homologação está pendente
 
 O servidor Linux/PostGIS e os testes Linux já previstos continuam utilizáveis no
