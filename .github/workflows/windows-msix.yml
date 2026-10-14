@@ -8,7 +8,21 @@ on:
 permissions:
   contents: read
 jobs:
+  candidate-tests:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.10'
+          architecture: x64
+      - run: python -m pip install -e ".[dev,desktop]"
+      - run: ruff check .
+      - run: ruff format --check .
+      - run: python -m pytest -q
   msix-candidate:
+    needs: candidate-tests
     runs-on: windows-latest
     timeout-minutes: 35
     steps:
@@ -58,12 +72,21 @@ jobs:
       - name: Offline-only frozen native and WebEngine probe
         shell: pwsh
         run: |
-          $process = Start-Process -FilePath build/msix-unpacked/1.0.0.0/VFS/ProgramFilesX64/AgroLines/AgroLinesPoC.exe -ArgumentList '--offline-network-report evidence/msix/offline-only.json' -PassThru
-          if (-not $process.WaitForExit(120000)) { $process.Kill(); throw 'Offline probe timeout' }
-          if ($process.ExitCode -ne 0) { throw 'Offline probe failed' }
+          . ./distribution/windows/Run-Frozen.ps1
+          Invoke-AgroFrozenProbe -Executable build/msix-unpacked/1.0.0.0/VFS/ProgramFilesX64/AgroLines/AgroLinesPoC.exe -Report evidence/msix/offline-only.json -ReportArgument '--offline-network-report'
           $result = Get-Content evidence/msix/offline-only.json -Raw | ConvertFrom-Json
           if (-not $result.passed -or -not $result.remote_ui_denied -or -not $result.webengine_ready) { throw 'Offline controls failed' }
           if ($result.sac_approved -or $result.native_network_trace_validated) { throw 'CI cannot certify real-machine acceptance' }
+      - name: Verify actual archive, local policy and release evidence
+        run: >-
+          ./build-env/Scripts/python.exe -m distribution.candidate
+          --package dist/msix/AgroLines-1.0.0.0-x64-STORE-SUBMISSION-UNSIGNED.msix
+          --runtime evidence/msix/unpacked-runtime.json
+          --offline evidence/msix/offline-only.json
+          --signatures evidence/native-signatures.json
+          --source-commit ${{ github.sha }}
+          --run-url https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          --output evidence/msix/candidate.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:

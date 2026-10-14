@@ -9,6 +9,8 @@ permissions:
   contents: read
 jobs:
   frozen-installer:
+    # The Store integration uses MSIX extraction/probes, not the legacy unsigned installer.
+    if: github.ref != 'refs/heads/integration/store-candidate' && github.head_ref != 'integration/store-candidate'
     runs-on: windows-latest
     timeout-minutes: 40
     steps:

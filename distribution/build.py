@@ -12,6 +12,15 @@ from distribution.branding import approved_source
 from distribution.icon import generate
 
 ROOT = Path(__file__).resolve().parent.parent
+PRIVACY_FILES = ("politica-privacidade.html", "politica-privacidade.md", "politica-privacidade.txt")
+
+
+def privacy_assets():
+    """Ship policy copies only, never internal audits or operational records."""
+    return [
+        (str(ROOT / "docs/privacy/offline" / name), "desktop/privacy_assets")
+        for name in PRIVACY_FILES
+    ]
 
 
 def version_tuple(value):

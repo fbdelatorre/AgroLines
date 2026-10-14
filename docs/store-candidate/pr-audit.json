@@ -1,0 +1,1308 @@
+{
+  "audited_at": "2026-10-14T15:21:48.149958-03:00",
+  "repository": "fbdelatorre/AgroLines",
+  "main_sha": "a7af60408fbd85105d58696386a0b985668b4bb9",
+  "integration_branch": "integration/store-candidate",
+  "merge_order": [
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13
+  ],
+  "integration_merge_sha": "2295195d0fc365fdbf3187e7e9908e549b5a2d12",
+  "conflicts": [],
+  "integrated_tree_before_packaging_fixes_matches_pr13": true,
+  "prs": [
+    {
+      "additions": 1653,
+      "baseRefName": "fix/windows-smart-app-control",
+      "changedFiles": 26,
+      "deletions": 3,
+      "headRefName": "feat/windows-distribution-poc",
+      "headRefOid": "7edbd731998eebeb54286a09ac7b02e68f8cf98c",
+      "isDraft": true,
+      "mergeStateStatus": "UNSTABLE",
+      "mergeable": "MERGEABLE",
+      "number": 6,
+      "state": "OPEN",
+      "changed_paths": [
+        ".github/workflows/windows-distribution-poc.yml",
+        ".github/workflows/windows-poc-signed.yml",
+        ".gitignore",
+        "AGENTS.md",
+        "README.md",
+        "distribution/__init__.py",
+        "distribution/build.py",
+        "distribution/checks.py",
+        "distribution/costs.py",
+        "distribution/icon.py",
+        "distribution/payload.py",
+        "distribution/poc.py",
+        "distribution/windows/Build-Installer.ps1",
+        "distribution/windows/Run-Frozen.ps1",
+        "distribution/windows/Sign-Payload.ps1",
+        "distribution/windows/Test-Installed.ps1",
+        "distribution/windows/Test-Upgrade.ps1",
+        "distribution/windows/brand.svg",
+        "distribution/windows/installer.iss",
+        "distribution/windows/metadata.json",
+        "distribution/windows/poc.spec",
+        "distribution/windows/requirements.in",
+        "distribution/windows/requirements.lock",
+        "distribution/windows_evidence.py",
+        "docs/windows-distribution-poc.md",
+        "tests/test_distribution.py"
+      ],
+      "head_preserved_as_ancestor": true,
+      "checks": [
+        {
+          "name": "frozen-installer",
+          "conclusion": "CANCELLED",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38498499387/job/115639631643"
+        },
+        {
+          "name": "checks (ubuntu-latest)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38498503761/job/115639645447"
+        },
+        {
+          "name": "checks (ubuntu-latest)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38498499386/job/115639631813"
+        },
+        {
+          "name": "frozen-installer",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38498504332/job/115639647470"
+        },
+        {
+          "name": "checks (windows-latest)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38498503761/job/115639645509"
+        },
+        {
+          "name": "checks (windows-latest)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38498499386/job/115639631717"
+        },
+        {
+          "name": "windows-native-audit",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38498503761/job/115639645335"
+        },
+        {
+          "name": "windows-native-audit",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38498499386/job/115639631490"
+        },
+        {
+          "name": "integration (16-3.4)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38498503761/job/115639645532"
+        },
+        {
+          "name": "integration (16-3.4)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38498499386/job/115639631805"
+        },
+        {
+          "name": "integration (18-3.6)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38498503761/job/115639645518"
+        },
+        {
+          "name": "integration (18-3.6)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38498499386/job/115639631787"
+        },
+        {
+          "name": "windows-visual (1)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38498503761/job/115639645475"
+        },
+        {
+          "name": "windows-visual (1)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38498499386/job/115639631830"
+        },
+        {
+          "name": "windows-visual (1.25)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38498503761/job/115639645436"
+        },
+        {
+          "name": "windows-visual (1.25)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38498499386/job/115639631765"
+        },
+        {
+          "name": "windows-visual (1.5)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38498503761/job/115639645453"
+        },
+        {
+          "name": "windows-visual (1.5)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38498499386/job/115639631776"
+        }
+      ]
+    },
+    {
+      "additions": 1108,
+      "baseRefName": "feat/windows-distribution-poc",
+      "changedFiles": 17,
+      "deletions": 9,
+      "headRefName": "feat/offline-projects-licensing",
+      "headRefOid": "479fbe5d6b8c827ceb64b6ac7e425a012254e933",
+      "isDraft": true,
+      "mergeStateStatus": "CLEAN",
+      "mergeable": "MERGEABLE",
+      "number": 7,
+      "state": "OPEN",
+      "changed_paths": [
+        ".github/workflows/windows-distribution-poc.yml",
+        "AGENTS.md",
+        "README.md",
+        "core/imports.py",
+        "core/licensing.py",
+        "core/local_projects.py",
+        "desktop/gis_map.py",
+        "desktop/local_projects.py",
+        "desktop/main.py",
+        "distribution/offline_checks.py",
+        "distribution/poc.py",
+        "distribution/windows/requirements.in",
+        "distribution/windows/requirements.lock",
+        "docs/adr/0004-local-projects-and-licensing.md",
+        "docs/offline-and-licensing.md",
+        "tests/test_local_projects.py",
+        "tests/test_offline_desktop.py"
+      ],
+      "head_preserved_as_ancestor": true,
+      "checks": [
+        {
+          "name": "checks (ubuntu-latest)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38500991232/job/115647642229"
+        },
+        {
+          "name": "checks (ubuntu-latest)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38500986854/job/115647630994"
+        },
+        {
+          "name": "frozen-installer",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38500991216/job/115647641718"
+        },
+        {
+          "name": "frozen-installer",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38500986912/job/115647628601"
+        },
+        {
+          "name": "checks (windows-latest)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38500991232/job/115647642067"
+        },
+        {
+          "name": "checks (windows-latest)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38500986854/job/115647630997"
+        },
+        {
+          "name": "windows-native-audit",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38500991232/job/115647641948"
+        },
+        {
+          "name": "windows-native-audit",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38500986854/job/115647630769"
+        },
+        {
+          "name": "integration (16-3.4)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38500991232/job/115647642031"
+        },
+        {
+          "name": "integration (16-3.4)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38500986854/job/115647631858"
+        },
+        {
+          "name": "integration (18-3.6)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38500991232/job/115647642157"
+        },
+        {
+          "name": "integration (18-3.6)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38500986854/job/115647631042"
+        },
+        {
+          "name": "windows-visual (1)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38500991232/job/115647642090"
+        },
+        {
+          "name": "windows-visual (1)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38500986854/job/115647631021"
+        },
+        {
+          "name": "windows-visual (1.25)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38500991232/job/115647642107"
+        },
+        {
+          "name": "windows-visual (1.25)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38500986854/job/115647631157"
+        },
+        {
+          "name": "windows-visual (1.5)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38500991232/job/115647642121"
+        },
+        {
+          "name": "windows-visual (1.5)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38500986854/job/115647630982"
+        }
+      ]
+    },
+    {
+      "additions": 1097,
+      "baseRefName": "feat/offline-projects-licensing",
+      "changedFiles": 21,
+      "deletions": 18,
+      "headRefName": "feat/microsoft-store-msix",
+      "headRefOid": "714f96dda425ad21e36631f0605b803a1a92f2ea",
+      "isDraft": true,
+      "mergeStateStatus": "CLEAN",
+      "mergeable": "MERGEABLE",
+      "number": 8,
+      "state": "OPEN",
+      "changed_paths": [
+        ".github/workflows/windows-msix-signed-validation.yml",
+        ".github/workflows/windows-msix.yml",
+        "AGENTS.md",
+        "README.md",
+        "desktop/local_projects.py",
+        "desktop/storage.py",
+        "desktop/vault.py",
+        "distribution/build.py",
+        "distribution/msix.py",
+        "distribution/offline_checks.py",
+        "distribution/package_runtime.py",
+        "distribution/poc.py",
+        "distribution/windows/msix/Activate-Packaged.ps1",
+        "distribution/windows/msix/AppxManifest.xml",
+        "distribution/windows/msix/Build-MSIX.ps1",
+        "distribution/windows/msix/Test-SignedMSIX.ps1",
+        "distribution/windows/msix/identity.json",
+        "distribution/windows/poc.spec",
+        "docs/microsoft-store-msix.md",
+        "tests/test_msix.py",
+        "tests/test_offline_desktop.py"
+      ],
+      "head_preserved_as_ancestor": true,
+      "checks": [
+        {
+          "name": "msix-candidate",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38547047246/job/115795573112"
+        },
+        {
+          "name": "msix-candidate",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38547041292/job/115795553390"
+        },
+        {
+          "name": "checks (ubuntu-latest)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38547047286/job/115795572206"
+        },
+        {
+          "name": "checks (ubuntu-latest)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38547041199/job/115795552502"
+        },
+        {
+          "name": "frozen-installer",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38547047186/job/115795571884"
+        },
+        {
+          "name": "frozen-installer",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38547041216/job/115795552731"
+        },
+        {
+          "name": "checks (windows-latest)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38547047286/job/115795572108"
+        },
+        {
+          "name": "checks (windows-latest)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38547041199/job/115795552582"
+        },
+        {
+          "name": "windows-native-audit",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38547047286/job/115795572312"
+        },
+        {
+          "name": "windows-native-audit",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38547041199/job/115795552705"
+        },
+        {
+          "name": "integration (16-3.4)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38547047286/job/115795572449"
+        },
+        {
+          "name": "integration (16-3.4)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38547041199/job/115795552567"
+        },
+        {
+          "name": "integration (18-3.6)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38547047286/job/115795572094"
+        },
+        {
+          "name": "integration (18-3.6)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38547041199/job/115795552194"
+        },
+        {
+          "name": "windows-visual (1)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38547047286/job/115795572109"
+        },
+        {
+          "name": "windows-visual (1)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38547041199/job/115795552619"
+        },
+        {
+          "name": "windows-visual (1.25)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38547047286/job/115795572342"
+        },
+        {
+          "name": "windows-visual (1.25)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38547041199/job/115795552620"
+        },
+        {
+          "name": "windows-visual (1.5)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38547047286/job/115795572465"
+        },
+        {
+          "name": "windows-visual (1.5)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38547041199/job/115795552470"
+        }
+      ]
+    },
+    {
+      "additions": 1396,
+      "baseRefName": "feat/microsoft-store-msix",
+      "changedFiles": 14,
+      "deletions": 0,
+      "headRefName": "docs/privacy-policy-audit",
+      "headRefOid": "b3bbc070f39ffabf2b8726a55f453cb739bc7ccc",
+      "isDraft": true,
+      "mergeStateStatus": "CLEAN",
+      "mergeable": "MERGEABLE",
+      "number": 9,
+      "state": "OPEN",
+      "changed_paths": [
+        "docs/privacy/README.md",
+        "docs/privacy/auditoria-codigo.md",
+        "docs/privacy/evidence/findings.json",
+        "docs/privacy/evidence/reproduce_audit.py",
+        "docs/privacy/offline/README.md",
+        "docs/privacy/offline/pendencias.md",
+        "docs/privacy/offline/politica-privacidade.html",
+        "docs/privacy/offline/politica-privacidade.md",
+        "docs/privacy/offline/politica-privacidade.txt",
+        "docs/privacy/offline/procedimento-suporte.md",
+        "docs/privacy/pendencias-publicacao.md",
+        "docs/privacy/politica-privacidade.html",
+        "docs/privacy/politica-privacidade.md",
+        "scripts/render_offline_privacy.py"
+      ],
+      "head_preserved_as_ancestor": true,
+      "checks": [
+        {
+          "name": "checks (ubuntu-latest)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38559149523/job/115835612703"
+        },
+        {
+          "name": "checks (ubuntu-latest)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38559144767/job/115835597018"
+        },
+        {
+          "name": "checks (windows-latest)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38559149523/job/115835612592"
+        },
+        {
+          "name": "checks (windows-latest)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38559144767/job/115835597000"
+        },
+        {
+          "name": "windows-native-audit",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38559149523/job/115835613004"
+        },
+        {
+          "name": "windows-native-audit",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38559144767/job/115835596474"
+        },
+        {
+          "name": "integration (16-3.4)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38559149523/job/115835612862"
+        },
+        {
+          "name": "integration (16-3.4)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38559144767/job/115835597130"
+        },
+        {
+          "name": "integration (18-3.6)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38559149523/job/115835613020"
+        },
+        {
+          "name": "integration (18-3.6)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38559144767/job/115835597035"
+        },
+        {
+          "name": "windows-visual (1)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38559149523/job/115835612787"
+        },
+        {
+          "name": "windows-visual (1)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38559144767/job/115835596967"
+        },
+        {
+          "name": "windows-visual (1.25)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38559149523/job/115835612850"
+        },
+        {
+          "name": "windows-visual (1.25)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38559144767/job/115835597132"
+        },
+        {
+          "name": "windows-visual (1.5)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38559149523/job/115835614059"
+        },
+        {
+          "name": "windows-visual (1.5)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38559144767/job/115835596935"
+        }
+      ]
+    },
+    {
+      "additions": 632,
+      "baseRefName": "docs/privacy-policy-audit",
+      "changedFiles": 23,
+      "deletions": 18,
+      "headRefName": "feat/store-offline-only",
+      "headRefOid": "a83aa469a7a0a71ed3a35912e0e1e909e536cdaf",
+      "isDraft": true,
+      "mergeStateStatus": "CLEAN",
+      "mergeable": "MERGEABLE",
+      "number": 10,
+      "state": "OPEN",
+      "changed_paths": [
+        ".github/workflows/windows-msix.yml",
+        "core/imports.py",
+        "core/local_projects.py",
+        "core/offline_policy.py",
+        "desktop/client.py",
+        "desktop/gis_map.py",
+        "desktop/health.py",
+        "desktop/local_projects.py",
+        "desktop/main.py",
+        "desktop/map_assets/map-offline.html",
+        "desktop/storage.py",
+        "distribution/build.py",
+        "distribution/msix.py",
+        "distribution/offline_checks.py",
+        "distribution/poc.py",
+        "distribution/store.py",
+        "distribution/store_probe.py",
+        "distribution/windows/msix/Activate-Packaged.ps1",
+        "distribution/windows/offline_hook.py",
+        "distribution/windows/poc.spec",
+        "docs/microsoft-store-msix.md",
+        "docs/store-offline-only.md",
+        "tests/test_store_offline.py"
+      ],
+      "head_preserved_as_ancestor": true,
+      "checks": [
+        {
+          "name": "msix-candidate",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38560471928/job/115840012322"
+        },
+        {
+          "name": "msix-candidate",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38560466338/job/115839994259"
+        },
+        {
+          "name": "checks (ubuntu-latest)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38560471844/job/115840012224"
+        },
+        {
+          "name": "checks (ubuntu-latest)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38560466360/job/115839994639"
+        },
+        {
+          "name": "frozen-installer",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38560472064/job/115840013578"
+        },
+        {
+          "name": "frozen-installer",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38560466430/job/115839994750"
+        },
+        {
+          "name": "checks (windows-latest)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38560471844/job/115840012472"
+        },
+        {
+          "name": "checks (windows-latest)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38560466360/job/115839994414"
+        },
+        {
+          "name": "windows-native-audit",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38560471844/job/115840012511"
+        },
+        {
+          "name": "windows-native-audit",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38560466360/job/115839994672"
+        },
+        {
+          "name": "integration (16-3.4)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38560471844/job/115840012560"
+        },
+        {
+          "name": "integration (16-3.4)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38560466360/job/115839994578"
+        },
+        {
+          "name": "integration (18-3.6)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38560471844/job/115840012761"
+        },
+        {
+          "name": "integration (18-3.6)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38560466360/job/115839994597"
+        },
+        {
+          "name": "windows-visual (1)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38560471844/job/115840012434"
+        },
+        {
+          "name": "windows-visual (1)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38560466360/job/115839994688"
+        },
+        {
+          "name": "windows-visual (1.25)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38560471844/job/115840012347"
+        },
+        {
+          "name": "windows-visual (1.25)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38560466360/job/115839994612"
+        },
+        {
+          "name": "windows-visual (1.5)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38560471844/job/115840012622"
+        },
+        {
+          "name": "windows-visual (1.5)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38560466360/job/115839994714"
+        }
+      ]
+    },
+    {
+      "additions": 1284,
+      "baseRefName": "feat/store-offline-only",
+      "changedFiles": 22,
+      "deletions": 4,
+      "headRefName": "chore/store-screenshots",
+      "headRefOid": "c10d7f4824b6b11f2fd66b85f3628f6352575a66",
+      "isDraft": true,
+      "mergeStateStatus": "CLEAN",
+      "mergeable": "MERGEABLE",
+      "number": 11,
+      "state": "OPEN",
+      "changed_paths": [
+        ".github/workflows/store-screenshots.yml",
+        "desktop/gis_map.py",
+        "desktop/local_projects.py",
+        "desktop/ui.py",
+        "docs/store-screenshots/README.md",
+        "docs/store-screenshots/captures/run-38569042216/01-tela-principal.png",
+        "docs/store-screenshots/captures/run-38569042216/02-camadas-importadas.png",
+        "docs/store-screenshots/captures/run-38569042216/03-edicao-de-vertices.png",
+        "docs/store-screenshots/captures/run-38569042216/04-projetos-e-backups.png",
+        "docs/store-screenshots/captures/run-38569042216/README.md",
+        "docs/store-screenshots/captures/run-38569042216/capture-evidence.json",
+        "docs/store-screenshots/captures/run-38570070770/01-tela-principal.png",
+        "docs/store-screenshots/captures/run-38570070770/02-camadas-importadas.png",
+        "docs/store-screenshots/captures/run-38570070770/03-edicao-de-vertices.png",
+        "docs/store-screenshots/captures/run-38570070770/04-projetos-e-backups.png",
+        "docs/store-screenshots/captures/run-38570070770/README.md",
+        "docs/store-screenshots/captures/run-38570070770/capture-evidence.json",
+        "docs/store-screenshots/revisao-visual.md",
+        "scripts/capture_store_windows.py",
+        "scripts/store_demo.py",
+        "scripts/windows_screen_capture.py",
+        "tests/test_store_demo.py"
+      ],
+      "head_preserved_as_ancestor": true,
+      "checks": [
+        {
+          "name": "msix-candidate",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38571152891/job/115876375998"
+        },
+        {
+          "name": "checks (ubuntu-latest)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38571152600/job/115876376379"
+        },
+        {
+          "name": "checks (ubuntu-latest)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38571144827/job/115876349666"
+        },
+        {
+          "name": "frozen-installer",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38571152670/job/115876375324"
+        },
+        {
+          "name": "checks (windows-latest)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38571152600/job/115876376921"
+        },
+        {
+          "name": "checks (windows-latest)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38571144827/job/115876349569"
+        },
+        {
+          "name": "windows-native-audit",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38571152600/job/115876376222"
+        },
+        {
+          "name": "windows-native-audit",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38571144827/job/115876350084"
+        },
+        {
+          "name": "integration (16-3.4)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38571152600/job/115876376670"
+        },
+        {
+          "name": "integration (16-3.4)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38571144827/job/115876350019"
+        },
+        {
+          "name": "integration (18-3.6)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38571152600/job/115876376689"
+        },
+        {
+          "name": "integration (18-3.6)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38571144827/job/115876349901"
+        },
+        {
+          "name": "windows-visual (1)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38571152600/job/115876376816"
+        },
+        {
+          "name": "windows-visual (1)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38571144827/job/115876350109"
+        },
+        {
+          "name": "windows-visual (1.25)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38571152600/job/115876376656"
+        },
+        {
+          "name": "windows-visual (1.25)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38571144827/job/115876350244"
+        },
+        {
+          "name": "windows-visual (1.5)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38571152600/job/115876376738"
+        },
+        {
+          "name": "windows-visual (1.5)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38571144827/job/115876349737"
+        }
+      ]
+    },
+    {
+      "additions": 1795,
+      "baseRefName": "chore/store-screenshots",
+      "changedFiles": 38,
+      "deletions": 110,
+      "headRefName": "chore/store-finalization",
+      "headRefOid": "2357eb456ec9547fe3d2d5894284267dded065b5",
+      "isDraft": false,
+      "mergeStateStatus": "CLEAN",
+      "mergeable": "MERGEABLE",
+      "number": 12,
+      "state": "OPEN",
+      "changed_paths": [
+        ".github/workflows/privacy-pages.yml",
+        ".github/workflows/windows-msix.yml",
+        "assets/branding/AgroLines_Arte_Caixa_1080x1080.png",
+        "assets/branding/AgroLines_Icone_150x150.png",
+        "assets/branding/AgroLines_Icone_300x300.png",
+        "assets/branding/AgroLines_Icone_71x71.png",
+        "assets/branding/README.md",
+        "assets/branding/originals.json",
+        "distribution/branding.py",
+        "distribution/build.py",
+        "distribution/icon.py",
+        "distribution/msix.py",
+        "distribution/poc.py",
+        "distribution/windows/poc.spec",
+        "docs/privacy/offline/README.md",
+        "docs/privacy/offline/evidencias-fontes-transferencias.json",
+        "docs/privacy/offline/fontes-bases-transferencias.md",
+        "docs/privacy/offline/fornecedores-a-conferir.md",
+        "docs/privacy/offline/hipoteses-legais-e-fornecedores.md",
+        "docs/privacy/offline/hospedagem-pages.md",
+        "docs/privacy/offline/modelos-registros/README.md",
+        "docs/privacy/offline/modelos-registros/direitos.csv",
+        "docs/privacy/offline/modelos-registros/suporte.csv",
+        "docs/privacy/offline/modelos-registros/testadores.csv",
+        "docs/privacy/offline/pendencias.md",
+        "docs/privacy/offline/plano-operacional-minimo.md",
+        "docs/privacy/offline/politica-privacidade.html",
+        "docs/privacy/offline/politica-privacidade.md",
+        "docs/privacy/offline/politica-privacidade.txt",
+        "docs/privacy/offline/procedimento-suporte.md",
+        "docs/privacy/offline/retencao-e-exclusao.md",
+        "docs/privacy/offline/seguranca-gmail.md",
+        "docs/privacy/offline/termo-participacao-minuta.md",
+        "docs/programa-testadores-adultos.md",
+        "docs/store-finalization.md",
+        "scripts/capture_store_windows.py",
+        "tests/test_branding.py",
+        "tests/test_msix.py"
+      ],
+      "head_preserved_as_ancestor": true,
+      "checks": [
+        {
+          "name": "msix-candidate",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38607486392/job/116001994194"
+        },
+        {
+          "name": "msix-candidate",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38607473021/job/116001941629"
+        },
+        {
+          "name": "checks (ubuntu-latest)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38607485907/job/116001994213"
+        },
+        {
+          "name": "checks (ubuntu-latest)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38607472655/job/116001940119"
+        },
+        {
+          "name": "frozen-installer",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38607486753/job/116001993460"
+        },
+        {
+          "name": "checks (windows-latest)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38607485907/job/116001993645"
+        },
+        {
+          "name": "checks (windows-latest)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38607472655/job/116001939472"
+        },
+        {
+          "name": "windows-native-audit",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38607485907/job/116001993318"
+        },
+        {
+          "name": "windows-native-audit",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38607472655/job/116001940107"
+        },
+        {
+          "name": "integration (16-3.4)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38607485907/job/116001993562"
+        },
+        {
+          "name": "integration (16-3.4)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38607472655/job/116001939958"
+        },
+        {
+          "name": "integration (18-3.6)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38607485907/job/116001994023"
+        },
+        {
+          "name": "integration (18-3.6)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38607472655/job/116001939955"
+        },
+        {
+          "name": "windows-visual (1)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38607485907/job/116001993701"
+        },
+        {
+          "name": "windows-visual (1)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38607472655/job/116001940073"
+        },
+        {
+          "name": "windows-visual (1.25)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38607485907/job/116001993975"
+        },
+        {
+          "name": "windows-visual (1.25)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38607472655/job/116001940070"
+        },
+        {
+          "name": "windows-visual (1.5)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38607485907/job/116001993714"
+        },
+        {
+          "name": "windows-visual (1.5)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38607472655/job/116001940183"
+        }
+      ]
+    },
+    {
+      "additions": 1775,
+      "baseRefName": "chore/store-finalization",
+      "changedFiles": 25,
+      "deletions": 149,
+      "headRefName": "chore/privacy-pages-publication",
+      "headRefOid": "8f0bf91da07d3d053e362e197591d2ff1d717054",
+      "isDraft": false,
+      "mergeStateStatus": "CLEAN",
+      "mergeable": "MERGEABLE",
+      "number": 13,
+      "state": "OPEN",
+      "changed_paths": [
+        ".github/workflows/privacy-pages-checks.yml",
+        ".github/workflows/privacy-pages.yml",
+        "docs/privacy/offline/README.md",
+        "docs/privacy/offline/evidencias-fontes-transferencias.json",
+        "docs/privacy/offline/fontes-bases-transferencias.md",
+        "docs/privacy/offline/fornecedores-a-conferir.md",
+        "docs/privacy/offline/hipoteses-legais-e-fornecedores.md",
+        "docs/privacy/offline/hospedagem-pages.md",
+        "docs/privacy/offline/modelos-registros/README.md",
+        "docs/privacy/offline/modelos-registros/direitos.csv",
+        "docs/privacy/offline/modelos-registros/suporte.csv",
+        "docs/privacy/offline/modelos-registros/testadores.csv",
+        "docs/privacy/offline/pendencias.md",
+        "docs/privacy/offline/plano-operacional-minimo.md",
+        "docs/privacy/offline/politica-privacidade.html",
+        "docs/privacy/offline/politica-privacidade.md",
+        "docs/privacy/offline/politica-privacidade.txt",
+        "docs/privacy/offline/procedimento-suporte.md",
+        "docs/privacy/offline/retencao-e-exclusao.md",
+        "docs/privacy/offline/seguranca-gmail.md",
+        "docs/privacy/offline/termo-participacao-minuta.md",
+        "docs/programa-testadores-adultos.md",
+        "scripts/check_privacy_layout.py",
+        "scripts/prepare_privacy_pages.py",
+        "tests/test_privacy_pages.py"
+      ],
+      "head_preserved_as_ancestor": true,
+      "checks": [
+        {
+          "name": "msix-candidate",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38607481897/job/116001973717"
+        },
+        {
+          "name": "msix-candidate",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38607482521/job/116001976311"
+        },
+        {
+          "name": "msix-candidate",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38607472903/job/116001940190"
+        },
+        {
+          "name": "private-layout-check",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38607481932/job/116001974751"
+        },
+        {
+          "name": "private-layout-check",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38607483003/job/116001977691"
+        },
+        {
+          "name": "private-layout-check",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38607472981/job/116001940946"
+        },
+        {
+          "name": "checks (ubuntu-latest)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38607482359/job/116001976960"
+        },
+        {
+          "name": "checks (ubuntu-latest)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38607483396/job/116001980931"
+        },
+        {
+          "name": "checks (ubuntu-latest)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38607473075/job/116001941763"
+        },
+        {
+          "name": "checks (windows-latest)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38607482359/job/116001976898"
+        },
+        {
+          "name": "checks (windows-latest)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38607483396/job/116001980775"
+        },
+        {
+          "name": "checks (windows-latest)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38607473075/job/116001941746"
+        },
+        {
+          "name": "windows-native-audit",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38607482359/job/116001977044"
+        },
+        {
+          "name": "windows-native-audit",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38607483396/job/116001980925"
+        },
+        {
+          "name": "windows-native-audit",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38607473075/job/116001941342"
+        },
+        {
+          "name": "integration (16-3.4)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38607482359/job/116001977131"
+        },
+        {
+          "name": "integration (16-3.4)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38607483396/job/116001981196"
+        },
+        {
+          "name": "integration (16-3.4)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38607473075/job/116001941617"
+        },
+        {
+          "name": "integration (18-3.6)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38607482359/job/116001976599"
+        },
+        {
+          "name": "integration (18-3.6)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38607483396/job/116001980228"
+        },
+        {
+          "name": "integration (18-3.6)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38607473075/job/116001941869"
+        },
+        {
+          "name": "windows-visual (1)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38607482359/job/116001976830"
+        },
+        {
+          "name": "windows-visual (1)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38607483396/job/116001981129"
+        },
+        {
+          "name": "windows-visual (1)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38607473075/job/116001942015"
+        },
+        {
+          "name": "windows-visual (1.25)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38607482359/job/116001976740"
+        },
+        {
+          "name": "windows-visual (1.25)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38607483396/job/116001981021"
+        },
+        {
+          "name": "windows-visual (1.25)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38607473075/job/116001941509"
+        },
+        {
+          "name": "windows-visual (1.5)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38607482359/job/116001976692"
+        },
+        {
+          "name": "windows-visual (1.5)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38607483396/job/116001980832"
+        },
+        {
+          "name": "windows-visual (1.5)",
+          "conclusion": "SUCCESS",
+          "status": "COMPLETED",
+          "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38607473075/job/116001942002"
+        }
+      ]
+    }
+  ],
+  "sac_approved": false,
+  "pages_published": false,
+  "store_published": false
+}

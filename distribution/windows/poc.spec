@@ -2,6 +2,7 @@
 import json
 from pathlib import Path
 from PyInstaller.utils.hooks import collect_data_files
+from distribution.build import privacy_assets
 
 root = Path(SPECPATH).parent.parent
 prepared = root / 'build' / 'distribution'
@@ -18,7 +19,7 @@ a = Analysis(
         (str(root / 'assets/branding/AgroLines_Arte_Caixa_1080x1080.png'), 'assets/branding'),
         (str(prepared / 'metadata.json'), 'distribution/windows'),
         (str(root / 'distribution/windows/msix/identity.json'), 'distribution/windows/msix'),
-    ] + ([(str(root / 'docs/privacy/offline'), 'desktop/privacy_assets')] if store else [])
+    ] + (privacy_assets() if store else [])
       + collect_data_files('pyproj') + collect_data_files('fiona'),
     hiddenimports=[],
     hookspath=[],

@@ -83,6 +83,8 @@ jobs:
           path: native-evidence/
           if-no-files-found: error
   integration:
+    # Store candidate validation never starts PostgreSQL; server CI stays available elsewhere.
+    if: github.ref != 'refs/heads/integration/store-candidate' && github.head_ref != 'integration/store-candidate'
     strategy:
       fail-fast: false
       matrix:
