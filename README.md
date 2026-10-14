@@ -132,3 +132,14 @@ Veja [diagnóstico, auditoria e aceitação](docs/windows-security.md); não des
 proteções para iniciar componentes bloqueados.
 
 Prova de executável/instalador Windows com runtime embutido: [distribuição comercial](docs/windows-distribution-poc.md). Aprovação SAC e assinatura final continuam condicionadas à homologação real.
+
+### Projetos locais e preparação comercial
+
+O desktop abre projetos locais por padrão, sem login, API ou PostgreSQL.
+Crie um arquivo `.agrolines`, importe polígonos, edite vértices, salve versões e
+faça backup/restauração. A colaboração anterior continua disponível pela ação
+**Colaboração online** ou, para mantenedores, `python -m desktop.main --remote`.
+No PoC Windows, use **Projetos locais** ou o argumento `--local`.
+Consulte [plano, execução e critérios offline/licenciamento](docs/offline-and-licensing.md).
+Licenciamento comercial é um contrato futuro; desenvolvimento permanece liberado.
+A homologação Windows 11/SAC com internet desconectada continua pendente.
