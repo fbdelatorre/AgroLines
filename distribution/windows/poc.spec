@@ -3,11 +3,13 @@ import json
 from pathlib import Path
 from PyInstaller.utils.hooks import collect_data_files
 from distribution.build import privacy_assets
-from distribution.qt_payload import PYTHON_EXCLUDES, record_analysis
+from distribution.qt_payload import PYTHON_EXCLUDES, assert_widget_deployment, omit_system_copies, record_analysis
 
 root = Path(SPECPATH).parent.parent
 prepared = root / 'build' / 'distribution'
 store = json.loads((prepared / 'metadata.json').read_text()).get('offline_only') is True
+if store:
+    assert_widget_deployment(root)
 remote = ['desktop.main', 'desktop.client', 'desktop.health', 'desktop.vault',
           'desktop.pages', 'desktop.geography', 'server', 'fastapi', 'uvicorn', 'psycopg']
 a = Analysis(
@@ -23,12 +25,14 @@ a = Analysis(
     ] + (privacy_assets() if store else [])
       + collect_data_files('pyproj') + collect_data_files('fiona'),
     hiddenimports=[],
-    hookspath=[str(root / 'distribution/windows/hooks')],
+    hookspath=[str(root / 'distribution/windows/hooks')] if store else [],
     runtime_hooks=[str(root / 'distribution/windows/offline_hook.py')] if store else [],
-    excludes=['PyQt5', 'PyQt6', 'PySide2', 'tkinter'] + PYTHON_EXCLUDES + (remote if store else []),
+    excludes=['PyQt5', 'PyQt6', 'PySide2', 'tkinter'] + (PYTHON_EXCLUDES + remote if store else []),
     noarchive=False,
 )
-record_analysis(a, root / 'evidence/qt-minimal/build-inputs.json')
+if store:
+    omit_system_copies(a, json.loads((root / 'distribution/windows/signing/retired-system-copies.json').read_text()))
+    record_analysis(a, root / 'evidence/qt-minimal/build-inputs.json')
 if store and any(name == module or name.startswith(module + '.')
                  for name, _, _ in a.pure for module in remote):
     raise RuntimeError('Remote module leaked into offline Store payload')

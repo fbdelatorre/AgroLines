@@ -134,6 +134,49 @@ def test_third_party_hash_drift_blocks_even_if_signature_is_valid(specimen):
     assert result["violations"] and not result["ready_for_authorized_signing"]
 
 
+def test_damaged_existing_signature_is_never_resigned_or_promoted(specimen):
+    next(r for r in specimen[3]["files"] if r["status"] == "Valid")["status"] = "HashMismatch"
+    result = run(specimen)
+    assert result["violations"]
+    assert not result["ready_for_authorized_signing"]
+    assert not result["ready_for_store_homologation"]
+
+
+def test_origin_resolution_does_not_approve_legal_reviews_or_submission(specimen):
+    result = run(specimen)
+    assert result["technical_inputs_verified"]
+    assert set(result["release_review_blockers"]) == {
+        "licensing",
+        "lgpl_mechanism",
+        "privacy_readiness",
+        "owner_submission",
+    }
+    assert not result["ready_for_store_homologation"]
+    specimen[1]["release_reviews"] = {
+        name: {"approved": "true", "evidence": "unapproved fixture"}
+        for name in result["release_review_blockers"]
+    }
+    assert not run(specimen)["ready_for_store_homologation"]
+
+
+def test_unsigned_plan_cannot_pass_post_signing_gate(specimen):
+    with pytest.raises(ValueError):
+        transition(run(specimen), specimen[0], specimen[3], specimen[4], "owner", "c" * 40)
+
+
+def test_policy_changed_after_review_invalidates_artifact_binding(specimen, tmp_path):
+    plan = run(specimen)
+    policy = tmp_path / "reviewed-policy.json"
+    policy.write_text(json.dumps(specimen[1]))
+    plan["policy_sha256"] = file_hash(policy)
+    package = tmp_path / "diagnostic.msix"
+    package.write_bytes(b"inert package fixture")
+    bind(package, plan, COMMIT, policy, policy)
+    policy.write_text(json.dumps({**specimen[1], "unauthorized_change": True}))
+    with pytest.raises(ValueError, match="source/policy"):
+        bind(package, plan, COMMIT, policy, policy)
+
+
 def test_incomplete_signature_coverage_is_not_approval(specimen):
     specimen[3]["files"].pop()
     with pytest.raises(ValueError, match="coverage"):

@@ -13,6 +13,18 @@ from zipfile import ZipFile
 from distribution.payload import manifest, verify
 from scripts.native_inventory import file_hash, inventory
 
+RELEASE_REVIEWS = ("licensing", "lgpl_mechanism", "privacy_readiness", "owner_submission")
+
+
+def release_review_blockers(policy):
+    reviews = policy.get("release_reviews", {})
+    blockers = []
+    for name in RELEASE_REVIEWS:
+        review = reviews.get(name, {})
+        if review.get("approved") is not True or not review.get("evidence"):
+            blockers.append(name)
+    return blockers
+
 
 def read(path):
     return json.loads(Path(path).read_text(encoding="utf-8-sig"))
@@ -227,6 +239,13 @@ def evaluate(root, policy, native, signatures, signtool, source_commit, policy_s
             for r in matrix
         )
     )
+    technical_inputs_verified = (
+        not violations
+        and not unknown
+        and not removed
+        and all(r["origin_confirmed"] for r in matrix)
+    )
+    release_blockers = release_review_blockers(policy)
     return {
         "schema_version": 1,
         "source_commit": source_commit,
@@ -237,12 +256,9 @@ def evaluate(root, policy, native, signatures, signtool, source_commit, policy_s
         "after": dict(Counter(r["authenticode"] for r in matrix)),
         "signing_performed": False,
         "ready_for_authorized_signing": ready,
-        "ready_for_store_homologation": (
-            not violations
-            and not unknown
-            and not removed
-            and all(r["origin_confirmed"] for r in matrix)
-        ),
+        "ready_for_store_homologation": (technical_inputs_verified and not release_blockers),
+        "technical_inputs_verified": technical_inputs_verified,
+        "release_review_blockers": release_blockers,
         "native_signature_gate_passed": False,
         "distribution_approved": False,
         "sac_approved": False,

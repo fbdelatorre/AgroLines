@@ -55,6 +55,10 @@ def run_checks():
             "pyside6": qt_version,
         },
         "geospatial_checks_passed": True,
+        "engine_versions": {
+            "geos_shapely": shapely.geos_version_string,
+            "proj_pyproj": pyproj.proj_version_str,
+        },
         "precision": precision,
         "geometry": imported.plots[0]["geometry"],
     }

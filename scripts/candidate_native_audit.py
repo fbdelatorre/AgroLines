@@ -2,6 +2,7 @@
 
 import argparse
 import csv
+import importlib.metadata
 import json
 from collections import Counter
 from pathlib import Path
@@ -9,6 +10,31 @@ from pathlib import Path
 from distribution.qt_payload import forbidden_family, inspect_tree
 from scripts.native_inventory import file_hash
 from scripts.signing_pipeline import read
+
+
+def license_evidence(packages):
+    result = []
+    for package in packages:
+        if package["name"] == "CPython":
+            result.append(
+                {
+                    "package": package,
+                    "evidence": "third-party-notices/Python-LICENSE.txt",
+                    "scope": "CPython plus its separately licensed bundled components",
+                }
+            )
+            continue
+        metadata = importlib.metadata.distribution(package["name"]).metadata
+        result.append(
+            {
+                "package": package,
+                "declared_license": metadata.get("License-Expression")
+                or metadata.get("License", "not declared"),
+                "evidence": "third-party-notices/" + package["name"],
+                "scope": "Package metadata; not a license grant for every vendored PE",
+            }
+        )
+    return result
 
 
 def inspect(root, native, signatures, tools, inputs, sources, loads=None):
@@ -64,11 +90,23 @@ def inspect(root, native, signatures, tools, inputs, sources, loads=None):
             "build_input": source,
             "build_input_metadata": meta,
             "exact_build_source_match": exact_source,
+            "importers_by_dll_name": sorted(
+                entry["destination"]
+                for entry in inputs["files"]
+                if any(
+                    Path(name).name.casefold() == path.name.casefold() for name in entry["imports"]
+                )
+            ),
             "pinned_origin_confirmed": item["origin_basis"]
             in ("exact_sha256_pinned_input", "entrypoint_manifest"),
             "loaded_phases": sorted(observations.get(relative.casefold(), [])),
             "not_observed_is_not_unused": True,
             "license_review": "See docs/qt-minimal/licencas-e-homologacao.md; not approved",
+            "package_license_evidence": license_evidence(item["packages"]),
+            "re_signing_rights_confirmed": False,
+            "trust_route": "Preserve accepted upstream signature"
+            if sig["status"] == "Valid" and tool["exit_code"] == 0
+            else "Embedded signing or real Store catalog trust not yet demonstrated",
         }
         if source and any(forbidden_family(name) for name in source["imports"]):
             raise ValueError("Retained PE depends on forbidden Qt family")
@@ -123,8 +161,55 @@ def main():
     )
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(result, indent=2), encoding="utf-8")
+    with args.output.with_suffix(".csv").open("w", encoding="utf-8", newline="") as stream:
+        fields = [
+            "path",
+            "sha256",
+            "architecture",
+            "group",
+            "change",
+            "pinned_origin_confirmed",
+            "exact_build_source_match",
+            "build_input",
+            "build_input_metadata",
+            "importers_by_dll_name",
+            "loaded_phases",
+            "signature",
+            "signtool",
+            "package_license_evidence",
+            "re_signing_rights_confirmed",
+            "trust_route",
+        ]
+        writer = csv.DictWriter(stream, fields)
+        writer.writeheader()
+        for row in result["files"]:
+            writer.writerow(
+                {
+                    key: json.dumps(row[key]) if isinstance(row[key], (list, dict)) else row[key]
+                    for key in fields
+                }
+            )
     print("AGROLINES_MINIMAL_NATIVE=" + json.dumps(result["summary"]))
     print("AGROLINES_MINIMAL_REMOVED=" + json.dumps(result["removed"]))
+    print("::group::Exact native dependency graph (metadata only)")
+    print(
+        "AGROLINES_MINIMAL_GRAPH="
+        + json.dumps(
+            [
+                {
+                    "path": row["path"],
+                    "sha256": row["sha256"],
+                    "group": row["group"],
+                    "packages": row["packages"],
+                    "imports": (row["build_input"] or {}).get("imports", []),
+                    "source": (row["build_input"] or {}).get("source"),
+                    "loaded_phases": row["loaded_phases"],
+                }
+                for row in result["files"]
+            ]
+        )
+    )
+    print("::endgroup::")
     for row in result["files"]:
         if not row["pinned_origin_confirmed"]:
             print("AGROLINES_PENDING_ORIGIN=" + json.dumps(row))

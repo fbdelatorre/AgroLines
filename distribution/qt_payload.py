@@ -1,5 +1,6 @@
 """Narrow Qt exclusions, applied before binary dependency expansion, never by load polling."""
 
+import ast
 import json
 import re
 from pathlib import Path
@@ -32,10 +33,53 @@ def filter_collected(entries):
     return [entry for entry in entries if not forbidden_family(entry[0])]
 
 
+def external_qml(path):
+    return "/pyside6/qml/" in "/" + str(path).replace("\\", "/").casefold()
+
+
+def assert_widget_deployment(root):
+    """A future QML UI must explicitly revisit the deployment contract."""
+    for directory in (Path(root) / "desktop", Path(root) / "distribution"):
+        if list(directory.rglob("*.qml")):
+            raise ValueError("Application QML requires deployment review")
+        for path in directory.rglob("*.py"):
+            for node in ast.walk(ast.parse(path.read_text(encoding="utf-8"))):
+                names = (
+                    [node.module]
+                    if isinstance(node, ast.ImportFrom)
+                    else [alias.name for alias in node.names]
+                    if isinstance(node, ast.Import)
+                    else []
+                )
+                if isinstance(node, ast.ImportFrom) and node.module == "PySide6":
+                    names += ["PySide6." + alias.name for alias in node.names]
+                if any(
+                    name in ("PySide6.QtQml", "PySide6.QtQuick", "PySide6.QtQuickWidgets")
+                    for name in names
+                ):
+                    raise ValueError("Application QML/Quick import requires deployment review")
+
+
+def omit_system_copies(analysis, retired):
+    """Only exact reviewed Windows runtime copies; never discard MSVC/GIS runtimes."""
+    from scripts.native_inventory import file_hash
+
+    known = {entry["destination"].casefold(): entry for entry in retired["files"]}
+    kept = []
+    for destination, source, kind in analysis.binaries:
+        entry = known.get(destination.replace("\\", "/").casefold())
+        if entry:
+            if file_hash(source) != entry["sha256"]:
+                raise ValueError("Retired incidental runtime changed; review before excluding")
+        else:
+            kept.append((destination, source, kind))
+    analysis.binaries = kept
+
+
 def inspect_tree(root, python_modules=()):
     root = Path(root)
     files = [p.relative_to(root).as_posix() for p in root.rglob("*") if p.is_file()]
-    rejected = [p for p in files + list(python_modules) if forbidden_family(p)]
+    rejected = [p for p in files + list(python_modules) if forbidden_family(p) or external_qml(p)]
     if rejected:
         raise ValueError("Forbidden Qt family reintroduced: " + ", ".join(rejected))
     return {"forbidden_components": [], "files_scanned": len(files), "passed": True}
@@ -49,7 +93,7 @@ def record_analysis(analysis, output):
 
     records = []
     for destination, source, kind in analysis.binaries:
-        if forbidden_family(destination):
+        if forbidden_family(destination) or external_qml(destination):
             raise ValueError("Forbidden Qt binary after dependency expansion: " + destination)
         path = Path(source)
         if path.suffix.lower() not in (".dll", ".pyd", ".exe"):
@@ -83,7 +127,7 @@ def record_analysis(analysis, output):
         if forbidden_family(name):
             raise ValueError("Forbidden Qt Python module: " + name)
     for destination, _source, _kind in analysis.datas:
-        if forbidden_family(destination):
+        if forbidden_family(destination) or external_qml(destination):
             raise ValueError("Forbidden Qt QML/resource after collection: " + destination)
     Path(output).parent.mkdir(parents=True, exist_ok=True)
     Path(output).write_text(

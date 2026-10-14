@@ -1,6 +1,12 @@
 import pytest
 
-from distribution.qt_payload import filter_collected, forbidden_family, inspect_tree
+from distribution.qt_payload import (
+    assert_widget_deployment,
+    filter_collected,
+    forbidden_family,
+    inspect_tree,
+    omit_system_copies,
+)
 
 
 @pytest.mark.parametrize(
@@ -46,3 +52,49 @@ def test_required_or_unresolved_components_are_not_removed_by_name(path):
 def test_python_module_guard(tmp_path):
     with pytest.raises(ValueError, match="QtCharts"):
         inspect_tree(tmp_path, ["PySide6.QtCharts"])
+
+
+def test_external_qml_cannot_return_without_deployment_review(tmp_path):
+    file = tmp_path / "PySide6/qml/QtQuick/Controls/qmldir"
+    file.parent.mkdir(parents=True)
+    file.write_text("module QtQuick.Controls")
+    with pytest.raises(ValueError, match="reintroduced"):
+        inspect_tree(tmp_path)
+
+
+@pytest.mark.parametrize(
+    "source",
+    [
+        "from PySide6.QtQml import QQmlEngine",
+        "from PySide6 import QtQml",
+        "import PySide6.QtQuickWidgets",
+    ],
+)
+def test_new_qml_ui_requires_explicit_deployment_review(tmp_path, source):
+    directory = tmp_path / "desktop"
+    directory.mkdir()
+    (directory / "future.py").write_text(source)
+    with pytest.raises(ValueError, match="deployment review"):
+        assert_widget_deployment(tmp_path)
+
+
+def test_system_runtime_exclusion_is_exact_and_does_not_remove_msvc(tmp_path):
+    from types import SimpleNamespace
+
+    from scripts.native_inventory import file_hash
+
+    source = tmp_path / "ucrtbase.dll"
+    source.write_bytes(b"inert fixture, not a Windows runtime")
+    analysis = SimpleNamespace(
+        binaries=[
+            ("ucrtbase.dll", str(source), "BINARY"),
+            ("vcruntime140.dll", "untouched-msvc", "BINARY"),
+        ]
+    )
+    retired = {"files": [{"destination": "ucrtbase.dll", "sha256": file_hash(source)}]}
+    omit_system_copies(analysis, retired)
+    assert analysis.binaries == [("vcruntime140.dll", "untouched-msvc", "BINARY")]
+    analysis.binaries.append(("ucrtbase.dll", str(source), "BINARY"))
+    source.write_bytes(b"changed bytes")
+    with pytest.raises(ValueError, match="changed"):
+        omit_system_copies(analysis, retired)

@@ -30,4 +30,17 @@ try {
     }
     if (-not $rootBlocked) { throw 'Missing public root dossier did not stop certificate/key access.' }
     Write-Output 'Unconfigured public-root trust stopped before certificate lookup/private provider access.'
+    $previousEvent = $env:GITHUB_EVENT_NAME
+    try {
+        $env:GITHUB_EVENT_NAME = 'pull_request'
+        $prBlocked = $false
+        try {
+            & (Join-Path $PSScriptRoot 'Assert-SigningEnvironment.ps1')
+        } catch {
+            if ($_.Exception.Message -notlike 'Only an authorized dispatch of protected main*') { throw }
+            $prBlocked = $true
+        }
+        if (-not $prBlocked) { throw 'Untrusted PR was not blocked before remote/provider access.' }
+        Write-Output 'PR context rejected before environment API/certificate/private key access.'
+    } finally { $env:GITHUB_EVENT_NAME = $previousEvent }
 } finally { Remove-Item -LiteralPath $temporary -Recurse -Force }

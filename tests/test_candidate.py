@@ -90,3 +90,18 @@ def test_candidate_rejects_replaced_publisher(tmp_path):
     fixture_package(file, publisher="CN=Different")
     with pytest.raises(ValueError, match="identity"):
         inspect_package(file)
+
+
+@pytest.mark.parametrize(
+    "extra",
+    [
+        "PySide6/QtCharts.pyd",
+        "PySide6/qml/QtQuick3D/qmldir",
+        "PySide6/plugins/platforminputcontexts/qtvirtualkeyboardplugin.dll",
+    ],
+)
+def test_final_archive_rejects_unused_qt_components(tmp_path, extra):
+    file = tmp_path / "synthetic.msix"
+    fixture_package(file, extra=PREFIX + "_internal/" + extra)
+    with pytest.raises(ValueError, match="Forbidden Qt"):
+        inspect_package(file)
