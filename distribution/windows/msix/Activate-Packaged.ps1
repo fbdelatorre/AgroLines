@@ -47,3 +47,20 @@ function Invoke-AgroPackageProbe {
     }
     return $result
 }
+function Invoke-AgroPackageOfflineFormatsProbe {
+    param([string]$Report)
+    Initialize-AgroPackageActivation
+    if (Test-Path $Report) { throw 'Require fresh offline-format evidence.' }
+    $reportPath = [IO.Path]::GetFullPath($Report)
+    if ($reportPath.Contains('"')) { throw 'Invalid report path.' }
+    $arguments = '--offline-network-report "' + $reportPath + '"'
+    $processId = [AgroLines.PackageActivation]::Launch('DelatorreCOrporation.AgroLines_pj9w8xnf5vxmg!AgroLines', $arguments)
+    $process = [Diagnostics.Process]::GetProcessById($processId)
+    try {
+        if (-not $process.WaitForExit(120000) -or $process.ExitCode -ne 0) { throw 'Installed offline format probe failed/timed out.' }
+    } finally { $process.Dispose() }
+    $result = Get-Content -LiteralPath $reportPath -Raw | ConvertFrom-Json
+    if (-not $result.passed -or -not $result.webengine_ready -or -not $result.remote_ui_denied -or
+        @($result.local_formats).Count -ne 5 -or $result.sac_approved) { throw 'Offline format/helper evidence incomplete or falsely approved.' }
+    return $result
+}

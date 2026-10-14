@@ -5,6 +5,8 @@ permissions:
   contents: read
 jobs:
   signed-build:
+    # Retired: use guarded native signing in windows-msix.yml. No key access here.
+    if: ${{ false }}
     # Register a dedicated trusted builder. Never executes pull_request/fork code.
     runs-on: [self-hosted, Windows, X64, agrolines-signing]
     environment: windows-signing

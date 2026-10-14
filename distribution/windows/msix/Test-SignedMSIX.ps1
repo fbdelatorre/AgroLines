@@ -9,6 +9,12 @@ param(
     [switch]$RequireDisconnected
 )
 $ErrorActionPreference = 'Stop'
+function Assert-AgroDefenderActive {
+    $state = Get-MpComputerStatus -ErrorAction Stop
+    if (-not $state.AMServiceEnabled -or -not $state.AntivirusEnabled -or -not $state.RealTimeProtectionEnabled) { throw 'Active Defender and real-time protection required; script changes no settings.' }
+    return ($state | Select-Object AMServiceEnabled,AntivirusEnabled,RealTimeProtectionEnabled)
+}
+$defenderBefore = Assert-AgroDefenderActive
 . (Join-Path $PSScriptRoot 'Activate-Packaged.ps1')
 . (Join-Path $PSScriptRoot '../../../scripts/Windows-Security.ps1')
 Add-Type -AssemblyName System.IO.Compression.FileSystem
@@ -75,6 +81,7 @@ $projectDirectory = Join-Path $env:LOCALAPPDATA ('AgroLines/Projects/msix-valida
 $initialPath = $env:PATH
 $removedVariables = @{}
 $summary = @{ installed_msix_validated=$false; real_clean_disconnected_sac_acceptance=$false; projects_preserved=$false }
+$summary.defender_before = $defenderBefore
 try {
     $env:PATH = Join-Path $env:WINDIR 'System32'
     foreach ($name in @('PYTHONHOME','PYTHONPATH','PROJ_LIB','PROJ_DATA','GDAL_DATA','QT_PLUGIN_PATH','QTWEBENGINEPROCESS_PATH')) {
@@ -86,6 +93,7 @@ try {
     if ($installed.PackageFamilyName -cne 'DelatorreCOrporation.AgroLines_pj9w8xnf5vxmg' -or $installed.Version -ne $firstVersion) { throw 'Instalacao divergente.' }
     $nativeNames = @(Get-ChildItem $installed.InstallLocation -Recurse -File | Where-Object Extension -In @('.dll','.pyd','.exe') | Select-Object -ExpandProperty Name -Unique)
     $first = Invoke-AgroPackageProbe -Report "$OutputDirectory/first.json" -ProjectDirectory $projectDirectory
+    $formats = Invoke-AgroPackageOfflineFormatsProbe -Report "$OutputDirectory/formats.json"
     $before = (Get-FileHash "$projectDirectory/project.agrolines" -Algorithm SHA256).Hash
     Add-AppxPackage -Path ([IO.Path]::GetFullPath($UpdatePackage)) -ErrorAction Stop
     $installed = Get-AppxPackage -Name 'DelatorreCOrporation.AgroLines'
@@ -114,6 +122,8 @@ try {
     $summary.update_version = "$nextVersion"
     $summary.project_sha256 = $before
     $summary.project_directory = $projectDirectory
+    $summary.local_formats = $formats.local_formats
+    $summary.defender_after = Assert-AgroDefenderActive
 } finally {
     $env:PATH = $initialPath
     foreach ($name in $removedVariables.Keys) { [Environment]::SetEnvironmentVariable($name,$removedVariables[$name],'Process') }

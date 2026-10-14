@@ -96,6 +96,23 @@ def run(output, probe_url="http://127.0.0.1:9/forbidden"):
             archive.write(kml, "doc.kml")
         for path in (kml, kmz):
             assert len(import_polygons([path]).plots) == 1
+        geojson = root / "synthetic.geojson"
+        geojson.write_text(
+            json.dumps(
+                {
+                    "type": "Feature",
+                    "properties": {"name": "Synthetic"},
+                    "geometry": {
+                        "type": "Polygon",
+                        "coordinates": [
+                            [[-45, -22], [-44.999, -22], [-44.999, -21.999], [-45, -22]]
+                        ],
+                    },
+                }
+            ),
+            encoding="utf-8",
+        )
+        assert len(import_polygons([geojson]).plots) == 1
     result["local_formats"] = ["SHP", "GPKG", "KML", "KMZ", "GeoJSON"]
     window = LocalProjectsWindow()
     window.show()

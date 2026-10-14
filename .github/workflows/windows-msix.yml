@@ -1,10 +1,16 @@
 name: Microsoft Store MSIX candidate (no publication)
 on:
   push:
-    paths: ['distribution/**', 'assets/branding/**', 'docs/privacy/offline/**', 'core/**', 'desktop/**', '.github/workflows/windows-msix.yml']
+    paths: ['distribution/**', 'assets/branding/**', 'docs/privacy/offline/**', 'core/**', 'desktop/**', 'scripts/signing_pipeline.py', '.github/workflows/windows-msix.yml']
   pull_request:
-    paths: ['distribution/**', 'assets/branding/**', 'docs/privacy/offline/**', 'core/**', 'desktop/**', '.github/workflows/windows-msix.yml']
+    paths: ['distribution/**', 'assets/branding/**', 'docs/privacy/offline/**', 'core/**', 'desktop/**', 'scripts/signing_pipeline.py', '.github/workflows/windows-msix.yml']
   workflow_dispatch:
+    inputs:
+      mode:
+        description: 'validation: no key access; sign-native: protected main/manual approval only'
+        type: choice
+        options: [validation, sign-native]
+        default: validation
 permissions:
   contents: read
 jobs:
@@ -12,8 +18,8 @@ jobs:
     runs-on: windows-latest
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
         with:
           python-version: '3.12.10'
           architecture: x64
@@ -35,8 +41,8 @@ jobs:
     runs-on: windows-latest
     timeout-minutes: 35
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
         with:
           python-version: '3.12.10'
           architecture: x64
@@ -55,8 +61,24 @@ jobs:
           python -m venv build-env
           ./build-env/Scripts/python.exe -m pip install --require-hashes --only-binary=:all: -r distribution/windows/requirements.lock
           ./build-env/Scripts/python.exe -m pip check
+      - name: Pin reproducible builder inputs
+        shell: pwsh
+        run: |
+          $epoch = git show -s --format=%ct $env:GITHUB_SHA
+          if ($LASTEXITCODE -or $epoch -notmatch '^\d+$') { throw 'Source epoch unavailable.' }
+          Add-Content $env:GITHUB_ENV "SOURCE_DATE_EPOCH=$epoch"
+          Add-Content $env:GITHUB_ENV 'PYTHONHASHSEED=0'
       - name: Build official Store payload (no signing or publication)
         run: ./build-env/Scripts/python.exe -m distribution.build --store --version 1.0.0.0 --manufacturer "Delatorre COrporation"
+      - name: Record first build, rebuild and compare all payload bytes
+        shell: pwsh
+        run: |
+          ./build-env/Scripts/python.exe -m scripts.signing_pipeline manifest --root dist/AgroLinesPoC --output evidence/signing/first-build.json
+          if ($LASTEXITCODE) { throw 'First manifest failed.' }
+          ./build-env/Scripts/python.exe -m distribution.build --store --version 1.0.0.0 --manufacturer "Delatorre COrporation"
+          if ($LASTEXITCODE) { throw 'Second exact build failed.' }
+          ./build-env/Scripts/python.exe -m scripts.signing_pipeline reproduce --first evidence/signing/first-build.json --root dist/AgroLinesPoC --output evidence/signing/reproducibility.json
+          if ($LASTEXITCODE) { throw 'Build not reproducible; no signing input is released.' }
       - name: Audit all native payload files
         run: ./build-env/Scripts/python.exe -m distribution.payload --root dist/AgroLinesPoC --output evidence/native-inventory.json
       - name: Native signatures (report, not SAC acceptance)
@@ -64,6 +86,18 @@ jobs:
         run: ./scripts/Audit-NativeWindows.ps1 -Inventory evidence/native-inventory.json -Output evidence/native-signatures.json
       - name: Freeze final payload hashes
         run: ./build-env/Scripts/python.exe -m distribution.payload --root dist/AgroLinesPoC --manifest --output dist/AgroLinesPoC/payload-manifest.json
+      - name: Exact provenance, Authenticode and permanent per-file policy
+        shell: pwsh
+        run: |
+          ./build-env/Scripts/python.exe -m scripts.native_msix_audit --prepare --payload dist/AgroLinesPoC --output evidence/signing/native-input.json
+          if ($LASTEXITCODE) { throw 'Provenance inventory failed.' }
+          ./scripts/Test-NativeAuthenticode.ps1 -Inventory evidence/signing/native-input.json -Output evidence/signing/signtool-before.json
+          ./build-env/Scripts/python.exe -m scripts.signing_pipeline evaluate --root dist/AgroLinesPoC --policy distribution/windows/signing/native-policy.json --native evidence/signing/native-input.json --signatures evidence/native-signatures.json --tools evidence/signing/signtool-before.json --source-commit $env:GITHUB_SHA --output evidence/signing/plan.json
+          if ($LASTEXITCODE) { throw 'Policy drift/signature failure; no release permitted.' }
+          ./distribution/windows/signing/Test-SigningGuards.ps1
+          $plan = Get-Content evidence/signing/plan.json -Raw | ConvertFrom-Json
+          Add-Content $env:GITHUB_STEP_SUMMARY ('## ' + $plan.status)
+          Add-Content $env:GITHUB_STEP_SUMMARY 'No certificate accessed. Embedded signatures/catalog trust/SAC are separate. No publication.'
       - name: SDK schema validation, MSIX pack and unpack integrity
         shell: pwsh
         run: ./distribution/windows/msix/Build-MSIX.ps1 -Version 1.0.0.0
@@ -96,13 +130,129 @@ jobs:
           --source-commit ${{ github.sha }}
           --run-url https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
           --output evidence/msix/candidate.json
-      - uses: actions/upload-artifact@v4
+      - name: Bind diagnostic artifact to exact source, lock and policy
+        shell: pwsh
+        run: |
+          Move-Item dist/msix/AgroLines-1.0.0.0-x64-STORE-SUBMISSION-UNSIGNED.msix dist/msix/AgroLines-1.0.0.0-x64-DIAGNOSTICO-ASSINATURA-PENDENTE.msix
+          ./build-env/Scripts/python.exe -m scripts.signing_pipeline bind --package dist/msix/AgroLines-1.0.0.0-x64-DIAGNOSTICO-ASSINATURA-PENDENTE.msix --plan evidence/signing/plan.json --source-commit $env:GITHUB_SHA --lock distribution/windows/requirements.lock --policy distribution/windows/signing/native-policy.json --output evidence/signing/input-binding.json
+          if ($LASTEXITCODE) { throw 'Artifact binding failed.' }
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: always()
         with:
-          name: agrolines-official-store-msix-UNSIGNED-submission-candidate
+          name: agrolines-signing-validation-NOT-FOR-SUBMISSION
           path: |
-            dist/msix/*.msix
+            dist/msix/*-DIAGNOSTICO-ASSINATURA-PENDENTE.msix
             evidence/
             distribution/windows/msix/AppxManifest.xml
             distribution/windows/msix/identity.json
           if-no-files-found: error
+
+  sign-authorized-native:
+    needs: msix-candidate
+    if: github.event_name == 'workflow_dispatch' && inputs.mode == 'sign-native' && github.ref == 'refs/heads/main' && github.repository == 'fbdelatorre/AgroLines' && vars.AGROLINES_SIGNING_ENABLED == 'true'
+    runs-on: [self-hosted, Windows, X64, agrolines-signing]
+    environment: windows-signing
+    permissions:
+      contents: read
+      actions: read
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+          ref: ${{ github.sha }}
+      - name: Verify protected source and required manual environment review
+        shell: pwsh
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: ./distribution/windows/signing/Assert-SigningEnvironment.ps1
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: agrolines-signing-validation-NOT-FOR-SUBMISSION
+          path: signing-input
+      - name: Verify same-run bindings and all current file signatures before key access
+        shell: pwsh
+        run: |
+          # Trusted runner prerequisites: CPython 3.12/Windows SDK, approved provider; no payload execution.
+          if ((python -c "import sys; print('.'.join(map(str,sys.version_info[:2])))") -ne '3.12') { throw 'Trusted maintainer CPython 3.12 required.' }
+          $package = 'signing-input/dist/msix/AgroLines-1.0.0.0-x64-DIAGNOSTICO-ASSINATURA-PENDENTE.msix'
+          python -m scripts.signing_pipeline verify-input --package $package --plan signing-input/evidence/signing/plan.json --binding signing-input/evidence/signing/input-binding.json --source-commit $env:GITHUB_SHA --lock distribution/windows/requirements.lock --policy distribution/windows/signing/native-policy.json --output signed-evidence/input-verified.json
+          if ($LASTEXITCODE) { throw 'Artifact provenance mismatch.' }
+          $plan = Get-Content signing-input/evidence/signing/plan.json -Raw | ConvertFrom-Json
+          if (-not $plan.ready_for_authorized_signing) { throw 'ASSINATURA PENDENTE: resolve exact rights/origin policy first. No key accessed.' }
+          . ./distribution/windows/signing/Signing-Helpers.ps1
+          $tools = Get-AgroSigningTools
+          & $tools.makeappx unpack /p $package /d build/authorized-input /v
+          if ($LASTEXITCODE) { throw 'Input unpack failed.' }
+          $root = 'build/authorized-input/VFS/ProgramFilesX64/AgroLines'
+          python -m distribution.payload --root $root --output signed-evidence/native-before.json
+          if ($LASTEXITCODE) { throw 'Fresh inventory failed.' }
+          ./scripts/Audit-NativeWindows.ps1 -Inventory signed-evidence/native-before.json -Output signed-evidence/auth-before.json
+          ./scripts/Test-NativeAuthenticode.ps1 -Inventory signed-evidence/native-before.json -Output signed-evidence/tools-before.json
+          python -m scripts.signing_pipeline evaluate --root $root --policy distribution/windows/signing/native-policy.json --native signed-evidence/native-before.json --signatures signed-evidence/auth-before.json --tools signed-evidence/tools-before.json --source-commit $env:GITHUB_SHA --output signed-evidence/approved-plan.json
+          if ($LASTEXITCODE) { throw 'Fresh signing plan failed.' }
+      - name: Sign only approved PE hashes and verify trusted timestamp
+        shell: pwsh
+        env:
+          THUMBPRINT: ${{ vars.AGROLINES_PE_SIGNING_THUMBPRINT }}
+          SUBJECT: ${{ vars.AGROLINES_PE_SIGNER_SUBJECT }}
+          PROVIDER: ${{ vars.AGROLINES_PE_KEY_PROVIDER }}
+          TIMESTAMP_URL: ${{ vars.AGROLINES_TIMESTAMP_URL }}
+        run: |
+          ./distribution/windows/signing/Sign-ApprovedNative.ps1 -Payload build/authorized-input/VFS/ProgramFilesX64/AgroLines -Plan signed-evidence/approved-plan.json -Policy distribution/windows/signing/native-policy.json -SourceCommit $env:GITHUB_SHA -CertificateThumbprint $env:THUMBPRINT -ExpectedSignerSubject $env:SUBJECT -ExpectedKeyProvider $env:PROVIDER -TimestampUrl $env:TIMESTAMP_URL
+      - name: Verify all PE, unchanged vendor signatures and unchanged code content
+        shell: pwsh
+        env:
+          THUMBPRINT: ${{ vars.AGROLINES_PE_SIGNING_THUMBPRINT }}
+          SUBJECT: ${{ vars.AGROLINES_PE_SIGNER_SUBJECT }}
+        run: |
+          $root = 'build/authorized-input/VFS/ProgramFilesX64/AgroLines'
+          python -m distribution.payload --root $root --output signed-evidence/native-after.json
+          if ($LASTEXITCODE) { throw 'Post-sign inventory failed.' }
+          ./scripts/Audit-NativeWindows.ps1 -Inventory signed-evidence/native-after.json -Output signed-evidence/auth-after.json
+          ./scripts/Test-NativeAuthenticode.ps1 -Inventory signed-evidence/native-after.json -Output signed-evidence/tools-after.json
+          python -m scripts.signing_pipeline transition --root $root --plan signed-evidence/approved-plan.json --signatures signed-evidence/auth-after.json --tools signed-evidence/tools-after.json --subject $env:SUBJECT --thumbprint $env:THUMBPRINT --output signed-evidence/native-gate.json
+          if ($LASTEXITCODE) { throw 'Native signature gate failed; no candidate artifact.' }
+          python -m scripts.signing_pipeline manifest --root $root --output "$root/payload-manifest.json"
+          if ($LASTEXITCODE) { throw 'Final signed manifest failed.' }
+      - name: Build official MSIX envelope without changing Store identity
+        shell: pwsh
+        run: |
+          . ./distribution/windows/signing/Signing-Helpers.ps1
+          $tools = Get-AgroSigningTools
+          python -m scripts.signing_pipeline stage --root build/authorized-input --destination build/signed-stage
+          if ($LASTEXITCODE) { throw 'Final staging failed.' }
+          New-Item signed-output -ItemType Directory -Force | Out-Null
+          & $tools.makeappx pack /d build/signed-stage /p signed-output/AgroLines-1.0.0.0-x64-SIGNED-NATIVE-ENVELOPE-UNSIGNED.msix /h SHA256 /v
+          if ($LASTEXITCODE) { throw 'Final MSIX pack failed.' }
+      - name: Optional authorized matching-Publisher envelope signing
+        if: vars.AGROLINES_MSIX_SIGN_ENABLED == 'true'
+        shell: pwsh
+        env:
+          THUMBPRINT: ${{ vars.AGROLINES_MSIX_SIGNING_THUMBPRINT }}
+          PROVIDER: ${{ vars.AGROLINES_MSIX_KEY_PROVIDER }}
+          TIMESTAMP_URL: ${{ vars.AGROLINES_TIMESTAMP_URL }}
+        run: |
+          $file = 'signed-output/AgroLines-1.0.0.0-x64-SIGNED-NATIVE-ENVELOPE-UNSIGNED.msix'
+          $hash = (Get-FileHash $file -Algorithm SHA256).Hash.ToLowerInvariant()
+          ./distribution/windows/signing/Sign-ApprovedMSIX.ps1 -Package $file -ExpectedSha256 $hash -CertificateThumbprint $env:THUMBPRINT -ExpectedKeyProvider $env:PROVIDER -TimestampUrl $env:TIMESTAMP_URL
+          Move-Item $file signed-output/AgroLines-1.0.0.0-x64-SIGNED-NATIVE-ENVELOPE-SIGNED.msix
+      - name: Verify actual final package bytes and identity
+        shell: pwsh
+        run: |
+          $file = @(Get-ChildItem signed-output -Filter '*.msix')
+          if ($file.Count -ne 1) { throw 'Exactly one candidate required.' }
+          python -m scripts.signing_pipeline package --package $file[0].FullName --first build/signed-stage/VFS/ProgramFilesX64/AgroLines/payload-manifest.json --output signed-evidence/package-final.json
+          if ($LASTEXITCODE) { throw 'Actual MSIX final verification failed.' }
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: success()
+        with:
+          name: agrolines-signed-native-candidate-NOT-SAC-APPROVED
+          path: signed-output/*.msix
+          if-no-files-found: error
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: agrolines-authorized-signing-evidence
+          path: signed-evidence/
+          if-no-files-found: warn

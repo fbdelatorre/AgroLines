@@ -2,3 +2,6 @@
 docs/privacy/offline/politica-privacidade.html text eol=lf
 docs/privacy/offline/politica-privacidade.md text eol=lf
 docs/privacy/offline/politica-privacidade.txt text eol=lf
+# Bind signing inputs identically on hosted and hardware/KSP Windows runners.
+distribution/windows/signing/native-policy.json text eol=lf
+distribution/windows/requirements.lock text eol=lf
