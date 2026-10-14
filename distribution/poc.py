@@ -76,7 +76,10 @@ def main():
         window.resize(1000, 720)
         panel = QWidget()
         layout = QVBoxLayout(panel)
-        title = QLabel(f"{metadata['name']} · {metadata['version']}\n{metadata['manufacturer']}")
+        title = QLabel(
+            f"{metadata['name']} · {metadata['version']}\n{metadata['manufacturer']}"
+            " · marca informada, identidade jurídica não verificada"
+        )
         title.setWordWrap(True)
         layout.addWidget(title)
         status = QLabel("Verificando componentes… Homologação Windows/SAC pendente.")

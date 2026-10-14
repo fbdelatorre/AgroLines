@@ -90,7 +90,7 @@ def collect_notices(payload):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--version", default="0.1.0.1")
-    parser.add_argument("--manufacturer", default="AgroLines - identidade juridica pendente")
+    parser.add_argument("--manufacturer", default="Delatorre Corporation")
     args = parser.parse_args()
     if sys.platform != "win32":
         raise SystemExit("Windows build requires a Windows builder")

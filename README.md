@@ -10,7 +10,15 @@ para escopos, convites e permissões persistentes. A navegação da Etapa 1 e se
 healthcheck foram preservados. Talhões, equipamentos, geometria, planos, exportadores
 e sincronização completa continuam **Em desenvolvimento**.
 
-## Windows 11 — sem Docker
+## Distribuição Windows para clientes
+
+O produto final terá runtime embutido e instalador, sem exigir Python, pip,
+PowerShell ou PostgreSQL local do cliente. A prova de distribuição ainda não está
+aprovada para SAC: veja [executável, instalador e homologação](docs/windows-distribution-poc.md).
+Delatorre Corporation é a marca informada, com identidade jurídica ainda não verificada.
+
+## Desenvolvimento do servidor no Windows 11 — sem Docker
+Estas instruções são para mantenedores do servidor, não para clientes.
 Instale Python 3.12 e PostgreSQL com a extensão PostGIS compatível (por exemplo,
 instalador PostgreSQL e PostGIS pelo Stack Builder). Docker é opcional.
 A Etapa 2 foi validada pelo usuário com PostgreSQL 18/PostGIS 3.6.2 no Windows 11;
@@ -18,8 +26,6 @@ o ambiente de integração automatizado usa PostgreSQL 16/PostGIS 3.4.
 
 No PowerShell, na raiz do checkout:
 ```powershell
-# Se a política local impedir scripts, apenas nesta sessão:
-Set-ExecutionPolicy -Scope Process RemoteSigned
 .\scripts\Configure.ps1 -Desktop
 ```
 Para **um banco novo**, configure uma conta própria e o banco. Não execute criação

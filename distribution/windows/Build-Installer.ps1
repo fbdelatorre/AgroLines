@@ -1,6 +1,6 @@
 param(
     [string]$Version = '0.1.0.1',
-    [string]$Manufacturer = 'AgroLines - identidade juridica pendente',
+    [string]$Manufacturer = 'Delatorre Corporation',
     [string]$CertificateThumbprint
 )
 $ErrorActionPreference = 'Stop'

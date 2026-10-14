@@ -3,7 +3,7 @@
   #define Version "0.1.0.1"
 #endif
 #ifndef Manufacturer
-  #define Manufacturer "AgroLines - identidade juridica pendente"
+  #define Manufacturer "Delatorre Corporation"
 #endif
 [Setup]
 AppId={{A38AA663-25B7-4E10-9CFB-8358238BB271}

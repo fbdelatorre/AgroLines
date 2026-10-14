@@ -10,11 +10,15 @@ proteção ativa são pré-requisitos da aprovação, não tarefas substituídas
 
 Esta prova mantém CPython 3.12/PySide6, NumPy/GEOS/GDAL/PROJ e o núcleo AgroLines.
 Não inicia novas ferramentas agrícolas, não altera o banco ou exige PostgreSQL
-no cliente. O relato “3.11” não foi usado para mudar silenciosamente a versão do
-Python; a prova embute CPython 3.12.10 e registra o runtime efetivamente usado.
-Fabricante jurídico, certificado/serviço de assinatura e máquina de homologação
-continuam pendentes de configuração. A identidade provisória aparece claramente
-no executável/instalador, nunca como fabricante comercial verificado.
+no cliente. O usuário esclareceu que “3.11” era o nome de uma pasta/versão do AgroLines,
+não Python. A prova embute CPython 3.12.10 e registra o runtime efetivamente usado.
+A marca informada é **Delatorre Corporation**, usada no executável/instalador.
+O usuário confirmou que ainda não há empresa constituída, certificado ou conta
+Artifact Signing. A identidade jurídica permanece não verificada; a marca não é
+tratada como pessoa jurídica existente. Publicação/assinatura como pessoa física
+precisa da identidade real do titular; não usar a marca como empresa fictícia no
+certificado ou Partner Center. Máquina de homologação ainda não configurada.
+
 
 ## O que a prova executa
 
