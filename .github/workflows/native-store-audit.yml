@@ -1,7 +1,7 @@
 name: Native audit of immutable Store candidate (no signing or installation)
 on:
   push:
-    paths: ['scripts/native_msix_audit.py', 'scripts/Test-NativeAuthenticode.ps1', 'scripts/Observe-NativeModules.ps1', 'scripts/Audit-NativeWindows.ps1', '.github/workflows/native-store-audit.yml']
+    paths: ['scripts/native_msix_audit.py', 'scripts/audit_license_notices.py', 'scripts/Test-NativeAuthenticode.ps1', 'scripts/Observe-NativeModules.ps1', 'scripts/Audit-NativeWindows.ps1', '.github/workflows/native-store-audit.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -48,6 +48,11 @@ jobs:
       - name: Authenticode and current-time X509 chains (read only)
         shell: pwsh
         run: ./scripts/Audit-NativeWindows.ps1 -Inventory build/native-inventory.json -Output build/native-signatures.json
+      - name: Preserve and inspect original third-party notices (no license adoption)
+        run: >-
+          ./build-env/Scripts/python.exe -m scripts.audit_license_notices
+          --notices build/native-original/VFS/ProgramFilesX64/AgroLines/third-party-notices
+          --output build/native-license-evidence
       - name: SignTool Authenticode policy and trusted timestamps (read only)
         shell: pwsh
         run: ./scripts/Test-NativeAuthenticode.ps1 -Inventory build/native-inventory.json -Output build/native-signtool.json
@@ -82,4 +87,5 @@ jobs:
             build/native-signatures.json
             build/native-signtool.json
             build/native-observations/
+            build/native-license-evidence/
           if-no-files-found: error

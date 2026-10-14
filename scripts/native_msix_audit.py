@@ -246,6 +246,20 @@ def correlate(output, native, signatures, tools, loads, baseline, notices, packa
             )
     (output / "summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
     print("AGROLINES_NATIVE_AUDIT=" + json.dumps(summary))
+    for phase in loads["phases"]:
+        print(
+            "AGROLINES_NATIVE_PHASE="
+            + json.dumps(
+                {
+                    "phase": phase["name"],
+                    "exit_code": phase["exit_code"],
+                    "duration_ms": phase["duration_ms"],
+                    "processes": sorted({m["process"] for m in phase["modules"]}),
+                    "modules_by_scope": dict(Counter(m["scope"] for m in phase["modules"])),
+                    "complete_image_load_trace": False,
+                }
+            )
+        )
     for r in records:
         print(
             "AGROLINES_NATIVE_FILE="
@@ -257,9 +271,12 @@ def correlate(output, native, signatures, tools, loads, baseline, notices, packa
                     "origin": r["origin_basis"],
                     "packages": r["packages"],
                     "status": r["authenticode"]["status"],
+                    "sha256": r["sha256"],
+                    "signer": r["authenticode"]["signer"],
                     "chain": r["authenticode"]["chain_status"],
                     "signtool": r["signtool"]["exit_code"],
                     "loaded": bool(r["loaded_observations"]),
+                    "observations": r["loaded_observations"],
                     "reason": r["reason"],
                 }
             )
