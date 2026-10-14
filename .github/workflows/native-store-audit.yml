@@ -1,13 +1,24 @@
 name: Native audit of immutable Store candidate (no signing or installation)
 on:
   push:
-    paths: ['scripts/native_msix_audit.py', 'scripts/audit_license_notices.py', 'scripts/Test-NativeAuthenticode.ps1', 'scripts/Observe-NativeModules.ps1', 'scripts/Audit-NativeWindows.ps1', '.github/workflows/native-store-audit.yml']
+    paths: ['.github/workflows/native-store-audit.yml']
   workflow_dispatch:
+    inputs:
+      mode:
+        type: choice
+        options: [baseline, report]
+        default: baseline
+        description: 'Reaudit immutable original only on demand; report reuses existing candidate evidence.'
+      report_run_id:
+        type: string
+        default: '38642374311'
+        description: 'Same-repository candidate run containing synthetic diagnostic JSON.'
 permissions:
   contents: read
   actions: read
 jobs:
   audit:
+    if: github.event_name == 'workflow_dispatch' && inputs.mode == 'baseline'
     runs-on: windows-latest
     timeout-minutes: 25
     steps:
@@ -89,3 +100,40 @@ jobs:
             build/native-observations/
             build/native-license-evidence/
           if-no-files-found: error
+
+  inspect-existing-report:
+    if: github.event_name == 'push' || inputs.mode == 'report'
+    runs-on: windows-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.12.10'
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: agrolines-signing-validation-NOT-FOR-SUBMISSION
+          run-id: ${{ inputs.report_run_id || '38642374311' }}
+          github-token: ${{ github.token }}
+          path: report-input
+      - name: Read synthetic JSON only; do not execute or install downloaded payloads
+        shell: python
+        run: |
+          import json
+          from pathlib import Path
+          root = Path('report-input/evidence/qt-minimal/loads')
+          data = json.loads((root / 'loads.json').read_text(encoding='utf-8-sig'))
+          print('AGROLINES_REUSED_OBSERVATION_ERRORS=' + json.dumps(data['errors']))
+          for phase in data['phases']:
+              print('AGROLINES_REUSED_PHASE=' + json.dumps({
+                  'name': phase['name'], 'exit_code': phase['exit_code'],
+                  'duration_ms': phase['duration_ms'],
+                  'modules': len(phase['modules']),
+                  'processes': sorted({m['process'] for m in phase['modules']}),
+                  'external': [m for m in phase['modules'] if m['scope'] == 'external'],
+              }))
+          for name in ('smoke-startup-and-gis', 'offline-import-edit-backup'):
+              path = root / (name + '-probe.json')
+              if path.exists():
+                  probe = json.loads(path.read_text(encoding='utf-8-sig'))
+                  print('AGROLINES_REUSED_PROBE=' + json.dumps({'name': name, 'result': probe}))
+          print('Evidence reused without signing, payload execution, acceptance or publication.')
