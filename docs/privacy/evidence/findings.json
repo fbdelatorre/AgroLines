@@ -1,0 +1,15 @@
+{
+  "original_archive_contains_unrendered_metadata": true,
+  "sqlite_has_plaintext_contact_attribute": true,
+  "sqlite_standard_unencrypted_header": true,
+  "previous_revision_retains_contact_attribute": true,
+  "individual_revision_deletion_blocked": true,
+  "backup_copies_plaintext_personal_attribute": true,
+  "whole_farm_viewer_can_retrieve_original_source": true,
+  "viewer_original_includes_unrendered_metadata": true,
+  "revocation_blocks_future_source_request": true,
+  "revocation_keeps_server_geometry_history": true,
+  "no_delete_me_route": true,
+  "logout_keeps_account_record": true,
+  "all_expected_findings_confirmed": true
+}
