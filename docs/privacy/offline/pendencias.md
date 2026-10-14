@@ -5,7 +5,8 @@ não a substitui nem transforma o pacote anterior em um produto offline.
 
 ## Resolvido por decisão do responsável
 
-- FABRICIO JOSE DELATORRE; privacidade e suporte pelo Gmail já informado.
+- FABRICIO JOSE DELATORRE; contato oficial de privacidade e suporte:
+  **fabricio.grupodelatorre@gmail.com**, reafirmado pelo responsável em 14/10/2026.
 - Grupo Partner Center “AgroLines - Testadores Internos”; sem cadastro próprio no app.
 - Suporte recebe arquivos apenas por envio voluntário, para a finalidade solicitada.
 - Retenção de suporte até 90 dias após encerramento, com descarte sob controle e
@@ -18,6 +19,19 @@ não a substitui nem transforma o pacote anterior em um produto offline.
 - Mudanças relevantes: aviso manual por e-mail e página pública atualizada.
 - Preparar GitHub Pages gratuito; não declarar URL disponível antes de teste.
 - Ainda não existem termos adotados/base legal ou avaliação de interesse confirmados.
+
+## Verificação dos campos de contato
+
+O mesmo endereço oficial atende privacidade, suporte e participação/saída do
+programa de testes. Política Markdown/HTML/TXT, minuta e procedimento de atendimento
+foram padronizados. Não há campo de e-mail ou canal próprio de contato pendente
+nesses documentos da edição offline. Isso não comprova configuração, acesso seguro
+ou teste de atendimento da conta Gmail.
+
+A revisão dos fornecedores, destinatários adicionais e eventuais pessoas com acesso
+aos dados de suporte continua pendente; não é uma lacuna no endereço oficial.
+Campos de operador/SMTP das versões históricas não representam serviços habilitados
+na edição offline. A auditoria original do PR #9 permanece preservada.
 
 ## Antes de considerar a política publicável
 

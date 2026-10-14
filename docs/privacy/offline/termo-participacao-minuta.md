@@ -2,7 +2,7 @@
 
 **Não adotado nem assinado. Revisão jurídica e confirmação operacional necessárias.**
 Responsável: FABRICIO JOSE DELATORRE; contato:
-FABRICIO.GRUPODELATORRE@GMAIL.COM. Nome de publicação: Delatorre COrporation,
+fabricio.grupodelatorre@gmail.com. Nome de publicação: Delatorre COrporation,
 sem afirmar existência de pessoa jurídica. Grupo: “AgroLines - Testadores Internos”.
 
 ## Participação e finalidade

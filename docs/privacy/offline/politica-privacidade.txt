@@ -6,7 +6,7 @@ TEXTO REVISADO — NÃO PUBLICAR enquanto os campos CONFIRMAR e as pendências o
 
 1. Responsável e contato
 
-O responsável pessoa física pelo AgroLines e pelos dados pessoais que recebe para administrar os testes e atender solicitações é FABRICIO JOSE DELATORRE. Contato de privacidade: FABRICIO.GRUPODELATORRE@GMAIL.COM.
+O responsável pessoa física pelo AgroLines e pelos dados pessoais que recebe para administrar os testes e atender solicitações é FABRICIO JOSE DELATORRE. Contato de privacidade: fabricio.grupodelatorre@gmail.com.
 
 O aplicativo está cadastrado na Microsoft Store como AgroLines, Store ID 9NRDJ3ZTM978, com o nome de publicador Delatorre COrporation. Esse nome não substitui a identificação da pessoa física responsável nem declara a existência de uma pessoa jurídica.
 
@@ -66,7 +66,7 @@ A abertura normal não gera automaticamente os relatórios de homologação. Tes
 
 Os diagnósticos podem registrar versões, resultados de testes sintéticos, estado das proteções do Windows, caminhos de instalação e arquivos, processos auxiliares Qt e eventos de integridade de código. Caminhos e eventos podem revelar nome do usuário ou computador, identificadores de segurança e informações de outros programas. Esses relatórios não são considerados anônimos. Não há descarte automático implementado desses arquivos.
 
-O canal de suporte é FABRICIO.GRUPODELATORRE@GMAIL.COM. O responsável recebe e revisa os arquivos enviados voluntariamente e solicita somente informações necessárias ao diagnóstico. Não há envio pelo programa para esse endereço. O prazo de suporte é o descrito na seção 5. Antes de enviar evidências, revise o conteúdo e remova dados desnecessários. Não envie senhas, tokens ou projetos completos quando uma descrição ou arquivo sintético for suficiente.
+O canal de suporte é fabricio.grupodelatorre@gmail.com. O responsável recebe e revisa os arquivos enviados voluntariamente e solicita somente informações necessárias ao diagnóstico. Não há envio pelo programa para esse endereço. O prazo de suporte é o descrito na seção 5. Antes de enviar evidências, revise o conteúdo e remova dados desnecessários. Não envie senhas, tokens ou projetos completos quando uma descrição ou arquivo sintético for suficiente.
 
 Ferramentas de desenvolvimento e homologação não são execução normal do aplicativo. Workflows de manutenção podem guardar evidências no GitHub; o responsável precisa revisar esses dados antes de usar bancada real ou compartilhar relatórios. O pacote offline não contém um cliente de upload de diagnósticos.
 
@@ -82,7 +82,7 @@ Não está confirmado o acesso pelo responsável a relatórios específicos de a
 
 9. Direitos e incidentes
 
-Nos casos aplicáveis, a LGPD prevê direitos de confirmação, acesso, correção, informação sobre compartilhamento, anonimização, bloqueio ou eliminação nas hipóteses legais, portabilidade quando cabível, oposição e direitos relativos ao consentimento. Solicitações referentes a dados recebidos pelo responsável podem ser enviadas a FABRICIO.GRUPODELATORRE@GMAIL.COM, com informação mínima necessária para localizá-las. Não envie documentos, senhas ou tokens espontaneamente.
+Nos casos aplicáveis, a LGPD prevê direitos de confirmação, acesso, correção, informação sobre compartilhamento, anonimização, bloqueio ou eliminação nas hipóteses legais, portabilidade quando cabível, oposição e direitos relativos ao consentimento. Solicitações referentes a dados recebidos pelo responsável podem ser enviadas a fabricio.grupodelatorre@gmail.com, com informação mínima necessária para localizá-las. Não envie documentos, senhas ou tokens espontaneamente.
 
 O responsável não tem acesso automático aos arquivos no computador do usuário e não pode apagá-los remotamente. Pedidos sobre dados controlados por outra pessoa ou organização podem precisar ser dirigidos a ela. A enumeração dos direitos não afirma que haja atendimento automático na interface.
 

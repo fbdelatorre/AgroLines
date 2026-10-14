@@ -1,7 +1,7 @@
 # Procedimento manual — suporte, direitos e retenção
 
 Responsável pela execução: FABRICIO JOSE DELATORRE. Canal:
-FABRICIO.GRUPODELATORRE@GMAIL.COM. Decisões confirmadas em 14/10/2026.
+fabricio.grupodelatorre@gmail.com. Decisões confirmadas em 14/10/2026.
 Aplica-se à edição Store offline e ao grupo “AgroLines - Testadores Internos”.
 Não há cadastro, envio de e-mail ou limpeza automática no aplicativo.
 
