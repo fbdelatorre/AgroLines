@@ -13,6 +13,11 @@ não a substitui nem transforma o pacote anterior em um produto offline.
 - Não foi definida restrição etária. Não declarar exclusividade para adultos ou
   direcionamento a crianças. Avaliar proteção de eventuais menores.
 - Edição Store inicial sem funcionalidades ou conexões remotas próprias.
+- Controle próprio do grupo: participação + até 30 dias após saída/encerramento;
+  pedidos de privacidade: até 12 meses após conclusão, com dados mínimos e exceções.
+- Mudanças relevantes: aviso manual por e-mail e página pública atualizada.
+- Preparar GitHub Pages gratuito; não declarar URL disponível antes de teste.
+- Ainda não existem termos adotados/base legal ou avaliação de interesse confirmados.
 
 ## Antes de considerar a política publicável
 
@@ -21,10 +26,10 @@ não a substitui nem transforma o pacote anterior em um produto offline.
 | Base legal por finalidade | Confirmar/documentar suporte, gestão do grupo e direitos; recebimento voluntário não é autorização genérica. Atendimento de obrigações legais e suporte têm finalidades diferentes. Se adotar legítimo interesse, registrar necessidade/balanceamento e melhor interesse de menores quando aplicável |
 | Dados realmente acessados no Partner Center | Conferir campos da audiência/avaliações e quem os acessa; não inventar que o responsável recebe todo dado Microsoft |
 | Outros destinatários e transferências | Confirmar acesso a suporte, eventuais ferramentas, países/mecanismos aplicáveis de Gmail e Microsoft; não inferir que não haja transferência porque o programa é offline |
-| Retenção restante | Definir critérios de grupo, pedidos de privacidade e registro mínimo de descarte; o prazo de suporte já foi definido |
+| Retenção restante | Grupo 30 dias e direitos 12 meses definidos; configurar execução manual, justificar necessidade e definir retenção dos comprovantes mínimos de descarte |
 | Operação manual | Configurar e validar registro/fechamento/descarte, direitos, incidentes e minimização com fixtures sintéticas; documentação não prova exclusão real de Gmail/anexos |
 | Menores e classificação etária | Avaliar LGPD art. 14 e Store 10.5.8; conferir classificação etária e permissões reais do grupo. Não há controles próprios de idade. Se não puder cumprir medidas, recomendar restrição inicial futura explícita |
-| Vigência e URL | Definir data, aviso aos testadores e URL HTTPS pública estável, acessível sem login, com texto final sem campos CONFIRMAR |
+| Vigência e URL | Data será a primeira disponibilização efetiva, ainda não marcada; aviso por e-mail definido. Workflow Pages preparado, não executado: aprovar texto e testar URL HTTPS sem login |
 | Conta Individual/publicador | Resolver com Microsoft a adequação à seção 10.14 do nome Delatorre COrporation em conta Individual; não alterar a identidade oficial ou declarar empresa inexistente |
 | Proteção dos arquivos | Avaliar a seção 10.5.4 da Store e medidas proporcionais para dados pessoais. Projetos/backup não têm cifra própria; revelar a limitação não resolve sozinho requisitos de segurança |
 
@@ -49,6 +54,9 @@ do Partner Center antes de submissão. Nenhum campo/configuração foi alterado.
 
 ## Pendências técnicas de distribuição/homologação
 
+- Novo build inclui originais aprovados e verifica ícones do PE/recursos extraídos.
+  Consultar o resultado do workflow no relatório de finalização; não confundir
+  verificação binária com aparência do shell instalada.
 - Gerar e revisar o novo MSIX x64; embutir runtime, GIS, Qt, recursos do WebEngine e
   política local. CI produz candidato não assinado; isso não é pacote instalado.
 - Rever inventário/assinaturas de todos os EXE/DLL/PYD. Não usar certificado

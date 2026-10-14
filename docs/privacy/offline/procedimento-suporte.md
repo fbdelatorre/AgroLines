@@ -53,9 +53,27 @@ Não há cadastro, envio de e-mail ou limpeza automática no aplicativo.
 6. Não reiniciar o prazo silenciosamente. Se houver novo atendimento, registrar o
    novo caso e conservar apenas conteúdo ainda necessário à finalidade informada.
 
-O controle de execução/descarte deve ser mínimo; definir sua própria retenção, assim
-como a retenção dos pedidos de privacidade e da lista Partner Center. O prazo de
-suporte não altera arquivos exclusivamente locais dos testadores.
+O controle de execução/descarte deve ser mínimo. O prazo de suporte não altera
+arquivos exclusivamente locais dos testadores. Para os demais controles manuais:
+
+- Grupo: registrar saída/encerramento e `limite = saída/encerramento + 30 dias`.
+  Eliminar dados de controle sob responsabilidade própria até esse limite; não
+  prometer remoção de registros controlados exclusivamente pela Microsoft.
+- Direitos: registrar conclusão e limite de 12 meses **calendários** depois dela.
+  Conservar apenas pedido, resposta e evidência mínima necessária, sem manter
+  anexos completos de suporte sob o pretexto de comprovar atendimento.
+- Usar a mesma revisão semanal antecipada e registro mínimo de exceções para esses
+  prazos. Informações que se encaixem em finalidades distintas devem ser minimizadas
+  separadamente; não estender a retenção de todo o suporte para 12 meses.
+- Definir/documentar retenção dos próprios comprovantes mínimos de descarte antes
+  da operação; não armazenar o conteúdo eliminado dentro do registro.
+
+Comunicar mudanças relevantes da política manualmente por e-mail, apenas com contatos
+legitimamente disponíveis; não executar envios sem autorização. Não extrair contatos
+para finalidade nova nem publicar a lista de testadores no GitHub. Conferir os
+relatórios realmente consultados no Partner Center antes de registrar sua utilização.
+Nenhuma base legal está definitivamente escolhida neste procedimento; revisar a
+minuta de participação e o documento de hipóteses antes de receber dados reais.
 
 ## 4. Atender direitos
 

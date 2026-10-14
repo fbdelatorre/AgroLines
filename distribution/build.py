@@ -8,6 +8,7 @@ import subprocess
 import sys
 from pathlib import Path
 
+from distribution.branding import approved_source
 from distribution.icon import generate
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -45,7 +46,7 @@ def prepare(output, version, manufacturer, store=False):
     (output / "metadata.json").write_text(
         json.dumps(metadata, ensure_ascii=False), encoding="utf-8"
     )
-    generate(ROOT / "distribution/windows/brand.svg", output / "AgroLines.ico")
+    generate(approved_source(), output / "AgroLines.ico")
     fields = {
         "CompanyName": manufacturer,
         "FileDescription": metadata["name"],

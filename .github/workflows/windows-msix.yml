@@ -1,9 +1,9 @@
 name: Microsoft Store MSIX candidate (no publication)
 on:
   push:
-    paths: ['distribution/**', 'core/**', 'desktop/**', '.github/workflows/windows-msix.yml']
+    paths: ['distribution/**', 'assets/branding/**', 'docs/privacy/offline/**', 'core/**', 'desktop/**', '.github/workflows/windows-msix.yml']
   pull_request:
-    paths: ['distribution/**', 'core/**', 'desktop/**', '.github/workflows/windows-msix.yml']
+    paths: ['distribution/**', 'assets/branding/**', 'docs/privacy/offline/**', 'core/**', 'desktop/**', '.github/workflows/windows-msix.yml']
   workflow_dispatch:
 permissions:
   contents: read
@@ -44,6 +44,8 @@ jobs:
       - name: SDK schema validation, MSIX pack and unpack integrity
         shell: pwsh
         run: ./distribution/windows/msix/Build-MSIX.ps1 -Version 1.0.0.0
+      - name: Verify official artwork inside MSIX and EXE resources
+        run: ./build-env/Scripts/python.exe -m distribution.branding --unpacked build/msix-unpacked/1.0.0.0 --staging-report evidence/msix/staging-1.0.0.0.json --report evidence/msix/branding.json
       - name: Unpacked runtime regression (NOT installed MSIX validation)
         shell: pwsh
         run: |
