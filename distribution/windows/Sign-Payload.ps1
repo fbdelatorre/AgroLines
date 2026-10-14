@@ -8,6 +8,10 @@ $ErrorActionPreference = 'Stop'
 if ($CertificateThumbprint -notmatch '^[0-9a-fA-F]{40}$') { throw 'Thumbprint invalido.' }
 $cert = Get-Item -LiteralPath "Cert:\CurrentUser\My\$CertificateThumbprint"
 if (-not $cert.HasPrivateKey -or $cert.Subject -ne $ExpectedSignerSubject) { throw 'Certificado/identidade nao correspondem.' }
+if ($cert.Issuer -eq $cert.Subject -or $cert.NotBefore.ToUniversalTime() -gt [DateTime]::UtcNow -or $cert.NotAfter.ToUniversalTime() -le [DateTime]::UtcNow) { throw 'Certificado autoassinado/fora da validade nao permitido.' }
+$usage = $cert.Extensions | Where-Object { $_.Oid.Value -eq '2.5.29.37' }
+if (-not $usage -or @($usage.EnhancedKeyUsages | Where-Object Value -eq '1.3.6.1.5.5.7.3.3').Count -eq 0) { throw 'Certificado deve possuir EKU Code Signing.' }
+if ($cert.PublicKey.Oid.Value -ne '1.2.840.113549.1.1.1') { throw 'Esta prova exige certificado RSA para a avaliacao SAC.' }
 $signTool = Get-ChildItem 'C:\Program Files (x86)\Windows Kits\10\bin' -Filter signtool.exe -Recurse | Where-Object FullName -match '\\x64\\signtool.exe$' | Sort-Object FullName -Descending | Select-Object -First 1
 if (-not $signTool) { throw 'SignTool SDK indisponivel.' }
 $files = @(Get-ChildItem -LiteralPath $Payload -Recurse -File | Where-Object Extension -in @('.exe','.dll','.pyd'))
