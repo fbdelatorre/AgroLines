@@ -1,0 +1,95 @@
+Política de Privacidade do AgroLines — edição Store exclusivamente offline
+
+Última revisão: 14 de outubro de 2026. Versão do texto: 1.0 offline.
+
+TEXTO REVISADO — NÃO PUBLICAR enquanto os campos CONFIRMAR e as pendências operacionais estiverem em aberto. Data de vigência: [CONFIRMAR: data de disponibilização desta política].
+
+1. Responsável e contato
+
+O responsável pessoa física pelo AgroLines e pelos dados pessoais que recebe para administrar os testes e atender solicitações é FABRICIO JOSE DELATORRE. Contato de privacidade: FABRICIO.GRUPODELATORRE@GMAIL.COM.
+
+O aplicativo está cadastrado na Microsoft Store como AgroLines, Store ID 9NRDJ3ZTM978, com o nome de publicador Delatorre COrporation. Esse nome não substitui a identificação da pessoa física responsável nem declara a existência de uma pessoa jurídica.
+
+Esta política corresponde à primeira edição exclusivamente offline, destinada inicialmente a testadores privados. Não descreve versões de desenvolvimento anteriores ou recursos futuros.
+
+2. Funcionamento local e dados acessados
+
+Esta edição não disponibiliza contas AgroLines, autenticação remota, recuperação de senha, convites, compartilhamento pelo aplicativo, sincronização, API remota ou imagens de mapa obtidas da internet. Não é necessário instalar Python, pip ou PostgreSQL no computador do usuário. Os recursos de mapa vetorial, JavaScript, CSS e bibliotecas de processamento são incluídos no pacote.
+
+O aplicativo processa arquivos selecionados pelo usuário para importação nos formatos SHP e seus complementos, KML, KMZ, GPKG e GeoJSON. São aceitos arquivos em armazenamento local; URLs, referências externas KML e caminhos de rede não são recursos desta edição.
+
+O projeto pode conter nome, identificadores internos, coordenadas de polígonos, cotas quando existentes, sistemas de referência de coordenadas, atributos importados, áreas, perímetros, informações de precisão, versões da geometria, datas de gravação, nomes e resumos SHA-256 dos arquivos de origem.
+
+Os arquivos originais são conservados integralmente dentro do projeto. Podem conter nomes, contatos, informações de proprietários e outros dados pessoais, inclusive metadados que não aparecem na interface. Editar os vértices ou deixar de exibir um atributo não remove esse conteúdo original ou o histórico anterior. Coordenadas e informações agrícolas podem ser dados pessoais quando relacionadas a pessoa identificada ou identificável.
+
+Não há recurso próprio de localização atual do dispositivo por GPS, identificação de hardware para licenciamento, publicidade, cobrança ou coleta automática de telemetria. O aplicativo não envia automaticamente projetos, backups ou relatórios ao responsável. Os bloqueios de rede desta edição não controlam conexões do Windows ou da Microsoft Store.
+
+3. Finalidades e responsabilidades
+
+O processamento local serve para abrir e manter projetos agrícolas, importar e visualizar polígonos, editar vértices, preservar versões e realizar backup e restauração. O responsável não recebe automaticamente o conteúdo desses arquivos. A pessoa ou organização que decide inserir dados pessoais de terceiros deve ter legitimidade para usá-los e atender às obrigações aplicáveis ao seu tratamento.
+
+O grupo privado “AgroLines - Testadores Internos” é administrado no Microsoft Partner Center para usuários conhecidos. Não há cadastro próprio de testadores no AgroLines. O responsável usa as informações disponibilizadas nesse grupo para organizar o acesso aos testes. Projetos, arquivos geográficos, capturas de tela, logs e relatórios só são recebidos para suporte quando enviados voluntariamente pelo usuário. O envio não autoriza outras finalidades. [CONFIRMAR: campos da audiência/avaliações efetivamente acessados no Partner Center e bases legais aplicáveis por finalidade, incluindo suporte e administração do grupo].
+
+A instalação não representa autorização irrestrita para qualquer tratamento de dados. Caso uma finalidade dependa de consentimento, ela deve ser explicada antes de sua coleta, com possibilidade de escolha e revogação aplicável. Não envie dados pessoais desnecessários ou dados sensíveis para demonstrar um problema.
+
+4. Armazenamento e segurança
+
+Projetos são arquivos SQLite com extensão .agrolines. A pasta padrão é %LOCALAPPDATA%\AgroLines\Projects, no perfil do usuário Windows. O usuário pode escolher outro destino local. Originais, geometrias e histórico ficam no projeto. Backup e restauração produzem arquivos em destinos novos escolhidos pelo usuário.
+
+Projetos e backups não possuem criptografia própria implementada pelo AgroLines. Sua proteção depende também do controle de acesso e da configuração de armazenamento do computador. Não se presume que BitLocker ou outro mecanismo de criptografia esteja ativo. Qualquer pessoa com acesso suficiente ao arquivo pode obter seu conteúdo; não entregue cópias a destinatários não autorizados.
+
+Esta edição não lê nem grava sessões de autenticação AgroLines protegidas por DPAPI. Arquivos de sessão deixados por outras versões podem continuar no computador; instalar esta edição não os elimina nem modifica os dados dessas versões.
+
+Não há garantia de segurança absoluta, anonimização dos arquivos ou eliminação forense. Smart App Control e Windows Defender não são desativados ou alterados pelo aplicativo. A compatibilidade do pacote distribuído pela Store com Smart App Control depende de homologação real; esta política não atesta que ela já ocorreu.
+
+5. Histórico, retenção e exclusão
+
+Não há prazo automático de descarte de projetos, originais, versões ou backups locais. Eles permanecem onde foram gravados até remoção externa ou gerenciamento de arquivos pelo usuário. A interface não elimina individualmente revisões históricas ou os originais arquivados.
+
+Para excluir um projeto, feche-o e remova seu arquivo, considerando também backups, cópias e projetos restaurados. Excluir apenas o arquivo usado na importação não apaga o original conservado no projeto. A exclusão de uma cópia não elimina cópias em outras pastas, lixeira, backups do sistema ou arquivos já entregues a terceiros.
+
+Mensagens, anexos, projetos, capturas e relatórios recebidos para suporte serão conservados por até 90 dias após o encerramento de cada atendimento. Após esse prazo, o responsável excluirá as cópias nas contas, pastas e repositórios sob seu controle, salvo obrigação legal ou necessidade de conservação justificada e documentada. Esse é um procedimento operacional manual, não uma limpeza automática do aplicativo. Não se promete eliminação imediata de cópias de provedores ou backups fora do seu controle. O prazo não se aplica aos projetos exclusivamente no computador do usuário. [CONFIRMAR: critérios de retenção para dados do grupo e solicitações de privacidade que não sejam atendimentos de suporte].
+
+6. Backup, atualização e desinstalação
+
+O usuário pode gerar um backup local e restaurá-lo em um novo arquivo. O backup conserva o histórico e os originais, incluindo eventuais dados pessoais não exibidos. Mantenha cópias em locais sob seu controle e verifique que possam ser restauradas.
+
+Projetos são gravados fora da pasta de instalação. A configuração MSIX foi preparada para conservar a pasta AgroLines após atualização e desinstalação, mas sua preservação efetiva ainda exige teste do pacote distribuído pela Store. Não considere o manifesto uma garantia de que esse ciclo foi homologado. Mantenha backup antes de atualizar ou desinstalar.
+
+Desinstalar não equivale a apagar projetos, backups, relatórios ou cópias externas. Arquivos fora da instalação podem permanecer. A Store pode administrar atualizações e a distribuição de acordo com suas regras e configurações; não há atualizador próprio que envie projetos para um servidor AgroLines.
+
+7. Diagnósticos e suporte
+
+A abertura normal não gera automaticamente os relatórios de homologação. Testes de manutenção acionados expressamente podem gerar evidências locais em %LOCALAPPDATA%\AgroLines\Evidence ou no destino indicado pelo operador. Não há envio automático de relatórios pelo aplicativo.
+
+Os diagnósticos podem registrar versões, resultados de testes sintéticos, estado das proteções do Windows, caminhos de instalação e arquivos, processos auxiliares Qt e eventos de integridade de código. Caminhos e eventos podem revelar nome do usuário ou computador, identificadores de segurança e informações de outros programas. Esses relatórios não são considerados anônimos. Não há descarte automático implementado desses arquivos.
+
+O canal de suporte é FABRICIO.GRUPODELATORRE@GMAIL.COM. O responsável recebe e revisa os arquivos enviados voluntariamente e solicita somente informações necessárias ao diagnóstico. Não há envio pelo programa para esse endereço. O prazo de suporte é o descrito na seção 5. Antes de enviar evidências, revise o conteúdo e remova dados desnecessários. Não envie senhas, tokens ou projetos completos quando uma descrição ou arquivo sintético for suficiente.
+
+Ferramentas de desenvolvimento e homologação não são execução normal do aplicativo. Workflows de manutenção podem guardar evidências no GitHub; o responsável precisa revisar esses dados antes de usar bancada real ou compartilhar relatórios. O pacote offline não contém um cliente de upload de diagnósticos.
+
+8. Destinatários, Windows e Microsoft Store
+
+O AgroLines não transmite automaticamente os arquivos locais para outros usuários. Se o usuário os copiar, enviar por outro programa ou escolher uma pasta sincronizada por um serviço externo, o tratamento desse serviço dependerá das suas próprias configurações e políticas. Isso não é sincronização realizada pelo AgroLines.
+
+O contato informado utiliza Gmail, serviço da Google. Mensagens e anexos enviados a esse endereço serão processados por esse serviço de e-mail e recebidos pelo responsável. A administração do grupo usa Microsoft Partner Center e o suporte usa Gmail. [CONFIRMAR: países e mecanismos aplicáveis às transferências desses serviços e eventuais outros destinatários de dados de suporte]. Não se promete processamento exclusivo no Brasil.
+
+A Microsoft Store e o Windows podem tratar dados de conta Microsoft, instalação, atualizações, audiência privada e diagnósticos do sistema conforme suas políticas e configurações. Esses tratamentos são distintos dos arquivos processados localmente pelo AgroLines. Consulte a Declaração de Privacidade da Microsoft: https://www.microsoft.com/pt-br/privacy/privacystatement.
+
+[CONFIRMAR: quais informações sobre testadores, avaliações ou relatórios do Partner Center o responsável efetivamente acessará e para quais finalidades]. A ausência de telemetria própria não significa ausência de tratamento pela plataforma.
+
+9. Direitos e incidentes
+
+Nos casos aplicáveis, a LGPD prevê direitos de confirmação, acesso, correção, informação sobre compartilhamento, anonimização, bloqueio ou eliminação nas hipóteses legais, portabilidade quando cabível, oposição e direitos relativos ao consentimento. Solicitações referentes a dados recebidos pelo responsável podem ser enviadas a FABRICIO.GRUPODELATORRE@GMAIL.COM, com informação mínima necessária para localizá-las. Não envie documentos, senhas ou tokens espontaneamente.
+
+O responsável não tem acesso automático aos arquivos no computador do usuário e não pode apagá-los remotamente. Pedidos sobre dados controlados por outra pessoa ou organização podem precisar ser dirigidos a ela. A enumeração dos direitos não afirma que haja atendimento automático na interface.
+
+O responsável registra a solicitação, identifica os dados sob seu controle e verifica a legitimidade por informações proporcionais ao pedido, sem exigir documentos de forma automática. A resposta descreve os dados encontrados, as ações realizadas e eventuais limitações legais ou técnicas. Correções e exclusões incluem mensagens, anexos e cópias sob seu controle, conforme cabimento legal; a resposta observa os prazos da LGPD. Esses procedimentos são manuais e devem ser verificados pelo responsável antes da distribuição. É possível recorrer à ANPD e aos órgãos competentes pelos canais aplicáveis.
+
+Não há serviço automático próprio de notificação de incidentes. O responsável recebe relatos no contato informado, interrompe o compartilhamento acidental sob seu controle, avalia os dados e pessoas afetados, documenta a resposta e providencia as comunicações à ANPD e aos titulares quando legalmente exigidas. O procedimento é manual e não implica garantia de detecção automática ou de recuperação de cópias obtidas por terceiros.
+
+10. Público e mudanças
+
+Não foi definida restrição etária para os testadores. O AgroLines não é apresentado como exclusivo para maiores de 18 anos nem como aplicativo direcionado a crianças ou adolescentes. Não há verificação de idade ou autorização específica de responsáveis no programa. Não utilize dados de menores em arquivos de teste desnecessariamente. Solicitações que envolvam crianças ou adolescentes serão avaliadas considerando seu melhor interesse e as exigências legais, com participação do responsável legal quando aplicável e minimização dos dados solicitados. A gestão do grupo e do suporte precisa verificar essas condições antes de receber ou usar informações de menores.
+
+Alterações nas funcionalidades ou práticas reais exigem revisão desta política. [CONFIRMAR: URL pública estável, data de vigência e forma de aviso aos testadores]. Antes da publicação, todos os campos obrigatórios devem ser resolvidos e o texto conferido contra o pacote realmente distribuído.
