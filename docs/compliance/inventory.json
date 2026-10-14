@@ -7993,10 +7993,12 @@
       "redistribution": "Rights and all embedded notices must be evidenced; existing signatures do not grant rights",
       "patents_codecs": "No additional patent license promised; review exact license terms",
       "pending": [
-        "Exact upstream source/build mapping and complete static dependency attribution"
+        "Corresponding source input and six recipes/patches matched; Windows toolchain/binary reproduction and embedded dependency notices still separately scoped"
       ],
       "source_requirement": "no_general_binary_source_requirement_identified",
-      "copyright_scope_confirmed": false
+      "copyright_scope_confirmed": false,
+      "source_input_evidence": "evidence/fiona-proj-recipes.json",
+      "source_input_correspondence_proven": true
     },
     {
       "id": "qhull_r-Fiona",

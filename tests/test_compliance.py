@@ -180,6 +180,18 @@ def test_bundle_only_explicit_third_party_archives_and_notices(tmp_path):
     index = {"sources": [{"filename": "upstream.tar", "sha256": hashlib.sha256(raw).hexdigest()}]}
     (dossier / "sources-index.json").write_text(json.dumps(index))
     (dossier / "notices/LICENSE").write_text("synthetic license")
+    (dossier / "documents.json").write_text(
+        json.dumps(
+            {
+                "files": [
+                    {
+                        "path": "notices/LICENSE",
+                        "sha256": hashlib.sha256(b"synthetic license").hexdigest(),
+                    }
+                ]
+            }
+        )
+    )
     archive = tmp_path / "sources.zip"
     result = pack(dossier, sources, archive)
     assert not result["published"] and not result["complete_corresponding_source"]
@@ -212,3 +224,15 @@ def test_missing_binary_provenance_cannot_be_cleared_by_document_refresh(dossier
     errors = verify(dossier)["technical_failure"]
     assert any("without verified provenance" in error for error in errors)
     assert any("input hash not established" in error for error in errors)
+
+
+def test_source_bundle_rejects_unreviewed_material_in_notices(tmp_path):
+    dossier, sources = tmp_path / "dossier", tmp_path / "sources"
+    (dossier / "notices").mkdir(parents=True)
+    sources.mkdir()
+    (dossier / "sources-index.json").write_text(json.dumps({"sources": []}))
+    (dossier / "documents.json").write_text(json.dumps({"files": []}))
+    (dossier / "notices/AgroLines-private.py").write_text("must not enter any archive")
+    with pytest.raises(ValueError, match="Unreviewed"):
+        pack(dossier, sources, tmp_path / "must-not-exist.zip")
+    assert not (tmp_path / "must-not-exist.zip").exists()

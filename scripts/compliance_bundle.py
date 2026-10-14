@@ -28,6 +28,33 @@ def pack(dossier, source_dir, output):
         if hashlib.file_digest(source.open("rb"), "sha256").hexdigest() != record["sha256"]:
             raise ValueError("Source hash mismatch: " + name)
         files.append((source, "sources/" + name))
+    document_rows = json.loads((dossier / "documents.json").read_text())["files"]
+    reviewed = {
+        row["path"]: row["sha256"] for row in document_rows if row["path"].startswith("notices/")
+    }
+    actual = {
+        p.relative_to(dossier).as_posix() for p in (dossier / "notices").rglob("*") if p.is_file()
+    }
+    if not reviewed or actual != set(reviewed):
+        raise ValueError("Unreviewed or missing legal document; refusing source bundle")
+    for relative, digest in reviewed.items():
+        file = dossier / relative
+        if file.suffix.casefold() in (
+            ".py",
+            ".pyc",
+            ".pyo",
+            ".pyd",
+            ".dll",
+            ".exe",
+            ".o",
+            ".obj",
+            ".c",
+            ".cpp",
+            ".h",
+        ):
+            raise ValueError("Source/object/binary cannot be inserted as a legal notice")
+        if hashlib.sha256(file.read_bytes()).hexdigest() != digest:
+            raise ValueError("Reviewed legal document hash mismatch")
     for file in sorted((dossier / "notices").rglob("*")):
         if file.is_symlink():
             raise ValueError("No symlinks in legal documents")

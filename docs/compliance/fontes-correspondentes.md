@@ -69,8 +69,14 @@ fontes. O resultado é **parcial, para revisão**, não oferta de fonte aprovada
    realmente incluídas, não baixar grids adicionais nem inferir direitos de uso.
 
 Arquivos SPDX vcpkg preservados no payload e wheels dão hashes/nomes de patches.
-As receitas do repositório `sgillies/fiona-wheels` examinado **não foram equiparadas
-sem comparação** ao builder registrado: arquivo de mesmo nome pode divergir.
+As receitas do repositório `sgillies/fiona-wheels` foram comparadas: os seis
+arquivos PROJ (receita, três patches, usage e vcpkg.json) coincidem exatamente com
+os SHA-256 do SPDX após reproduzir o checkout Windows CRLF. O arquivo oficial de
+fonte PROJ 9.3.1 também foi obtido e seu SHA-512 coincide com o recurso do SPDX.
+Os três patches passam em `git apply --check` e foram aplicados em cópia isolada.
+Essas são correspondências comprovadas de **entradas declaradas de fonte/build**,
+não reprodução binária Windows completa. GDAL e outros ports não foram equiparados
+apenas por nome.
 A solicitação reproduzível ao fornecedor deve incluir paths/SHA de `inventory.json`,
 versão dos wheels e SPDX, e pedir fontes, patches, scripts e atribuições desses
 bytes. Nenhuma mensagem foi enviada a fornecedores nesta tarefa.
@@ -101,3 +107,8 @@ dois bancos incluídos, em modo somente leitura e com hashes conferidos antes/de
 Os metadados e o método estão em `evidence/proj-databases.json`; revisar termos e
 atribuições desses dados separadamente. Não baixar grids ou atualizar bases como
 forma de obter avisos: isso mudaria o candidato e a fundação de precisão.
+
+Evidência reproduzível das entradas PROJ: `evidence/fiona-proj-recipes.json`,
+com commits/blobs, hashes LF/CRLF, SHA-512 do tar oficial e resultado de cada patch.
+As seis entradas reconstruídas estão no pacote local de materiais, sem publicação.
+Essas verificações não modificaram a base ou biblioteca utilizada pelo AgroLines.

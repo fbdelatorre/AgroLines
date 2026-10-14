@@ -269,6 +269,32 @@
       "exact_binary_correspondence": false,
       "patches": "Build and corresponding Chromium/PDFium submodule sources/patches missing",
       "git_tag_signature_verified": false
+    },
+    {
+      "component": "Fiona-PROJ-build-recipes",
+      "version": "PROJ 9.3.1 input recipes",
+      "repository": "https://github.com/sgillies/fiona-wheels.git",
+      "commit": "01866e10db4e92a8cdaf5ed3d2813e2d535127b8",
+      "filename": "fiona-PROJ-9.3.1-recipes-EXACT-CRLF.zip",
+      "sha256": "370e4432b1e156aca890ba6b0d1f8d8d3db93f3ababa1e0df8f595fd2d3f7f88",
+      "bytes": 3950,
+      "status": "six_exact_build_input_hashes_after_windows_crlf_checkout",
+      "exact_binary_correspondence": false,
+      "recipe_input_correspondence_proven": true,
+      "redistribution_terms_review_pending": true
+    },
+    {
+      "component": "PROJ-Fiona-exact-source-input",
+      "version": "9.3.1",
+      "url": "https://github.com/OSGeo/PROJ/archive/refs/tags/9.3.1.tar.gz",
+      "filename": "PROJ-9.3.1-vcpkg-exact.tar.gz",
+      "sha256": "ead6a1d15ac35013db32046e46d36e93caeb1d8f6b83a44bce120bd5a8cf53c2",
+      "sha512": "45775e2b2a6b5bc490743c562155521a2ef48c5a8834cc96f88784aea785df10688f8962ae22fcac64d3b2f85378539ef1d3a082243cdc0ca3695ed8b9efa18b",
+      "bytes": 44050239,
+      "status": "exact_upstream_source_input_checksum_matches_distributed_vcpkg_spdx",
+      "source_input_correspondence_proven": true,
+      "exact_binary_correspondence": false,
+      "patches": "Six recipe/patch inputs independently matched; complete Windows toolchain/dependencies/build not reproduced"
     }
   ]
 }

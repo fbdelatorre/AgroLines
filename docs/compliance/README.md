@@ -64,7 +64,7 @@ e revisão próprios, e continua com os gates jurídicos/contratuais fechados.
 
 Zero PE com procedência pendente significa correspondência com o **binário de
 entrada** do build. Não significa código-fonte correspondente LGPL comprovado.
-As fontes locais agora somam 20 arquivos, incluindo uma árvore candidata WebEngine
+As fontes locais agora somam 22 arquivos, incluindo uma árvore candidata WebEngine
 sem correspondência final/submódulos; nenhuma dessas lacunas foi convertida em aprovação.
 
 A exclusão do instalador PoC legado unsigned foi estendida aos PRs dependentes
@@ -72,3 +72,10 @@ da integração e às branches de conformidade. As execuções antigas desta bra
 foram canceladas **antes** da etapa de instalação; quality, inventário, MSIX
 extraído e provas offline continuam ativos. Isso aplica a restrição de não instalar
 pacote não assinado, sem diminuir verificações de integridade ou assinatura.
+
+As pendências documentais são registros de evidência, não 109 decisões pessoais
+ou compras exigidas. Reproduzir bit a bit toda biblioteca permissiva não é uma
+exigência jurídica automática. As obrigações de fontes/avisos são determinadas
+pela licença efetiva e pela modalidade de entrega; os bloqueios reais estão agrupados
+no documento de pendências. Entradas de fonte e seis arquivos de receita/patch
+PROJ tiveram correspondência por hash comprovada, sem alegar reprodução total.
