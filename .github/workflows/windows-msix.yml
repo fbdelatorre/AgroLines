@@ -53,6 +53,15 @@ jobs:
           if (-not $result.frozen -or -not $result.checks_passed -or -not $result.payload_integrity_verified) { throw 'Runtime incompleto.' }
           if ($result.package_identity.packaged -or $result.msix_validation_passed) { throw 'Probe unpacked nao pode declarar instalacao MSIX.' }
           Write-Output '::warning::Pacote sem assinatura: instalacao MSIX/Qt em identidade/SAC pendentes de pacote confiavel e bancada real.'
+      - name: Offline-only frozen native and WebEngine probe
+        shell: pwsh
+        run: |
+          $process = Start-Process -FilePath build/msix-unpacked/1.0.0.0/VFS/ProgramFilesX64/AgroLines/AgroLinesPoC.exe -ArgumentList '--offline-network-report evidence/msix/offline-only.json' -PassThru
+          if (-not $process.WaitForExit(120000)) { $process.Kill(); throw 'Offline probe timeout' }
+          if ($process.ExitCode -ne 0) { throw 'Offline probe failed' }
+          $result = Get-Content evidence/msix/offline-only.json -Raw | ConvertFrom-Json
+          if (-not $result.passed -or -not $result.remote_ui_denied -or -not $result.webengine_ready) { throw 'Offline controls failed' }
+          if ($result.sac_approved -or $result.native_network_trace_validated) { throw 'CI cannot certify real-machine acceptance' }
       - uses: actions/upload-artifact@v4
         if: always()
         with:

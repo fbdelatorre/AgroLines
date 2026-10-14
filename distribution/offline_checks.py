@@ -11,6 +11,7 @@ from unittest.mock import patch
 from PySide6.QtWidgets import QDialog
 
 from core.local_projects import LocalProject
+from core.offline_policy import require_local_path
 from desktop.local_projects import LocalVertexDialog
 
 
@@ -45,6 +46,7 @@ def run_offline_checks(project_directory=None):
     ):
         directory = project_directory or contexts.enter_context(tempfile.TemporaryDirectory())
         root = Path(directory)
+        require_local_path(root)
         root.mkdir(parents=True, exist_ok=True)
         if (root / "project.agrolines").exists():
             return {

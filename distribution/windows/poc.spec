@@ -1,11 +1,15 @@
 # Windows builder only. Onedir + no UPX: every native executable remains auditable.
+import json
 from pathlib import Path
 from PyInstaller.utils.hooks import collect_data_files
 
 root = Path(SPECPATH).parent.parent
 prepared = root / 'build' / 'distribution'
+store = json.loads((prepared / 'metadata.json').read_text()).get('offline_only') is True
+remote = ['desktop.main', 'desktop.client', 'desktop.health', 'desktop.vault',
+          'desktop.pages', 'desktop.geography', 'server', 'fastapi', 'uvicorn', 'psycopg']
 a = Analysis(
-    [str(root / 'distribution/poc.py')],
+    [str(root / ('distribution/store.py' if store else 'distribution/poc.py'))],
     pathex=[str(root)],
     binaries=[],
     datas=[
@@ -13,13 +17,17 @@ a = Analysis(
         (str(root / 'distribution/windows/brand.svg'), 'distribution/windows'),
         (str(prepared / 'metadata.json'), 'distribution/windows'),
         (str(root / 'distribution/windows/msix/identity.json'), 'distribution/windows/msix'),
-    ] + collect_data_files('pyproj') + collect_data_files('fiona'),
+    ] + ([(str(root / 'docs/privacy/offline'), 'desktop/privacy_assets')] if store else [])
+      + collect_data_files('pyproj') + collect_data_files('fiona'),
     hiddenimports=[],
     hookspath=[],
-    runtime_hooks=[],
-    excludes=['PyQt5', 'PyQt6', 'PySide2', 'tkinter'],
+    runtime_hooks=[str(root / 'distribution/windows/offline_hook.py')] if store else [],
+    excludes=['PyQt5', 'PyQt6', 'PySide2', 'tkinter'] + (remote if store else []),
     noarchive=False,
 )
+if store and any(name == module or name.startswith(module + '.')
+                 for name, _, _ in a.pure for module in remote):
+    raise RuntimeError('Remote module leaked into offline Store payload')
 pyz = PYZ(a.pure)
 exe = EXE(
     pyz, a.scripts, [], exclude_binaries=True, name='AgroLinesPoC',

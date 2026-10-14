@@ -13,6 +13,7 @@ from defusedxml.ElementTree import fromstring
 from shapely.geometry import mapping, shape
 
 from core.geography import inspect_polygon, overlap_area
+from core.offline_policy import require_local_path
 
 MAX_FILE_BYTES = 8 * 1024 * 1024
 MAX_BATCH_BYTES = 32 * 1024 * 1024
@@ -32,6 +33,7 @@ class ImportPreview:
 
 
 def file_bytes(path):
+    require_local_path(path)
     if not path.is_file() or path.stat().st_size > MAX_FILE_BYTES:
         raise ValueError("Arquivo ausente ou maior que 8 MiB.")
     return path.read_bytes()
@@ -78,7 +80,12 @@ def datasets(path, override):
     if suffix == ".kml":
         check_kml(file_bytes(path))
     for layer in fiona.listlayers(str(path)):
-        with fiona.open(str(path), layer=layer, allow_unsupported_drivers=True) as source:
+        with fiona.open(
+            str(path),
+            layer=layer,
+            allow_unsupported_drivers=True,
+            enabled_drivers=["ESRI Shapefile", "GPKG", "KML", "LIBKML"],
+        ) as source:
             # KML declares geographic WGS84 by specification; other formats must
             # carry a CRS or receive an explicit operator override.
             crs = "EPSG:4326" if suffix == ".kml" else (source.crs_wkt or override)

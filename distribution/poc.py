@@ -28,6 +28,10 @@ def main():
         else Path(__file__).parent / "windows"
     )
     initial_metadata = json.loads((initial_assets / "metadata.json").read_text(encoding="utf-8"))
+    from core.offline_policy import is_offline_only, require_local_path
+
+    if is_offline_only() and not args.smoke_report:
+        args.local = True
     if initial_metadata.get("distribution_channel") == "microsoft-store" and not args.smoke_report:
         args.local = True
     if (
@@ -63,9 +67,13 @@ def main():
 
     directory = data_directory() / "Evidence"
     output = args.smoke_report or directory / (uuid.uuid4().hex + ".json")
+    require_local_path(output)
+    if args.offline_project_root:
+        require_local_path(args.offline_project_root)
     output.parent.mkdir(parents=True, exist_ok=True)
     report = {
         "schema_version": 1,
+        "offline_only": is_offline_only(),
         "frozen": bool(getattr(sys, "frozen", False)),
         "started_utc": STARTED.isoformat(),
         "approved_for_distribution": False,

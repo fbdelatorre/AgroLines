@@ -1,3 +1,8 @@
+> Atualização da primeira edição: pacote exclusivamente offline conforme
+> [store-offline-only.md](store-offline-only.md). A política vigente de preparação
+> está em [privacy/offline/README.md](privacy/offline/README.md).
+> A auditoria histórica do PR #9 continua preservada.
+
 # Microsoft Store — MSIX oficial do AgroLines
 
 Esta entrega prepara o candidato x64 e a homologação. Não publica, não configura
