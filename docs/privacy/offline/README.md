@@ -6,6 +6,8 @@
 - [Procedimento manual de suporte e retenção de 90 dias](procedimento-suporte.md)
 - [Pendências legais, operacionais e técnicas](pendencias.md)
 - [Programa inicial exclusivo para adultos](../../programa-testadores-adultos.md)
+- [Matriz de finalidades, bases e decisões de transferência](hipoteses-legais-e-fornecedores.md)
+- [Fontes oficiais consultadas e limites de acesso](fontes-bases-transferencias.md)
 
 Contato oficial confirmado: **fabricio.grupodelatorre@gmail.com**, para privacidade,
 suporte e solicitações referentes ao programa de testes. Nome, canal Gmail, grupo
@@ -16,6 +18,9 @@ O programa inicial é exclusivo para adultos (18+), por procedimento manual e
 sem bloqueio etário no aplicativo. Livre / IARC 3+ / Microsoft 3+ e audiência privada
 permanecem conforme informação do responsável. Futura participação de menores
 exige nova revisão jurídica/operacional.
+Gmail é pessoal gratuito; o suporte AgroLines ainda não começou. Partner Center
+é usado para preparar cadastro/distribuição; uso de relatórios não confirmado.
+Controles de segurança/retenção e contratos específicos não foram comprovados.
 Os campos CONFIRMAR restantes impedem considerar a política pronta para publicação.
 HTML sem scripts ou recursos externos; TXT não substitui a URL exigida para desktop.
 Para atualizar as cópias após editar Markdown:

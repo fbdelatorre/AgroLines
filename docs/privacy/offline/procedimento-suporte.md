@@ -5,8 +5,18 @@ fabricio.grupodelatorre@gmail.com. Decisões confirmadas em 14/10/2026.
 Aplica-se à edição Store offline e ao grupo “AgroLines - Testadores Internos”.
 Não há cadastro, envio de e-mail ou limpeza automática no aplicativo.
 
+Estado confirmado em 14/10/2026: Gmail pessoal gratuito, não Workspace, somente
+o responsável informa acesso. O suporte AgroLines ainda não começou; não há
+histórico de atendimentos nessa conta informado, encaminhamento a outros serviços
+ou download de anexos de suporte para pastas sincronizadas. Os controles abaixo
+ainda precisam ser configurados e testados; não estão comprovados pela documentação.
+
 ## 1. Preparar antes de receber dados
 
+- Conferir fontes/termos e bases por finalidade conforme
+  [análise documental](hipoteses-legais-e-fornecedores.md), sem escolher base
+  automaticamente. Guardar decisões e documentos em arquivo privado, sem lista
+  de testadores, mensagens, contratos privados ou tokens no GitHub público.
 - Conferir segurança e acesso da conta Gmail e dos destinos de suporte; ativar
   proteções da conta disponíveis sem inserir credenciais no repositório.
 - Criar uma lista privada de controle, com ID do atendimento, contato mínimo,
@@ -159,7 +169,7 @@ ou verificação automática implementada no AgroLines.
 | Não enviar suporte automaticamente | Controle técnico no pacote offline dependente; testes no relatório |
 | Bloquear recursos remotos | Código/testes; homologação Windows/Store ainda pendente |
 | Projetos, versões, backup e restauração locais | Código/testes existentes preservados |
-| Registro, encerramento, prazo e limpeza de suporte | Procedimento manual adotado; configurar e validar pelo responsável |
+| Registro, encerramento, prazo e limpeza de suporte | Procedimento planejado; suporte não iniciado, configurar e validar pelo responsável |
 | Elegibilidade 18+ e aceite do termo | Regra documental e procedimento manual propostos; execução ainda não comprovada |
 | Direitos, incidentes e minimização | Procedimento manual; comprovar execução antes de receber dados reais |
 | Cifra de projetos/backup | Não implementada; não prometer |
