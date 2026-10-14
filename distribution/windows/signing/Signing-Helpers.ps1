@@ -19,7 +19,7 @@ function Get-AgroApprovedSigningSet {
     $data = Get-Content -LiteralPath $Plan -Raw | ConvertFrom-Json
     $rules = Get-Content -LiteralPath $Policy -Raw | ConvertFrom-Json
     if ($data.schema_version -ne 1 -or $rules.schema_version -ne 1 -or
-        -not $data.ready_for_authorized_signing -or $data.violations.Count -ne 0 -or
+        $data.ready_for_authorized_signing -isnot [bool] -or -not $data.ready_for_authorized_signing -or $data.violations.Count -ne 0 -or
         $data.source_commit -cne $SourceCommit -or
         $data.policy_sha256 -cne (Get-FileHash -LiteralPath $Policy -Algorithm SHA256).Hash.ToLowerInvariant()) {
         throw 'ASSINATURA PENDENTE: complete authorized policy/source/plan required before key access.'
@@ -44,6 +44,7 @@ function Get-AgroApprovedSigningSet {
         $policyEntry = @($rules.files | Where-Object path -CEQ $file.path)
         if ($policyEntry.Count -ne 1 -or $policyEntry[0].action -cne $file.action) { throw 'Plan not authorized by exact policy entry.' }
         $rule = $policyEntry[0]
+        if ($rule.rights_confirmed -isnot [bool] -or $rule.origin_confirmed -isnot [bool] -or $file.sign_authorized -isnot [bool]) { throw 'Explicit boolean rights/origin/action decisions required.' }
         if ($file.sign_authorized) {
             if ($file.authenticode -ne 'NotSigned' -or -not $rule.rights_confirmed -or -not $rule.origin_confirmed -or -not $rule.rights_evidence) { throw 'Signing rights/origin not approved.' }
             if ($rule.action -eq 'sign_own') {

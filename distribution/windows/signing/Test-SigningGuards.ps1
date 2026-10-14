@@ -4,7 +4,12 @@ $temporary = Join-Path ([IO.Path]::GetTempPath()) ('agrolines-signing-guard-' + 
 New-Item $temporary -ItemType Directory | Out-Null
 try {
     @{schema_version=1; files=@()} | ConvertTo-Json | Set-Content (Join-Path $temporary 'policy.json')
-    @{schema_version=1; ready_for_authorized_signing=$false; violations=@()} | ConvertTo-Json | Set-Content (Join-Path $temporary 'plan.json')
+    foreach ($decision in @($false,'false')) {
+    @{
+        schema_version=1; ready_for_authorized_signing=$decision; violations=@()
+        source_commit=('0' * 40)
+        policy_sha256=(Get-FileHash (Join-Path $temporary 'policy.json') -Algorithm SHA256).Hash.ToLowerInvariant()
+    } | ConvertTo-Json | Set-Content (Join-Path $temporary 'plan.json')
     $caught = $false
     try {
         & (Join-Path $PSScriptRoot 'Sign-ApprovedNative.ps1') -Payload $temporary -Plan (Join-Path $temporary 'plan.json') -Policy (Join-Path $temporary 'policy.json') -SourceCommit ('0' * 40) -CertificateThumbprint ('0' * 40) -ExpectedSignerSubject 'NOT-A-CERTIFICATE' -ExpectedKeyProvider 'NOT-A-PROVIDER' -TimestampUrl 'https://invalid.example'
@@ -13,5 +18,6 @@ try {
         $caught = $true
     }
     if (-not $caught) { throw 'Blocked signing unexpectedly proceeded.' }
+    }
     Write-Output 'Blocked policy stopped before tool/certificate/key access. No test certificate created.'
 } finally { Remove-Item -LiteralPath $temporary -Recurse -Force }
