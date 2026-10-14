@@ -177,6 +177,12 @@ def test_policy_changed_after_review_invalidates_artifact_binding(specimen, tmp_
         bind(package, plan, COMMIT, policy, policy)
 
 
+def test_missing_embedded_policy_cannot_represent_reviewed_candidate(specimen):
+    specimen[1]["embedded_policy_required"] = True
+    with pytest.raises(ValueError, match="Embedded native policy"):
+        run(specimen)
+
+
 def test_incomplete_signature_coverage_is_not_approval(specimen):
     specimen[3]["files"].pop()
     with pytest.raises(ValueError, match="coverage"):

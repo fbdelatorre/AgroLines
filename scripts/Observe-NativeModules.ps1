@@ -90,3 +90,16 @@ $phases = @(
     method = 'Read-only Process.Modules snapshots and descendant discovery; transient loads/access failures may be missed'
     installed_msix_validated = $false
 } | ConvertTo-Json -Depth 12 | Set-Content -LiteralPath (Join-Path $directory 'loads.json') -Encoding utf8
+if (@($phases | Where-Object { $_.exit_code -ne 0 }).Count -or $allErrors.Count) {
+    throw 'Startup/probe/module observation failed; see loads.json. No acceptance claim.'
+}
+if (-not @($phases.modules | Where-Object { $_.process -eq 'QtWebEngineProcess.exe' }).Count) {
+    throw 'Qt WebEngine helper was not observed; investigate before accepting the reduced payload.'
+}
+$external = @($phases.modules | Where-Object {
+    $_.scope -eq 'external' -and
+    -not $_.path.StartsWith((Join-Path $env:ProgramData 'Microsoft\Windows Defender\'), [StringComparison]::OrdinalIgnoreCase)
+})
+if ($external.Count) {
+    throw 'Non-system module outside payload observed. Review exact paths in loads.json; no builder runtime fallback accepted.'
+}

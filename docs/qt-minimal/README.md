@@ -53,3 +53,24 @@ Resolver a origem não aprova licenças nem autoriza envio. A política mantém
 envio) todos `approved=false`, sem evidências inventadas. O gate de homologação
 privada exige revisão explícita com evidências, além da proveniência e dos
 controles protegidos já existentes. CI nunca aprova estes itens.
+
+A medição seguinte [38640766301](https://github.com/fbdelatorre/AgroLines/actions/runs/38640766301),
+commit `4ced81b`, encontrou **191 PE** (113 aceitos, 78 unsigned), **zero origem
+pendente no payload**, 190 correspondências exatas de fonte de build e 811
+arquivos totais. Houve 262 remoções perante o original: 216 Qt e 46 inputs
+incidentais. Essa execução não concluiu os gates/probes nem gerou MSIX aprovado;
+a saída de diagnóstico em grupo/linha agregada foi substituída por registros por
+arquivo para manter os erros visíveis. A política foi então revisada caminho a
+caminho contra os hashes originais; nenhuma remoção GIS ou alteração de PE de
+terceiro foi aprovada. `remocoes-revisadas.csv` preserva todas as justificativas.
+Uma cópia `ucrtbase.dll` removida havia sido observada originalmente: a justificativa
+é a implantação UCRT fornecida pelo Windows 11, não ausência de observação.
+Os probes de regressão do candidato final continuam sendo condição obrigatória.
+
+A política correspondente é incorporada como `native-signing-policy.json` no
+payload e validada por hash antes de assinatura. Os três textos GNU também são
+verificados dentro do archive. Nenhum texto legal de privacidade foi alterado.
+O workflow passa a executar builds automáticos de branch por PR, push apenas em
+main, mantendo o dispatch manual, para evitar dois builds da mesma alteração.
+A compilação dupla no mesmo job é intencional: prova reprodução dos bytes neste
+builder/epoch, não reprodutibilidade independente entre máquinas.

@@ -33,6 +33,20 @@ def inspect_package(path):
             raise ValueError("Forbidden Qt component in actual MSIX archive")
         if "AppxSignature.p7x" in names:
             raise ValueError("Expected unsigned Store submission candidate")
+        if (
+            archive.read(PREFIX + "native-signing-policy.json")
+            != (ROOT / "distribution/windows/signing/native-policy.json").read_bytes()
+        ):
+            raise ValueError("Packaged native policy differs from reviewed source")
+        license_texts = json.loads(
+            (ROOT / "distribution/windows/third-party/sources.json").read_text()
+        )
+        for entry in license_texts["texts"]:
+            content = archive.read(
+                PREFIX + "third-party-notices/reviewed-texts/" + entry["local_file"]
+            )
+            if hashlib.sha256(content).hexdigest() != entry["sha256"]:
+                raise ValueError("Packaged license text differs from official source bytes")
         package = ET.fromstring(archive.read("AppxManifest.xml"))
         declared = package.find("f:Identity", NS).attrib
         if (
@@ -120,6 +134,8 @@ def inspect_package(path):
         "privacy_files": sorted(policy_names),
         "privacy_sha256": policy_hashes,
         "privacy_policy_approved": False,
+        "license_texts_verified": [entry["local_file"] for entry in license_texts["texts"]],
+        "license_compliance_approved": False,
         "installed_msix_validated": False,
         "sac_approved": False,
         "native_network_trace_validated": False,

@@ -29,7 +29,7 @@ remoto quando o fornecedor suporta esse mecanismo. Não há elegibilidade/preço
 individual confirmado com fornecedor; solicitar cotação e prova de requisitos.
 **Não exigir constituir empresa nem comprar EV por inferência.**
 
-## Evidências reutilizadas e ausência de redução Qt
+## Baseline preservado e redução Qt posterior
 
 Baseline original: 453 PE, 375 SignTool aceitos, 78 unsigned, 67 unsigned carregados,
 72 NotTimeValid genéricos aceitos pela política Authenticode. SHA-256 do MSIX:
@@ -38,10 +38,11 @@ Inventário, origem por hash e cargas em `docs/native-store-audit/` foram reapro
 Não se repetiu a auditoria original de carga. Novos builds verificam só seus bytes
 atuais e o desvio perante essa política.
 
-**Não existe redução Qt no head inicial 3c7f5fb desta tarefa**; não inventar contagem
-reduzida. Não removemos componentes ou trocamos versões/drivers/algoritmos. Alteração
-futura de payload exige atualização revisada da política e regressões que justifiquem
-adição/remoção. Não observado no polling não significa dispensável.
+A etapa inicial de assinatura não reduziu Qt. A continuação autorizada está em
+[Qt mínimo](../qt-minimal/README.md), com rastreamento dos 46 inputs incidentais,
+remoções revisadas, inventário e regressões do payload atual. A matriz CSV desta
+pasta preserva o baseline original, não a contagem atual. Não observado no polling
+não significa dispensável; nenhuma versão/algoritmo GIS foi trocado.
 
 ## Pipeline e bloqueios
 
@@ -65,8 +66,9 @@ Workflow: `.github/workflows/windows-msix.yml`, com três modos:
   de main protegida, autorização específica AGROLINES_STORE_HOMOLOGATION_AUTHORIZED,
   referência de revisão manual/legal e ambiente com revisor. Exige todos os arquivos
   conhecidos, sem drift e procedência fechada. Prepara apenas cópia identificada
-  para teste privado na Store, **não envia**. Os 46 casos de origem ainda pendentes
-  bloqueiam essa promoção hoje. Validade de catálogos/PE e SAC só se avalia depois
+  para teste privado na Store, **não envia**. Exige ainda `release_reviews` explícitos
+  com evidências de licenciamento, mecanismo LGPL, privacidade e autorização; todos
+  permanecem pendentes. Resolver origem não aprova esses gates. Validade de catálogos/PE e SAC só se avalia depois
   da entrega legítima pela Microsoft; não exigir compra de certificado para iniciar
   essa avaliação autorizada. Distribuição a clientes continua não aprovada.
 
@@ -113,8 +115,8 @@ com job incondicionalmente desabilitado, evitando a rota antiga sem esses contro
 
 ## Arquivos entregues
 
-- `distribution/windows/signing/native-policy.json`: política executável dos 453 PE.
-- [matriz-arquivos.csv](matriz-arquivos.csv): decisão, origem, bloqueio e alternativas por arquivo.
+- `distribution/windows/signing/native-policy.json`: política executável do payload atual (evidência de evolução em `docs/qt-minimal/`).
+- [matriz-arquivos.csv](matriz-arquivos.csv): baseline histórico de 453 PE; inventário atual no artefato `native-current.csv/json`.
 - `scripts/signing_pipeline.py`: inventário correlacionado, drift/reprodutibilidade,
   binding, pós-assinatura e verificação de pacote; não acessa chaves.
 - `Signing-Helpers.ps1`, `Sign-ApprovedNative.ps1`, `Sign-ApprovedMSIX.ps1`,

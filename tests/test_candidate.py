@@ -14,6 +14,15 @@ def fixture_package(path, omit=None, extra=None, publisher=None):
     """No fixture here is an executable, signed MSIX or SAC evidence."""
     files = {
         "AppxManifest.xml": (CONFIG / "AppxManifest.xml").read_bytes(),
+        PREFIX + "native-signing-policy.json": (
+            ROOT / "distribution/windows/signing/native-policy.json"
+        ).read_bytes(),
+        **{
+            PREFIX + "third-party-notices/reviewed-texts/" + name: (
+                ROOT / "distribution/windows/third-party" / name
+            ).read_bytes()
+            for name in ("GPL-3.0-only.txt", "LGPL-3.0-only.txt", "LGPL-2.1-only.txt")
+        },
         **{
             PREFIX
             + "_internal/"

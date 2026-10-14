@@ -1,6 +1,7 @@
 name: Microsoft Store MSIX candidate (no publication)
 on:
   push:
+    branches: [main] # PR validation covers integration branches once; manual mode remains available.
     paths: ['distribution/**', 'assets/branding/**', 'docs/privacy/offline/**', 'core/**', 'desktop/**', 'scripts/signing_pipeline.py', 'scripts/candidate_native_audit.py', '.github/workflows/windows-msix.yml']
   pull_request:
     paths: ['distribution/**', 'assets/branding/**', 'docs/privacy/offline/**', 'core/**', 'desktop/**', 'scripts/signing_pipeline.py', 'scripts/candidate_native_audit.py', '.github/workflows/windows-msix.yml']

@@ -139,6 +139,11 @@ def main():
         cwd=ROOT,
     )
     collect_notices(ROOT / "dist/AgroLinesPoC")
+    if args.store:
+        shutil.copyfile(
+            ROOT / "distribution/windows/signing/native-policy.json",
+            ROOT / "dist/AgroLinesPoC/native-signing-policy.json",
+        )
 
 
 if __name__ == "__main__":

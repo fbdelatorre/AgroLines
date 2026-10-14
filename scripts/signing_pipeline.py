@@ -117,6 +117,10 @@ def evaluate(root, policy, native, signatures, signtool, source_commit, policy_s
     root = Path(root).resolve()
     if not verify(root, read(root / "payload-manifest.json")):
         raise ValueError("Payload manifest invalid before signing evaluation")
+    if policy.get("embedded_policy_required") is True:
+        embedded = root / "native-signing-policy.json"
+        if not embedded.is_file() or file_hash(embedded) != policy_sha:
+            raise ValueError("Embedded native policy differs from the reviewed policy")
     rows = policy_records(policy)
     if not re.fullmatch(r"[a-f0-9]{40}", source_commit):
         raise ValueError("Expected exact source commit")

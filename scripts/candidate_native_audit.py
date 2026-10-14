@@ -191,11 +191,11 @@ def main():
             )
     print("AGROLINES_MINIMAL_NATIVE=" + json.dumps(result["summary"]))
     print("AGROLINES_MINIMAL_REMOVED=" + json.dumps(result["removed"]))
-    print("::group::Exact native dependency graph (metadata only)")
-    print(
-        "AGROLINES_MINIMAL_GRAPH="
-        + json.dumps(
-            [
+    # Bounded NDJSON lines: long aggregate graph lines can hide failures in CI logs.
+    for row in result["files"]:
+        print(
+            "AGROLINES_MINIMAL_GRAPH_ROW="
+            + json.dumps(
                 {
                     "path": row["path"],
                     "sha256": row["sha256"],
@@ -205,11 +205,8 @@ def main():
                     "source": (row["build_input"] or {}).get("source"),
                     "loaded_phases": row["loaded_phases"],
                 }
-                for row in result["files"]
-            ]
+            )
         )
-    )
-    print("::endgroup::")
     for row in result["files"]:
         if not row["pinned_origin_confirmed"]:
             print("AGROLINES_PENDING_ORIGIN=" + json.dumps(row))

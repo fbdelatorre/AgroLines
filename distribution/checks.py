@@ -11,6 +11,7 @@ def run_checks():
     import pyproj
     import shapely
     from PySide6 import __version__ as qt_version
+    from PySide6.QtWebEngineCore import qWebEngineChromiumVersion, qWebEngineVersion
     from shapely.geometry import Point, Polygon, mapping
 
     from core.imports import import_polygons
@@ -58,6 +59,8 @@ def run_checks():
         "engine_versions": {
             "geos_shapely": shapely.geos_version_string,
             "proj_pyproj": pyproj.proj_version_str,
+            "qt_webengine": qWebEngineVersion(),
+            "chromium": qWebEngineChromiumVersion(),
         },
         "precision": precision,
         "geometry": imported.plots[0]["geometry"],

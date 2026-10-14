@@ -29,7 +29,10 @@ binding, ausência de drift e procedência, prepara artefato exclusivamente para
 homologação privada e para. **A submissão continua manual e depende de autorização
 específica.** O campo distribution_approved fica false. Só após receber e testar o
 pacote Store legítimo é possível avaliar a confiança de seus catálogos/PE/SAC.
-Hoje esse fluxo é bloqueado também pelos 46 registros de origem ainda não fechados.
+A revisão `docs/qt-minimal/` trata os 46 inputs incidentais. Além da procedência,
+a política agora exige `release_reviews` com booleano verdadeiro e referência real
+para licenciamento, mecanismo LGPL, privacidade e autorização de envio. Todos estão
+falsos: não substituir pendências por referências fictícias para liberar o job.
 
 ## Se decidir usar assinatura própria de PE
 
