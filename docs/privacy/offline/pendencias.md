@@ -8,7 +8,13 @@ não a substitui nem transforma o pacote anterior em um produto offline.
 - FABRICIO JOSE DELATORRE; contato oficial de privacidade e suporte:
   **fabricio.grupodelatorre@gmail.com**, reafirmado pelo responsável em 14/10/2026.
 - Grupo Partner Center “AgroLines - Testadores Internos”; sem cadastro próprio no app.
-- Suporte recebe arquivos apenas por envio voluntário, para a finalidade solicitada.
+- Suporte planejado apenas por envio voluntário, para a finalidade solicitada.
+  Gmail pessoal gratuito, não Workspace, acesso informado somente pelo responsável;
+  uso AgroLines ainda não iniciado, sem histórico nessa conta, encaminhamentos
+  de suporte ou downloads para pastas sincronizadas. Controles não auditados.
+- Partner Center atualmente usado para preparar cadastro/distribuição; nenhuma
+  consulta/exportação de relatórios de audiência/qualidade confirmada.
+- Contratos/DPA adicionais não comprovados além das condições comuns das plataformas.
 - Retenção de suporte até 90 dias após encerramento, com descarte sob controle e
   exceções justificadas/documentadas; não se estende a projetos locais do usuário.
 - Programa privado inicial exclusivo para adultos (18 anos ou mais); sem cadastro
@@ -37,13 +43,21 @@ aos dados de suporte continua pendente; não é uma lacuna no endereço oficial.
 Campos de operador/SMTP das versões históricas não representam serviços habilitados
 na edição offline. A auditoria original do PR #9 permanece preservada.
 
+## Análise documental atualizada
+
+A [matriz de finalidades e decisões](hipoteses-legais-e-fornecedores.md) separa
+dados locais, grupo, avisos, suporte futuro, direitos, provas mínimas, relatórios
+condicionais e tratamentos próprios das plataformas. A [memória de fontes](fontes-bases-transferencias.md) registra documentos oficiais conferidos e fontes
+primárias inacessíveis. Nenhuma base/mecanismo de transferência foi escolhido;
+respostas do responsável não substituem contratos, proteção da conta ou revisão jurídica.
+
 ## Antes de considerar a política publicável
 
 | Pendência | Ação/evidência necessária |
 |---|---|
 | Base legal por finalidade | Confirmar/documentar suporte, gestão do grupo e direitos; recebimento voluntário não é autorização genérica. Atendimento de obrigações legais e suporte têm finalidades diferentes. Se adotar legítimo interesse, registrar necessidade/balanceamento e melhor interesse de menores quando aplicável |
-| Dados realmente acessados no Partner Center | Conferir campos da audiência/avaliações e quem os acessa; não inventar que o responsável recebe todo dado Microsoft |
-| Outros destinatários e transferências | Confirmar acesso a suporte, eventuais ferramentas, países/mecanismos aplicáveis de Gmail e Microsoft; não inferir que não haja transferência porque o programa é offline |
+| Dados realmente acessados no Partner Center | Preparação cadastral/distribuição confirmada; nenhum uso de relatórios confirmado. Se decidir usá-los no futuro, inventariar campos, pessoas, exportações/retenção e base antes do uso; não é obrigatório ativá-los |
+| Outros destinatários e transferências | Gmail pessoal, Microsoft, GitHub e classificação IARC mapeados. Fontes Google/Microsoft consumer/IARC bloqueadas pelo proxy 403; obter documentos vigentes e condições efetivas. SCC/DPF verificados em fontes GitHub e Microsoft empresarial não comprovam aplicação LGPD a esta conta/serviço |
 | Retenção restante | Grupo 30 dias e direitos 12 meses definidos; configurar execução manual, justificar necessidade e definir retenção dos comprovantes mínimos de descarte |
 | Operação manual | Configurar e validar registro/fechamento/descarte, direitos, incidentes e minimização com fixtures sintéticas; documentação não prova exclusão real de Gmail/anexos |
 | Programa 18+ e Store | Configurar/validar declaração e aceite manuais, sem coleta invasiva; manter Livre/3+ e audiência privada informados. Conferir demais mercados, conta e grupo em tempo real. Nenhuma admissão de menor/autorizações parentais nesta fase; futura ampliação exige revisão |
