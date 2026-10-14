@@ -199,6 +199,7 @@ def evaluate(root, policy, native, signatures, signtool, source_commit, policy_s
                     else None
                 ),
                 "group": entry["group"] if entry else "unknown",
+                "origin_confirmed": entry["origin_confirmed"] if entry else False,
                 "action": action,
                 "sign_authorized": authorization and sig["status"] == "NotSigned",
                 "authenticode": sig["status"],
@@ -232,6 +233,12 @@ def evaluate(root, policy, native, signatures, signtool, source_commit, policy_s
         "after": dict(Counter(r["authenticode"] for r in matrix)),
         "signing_performed": False,
         "ready_for_authorized_signing": ready,
+        "ready_for_store_homologation": (
+            not violations
+            and not unknown
+            and not removed
+            and all(r["origin_confirmed"] for r in matrix)
+        ),
         "native_signature_gate_passed": False,
         "distribution_approved": False,
         "sac_approved": False,

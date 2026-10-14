@@ -45,7 +45,7 @@ adição/remoção. Não observado no polling não significa dispensável.
 
 ## Pipeline e bloqueios
 
-Workflow: `.github/workflows/windows-msix.yml`, com dois modos:
+Workflow: `.github/workflows/windows-msix.yml`, com três modos:
 
 - **validation** (push/PR e padrão manual): instala inputs Windows 3.12.10 x64 com
   lock/hashes, fixa SOURCE_DATE_EPOCH e PYTHONHASHSEED, compila duas vezes e compara
@@ -60,6 +60,15 @@ Workflow: `.github/workflows/windows-msix.yml`, com dois modos:
   obrigatório e runner separado `agrolines-signing`. Não executável por PR/fork.
   A verificação da proteção falha fechada se a API não puder ser consultada. O fluxo
   continua desabilitado nesta branch e não alteramos configurações GitHub.
+
+- **store-homologation**: rota independente de certificado próprio, somente dispatch
+  de main protegida, autorização específica AGROLINES_STORE_HOMOLOGATION_AUTHORIZED,
+  referência de revisão manual/legal e ambiente com revisor. Exige todos os arquivos
+  conhecidos, sem drift e procedência fechada. Prepara apenas cópia identificada
+  para teste privado na Store, **não envia**. Os 46 casos de origem ainda pendentes
+  bloqueiam essa promoção hoje. Validade de catálogos/PE e SAC só se avalia depois
+  da entrega legítima pela Microsoft; não exigir compra de certificado para iniciar
+  essa avaliação autorizada. Distribuição a clientes continua não aprovada.
 
 A construção ocorre em runner hospedado **sem credenciais de assinatura**. O runner
 com token/HSM recebe só o artefato da mesma execução, valida commit/política/lock e

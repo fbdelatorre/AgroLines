@@ -16,6 +16,21 @@ inesperadas e para o build; diagnóstico não equivale a promoção de release.
 Não usar o MSIX original não assinado para instalação direta, nem baixar/instalar
 roots/certificados de teste. A instalação real aguarda fluxo confiável autorizado.
 
+## Promoção controlada para testar a rota Store sem certificado próprio
+
+Depois de resolver procedência/direitos e obter aprovação explícita do responsável,
+proteger main e configurar o ambiente com revisor conforme abaixo; definir
+AGROLINES_STORE_HOMOLOGATION_AUTHORIZED=`true` e AGROLINES_STORE_REVIEW_REFERENCE
+com referência não sensível ao registro real de revisão/autorização. Executar mode
+`store-homologation` em main. Nenhuma dessas configurações foi feita aqui.
+
+O job não usa runner/chave de assinatura nem dá aprovação jurídica: verifica o
+binding, ausência de drift e procedência, prepara artefato exclusivamente para
+homologação privada e para. **A submissão continua manual e depende de autorização
+específica.** O campo distribution_approved fica false. Só após receber e testar o
+pacote Store legítimo é possível avaliar a confiança de seus catálogos/PE/SAC.
+Hoje esse fluxo é bloqueado também pelos 46 registros de origem ainda não fechados.
+
 ## Se decidir usar assinatura própria de PE
 
 1. Após compra **autorizada** e validação do fornecedor, preparar Windows dedicado
