@@ -31,16 +31,33 @@ class BitmapInfo(ctypes.Structure):
 
 class DisplayMode(ctypes.Structure):
     _fields_ = [
-        ("device_name", W.WCHAR * 32), ("spec_version", W.WORD),
-        ("driver_version", W.WORD), ("size", W.WORD), ("driver_extra", W.WORD),
-        ("fields", W.DWORD), ("display_union", ctypes.c_byte * 16),
-        ("color", W.SHORT), ("duplex", W.SHORT), ("yresolution", W.SHORT),
-        ("ttoption", W.SHORT), ("collate", W.SHORT), ("form_name", W.WCHAR * 32),
-        ("log_pixels", W.WORD), ("bits_per_pixel", W.DWORD),
-        ("width", W.DWORD), ("height", W.DWORD), ("display_flags", W.DWORD),
-        ("frequency", W.DWORD), ("icm_method", W.DWORD), ("icm_intent", W.DWORD),
-        ("media_type", W.DWORD), ("dither_type", W.DWORD), ("reserved1", W.DWORD),
-        ("reserved2", W.DWORD), ("panning_width", W.DWORD), ("panning_height", W.DWORD),
+        ("device_name", W.WCHAR * 32),
+        ("spec_version", W.WORD),
+        ("driver_version", W.WORD),
+        ("size", W.WORD),
+        ("driver_extra", W.WORD),
+        ("fields", W.DWORD),
+        ("display_union", ctypes.c_byte * 16),
+        ("color", W.SHORT),
+        ("duplex", W.SHORT),
+        ("yresolution", W.SHORT),
+        ("ttoption", W.SHORT),
+        ("collate", W.SHORT),
+        ("form_name", W.WCHAR * 32),
+        ("log_pixels", W.WORD),
+        ("bits_per_pixel", W.DWORD),
+        ("width", W.DWORD),
+        ("height", W.DWORD),
+        ("display_flags", W.DWORD),
+        ("frequency", W.DWORD),
+        ("icm_method", W.DWORD),
+        ("icm_intent", W.DWORD),
+        ("media_type", W.DWORD),
+        ("dither_type", W.DWORD),
+        ("reserved1", W.DWORD),
+        ("reserved2", W.DWORD),
+        ("panning_width", W.DWORD),
+        ("panning_height", W.DWORD),
     ]
 
 
@@ -51,9 +68,18 @@ class NativeDesktop:
         self.kernel = ctypes.WinDLL("kernel32", use_last_error=True)
         self.wts = ctypes.WinDLL("wtsapi32", use_last_error=True)
         signatures = [
-            (self.user, "EnumDisplaySettingsW", [W.LPCWSTR, W.DWORD, ctypes.POINTER(DisplayMode)], W.BOOL),
-            (self.user, "ChangeDisplaySettingsExW", [W.LPCWSTR, ctypes.POINTER(DisplayMode),
-                                                   W.HWND, W.DWORD, W.LPVOID], W.LONG),
+            (
+                self.user,
+                "EnumDisplaySettingsW",
+                [W.LPCWSTR, W.DWORD, ctypes.POINTER(DisplayMode)],
+                W.BOOL,
+            ),
+            (
+                self.user,
+                "ChangeDisplaySettingsExW",
+                [W.LPCWSTR, ctypes.POINTER(DisplayMode), W.HWND, W.DWORD, W.LPVOID],
+                W.LONG,
+            ),
             (self.kernel, "ProcessIdToSessionId", [W.DWORD, ctypes.POINTER(W.DWORD)], W.BOOL),
             (self.kernel, "GetCurrentThreadId", [], W.DWORD),
             (self.user, "OpenInputDesktop", [W.DWORD, W.BOOL, W.DWORD], W.HANDLE),
@@ -122,7 +148,10 @@ class NativeDesktop:
             function.argtypes, function.restype = arguments, result
 
     def configure_hosted_display(self):
-        if os.getenv("GITHUB_ACTIONS") != "true" or os.getenv("RUNNER_ENVIRONMENT") != "github-hosted":
+        if (
+            os.getenv("GITHUB_ACTIONS") != "true"
+            or os.getenv("RUNNER_ENVIRONMENT") != "github-hosted"
+        ):
             raise RuntimeError("Mudança de display só permitida no runner GitHub hospedado.")
         original = DisplayMode(size=ctypes.sizeof(DisplayMode))
         if not self.user.EnumDisplaySettingsW(None, 0xFFFFFFFF, ctypes.byref(original)):
@@ -134,10 +163,17 @@ class NativeDesktop:
             if not self.user.EnumDisplaySettingsW(None, index, ctypes.byref(candidate)):
                 break
             available.add((candidate.width, candidate.height))
-            if candidate.width == 1920 and candidate.height == 1080 and candidate.bits_per_pixel == 32:
+            if (
+                candidate.width == 1920
+                and candidate.height == 1080
+                and candidate.bits_per_pixel == 32
+            ):
                 chosen = candidate
-        evidence = {"original": [original.width, original.height],
-                    "available_modes": sorted(available), "changed": False}
+        evidence = {
+            "original": [original.width, original.height],
+            "available_modes": sorted(available),
+            "changed": False,
+        }
         if (original.width, original.height) == (1920, 1080) or chosen is None:
             return None, evidence
         # CDS_TEST first, then a temporary mode. No registry persistence, driver
