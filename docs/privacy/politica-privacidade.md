@@ -1,0 +1,359 @@
+# Política de Privacidade do AgroLines — testes privados
+
+**Última revisão do texto:** 14 de outubro de 2026.  
+**Versão:** minuta 1.0, referente às funcionalidades auditadas dos PRs #6, #7 e #8.
+
+> Nota para o responsável, a remover antes da publicação: nome e contato abaixo
+> foram confirmados. Os campos `[CONFIRMAR: ...]` dependem de decisões operacionais
+> e devem ser preenchidos ou substituídos por uma afirmação verdadeira de que o
+> recurso não será disponibilizado. Esta minuta não atesta conformidade final do
+> aplicativo nem resolve as pendências técnicas e da Store descritas no relatório.
+> Partner Center recebe a **URL pública desta política**, não apenas este arquivo.
+
+## 1. Responsável e contato
+
+O responsável pelo AgroLines e pelo tratamento de dados pessoais que recebe para
+administrar os testes e prestar os serviços aqui descritos é **FABRICIO JOSE
+DELATORRE**, pessoa física.
+
+**Contato de privacidade:**
+[FABRICIO.GRUPODELATORRE@GMAIL.COM](mailto:FABRICIO.GRUPODELATORRE@GMAIL.COM).
+
+O nome de publicador cadastrado na Microsoft Store é **Delatorre COrporation**,
+para o aplicativo AgroLines, Store ID **9NRDJ3ZTM978**. Esse nome de publicador não
+substitui a identificação da pessoa física responsável nesta política nem declara
+a existência de uma pessoa jurídica.
+
+Esta política explica o acesso, armazenamento e eventual transmissão de dados
+pelo aplicativo durante sua distribuição inicial a um grupo privado de testadores.
+Quando uma pessoa utiliza o aplicativo para tratar dados de sua propriedade ou de
+terceiros, também deve observar suas responsabilidades sobre esses dados. Os
+papéis do responsável e de eventual operador de serviço externo dependem do uso e
+dos acordos aplicáveis, não apenas de quem desenvolveu o software.
+
+## 2. Uso local e colaboração de teste
+
+A abertura normal do pacote Microsoft Store inicia o espaço de **projetos locais**.
+Nesse espaço é possível criar e abrir projetos, importar polígonos, visualizar
+geometrias, editar vértices numericamente, salvar versões, fazer backup e restaurar
+arquivos sem criar uma conta remota.
+
+A colaboração online poderá ser disponibilizada de forma opcional para testar
+cadastro, autenticação, propriedades, convites e compartilhamento. Ela é aberta
+separadamente pela ação **Colaboração online**. Não é necessária para criar o
+projeto local, nem há sincronização automática desse projeto com o servidor na
+versão descrita aqui.
+
+As funcionalidades online efetivamente disponibilizadas aos testadores e sua
+infraestrutura serão identificadas em:
+**[CONFIRMAR: recursos de teste online, endereço do serviço, seu operador,
+fornecedores de hospedagem, locais/países de processamento e armazenamento].**
+
+## 3. Dados de projetos e arquivos agrícolas
+
+O aplicativo acessa os arquivos escolhidos pelo usuário para importação, atualmente
+nos formatos SHP, KML, KMZ, GPKG e GeoJSON. No caso de SHP, lê também os arquivos
+complementares correspondentes, como SHX, DBF, PRJ e CPG, conforme sua existência e
+as condições de importação.
+
+Podem ser processados e conservados:
+
+- Nome do projeto, das propriedades e dos talhões, identificadores internos e SRC
+  de trabalho;
+- Coordenadas dos polígonos, inclusive cotas quando presentes, SRC de origem,
+  representações derivadas para visualização, áreas, perímetros e relatórios de
+  precisão;
+- Atributos existentes nos arquivos, que podem conter nomes, contatos, referências
+  a proprietários, informações de cultivo e outros conteúdos inseridos pelo usuário
+  ou pelo produtor do arquivo;
+- Histórico das versões de geometria, datas de gravação, identificadores de eventos,
+  nomes dos arquivos de origem e resumos SHA-256;
+- **Cópia integral dos arquivos importados**, incluindo conteúdos que não aparecem
+  no mapa ou na tabela de atributos exibida.
+
+Coordenadas e dados agrícolas podem constituir dados pessoais quando relacionados
+a uma pessoa identificada ou identificável. A versão atual não faz uma triagem
+semântica para remover dados pessoais de atributos ou arquivos originais. Uma
+cópia de projeto ou backup pode, portanto, conter mais informações do que aquelas
+visíveis na interface.
+
+Importe somente dados que possa utilizar legitimamente e que sejam necessários
+ao teste. Não inclua dados de saúde, financeiros, documentos pessoais ou informações
+de crianças e adolescentes para testar funcionalidades que não precisam deles.
+
+As coordenadas decorrem dos arquivos e das edições realizadas pelo usuário. Não
+há funcionalidade própria de leitura da posição atual do dispositivo por GPS ou
+pela API de localização do Windows nessa versão.
+
+## 4. Dados de conta e de colaboração online
+
+Quando o usuário opta pelos serviços online disponibilizados para os testes, o
+servidor pode receber e armazenar:
+
+- Nome, e-mail, identificador de conta e estado da conta;
+- Senha para realizar cadastro ou autenticação, tratada no servidor para produzir
+  ou verificar seu hash; credenciais de sessão e informações de expiração e revogação;
+- Propriedades, safras e operações cadastradas, vínculos com contas e configurações;
+- Convites enviados e recebidos, destinatários, participantes, perfis, escopos e
+  alterações ou revogações de permissões;
+- Geometrias, atributos, arquivos originais e versões **quando o usuário executa
+  uma operação de gravação/importação na interface de colaboração**;
+- Registros de auditoria com identificador do autor, ação, recurso, propriedade e
+  data/hora;
+- Metadados de conexão recebidos pelo serviço, como IP e informações da requisição.
+  O controle de tentativas usa resumos criptográficos derivados do IP ou e-mail;
+  esses resumos não são tratados como garantia de anonimização.
+
+Ao abrir a janela de colaboração, o aplicativo verifica periodicamente a
+conectividade com o serviço, inclusive antes do login. Havendo sessão válida,
+revalida dados de conta e acesso. Desse modo, podem ocorrer requisições de rede
+mesmo sem clicar em uma operação a cada momento.
+
+Se a recuperação de senha por e-mail estiver configurada, o provedor SMTP recebe
+os dados necessários ao envio, incluindo destinatário e mensagem com código de
+recuperação. **[CONFIRMAR: se a recuperação será habilitada, fornecedor SMTP,
+remetente, países de processamento e política desse fornecedor].** O endereço de
+privacidade em Gmail não comprova que o SMTP de recuperação utilize o Gmail.
+
+## 5. Finalidades e bases legais
+
+As finalidades correspondem aos recursos efetivamente utilizados: abrir e manter
+projetos, processar arquivos e geometrias, preservar versões e backups, autenticar
+contas opcionais, controlar acessos e convites, registrar ações e tentativas para
+segurança e investigar problemas dos testes quando houver informações recebidas
+para esse fim.
+
+**[CONFIRMAR: hipóteses legais da LGPD adotadas por finalidade para dados recebidos
+pelo responsável, inclusive contas/colaboração, segurança/auditoria, administração
+do grupo de testadores e suporte/diagnóstico; informar os acordos ou termos de teste
+aplicáveis e eventuais obrigações legais específicas].**
+
+A instalação do aplicativo não é uma autorização irrestrita para qualquer uso de
+dados. Quando um tratamento depender de consentimento, a finalidade, os destinatários
+e os controles de escolha e revogação precisam ser apresentados antes do tratamento.
+Revogar consentimento e revogar uma permissão de acesso são atos distintos. Pedidos
+relativos a consentimento podem ser enviados ao contato de privacidade.
+
+A versão atual não oferece uma central de consentimentos ou um mecanismo automático
+para atender todos os direitos previstos na LGPD. Essas limitações não afastam as
+obrigações do responsável. Recursos que exigirem autorizações adicionais devem ter
+essas condições resolvidas antes de serem disponibilizados com dados pessoais reais.
+
+## 6. Armazenamento local, backups e segurança
+
+Os projetos locais usam arquivos SQLite com extensão `.agrolines`. O destino padrão
+é `%LOCALAPPDATA%\AgroLines\Projects`, no perfil do usuário Windows; outro caminho
+pode ser escolhido. O aplicativo preserva arquivos de origem e histórico no próprio
+projeto. Backup e restauração geram cópias em destinos novos escolhidos pelo usuário.
+
+**Projetos, arquivos originais e backups não são cifrados pelo AgroLines nessa
+versão.** Os controles de acesso do Windows e eventual proteção de disco ou de uma
+pasta dependem da configuração do computador e não são uma garantia de criptografia
+fornecida pelo aplicativo. Não compartilhe essas cópias com quem não deva acessar o
+conteúdo completo.
+
+Para sessões de colaboração no Windows, o aplicativo utiliza DPAPI para proteger
+`%LOCALAPPDATA%\AgroLines\session.dpapi`, vinculado ao perfil do usuário Windows.
+Esse arquivo pode conter tokens, endereço do serviço, dados da conta e um resumo de
+propriedades/permissões em cache. **Essa proteção não se estende aos projetos SQLite
+ou aos backups.**
+
+No servidor, as senhas de autenticação são armazenadas pelo mecanismo de
+credenciais como hashes Argon2, e os tokens de sessão e recuperação possuem resumos
+SHA-256. O cliente exige HTTPS para sua API fora dos endereços locais de loopback;
+a recuperação por SMTP, quando habilitada, exige STARTTLS com validação de
+certificado. Esses controles não comprovam, por si, criptografia do banco, de todos
+os logs, de backups ou da infraestrutura de hospedagem.
+
+Os dados online usam o banco do serviço, previsto em PostgreSQL/PostGIS. A ligação
+com esse banco é realizada pelo servidor, não por uma instalação obrigatória de
+PostgreSQL no computador do testador. **[CONFIRMAR: proteção do banco, backups do
+servidor, responsáveis com acesso administrativo e medidas de segurança realmente
+implantadas].**
+
+Não há garantia de segurança absoluta ou de que excluir um arquivo realiza uma
+eliminação forense de todas as suas cópias. A homologação Windows/SAC é uma avaliação
+separada e não substitui os controles de privacidade aqui descritos.
+
+## 7. Compartilhamento e destinatários
+
+Projetos locais não são enviados automaticamente ao responsável, à API ou a outros
+usuários pelo espaço local. Ao copiar, enviar ou guardar esses arquivos em uma pasta
+sincronizada por outro programa, o próprio usuário pode permitir que terceiros os
+recebam. Esse compartilhamento externo não é sincronização implementada pelo AgroLines.
+
+Na colaboração online, participantes autorizados podem receber informações de
+propriedade, safras, operações e geometrias conforme os escopos disponíveis. As telas
+e respostas de gestão podem revelar nomes, e-mails e identificadores de membros;
+convites revelam informações dos participantes conforme o acesso concedido.
+
+A API permite obter arquivos originais para usuários com acesso de leitura à
+propriedade inteira. Portanto, **um acesso de leitura não garante que o destinatário
+seja incapaz de copiar geometrias ou baixar esses originais**. O usuário que compartilha
+precisa considerar os atributos e demais conteúdos presentes nos arquivos completos.
+
+Revogar uma permissão impede novas requisições autorizadas pelo mecanismo do serviço,
+mas não apaga automaticamente as versões do servidor, arquivos já obtidos por terceiros
+ou todas as cópias locais. O resumo de acesso em cache tem validade limitada; essa
+validade também não elimina cópias que tenham sido feitas fora desse mecanismo.
+
+Os destinatários externos efetivamente adotados devem ser identificados em:
+**[CONFIRMAR: operadores de API/banco/backup, provedor SMTP e ferramentas ou pessoas
+que receberão dados de suporte; finalidade e países de processamento].**
+
+O canal de privacidade informado usa Gmail, serviço da Google: mensagens que o usuário
+enviar a esse endereço, com os dados nela incluídos, serão processadas por esse serviço
+de e-mail. Não envie senhas, tokens de acesso ou arquivos completos desnecessários para
+explicar uma solicitação.
+
+## 8. Mapas e serviços de terceiros
+
+O mapa no espaço de projetos locais utiliza recursos incluídos no aplicativo e não
+ativa um provedor externo de imagens. O núcleo de cálculos utiliza bibliotecas locais,
+sem uma API geográfica externa necessária ao projeto local; o serviço de projetos
+locais desabilita downloads de recursos PROJ pela rede.
+
+A interface de colaboração contém suporte a imagens online configuráveis, dependente
+de autorização/configuração do responsável e da conectividade. Se esse recurso for
+habilitado, o provedor pode receber IP, informações usuais de requisição e pedidos de
+imagens que indicam a área visualizada e o nível de zoom. Não é necessário enviar todo
+o arquivo vetorial para que esses pedidos revelem a região consultada.
+
+**[CONFIRMAR: imagens externas permanecerão desabilitadas nos testes ou informar
+provedor, URL de privacidade, países, dados associados à URL de tiles e os controles
+de informação/consentimento/revogação necessários].**
+
+Não há integração própria de publicidade ou analytics identificada nessa versão.
+O mapa não usa cookies para autenticar a conta do AgroLines. O perfil Qt WebEngine é
+configurado sem cache persistente e sem localStorage; não há, porém, regra própria
+que rejeite todos os cookies temporários de um eventual fornecedor de imagens.
+
+A Microsoft Store e o Windows podem realizar seus próprios tratamentos relativos
+à conta Microsoft, distribuição, atualização e diagnósticos do sistema, segundo seus
+termos e configurações. Consulte a
+[Declaração de Privacidade da Microsoft](https://www.microsoft.com/pt-br/privacy/privacystatement).
+Esta política não afirma que o sistema operacional nunca faça conexões ou gere
+relatórios, nem que o responsável receba todo dado processado pela Microsoft.
+
+## 9. Diagnóstico, suporte e testes privados
+
+Na abertura normal do canal Store no modo local não é gerado o relatório de
+homologação do PoC. Modos de diagnóstico/testes e ferramentas de manutenção podem
+gerar arquivos locais em `%LOCALAPPDATA%\AgroLines\Evidence` ou no destino indicado
+pelo operador. Versões anteriores do PoC também podem ter arquivos em
+`%LOCALAPPDATA%\AgroLinesDistributionPoC\evidence`.
+
+Esses relatórios podem incluir versão do aplicativo e bibliotecas, estado de
+proteções do Windows, caminhos de instalação/arquivos, nomes de pastas que revelem
+o usuário Windows, identificadores e caminhos de processos auxiliares e eventos de
+integridade de código. Os eventos de sistema copiados podem conter nomes de computador,
+identificadores de segurança e informações sobre **outros programas**, além do AgroLines.
+
+Não foi implementado envio automático de telemetria ou relatórios de erro pelo
+aplicativo desktop. Isso não significa que os relatórios locais nunca contenham
+dados pessoais: eles devem ser revistos antes de qualquer compartilhamento.
+
+Ferramentas de homologação acionadas pelo responsável podem enviar evidências como
+artefatos de GitHub Actions, inclusive em situações de falha. Essa automação de
+manutenção não deve ser confundida com a execução normal do aplicativo por todos os
+testadores. **[CONFIRMAR: se haverá recebimento manual de relatórios/projetos para
+suporte, canais, pessoas com acesso, uso de GitHub/outros serviços, restrição de acesso,
+revisão/remoção de dados desnecessários e retenção].**
+
+**[CONFIRMAR: dados de administração do grupo privado, eventual lista de testadores,
+convites enviados fora do aplicativo e informações de avaliação que serão recebidas
+pelo responsável ou pela Microsoft].**
+
+O código atual não implementa impressão digital de hardware para licenciamento,
+ativação comercial ou verificação periódica obrigatória de licença com servidores.
+Também não implementa cadastro de pagamento ou cobrança. A estrutura futura de
+licenciamento não significa coleta desses dados nesta fase.
+
+## 10. Retenção, exclusão, atualização e desinstalação
+
+Projetos, arquivos originais, versões e backups locais não têm um prazo automático
+de descarte no programa. Permanecem nos locais em que foram gravados até uma remoção
+externa ou outra ação de gerenciamento de arquivos. Para excluí-los, feche o projeto
+e remova também suas cópias, backups e versões restauradas nos locais correspondentes.
+Excluir o arquivo original de importação não apaga a cópia já guardada dentro do
+projeto. Editar uma geometria também não remove seu histórico anterior.
+
+O software não disponibiliza exclusão individual de versões antigas na interface,
+nem uma rotina automática de exclusão de conta e de todos os dados no servidor.
+Logout e revogação de sessão/permissão não equivalem à exclusão de conta ou projeto.
+O logout remove a sessão local; quando realizado sem conexão, não confirma revogação
+imediata no servidor.
+
+Dados de contas, convites, auditoria, geometrias e arquivos online não são descartados
+automaticamente apenas porque uma sessão/token/convite expirou. Os prazos de validade
+de autorização são diferentes dos prazos de retenção de registros.
+
+**[CONFIRMAR: critérios e prazos operacionais por categoria no servidor, em logs,
+backups, suporte e listas de testadores; procedimento de descarte/anonimização e
+exceções legais justificadas. O código não comprova um prazo geral já implantado].**
+
+Atualizações e desinstalação não são meios de solicitar a exclusão de dados remotos.
+Os arquivos gravados fora da instalação podem permanecer depois da desinstalação,
+inclusive projetos, backups, relatórios e a sessão protegida por DPAPI. O pacote MSIX
+foi configurado para manter a pasta de dados fora da instalação e da limpeza dos dados
+privados do pacote; a preservação efetiva desse ciclo permanece sujeita à homologação
+da versão de teste. Mantenha backups sob seu controle e não interprete a desinstalação
+como apagamento completo ou como revogação de todos os acessos.
+
+## 11. Direitos dos titulares e atendimento
+
+Nos casos em que a LGPD se aplica, o titular pode exercer os direitos previstos na
+lei, incluindo confirmação de tratamento, acesso, correção, anonimização/bloqueio/
+eliminação nas hipóteses aplicáveis, informação sobre compartilhamento, portabilidade
+quando cabível, oposição, informação sobre consentimento e consequências de não
+fornecê-lo, revogação de consentimento e revisão de decisões automatizadas quando
+houver uma decisão desse tipo na hipótese legal. Esta enumeração não afirma que todas
+essas operações tenham uma função automática no aplicativo.
+
+Pedidos relativos a dados recebidos pelo responsável devem ser enviados a
+**FABRICIO.GRUPODELATORRE@GMAIL.COM**, identificando a solicitação e somente os dados
+necessários para localizá-la. A verificação de legitimidade deverá ser proporcional
+à solicitação; não envie, por iniciativa própria, senha, token ou cópia de documento.
+A resposta e as eventuais limitações devem observar a LGPD e os prazos legais
+aplicáveis, sem que esta política estabeleça um prazo operacional não confirmado.
+
+Quando se tratar apenas de um arquivo mantido no computador do usuário, o responsável
+não tem uma cópia automática desse arquivo para consultar ou excluir remotamente.
+Se os dados estiverem sob controle de outra pessoa ou organização que utilizou o
+aplicativo, a solicitação também poderá precisar ser dirigida a esse controlador.
+Eliminar uma cópia não elimina automaticamente as mantidas por outros destinatários.
+
+**[CONFIRMAR: procedimento de atendimento e de efetiva exclusão/correção dos dados
+sob controle do responsável, responsáveis por executar a operação, verificação de
+identidade mínima e tratamento das cópias de backup e registros legalmente conservados].**
+
+É possível recorrer à Autoridade Nacional de Proteção de Dados e aos demais órgãos
+competentes, conforme os canais e requisitos aplicáveis.
+
+## 12. Transferências internacionais e incidentes
+
+A localização do computador do usuário não comprova que serviços online, mensagens
+de e-mail, artefatos de teste ou dados de suporte sejam processados exclusivamente
+no Brasil. **[CONFIRMAR: países envolvidos e mecanismos legais aplicáveis às eventuais
+transferências internacionais, considerando os fornecedores realmente utilizados e
+as regras da LGPD e da ANPD].** Não se presume adequação de um país ou uma proteção
+contratual que ainda não foi verificada.
+
+As obrigações legais de segurança e comunicação de incidentes se aplicam nas
+situações previstas em lei e na regulamentação. Não há serviço automático próprio de
+notificação de incidentes implementado no aplicativo atual.
+**[CONFIRMAR: procedimento operacional de avaliação, resposta e comunicação de
+incidentes do serviço/testes, com as pessoas responsáveis e canais de contato].**
+
+## 13. Crianças, adolescentes e alterações desta política
+
+Não há fluxo específico de autorização de responsáveis ou verificação de idade
+implementado. **[CONFIRMAR: perfil etário do grupo privado e medidas necessárias caso
+haja participação de menores].** Não cadastre deliberadamente dados de crianças e
+adolescentes em arquivos usados em testes que não precisam dessas informações.
+
+Mudanças reais nas funcionalidades ou nas práticas operacionais exigem revisão desta
+política, especialmente se forem adicionados sincronização, fornecedores, telemetria,
+licenciamento ou dados de pagamento. A versão publicada deve identificar sua data de
+vigência e descrever o procedimento efetivamente adotado de aviso aos testadores:
+**[CONFIRMAR: data de vigência, URL pública estável e forma de comunicação das mudanças].**
