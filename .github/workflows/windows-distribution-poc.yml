@@ -29,6 +29,8 @@ jobs:
           python -m venv build-env
           ./build-env/Scripts/python.exe -m pip install --require-hashes --only-binary=:all: -r distribution/windows/requirements.lock
           ./build-env/Scripts/python.exe -m pip check
+      - name: Current public signing prices (informative, not a release gate)
+        run: ./build-env/Scripts/python.exe -m distribution.costs --output evidence/signing-prices.json
       - name: Frozen executable 0.1.0.1
         run: ./build-env/Scripts/python.exe -m distribution.build --version 0.1.0.1
       - name: Audit the actual payload, not builder packages

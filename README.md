@@ -124,3 +124,5 @@ e [dependências/licenças](docs/dependencies.md). Não avançar à Etapa 3 sem 
 Compatibilidade Windows 11 com Smart App Control ativo ainda exige homologação.
 Veja [diagnóstico, auditoria e aceitação](docs/windows-security.md); não desative
 proteções para iniciar componentes bloqueados.
+
+Prova de executável/instalador Windows com runtime embutido: [distribuição comercial](docs/windows-distribution-poc.md). Aprovação SAC e assinatura final continuam condicionadas à homologação real.

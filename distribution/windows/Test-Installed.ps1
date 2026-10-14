@@ -26,9 +26,8 @@ if ($RequireSac) {
         if ((Get-AuthenticodeSignature -LiteralPath $file.FullName).Status -ne 'Valid') { throw "PE sem assinatura valida: $($file.Name)" }
     }
 }
-$process = Start-Process -FilePath $executable -ArgumentList @('--smoke-report',"`"$reportPath`"") -PassThru
-if (-not $process.WaitForExit(120000)) { $process.Kill(); throw 'Aplicativo nao concluiu verificacao.' }
-if ($process.ExitCode -ne 0) { throw 'Executavel instalado falhou.' }
+. (Join-Path $PSScriptRoot 'Run-Frozen.ps1')
+Invoke-AgroFrozenProbe -Executable $executable -Report $reportPath
 $result = Get-Content -LiteralPath $reportPath -Raw | ConvertFrom-Json
 if (-not $result.frozen -or -not $result.checks_passed -or -not $result.payload_integrity_verified) { throw 'Runtime/precisao/mapa/integridade nao comprovados.' }
 if ($RequireSac -and -not $result.sac_run_observed) { throw 'Execucao com SAC ativo nao comprovada.' }
