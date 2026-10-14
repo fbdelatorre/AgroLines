@@ -42,7 +42,7 @@ QToolButton:hover { background: #1b3039; border-color: #344954; }
 QToolButton:checked { background: #224b39; border-color: #2b9364; }
 QToolButton:disabled { color: #596d78; }
 
-QMainWindow, QWidget#Shell, QWidget#Page { background: #0c151c; }
+QMainWindow, QDialog, QWidget#Shell, QWidget#Page { background: #0c151c; }
 QWidget { color: #e2eaf0; }
 QLabel { background: transparent; border: none; }
 QLabel#PageTitle { font-size: 17pt; font-weight: 600; }
@@ -55,9 +55,9 @@ QLabel#SectionLabel { color: #8297a7; font-size: 8pt; }
 QFrame#Card { background: #101c24; border: 1px solid #2a3a47; border-radius: 8px; }
 QFrame#Sidebar { background: #0e171e; border-right: 1px solid #293944; }
 QPlainTextEdit { background: #101d27; border: 1px solid #354754; border-radius: 5px; }
-QLineEdit, QComboBox { background: #101d27; border: 1px solid #354754;
+QLineEdit, QComboBox, QSpinBox { background: #101d27; border: 1px solid #354754;
     border-radius: 5px; padding: 4px 8px; min-height: 19px; }
-QLineEdit:focus, QComboBox:focus { border-color: #5dc58a; }
+QLineEdit:focus, QComboBox:focus, QSpinBox:focus { border-color: #5dc58a; }
 QLineEdit[invalid="true"] { border-color: #e77f89; }
 QLineEdit:read-only { color: #a8bcc9; background: #1a2933; }
 QComboBox::drop-down { width: 22px; border: none; }
