@@ -143,3 +143,11 @@ No PoC Windows, use **Projetos locais** ou o argumento `--local`.
 Consulte [plano, execução e critérios offline/licenciamento](docs/offline-and-licensing.md).
 Licenciamento comercial é um contrato futuro; desenvolvimento permanece liberado.
 A homologação Windows 11/SAC com internet desconectada continua pendente.
+
+### Microsoft Store / MSIX
+
+A identidade oficial do Partner Center está configurada, sem publicação automática.
+O pipeline gera um candidato MSIX x64 com todo o payload PyInstaller e dados locais
+fora da instalação. Consulte [Microsoft Store: geração, homologação e pendências](docs/microsoft-store-msix.md).
+Instalação MSIX, subprocessos Qt sob identidade de pacote e SAC só serão declarados
+validados com pacote confiavelmente assinado e bancada Windows 11 real.
