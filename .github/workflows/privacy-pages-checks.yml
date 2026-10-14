@@ -17,7 +17,8 @@ jobs:
         with:
           python-version: '3.12'
       - name: Browser automation tooling (not included in AgroLines)
-        run: python -m pip install --only-binary=:all: playwright==1.62.0
+        run: |
+          python -m pip install --only-binary=:all: playwright==1.62.0
       - name: Check existing HTML locally in signed Chrome with sandbox enabled
         shell: pwsh
         run: |
