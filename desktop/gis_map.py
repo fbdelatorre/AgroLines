@@ -182,7 +182,7 @@ class WebMap(QWidget):
         self.state_label.setText(
             "Leaflet · imagens autorizadas, somente online"
             if self.imagery
-            else "Mapa vetorial · escala visual aproximada · medições no painel Objeto"
+            else "Mapa vetorial · escala visual aproximada · coordenadas do cursor"
         )
         self.readyChanged.emit()
 

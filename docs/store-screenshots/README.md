@@ -1,7 +1,10 @@
 # Capturas da listagem pt-BR — edição Store offline
 
 Base funcional: PR #10 e suas dependências #6–#9. As ferramentas deste incremento
-não alteram a interface, o motor geográfico, projetos reais ou a distribuição Store.
+não alteram o motor geográfico ou projetos reais. A revisão visual motivou correções
+mínimas reais de contraste de QDialog/QSpinBox, tradução dos botões Salvar/Cancelar/
+Fechar e remoção de uma referência a painel Objeto ausente no workspace local.
+São alterações do produto neste PR; novas capturas usam esse código atualizado.
 Não há instalação de MSIX, submissão, publicação, merge ou mudança de segurança.
 
 ## As quatro imagens

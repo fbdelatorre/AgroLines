@@ -87,6 +87,8 @@ def capture(output, revision, configure_hosted_display=False):
         report["qt_webengine_ready"] = window.map.is_ready
         report["feature_count"] = len(window.project.features())
         assert report["feature_count"] == 4
+        window.centralWidget().setSizes([400, max(window.width() - 400, 1)])
+        QTest.qWait(500)
         record("01-tela-principal.png")
         window.layers.setCurrentRow(1)
         window.centralWidget().setSizes([400, max(window.width() - 400, 1)])
@@ -101,9 +103,10 @@ def capture(output, revision, configure_hosted_display=False):
             try:
                 if not isinstance(dialog, local_ui.LocalVertexDialog):
                     raise RuntimeError("Diálogo de vértices não está em execução.")
-                record("03-edicao-de-vertices.png")
                 dialog.x.setText(format(float(dialog.x.text()) + 0.001, ".17g"))
                 dialog.apply()
+                QTest.qWait(300)
+                record("03-edicao-de-vertices.png")
                 dialog.save()
             except Exception as exc:
                 errors.append(str(exc))
