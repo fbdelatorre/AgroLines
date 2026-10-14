@@ -1,0 +1,902 @@
+{
+  "files": [
+    {
+      "path": "altgraph/altgraph-0.17.5.dist-info_LICENSE",
+      "sha256": "6c194d6db0c64d45535d10c95142b9b0cda7b7dcc7f1ddee302b3d536f3dbe46",
+      "size_bytes": 1002,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "Copyright (c) 2004 Istvan Albert unless otherwise noted.\nCopyright (c) 2006-2010 Bob Ippolito\nCopyright (2) 2010-2020 Ronald Oussoren, et. al.\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to\ndeal in the Software without restriction, including without limitation the\nrights to use, copy, modify, merge, publish, distribute, sublicense,\nand/or sell copies of the Software, and to permit persons to whom the\nSoftware is furnished to do so.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING\nFROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS\nIN THE SOFTWARE.\n"
+    },
+    {
+      "path": "attrs/attrs-26.1.0.dist-info_licenses_LICENSE",
+      "sha256": "882115c95dfc2af1eeb6714f8ec6d5cbcabf667caff8729f42420da63f714e9f",
+      "size_bytes": 1109,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "The MIT License (MIT)\n\nCopyright (c) 2015 Hynek Schlawack and the attrs contributors\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n"
+    },
+    {
+      "path": "certifi/certifi-2026.7.22.dist-info_licenses_LICENSE",
+      "sha256": "e93716da6b9c0d5a4a1df60fe695b370f0695603d21f6f83f053e42cfc10caf7",
+      "size_bytes": 989,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "This package contains a modified version of ca-bundle.crt:\n\nca-bundle.crt -- Bundle of CA Root Certificates\n\nThis is a bundle of X.509 certificates of public Certificate Authorities\n(CA). These were automatically extracted from Mozilla's root certificates\nfile (certdata.txt).  This file can be found in the mozilla source tree:\nhttps://hg.mozilla.org/mozilla-central/file/tip/security/nss/lib/ckfw/builtins/certdata.txt\nIt contains the certificates in PEM format and therefore\ncan be directly used with curl / libcurl / php_curl, or with\nan Apache+mod_ssl webserver for SSL client authentication.\nJust configure this file as the SSLCACertificateFile.#\n\n***** BEGIN LICENSE BLOCK *****\nThis Source Code Form is subject to the terms of the Mozilla Public License,\nv. 2.0. If a copy of the MPL was not distributed with this file, You can obtain\none at http://mozilla.org/MPL/2.0/.\n\n***** END LICENSE BLOCK *****\n@(#) $RCSfile: certdata.txt,v $ $Revision: 1.80 $ $Date: 2011/11/03 15:11:58 $\n"
+    },
+    {
+      "path": "click/click-8.5.0.dist-info_licenses_LICENSE.txt",
+      "sha256": "9a8ad106a394e853bfe21f42f4e72d592819a22805d991b5f3275029292b658d",
+      "size_bytes": 1475,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "Copyright 2014 Pallets\n\nRedistribution and use in source and binary forms, with or without\nmodification, are permitted provided that the following conditions are\nmet:\n\n1.  Redistributions of source code must retain the above copyright\n    notice, this list of conditions and the following disclaimer.\n\n2.  Redistributions in binary form must reproduce the above copyright\n    notice, this list of conditions and the following disclaimer in the\n    documentation and/or other materials provided with the distribution.\n\n3.  Neither the name of the copyright holder nor the names of its\n    contributors may be used to endorse or promote products derived from\n    this software without specific prior written permission.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS\n\"AS IS\" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT\nLIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A\nPARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT\nHOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,\nSPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED\nTO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR\nPROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF\nLIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING\nNEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS\nSOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n"
+    },
+    {
+      "path": "click-plugins/click_plugins-1.1.1.2.dist-info_licenses_AUTHORS.txt",
+      "sha256": "154843f706715f9fbe77d292ee1501fb09c78324baee97675af00393c96b2de1",
+      "size_bytes": 90,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "Authors\n=======\n\nKevin Wurster <wursterk@gmail.com>\nSean Gillies <sean.gillies@gmail.com>\n"
+    },
+    {
+      "path": "click-plugins/click_plugins-1.1.1.2.dist-info_licenses_LICENSE.txt",
+      "sha256": "fa1986d06c7d3ba7763524604dbab39faf5b1a89c7812a8d5d932e7dd70036d2",
+      "size_bytes": 1517,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "New BSD License\n\nCopyright (c) 2015-2025, Kevin D. Wurster, Sean C. Gillies\nAll rights reserved.\n\nRedistribution and use in source and binary forms, with or without\nmodification, are permitted provided that the following conditions are met:\n\n* Redistributions of source code must retain the above copyright notice, this\n  list of conditions and the following disclaimer.\n\n* Redistributions in binary form must reproduce the above copyright notice,\n  this list of conditions and the following disclaimer in the documentation\n  and/or other materials provided with the distribution.\n\n* Neither click-plugins nor the names of its contributors may not be used to\n  endorse or promote products derived from this software without specific prior\n  written permission.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\"\nAND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE\nIMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE\nDISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE\nFOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL\nDAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR\nSERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER\nCAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,\nOR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE\nOF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
+    },
+    {
+      "path": "cligj/cligj-0.7.2.dist-info_LICENSE",
+      "sha256": "5902d716544ddf9a34849b345c391abaf7c21ca16ed22706d6ac2f5503712594",
+      "size_bytes": 1469,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "Copyright (c) 2014, Mapbox\nAll rights reserved.\n\nRedistribution and use in source and binary forms, with or without\nmodification, are permitted provided that the following conditions are met:\n\n* Redistributions of source code must retain the above copyright notice, this\n  list of conditions and the following disclaimer.\n\n* Redistributions in binary form must reproduce the above copyright notice,\n  this list of conditions and the following disclaimer in the documentation\n  and/or other materials provided with the distribution.\n\n* Neither the name of cligj nor the names of its\n  contributors may be used to endorse or promote products derived from\n  this software without specific prior written permission.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\"\nAND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE\nIMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE\nDISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE\nFOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL\nDAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR\nSERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER\nCAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,\nOR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE\nOF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n"
+    },
+    {
+      "path": "defusedxml/defusedxml-0.7.1.dist-info_LICENSE",
+      "sha256": "b80ce9da8c42a1f91079627fbbe2bf27210ae108a0ffe5f077d5b08e076c24c8",
+      "size_bytes": 2409,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "PYTHON SOFTWARE FOUNDATION LICENSE VERSION 2\n--------------------------------------------\n\n1. This LICENSE AGREEMENT is between the Python Software Foundation\n(\"PSF\"), and the Individual or Organization (\"Licensee\") accessing and\notherwise using this software (\"Python\") in source or binary form and\nits associated documentation.\n\n2. Subject to the terms and conditions of this License Agreement, PSF\nhereby grants Licensee a nonexclusive, royalty-free, world-wide\nlicense to reproduce, analyze, test, perform and/or display publicly,\nprepare derivative works, distribute, and otherwise use Python\nalone or in any derivative version, provided, however, that PSF's\nLicense Agreement and PSF's notice of copyright, i.e., \"Copyright (c)\n2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008 Python Software Foundation; \nAll Rights Reserved\" are retained in Python alone or in any derivative \nversion prepared by Licensee.\n\n3. In the event Licensee prepares a derivative work that is based on\nor incorporates Python or any part thereof, and wants to make\nthe derivative work available to others as provided herein, then\nLicensee hereby agrees to include in any such work a brief summary of\nthe changes made to Python.\n\n4. PSF is making Python available to Licensee on an \"AS IS\"\nbasis.  PSF MAKES NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR\nIMPLIED.  BY WAY OF EXAMPLE, BUT NOT LIMITATION, PSF MAKES NO AND\nDISCLAIMS ANY REPRESENTATION OR WARRANTY OF MERCHANTABILITY OR FITNESS\nFOR ANY PARTICULAR PURPOSE OR THAT THE USE OF PYTHON WILL NOT\nINFRINGE ANY THIRD PARTY RIGHTS.\n\n5. PSF SHALL NOT BE LIABLE TO LICENSEE OR ANY OTHER USERS OF PYTHON\nFOR ANY INCIDENTAL, SPECIAL, OR CONSEQUENTIAL DAMAGES OR LOSS AS\nA RESULT OF MODIFYING, DISTRIBUTING, OR OTHERWISE USING PYTHON,\nOR ANY DERIVATIVE THEREOF, EVEN IF ADVI"
+    },
+    {
+      "path": "email-validator/email_validator-2.3.0.dist-info_licenses_LICENSE",
+      "sha256": "672179752e109134a3fb2bdd0780b29fdb7a03974f0f586a13aead5129562d4c",
+      "size_bytes": 1212,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "This is free and unencumbered software released into the public\ndomain.\n\nAnyone is free to copy, modify, publish, use, compile, sell, or\ndistribute this software, either in source code form or as a\ncompiled binary, for any purpose, commercial or non-commercial,\nand by any means.\n\nIn jurisdictions that recognize copyright laws, the author or\nauthors of this software dedicate any and all copyright\ninterest in the software to the public domain. We make this\ndedication for the benefit of the public at large and to the\ndetriment of our heirs and successors. We intend this\ndedication to be an overt act of relinquishment in perpetuity\nof all present and future rights to this software under\ncopyright law.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,\nEXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES\nOF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND\nNONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR\nANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF\nCONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN\nCONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN\nTHE SOFTWARE.\n\nFor more information, please refer to <https://unlicense.org/>\n"
+    },
+    {
+      "path": "fiona/fiona-1.10.1.dist-info_LICENSE.txt",
+      "sha256": "fdbe48d378018152c9c9eb32384284037ed59875a5d476f1fd7d08854a39b931",
+      "size_bytes": 1547,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "\nCopyright (c) 2007, Sean C. Gillies\nAll rights reserved.\n\nRedistribution and use in source and binary forms, with or without\nmodification, are permitted provided that the following conditions are met:\n\n    * Redistributions of source code must retain the above copyright\n      notice, this list of conditions and the following disclaimer.\n    * Redistributions in binary form must reproduce the above copyright\n      notice, this list of conditions and the following disclaimer in the\n      documentation and/or other materials provided with the distribution.\n    * Neither the name of Sean C. Gillies nor the names of\n      its contributors may be used to endorse or promote products derived from\n      this software without specific prior written permission.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\"\nAND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE\nIMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE\nARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE\nLIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR\nCONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF\nSUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS\nINTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN\nCONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)\nARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE\nPOSSIBILITY OF SUCH DAMAGE.\n\n"
+    },
+    {
+      "path": "fiona/fiona_gdal_data_copyright",
+      "sha256": "1dae3468e81d00da56e2936f74d33b8b3ad09d726437f19ce209a5dabea41f77",
+      "size_bytes": 21841,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "\nGDAL/OGR Licensing\n==================\n\nThis file attempts to include all licenses that apply within the GDAL/OGR\nsource tree, in particular any that are supposed to be exposed to the end user\nfor credit requirements for instance.  The contents of this file can be\ndisplayed from GDAL commandline utilities using the --license commandline\nswitch.\n\n\nGDAL/OGR General\n----------------\n\nIn general GDAL/OGR is licensed under an MIT style license with the\nfollowing terms:\n\nPermission is hereby granted, free of charge, to any person obtaining a\ncopy of this software and associated documentation files (the \"Software\"),\nto deal in the Software without restriction, including without limitation\nthe rights to use, copy, modify, merge, publish, distribute, sublicense,\nand/or sell copies of the Software, and to permit persons to whom the\nSoftware is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included\nin all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS\nOR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL\nTHE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING\nFROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER\nDEALINGS IN THE SOFTWARE.\n\n\nport/cpl_float.cpp\n------------------\n\nCopyright (c) 2002, Industrial Light & Magic, a division of Lucas\nDigital Ltd. LLC\n\nAll rights reserved.\n\nRedistribution and use in source and binary forms, with or without\nmodification, are permitted provided that the following conditions are\nmet:\n*       Redistrib"
+    },
+    {
+      "path": "fiona/fiona_gdal_data_LICENSE.TXT",
+      "sha256": "1dae3468e81d00da56e2936f74d33b8b3ad09d726437f19ce209a5dabea41f77",
+      "size_bytes": 21841,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "\nGDAL/OGR Licensing\n==================\n\nThis file attempts to include all licenses that apply within the GDAL/OGR\nsource tree, in particular any that are supposed to be exposed to the end user\nfor credit requirements for instance.  The contents of this file can be\ndisplayed from GDAL commandline utilities using the --license commandline\nswitch.\n\n\nGDAL/OGR General\n----------------\n\nIn general GDAL/OGR is licensed under an MIT style license with the\nfollowing terms:\n\nPermission is hereby granted, free of charge, to any person obtaining a\ncopy of this software and associated documentation files (the \"Software\"),\nto deal in the Software without restriction, including without limitation\nthe rights to use, copy, modify, merge, publish, distribute, sublicense,\nand/or sell copies of the Software, and to permit persons to whom the\nSoftware is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included\nin all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS\nOR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL\nTHE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING\nFROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER\nDEALINGS IN THE SOFTWARE.\n\n\nport/cpl_float.cpp\n------------------\n\nCopyright (c) 2002, Industrial Light & Magic, a division of Lucas\nDigital Ltd. LLC\n\nAll rights reserved.\n\nRedistribution and use in source and binary forms, with or without\nmodification, are permitted provided that the following conditions are\nmet:\n*       Redistrib"
+    },
+    {
+      "path": "fiona/fiona_proj_data_copyright",
+      "sha256": "6a8f30793e877d32e3f88b972f0970a051a3b5a26cd057d3993cb51e21c43319",
+      "size_bytes": 1784,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "\nAll source, data files and other contents of the PROJ package are \navailable under the following terms.  Note that the PROJ 4.3 and earlier\nwas \"public domain\" as is common with US government work, but apparently\nthis is not a well defined legal term in many countries. Frank Warmerdam placed\neverything under the following MIT style license because he believed it is\neffectively the same as public domain, allowing anyone to use the code as\nthey wish, including making proprietary derivatives.\n\nInitial PROJ 4.3 public domain code was put as Frank Warmerdam as copyright\nholder, but he didn't mean to imply he did the work. Essentially all work was\ndone by Gerald Evenden.\n\nCopyright information can be found in source files.\n\n --------------\n\n Permission is hereby granted, free of charge, to any person obtaining a\n copy of this software and associated documentation files (the \"Software\"),\n to deal in the Software without restriction, including without limitation\n the rights to use, copy, modify, merge, publish, distribute, sublicense,\n and/or sell copies of the Software, and to permit persons to whom the\n Software is furnished to do so, subject to the following conditions:\n\n The above copyright notice and this permission notice shall be included\n in all copies or substantial portions of the Software.\n\n THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS\n OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\n FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL\n THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\n LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING\n FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER\n DEALINGS IN THE SOFTWARE.\n"
+    },
+    {
+      "path": "idna/idna-3.20.dist-info_licenses_LICENSE.md",
+      "sha256": "1a9a4f0e3d479a27240ddd59a9137a66ab4a0f9dfdc8ca6188cc0bfd85187f04",
+      "size_bytes": 1541,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "BSD 3-Clause License\n\nCopyright (c) 2013-2026, Kim Davies and contributors.\nAll rights reserved.\n\nRedistribution and use in source and binary forms, with or without\nmodification, are permitted provided that the following conditions are\nmet:\n\n1. Redistributions of source code must retain the above copyright\n   notice, this list of conditions and the following disclaimer.\n\n2. Redistributions in binary form must reproduce the above copyright\n   notice, this list of conditions and the following disclaimer in the\n   documentation and/or other materials provided with the distribution.\n\n3. Neither the name of the copyright holder nor the names of its\n   contributors may be used to endorse or promote products derived from\n   this software without specific prior written permission.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS\n\"AS IS\" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT\nLIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR\nA PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT\nHOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,\nSPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED\nTO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR\nPROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF\nLIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING\nNEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS\nSOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n"
+    },
+    {
+      "path": "numpy/numpy-2.5.4.dist-info_licenses_LICENSE.txt",
+      "sha256": "a804dff0ead9fadc5293456410bcbfc32bf024be9c4513459663fb7b442d2341",
+      "size_bytes": 45831,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 2,
+      "excerpt": "Copyright (c) 2005-2025, NumPy Developers.\nAll rights reserved.\n\nRedistribution and use in source and binary forms, with or without\nmodification, are permitted provided that the following conditions are\nmet:\n\n    * Redistributions of source code must retain the above copyright\n       notice, this list of conditions and the following disclaimer.\n\n    * Redistributions in binary form must reproduce the above\n       copyright notice, this list of conditions and the following\n       disclaimer in the documentation and/or other materials provided\n       with the distribution.\n\n    * Neither the name of the NumPy Developers nor the names of any\n       contributors may be used to endorse or promote products derived\n       from this software without specific prior written permission.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS\n\"AS IS\" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT\nLIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR\nA PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT\nOWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,\nSPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT\nLIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,\nDATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY\nTHEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT\n(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE\nOF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n\n----\n\n\n----\n\nThis binary distribution of NumPy also bundles the following software:\n\n\nName: OpenBLAS\nFiles: numpy.libs\\libscipy_openblas*.dll\nDescription: bundled as a dynamically linked library\nAvailability: https://github.com/OpenMathLib/OpenBLAS/\nLicens"
+    },
+    {
+      "path": "numpy/numpy-2.5.4.dist-info_licenses_numpy__core_include_numpy_libdivide_LICENSE.txt",
+      "sha256": "d544761558b510866c21f7e8a2d5716fca76e0b98117e3b6b86314db7244d150",
+      "size_bytes": 1039,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "  zlib License\n  ------------\n\n  Copyright (C) 2010 - 2019 ridiculous_fish, <libdivide@ridiculousfish.com>\n  Copyright (C) 2016 - 2019 Kim Walisch, <kim.walisch@gmail.com>\n\n  This software is provided 'as-is', without any express or implied\n  warranty.  In no event will the authors be held liable for any damages\n  arising from the use of this software.\n\n  Permission is granted to anyone to use this software for any purpose,\n  including commercial applications, and to alter it and redistribute it\n  freely, subject to the following restrictions:\n\n  1. The origin of this software must not be misrepresented; you must not\n     claim that you wrote the original software. If you use this software\n     in a product, an acknowledgment in the product documentation would be\n     appreciated but is not required.\n  2. Altered source versions must be plainly marked as such, and must not be\n     misrepresented as being the original software.\n  3. This notice may not be removed or altered from any source distribution.\n"
+    },
+    {
+      "path": "numpy/numpy-2.5.4.dist-info_licenses_numpy__core_src_common_pythoncapi-compat_COPYING",
+      "sha256": "aea41976c720f91bd19725c16916a1ace40eb1ea42620d340e587a5de4bbcea0",
+      "size_bytes": 704,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "BSD Zero Clause License\n\nCopyright Contributors to the pythoncapi_compat project.\n\nPermission to use, copy, modify, and/or distribute this software for any\npurpose with or without fee is hereby granted.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH\nREGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY\nAND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,\nINDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM\nLOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR\nOTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR\nPERFORMANCE OF THIS SOFTWARE.\n"
+    },
+    {
+      "path": "numpy/numpy-2.5.4.dist-info_licenses_numpy__core_src_highway_LICENSE",
+      "sha256": "d208152e2777ffd0126eacc1bd21c0320d69e4e6b622d21a2a12a47e8ef73763",
+      "size_bytes": 21155,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "This project is primarily dual-licensed under your choice of either the Apache\nLicense 2.0 or the BSD 3-Clause License.\n\nThe following files are licensed under different terms:\n*   hwy/contrib/random/random-inl.h: CC0 1.0 Universal\n\nThe full texts of all applicable licenses are included below, separated by\n'---'.\n\n--------------------------------------------------------------------------------\nApache License 2.0\n--------------------------------------------------------------------------------\n\n                                 Apache License\n                           Version 2.0, January 2004\n                        http://www.apache.org/licenses/\n\n   TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION\n\n   1. Definitions.\n\n      \"License\" shall mean the terms and conditions for use, reproduction,\n      and distribution as defined by Sections 1 through 9 of this document.\n\n      \"Licensor\" shall mean the copyright owner or entity authorized by\n      the copyright owner that is granting the License.\n\n      \"Legal Entity\" shall mean the union of the acting entity and all\n      other entities that control, are controlled by, or are under common\n      control with that entity. For the purposes of this definition,\n      \"control\" means (i) the power, direct or indirect, to cause the\n      direction or management of such entity, whether by contract or\n      otherwise, or (ii) ownership of fifty percent (50%) or more of the\n      outstanding shares, or (iii) beneficial ownership of such entity.\n\n      \"You\" (or \"Your\") shall mean an individual or Legal Entity\n      exercising permissions granted by this License.\n\n      \"Source\" form shall mean the preferred form for making modifications,\n      including but not limited to software source code, documentation\n      source"
+    },
+    {
+      "path": "numpy/numpy-2.5.4.dist-info_licenses_numpy__core_src_multiarray_dragon4_LICENSE.txt",
+      "sha256": "b0fd592d4ead563148e3977e7b589169d46a5ef2ff133c755a81af880a3fc919",
+      "size_bytes": 1441,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "Copyright (c) 2014 Ryan Juckett\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to\ndeal in the Software without restriction, including without limitation the\nrights to use, copy, modify, merge, publish, distribute, sublicense, and/or\nsell copies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in\nall copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING\nFROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS\nIN THE SOFTWARE.\n\ndragon4.c|h h contains a modified version of Ryan Juckett's Dragon4\nimplementation, obtained from https://www.ryanjuckett.com,\nwhich has been ported from C++ to C and which has\nmodifications specific to printing floats in numpy.\n\nRyan Juckett's original code was under the Zlib license; he gave numpy\npermission to include it under the MIT license instead.\n"
+    },
+    {
+      "path": "numpy/numpy-2.5.4.dist-info_licenses_numpy__core_src_npysort_x86-simd-sort_LICENSE.md",
+      "sha256": "a732977853530066790c42817087f4829b518dd98d340c916acbfd227e39d3cb",
+      "size_bytes": 1542,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "BSD 3-Clause License\n\nCopyright (c) 2022, Intel. All rights reserved.\n\nRedistribution and use in source and binary forms, with or without\nmodification, are permitted provided that the following conditions are met:\n\n1. Redistributions of source code must retain the above copyright notice, this\n   list of conditions and the following disclaimer.\n\n2. Redistributions in binary form must reproduce the above copyright notice,\n   this list of conditions and the following disclaimer in the documentation\n   and/or other materials provided with the distribution.\n\n3. Neither the name of the copyright holder nor the names of its\n   contributors may be used to endorse or promote products derived from\n   this software without specific prior written permission.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\"\nAND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE\nIMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE\nDISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE\nFOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL\nDAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR\nSERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER\nCAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,\nOR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE\nOF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n"
+    },
+    {
+      "path": "numpy/numpy-2.5.4.dist-info_licenses_numpy__core_src_umath_svml_LICENSE",
+      "sha256": "585483905b13d4b42f800c55ba99e89d6e2e33ccd5f503e201c07531d148ff41",
+      "size_bytes": 1573,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "Copyright (c) 2005-2021, NumPy Developers.\nAll rights reserved.\n\nRedistribution and use in source and binary forms, with or without\nmodification, are permitted provided that the following conditions are\nmet:\n\n    * Redistributions of source code must retain the above copyright\n       notice, this list of conditions and the following disclaimer.\n\n    * Redistributions in binary form must reproduce the above\n       copyright notice, this list of conditions and the following\n       disclaimer in the documentation and/or other materials provided\n       with the distribution.\n\n    * Neither the name of the NumPy Developers nor the names of any\n       contributors may be used to endorse or promote products derived\n       from this software without specific prior written permission.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS\n\"AS IS\" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT\nLIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR\nA PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT\nOWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,\nSPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT\nLIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,\nDATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY\nTHEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT\n(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE\nOF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n"
+    },
+    {
+      "path": "numpy/numpy-2.5.4.dist-info_licenses_numpy_fft_pocketfft_LICENSE.md",
+      "sha256": "8db000e158c162e7249787852d8c69764706502ccee725c06641b31c1e95c8af",
+      "size_bytes": 1523,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "Copyright (C) 2010-2018 Max-Planck-Society\nAll rights reserved.\n\nRedistribution and use in source and binary forms, with or without modification,\nare permitted provided that the following conditions are met:\n\n* Redistributions of source code must retain the above copyright notice, this\n  list of conditions and the following disclaimer.\n* Redistributions in binary form must reproduce the above copyright notice, this\n  list of conditions and the following disclaimer in the documentation and/or\n  other materials provided with the distribution.\n* Neither the name of the copyright holder nor the names of its contributors may\n  be used to endorse or promote products derived from this software without\n  specific prior written permission.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\" AND\nANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED\nWARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE\nDISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR\nANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES\n(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;\nLOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON\nANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT\n(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS\nSOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n"
+    },
+    {
+      "path": "numpy/numpy-2.5.4.dist-info_licenses_numpy_linalg_lapack_lite_LICENSE.txt",
+      "sha256": "19060ef465e1797d682ee0fc3081bd25ab1395e995e43d25c9d13c95d9a3cd6b",
+      "size_bytes": 2314,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "Copyright (c) 1992-2013 The University of Tennessee and The University\n                        of Tennessee Research Foundation.  All rights\n                        reserved.\nCopyright (c) 2000-2013 The University of California Berkeley. All\n                        rights reserved.\nCopyright (c) 2006-2013 The University of Colorado Denver.  All rights\n                        reserved.\n\n$COPYRIGHT$\n\nAdditional copyrights may follow\n\n$HEADER$\n\nRedistribution and use in source and binary forms, with or without\nmodification, are permitted provided that the following conditions are\nmet:\n\n- Redistributions of source code must retain the above copyright\n  notice, this list of conditions and the following disclaimer.\n\n- Redistributions in binary form must reproduce the above copyright\n  notice, this list of conditions and the following disclaimer listed\n  in this license in the documentation and/or other materials\n  provided with the distribution.\n\n- Neither the name of the copyright holders nor the names of its\n  contributors may be used to endorse or promote products derived from\n  this software without specific prior written permission.\n\nThe copyright holders provide no reassurances that the source code\nprovided does not infringe any patent, copyright, or any other\nintellectual property rights of third parties.  The copyright holders\ndisclaim any liability to any recipient for claims brought against\nrecipient by any third party for infringement of that parties\nintellectual property rights.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS\n\"AS IS\" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT\nLIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR\nA PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT\nOWNER OR CONTRIB"
+    },
+    {
+      "path": "numpy/numpy-2.5.4.dist-info_licenses_numpy_ma_LICENSE",
+      "sha256": "d78dbb208b80d92b4d333e41a4baae50d12444f46e53199fa7726a91de6e2da7",
+      "size_bytes": 1616,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "* Copyright (c) 2006, University of Georgia and Pierre G.F. Gerard-Marchant\n* All rights reserved.\n* Redistribution and use in source and binary forms, with or without\n* modification, are permitted provided that the following conditions are met:\n*\n*     * Redistributions of source code must retain the above copyright\n*       notice, this list of conditions and the following disclaimer.\n*     * Redistributions in binary form must reproduce the above copyright\n*       notice, this list of conditions and the following disclaimer in the\n*       documentation and/or other materials provided with the distribution.\n*     * Neither the name of the University of Georgia nor the\n*       names of its contributors may be used to endorse or promote products\n*       derived from this software without specific prior written permission.\n*\n* THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND ANY\n* EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED\n* WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE\n* DISCLAIMED. IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE FOR ANY\n* DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES\n* (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;\n* LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND\n* ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT\n* (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS\n* SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
+    },
+    {
+      "path": "numpy/numpy-2.5.4.dist-info_licenses_numpy_random_LICENSE.md",
+      "sha256": "b4bc2f4fa1c95778f1ed3dd8f14706bece399475b978f9f34b5d3cd72521b48a",
+      "size_bytes": 3582,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "**This software is dual-licensed under the The University of Illinois/NCSA\nOpen Source License (NCSA) and The 3-Clause BSD License**\n\n# NCSA Open Source License\n**Copyright (c) 2019 Kevin Sheppard. All rights reserved.**\n\nDeveloped by: Kevin Sheppard (<kevin.sheppard@economics.ox.ac.uk>,\n<kevin.k.sheppard@gmail.com>)\n[http://www.kevinsheppard.com](http://www.kevinsheppard.com)\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of\nthis software and associated documentation files (the \"Software\"), to deal with\nthe Software without restriction, including without limitation the rights to\nuse, copy, modify, merge, publish, distribute, sublicense, and/or sell copies\nof the Software, and to permit persons to whom the Software is furnished to do\nso, subject to the following conditions:\n\nRedistributions of source code must retain the above copyright notice, this\nlist of conditions and the following disclaimers.\n\nRedistributions in binary form must reproduce the above copyright notice, this\nlist of conditions and the following disclaimers in the documentation and/or\nother materials provided with the distribution.\n\nNeither the names of Kevin Sheppard, nor the names of any contributors may be\nused to endorse or promote products derived from this Software without specific\nprior written permission.\n\n**THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nCONTRIBUTORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS WITH\nTHE SOFTWA"
+    },
+    {
+      "path": "numpy/numpy-2.5.4.dist-info_licenses_numpy_random_src_distributions_LICENSE.md",
+      "sha256": "cf5619f25b112d5ce7c896efffc8e610bcb345dfadcc19f2c1460aa48fff2c9e",
+      "size_bytes": 2805,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "## NumPy\n\nCopyright (c) 2005-2017, NumPy Developers.\nAll rights reserved.\n\nRedistribution and use in source and binary forms, with or without\nmodification, are permitted provided that the following conditions are\nmet:\n\n* Redistributions of source code must retain the above copyright\n   notice, this list of conditions and the following disclaimer.\n\n* Redistributions in binary form must reproduce the above\n   copyright notice, this list of conditions and the following\n   disclaimer in the documentation and/or other materials provided\n   with the distribution.\n\n* Neither the name of the NumPy Developers nor the names of any\n   contributors may be used to endorse or promote products derived\n   from this software without specific prior written permission.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS\n\"AS IS\" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT\nLIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR\nA PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT\nOWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,\nSPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT\nLIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,\nDATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY\nTHEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT\n(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE\nOF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n\n\n## Julia\n\nThe ziggurat methods were derived from Julia.\n\nCopyright (c) 2009-2019: Jeff Bezanson, Stefan Karpinski, Viral B. Shah,\nand other contributors:\n\nhttps://github.com/JuliaLang/julia/contributors\n\nPermission is hereby granted, free of charge, to any person obtaining\na copy "
+    },
+    {
+      "path": "numpy/numpy-2.5.4.dist-info_licenses_numpy_random_src_mt19937_LICENSE.md",
+      "sha256": "92c10699884321f1c2947fe2a70ab23b0fbf1507f756d89dd08f38c61fc3d4fa",
+      "size_bytes": 2986,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "# MT19937\n\nCopyright (c) 2003-2005, Jean-Sebastien Roy (js@jeannot.org)\n\nThe rk_random and rk_seed functions algorithms and the original design of\nthe Mersenne Twister RNG:\n\n  Copyright (C) 1997 - 2002, Makoto Matsumoto and Takuji Nishimura,\n  All rights reserved.\n\n  Redistribution and use in source and binary forms, with or without\n  modification, are permitted provided that the following conditions\n  are met:\n\n  1. Redistributions of source code must retain the above copyright\n  notice, this list of conditions and the following disclaimer.\n\n  2. Redistributions in binary form must reproduce the above copyright\n  notice, this list of conditions and the following disclaimer in the\n  documentation and/or other materials provided with the distribution.\n\n  3. The names of its contributors may not be used to endorse or promote\n  products derived from this software without specific prior written\n  permission.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS\n\"AS IS\" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT\nLIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR\nA PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER\nOR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,\nEXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,\nPROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR\nPROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF\nLIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING\nNEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS\nSOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n\nOriginal algorithm for the implementation of rk_interval function from\nRichard J. Wagner's implementation of the Mersenne Tw"
+    },
+    {
+      "path": "numpy/numpy-2.5.4.dist-info_licenses_numpy_random_src_pcg64_LICENSE.md",
+      "sha256": "41190663b77bee5302386495a07b7eabfbfa571aa0ae2f11da6764162062fc4f",
+      "size_bytes": 1176,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "# PCG64\n\n## The MIT License\n\nPCG Random Number Generation for C.\n\nCopyright 2014 Melissa O'Neill <oneill@pcg-random.org>\n\nPermission is hereby granted, free of charge, to any person obtaining \na copy of this software and associated documentation files (the \"Software\"), \nto deal in the Software without restriction, including without limitation \nthe rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in \nall copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR \nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS \nFOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR \nCOPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER \nIN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN \nCONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n"
+    },
+    {
+      "path": "numpy/numpy-2.5.4.dist-info_licenses_numpy_random_src_philox_LICENSE.md",
+      "sha256": "322ac46d870c8aeead6c53adcccc839296fb3c8e456eae155081297daf7f8013",
+      "size_bytes": 1540,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "# PHILOX\n\nCopyright 2010-2012, D. E. Shaw Research.\nAll rights reserved.\n\nRedistribution and use in source and binary forms, with or without\nmodification, are permitted provided that the following conditions are\nmet:\n\n* Redistributions of source code must retain the above copyright\n  notice, this list of conditions, and the following disclaimer.\n\n* Redistributions in binary form must reproduce the above copyright\n  notice, this list of conditions, and the following disclaimer in the\n  documentation and/or other materials provided with the distribution.\n\n* Neither the name of D. E. Shaw Research nor the names of its\n  contributors may be used to endorse or promote products derived from\n  this software without specific prior written permission.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS\n\"AS IS\" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT\nLIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR\nA PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT\nOWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,\nSPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT\nLIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,\nDATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY\nTHEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT\n(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE\nOF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n"
+    },
+    {
+      "path": "numpy/numpy-2.5.4.dist-info_licenses_numpy_random_src_sfc64_LICENSE.md",
+      "sha256": "28cad82ce1379dc529df30da78ec012d7d0d1d576b03ddcb93388aee53659f59",
+      "size_bytes": 1253,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "# SFC64\n\n## The MIT License\n\nAdapted from a C++ implementation of Chris Doty-Humphrey's SFC PRNG.\n\nhttps://gist.github.com/imneme/f1f7821f07cf76504a97f6537c818083\n\nCopyright (c) 2018 Melissa E. O'Neill\n\nPermission is hereby granted, free of charge, to any person obtaining a\ncopy of this software and associated documentation files (the \"Software\"),\nto deal in the Software without restriction, including without limitation\nthe rights to use, copy, modify, merge, publish, distribute, sublicense,\nand/or sell copies of the Software, and to permit persons to whom the\nSoftware is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in\nall copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING\nFROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER\nDEALINGS IN THE SOFTWARE.\n"
+    },
+    {
+      "path": "numpy/numpy-2.5.4.dist-info_licenses_numpy_random_src_splitmix64_LICENSE.md",
+      "sha256": "454ec7350e478e037061850b67395753b425b1cb0a34bbc26290b020bf89d763",
+      "size_bytes": 340,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "# SPLITMIX64\n\nWritten in 2015 by Sebastiano Vigna (vigna@acm.org)\n\nTo the extent possible under law, the author has dedicated all copyright\nand related and neighboring rights to this software to the public domain\nworldwide. This software is distributed without any warranty.\n\nSee <http://creativecommons.org/publicdomain/zero/1.0/>."
+    },
+    {
+      "path": "numpy/numpy__core_include_numpy_random_LICENSE.txt",
+      "sha256": "d544761558b510866c21f7e8a2d5716fca76e0b98117e3b6b86314db7244d150",
+      "size_bytes": 1039,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "  zlib License\n  ------------\n\n  Copyright (C) 2010 - 2019 ridiculous_fish, <libdivide@ridiculousfish.com>\n  Copyright (C) 2016 - 2019 Kim Walisch, <kim.walisch@gmail.com>\n\n  This software is provided 'as-is', without any express or implied\n  warranty.  In no event will the authors be held liable for any damages\n  arising from the use of this software.\n\n  Permission is granted to anyone to use this software for any purpose,\n  including commercial applications, and to alter it and redistribute it\n  freely, subject to the following restrictions:\n\n  1. The origin of this software must not be misrepresented; you must not\n     claim that you wrote the original software. If you use this software\n     in a product, an acknowledgment in the product documentation would be\n     appreciated but is not required.\n  2. Altered source versions must be plainly marked as such, and must not be\n     misrepresented as being the original software.\n  3. This notice may not be removed or altered from any source distribution.\n"
+    },
+    {
+      "path": "numpy/numpy_ma_LICENSE",
+      "sha256": "d78dbb208b80d92b4d333e41a4baae50d12444f46e53199fa7726a91de6e2da7",
+      "size_bytes": 1616,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "* Copyright (c) 2006, University of Georgia and Pierre G.F. Gerard-Marchant\n* All rights reserved.\n* Redistribution and use in source and binary forms, with or without\n* modification, are permitted provided that the following conditions are met:\n*\n*     * Redistributions of source code must retain the above copyright\n*       notice, this list of conditions and the following disclaimer.\n*     * Redistributions in binary form must reproduce the above copyright\n*       notice, this list of conditions and the following disclaimer in the\n*       documentation and/or other materials provided with the distribution.\n*     * Neither the name of the University of Georgia nor the\n*       names of its contributors may be used to endorse or promote products\n*       derived from this software without specific prior written permission.\n*\n* THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND ANY\n* EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED\n* WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE\n* DISCLAIMED. IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE FOR ANY\n* DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES\n* (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;\n* LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND\n* ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT\n* (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS\n* SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
+    },
+    {
+      "path": "numpy/numpy_random_LICENSE.md",
+      "sha256": "b4bc2f4fa1c95778f1ed3dd8f14706bece399475b978f9f34b5d3cd72521b48a",
+      "size_bytes": 3582,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "**This software is dual-licensed under the The University of Illinois/NCSA\nOpen Source License (NCSA) and The 3-Clause BSD License**\n\n# NCSA Open Source License\n**Copyright (c) 2019 Kevin Sheppard. All rights reserved.**\n\nDeveloped by: Kevin Sheppard (<kevin.sheppard@economics.ox.ac.uk>,\n<kevin.k.sheppard@gmail.com>)\n[http://www.kevinsheppard.com](http://www.kevinsheppard.com)\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of\nthis software and associated documentation files (the \"Software\"), to deal with\nthe Software without restriction, including without limitation the rights to\nuse, copy, modify, merge, publish, distribute, sublicense, and/or sell copies\nof the Software, and to permit persons to whom the Software is furnished to do\nso, subject to the following conditions:\n\nRedistributions of source code must retain the above copyright notice, this\nlist of conditions and the following disclaimers.\n\nRedistributions in binary form must reproduce the above copyright notice, this\nlist of conditions and the following disclaimers in the documentation and/or\nother materials provided with the distribution.\n\nNeither the names of Kevin Sheppard, nor the names of any contributors may be\nused to endorse or promote products derived from this Software without specific\nprior written permission.\n\n**THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nCONTRIBUTORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS WITH\nTHE SOFTWA"
+    },
+    {
+      "path": "packages.json",
+      "sha256": "4b34b4008068a020f922dc5f1d7854cdb48be58ae8a294da0a37f86e7ddfe3ee",
+      "size_bytes": 2844,
+      "spdx": [],
+      "lgpl_mentions": 6,
+      "gpl_mentions": 18,
+      "excerpt": "[\n  {\n    \"name\": \"altgraph\",\n    \"version\": \"0.17.5\",\n    \"license\": \"MIT\"\n  },\n  {\n    \"name\": \"attrs\",\n    \"version\": \"26.1.0\",\n    \"license\": \"MIT\"\n  },\n  {\n    \"name\": \"certifi\",\n    \"version\": \"2026.7.22\",\n    \"license\": \"MPL-2.0\"\n  },\n  {\n    \"name\": \"click\",\n    \"version\": \"8.5.0\",\n    \"license\": \"BSD-3-Clause\"\n  },\n  {\n    \"name\": \"click-plugins\",\n    \"version\": \"1.1.1.2\",\n    \"license\": \"New BSD\"\n  },\n  {\n    \"name\": \"cligj\",\n    \"version\": \"0.7.2\",\n    \"license\": \"BSD\"\n  },\n  {\n    \"name\": \"defusedxml\",\n    \"version\": \"0.7.1\",\n    \"license\": \"PSFL\"\n  },\n  {\n    \"name\": \"dnspython\",\n    \"version\": \"2.9.0\",\n    \"license\": \"ISC\"\n  },\n  {\n    \"name\": \"email-validator\",\n    \"version\": \"2.3.0\",\n    \"license\": \"Unlicense\"\n  },\n  {\n    \"name\": \"fiona\",\n    \"version\": \"1.10.1\",\n    \"license\": \"BSD 3-Clause\"\n  },\n  {\n    \"name\": \"idna\",\n    \"version\": \"3.20\",\n    \"license\": \"BSD-3-Clause\"\n  },\n  {\n    \"name\": \"numpy\",\n    \"version\": \"2.5.4\",\n    \"license\": \"BSD-3-Clause AND 0BSD AND MIT AND Zlib AND CC0-1.0\"\n  },\n  {\n    \"name\": \"packaging\",\n    \"version\": \"26.3\",\n    \"license\": \"Apache-2.0 OR BSD-2-Clause\"\n  },\n  {\n    \"name\": \"pefile\",\n    \"version\": \"2024.8.26\",\n    \"license\": \"MIT\"\n  },\n  {\n    \"name\": \"pip\",\n    \"version\": \"25.0.1\",\n    \"license\": \"MIT\"\n  },\n  {\n    \"name\": \"pyinstaller\",\n    \"version\": \"6.22.3\",\n    \"license\": \"GPLv2-or-later with a special exception which allows to use PyInstaller to build and distribute non-free programs (including commercial ones)\"\n  },\n  {\n    \"name\": \"pyinstaller-hooks-contrib\",\n    \"version\": \"2026.8\",\n    \"license\": \"not declared\"\n  },\n  {\n    \"name\": \"pyproj\",\n    \"version\": \"3.8.0\",\n    \"license\": \"MIT\"\n  },\n  {\n    \"name\": \"PySide6\",\n    \"version\": \"6.12.0\",\n    \"license\": \"LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only\""
+    },
+    {
+      "path": "packaging/packaging-26.3.dist-info_licenses_LICENSE",
+      "sha256": "cad1ef5bd340d73e074ba614d26f7deaca5c7940c3d8c34852e65c4909686c48",
+      "size_bytes": 197,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "This software is made available under the terms of *either* of the licenses\nfound in LICENSE.APACHE or LICENSE.BSD. Contributions to this software is made\nunder the terms of *both* these licenses.\n"
+    },
+    {
+      "path": "packaging/packaging-26.3.dist-info_licenses_LICENSE.APACHE",
+      "sha256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594",
+      "size_bytes": 10174,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "\n                                 Apache License\n                           Version 2.0, January 2004\n                        http://www.apache.org/licenses/\n\n   TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION\n\n   1. Definitions.\n\n      \"License\" shall mean the terms and conditions for use, reproduction,\n      and distribution as defined by Sections 1 through 9 of this document.\n\n      \"Licensor\" shall mean the copyright owner or entity authorized by\n      the copyright owner that is granting the License.\n\n      \"Legal Entity\" shall mean the union of the acting entity and all\n      other entities that control, are controlled by, or are under common\n      control with that entity. For the purposes of this definition,\n      \"control\" means (i) the power, direct or indirect, to cause the\n      direction or management of such entity, whether by contract or\n      otherwise, or (ii) ownership of fifty percent (50%) or more of the\n      outstanding shares, or (iii) beneficial ownership of such entity.\n\n      \"You\" (or \"Your\") shall mean an individual or Legal Entity\n      exercising permissions granted by this License.\n\n      \"Source\" form shall mean the preferred form for making modifications,\n      including but not limited to software source code, documentation\n      source, and configuration files.\n\n      \"Object\" form shall mean any form resulting from mechanical\n      transformation or translation of a Source form, including but\n      not limited to compiled object code, generated documentation,\n      and conversions to other media types.\n\n      \"Work\" shall mean the work of authorship, whether in Source or\n      Object form, made available under the License, as indicated by a\n      copyright notice that is included in or attached to the work\n      (an examp"
+    },
+    {
+      "path": "packaging/packaging-26.3.dist-info_licenses_LICENSE.BSD",
+      "sha256": "b70e7e9b742f1cc6f948b34c16aa39ffece94196364bc88ff0d2180f0028fac5",
+      "size_bytes": 1344,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "Copyright (c) Donald Stufft and individual contributors.\nAll rights reserved.\n\nRedistribution and use in source and binary forms, with or without\nmodification, are permitted provided that the following conditions are met:\n\n    1. Redistributions of source code must retain the above copyright notice,\n       this list of conditions and the following disclaimer.\n\n    2. Redistributions in binary form must reproduce the above copyright\n       notice, this list of conditions and the following disclaimer in the\n       documentation and/or other materials provided with the distribution.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\" AND\nANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED\nWARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE\nDISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE\nFOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL\nDAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR\nSERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER\nCAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,\nOR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE\nOF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n"
+    },
+    {
+      "path": "packaging/packaging_licenses___init__.py",
+      "sha256": "590d12eee73ddbec53b4e9ee5bfc64d9cb3aacb4940e8ebcba260757ce56740b",
+      "size_bytes": 7859,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "#######################################################################################\n#\n# Adapted from:\n#  https://github.com/pypa/hatch/blob/5352e44/backend/src/hatchling/licenses/parse.py\n#\n# MIT License\n#\n# Copyright (c) 2017-present Ofek Lev <oss@ofek.dev>\n#\n# Permission is hereby granted, free of charge, to any person obtaining a copy of this\n# software and associated documentation files (the \"Software\"), to deal in the Software\n# without restriction, including without limitation the rights to use, copy, modify,\n# merge, publish, distribute, sublicense, and/or sell copies of the Software, and to\n# permit persons to whom the Software is furnished to do so, subject to the following\n# conditions:\n#\n# The above copyright notice and this permission notice shall be included in all copies\n# or substantial portions of the Software.\n#\n# THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n# INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A\n# PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT\n# HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF\n# CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE\n# OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n#\n#\n# With additional allowance of arbitrary `LicenseRef-` identifiers, not just\n# `LicenseRef-Public-Domain` and `LicenseRef-Proprietary`.\n#\n#######################################################################################\nfrom __future__ import annotations\n\nimport re\nfrom typing import NewType, cast\n\nfrom ._spdx import EXCEPTIONS, LICENSES\n\n__all__ = [\n    \"InvalidLicenseExpression\",\n    \"NormalizedLicenseExpression\",\n    \"canonicalize_license_expression\",\n]\n\n\n# Simple "
+    },
+    {
+      "path": "packaging/packaging_licenses___pycache_____init__.cpython-312.pyc",
+      "sha256": "3d31e131f86f4f6fbb5230fa39d5e28b7312fe8bd2bae5f6e324931a5cd6467e",
+      "size_bytes": 5762,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "\ufffd\n\n\u0000\u0000\u0000\u0000\ufffd\ufffd\ufffdj\ufffd\u001e\u0000\u0000\ufffd\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0005\u0000\u0000\u0000\u0000\u0000\u0000\u0001\ufffd\u0000\u0000\u0000\ufffd\u0000d\u0000d\u0001l\u0000m\u0001Z\u0001\u0001\u0000d\u0000d\u0002l\u0002Z\u0002d\u0000d\u0003l\u0003m\u0004Z\u0004m\u0005Z\u0005\u0001\u0000d\u0004d\u0005l\u0006m\u0007Z\u0007m\bZ\b\u0001\u0000g\u0000d\u0006\ufffd\u0001Z\td\nd\u0007\ufffd\u0004Z\n\u0002\u0000e\u0002j\u0016\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000d\b\ufffd\u0001\u0000\u0000\u0000\u0000\u0000\u0000Z\f\u0002\u0000e\u0004d\te\n\ufffd\u0002\u0000\u0000\u0000\u0000\u0000\u0000Z\u000e\t\u0000\u0002\u0000G\u0000d\n\ufffd\u0000d\u000be\u000f\ufffd\u0003\u0000\u0000\u0000\u0000\u0000\u0000Z\u0010\t\u0000\t\u0000\t\u0000\t\u0000d\u000ed\f\ufffd\u0004Z\u0011y\u0002)\u000f\ufffd\u0000\u0000\u0000\u0000)\u0001\ufffd\u000bannotationsN)\u0002\ufffd\u0007NewType\ufffd\u0004cast\ufffd\u0001\u0000\u0000\u0000)\u0002\ufffd\nEXCEPTIONS\ufffd\bLICENSES)\u0003\ufffd\u0018InvalidLicenseExpression\ufffd\u001bNormalizedLicenseExpression\ufffd\u001fcanonicalize_license_expressionc\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0000\u0000\u0000\u0003\u0000\u0000\u0001\ufffd\u000e\u0000\u0000\u0000\ufffd\u0000t\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000S\u0000)\u0001N)\u0001\ufffd\u0007__all__\ufffd\u0000\ufffd\u0000\u0000\u0000\u0000\ufffdSD:\\a\\AgroLines\\AgroLines\\build-env\\Lib\\site-packages\\packaging/licenses/__init__.py\ufffd\u0007__dir__r\u0011\u0000\u0000\u0000/\u0000\u0000\u0000s\u0007\u0000\u0000\u0000\ufffd\u0000\ufffd\u000b\u0012\ufffdNr\u000f\u0000\u0000\u0000z\u0010^[A-Za-z0-9.-]+$r\n\u0000\u0000\u0000c\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\ufffd\u0010\u0000\u0000\u0000\ufffd\u0000e\u0000Z\u0001d\u0000Z\u0002d\u0001Z\u0003y\u0002)\u0003r\t\u0000\u0000\u0000a1\u0001\u0000\u0000Raised when a license-expression string is invalid\n\n    >>> from packaging.licenses import canonicalize_license_expression\n    >>> canonicalize_license_expression(\"invalid\")\n    Traceback (most recent call last):\n        ...\n    packaging.licenses.InvalidLicenseExpression: Unknown license: 'invalid'\n    N)\u0004\ufffd\b__name__\ufffd\n__module__\ufffd\f__qualname__\ufffd\u0007__doc__r\u000e\u0000\u0000\u0000r\u000f\u0000\u0000\u0000r\u0010\u0000\u0000\u0000r\t\u0000\u0000\u0000r\t\u0000\u0000\u0000<\u0000\u0000\u0000s\u0007\u0000\u0000\u0000\ufffd\u0000\ufffd\u0002\u0007\u0005\br\u000f\u0000\u0000\u0000r\t\u0000\u0000\u0000c\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\t\u0000\u0000\u0000\u0003\u0000\u0000\u0001\ufffd&\u0006\u0000\u0000\ufffd\u0000|\u0000s\u0010d\u0001|\u0000\ufffd\u0002\ufffd\u0002}\u0001t\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000|\u0001\ufffd\u0001\u0000\u0000\u0000\u0000\u0000\u0000\ufffd\u0001|\u0000j\u0003\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000d\u0002d\u0003\ufffd\u0002\u0000\u0000\u0000\u0000\u0000\u0000j\u0003\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000d\u0004d\u0005\ufffd\u0002\u0000\u0000\u0000\u0000\u0000\u0000}\u0002d\u0006}\u0003|\u0002j\u0005\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\ufffd\u0000\u0000\u0000\u0000\u0000\u0000\u0000D\u0000\ufffd\u0004c\u0002i\u0000c\u0002]O\u0000\u0000}\u0004|\u0004j\u0007\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\ufffd\u0000\u0000\u0000\u0000\u0000\u0000\u0000j\t\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000|\u0003j\u0007\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\ufffd\u0000\u0000\u0000\u0000\u0000\u0000\u0000\ufffd\u0001\u0000\u0000\u0000\u0000\u0000\u0000r |\u0004j\u0007\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\ufffd\u0000\u0000\u0000\u0000\u0000\u0000\u0000d\u0006|\u0004t\u000b\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000|\u0003\ufffd\u0001\u0000\u0000\u0000\u0000\u0000\u0000d\u0007\u001a\u0000z\u0000\u0000\u0000\ufffd\u0002\ufffdQ\u0004\u0000}\u0005}\u0004|\u0002j\u0007\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\ufffd\u0000\u0000\u0000\u0000\u0000\u0000\u0000}\u0002|\u0002j\u0005\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\ufffd\u0000\u0000\u0000\u0000\u0000\u0000\u0000}\u0006g\u0000}\u0007|\u0006D\u0000]m\u0000\u0000}\b|\bd\bv\u0001r\u0012|\u0007j\n\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000d\t\ufffd\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0000\ufffd\u0019|\bd\nk(\u0000\u0000r\u0012|\u0007j\n\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000d\u000b\ufffd\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0000\ufffd0|\bd\u0002k(\u0000\u0000r\t|\u0007r\u0007|\u0007d\f\u0019\u0000\u0000\u0000d\nv\u0001s\u000f|\bd\u0004k(\u0000\u0000r\u001a|\u0007r\u0018|\u0007d\f\u0019\u0000\u0000\u0000d\u0002k(\u0000\u0000r\u0010d\u0001|\u0000\ufffd\u0002\ufffd\u0002}\u0001t\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000|\u0001\ufffd\u0001\u0000\u0000\u0000\u0000\u0000\u0000\ufffd\u0001|\u0007j\n\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000|\b\ufffd\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0000\ufffdo\u0004\u0000d\u000ej\u000f\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000|\u0007\ufffd\u0001\u0000\u0000\u0000\u0000\u0000\u0000}\t\t\u0000t\u0011\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000|\td\u000fd\u0010\ufffd\u0003\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0000g\u0000}\nd\u0011}\u000bt\u0015\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000|\u0006\ufffd\u0001\u0000\u0000\u0000\u0000\u0000\u0000D\u0000\ufffd\u0001]N\u0000\u0000\\\u0002\u0000\u0000}\f}\b|\bd\bv\u0000rT|\bd\nk(\u0000\u0000r-|\u000br\u001b|\fd\u0012z"
+    },
+    {
+      "path": "packaging/packaging_licenses___pycache____spdx.cpython-312.pyc",
+      "sha256": "80d54e4a5fe3180c8ca58d045e2343e92f89b987a309aba4a4262a137c115275",
+      "size_bytes": 49838,
+      "spdx": [],
+      "lgpl_mentions": 18,
+      "gpl_mentions": 35,
+      "excerpt": "\ufffd\n\n\u0000\u0000\u0000\u0000\ufffd\ufffd\ufffdj\ufffd\ufffd\u0000\u0000\ufffd\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u000e\u0000\u0000\u0000\u0000\u0000\u0000\u0001\ufffd/\u0000\u0000\ufffd\u0000U\u0000d\u0000d\u0001l\u0000m\u0001Z\u0001\u0001\u0000d\u0000d\u0002l\u0002m\u0003Z\u0003\u0001\u0000\u0002\u0000G\u0000d\u0003\ufffd\u0000d\u0004e\u0003\ufffd\u0003\u0000\u0000\u0000\u0000\u0000\u0000Z\u0004\u0002\u0000G\u0000d\u0005\ufffd\u0000d\u0006e\u0003\ufffd\u0003\u0000\u0000\u0000\u0000\u0000\u0000Z\u0005d\u0007Z\u0006i\u0000d\bd\td\nd\u000b\ufffd\u0002\ufffd\u0001d\fd\nd\nd\u000b\ufffd\u0002\ufffd\u0001d\u000ed\u000fd\nd\u000b\ufffd\u0002\ufffd\u0001d\u0010d\u0011d\nd\u000b\ufffd\u0002\ufffd\u0001d\u0012d\u0013d\nd\u000b\ufffd\u0002\ufffd\u0001d\u0014d\u0015d\nd\u000b\ufffd\u0002\ufffd\u0001d\u0016d\u0017d\nd\u000b\ufffd\u0002\ufffd\u0001d\u0018d\u0019d\nd\u000b\ufffd\u0002\ufffd\u0001d\u001ad\u001bd\nd\u000b\ufffd\u0002\ufffd\u0001d\u001cd\u001dd\nd\u000b\ufffd\u0002\ufffd\u0001d\u001ed\u001fd\nd\u000b\ufffd\u0002\ufffd\u0001d d!d\nd\u000b\ufffd\u0002\ufffd\u0001d\"d#d\nd\u000b\ufffd\u0002\ufffd\u0001d$d%d\nd\u000b\ufffd\u0002\ufffd\u0001d&d'd\nd\u000b\ufffd\u0002\ufffd\u0001d(d)d\nd\u000b\ufffd\u0002\ufffd\u0001d*d+d,d\u000b\ufffd\u0002\ufffd\u0001i\u0000d-d.d\nd\u000b\ufffd\u0002\ufffd\u0001d/d0d\nd\u000b\ufffd\u0002\ufffd\u0001d1d2d,d\u000b\ufffd\u0002\ufffd\u0001d3d4d\nd\u000b\ufffd\u0002\ufffd\u0001d5d6d\nd\u000b\ufffd\u0002\ufffd\u0001d7d8d\nd\u000b\ufffd\u0002\ufffd\u0001d9d:d\nd\u000b\ufffd\u0002\ufffd\u0001d;d<d\nd\u000b\ufffd\u0002\ufffd\u0001d=d>d\nd\u000b\ufffd\u0002\ufffd\u0001d?d@d\nd\u000b\ufffd\u0002\ufffd\u0001dAdBd\nd\u000b\ufffd\u0002\ufffd\u0001dCdDd\nd\u000b\ufffd\u0002\ufffd\u0001dEdFd\nd\u000b\ufffd\u0002\ufffd\u0001dGdHd\nd\u000b\ufffd\u0002\ufffd\u0001dIdJd\nd\u000b\ufffd\u0002\ufffd\u0001dKdLd\nd\u000b\ufffd\u0002\ufffd\u0001dMdNd\nd\u000b\ufffd\u0002\ufffd\u0001\ufffd\u0001i\u0000dOdPd\nd\u000b\ufffd\u0002\ufffd\u0001dQdRd\nd\u000b\ufffd\u0002\ufffd\u0001dSdTd\nd\u000b\ufffd\u0002\ufffd\u0001dUdVd\nd\u000b\ufffd\u0002\ufffd\u0001dWdXd\nd\u000b\ufffd\u0002\ufffd\u0001dYdZd\nd\u000b\ufffd\u0002\ufffd\u0001d[d\\d\nd\u000b\ufffd\u0002\ufffd\u0001d]d^d\nd\u000b\ufffd\u0002\ufffd\u0001d_d`d\nd\u000b\ufffd\u0002\ufffd\u0001dadbd\nd\u000b\ufffd\u0002\ufffd\u0001dcddd\nd\u000b\ufffd\u0002\ufffd\u0001dedfd\nd\u000b\ufffd\u0002\ufffd\u0001dgdhd\nd\u000b\ufffd\u0002\ufffd\u0001didjd\nd\u000b\ufffd\u0002\ufffd\u0001dkdld\nd\u000b\ufffd\u0002\ufffd\u0001dmdnd\nd\u000b\ufffd\u0002\ufffd\u0001dodpd\nd\u000b\ufffd\u0002\ufffd\u0001\ufffd\u0001i\u0000dqdrd\nd\u000b\ufffd\u0002\ufffd\u0001dsdtd\nd\u000b\ufffd\u0002\ufffd\u0001dudvd\nd\u000b\ufffd\u0002\ufffd\u0001dwdxd\nd\u000b\ufffd\u0002\ufffd\u0001dydzd\nd\u000b\ufffd\u0002\ufffd\u0001d{d|d\nd\u000b\ufffd\u0002\ufffd\u0001d}d~d\nd\u000b\ufffd\u0002\ufffd\u0001d\u007fd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001\ufffd\u0001i\u0000d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd,d\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd,d\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001\ufffd\u0001i\u0000d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001\ufffd\u0001i\u0000d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd,d\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001\ufffd\u0001i\u0000d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001\ufffd\u0001d\u0000\ufffd\u0001d\u0001d\nd\u000b\ufffd\u0002\ufffd\u0001\ufffd\u0001d\u0002\ufffd\u0001d\u0003d\nd\u000b\ufffd\u0002\ufffd\u0001\ufffd\u0001d\u0004\ufffd\u0001d\u0005d\nd\u000b\ufffd\u0002\ufffd\u0001\ufffd\u0001d\u0006\ufffd\u0001d\u0007d\nd\u000b\ufffd\u0002\ufffd\u0001\ufffd\u0001d\b\ufffd\u0001d\td\nd\u000b\ufffd\u0002\ufffd\u0001\ufffd\u0001d\n\ufffd\u0001d\u000bd\nd\u000b\ufffd\u0002\ufffd\u0001\ufffd\u0001d\f\ufffd\u0001d\nd\nd\u000b\ufffd\u0002\ufffd\u0001\ufffd\u0001d\u000e\ufffd\u0001d\u000fd\nd\u000b\ufffd\u0002\ufffd\u0001\ufffd\u0001d\u0010\ufffd\u0001d\u0011d\nd\u000b\ufffd\u0002\ufffd\u0001\ufffd\u0001d\u0012\ufffd\u0001d\u0013d\nd\u000b\ufffd\u0002\ufffd\u0001\ufffd\u0001d\u0014\ufffd\u0001d\u0015"
+    },
+    {
+      "path": "packaging/packaging_licenses__spdx.py",
+      "sha256": "596ec35e2ca0ebcba9fd8343ff0a51625af548786257815f24b41f7e08613314",
+      "size_bytes": 51122,
+      "spdx": [],
+      "lgpl_mentions": 18,
+      "gpl_mentions": 35,
+      "excerpt": "\nfrom __future__ import annotations\n\nfrom typing import TypedDict\n\nclass SPDXLicense(TypedDict):\n    id: str\n    deprecated: bool\n\nclass SPDXException(TypedDict):\n    id: str\n    deprecated: bool\n\n\nVERSION = '3.27.0'\n\nLICENSES: dict[str, SPDXLicense] = {\n    '0bsd': {'id': '0BSD', 'deprecated': False},\n    '3d-slicer-1.0': {'id': '3D-Slicer-1.0', 'deprecated': False},\n    'aal': {'id': 'AAL', 'deprecated': False},\n    'abstyles': {'id': 'Abstyles', 'deprecated': False},\n    'adacore-doc': {'id': 'AdaCore-doc', 'deprecated': False},\n    'adobe-2006': {'id': 'Adobe-2006', 'deprecated': False},\n    'adobe-display-postscript': {'id': 'Adobe-Display-PostScript', 'deprecated': False},\n    'adobe-glyph': {'id': 'Adobe-Glyph', 'deprecated': False},\n    'adobe-utopia': {'id': 'Adobe-Utopia', 'deprecated': False},\n    'adsl': {'id': 'ADSL', 'deprecated': False},\n    'afl-1.1': {'id': 'AFL-1.1', 'deprecated': False},\n    'afl-1.2': {'id': 'AFL-1.2', 'deprecated': False},\n    'afl-2.0': {'id': 'AFL-2.0', 'deprecated': False},\n    'afl-2.1': {'id': 'AFL-2.1', 'deprecated': False},\n    'afl-3.0': {'id': 'AFL-3.0', 'deprecated': False},\n    'afmparse': {'id': 'Afmparse', 'deprecated': False},\n    'agpl-1.0': {'id': 'AGPL-1.0', 'deprecated': True},\n    'agpl-1.0-only': {'id': 'AGPL-1.0-only', 'deprecated': False},\n    'agpl-1.0-or-later': {'id': 'AGPL-1.0-or-later', 'deprecated': False},\n    'agpl-3.0': {'id': 'AGPL-3.0', 'deprecated': True},\n    'agpl-3.0-only': {'id': 'AGPL-3.0-only', 'deprecated': False},\n    'agpl-3.0-or-later': {'id': 'AGPL-3.0-or-later', 'deprecated': False},\n    'aladdin': {'id': 'Aladdin', 'deprecated': False},\n    'amd-newlib': {'id': 'AMD-newlib', 'deprecated': False},\n    'amdplpa': {'id': 'AMDPLPA', 'deprecated': False},\n    'aml': {'id': 'AML', 'deprecated"
+    },
+    {
+      "path": "pefile/pefile-2024.8.26.dist-info_LICENSE",
+      "sha256": "b44409c067c6da52bfb54bb6624fb11a7b52157c3a13ae1400232f8196e86ad3",
+      "size_bytes": 1083,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "The MIT License (MIT)\n\nCopyright (c) 2004-2024 Ero Carrera\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n"
+    },
+    {
+      "path": "pip/pip-25.0.1.dist-info_LICENSE.txt",
+      "sha256": "634300a669d49aeae65b12c6c48c924c51a4cdf3d1ff086dc3456dc8bcaa2104",
+      "size_bytes": 1093,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "Copyright (c) 2008-present The pip developers (see AUTHORS.txt file)\n\nPermission is hereby granted, free of charge, to any person obtaining\na copy of this software and associated documentation files (the\n\"Software\"), to deal in the Software without restriction, including\nwithout limitation the rights to use, copy, modify, merge, publish,\ndistribute, sublicense, and/or sell copies of the Software, and to\npermit persons to whom the Software is furnished to do so, subject to\nthe following conditions:\n\nThe above copyright notice and this permission notice shall be\nincluded in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND,\nEXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF\nMERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND\nNONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE\nLIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION\nOF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION\nWITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n"
+    },
+    {
+      "path": "pip/pip__vendor_packaging_licenses___init__.py",
+      "sha256": "035d7af85538f7f0f3e35eb6338cb5b8089937846075cf3717135df048e57ea2",
+      "size_bytes": 5727,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "#######################################################################################\n#\n# Adapted from:\n#  https://github.com/pypa/hatch/blob/5352e44/backend/src/hatchling/licenses/parse.py\n#\n# MIT License\n#\n# Copyright (c) 2017-present Ofek Lev <oss@ofek.dev>\n#\n# Permission is hereby granted, free of charge, to any person obtaining a copy of this\n# software and associated documentation files (the \"Software\"), to deal in the Software\n# without restriction, including without limitation the rights to use, copy, modify,\n# merge, publish, distribute, sublicense, and/or sell copies of the Software, and to\n# permit persons to whom the Software is furnished to do so, subject to the following\n# conditions:\n#\n# The above copyright notice and this permission notice shall be included in all copies\n# or substantial portions of the Software.\n#\n# THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n# INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A\n# PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT\n# HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF\n# CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE\n# OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n#\n#\n# With additional allowance of arbitrary `LicenseRef-` identifiers, not just\n# `LicenseRef-Public-Domain` and `LicenseRef-Proprietary`.\n#\n#######################################################################################\nfrom __future__ import annotations\n\nimport re\nfrom typing import NewType, cast\n\nfrom pip._vendor.packaging.licenses._spdx import EXCEPTIONS, LICENSES\n\n__all__ = [\n    \"NormalizedLicenseExpression\",\n    \"InvalidLicenseExpression\",\n    \"canonicalize_lice"
+    },
+    {
+      "path": "pip/pip__vendor_packaging_licenses___pycache_____init__.cpython-312.pyc",
+      "sha256": "adf6e6d261149fb163c6dca1403173e5b06479e4d1634dbe00c835fd0426c062",
+      "size_bytes": 4110,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "\ufffd\n\n\u0000\u0000\u0000\u0000t\ufffd\ufffdj_\u0016\u0000\u0000\ufffd\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0005\u0000\u0000\u0000\u0000\u0000\u0000\u0001\ufffd\u0000\u0000\u0000\ufffd\u0000d\u0000d\u0001l\u0000m\u0001Z\u0001\u0001\u0000d\u0000d\u0002l\u0002Z\u0002d\u0000d\u0003l\u0003m\u0004Z\u0004m\u0005Z\u0005\u0001\u0000d\u0000d\u0004l\u0006m\u0007Z\u0007m\bZ\b\u0001\u0000g\u0000d\u0005\ufffd\u0001Z\t\u0002\u0000e\u0002j\u0014\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000d\u0006\ufffd\u0001\u0000\u0000\u0000\u0000\u0000\u0000Z\u000b\u0002\u0000e\u0004d\u0007e\f\ufffd\u0002\u0000\u0000\u0000\u0000\u0000\u0000Z\n\u0002\u0000G\u0000d\b\ufffd\u0000d\te\u000e\ufffd\u0003\u0000\u0000\u0000\u0000\u0000\u0000Z\u000f\t\u0000\t\u0000\t\u0000\t\u0000d\u000bd\n\ufffd\u0004Z\u0010y\u0002)\f\ufffd\u0000\u0000\u0000\u0000)\u0001\ufffd\u000bannotationsN)\u0002\ufffd\u0007NewType\ufffd\u0004cast)\u0002\ufffd\nEXCEPTIONS\ufffd\bLICENSES)\u0003\ufffd\u001bNormalizedLicenseExpression\ufffd\u0018InvalidLicenseExpression\ufffd\u001fcanonicalize_license_expressionz\u0010^[A-Za-z0-9.-]*$r\b\u0000\u0000\u0000c\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\ufffd\u0010\u0000\u0000\u0000\ufffd\u0000e\u0000Z\u0001d\u0000Z\u0002d\u0001Z\u0003y\u0002)\u0003r\t\u0000\u0000\u0000z\ufffdRaised when a license-expression string is invalid\n\n    >>> canonicalize_license_expression(\"invalid\")\n    Traceback (most recent call last):\n        ...\n    packaging.licenses.InvalidLicenseExpression: Invalid license expression: 'invalid'\n    N)\u0004\ufffd\b__name__\ufffd\n__module__\ufffd\f__qualname__\ufffd\u0007__doc__\ufffd\u0000\ufffd\u0000\u0000\u0000\u0000\ufffd_D:\\a\\AgroLines\\AgroLines\\build-env\\Lib\\site-packages\\pip/_vendor/packaging/licenses/__init__.pyr\t\u0000\u0000\u0000r\t\u0000\u0000\u00002\u0000\u0000\u0000s\u0007\u0000\u0000\u0000\ufffd\u0000\ufffd\u0002\u0006\u0005\br\u0011\u0000\u0000\u0000r\t\u0000\u0000\u0000c\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\t\u0000\u0000\u0000\u0003\u0000\u0000\u0001\ufffd\u0005\u0000\u0000\ufffd\u0000|\u0000s\u0010d\u0001|\u0000\ufffd\u0002\ufffd\u0002}\u0001t\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000|\u0001\ufffd\u0001\u0000\u0000\u0000\u0000\u0000\u0000\ufffd\u0001|\u0000j\u0003\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000d\u0002d\u0003\ufffd\u0002\u0000\u0000\u0000\u0000\u0000\u0000j\u0003\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000d\u0004d\u0005\ufffd\u0002\u0000\u0000\u0000\u0000\u0000\u0000}\u0002d\u0006}\u0003|\u0002j\u0005\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\ufffd\u0000\u0000\u0000\u0000\u0000\u0000\u0000D\u0000\ufffd\u0004c\u0002i\u0000c\u0002]O\u0000\u0000}\u0004|\u0004j\u0007\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\ufffd\u0000\u0000\u0000\u0000\u0000\u0000\u0000j\t\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000|\u0003j\u0007\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\ufffd\u0000\u0000\u0000\u0000\u0000\u0000\u0000\ufffd\u0001\u0000\u0000\u0000\u0000\u0000\u0000r |\u0004j\u0007\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\ufffd\u0000\u0000\u0000\u0000\u0000\u0000\u0000d\u0006|\u0004t\u000b\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000|\u0003\ufffd\u0001\u0000\u0000\u0000\u0000\u0000\u0000d\u0000\u001a\u0000z\u0000\u0000\u0000\ufffd\u0002\ufffdQ\u0004\u0000}\u0005}\u0004|\u0002j\u0007\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\ufffd\u0000\u0000\u0000\u0000\u0000\u0000\u0000}\u0002|\u0002j\u0005\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\ufffd\u0000\u0000\u0000\u0000\u0000\u0000\u0000}\u0006g\u0000}\u0007|\u0006D\u0000]^\u0000\u0000}\b|\bd\u0007v\u0001r\u0012|\u0007j\n\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000d\b\ufffd\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0000\ufffd\u0019|\bd\tk(\u0000\u0000r\u0012|\u0007j\n\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000d\n\ufffd\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0000\ufffd0|\bd\u0002k(\u0000\u0000r\u0019|\u0007r\u0017|\u0007d\u000b\u0019\u0000\u0000\u0000d\fv\u0001r\u0010d\u0001|\u0000\ufffd\u0002\ufffd\u0002}\u0001t\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000|\u0001\ufffd\u0001\u0000\u0000\u0000\u0000\u0000\u0000\ufffd\u0001|\u0007j\n\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000|\b\ufffd\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0000\ufffd`\u0004\u0000d\nj\u000f\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000|\u0007\ufffd\u0001\u0000\u0000\u0000\u0000\u0000\u0000}\t\t\u0000t\u0011\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000|\tt\u0013\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\ufffd\u0000\u0000\u0000\u0000\u0000\u0000\u0000t\u0015\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\ufffd\u0000\u0000\u0000\u0000\u0000\u0000\u0000\ufffd\u0003\u0000\u0000\u0000\u0000\u0000\u0000}\n|\nd\u000fu\u0001r\u0011d\u0001|\u0000\ufffd\u0002\ufffd\u0002}\u0001t\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000|\u0001\ufffd\u0001\u0000\u0000\u0000\u0000\u0000\u0000d\u0000\ufffd\u0002g\u0000}\u000b|\u0006D\u0000\ufffd\u0001]\u0006\u0000\u0000}\b|\bd\u0007v\u0000r |\u000bj\n\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000|\bj\u0019\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\ufffd\u0000\u0000\u0000\u0000\u0000\u0000\u0000\ufffd\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0000\ufffd(|\u000br<|\u000bd\u000b\u0019\u0000\u0000\u0000d\u0010k(\u0000\u0000r4|\bt\u001a\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000v\u0001r\u0010d\u0011|\b\ufffd\u0002\ufffd\u0002}\u0001t\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000|\u0001\ufffd\u0001\u0000\u0000\u0000\u0000\u0000\u0000\ufffd\u0001|\u000bj\n\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000t\u001a\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000|\b\u0019\u0000\u0000\u0000d\u0012\u0019\u0000"
+    },
+    {
+      "path": "pip/pip__vendor_packaging_licenses___pycache____spdx.cpython-312.pyc",
+      "sha256": "1b7f2dce019ccd8fa2355df4f6d4c85fb115ad462764306386b1e90291d79345",
+      "size_bytes": 47354,
+      "spdx": [],
+      "lgpl_mentions": 17,
+      "gpl_mentions": 34,
+      "excerpt": "\ufffd\n\n\u0000\u0000\u0000\u0000t\ufffd\ufffdj\u000e\ufffd\u0000\u0000\ufffd\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0007\u0000\u0000\u0000\u0000\u0000\u0000\u0001\ufffd.-\u0000\u0000\ufffd\u0000U\u0000d\u0000d\u0001l\u0000m\u0001Z\u0001\u0001\u0000d\u0000d\u0002l\u0002m\u0003Z\u0003\u0001\u0000\u0002\u0000G\u0000d\u0003\ufffd\u0000d\u0004e\u0003\ufffd\u0003\u0000\u0000\u0000\u0000\u0000\u0000Z\u0004\u0002\u0000G\u0000d\u0005\ufffd\u0000d\u0006e\u0003\ufffd\u0003\u0000\u0000\u0000\u0000\u0000\u0000Z\u0005d\u0007Z\u0006i\u0000d\bd\td\nd\u000b\ufffd\u0002\ufffd\u0001d\fd\nd\nd\u000b\ufffd\u0002\ufffd\u0001d\u000ed\u000fd\nd\u000b\ufffd\u0002\ufffd\u0001d\u0010d\u0011d\nd\u000b\ufffd\u0002\ufffd\u0001d\u0012d\u0013d\nd\u000b\ufffd\u0002\ufffd\u0001d\u0014d\u0015d\nd\u000b\ufffd\u0002\ufffd\u0001d\u0016d\u0017d\nd\u000b\ufffd\u0002\ufffd\u0001d\u0018d\u0019d\nd\u000b\ufffd\u0002\ufffd\u0001d\u001ad\u001bd\nd\u000b\ufffd\u0002\ufffd\u0001d\u001cd\u001dd\nd\u000b\ufffd\u0002\ufffd\u0001d\u001ed\u001fd\nd\u000b\ufffd\u0002\ufffd\u0001d d!d\nd\u000b\ufffd\u0002\ufffd\u0001d\"d#d\nd\u000b\ufffd\u0002\ufffd\u0001d$d%d\nd\u000b\ufffd\u0002\ufffd\u0001d&d'd\nd\u000b\ufffd\u0002\ufffd\u0001d(d)d\nd\u000b\ufffd\u0002\ufffd\u0001d*d+d,d\u000b\ufffd\u0002\ufffd\u0001i\u0000d-d.d\nd\u000b\ufffd\u0002\ufffd\u0001d/d0d\nd\u000b\ufffd\u0002\ufffd\u0001d1d2d,d\u000b\ufffd\u0002\ufffd\u0001d3d4d\nd\u000b\ufffd\u0002\ufffd\u0001d5d6d\nd\u000b\ufffd\u0002\ufffd\u0001d7d8d\nd\u000b\ufffd\u0002\ufffd\u0001d9d:d\nd\u000b\ufffd\u0002\ufffd\u0001d;d<d\nd\u000b\ufffd\u0002\ufffd\u0001d=d>d\nd\u000b\ufffd\u0002\ufffd\u0001d?d@d\nd\u000b\ufffd\u0002\ufffd\u0001dAdBd\nd\u000b\ufffd\u0002\ufffd\u0001dCdDd\nd\u000b\ufffd\u0002\ufffd\u0001dEdFd\nd\u000b\ufffd\u0002\ufffd\u0001dGdHd\nd\u000b\ufffd\u0002\ufffd\u0001dIdJd\nd\u000b\ufffd\u0002\ufffd\u0001dKdLd\nd\u000b\ufffd\u0002\ufffd\u0001dMdNd\nd\u000b\ufffd\u0002\ufffd\u0001\ufffd\u0001i\u0000dOdPd\nd\u000b\ufffd\u0002\ufffd\u0001dQdRd\nd\u000b\ufffd\u0002\ufffd\u0001dSdTd\nd\u000b\ufffd\u0002\ufffd\u0001dUdVd\nd\u000b\ufffd\u0002\ufffd\u0001dWdXd\nd\u000b\ufffd\u0002\ufffd\u0001dYdZd\nd\u000b\ufffd\u0002\ufffd\u0001d[d\\d\nd\u000b\ufffd\u0002\ufffd\u0001d]d^d\nd\u000b\ufffd\u0002\ufffd\u0001d_d`d\nd\u000b\ufffd\u0002\ufffd\u0001dadbd\nd\u000b\ufffd\u0002\ufffd\u0001dcddd\nd\u000b\ufffd\u0002\ufffd\u0001dedfd\nd\u000b\ufffd\u0002\ufffd\u0001dgdhd\nd\u000b\ufffd\u0002\ufffd\u0001didjd\nd\u000b\ufffd\u0002\ufffd\u0001dkdld\nd\u000b\ufffd\u0002\ufffd\u0001dmdnd\nd\u000b\ufffd\u0002\ufffd\u0001dodpd\nd\u000b\ufffd\u0002\ufffd\u0001\ufffd\u0001i\u0000dqdrd\nd\u000b\ufffd\u0002\ufffd\u0001dsdtd\nd\u000b\ufffd\u0002\ufffd\u0001dudvd\nd\u000b\ufffd\u0002\ufffd\u0001dwdxd\nd\u000b\ufffd\u0002\ufffd\u0001dydzd\nd\u000b\ufffd\u0002\ufffd\u0001d{d|d\nd\u000b\ufffd\u0002\ufffd\u0001d}d}d\nd\u000b\ufffd\u0002\ufffd\u0001d~d\u007fd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd,d\u000b\ufffd\u0002\ufffd\u0001\ufffd\u0001i\u0000d\ufffdd\ufffdd,d\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001\ufffd\u0001i\u0000d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd,d\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001\ufffd\u0001i\u0000d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001\ufffd\u0001i\u0000d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001\ufffd\u0001d\u0000\ufffd\u0001d\u0001d\nd\u000b\ufffd\u0002\ufffd\u0001\ufffd\u0001d\u0002\ufffd\u0001d\u0003d\nd\u000b\ufffd\u0002\ufffd\u0001\ufffd\u0001d\u0004\ufffd\u0001d\u0005d\nd\u000b\ufffd\u0002\ufffd\u0001\ufffd\u0001d\u0006\ufffd\u0001d\u0007d\nd\u000b\ufffd\u0002\ufffd\u0001\ufffd\u0001d\b\ufffd\u0001d\td\nd\u000b\ufffd\u0002\ufffd\u0001\ufffd\u0001d\n\ufffd\u0001d\u000bd\nd\u000b\ufffd\u0002\ufffd\u0001\ufffd\u0001d\f\ufffd\u0001d\nd\nd\u000b\ufffd\u0002\ufffd\u0001\ufffd\u0001d\u000e\ufffd\u0001d\u000fd\nd\u000b\ufffd\u0002\ufffd\u0001\ufffd\u0001d\u0010\ufffd\u0001d\u0011d\nd\u000b\ufffd\u0002\ufffd\u0001\ufffd\u0001d\u0012\ufffd\u0001d\u0013d\nd\u000b\ufffd\u0002\ufffd\u0001\ufffd\u0001d\u0014\ufffd\u0001d"
+    },
+    {
+      "path": "pip/pip__vendor_packaging_licenses__spdx.py",
+      "sha256": "a009b5ced3c5c25b2608a7bb94002cbff38839f4b57160eef5b34191ebbeda7b",
+      "size_bytes": 48398,
+      "spdx": [],
+      "lgpl_mentions": 17,
+      "gpl_mentions": 34,
+      "excerpt": "\nfrom __future__ import annotations\n\nfrom typing import TypedDict\n\nclass SPDXLicense(TypedDict):\n    id: str\n    deprecated: bool\n\nclass SPDXException(TypedDict):\n    id: str\n    deprecated: bool\n\n\nVERSION = '3.25.0'\n\nLICENSES: dict[str, SPDXLicense] = {\n    '0bsd': {'id': '0BSD', 'deprecated': False},\n    '3d-slicer-1.0': {'id': '3D-Slicer-1.0', 'deprecated': False},\n    'aal': {'id': 'AAL', 'deprecated': False},\n    'abstyles': {'id': 'Abstyles', 'deprecated': False},\n    'adacore-doc': {'id': 'AdaCore-doc', 'deprecated': False},\n    'adobe-2006': {'id': 'Adobe-2006', 'deprecated': False},\n    'adobe-display-postscript': {'id': 'Adobe-Display-PostScript', 'deprecated': False},\n    'adobe-glyph': {'id': 'Adobe-Glyph', 'deprecated': False},\n    'adobe-utopia': {'id': 'Adobe-Utopia', 'deprecated': False},\n    'adsl': {'id': 'ADSL', 'deprecated': False},\n    'afl-1.1': {'id': 'AFL-1.1', 'deprecated': False},\n    'afl-1.2': {'id': 'AFL-1.2', 'deprecated': False},\n    'afl-2.0': {'id': 'AFL-2.0', 'deprecated': False},\n    'afl-2.1': {'id': 'AFL-2.1', 'deprecated': False},\n    'afl-3.0': {'id': 'AFL-3.0', 'deprecated': False},\n    'afmparse': {'id': 'Afmparse', 'deprecated': False},\n    'agpl-1.0': {'id': 'AGPL-1.0', 'deprecated': True},\n    'agpl-1.0-only': {'id': 'AGPL-1.0-only', 'deprecated': False},\n    'agpl-1.0-or-later': {'id': 'AGPL-1.0-or-later', 'deprecated': False},\n    'agpl-3.0': {'id': 'AGPL-3.0', 'deprecated': True},\n    'agpl-3.0-only': {'id': 'AGPL-3.0-only', 'deprecated': False},\n    'agpl-3.0-or-later': {'id': 'AGPL-3.0-or-later', 'deprecated': False},\n    'aladdin': {'id': 'Aladdin', 'deprecated': False},\n    'amd-newlib': {'id': 'AMD-newlib', 'deprecated': False},\n    'amdplpa': {'id': 'AMDPLPA', 'deprecated': False},\n    'aml': {'id': 'AML', 'deprecated"
+    },
+    {
+      "path": "pyinstaller/pyinstaller-6.22.3.dist-info_licenses_COPYING.txt",
+      "sha256": "0598064c7d2718e38d7914a7d08343b2fa008e3bea9ebba2aa7a6ffa5900dd64",
+      "size_bytes": 32604,
+      "spdx": [
+        "(GPL-2.0-or-later WITH Bootloader-exception)",
+        "Apache-2.0"
+      ],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 3,
+      "excerpt": "================================\n The PyInstaller licensing terms\n================================\n \n\nCopyright (c) 2010-2023, PyInstaller Development Team\nCopyright (c) 2005-2009, Giovanni Bajo\nBased on previous work under copyright (c) 2002 McMillan Enterprises, Inc.\n\n\nPyInstaller is licensed under the terms of the GNU General Public License\nas published by the Free Software Foundation; either version 2 of the License,\nor (at your option) any later version.\n\n\nBootloader Exception\n--------------------\n\nIn addition to the permissions in the GNU General Public License, the\nauthors give you unlimited permission to link or embed compiled bootloader\nand related files into combinations with other programs, and to distribute\nthose combinations without any restriction coming from the use of those\nfiles. (The General Public License restrictions do apply in other respects;\nfor example, they cover modification of the files, and distribution when\nnot linked into a combined executable.)\n \n \nBootloader and Related Files\n----------------------------\n\nBootloader and related files are files which are embedded within the\nfinal executable. This includes files in directories:\n\n./bootloader/\n./PyInstaller/loader\n\n\nRun-time Hooks\n----------------------------\n\nRun-time Hooks are a different kind of files embedded within the final\nexecutable. To ease moving them into a separate repository, or into the\nrespective project, these files are now licensed under the Apache License,\nVersion 2.0.\n\nRun-time Hooks are in the directory\n./PyInstaller/hooks/rthooks\n\n\nAdditional Run-time Modules\n----------------------------------\n\nIn addition to run-time hooks, PyInstaller may embed additional run-time\nmodules in the final executable. At the time of writing, these include\nthe splash-screen module (``pyi_spl"
+    },
+    {
+      "path": "pyinstaller-hooks-contrib/pyinstaller_hooks_contrib-2026.8.dist-info_licenses_LICENSE",
+      "sha256": "91d0baaff00773038e72c0a1fc9d5d2d38706b7a2b9c04f34296608f931b9cd0",
+      "size_bytes": 27666,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 3,
+      "excerpt": "============================================\nPyInstaller Community Hooks: License details\n============================================\n\nThis software is made available under the terms of the licenses found below.\nContributions to the Community Hooks are made under the terms of the license\nthat covers that type of hook/file. (See below)\n\n\nStandard hooks and files\n------------------------\n\nThe PyInstaller Community Hooks are licensed under the terms of the GNU General\nPublic License as published by the Free Software Foundation; either version 2 of\nthe License, or (at your option) any later version (SPDX GPL-2.0-or-later).\nThese are all hooks/files except runtime hooks (see below). The terms of GPL 2.0\nare found in the section titled *GNU General Public License* below.\n\n\nRuntime hooks\n-------------\n\nThese are runtime hooks, bundled with complete pyinstaller executables. These\nfiles are licensed under the Apache-2.0 whose terms are found in the section\ntitled *Apache License 2.0*.\n\nThese reside in \"_pyinstaller_hooks_contrib/rthooks\".\n\n\nGNU General Public License\n--------------------------\n\nhttps://gnu.org/licenses/gpl-2.0.html\n\n\n\t\t    GNU GENERAL PUBLIC LICENSE\n\t\t       Version 2, June 1991\n\n Copyright (C) 1989, 1991 Free Software Foundation, Inc.\n 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA\n Everyone is permitted to copy and distribute verbatim copies\n of this license document, but changing it is not allowed.\n\n\t\t\t    Preamble\n\n  The licenses for most software are designed to take away your\nfreedom to share and change it.  By contrast, the GNU General Public\nLicense is intended to guarantee your freedom to share and change free\nsoftware--to make sure the software is free for all its users.  This\nGeneral Public License applies to most of the Free Software\nF"
+    },
+    {
+      "path": "pyproj/pyproj-3.8.0.dist-info_licenses_LICENSE",
+      "sha256": "c25d436b6fc9009a3d337ca024ed1caf615e55e10f4a0ace1673b9953821c8da",
+      "size_bytes": 1137,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "Copyright (c) 2006-2018, Jeffrey Whitaker.\nCopyright (c) 2019-2024, Open source contributors.\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of\nthis software and associated documentation files (the \"Software\"), to deal in\nthe Software without restriction, including without limitation the rights to use,\ncopy, modify, merge, publish, distribute, sublicense, and/or sell copies of the\nSoftware, and to permit persons to whom the Software is furnished to do so,\nsubject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\nINCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A\nPARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT\nHOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION\nOF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE\nSOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n"
+    },
+    {
+      "path": "pyproj/pyproj-3.8.0.dist-info_licenses_LICENSE_proj",
+      "sha256": "ec8ad0defdbcfac5083e510c000c05a5b63144c685e0a879b7c081b5e44e24c7",
+      "size_bytes": 1753,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "\nAll source, data files and other contents of the PROJ.4 package are\navailable under the following terms.  Note that the PROJ 4.3 and earlier\nwas \"public domain\" as is common with US government work, but apparently\nthis is not a well defined legal term in many countries.  I am placing\neverything under the following MIT style license because I believe it is\neffectively the same as public domain, allowing anyone to use the code as\nthey wish, including making proprietary derivatives.\n\nThough I have put my own name as copyright holder, I don't mean to imply\nI did the work.  Essentially all work was done by Gerald Evenden.\n\n --------------\n\n Copyright (c) 2000, Frank Warmerdam\n\n Permission is hereby granted, free of charge, to any person obtaining a\n copy of this software and associated documentation files (the \"Software\"),\n to deal in the Software without restriction, including without limitation\n the rights to use, copy, modify, merge, publish, distribute, sublicense,\n and/or sell copies of the Software, and to permit persons to whom the\n Software is furnished to do so, subject to the following conditions:\n\n The above copyright notice and this permission notice shall be included\n in all copies or substantial portions of the Software.\n\n THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS\n OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\n FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL\n THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\n LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING\n FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER\n DEALINGS IN THE SOFTWARE.\n"
+    },
+    {
+      "path": "pyproj/pyproj_proj_dir_share_proj_copyright",
+      "sha256": "6a8f30793e877d32e3f88b972f0970a051a3b5a26cd057d3993cb51e21c43319",
+      "size_bytes": 1784,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "\nAll source, data files and other contents of the PROJ package are \navailable under the following terms.  Note that the PROJ 4.3 and earlier\nwas \"public domain\" as is common with US government work, but apparently\nthis is not a well defined legal term in many countries. Frank Warmerdam placed\neverything under the following MIT style license because he believed it is\neffectively the same as public domain, allowing anyone to use the code as\nthey wish, including making proprietary derivatives.\n\nInitial PROJ 4.3 public domain code was put as Frank Warmerdam as copyright\nholder, but he didn't mean to imply he did the work. Essentially all work was\ndone by Gerald Evenden.\n\nCopyright information can be found in source files.\n\n --------------\n\n Permission is hereby granted, free of charge, to any person obtaining a\n copy of this software and associated documentation files (the \"Software\"),\n to deal in the Software without restriction, including without limitation\n the rights to use, copy, modify, merge, publish, distribute, sublicense,\n and/or sell copies of the Software, and to permit persons to whom the\n Software is furnished to do so, subject to the following conditions:\n\n The above copyright notice and this permission notice shall be included\n in all copies or substantial portions of the Software.\n\n THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS\n OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\n FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL\n THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\n LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING\n FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER\n DEALINGS IN THE SOFTWARE.\n"
+    },
+    {
+      "path": "PySide6/pyside6-6.12.0.dist-info_licenses_LicenseRef-Qt-Commercial.txt",
+      "sha256": "4f54763ac0fe2abd8f7f8d8fe370a94a08ebf84786aa0b91045bd6628deb08a3",
+      "size_bytes": 470,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "Licensees holding valid commercial Qt licenses may use this software in\naccordance with the the terms contained in a written agreement between\nyou and The Qt Company. Alternatively, the terms and conditions that were\naccepted by the licensee when buying and/or downloading the\nsoftware do apply.\n\nFor the latest licensing terms and conditions, see https://www.qt.io/terms-conditions.\nFor further information use the contact form at https://www.qt.io/contact-us.\n"
+    },
+    {
+      "path": "PySide6_Addons/pyside6_addons-6.12.0.dist-info_licenses_LicenseRef-Qt-Commercial.txt",
+      "sha256": "4f54763ac0fe2abd8f7f8d8fe370a94a08ebf84786aa0b91045bd6628deb08a3",
+      "size_bytes": 470,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "Licensees holding valid commercial Qt licenses may use this software in\naccordance with the the terms contained in a written agreement between\nyou and The Qt Company. Alternatively, the terms and conditions that were\naccepted by the licensee when buying and/or downloading the\nsoftware do apply.\n\nFor the latest licensing terms and conditions, see https://www.qt.io/terms-conditions.\nFor further information use the contact form at https://www.qt.io/contact-us.\n"
+    },
+    {
+      "path": "PySide6_Essentials/pyside6_essentials-6.12.0.dist-info_licenses_LicenseRef-Qt-Commercial.txt",
+      "sha256": "4f54763ac0fe2abd8f7f8d8fe370a94a08ebf84786aa0b91045bd6628deb08a3",
+      "size_bytes": 470,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "Licensees holding valid commercial Qt licenses may use this software in\naccordance with the the terms contained in a written agreement between\nyou and The Qt Company. Alternatively, the terms and conditions that were\naccepted by the licensee when buying and/or downloading the\nsoftware do apply.\n\nFor the latest licensing terms and conditions, see https://www.qt.io/terms-conditions.\nFor further information use the contact form at https://www.qt.io/contact-us.\n"
+    },
+    {
+      "path": "PySide6_Pdf/pyside6_pdf-6.12.0.140.dist-info_licenses_LicenseRef-Qt-Commercial.txt",
+      "sha256": "4f54763ac0fe2abd8f7f8d8fe370a94a08ebf84786aa0b91045bd6628deb08a3",
+      "size_bytes": 470,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "Licensees holding valid commercial Qt licenses may use this software in\naccordance with the the terms contained in a written agreement between\nyou and The Qt Company. Alternatively, the terms and conditions that were\naccepted by the licensee when buying and/or downloading the\nsoftware do apply.\n\nFor the latest licensing terms and conditions, see https://www.qt.io/terms-conditions.\nFor further information use the contact form at https://www.qt.io/contact-us.\n"
+    },
+    {
+      "path": "PySide6_WebEngine/pyside6_webengine-6.12.0.140.dist-info_licenses_LicenseRef-Qt-Commercial.txt",
+      "sha256": "4f54763ac0fe2abd8f7f8d8fe370a94a08ebf84786aa0b91045bd6628deb08a3",
+      "size_bytes": 470,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "Licensees holding valid commercial Qt licenses may use this software in\naccordance with the the terms contained in a written agreement between\nyou and The Qt Company. Alternatively, the terms and conditions that were\naccepted by the licensee when buying and/or downloading the\nsoftware do apply.\n\nFor the latest licensing terms and conditions, see https://www.qt.io/terms-conditions.\nFor further information use the contact form at https://www.qt.io/contact-us.\n"
+    },
+    {
+      "path": "Python-LICENSE.txt",
+      "sha256": "e502c6b880ff58d614901495a9009c136539cd0b1e2a2abb8fc00b934c203419",
+      "size_bytes": 36874,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "A. HISTORY OF THE SOFTWARE\n==========================\n\nPython was created in the early 1990s by Guido van Rossum at Stichting\nMathematisch Centrum (CWI, see https://www.cwi.nl) in the Netherlands\nas a successor of a language called ABC.  Guido remains Python's\nprincipal author, although it includes many contributions from others.\n\nIn 1995, Guido continued his work on Python at the Corporation for\nNational Research Initiatives (CNRI, see https://www.cnri.reston.va.us)\nin Reston, Virginia where he released several versions of the\nsoftware.\n\nIn May 2000, Guido and the Python core development team moved to\nBeOpen.com to form the BeOpen PythonLabs team.  In October of the same\nyear, the PythonLabs team moved to Digital Creations, which became\nZope Corporation.  In 2001, the Python Software Foundation (PSF, see\nhttps://www.python.org/psf/) was formed, a non-profit organization\ncreated specifically to own Python-related Intellectual Property.\nZope Corporation was a sponsoring member of the PSF.\n\nAll Python releases are Open Source (see https://opensource.org for\nthe Open Source Definition).  Historically, most, but not all, Python\nreleases have also been GPL-compatible; the table below summarizes\nthe various releases.\n\n    Release         Derived     Year        Owner       GPL-\n                    from                                compatible? (1)\n\n    0.9.0 thru 1.2              1991-1995   CWI         yes\n    1.3 thru 1.5.2  1.2         1995-1999   CNRI        yes\n    1.6             1.5.2       2000        CNRI        no\n    2.0             1.6         2000        BeOpen.com  no\n    1.6.1           1.6         2001        CNRI        yes (2)\n    2.1             2.0+1.6.1   2001        PSF         no\n    2.0.1           2.0+1.6.1   2001        PSF         yes\n    2.1.1    "
+    },
+    {
+      "path": "pywin32-ctypes/pywin32_ctypes-0.2.3.dist-info_LICENSE.txt",
+      "sha256": "dfa83b3e2709adfcdb838d9ad55823ca674abb780e60563d9dd9544ccbf785e9",
+      "size_bytes": 1644,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "This software is OSI Certified Open Source Software.\nOSI Certified is a certification mark of the Open Source Initiative.\n\nCopyright (c) 2014, Enthought, Inc.\nAll rights reserved.\n\nRedistribution and use in source and binary forms, with or without\nmodification, are permitted provided that the following conditions are met:\n\n * Redistributions of source code must retain the above copyright notice, this\n   list of conditions and the following disclaimer.\n * Redistributions in binary form must reproduce the above copyright notice,\n   this list of conditions and the following disclaimer in the documentation\n   and/or other materials provided with the distribution.\n * Neither the name of Enthought, Inc. nor the names of its contributors may\n   be used to endorse or promote products derived from this software without\n   specific prior written permission.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\" AND\nANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED\nWARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE\nDISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR\nANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES\n(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;\nLOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON\nANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT\n(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS\nSOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n"
+    },
+    {
+      "path": "README.txt",
+      "sha256": "7b5d74181ca738cedc48164a09633d182d7b6d91cdd0582c9f211445f698bc92",
+      "size_bytes": 216,
+      "spdx": [],
+      "lgpl_mentions": 1,
+      "gpl_mentions": 0,
+      "excerpt": "Dependency notices collected for internal PoC. Commercial redistribution requires review of Qt/Chromium notices, LGPL/source obligations, runtime redistribution rights and the AgroLines license. Not legal approval.\n"
+    },
+    {
+      "path": "setuptools/setuptools-84.0.0.dist-info_licenses_LICENSE",
+      "sha256": "86da0f01aeae46348a3c3d465195dc1ceccde79f79e87769a64b8da04b2a4741",
+      "size_bytes": 1023,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "Permission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to\ndeal in the Software without restriction, including without limitation the\nrights to use, copy, modify, merge, publish, distribute, sublicense, and/or\nsell copies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in\nall copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING\nFROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS\nIN THE SOFTWARE.\n"
+    },
+    {
+      "path": "setuptools/setuptools__vendor_autocommand-2.2.2.dist-info_LICENSE",
+      "sha256": "ade78d04982d69972d444a8e14a94f87a2334dd3855cc80348ea8e240aa0df2d",
+      "size_bytes": 7634,
+      "spdx": [],
+      "lgpl_mentions": 5,
+      "gpl_mentions": 0,
+      "excerpt": "GNU LESSER GENERAL PUBLIC LICENSE\n                       Version 3, 29 June 2007\n\n Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>\n Everyone is permitted to copy and distribute verbatim copies\n of this license document, but changing it is not allowed.\n\n\n  This version of the GNU Lesser General Public License incorporates\nthe terms and conditions of version 3 of the GNU General Public\nLicense, supplemented by the additional permissions listed below.\n\n  0. Additional Definitions.\n\n  As used herein, \"this License\" refers to version 3 of the GNU Lesser\nGeneral Public License, and the \"GNU GPL\" refers to version 3 of the GNU\nGeneral Public License.\n\n  \"The Library\" refers to a covered work governed by this License,\nother than an Application or a Combined Work as defined below.\n\n  An \"Application\" is any work that makes use of an interface provided\nby the Library, but which is not otherwise based on the Library.\nDefining a subclass of a class defined by the Library is deemed a mode\nof using an interface provided by the Library.\n\n  A \"Combined Work\" is a work produced by combining or linking an\nApplication with the Library.  The particular version of the Library\nwith which the Combined Work was made is also called the \"Linked\nVersion\".\n\n  The \"Minimal Corresponding Source\" for a Combined Work means the\nCorresponding Source for the Combined Work, excluding any source code\nfor portions of the Combined Work that, considered in isolation, are\nbased on the Application, and not on the Linked Version.\n\n  The \"Corresponding Application Code\" for a Combined Work means the\nobject code and/or source code for the Application, including any data\nand utility programs needed for reproducing the Combined Work from the\nApplication, but excluding the System Libraries of the"
+    },
+    {
+      "path": "setuptools/setuptools__vendor_backports.tarfile-1.2.0.dist-info_LICENSE",
+      "sha256": "86da0f01aeae46348a3c3d465195dc1ceccde79f79e87769a64b8da04b2a4741",
+      "size_bytes": 1023,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "Permission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to\ndeal in the Software without restriction, including without limitation the\nrights to use, copy, modify, merge, publish, distribute, sublicense, and/or\nsell copies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in\nall copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING\nFROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS\nIN THE SOFTWARE.\n"
+    },
+    {
+      "path": "setuptools/setuptools__vendor_importlib_metadata-8.7.1.dist-info_licenses_LICENSE",
+      "sha256": "458502e12d97bbf64438606a20044aa85eb05fb0a8a807bb35dbec253fd1fc04",
+      "size_bytes": 10278,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "Apache License\nVersion 2.0, January 2004\nhttp://www.apache.org/licenses/\n\nTERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION\n\n1. Definitions.\n\n\"License\" shall mean the terms and conditions for use, reproduction, and distribution as defined by Sections 1 through 9 of this document.\n\n\"Licensor\" shall mean the copyright owner or entity authorized by the copyright owner that is granting the License.\n\n\"Legal Entity\" shall mean the union of the acting entity and all other entities that control, are controlled by, or are under common control with that entity. For the purposes of this definition, \"control\" means (i) the power, direct or indirect, to cause the direction or management of such entity, whether by contract or otherwise, or (ii) ownership of fifty percent (50%) or more of the outstanding shares, or (iii) beneficial ownership of such entity.\n\n\"You\" (or \"Your\") shall mean an individual or Legal Entity exercising permissions granted by this License.\n\n\"Source\" form shall mean the preferred form for making modifications, including but not limited to software source code, documentation source, and configuration files.\n\n\"Object\" form shall mean any form resulting from mechanical transformation or translation of a Source form, including but not limited to compiled object code, generated documentation, and conversions to other media types.\n\n\"Work\" shall mean the work of authorship, whether in Source or Object form, made available under the License, as indicated by a copyright notice that is included in or attached to the work (an example is provided in the Appendix below).\n\n\"Derivative Works\" shall mean any work, whether in Source or Object form, that is based on (or derived from) the Work and for which the editorial revisions, annotations, elaborations, or other mo"
+    },
+    {
+      "path": "setuptools/setuptools__vendor_jaraco.text-4.0.0.dist-info_LICENSE",
+      "sha256": "86da0f01aeae46348a3c3d465195dc1ceccde79f79e87769a64b8da04b2a4741",
+      "size_bytes": 1023,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "Permission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to\ndeal in the Software without restriction, including without limitation the\nrights to use, copy, modify, merge, publish, distribute, sublicense, and/or\nsell copies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in\nall copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING\nFROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS\nIN THE SOFTWARE.\n"
+    },
+    {
+      "path": "setuptools/setuptools__vendor_jaraco_context-6.1.0.dist-info_licenses_LICENSE",
+      "sha256": "9755a18519666e5f0f4cae3daad3d7012bcae48a600b31237d75e9fe134e6683",
+      "size_bytes": 1076,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "MIT License\n\nCopyright (c) 2026 <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and\nassociated documentation files (the \"Software\"), to deal in the Software without restriction, including\nwithout limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the\nfollowing conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial\nportions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT\nLIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO\nEVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER\nIN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE\nUSE OR OTHER DEALINGS IN THE SOFTWARE.\n"
+    },
+    {
+      "path": "setuptools/setuptools__vendor_jaraco_functools-4.4.0.dist-info_licenses_LICENSE",
+      "sha256": "5a57cb4db85e2a2dd88c290628908add57e3451449e0a9a71fdfb38776fd759d",
+      "size_bytes": 1076,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "MIT License\n\nCopyright (c) 2025 <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and\nassociated documentation files (the \"Software\"), to deal in the Software without restriction, including\nwithout limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the\nfollowing conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial\nportions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT\nLIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO\nEVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER\nIN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE\nUSE OR OTHER DEALINGS IN THE SOFTWARE.\n"
+    },
+    {
+      "path": "setuptools/setuptools__vendor_more_itertools-10.8.0.dist-info_licenses_LICENSE",
+      "sha256": "09f1c8c9e941af3e584d59641ea9b87d83c0cb0fd007eb5ef391a7e2643c1a46",
+      "size_bytes": 1053,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "Copyright (c) 2012 Erik Rose\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of\nthis software and associated documentation files (the \"Software\"), to deal in\nthe Software without restriction, including without limitation the rights to\nuse, copy, modify, merge, publish, distribute, sublicense, and/or sell copies\nof the Software, and to permit persons to whom the Software is furnished to do\nso, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n"
+    },
+    {
+      "path": "setuptools/setuptools__vendor_packaging-26.0.dist-info_licenses_LICENSE",
+      "sha256": "cad1ef5bd340d73e074ba614d26f7deaca5c7940c3d8c34852e65c4909686c48",
+      "size_bytes": 197,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "This software is made available under the terms of *either* of the licenses\nfound in LICENSE.APACHE or LICENSE.BSD. Contributions to this software is made\nunder the terms of *both* these licenses.\n"
+    },
+    {
+      "path": "setuptools/setuptools__vendor_packaging-26.0.dist-info_licenses_LICENSE.APACHE",
+      "sha256": "0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594",
+      "size_bytes": 10174,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "\n                                 Apache License\n                           Version 2.0, January 2004\n                        http://www.apache.org/licenses/\n\n   TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION\n\n   1. Definitions.\n\n      \"License\" shall mean the terms and conditions for use, reproduction,\n      and distribution as defined by Sections 1 through 9 of this document.\n\n      \"Licensor\" shall mean the copyright owner or entity authorized by\n      the copyright owner that is granting the License.\n\n      \"Legal Entity\" shall mean the union of the acting entity and all\n      other entities that control, are controlled by, or are under common\n      control with that entity. For the purposes of this definition,\n      \"control\" means (i) the power, direct or indirect, to cause the\n      direction or management of such entity, whether by contract or\n      otherwise, or (ii) ownership of fifty percent (50%) or more of the\n      outstanding shares, or (iii) beneficial ownership of such entity.\n\n      \"You\" (or \"Your\") shall mean an individual or Legal Entity\n      exercising permissions granted by this License.\n\n      \"Source\" form shall mean the preferred form for making modifications,\n      including but not limited to software source code, documentation\n      source, and configuration files.\n\n      \"Object\" form shall mean any form resulting from mechanical\n      transformation or translation of a Source form, including but\n      not limited to compiled object code, generated documentation,\n      and conversions to other media types.\n\n      \"Work\" shall mean the work of authorship, whether in Source or\n      Object form, made available under the License, as indicated by a\n      copyright notice that is included in or attached to the work\n      (an examp"
+    },
+    {
+      "path": "setuptools/setuptools__vendor_packaging-26.0.dist-info_licenses_LICENSE.BSD",
+      "sha256": "b70e7e9b742f1cc6f948b34c16aa39ffece94196364bc88ff0d2180f0028fac5",
+      "size_bytes": 1344,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "Copyright (c) Donald Stufft and individual contributors.\nAll rights reserved.\n\nRedistribution and use in source and binary forms, with or without\nmodification, are permitted provided that the following conditions are met:\n\n    1. Redistributions of source code must retain the above copyright notice,\n       this list of conditions and the following disclaimer.\n\n    2. Redistributions in binary form must reproduce the above copyright\n       notice, this list of conditions and the following disclaimer in the\n       documentation and/or other materials provided with the distribution.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\" AND\nANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED\nWARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE\nDISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE\nFOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL\nDAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR\nSERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER\nCAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,\nOR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE\nOF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n"
+    },
+    {
+      "path": "setuptools/setuptools__vendor_packaging_licenses___init__.py",
+      "sha256": "4f05cb1d9097c1281d17044b3f15bad364fa99289eba74851cce9fa7ca605bbf",
+      "size_bytes": 5819,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "#######################################################################################\n#\n# Adapted from:\n#  https://github.com/pypa/hatch/blob/5352e44/backend/src/hatchling/licenses/parse.py\n#\n# MIT License\n#\n# Copyright (c) 2017-present Ofek Lev <oss@ofek.dev>\n#\n# Permission is hereby granted, free of charge, to any person obtaining a copy of this\n# software and associated documentation files (the \"Software\"), to deal in the Software\n# without restriction, including without limitation the rights to use, copy, modify,\n# merge, publish, distribute, sublicense, and/or sell copies of the Software, and to\n# permit persons to whom the Software is furnished to do so, subject to the following\n# conditions:\n#\n# The above copyright notice and this permission notice shall be included in all copies\n# or substantial portions of the Software.\n#\n# THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,\n# INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A\n# PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT\n# HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF\n# CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE\n# OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n#\n#\n# With additional allowance of arbitrary `LicenseRef-` identifiers, not just\n# `LicenseRef-Public-Domain` and `LicenseRef-Proprietary`.\n#\n#######################################################################################\nfrom __future__ import annotations\n\nimport re\nfrom typing import NewType, cast\n\nfrom ._spdx import EXCEPTIONS, LICENSES\n\n__all__ = [\n    \"InvalidLicenseExpression\",\n    \"NormalizedLicenseExpression\",\n    \"canonicalize_license_expression\",\n]\n\nlicense_re"
+    },
+    {
+      "path": "setuptools/setuptools__vendor_packaging_licenses___pycache_____init__.cpython-312.pyc",
+      "sha256": "29a79517361269a22be41f301ef61c41b69676c96c005946bb184fb6e6fe340b",
+      "size_bytes": 4044,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "\ufffd\n\n\u0000\u0000\u0000\u0000\ufffd\ufffd\ufffdj\ufffd\u0016\u0000\u0000\ufffd\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0005\u0000\u0000\u0000\u0000\u0000\u0000\u0001\ufffd\u0000\u0000\u0000\ufffd\u0000d\u0000d\u0001l\u0000m\u0001Z\u0001\u0001\u0000d\u0000d\u0002l\u0002Z\u0002d\u0000d\u0003l\u0003m\u0004Z\u0004m\u0005Z\u0005\u0001\u0000d\u0004d\u0005l\u0006m\u0007Z\u0007m\bZ\b\u0001\u0000g\u0000d\u0006\ufffd\u0001Z\t\u0002\u0000e\u0002j\u0014\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000d\u0007\ufffd\u0001\u0000\u0000\u0000\u0000\u0000\u0000Z\u000b\u0002\u0000e\u0004d\be\f\ufffd\u0002\u0000\u0000\u0000\u0000\u0000\u0000Z\n\u0002\u0000G\u0000d\t\ufffd\u0000d\ne\u000e\ufffd\u0003\u0000\u0000\u0000\u0000\u0000\u0000Z\u000f\t\u0000\t\u0000\t\u0000\t\u0000d\fd\u000b\ufffd\u0004Z\u0010y\u0002)\n\ufffd\u0000\u0000\u0000\u0000)\u0001\ufffd\u000bannotationsN)\u0002\ufffd\u0007NewType\ufffd\u0004cast\ufffd\u0001\u0000\u0000\u0000)\u0002\ufffd\nEXCEPTIONS\ufffd\bLICENSES)\u0003\ufffd\u0018InvalidLicenseExpression\ufffd\u001bNormalizedLicenseExpression\ufffd\u001fcanonicalize_license_expressionz\u0010^[A-Za-z0-9.-]*$r\n\u0000\u0000\u0000c\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\ufffd\u0010\u0000\u0000\u0000\ufffd\u0000e\u0000Z\u0001d\u0000Z\u0002d\u0001Z\u0003y\u0002)\u0003r\t\u0000\u0000\u0000z\ufffdRaised when a license-expression string is invalid\n\n    >>> canonicalize_license_expression(\"invalid\")\n    Traceback (most recent call last):\n        ...\n    packaging.licenses.InvalidLicenseExpression: Invalid license expression: 'invalid'\n    N)\u0004\ufffd\b__name__\ufffd\n__module__\ufffd\f__qualname__\ufffd\u0007__doc__\ufffd\u0000\ufffd\u0000\u0000\u0000\u0000\ufffdfD:\\a\\AgroLines\\AgroLines\\build-env\\Lib\\site-packages\\setuptools/_vendor/packaging/licenses/__init__.pyr\t\u0000\u0000\u0000r\t\u0000\u0000\u00002\u0000\u0000\u0000s\u0007\u0000\u0000\u0000\ufffd\u0000\ufffd\u0002\u0006\u0005\br\u0012\u0000\u0000\u0000r\t\u0000\u0000\u0000c\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\t\u0000\u0000\u0000\u0003\u0000\u0000\u0001\ufffd\u0005\u0000\u0000\ufffd\u0000|\u0000s\u0010d\u0001|\u0000\ufffd\u0002\ufffd\u0002}\u0001t\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000|\u0001\ufffd\u0001\u0000\u0000\u0000\u0000\u0000\u0000\ufffd\u0001|\u0000j\u0003\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000d\u0002d\u0003\ufffd\u0002\u0000\u0000\u0000\u0000\u0000\u0000j\u0003\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000d\u0004d\u0005\ufffd\u0002\u0000\u0000\u0000\u0000\u0000\u0000}\u0002d\u0006}\u0003|\u0002j\u0005\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\ufffd\u0000\u0000\u0000\u0000\u0000\u0000\u0000D\u0000\ufffd\u0004c\u0002i\u0000c\u0002]O\u0000\u0000}\u0004|\u0004j\u0007\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\ufffd\u0000\u0000\u0000\u0000\u0000\u0000\u0000j\t\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000|\u0003j\u0007\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\ufffd\u0000\u0000\u0000\u0000\u0000\u0000\u0000\ufffd\u0001\u0000\u0000\u0000\u0000\u0000\u0000r |\u0004j\u0007\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\ufffd\u0000\u0000\u0000\u0000\u0000\u0000\u0000d\u0006|\u0004t\u000b\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000|\u0003\ufffd\u0001\u0000\u0000\u0000\u0000\u0000\u0000d\u0000\u001a\u0000z\u0000\u0000\u0000\ufffd\u0002\ufffdQ\u0004\u0000}\u0005}\u0004|\u0002j\u0007\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\ufffd\u0000\u0000\u0000\u0000\u0000\u0000\u0000}\u0002|\u0002j\u0005\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\ufffd\u0000\u0000\u0000\u0000\u0000\u0000\u0000}\u0006g\u0000}\u0007|\u0006D\u0000]m\u0000\u0000}\b|\bd\u0007v\u0001r\u0012|\u0007j\n\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000d\b\ufffd\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0000\ufffd\u0019|\bd\tk(\u0000\u0000r\u0012|\u0007j\n\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000d\n\ufffd\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0000\ufffd0|\bd\u0002k(\u0000\u0000r\t|\u0007r\u0007|\u0007d\u000b\u0019\u0000\u0000\u0000d\fv\u0001s\u000f|\bd\u0004k(\u0000\u0000r\u001a|\u0007r\u0018|\u0007d\u000b\u0019\u0000\u0000\u0000d\u0002k(\u0000\u0000r\u0010d\u0001|\u0000\ufffd\u0002\ufffd\u0002}\u0001t\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000|\u0001\ufffd\u0001\u0000\u0000\u0000\u0000\u0000\u0000\ufffd\u0001|\u0007j\n\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000|\b\ufffd\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0000\ufffdo\u0004\u0000d\nj\u000f\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000|\u0007\ufffd\u0001\u0000\u0000\u0000\u0000\u0000\u0000}\t\t\u0000t\u0011\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000|\td\u000ed\u000f\ufffd\u0003\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0000g\u0000}\n|\u0006D\u0000\ufffd\u0001]\u0006\u0000\u0000}\b|\bd\u0007v\u0000r |\nj\n\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000|\bj\u0015\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\ufffd\u0000\u0000\u0000\u0000\u0000\u0000\u0000\ufffd\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0000\ufffd(|\nr<|\nd\u000b\u0019\u0000\u0000\u0000d\u0010k(\u0000\u0000r4|\bt\u0016\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000v\u0001r\u0010d\u0011|\b\ufffd\u0002\ufffd\u0002}\u0001t\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000|\u0001\ufffd\u0001\u0000\u0000\u0000\u0000\u0000\u0000\ufffd\u0001|\nj\n\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000t\u0016\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000|\b\u0019\u0000\u0000\u0000d\u0012\u0019\u0000\u0000\u0000\ufffd\u0001\u0000\u0000\u0000\u0000\u0000\u0000\u0001\u0000\ufffdf|\bj\u0019\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"
+    },
+    {
+      "path": "setuptools/setuptools__vendor_packaging_licenses___pycache____spdx.cpython-312.pyc",
+      "sha256": "62e000f0883906385eb3f49dbfde25f81cc94edfabd17341bc36bfc8909b3911",
+      "size_bytes": 49857,
+      "spdx": [],
+      "lgpl_mentions": 18,
+      "gpl_mentions": 35,
+      "excerpt": "\ufffd\n\n\u0000\u0000\u0000\u0000\ufffd\ufffd\ufffdj\ufffd\ufffd\u0000\u0000\ufffd\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u000e\u0000\u0000\u0000\u0000\u0000\u0000\u0001\ufffd/\u0000\u0000\ufffd\u0000U\u0000d\u0000d\u0001l\u0000m\u0001Z\u0001\u0001\u0000d\u0000d\u0002l\u0002m\u0003Z\u0003\u0001\u0000\u0002\u0000G\u0000d\u0003\ufffd\u0000d\u0004e\u0003\ufffd\u0003\u0000\u0000\u0000\u0000\u0000\u0000Z\u0004\u0002\u0000G\u0000d\u0005\ufffd\u0000d\u0006e\u0003\ufffd\u0003\u0000\u0000\u0000\u0000\u0000\u0000Z\u0005d\u0007Z\u0006i\u0000d\bd\td\nd\u000b\ufffd\u0002\ufffd\u0001d\fd\nd\nd\u000b\ufffd\u0002\ufffd\u0001d\u000ed\u000fd\nd\u000b\ufffd\u0002\ufffd\u0001d\u0010d\u0011d\nd\u000b\ufffd\u0002\ufffd\u0001d\u0012d\u0013d\nd\u000b\ufffd\u0002\ufffd\u0001d\u0014d\u0015d\nd\u000b\ufffd\u0002\ufffd\u0001d\u0016d\u0017d\nd\u000b\ufffd\u0002\ufffd\u0001d\u0018d\u0019d\nd\u000b\ufffd\u0002\ufffd\u0001d\u001ad\u001bd\nd\u000b\ufffd\u0002\ufffd\u0001d\u001cd\u001dd\nd\u000b\ufffd\u0002\ufffd\u0001d\u001ed\u001fd\nd\u000b\ufffd\u0002\ufffd\u0001d d!d\nd\u000b\ufffd\u0002\ufffd\u0001d\"d#d\nd\u000b\ufffd\u0002\ufffd\u0001d$d%d\nd\u000b\ufffd\u0002\ufffd\u0001d&d'd\nd\u000b\ufffd\u0002\ufffd\u0001d(d)d\nd\u000b\ufffd\u0002\ufffd\u0001d*d+d,d\u000b\ufffd\u0002\ufffd\u0001i\u0000d-d.d\nd\u000b\ufffd\u0002\ufffd\u0001d/d0d\nd\u000b\ufffd\u0002\ufffd\u0001d1d2d,d\u000b\ufffd\u0002\ufffd\u0001d3d4d\nd\u000b\ufffd\u0002\ufffd\u0001d5d6d\nd\u000b\ufffd\u0002\ufffd\u0001d7d8d\nd\u000b\ufffd\u0002\ufffd\u0001d9d:d\nd\u000b\ufffd\u0002\ufffd\u0001d;d<d\nd\u000b\ufffd\u0002\ufffd\u0001d=d>d\nd\u000b\ufffd\u0002\ufffd\u0001d?d@d\nd\u000b\ufffd\u0002\ufffd\u0001dAdBd\nd\u000b\ufffd\u0002\ufffd\u0001dCdDd\nd\u000b\ufffd\u0002\ufffd\u0001dEdFd\nd\u000b\ufffd\u0002\ufffd\u0001dGdHd\nd\u000b\ufffd\u0002\ufffd\u0001dIdJd\nd\u000b\ufffd\u0002\ufffd\u0001dKdLd\nd\u000b\ufffd\u0002\ufffd\u0001dMdNd\nd\u000b\ufffd\u0002\ufffd\u0001\ufffd\u0001i\u0000dOdPd\nd\u000b\ufffd\u0002\ufffd\u0001dQdRd\nd\u000b\ufffd\u0002\ufffd\u0001dSdTd\nd\u000b\ufffd\u0002\ufffd\u0001dUdVd\nd\u000b\ufffd\u0002\ufffd\u0001dWdXd\nd\u000b\ufffd\u0002\ufffd\u0001dYdZd\nd\u000b\ufffd\u0002\ufffd\u0001d[d\\d\nd\u000b\ufffd\u0002\ufffd\u0001d]d^d\nd\u000b\ufffd\u0002\ufffd\u0001d_d`d\nd\u000b\ufffd\u0002\ufffd\u0001dadbd\nd\u000b\ufffd\u0002\ufffd\u0001dcddd\nd\u000b\ufffd\u0002\ufffd\u0001dedfd\nd\u000b\ufffd\u0002\ufffd\u0001dgdhd\nd\u000b\ufffd\u0002\ufffd\u0001didjd\nd\u000b\ufffd\u0002\ufffd\u0001dkdld\nd\u000b\ufffd\u0002\ufffd\u0001dmdnd\nd\u000b\ufffd\u0002\ufffd\u0001dodpd\nd\u000b\ufffd\u0002\ufffd\u0001\ufffd\u0001i\u0000dqdrd\nd\u000b\ufffd\u0002\ufffd\u0001dsdtd\nd\u000b\ufffd\u0002\ufffd\u0001dudvd\nd\u000b\ufffd\u0002\ufffd\u0001dwdxd\nd\u000b\ufffd\u0002\ufffd\u0001dydzd\nd\u000b\ufffd\u0002\ufffd\u0001d{d|d\nd\u000b\ufffd\u0002\ufffd\u0001d}d~d\nd\u000b\ufffd\u0002\ufffd\u0001d\u007fd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001\ufffd\u0001i\u0000d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd,d\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd,d\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001\ufffd\u0001i\u0000d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001\ufffd\u0001i\u0000d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd,d\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001\ufffd\u0001i\u0000d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001d\ufffdd\ufffdd\nd\u000b\ufffd\u0002\ufffd\u0001\ufffd\u0001d\u0000\ufffd\u0001d\u0001d\nd\u000b\ufffd\u0002\ufffd\u0001\ufffd\u0001d\u0002\ufffd\u0001d\u0003d\nd\u000b\ufffd\u0002\ufffd\u0001\ufffd\u0001d\u0004\ufffd\u0001d\u0005d\nd\u000b\ufffd\u0002\ufffd\u0001\ufffd\u0001d\u0006\ufffd\u0001d\u0007d\nd\u000b\ufffd\u0002\ufffd\u0001\ufffd\u0001d\b\ufffd\u0001d\td\nd\u000b\ufffd\u0002\ufffd\u0001\ufffd\u0001d\n\ufffd\u0001d\u000bd\nd\u000b\ufffd\u0002\ufffd\u0001\ufffd\u0001d\f\ufffd\u0001d\nd\nd\u000b\ufffd\u0002\ufffd\u0001\ufffd\u0001d\u000e\ufffd\u0001d\u000fd\nd\u000b\ufffd\u0002\ufffd\u0001\ufffd\u0001d\u0010\ufffd\u0001d\u0011d\nd\u000b\ufffd\u0002\ufffd\u0001\ufffd\u0001d\u0012\ufffd\u0001d\u0013d\nd\u000b\ufffd\u0002\ufffd\u0001\ufffd\u0001d\u0014\ufffd\u0001d\u0015"
+    },
+    {
+      "path": "setuptools/setuptools__vendor_packaging_licenses__spdx.py",
+      "sha256": "596ec35e2ca0ebcba9fd8343ff0a51625af548786257815f24b41f7e08613314",
+      "size_bytes": 51122,
+      "spdx": [],
+      "lgpl_mentions": 18,
+      "gpl_mentions": 35,
+      "excerpt": "\nfrom __future__ import annotations\n\nfrom typing import TypedDict\n\nclass SPDXLicense(TypedDict):\n    id: str\n    deprecated: bool\n\nclass SPDXException(TypedDict):\n    id: str\n    deprecated: bool\n\n\nVERSION = '3.27.0'\n\nLICENSES: dict[str, SPDXLicense] = {\n    '0bsd': {'id': '0BSD', 'deprecated': False},\n    '3d-slicer-1.0': {'id': '3D-Slicer-1.0', 'deprecated': False},\n    'aal': {'id': 'AAL', 'deprecated': False},\n    'abstyles': {'id': 'Abstyles', 'deprecated': False},\n    'adacore-doc': {'id': 'AdaCore-doc', 'deprecated': False},\n    'adobe-2006': {'id': 'Adobe-2006', 'deprecated': False},\n    'adobe-display-postscript': {'id': 'Adobe-Display-PostScript', 'deprecated': False},\n    'adobe-glyph': {'id': 'Adobe-Glyph', 'deprecated': False},\n    'adobe-utopia': {'id': 'Adobe-Utopia', 'deprecated': False},\n    'adsl': {'id': 'ADSL', 'deprecated': False},\n    'afl-1.1': {'id': 'AFL-1.1', 'deprecated': False},\n    'afl-1.2': {'id': 'AFL-1.2', 'deprecated': False},\n    'afl-2.0': {'id': 'AFL-2.0', 'deprecated': False},\n    'afl-2.1': {'id': 'AFL-2.1', 'deprecated': False},\n    'afl-3.0': {'id': 'AFL-3.0', 'deprecated': False},\n    'afmparse': {'id': 'Afmparse', 'deprecated': False},\n    'agpl-1.0': {'id': 'AGPL-1.0', 'deprecated': True},\n    'agpl-1.0-only': {'id': 'AGPL-1.0-only', 'deprecated': False},\n    'agpl-1.0-or-later': {'id': 'AGPL-1.0-or-later', 'deprecated': False},\n    'agpl-3.0': {'id': 'AGPL-3.0', 'deprecated': True},\n    'agpl-3.0-only': {'id': 'AGPL-3.0-only', 'deprecated': False},\n    'agpl-3.0-or-later': {'id': 'AGPL-3.0-or-later', 'deprecated': False},\n    'aladdin': {'id': 'Aladdin', 'deprecated': False},\n    'amd-newlib': {'id': 'AMD-newlib', 'deprecated': False},\n    'amdplpa': {'id': 'AMDPLPA', 'deprecated': False},\n    'aml': {'id': 'AML', 'deprecated"
+    },
+    {
+      "path": "setuptools/setuptools__vendor_platformdirs-4.4.0.dist-info_licenses_LICENSE",
+      "sha256": "29e0fd62e929850e86eb28c3fdccf0cefdf4fa94879011cffb3d0d4bed6d4db6",
+      "size_bytes": 1089,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "MIT License\n\nCopyright (c) 2010-202x The platformdirs developers\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n"
+    },
+    {
+      "path": "setuptools/setuptools__vendor_tomli-2.4.0.dist-info_licenses_LICENSE",
+      "sha256": "b80816b0d530b8accb4c2211783790984a6e3b61922c2b5ee92f3372ab2742fe",
+      "size_bytes": 1072,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "MIT License\n\nCopyright (c) 2021 Taneli Hukkinen\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n"
+    },
+    {
+      "path": "setuptools/setuptools__vendor_wheel-0.46.3.dist-info_licenses_LICENSE.txt",
+      "sha256": "30c23618679108f3e8ea1d2a658c7ca417bdfc891c98ef1a89fa4ff0c9828654",
+      "size_bytes": 1107,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "MIT License\n\nCopyright (c) 2012 Daniel Holth <dholth@fastmail.fm> and contributors\n\nPermission is hereby granted, free of charge, to any person obtaining a\ncopy of this software and associated documentation files (the \"Software\"),\nto deal in the Software without restriction, including without limitation\nthe rights to use, copy, modify, merge, publish, distribute, sublicense,\nand/or sell copies of the Software, and to permit persons to whom the\nSoftware is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included\nin all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL\nTHE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR\nOTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,\nARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR\nOTHER DEALINGS IN THE SOFTWARE.\n"
+    },
+    {
+      "path": "setuptools/setuptools__vendor_zipp-3.23.0.dist-info_licenses_LICENSE",
+      "sha256": "5a57cb4db85e2a2dd88c290628908add57e3451449e0a9a71fdfb38776fd759d",
+      "size_bytes": 1076,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "MIT License\n\nCopyright (c) 2025 <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and\nassociated documentation files (the \"Software\"), to deal in the Software without restriction, including\nwithout limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the\nfollowing conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial\nportions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT\nLIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO\nEVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER\nIN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE\nUSE OR OTHER DEALINGS IN THE SOFTWARE.\n"
+    },
+    {
+      "path": "shapely/shapely-2.2.0.dist-info_licenses_LICENSE.txt",
+      "sha256": "e8cd7d34604d2758ff589f0f34d6ed79c3f7fb14aaf5e12fb09221421391a3bf",
+      "size_bytes": 1612,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "BSD 3-Clause License\n\nCopyright (c) 2007, Sean C. Gillies. 2019, Casper van der Wel. 2007-2022, Shapely Contributors.\nAll rights reserved.\n\nRedistribution and use in source and binary forms, with or without\nmodification, are permitted provided that the following conditions are met:\n\n1. Redistributions of source code must retain the above copyright notice, this\n   list of conditions and the following disclaimer.\n\n2. Redistributions in binary form must reproduce the above copyright notice,\n   this list of conditions and the following disclaimer in the documentation\n   and/or other materials provided with the distribution.\n\n3. Neither the name of the copyright holder nor the names of its\n   contributors may be used to endorse or promote products derived from\n   this software without specific prior written permission.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\"\nAND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE\nIMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE\nDISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE\nFOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL\nDAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR\nSERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER\nCAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,\nOR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE\nOF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n"
+    },
+    {
+      "path": "shapely/shapely-2.2.0.dist-info_licenses_LICENSE_GEOS",
+      "sha256": "7233baa9a7d4a17257b357706b7dbdc4b675e5ca45425b3418673b16990cf239",
+      "size_bytes": 27296,
+      "spdx": [],
+      "lgpl_mentions": 7,
+      "gpl_mentions": 0,
+      "excerpt": "This binary distribution of shapely also bundles the following software:\n\nName: Geometry Engine Open Source (GEOS)\nFiles: libgeos-*.so.*, libgeos_c-*.so.*, libgeos.dylib, libgeos_c.dylib, geos-*.dll, geos_c-*.dll\nAvailability: https://libgeos.org\nLicense: LGPLv2.1\n\n                  GNU LESSER GENERAL PUBLIC LICENSE\n                       Version 2.1, February 1999\n\n Copyright (C) 1991, 1999 Free Software Foundation, Inc.\n 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA\n Everyone is permitted to copy and distribute verbatim copies\n of this license document, but changing it is not allowed.\n\n[This is the first released version of the Lesser GPL.  It also counts\n as the successor of the GNU Library Public License, version 2, hence\n the version number 2.1.]\n\n                            Preamble\n\n  The licenses for most software are designed to take away your\nfreedom to share and change it.  By contrast, the GNU General Public\nLicenses are intended to guarantee your freedom to share and change\nfree software--to make sure the software is free for all its users.\n\n  This license, the Lesser General Public License, applies to some\nspecially designated software packages--typically libraries--of the\nFree Software Foundation and other authors who decide to use it.  You\ncan use it too, but we suggest you first think carefully about whether\nthis license or the ordinary General Public License is the better\nstrategy to use in any particular case, based on the explanations below.\n\n  When we speak of free software, we are referring to freedom of use,\nnot price.  Our General Public Licenses are designed to make sure that\nyou have the freedom to distribute copies of free software (and charge\nfor this service if you wish); that you receive source code or can get\nit if you want "
+    },
+    {
+      "path": "shapely/shapely-2.2.0.dist-info_licenses_LICENSE_win32",
+      "sha256": "fdbb2abb8c598c8888755b52340bddcee38668a2def23e51e7d9e3f187bb8d51",
+      "size_bytes": 1180,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "This binary distribution of shapely also bundles the following software:\n\nName: Microsoft Visual C++ Runtime Files\nFiles: msvcp140.dll\nLicense: MSVC\n  https://www.visualstudio.com/license-terms/distributable-code-microsoft-visual-studio-2015-rc-microsoft-visual-studio-2015-sdk-rc-includes-utilities-buildserver-files/#visual-c-runtime\n\n  Subject to the License Terms for the software, you may copy and\n  distribute with your program any of the files within the followng\n  folder and its subfolders except as noted below. You may not modify\n  these files.\n\n    C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\VC\\redist\n\n  You may not distribute the contents of the following folders:\n\n    C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\VC\\redist\\debug_nonredist\n    C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\VC\\redist\\onecore\\debug_nonredist\n\n  Subject to the License Terms for the software, you may copy and\n  distribute the following files with your program in your program\u2019s\n  application local folder or by deploying them into the Global\n  Assembly Cache (GAC):\n\n  VC\\atlmfc\\lib\\mfcmifc80.dll\n  VC\\atlmfc\\lib\\amd64\\mfcmifc80.dll\n"
+    },
+    {
+      "path": "shiboken6/shiboken6-6.12.0.dist-info_licenses_LicenseRef-Qt-Commercial.txt",
+      "sha256": "4f54763ac0fe2abd8f7f8d8fe370a94a08ebf84786aa0b91045bd6628deb08a3",
+      "size_bytes": 470,
+      "spdx": [],
+      "lgpl_mentions": 0,
+      "gpl_mentions": 0,
+      "excerpt": "Licensees holding valid commercial Qt licenses may use this software in\naccordance with the the terms contained in a written agreement between\nyou and The Qt Company. Alternatively, the terms and conditions that were\naccepted by the licensee when buying and/or downloading the\nsoftware do apply.\n\nFor the latest licensing terms and conditions, see https://www.qt.io/terms-conditions.\nFor further information use the contact form at https://www.qt.io/contact-us.\n"
+    }
+  ],
+  "packages": [
+    {
+      "name": "altgraph",
+      "version": "0.17.5",
+      "license": "MIT"
+    },
+    {
+      "name": "attrs",
+      "version": "26.1.0",
+      "license": "MIT"
+    },
+    {
+      "name": "certifi",
+      "version": "2026.7.22",
+      "license": "MPL-2.0"
+    },
+    {
+      "name": "click",
+      "version": "8.5.0",
+      "license": "BSD-3-Clause"
+    },
+    {
+      "name": "click-plugins",
+      "version": "1.1.1.2",
+      "license": "New BSD"
+    },
+    {
+      "name": "cligj",
+      "version": "0.7.2",
+      "license": "BSD"
+    },
+    {
+      "name": "defusedxml",
+      "version": "0.7.1",
+      "license": "PSFL"
+    },
+    {
+      "name": "dnspython",
+      "version": "2.9.0",
+      "license": "ISC"
+    },
+    {
+      "name": "email-validator",
+      "version": "2.3.0",
+      "license": "Unlicense"
+    },
+    {
+      "name": "fiona",
+      "version": "1.10.1",
+      "license": "BSD 3-Clause"
+    },
+    {
+      "name": "idna",
+      "version": "3.20",
+      "license": "BSD-3-Clause"
+    },
+    {
+      "name": "numpy",
+      "version": "2.5.4",
+      "license": "BSD-3-Clause AND 0BSD AND MIT AND Zlib AND CC0-1.0"
+    },
+    {
+      "name": "packaging",
+      "version": "26.3",
+      "license": "Apache-2.0 OR BSD-2-Clause"
+    },
+    {
+      "name": "pefile",
+      "version": "2024.8.26",
+      "license": "MIT"
+    },
+    {
+      "name": "pip",
+      "version": "25.0.1",
+      "license": "MIT"
+    },
+    {
+      "name": "pyinstaller",
+      "version": "6.22.3",
+      "license": "GPLv2-or-later with a special exception which allows to use PyInstaller to build and distribute non-free programs (including commercial ones)"
+    },
+    {
+      "name": "pyinstaller-hooks-contrib",
+      "version": "2026.8",
+      "license": "not declared"
+    },
+    {
+      "name": "pyproj",
+      "version": "3.8.0",
+      "license": "MIT"
+    },
+    {
+      "name": "PySide6",
+      "version": "6.12.0",
+      "license": "LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+    },
+    {
+      "name": "PySide6_Addons",
+      "version": "6.12.0",
+      "license": "LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+    },
+    {
+      "name": "PySide6_Essentials",
+      "version": "6.12.0",
+      "license": "LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+    },
+    {
+      "name": "PySide6_Pdf",
+      "version": "6.12.0.140",
+      "license": "LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+    },
+    {
+      "name": "PySide6_WebEngine",
+      "version": "6.12.0.140",
+      "license": "LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+    },
+    {
+      "name": "pywin32-ctypes",
+      "version": "0.2.3",
+      "license": "BSD-3-Clause"
+    },
+    {
+      "name": "setuptools",
+      "version": "84.0.0",
+      "license": "MIT"
+    },
+    {
+      "name": "shapely",
+      "version": "2.2.0",
+      "license": "BSD-3-Clause"
+    },
+    {
+      "name": "shiboken6",
+      "version": "6.12.0",
+      "license": "LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+    }
+  ],
+  "metadata_is_not_runtime_use": true,
+  "legal_compliance_approved": false
+}

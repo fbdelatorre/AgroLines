@@ -6,6 +6,11 @@ MSIX `AgroLines-1.0.0.0-x64-STORE-SUBMISSION-UNSIGNED.msix`, SHA-256
 Auditoria de 14/10/2026. Não é assinatura, instalação ou aprovação SAC/LGPD/Store.
 Política de privacidade e motor permanecem intactos.
 
+Resultados: [resultados.md](resultados.md), CSV de todos os arquivos e evidências no
+artefato. Avaliação para produto fechado: [lgpl-proprietario.md](lgpl-proprietario.md)
+e [licencas-componentes.md](licencas-componentes.md). Pessoa física residente no
+Brasil, sem Qt Commercial; LGPL/Store ainda não aprovados.
+
 ## Como reproduzir sem alterar os binários
 
 Workflow `.github/workflows/native-store-audit.yml`: Windows hospedado, download
@@ -48,8 +53,8 @@ Saídas no artefato `agrolines-original-msix-native-audit`:
    falha ou timeout não são convertidos em aprovação. Não se ajusta data do sistema,
    VerificationTime artificial, trusted roots ou assinatura para obter sucesso.
 
-As causas reais serão obtidas dos resultados, sem presumir que as 72 cadeias
-sejam expiradas, revogadas ou indisponíveis antes da execução. Certificado vencido
+Os resultados confirmaram 72 flags NotTimeValid, todos com SignTool exit 0;
+os outros 78 casos são NotSigned. Não houve outros flags de cadeia nesta execução. Certificado vencido
 na cadeia genérica não invalida automaticamente assinatura com timestamp aceito
 pelo Windows; preservar assinaturas upstream válidas até avaliação completa.
 
@@ -90,9 +95,9 @@ generalizações. Arquivos vendorizados podem ter licença diferente do pacote P
 Para LGPL, avaliar fonte correspondente/oferta permitida, alterações, licença,
 avisos, possibilidade de substituir/relinkar biblioteca e installation information
 quando aplicável. Proteção WindowsApps/assinatura/Store exige análise do mecanismo
-de cumprimento; não mandar desativar SAC para satisfazer licença. Modelo comercial
-não determina código fechado: escolher LGPL compatível, GPL compatível ou licença
-comercial aplicável depende do modelo e da revisão, não desta auditoria.
+de cumprimento; não mandar desativar SAC para satisfazer licença. O modelo fechado foi confirmado pelo responsável. Escolher LGPL compatível ou
+contrato comercial aplicável exige revisão; não mudar a licença própria nem escolher
+GPL para todo o aplicativo automaticamente.
 
 ## Opções legítimas para a conta Individual
 
@@ -106,8 +111,8 @@ comercial aplicável depende do modelo e da revisão, não desta auditoria.
   não precisa ser confundido com Publisher GUID reservado da Store.
 - **Artifact Signing Public Trust:** docs quickstart atuais permitem indivíduos
   residentes nos EUA/Canadá. Conta Individual Partner Center não dá automaticamente
-  elegibilidade Azure. País do responsável ainda precisa ser confirmado; se Brasil,
-  não tratar esse serviço como disponível nem usar endereço/empresa fictícios.
+  elegibilidade Azure. Responsável confirmou Brasil: serviço Public Trust para pessoa física
+  não elegível segundo essa documentação; não usar endereço/empresa fictícios.
   Private Trust/test signing não fornecem confiança pública dos computadores clientes.
 - **Fornecedor/build próprio verificável:** solicitar/avaliar builds oficialmente
   assinados ou compilar fontes permitidas com toolchain/SBOM/precisão preservados e
@@ -116,15 +121,15 @@ comercial aplicável depende do modelo e da revisão, não desta auditoria.
 Fonte Microsoft SAC atualizada em 28/09/2026 informa suporte a **RSA e ECC**; não
 repetir a regra antiga “somente RSA”. Compatibilidade do algoritmo/cadeia com os
 builds Windows alvo exige teste físico; docs atuais não provam qualquer build antigo.
-País/elegibilidade CA, existência de licença Qt comercial e modelo do AgroLines
-permanecem decisões a confirmar, sem documentos/credenciais no GitHub.
+Residência Brasil, ausência de Qt Commercial e modelo proprietário foram confirmados.
+Elegibilidade/contrato de CA e migração Community–Commercial continuam pendentes,
+sem documentos pessoais/credenciais no GitHub.
 
 ## Próximo passo proposto, sem executá-lo
 
 Concluir tabela real de cargas/causas/licenças; selecionar conjunto mínimo que
 preserve GIS/UI, removendo só dependências dispensáveis após testes e aprovação.
-Resolver GPL/commercial/LGPL antes de distribuir software proprietário, se esse
-modelo for adotado. Preservar signatures/timestamps upstream aceitos, escolher
+Resolver GPL/commercial/LGPL antes de distribuir o software proprietário confirmado. Preservar signatures/timestamps upstream aceitos, escolher
 CA elegível para PE unsigned realmente necessários se permitido, gerar novo inventário
 e MSIX para fluxo Store. Em seguida, só com autorização, obter pacote Store confiável
 e homologar Windows 11 com SAC **On** e Defender ativo, offline, incluindo helpers,
@@ -133,5 +138,5 @@ eventos de integridade e atualização/desinstalação/preservação. Certifica�
 
 Este PR prepara/verifica diagnóstico; não altera payload, política, licença adotada,
 classificação, identidade, conta Store, proteção Windows ou certificados.
-Não há merge, upload/certificação, convite ou publicação. Resultados efetivos e links
-serão incorporados após o workflow; existência da ferramenta não prova execução.
+Não há merge, upload/certificação, convite ou publicação. Resultados efetivos e links constam em resultados.md. Execuções extras e
+reconstruções automáticas do PR não mudam o MSIX original fixado nesta auditoria.

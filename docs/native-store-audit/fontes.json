@@ -158,8 +158,327 @@
       "blob_sha": "f26bcf4d2de6eb136e31006ca3ab447d5e488adf",
       "sha256": "3b2f81fe21d181c499c59a256c8e1968455d6689d269aa85373bfb6af41da3bf",
       "bytes": 13936
+    },
+    {
+      "name": "qt-obligations",
+      "url": "https://www.qt.io/licensing/open-source-lgpl-obligations",
+      "status": "unavailable",
+      "error": "URLError: <urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "name": "qt-faq",
+      "url": "https://www.qt.io/faq",
+      "status": "unavailable",
+      "error": "URLError: <urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "name": "qt-commercial-terms",
+      "url": "https://www.qt.io/terms-conditions",
+      "status": "unavailable",
+      "error": "URLError: <urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "name": "qt-commercial-agreement",
+      "url": "https://www.qt.io/legal/qt-for-application-development-license-agreement",
+      "status": "unavailable",
+      "error": "URLError: <urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "name": "pyside-license",
+      "url": "https://doc.qt.io/qtforpython-6/licenses.html",
+      "status": "unavailable",
+      "error": "URLError: <urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "name": "msvc-redistribution",
+      "url": "https://learn.microsoft.com/en-us/cpp/windows/redistributing-visual-cpp-files?view=msvc-170",
+      "resolved_url": "https://learn.microsoft.com/en-us/cpp/windows/redistributing-visual-cpp-files?view=msvc-170",
+      "sha256": "3aea914ef42a5b295b930b9be77696f48ac557b7ea4e508c9a3efaf2268724c6",
+      "bytes": 60136,
+      "status": "read"
+    },
+    {
+      "name": "microsoft-developer-agreement",
+      "url": "https://learn.microsoft.com/en-us/windows/apps/publish/app-developer-agreement",
+      "status": "unavailable",
+      "error": "HTTPError: HTTP Error 404: Not Found"
+    },
+    {
+      "name": "ms-app-properties",
+      "url": "https://learn.microsoft.com/en-us/windows/apps/publish/publish-your-app/enter-app-properties",
+      "resolved_url": "https://learn.microsoft.com/en-us/windows/apps/publish/publish-your-app/msix/enter-app-properties",
+      "sha256": "c07f734f8a53ca68251aa2b8e7dfed25394b4b574a8fda8cc29aa6751a2f217e",
+      "bytes": 54563,
+      "status": "read"
+    },
+    {
+      "name": "lgpl3",
+      "url": "https://github.com/qt/qtbase/blob/v6.12.0/LICENSES/LGPL-3.0-only.txt",
+      "status": "read",
+      "blob_sha": "65c5ca88a67c30becee01c5a8816d964b03862f9",
+      "sha256": "da7eabb7bafdf7d3ae5e9f223aa5bdc1eece45ac569dc21b3b037520b4464768",
+      "bytes": 7651
+    },
+    {
+      "name": "gpl3",
+      "url": "https://github.com/qt/qtbase/blob/v6.12.0/LICENSES/GPL-3.0-only.txt",
+      "status": "read",
+      "blob_sha": "94a9ed024d3859793618152ea559a168bbcbb5e2",
+      "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903",
+      "bytes": 35147
+    },
+    {
+      "name": "pyside-license",
+      "url": "https://github.com/pyside/pyside-setup/blob/v6.12.0/sources/pyside6/libpyside/pyside.cpp",
+      "status": "read",
+      "blob_sha": "c94694a7841176a324c93aa619e25d871833c8dc",
+      "sha256": "1f21ca591de01501649196aba5a471f30ecfb8ad4ea54a634881477d093b586b",
+      "bytes": 39010
+    },
+    {
+      "name": "shiboken-license",
+      "url": "https://github.com/pyside/pyside-setup/blob/v6.12.0/sources/shiboken6/libshiboken/basewrapper.cpp",
+      "status": "read",
+      "blob_sha": "a79a931f960314f69b546ac89e85dcc83828dabc",
+      "sha256": "199a86e6daf4447ff77b364e1dd3da9fcbc8bbf4299bcf6bf4ee95eaaa9c15af",
+      "bytes": 67690
+    },
+    {
+      "name": "pyside-faq",
+      "url": "https://github.com/pyside/pyside-setup/blob/v6.12.0/sources/pyside6/doc/faq.rst",
+      "status": "read",
+      "blob_sha": "4171df947a0602bef0750548e6a8a58101404b8f",
+      "sha256": "7336d3fb0b0ad785842617c0a48b6ea4e409c713227cff1453b1088f2b967bb7",
+      "bytes": 1849
+    },
+    {
+      "name": "pyside-commercial",
+      "url": "https://github.com/pyside/pyside-setup/blob/v6.12.0/sources/pyside6/doc/commercial",
+      "status": "directory-read",
+      "paths": [
+        "sources/pyside6/doc/commercial/index.rst",
+        "sources/pyside6/doc/commercial/products.png",
+        "sources/pyside6/doc/commercial/qtcreator_python.png",
+        "sources/pyside6/doc/commercial/versions_commercial.png",
+        "sources/pyside6/doc/commercial/versions_lts.png"
+      ]
+    },
+    {
+      "name": "qt-virtualkeyboard",
+      "url": "https://github.com/qt/qtvirtualkeyboard/blob/v6.12.0/src/virtualkeyboard/qvirtualkeyboardinputcontext.cpp",
+      "status": "read",
+      "blob_sha": "067734c210a63b88db76f4c84abcc3337e98246d",
+      "sha256": "228f971b10006e0944721ed08e8d9be06db0d13f3757336652c1a43235f595fe",
+      "bytes": 18328
+    },
+    {
+      "name": "qt-quick3d",
+      "url": "https://github.com/qt/qtquick3d/blob/v6.12.0/src/quick3d/qquick3dobject.cpp",
+      "status": "read",
+      "blob_sha": "9dc7fdf41691b81aad2be7da7ff9f8b6478396e4",
+      "sha256": "d2da6d0a9ca08356e8ece14369986343ec5f74336ee45077fa8b1d8e6e26f59b",
+      "bytes": 38653
+    },
+    {
+      "name": "qt-datavis",
+      "url": "https://github.com/qt/qtdatavis3d/blob/v6.12.0/src/datavisualization/engine/qabstract3dgraph.cpp",
+      "status": "read",
+      "blob_sha": "98bb614456b85c1d666c073e8b0da50cd2cb4c2e",
+      "sha256": "816843825ed1cb5bbc7e52f8245b2db60d9fae7cc8e147828ab500f7dd976fc9",
+      "bytes": 37748
+    },
+    {
+      "name": "qt-webengine-main",
+      "url": "https://github.com/qt/qtwebengine/blob/dev/src/core/api/qwebenginepage.cpp",
+      "status": "read",
+      "blob_sha": "6dbe67cdac6e9bac4d61420f20828823887f6fbf",
+      "sha256": "b94ac75ca144b100dbcf9075eabf1b5cd42d9f0766354d6b1c50dff75fe4c780",
+      "bytes": 89448
+    },
+    {
+      "name": "qt-pdf-main",
+      "url": "https://github.com/qt/qtwebengine/blob/dev/src/pdf/qpdfdocument.cpp",
+      "status": "read",
+      "blob_sha": "e6289b6a45b4192296889668de8b02f37a1f47a0",
+      "sha256": "379dc2d131e49b6017078ece228301b2e2302ec2a756ba2e803078840ac8d852",
+      "bytes": 36711
+    },
+    {
+      "name": "qt-licenses-source",
+      "url": "https://github.com/qt/qtbase/blob/v6.12.0/doc/src/legal/licenses.qdoc",
+      "status": "unavailable",
+      "error": "Source not retrieved (ref/path not verified)"
+    },
+    {
+      "name": "qt-qml",
+      "url": "https://github.com/qt/qtdeclarative/blob/v6.12.0/src/qml/qml/qqmlengine.cpp",
+      "status": "read",
+      "blob_sha": "bc0b655f42e7ea48ffaabf47b2ff1a2a98ae739a",
+      "sha256": "6d7e07e9f5d4db060e027ed8ee6f35162c7d7a243cb25482d85c68189b00c960",
+      "bytes": 59318
+    },
+    {
+      "name": "qt-quick",
+      "url": "https://github.com/qt/qtdeclarative/blob/v6.12.0/src/quick/items/qquickitem.cpp",
+      "status": "read",
+      "blob_sha": "eb754d9bdf75f9ee480dd3a9ea029b8ffd5881de",
+      "sha256": "cd2b3b4c1f1af748f6046a7e52c12ed694d3f3397e0e3b1a79a535052f7e99e5",
+      "bytes": 342101
+    },
+    {
+      "name": "qt-svg",
+      "url": "https://github.com/qt/qtsvg/blob/v6.12.0/src/svg/qsvgrenderer.cpp",
+      "status": "read",
+      "blob_sha": "a15adf7e830bc021061be564e9a903a49289659f",
+      "sha256": "a7b0a467e11f15a27d7e5464e17189a26c1db3384d58cc200ce543363583c435",
+      "bytes": 15683
+    },
+    {
+      "name": "qt-webchannel",
+      "url": "https://github.com/qt/qtwebchannel/blob/v6.12.0/src/webchannel/qwebchannel.cpp",
+      "status": "read",
+      "blob_sha": "8319cc90c3e5fbf1e0a58d72e2ed6534fe6c5373",
+      "sha256": "1c1be407fa3789d4bb566dc72f1ae0058dbb312f0ae7c11fb312a1d8dd38feb5",
+      "bytes": 11160
+    },
+    {
+      "name": "qt-positioning",
+      "url": "https://github.com/qt/qtpositioning/blob/v6.12.0/src/positioning/qgeopositioninfosource.cpp",
+      "status": "read",
+      "blob_sha": "4477d1de21c1690d0577eacb3700394d44b5af85",
+      "sha256": "da5af17eb6eeea1029022612411635857864cbdb4986dbd8819778314e8d0a9a",
+      "bytes": 22752
+    },
+    {
+      "name": "qt-timeline",
+      "url": "https://github.com/qt/qtquicktimeline/blob/v6.12.0/src/timeline/qquicktimeline.cpp",
+      "status": "read",
+      "blob_sha": "ecfa57e2b6fba27b26a2c330ad336027de4d2889",
+      "sha256": "62644b3713ad8b532b7f0f8c1a816157b597ebf9f616996c2bbd47d7ed954b7c",
+      "bytes": 8341
+    },
+    {
+      "name": "qt-shadertools",
+      "url": "https://github.com/qt/qtshadertools/blob/v6.12.0/src/shadertools/qshaderbaker.cpp",
+      "status": "read",
+      "blob_sha": "963b4da9d89af254b59a06fc637a341b1051f4ff",
+      "sha256": "d207abd5b745f3a7c7ffa0f5a78b52346c15289f5a720cbf85af1fe570af4026",
+      "bytes": 36770
+    },
+    {
+      "name": "ms-developer-legal",
+      "url": "https://learn.microsoft.com/en-us/legal/windows/agreements/app-developer-agreement",
+      "status": "unavailable",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "name": "ms-standard-app-license",
+      "url": "https://www.microsoft.com/store/standard-application-license-terms",
+      "status": "unavailable",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "name": "ms-store-policies",
+      "url": "https://learn.microsoft.com/en-us/windows/apps/publish/store-policies",
+      "resolved_url": "https://learn.microsoft.com/en-us/windows/apps/publish/store-policies",
+      "status": "read",
+      "sha256": "4cc644837d5d8a9c0f1ecddc6eae03f9320da93c0ea70186263f9cb3ec198d19",
+      "bytes": 111970
+    },
+    {
+      "name": "pyside-commercial-versioned",
+      "url": "https://github.com/pyside/pyside-setup/blob/v6.12.0/sources/pyside6/doc/commercial/index.rst",
+      "status": "read",
+      "blob_sha": "de3da9327934f189d6f0a2d685078b58ea233da6",
+      "sha256": "f9f19c1cb9c48f2ea15133759def65e3e8dab8703c92dc98097adc1ae223d3e9",
+      "bytes": 10536
+    },
+    {
+      "name": "numpy-windows-license",
+      "url": "https://files.pythonhosted.org/packages/12/33/fefe62073dc8acfd0f2b9ed7c003af2f50aa61555e113e6db02b8f79f145/numpy-2.5.4-cp312-cp312-win_amd64.whl",
+      "status": "read",
+      "wheel": "numpy-2.5.4-cp312-cp312-win_amd64.whl",
+      "wheel_sha256": "a7b1b6353e36a7e50de2973a38d705c88ee93adcf120673cee7f45a4a3fa223a",
+      "member": "numpy-2.5.4.dist-info/licenses/LICENSE.txt",
+      "sha256": "a804dff0ead9fadc5293456410bcbfc32bf024be9c4513459663fb7b442d2341",
+      "bytes": 45831
+    },
+    {
+      "name": "qt-gui",
+      "url": "https://github.com/qt/qtbase/blob/v6.12.0/src/gui/kernel/qguiapplication.cpp",
+      "status": "read",
+      "blob_sha": "64fc3679922d4222c00eea46e203273a179d45eb",
+      "sha256": "a89d0b514c939c00436aca301e02a91a56efa2794c52a11b2a5b01aa56bf6166",
+      "bytes": 177269
+    },
+    {
+      "name": "qt-widgets",
+      "url": "https://github.com/qt/qtbase/blob/v6.12.0/src/widgets/kernel/qapplication.cpp",
+      "status": "read",
+      "blob_sha": "4187c22e0156ed3849ba324585f7e53c37275177",
+      "sha256": "3775ea392eebbe98e5f11816e66ebb32e7a67591e5dd73c3e2d2097713aa21c4",
+      "bytes": 148125
+    },
+    {
+      "name": "qt-network",
+      "url": "https://github.com/qt/qtbase/blob/v6.12.0/src/network/access/qnetworkaccessmanager.cpp",
+      "status": "read",
+      "blob_sha": "447f40769eb435d4d7b3942abff6d8f37cc36b93",
+      "sha256": "d9750407b5f4ff00643f92c365cd729c966b63aecc15a5acaa038ea8a4a1b3ae",
+      "bytes": 65530
+    },
+    {
+      "name": "qt-printsupport",
+      "url": "https://github.com/qt/qtbase/blob/v6.12.0/src/printsupport/kernel/qprinter.cpp",
+      "status": "read",
+      "blob_sha": "e17602e28826355ff7929f15aa4ec97845bc3192",
+      "sha256": "d60acd1ef95f66c8e3cf088845c8968cca74793618098e89d39cf442d8930823",
+      "bytes": 46120
+    },
+    {
+      "name": "qt-opengl",
+      "url": "https://github.com/qt/qtbase/blob/v6.12.0/src/opengl/qopenglbuffer.cpp",
+      "status": "read",
+      "blob_sha": "5ef23128de8027a93912817c07f248f54786c975",
+      "sha256": "0231d60615da6bb3af98b8f5f27c2113a624f675379acbcfa590c765a29507ff",
+      "bytes": 18951
+    },
+    {
+      "name": "qt-quickwidgets",
+      "url": "https://github.com/qt/qtdeclarative/blob/v6.12.0/src/quickwidgets/qquickwidget.cpp",
+      "status": "read",
+      "blob_sha": "8bf1e6fd978323bbaad933f8efcfc360e34cf7d3",
+      "sha256": "6024968e782fe40624db6bb19dc52ae412077560a0557a79b418d4e5a2d382a2",
+      "bytes": 73569
+    },
+    {
+      "name": "qt-windows-plugin",
+      "url": "https://github.com/qt/qtbase/blob/v6.12.0/src/plugins/platforms/windows/qwindowsintegration.cpp",
+      "status": "read",
+      "blob_sha": "79038f0f9387b6a2c4894771f9c409e3ba2afa66",
+      "sha256": "6e5663905f422981c47b7030c56334827d1b69ce24a99849ff4e9a595ffe3da9",
+      "bytes": 27725
+    },
+    {
+      "name": "qt-windows-style",
+      "url": "https://github.com/qt/qtbase/blob/v6.12.0/src/plugins/styles/modernwindows/qmodernwindowsstyle.cpp",
+      "status": "unavailable",
+      "error": "Source not retrieved (ref/path not verified)"
+    },
+    {
+      "name": "qt-windows-style-confirmed",
+      "url": "https://github.com/qt/qtbase/blob/v6.12.0/src/plugins/styles/modernwindows/qwindows11style.cpp",
+      "status": "read",
+      "blob_sha": "a27f74593017802a97753e3268d60a90f30f58ca",
+      "sha256": "9436fe6fe9b7bb4728a6c9e2dc398a89020bcdbe968efd05a234e1d5986d338b",
+      "bytes": 151848
     }
   ],
   "contracts_or_certificates_purchased": false,
-  "license_choice_approved": false
+  "license_choice_approved": false,
+  "confirmed_owner_context": {
+    "legal_residence": "Brazil",
+    "product_model": "proprietary/closed source",
+    "qt_commercial_license_acquired": false
+  }
 }

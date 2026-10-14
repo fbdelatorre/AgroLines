@@ -1,0 +1,143 @@
+{
+  "package_sha256": "22286add49d873625f6a3ab898dc2b772b5514dd4fc30cddcfdbcfa369ea2a36",
+  "files": 453,
+  "groups": {
+    "gdal": {
+      "files": 39,
+      "unsigned": 38,
+      "current_chain_false": 39,
+      "signtool_accepted": 1,
+      "loaded": 39,
+      "origin_unconfirmed": 0
+    },
+    "geos": {
+      "files": 8,
+      "unsigned": 7,
+      "current_chain_false": 7,
+      "signtool_accepted": 1,
+      "loaded": 8,
+      "origin_unconfirmed": 0
+    },
+    "numpy": {
+      "files": 15,
+      "unsigned": 14,
+      "current_chain_false": 15,
+      "signtool_accepted": 1,
+      "loaded": 4,
+      "origin_unconfirmed": 0
+    },
+    "other": {
+      "files": 46,
+      "unsigned": 0,
+      "current_chain_false": 44,
+      "signtool_accepted": 46,
+      "loaded": 1,
+      "origin_unconfirmed": 46
+    },
+    "own": {
+      "files": 1,
+      "unsigned": 1,
+      "current_chain_false": 1,
+      "signtool_accepted": 0,
+      "loaded": 1,
+      "origin_unconfirmed": 0
+    },
+    "proj": {
+      "files": 19,
+      "unsigned": 18,
+      "current_chain_false": 18,
+      "signtool_accepted": 1,
+      "loaded": 19,
+      "origin_unconfirmed": 0
+    },
+    "python": {
+      "files": 26,
+      "unsigned": 0,
+      "current_chain_false": 26,
+      "signtool_accepted": 26,
+      "loaded": 22,
+      "origin_unconfirmed": 0
+    },
+    "qt": {
+      "files": 299,
+      "unsigned": 0,
+      "current_chain_false": 0,
+      "signtool_accepted": 299,
+      "loaded": 40,
+      "origin_unconfirmed": 0
+    }
+  },
+  "chain_flags": {
+    "NotTimeValid": 72
+  },
+  "signtool_exit_codes": {
+    "0": 375,
+    "1": 78
+  },
+  "observation_errors": [],
+  "sac_approved": false,
+  "installed_msix_validated": false,
+  "license_review_complete": false,
+  "audit_run_url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38624227575",
+  "audit_artifact_url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38624227575/artifacts/11923226885",
+  "audit_source_commit": "64ec321125979d067012bdd9f21db341bc37f912",
+  "phases": [
+    {
+      "phase": "normal-offline-startup",
+      "exit_code": 0,
+      "duration_ms": 6272,
+      "processes": [
+        "AgroLinesPoC.exe",
+        "QtWebEngineProcess.exe"
+      ],
+      "modules_by_scope": {
+        "windows-system": 193,
+        "payload": 146,
+        "external": 1
+      },
+      "external_module_paths": [
+        "C:\\ProgramData\\Microsoft\\Windows Defender\\Platform\\4.18.26080.4-0\\MpOav.dll"
+      ],
+      "complete_image_load_trace": false
+    },
+    {
+      "phase": "smoke-startup-and-gis",
+      "exit_code": 0,
+      "duration_ms": 9689,
+      "processes": [
+        "AgroLinesPoC.exe",
+        "QtWebEngineProcess.exe"
+      ],
+      "modules_by_scope": {
+        "windows-system": 196,
+        "payload": 148,
+        "external": 1
+      },
+      "external_module_paths": [
+        "C:\\ProgramData\\Microsoft\\Windows Defender\\Platform\\4.18.26080.4-0\\MpOav.dll"
+      ],
+      "complete_image_load_trace": false
+    },
+    {
+      "phase": "offline-import-edit-backup",
+      "exit_code": 0,
+      "duration_ms": 5695,
+      "processes": [
+        "AgroLinesPoC.exe",
+        "QtWebEngineProcess.exe"
+      ],
+      "modules_by_scope": {
+        "windows-system": 192,
+        "payload": 147,
+        "external": 1
+      },
+      "external_module_paths": [
+        "C:\\ProgramData\\Microsoft\\Windows Defender\\Platform\\4.18.26080.4-0\\MpOav.dll"
+      ],
+      "complete_image_load_trace": false
+    }
+  ],
+  "observed_unique_files": 134,
+  "observed_unsigned_files": 67,
+  "public_subset_note": "Full chain elements and raw SignTool output remain in the artifact; CSV is derived from emitted per-file records"
+}
