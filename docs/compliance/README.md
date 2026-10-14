@@ -66,3 +66,9 @@ Zero PE com procedência pendente significa correspondência com o **binário de
 entrada** do build. Não significa código-fonte correspondente LGPL comprovado.
 As fontes locais agora somam 20 arquivos, incluindo uma árvore candidata WebEngine
 sem correspondência final/submódulos; nenhuma dessas lacunas foi convertida em aprovação.
+
+A exclusão do instalador PoC legado unsigned foi estendida aos PRs dependentes
+da integração e às branches de conformidade. As execuções antigas desta branch
+foram canceladas **antes** da etapa de instalação; quality, inventário, MSIX
+extraído e provas offline continuam ativos. Isso aplica a restrição de não instalar
+pacote não assinado, sem diminuir verificações de integridade ou assinatura.
