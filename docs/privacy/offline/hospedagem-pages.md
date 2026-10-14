@@ -29,6 +29,21 @@ sem modificação do Partner Center ou verificação em tempo real. Classificaç
 conteúdo não substitui a elegibilidade do grupo. Ver relatório
 [programa de adultos](../../programa-testadores-adultos.md) e pendências jurídicas.
 
+## Análise documental sem adoção de bases
+
+A [matriz de finalidades e transferências](hipoteses-legais-e-fornecedores.md)
+separa projeto local, grupo, suporte futuro, direitos e tratamentos das plataformas.
+O Gmail é pessoal gratuito, não Workspace; suporte AgroLines ainda não iniciado,
+sem encaminhamento ou download sincronizado informado e com acesso relatado somente
+pelo responsável. Uso atual de relatórios Partner Center ou DPA adicionais não
+confirmados. Controles de segurança/retenção ainda a configurar e testar.
+
+As [fontes oficiais](fontes-bases-transferencias.md) distinguem declarações lidas
+nos documentos de Google/Microsoft consumer/IARC bloqueados pelo proxy. Nenhuma
+base legal ou garantia internacional foi adotada. Fontes/JSON de evidência e matriz
+são documentos internos, excluídos do artefato público: publicar somente o HTML
+aprovado depois de resolver os campos pendentes, com hash da revisão aprovada.
+
 ## Arquivos e isolamento
 
 - `.github/workflows/privacy-pages.yml`: somente execução manual, após aprovação.
