@@ -1,0 +1,71 @@
+{
+  "platform": "Linux x86_64",
+  "compiler": "g++ (Debian 14.2.0-19) 14.2.0",
+  "cmake": "4.4.4",
+  "ninja": "1.13.2",
+  "results": [
+    {
+      "library": "qt",
+      "version": "6.12.0",
+      "original_result": {
+        "version": "6.12.0",
+        "length": 16
+      },
+      "modified_result": {
+        "version": "6.12.0-agrolines-synthetic",
+        "length": 16
+      },
+      "original_library_sha256": "ebdfae9b4452142df3fed913418b92dc0d842fe89105d32d6b3714c144fee43b",
+      "modified_library_sha256": "dd096b79521c64a22ce095bbe71778e28414db977b967080732fce3338cc86b5",
+      "patch_sha256": "c116e5d8b6c41d19472438204126f6eabbfd869f995f3c00237bc80ecbec34a4",
+      "consumer_sha256": "fc7936ace8b28ad9c365a768e6efe4965c41b199965a38bd30fe3e73c3ab7baf",
+      "unchanged_consumer": true
+    },
+    {
+      "library": "geos",
+      "version": "3.11.3",
+      "original_result": {
+        "version": "3.11.3-CAPI-1.17.3",
+        "area": 100.0
+      },
+      "modified_result": {
+        "version": "3.11.3-CAPI-1.17.3-agrolines-synthetic",
+        "area": 100.0
+      },
+      "original_library_sha256": "e2645451e1d10690644b6d3eb954dfb7798e89277db242cde6a3a3ca6303253c",
+      "modified_library_sha256": "a0991f32b42b6dd025421dc5ccb0674b8bd774319d8853cd0d7bc5fed88d2ea7",
+      "patch_sha256": "31ead6faf2fc3603c9e9df60a453fe98bffca413424d0e0ff482e9c70a225b1c",
+      "consumer_sha256": "a86980d799599fee6a87e637a465f32dbc9d8f096efedc223f76bc7f1e84bc37",
+      "unchanged_consumer": true
+    }
+  ],
+  "scope": "Actual isolated synthetic consumers, not frozen AgroLines or Windows Store/MSIX",
+  "sac_approved": false,
+  "lgpl_compliance_approved": false,
+  "consolidated_reproduction": {
+    "passed": true,
+    "results": {
+      "qtbase-6.12.0": {
+        "original": {
+          "version": "6.12.0",
+          "length": 16
+        },
+        "modified": {
+          "version": "6.12.0-agrolines-synthetic",
+          "length": 16
+        }
+      },
+      "geos-3.11.3": {
+        "original": {
+          "version": "3.11.3-CAPI-1.17.3",
+          "area": 100.0
+        },
+        "modified": {
+          "version": "3.11.3-CAPI-1.17.3-agrolines-synthetic",
+          "area": 100.0
+        }
+      }
+    },
+    "workdir_scope": "Isolated temp build; no installed application changed"
+  }
+}

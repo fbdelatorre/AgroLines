@@ -1,0 +1,1 @@
+Dependency notices collected for internal PoC. Commercial redistribution requires review of Qt/Chromium notices, LGPL/source obligations, runtime redistribution rights and the AgroLines license. Not legal approval.

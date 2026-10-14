@@ -1,0 +1,13 @@
+diff --git a/src/corelib/global/qlibraryinfo.cpp b/src/corelib/global/qlibraryinfo.cpp
+index 5945d5ee..d641d6a0 100644
+--- a/src/corelib/global/qlibraryinfo.cpp
++++ b/src/corelib/global/qlibraryinfo.cpp
+@@ -1107,7 +1107,7 @@ QStringList QLibraryInfo::platformPluginArguments(const QString &platformName)
+ 
+ const char *qVersion() noexcept
+ {
+-    return QT_VERSION_STR;
++    return QT_VERSION_STR "-agrolines-synthetic";
+ }
+ 
+ #if QT_DEPRECATED_SINCE(6, 9)
