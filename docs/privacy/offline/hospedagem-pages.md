@@ -16,6 +16,19 @@ Em 14/10/2026, consulta somente de leitura à API GitHub indicou Pages não ativ
 ambientes, branch main ou configuração da Microsoft Store. O isolamento descrito
 abaixo refere-se ao artefato Pages; não modifica o acesso existente ao repositório.
 
+## Escopo atual do programa
+
+O programa privado inicial é exclusivo para pessoas com **18 anos ou mais**, com
+entrada/aceite manuais e sem bloqueio por idade no aplicativo. O fluxo inicial não
+admite menor por autorização de pais ou responsáveis. Futura ampliação depende de
+revisão jurídica e operacional. A política mantém os cuidados gerais LGPD.
+
+Brasil Livre / IARC 3+ / Microsoft 3+, audiência privada e grupo
+“AgroLines - Testadores Internos” permanecem conforme informações do responsável,
+sem modificação do Partner Center ou verificação em tempo real. Classificação de
+conteúdo não substitui a elegibilidade do grupo. Ver relatório
+[programa de adultos](../../programa-testadores-adultos.md) e pendências jurídicas.
+
 ## Arquivos e isolamento
 
 - `.github/workflows/privacy-pages.yml`: somente execução manual, após aprovação.
