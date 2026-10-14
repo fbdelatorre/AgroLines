@@ -143,7 +143,7 @@ formato/implantação, Store é um canal e Artifact Signing é um serviço de as
 | Inno + executável frozen (primeira prova técnica) | Runtime embutido; controle do payload, assinatura do instalador/desinstalador e PE; canal próprio; mantém a GUI Win32 | Atualizador autenticado/atômico precisa ser projetado; instalação per-user não isola dados como AppContainer; reputação e SAC precisam ser testados | Ferramentas abertas; certificado público/hardware ou serviço, CI, hospedagem e suporte têm custos. Cotação CA depende da entidade e fornecedor, não foi inventada nesta prova. |
 | MSIX assinado, fora da Store | Identidade estável e Publisher compatível com certificado; implantação gerenciada, integridade e updates por App Installer; uninstall do pacote pelo Windows | Adaptar caminhos/dados, full-trust desktop/capabilities e processo QtWebEngine; conferir perda/retenção de dados e plugins; MSIX não prova aceitação de cada DLL/PYD pelo SAC | Ferramentas Windows SDK; assinatura, hosting e testes. MSIX não é assinatura gratuita ou licença de distribuição. |
 | Microsoft Store (preferencial para avaliar a distribuição pública) | Partner Center, identidade verificada, requisitos/certificação Store; canal confiável e updates gerenciados; avaliar MSIX vs listagem de instalador Win32 | Certificação, países, identidade/pagamentos; listagem EXE/MSI ainda exige installer hospedado/assinado conforme requisitos. Não presumir que Store assina todas as DLLs do instalador tradicional | A página atual Microsoft consultada informa **sem taxa de registro para Individual e Company** no novo onboarding. Custos de desenvolvimento, assinatura externa quando aplicável, hospedagem e comissões/pagamentos dependem do modelo e termos; confirmar antes de comercializar. |
-| Microsoft Artifact Signing Public Trust | Azure **pago**, validação de identidade elegível, account/profile, RBAC/OIDC e timestamps; chave gerenciada HSM; pode atender Inno ou MSIX | Elegibilidade do fabricante é distinta da região do recurso. Public Trust não lista Brasil para organizações nem indivíduos; Private Trust/Test não substituem confiança pública em máquinas de clientes | Planos Basic/Premium e operações de assinatura. Confirmar tabela/calculadora oficial e volume de PE por build; API pública pode registrar preços correntes, sem transformar valor não obtido em cotação. Não comprar assinatura ou criar recursos pagos nesta prova. |
+| Microsoft Artifact Signing Public Trust | Azure **pago**, validação de identidade elegível, account/profile, RBAC/OIDC e timestamps; chave gerenciada HSM; pode atender Inno ou MSIX | Elegibilidade do fabricante é distinta da região do recurso. Public Trust não lista Brasil para organizações nem indivíduos; Private Trust/Test não substituem confiança pública em máquinas de clientes | API pública oficial consultada pelo CI: **Basic US$ 9,99/mês**, **Premium US$ 99,99/mês**, Global/USD; franquias, excedentes, impostos e oferta devem ser confirmados na tabela/calculadora. Volume de PE por build influencia o custo. Não comprar assinatura ou criar recursos pagos nesta prova. |
 
 **Elegibilidade atual Artifact Signing:** organizações nos EUA, Canadá, UE, Reino
 Unido, Austrália, Nova Zelândia, Japão, Coreia do Sul, Singapura, Suíça, Noruega e
@@ -168,6 +168,11 @@ Fontes oficiais consultadas:
 Microsoft Learn foi acessível nesta sessão; preço Azure/retail API não foi acessível
 inicialmente pela política de rede. O pipeline coleta a API pública de preços como
 informação opcional, registra indisponibilidade explicitamente e não inventa valores.
+A API pública retornou preços nesta execução CI: produto ainda chamado `Trusted Signing`,
+medidores Basic Account/Premium Account, unidade `1/Month`, vigência informada
+2024-06-01. O snapshot completo está em `evidence/signing-prices.json`, com URL,
+data de consulta e registros de excedente. Valores são referência pública em USD,
+não orçamento de fabricante inelegível ou autorização de contratação.
 Requisitos, preços e elegibilidade devem ser reconferidos antes da contratação.
 
 ## Migração proposta — condicionada à aprovação da prova
