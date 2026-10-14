@@ -122,7 +122,27 @@ def main():
     app.exec()
     page.deleteLater()
     if not outcome["ok"]:
-        raise SystemExit(outcome["error"])
+        if outcome["error"] != "chrome://credits load failed":
+            raise SystemExit(outcome["error"])
+        # This Qt route is unsupported, not a source/notice completeness approval.
+        # Hash/import/timeout failures remain technical errors above.
+        args.output.mkdir(parents=True, exist_ok=True)
+        report = {
+            "reference_msix_sha256": REFERENCE_SHA,
+            "qt_files_verified": checked,
+            "qt_webengine": qWebEngineVersion(),
+            "chromium": qWebEngineChromiumVersion(),
+            "credits_available": False,
+            "documentary_pending": [
+                "Built-in chrome://credits is unavailable; obtain exact build attribution output"
+            ],
+            "source": "Exact-reference Windows Qt runtime probe",
+            "msix_installed": False,
+            "sac_approved": False,
+            "legal_compliance_approved": False,
+        }
+        (args.output / "credits-evidence.json").write_text(json.dumps(report, indent=2))
+        print("AGROLINES_QT_CREDITS_STATUS=" + json.dumps(report))
 
 
 if __name__ == "__main__":
