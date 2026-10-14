@@ -123,6 +123,13 @@ def main():
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(report, indent=2, ensure_ascii=False), encoding="utf-8")
     print(f"Native inventory: {len(report['files'])} files; {len(report['errors'])} errors.")
+    for error in report["errors"]:
+        detail = f"{error['error']}: {error['path']}"
+        if os.getenv("GITHUB_ACTIONS") == "true":
+            detail = detail.replace("%", "%25").replace("\r", "%0D").replace("\n", "%0A")
+            print("::error title=Native inventory incomplete::" + detail)
+        else:
+            print(detail, file=sys.stderr)
     raise SystemExit(0 if report["inspection_complete"] else 1)
 
 
