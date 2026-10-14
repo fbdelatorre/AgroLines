@@ -11,8 +11,12 @@ não a substitui nem transforma o pacote anterior em um produto offline.
 - Suporte recebe arquivos apenas por envio voluntário, para a finalidade solicitada.
 - Retenção de suporte até 90 dias após encerramento, com descarte sob controle e
   exceções justificadas/documentadas; não se estende a projetos locais do usuário.
-- Não foi definida restrição etária. Não declarar exclusividade para adultos ou
-  direcionamento a crianças. Avaliar proteção de eventuais menores.
+- Programa privado inicial exclusivo para adultos (18 anos ou mais); sem cadastro
+  de menores, fluxo parental ou bloqueio etário no aplicativo. Ampliação futura
+  depende de revisão jurídica/operacional.
+- Classificações informadas pelo responsável: Brasil Livre / IARC 3+ / Microsoft 3+;
+  audiência privada, acesso por link, grupo existente preservado. Não verificados
+  em tempo real; demais mercados e restrições de conta ainda pendentes.
 - Edição Store inicial sem funcionalidades ou conexões remotas próprias.
 - Controle próprio do grupo: participação + até 30 dias após saída/encerramento;
   pedidos de privacidade: até 12 meses após conclusão, com dados mínimos e exceções.
@@ -42,7 +46,7 @@ na edição offline. A auditoria original do PR #9 permanece preservada.
 | Outros destinatários e transferências | Confirmar acesso a suporte, eventuais ferramentas, países/mecanismos aplicáveis de Gmail e Microsoft; não inferir que não haja transferência porque o programa é offline |
 | Retenção restante | Grupo 30 dias e direitos 12 meses definidos; configurar execução manual, justificar necessidade e definir retenção dos comprovantes mínimos de descarte |
 | Operação manual | Configurar e validar registro/fechamento/descarte, direitos, incidentes e minimização com fixtures sintéticas; documentação não prova exclusão real de Gmail/anexos |
-| Menores e classificação etária | Avaliar LGPD art. 14 e Store 10.5.8; conferir classificação etária e permissões reais do grupo. Não há controles próprios de idade. Se não puder cumprir medidas, recomendar restrição inicial futura explícita |
+| Programa 18+ e Store | Configurar/validar declaração e aceite manuais, sem coleta invasiva; manter Livre/3+ e audiência privada informados. Conferir demais mercados, conta e grupo em tempo real. Nenhuma admissão de menor/autorizações parentais nesta fase; futura ampliação exige revisão |
 | Vigência e URL | Data será a primeira disponibilização efetiva, ainda não marcada; aviso por e-mail definido. Workflow Pages preparado, não executado: aprovar texto e testar URL HTTPS sem login |
 | Conta Individual/publicador | Resolver com Microsoft a adequação à seção 10.14 do nome Delatorre COrporation em conta Individual; não alterar a identidade oficial ou declarar empresa inexistente |
 | Proteção dos arquivos | Avaliar a seção 10.5.4 da Store e medidas proporcionais para dados pessoais. Projetos/backup não têm cifra própria; revelar a limitação não resolve sozinho requisitos de segurança |
