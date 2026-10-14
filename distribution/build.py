@@ -3,6 +3,7 @@
 import argparse
 import importlib.metadata
 import json
+import os
 import shutil
 import subprocess
 import sys
@@ -21,6 +22,36 @@ def privacy_assets():
         (str(ROOT / "docs/privacy/offline" / name), "desktop/privacy_assets")
         for name in PRIVACY_FILES
     ]
+
+
+def store_builder_environment():
+    """Build from pinned Python/wheels and Windows, never unrelated JDK/MySQL/GIS on PATH."""
+    environment = os.environ.copy()
+    windows = Path(environment["WINDIR"]).resolve()
+    paths = [
+        Path(sys.prefix),
+        Path(sys.prefix) / "Scripts",
+        Path(sys.base_prefix),
+        Path(sys.base_prefix) / "DLLs",
+        windows / "System32",
+        windows,
+    ]
+    environment["PATH"] = os.pathsep.join(str(p.resolve()) for p in paths if p.is_dir())
+    for key in (
+        "PYTHONHOME",
+        "PYTHONPATH",
+        "GDAL_DATA",
+        "PROJ_LIB",
+        "PROJ_DATA",
+        "QT_PLUGIN_PATH",
+        "QTWEBENGINEPROCESS_PATH",
+        "QTWEBENGINE_RESOURCES_PATH",
+        "QTWEBENGINE_LOCALES_PATH",
+        "QML2_IMPORT_PATH",
+        "QML_IMPORT_PATH",
+    ):
+        environment.pop(key, None)
+    return environment
 
 
 def version_tuple(value):
@@ -126,6 +157,26 @@ def main():
     if sys.platform != "win32":
         raise SystemExit("Windows build requires a Windows builder")
     prepare(ROOT / "build/distribution", args.version, args.manufacturer, store=args.store)
+    builder_environment = store_builder_environment() if args.store else os.environ.copy()
+    if args.store:
+        report = ROOT / "evidence/qt-minimal/builder-environment.json"
+        report.parent.mkdir(parents=True, exist_ok=True)
+        report.write_text(
+            json.dumps(
+                {
+                    "external_tools_path_inherited": False,
+                    "path": builder_environment["PATH"].split(os.pathsep),
+                    "source_date_epoch": builder_environment.get("SOURCE_DATE_EPOCH"),
+                    "python_hash_seed": builder_environment.get("PYTHONHASHSEED"),
+                    "scope": (
+                        "Isolated PyInstaller child environment; "
+                        "no Windows security setting changed"
+                    ),
+                },
+                indent=2,
+            ),
+            encoding="utf-8",
+        )
     subprocess.run(
         [
             sys.executable,
@@ -137,6 +188,7 @@ def main():
         ],
         check=True,
         cwd=ROOT,
+        env=builder_environment,
     )
     collect_notices(ROOT / "dist/AgroLinesPoC")
     if args.store:

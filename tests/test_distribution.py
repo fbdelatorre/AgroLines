@@ -3,7 +3,7 @@ from datetime import UTC, datetime
 
 import pytest
 
-from distribution.build import version_tuple
+from distribution.build import store_builder_environment, version_tuple
 from distribution.checks import run_checks
 from distribution.payload import manifest, verify
 from distribution.windows_evidence import classify_events, collect
@@ -32,6 +32,31 @@ def test_manifest_covers_resources_as_well_as_native_code(tmp_path):
     data = manifest(tmp_path)
     assert data["files"][0]["path"] == "map.js"
     assert verify(tmp_path, json.loads(json.dumps(data)))
+
+
+def test_store_builder_does_not_inherit_incidental_tools_or_runtime_overrides(
+    tmp_path, monkeypatch
+):
+    import os
+
+    python = tmp_path / "python"
+    windows = tmp_path / "windows"
+    (python / "DLLs").mkdir(parents=True)
+    (windows / "System32").mkdir(parents=True)
+    monkeypatch.setattr("distribution.build.sys.prefix", str(python))
+    monkeypatch.setattr("distribution.build.sys.base_prefix", str(python))
+    monkeypatch.setenv("WINDIR", str(windows))
+    monkeypatch.setenv("PATH", "INCIDENTAL_JAVA" + os.pathsep + "INCIDENTAL_GIS")
+    monkeypatch.setenv("PYTHONPATH", "INCIDENTAL_PYTHON")
+    monkeypatch.setenv("QT_PLUGIN_PATH", "INCIDENTAL_QT")
+    monkeypatch.setenv("PROJ_DATA", "INCIDENTAL_PROJ")
+    monkeypatch.setenv("SOURCE_DATE_EPOCH", "1234567890")
+    environment = store_builder_environment()
+    assert "INCIDENTAL" not in environment["PATH"]
+    assert str(windows / "System32") in environment["PATH"].split(os.pathsep)
+    assert all(key not in environment for key in ("PYTHONPATH", "QT_PLUGIN_PATH", "PROJ_DATA"))
+    assert environment["SOURCE_DATE_EPOCH"] == "1234567890"
+    assert "INCIDENTAL_JAVA" in os.environ["PATH"]  # Parent/system settings untouched.
 
 
 @pytest.mark.parametrize("version", ["1.2.3", "1.2.3.65536", "1.2.3.x", "1.2.-3.4"])

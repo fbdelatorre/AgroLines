@@ -117,3 +117,13 @@ reais, sem inferir aprovação Linux, LGPL, assinatura de produção ou SAC. A
 suíte Linux fica na execução Qualidade correspondente; o PR registra seus links
 e resultados após conclusão. Não atualizar a política com uma suposta aprovação
 só porque um build técnico passou.
+
+A prevenção de novas coletas incidentais também começa **antes** da análise:
+o subprocesso PyInstaller do Store recebe PATH apenas dos prefixes Python fixados
+e Windows/System32, com overrides externos de Python/GIS/Qt removidos. O ambiente
+do runner/sistema não é alterado. O relatório `builder-environment.json` registra
+somente esses caminhos e a época/hash seed, sem copiar variáveis/segredos. Assim
+a exclusão não depende de uma versão futura do JDK/MySQL estar no PATH; o guard
+de 44 hashes continua protegendo eventuais cópias legadas que reapareçam por outro
+input. Os demais PE retidos já foram rastreados a Python/build-env, e nunca a
+software GIS/Java/MySQL externo. A regressão congelada continua obrigatória.
