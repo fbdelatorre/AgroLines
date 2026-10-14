@@ -1,0 +1,250 @@
+[
+  {
+    "component": "OpenSSL-CPython",
+    "url": "https://api.github.com/repos/openssl/openssl/contents/LICENSE.txt?ref=openssl-3.0.16",
+    "ref": "openssl-3.0.16",
+    "git_blob": "49cc83d2ee29d13453188217f0e4edd70c7f842f",
+    "sha256": "7d5450cb2d142651b8afa315b5f238efc805dad827d91ba367d8516bc9d49e7a",
+    "notice_path": "notices/upstream/OpenSSL-CPython-LICENSE.txt.txt",
+    "status": "read",
+    "exact_binary_correspondence": false,
+    "accessed_utc": "2026-10-14"
+  },
+  {
+    "component": "OpenSSL-Fiona",
+    "url": "https://api.github.com/repos/openssl/openssl/contents/LICENSE.txt?ref=openssl-3.3.1",
+    "ref": "openssl-3.3.1",
+    "git_blob": "49cc83d2ee29d13453188217f0e4edd70c7f842f",
+    "sha256": "7d5450cb2d142651b8afa315b5f238efc805dad827d91ba367d8516bc9d49e7a",
+    "notice_path": "notices/upstream/OpenSSL-Fiona-LICENSE.txt.txt",
+    "status": "read",
+    "exact_binary_correspondence": false,
+    "accessed_utc": "2026-10-14"
+  },
+  {
+    "component": "json-c-Fiona",
+    "url": "https://api.github.com/repos/json-c/json-c/contents/COPYING?ref=json-c-0.17-20230812",
+    "ref": "json-c-0.17-20230812",
+    "git_blob": "740d1258d42539203c6749da1c893cf6a46fd94f",
+    "sha256": "74c1e6ca5eba76b54d0ad00d4815c8315c1b3bc45ff99de61d103dc92486284c",
+    "notice_path": "notices/upstream/json-c-Fiona-COPYING.txt",
+    "status": "read",
+    "exact_binary_correspondence": false,
+    "accessed_utc": "2026-10-14"
+  },
+  {
+    "component": "libpng16-Fiona",
+    "url": "https://api.github.com/repos/pnggroup/libpng/contents/LICENSE?ref=v1.6.43",
+    "ref": "v1.6.43",
+    "git_blob": "25f298f0fcfd8757bbd9a6386d8fcb2d644cfce9",
+    "sha256": "7317e078e2d3b5d7ba5a6159e650945153262b44b76f6700f8e9edb261c5143e",
+    "notice_path": "notices/upstream/libpng16-Fiona-LICENSE.txt",
+    "status": "read",
+    "exact_binary_correspondence": false,
+    "accessed_utc": "2026-10-14"
+  },
+  {
+    "component": "libwebp-Fiona",
+    "url": "https://api.github.com/repos/webmproject/libwebp/contents/COPYING?ref=v1.4.0",
+    "ref": "v1.4.0",
+    "git_blob": "7a6f99547d4d6b4c5e6d5321acfaeba313e08de3",
+    "sha256": "5aec868f669e384a22372a4e8a1a6cd7d44c64cd451f960ca69cc170d1e13acf",
+    "notice_path": "notices/upstream/libwebp-Fiona-COPYING.txt",
+    "status": "read",
+    "exact_binary_correspondence": false,
+    "accessed_utc": "2026-10-14"
+  },
+  {
+    "component": "netcdf-Fiona",
+    "url": "https://api.github.com/repos/Unidata/netcdf-c/contents/COPYRIGHT?ref=v4.8.1",
+    "ref": "v4.8.1",
+    "git_blob": "af669df4d996404c874358f1c68d0ab8dbda1620",
+    "sha256": "58b3a925e82191209929dbf47891f9d661e09d8f8ee753ca90bd3f6a1262ecb7",
+    "notice_path": "notices/upstream/netcdf-Fiona-COPYRIGHT.txt",
+    "status": "read",
+    "exact_binary_correspondence": false,
+    "accessed_utc": "2026-10-14"
+  },
+  {
+    "component": "openjp2-Fiona",
+    "url": "https://api.github.com/repos/uclouvain/openjpeg/contents/LICENSE?ref=v2.5.2",
+    "ref": "v2.5.2",
+    "git_blob": "e8fa41040dfbe8be524cac5b1bb19d60c6eb0320",
+    "sha256": "a6af136f3e15038a666b61f376612a07d9a4e48cb7c01adbf3e33b3f14ab49b6",
+    "notice_path": "notices/upstream/openjp2-Fiona-LICENSE.txt",
+    "status": "read",
+    "exact_binary_correspondence": false,
+    "accessed_utc": "2026-10-14"
+  },
+  {
+    "component": "qhull_r-Fiona",
+    "url": "https://api.github.com/repos/qhull/qhull/contents/COPYING.txt?ref=v8.0.2",
+    "ref": "v8.0.2",
+    "git_blob": "122a00a4fa9933794601dca8bff713b4ea1459dc",
+    "sha256": "106d55c931fd6a84822e5345d900273d059f1c27310d02567ccb313c5d18c55d",
+    "notice_path": "notices/upstream/qhull_r-Fiona-COPYING.txt.txt",
+    "status": "read",
+    "exact_binary_correspondence": false,
+    "accessed_utc": "2026-10-14"
+  },
+  {
+    "component": "zlib1-Fiona",
+    "url": "https://api.github.com/repos/madler/zlib/contents/LICENSE?ref=v1.3.1",
+    "ref": "v1.3.1",
+    "git_blob": "ab8ee6f71428c3e4646b12b64ad387cde33462e5",
+    "sha256": "845efc77857d485d91fb3e0b884aaa929368c717ae8186b66fe1ed2495753243",
+    "notice_path": "notices/upstream/zlib1-Fiona-LICENSE.txt",
+    "status": "read",
+    "exact_binary_correspondence": false,
+    "accessed_utc": "2026-10-14"
+  },
+  {
+    "component": "zstd-Fiona",
+    "url": "https://api.github.com/repos/facebook/zstd/contents/LICENSE?ref=v1.5.6",
+    "ref": "v1.5.6",
+    "git_blob": "75800288cc243f164b9d130f125e2ffae28f8e39",
+    "sha256": "7055266497633c9025b777c78eb7235af13922117480ed5c674677adc381c9d8",
+    "notice_path": "notices/upstream/zstd-Fiona-LICENSE.txt",
+    "status": "read",
+    "exact_binary_correspondence": false,
+    "accessed_utc": "2026-10-14"
+  },
+  {
+    "component": "jpeg62-Fiona",
+    "url": "https://api.github.com/repos/libjpeg-turbo/libjpeg-turbo/contents/LICENSE.md?ref=3.0.3",
+    "ref": "3.0.3",
+    "git_blob": "2204864fa1181019a65317260203fe96f0217e72",
+    "sha256": "e548c96c0c09397c94b5c5531836c02ff2c403f1f2b130cad8e3ec9439b5a7cc",
+    "notice_path": "notices/upstream/jpeg62-Fiona-LICENSE.md.txt",
+    "status": "read",
+    "exact_binary_correspondence": false,
+    "accessed_utc": "2026-10-14"
+  },
+  {
+    "component": "jpeg62-Fiona",
+    "url": "https://api.github.com/repos/libjpeg-turbo/libjpeg-turbo/contents/README.ijg?ref=3.0.3",
+    "ref": "3.0.3",
+    "git_blob": "8f3768265f680292719a5565326b6de6e8c06b72",
+    "sha256": "5c1f9094835d21f66ee0e9ce81c57264d2dd50801b19832d6723dc8cdbda080e",
+    "notice_path": "notices/upstream/jpeg62-Fiona-README.ijg.txt",
+    "status": "read",
+    "exact_binary_correspondence": false,
+    "accessed_utc": "2026-10-14"
+  },
+  {
+    "component": "jpeg62-Fiona",
+    "url": "https://api.github.com/repos/libjpeg-turbo/libjpeg-turbo/contents/simd/nasm/jsimdcpu.inc?ref=3.0.3",
+    "status": "unavailable",
+    "ref": "3.0.3"
+  },
+  {
+    "component": "libxml2-Fiona",
+    "url": "https://api.github.com/repos/GNOME/libxml2/contents/Copyright?ref=v2.11.8",
+    "ref": "v2.11.8",
+    "git_blob": "d61318502caf9587516dd9a2cb637ad9c4877f69",
+    "sha256": "c5c63674f8a83c4d2e385d96d1c670a03cb871ba2927755467017317878574bd",
+    "notice_path": "notices/upstream/libxml2-Fiona-Copyright.txt",
+    "status": "read",
+    "exact_binary_correspondence": false,
+    "accessed_utc": "2026-10-14"
+  },
+  {
+    "component": "libexpat-Fiona",
+    "url": "https://api.github.com/repos/libexpat/libexpat/contents/expat/COPYING?ref=R_2_6_2",
+    "ref": "R_2_6_2",
+    "git_blob": "ce9e5939291e45f9633f540efc6ae58a26c041ef",
+    "sha256": "122f2c27000472a201d337b9b31f7eb2b52d091b02857061a8880371612d9534",
+    "notice_path": "notices/upstream/libexpat-Fiona-expat_COPYING.txt",
+    "status": "read",
+    "exact_binary_correspondence": false,
+    "accessed_utc": "2026-10-14"
+  },
+  {
+    "component": "liblzma-Fiona",
+    "url": "https://api.github.com/repos/tukaani-project/xz/contents/COPYING?ref=v5.6.2",
+    "ref": "v5.6.2",
+    "git_blob": "aed21531497c0fa049b265e1198f856b9ff35375",
+    "sha256": "ee3b35b82f7bb0ba5fd9f13ca34ebbe757a59c05bfde5ab9d50ff4188ed33396",
+    "notice_path": "notices/upstream/liblzma-Fiona-COPYING.txt",
+    "status": "read",
+    "exact_binary_correspondence": false,
+    "accessed_utc": "2026-10-14"
+  },
+  {
+    "component": "liblzma-pyproj",
+    "url": "https://api.github.com/repos/tukaani-project/xz/contents/COPYING?ref=v5.8.3",
+    "ref": "v5.8.3",
+    "git_blob": "ef3371389d7d45db6593a146fd9e027347f3122c",
+    "sha256": "616a3ad264ce29b8f1cb97e53037b139d406899ca8d1f799651e17bfa09830b8",
+    "notice_path": "notices/upstream/liblzma-pyproj-COPYING.txt",
+    "status": "read",
+    "exact_binary_correspondence": false,
+    "accessed_utc": "2026-10-14"
+  },
+  {
+    "component": "libcurl-pyproj",
+    "url": "https://api.github.com/repos/curl/curl/contents/COPYING?ref=curl-8_19_0",
+    "ref": "curl-8_19_0",
+    "git_blob": "2f71d999a9c8816b9ed595fbae9c9a7b6b7ad039",
+    "sha256": "82f2f4427d6545ee5aaac4f0b80428da6cc8ba41c2cf5da3a03680ec327b9681",
+    "notice_path": "notices/upstream/libcurl-pyproj-COPYING.txt",
+    "status": "read",
+    "exact_binary_correspondence": false,
+    "accessed_utc": "2026-10-14"
+  },
+  {
+    "component": "HDF5-Fiona",
+    "url": "https://api.github.com/repos/HDFGroup/hdf5/contents/COPYING?ref=hdf5_1.14.4.3",
+    "ref": "hdf5_1.14.4.3",
+    "git_blob": "fd50633d9e7abbddcbc588055187a12159571539",
+    "sha256": "587b532c4c27b64ecff3192d6189e149231934a00c753a401d4559231af7f7a7",
+    "notice_path": "notices/upstream/HDF5-Fiona-COPYING.txt",
+    "status": "read",
+    "exact_binary_correspondence": false,
+    "accessed_utc": "2026-10-14"
+  },
+  {
+    "component": "libpq-Fiona",
+    "url": "https://api.github.com/repos/postgres/postgres/contents/COPYRIGHT?ref=REL_16_2",
+    "ref": "REL_16_2",
+    "git_blob": "16f9b46a3fe1b923f4552fea686825b8ac81725d",
+    "sha256": "9bf20ee493926a7e17a74bc7f05089fbc014269667b1540bc35a6b194a40c9de",
+    "notice_path": "notices/upstream/libpq-Fiona-COPYRIGHT.txt",
+    "status": "read",
+    "exact_binary_correspondence": false,
+    "accessed_utc": "2026-10-14"
+  },
+  {
+    "component": "SQLite-CPython",
+    "url": "https://api.github.com/repos/sqlite/sqlite/contents/LICENSE.md?ref=version-3.49.1",
+    "ref": "version-3.49.1",
+    "git_blob": "ebfc077603b3aee065cf9fa2edf7318436f80f7c",
+    "sha256": "a7a58d6022c090c528e3167026167b3141d682efc6a3c188b473ba59f1788fc7",
+    "notice_path": "notices/upstream/SQLite-CPython-LICENSE.md.txt",
+    "status": "read",
+    "exact_binary_correspondence": false,
+    "accessed_utc": "2026-10-14"
+  },
+  {
+    "component": "sqlite3-Fiona",
+    "url": "https://api.github.com/repos/sqlite/sqlite/contents/LICENSE.md?ref=version-3.46.0",
+    "ref": "version-3.46.0",
+    "git_blob": "f68a6c175f0b72086c313a9dbd9f2ec8d87525dd",
+    "sha256": "9c6479123f32a1ed50d9a0af203dfe8972e65035b0cdeef436b5f8d0924517fe",
+    "notice_path": "notices/upstream/sqlite3-Fiona-LICENSE.md.txt",
+    "status": "read",
+    "exact_binary_correspondence": false,
+    "accessed_utc": "2026-10-14"
+  },
+  {
+    "component": "sqlite3-pyproj",
+    "url": "https://api.github.com/repos/sqlite/sqlite/contents/LICENSE.md?ref=version-3.53.0",
+    "ref": "version-3.53.0",
+    "git_blob": "5f59bb8fefd54767e2eb08a17d0dc19007958d90",
+    "sha256": "ee6af51062b30d532991face5164136ae6f84e265ecf8abe89dc69dac45ca1e7",
+    "notice_path": "notices/upstream/sqlite3-pyproj-LICENSE.md.txt",
+    "status": "read",
+    "exact_binary_correspondence": false,
+    "accessed_utc": "2026-10-14"
+  }
+]

@@ -1,0 +1,343 @@
+{
+  "wheel": "fiona-1.10.1-cp312-cp312-win_amd64.whl",
+  "wheel_sha256": "41cde2c52c614457e9094ea44b0d30483540789e62fe0fa758c2a2963e980817",
+  "files": [
+    {
+      "path": "_internal/fiona/crs.cp312-win_amd64.pyd",
+      "sha256": "67686ad68703ef0f6ab2068f88a749712eb734760f4b2b1b991ebcb05d84e28f",
+      "wheel_member": "fiona/crs.cp312-win_amd64.pyd",
+      "constants": []
+    },
+    {
+      "path": "_internal/fiona/ogrext.cp312-win_amd64.pyd",
+      "sha256": "6b35d74fac457c96c59fdd6efef5b6357158ad0ac3c22f9b7c665dae0ef0234d",
+      "wheel_member": "fiona/ogrext.cp312-win_amd64.pyd",
+      "constants": []
+    },
+    {
+      "path": "_internal/fiona/schema.cp312-win_amd64.pyd",
+      "sha256": "d826c8ff7060307ddbcfebf51054fc81eaaddb507c138522a3c3b9128d8243e9",
+      "wheel_member": "fiona/schema.cp312-win_amd64.pyd",
+      "constants": []
+    },
+    {
+      "path": "_internal/fiona/_env.cp312-win_amd64.pyd",
+      "sha256": "19913b39ca31b17fe6fbde7867eef265d5d09ab82a69df9829a057c38c39c1b0",
+      "wheel_member": "fiona/_env.cp312-win_amd64.pyd",
+      "constants": []
+    },
+    {
+      "path": "_internal/fiona/_err.cp312-win_amd64.pyd",
+      "sha256": "b5acc81afd7978f87922fb6ebe193175d31ad4c7e5925d9a661cf1976d790c9e",
+      "wheel_member": "fiona/_err.cp312-win_amd64.pyd",
+      "constants": []
+    },
+    {
+      "path": "_internal/fiona/_geometry.cp312-win_amd64.pyd",
+      "sha256": "f175b5724d814a73dfd8356acf1558e394936b2795617b2a112a84236e8451e7",
+      "wheel_member": "fiona/_geometry.cp312-win_amd64.pyd",
+      "constants": []
+    },
+    {
+      "path": "_internal/fiona/_vsiopener.cp312-win_amd64.pyd",
+      "sha256": "778e6fd650a78d046d1baa16a26d1f3aaaf69c96e67f3a23090096fad0b4869f",
+      "wheel_member": "fiona/_vsiopener.cp312-win_amd64.pyd",
+      "constants": []
+    },
+    {
+      "path": "_internal/fiona.libs/freexl-1-3d1f53ba38e08cfcb484f86c84d51fbb.dll",
+      "sha256": "d8b11e0fa4a173292bc1ee8afe7c9f2c5ddfdf34f19f9bf0aef9ccd9bdd3d26c",
+      "wheel_member": "fiona.libs/freexl-1-3d1f53ba38e08cfcb484f86c84d51fbb.dll",
+      "constants": [
+        {
+          "export": "freexl_version",
+          "value": "2.0.0",
+          "method": "x64 leaf function returns constant string; static inspection",
+          "initial_bytes_hex": "488b0549d10000c3cccccccccccccccc"
+        }
+      ]
+    },
+    {
+      "path": "_internal/fiona.libs/gdal-3105cd430966b2574784cc5837b520a5.dll",
+      "sha256": "fc7dd042bdb0c7d7ec4069116c4c5a5fa2d54c036325b277bc71e956f9301105",
+      "wheel_member": "fiona.libs/gdal-3105cd430966b2574784cc5837b520a5.dll",
+      "constants": []
+    },
+    {
+      "path": "_internal/fiona.libs/geos-cf4fccef073a506b3207c8a036a9d063.dll",
+      "sha256": "9f487eb3f67a0c929ecf8bc06bbdf130876855f57a942055ffd93698807bc781",
+      "wheel_member": "fiona.libs/geos-cf4fccef073a506b3207c8a036a9d063.dll",
+      "constants": []
+    },
+    {
+      "path": "_internal/fiona.libs/geos_c-4d7a52e330cb609ee4db6bd3c1f7e7b5.dll",
+      "sha256": "55c98109de46bd30b4c908743045ed4be5ed3ae8ddf45158a0bfd45679f08596",
+      "wheel_member": "fiona.libs/geos_c-4d7a52e330cb609ee4db6bd3c1f7e7b5.dll",
+      "constants": []
+    },
+    {
+      "path": "_internal/fiona.libs/geotiff-8b5e2dc8882862915ed2d750ed5319da.dll",
+      "sha256": "b9f4eb3816174cd408c924f0423928287e02ad29b57a59f15022935aa0a2a889",
+      "wheel_member": "fiona.libs/geotiff-8b5e2dc8882862915ed2d750ed5319da.dll",
+      "constants": []
+    },
+    {
+      "path": "_internal/fiona.libs/gif-72f5a534bc37066175f18a3a5d84eeae.dll",
+      "sha256": "3f094095c935f6d0a7a6291a31402ff1f37fae08456360076f6a30e94c5f296d",
+      "wheel_member": "fiona.libs/gif-72f5a534bc37066175f18a3a5d84eeae.dll",
+      "constants": []
+    },
+    {
+      "path": "_internal/fiona.libs/hdf5-fa46ddbc0e6f5f04b4dfa68ebf54461b.dll",
+      "sha256": "b1eef1c184173d1f8dfd17232a842cd5399540e7cef9c7a315fbf58c16fe6ead",
+      "wheel_member": "fiona.libs/hdf5-fa46ddbc0e6f5f04b4dfa68ebf54461b.dll",
+      "constants": []
+    },
+    {
+      "path": "_internal/fiona.libs/hdf5_hl-222f136c52a099fe4b41216a1ded1bcc.dll",
+      "sha256": "85ff908d1bc1ca1c3a284c9b1228d81dc848502e9d0d6ac687e60d517792b955",
+      "wheel_member": "fiona.libs/hdf5_hl-222f136c52a099fe4b41216a1ded1bcc.dll",
+      "constants": []
+    },
+    {
+      "path": "_internal/fiona.libs/iconv-2-2651e8d0d0179faf57777d2c71481e65.dll",
+      "sha256": "4ec35c01eda58e398ab6ba02e36613c418889912bcc0d94e47d5ef9c8458fe69",
+      "wheel_member": "fiona.libs/iconv-2-2651e8d0d0179faf57777d2c71481e65.dll",
+      "constants": []
+    },
+    {
+      "path": "_internal/fiona.libs/jpeg62-b1a7291a72814164156a5130fdc64eef.dll",
+      "sha256": "dc298fa077c8424e315a41868485e29dacbd1e10288e4f19d438bfa2c89576c0",
+      "wheel_member": "fiona.libs/jpeg62-b1a7291a72814164156a5130fdc64eef.dll",
+      "constants": []
+    },
+    {
+      "path": "_internal/fiona.libs/json-c-a79da3ad89939d4d14a3819a7df4dfce.dll",
+      "sha256": "0f602a1a856cd6d903c78c8e6af3b9edd736a8c0467f75879db8557a3cd469ce",
+      "wheel_member": "fiona.libs/json-c-a79da3ad89939d4d14a3819a7df4dfce.dll",
+      "constants": [
+        {
+          "export": "json_c_version",
+          "value": "0.17",
+          "method": "x64 leaf function returns constant string; static inspection",
+          "initial_bytes_hex": "488d05698c0000c3cccccccccccccccc"
+        }
+      ]
+    },
+    {
+      "path": "_internal/fiona.libs/Lerc-d43d8ee2be34b5c69bcf4d853338bdc2.dll",
+      "sha256": "c639c69c3501257e5915bb9f60ab6839227aa87252eb7db1c06b808f7a1a5fc1",
+      "wheel_member": "fiona.libs/Lerc-d43d8ee2be34b5c69bcf4d853338bdc2.dll",
+      "constants": []
+    },
+    {
+      "path": "_internal/fiona.libs/libcrypto-3-x64-a9282680054934d0c6826e7539f4f82b.dll",
+      "sha256": "1328c65a6f8195b5a1c95ab164ee93d9f0876947fc8c7a5b775560d9cab95e74",
+      "wheel_member": "fiona.libs/libcrypto-3-x64-a9282680054934d0c6826e7539f4f82b.dll",
+      "constants": []
+    },
+    {
+      "path": "_internal/fiona.libs/libcurl-077ab0f5dc0e8b5f1ddd883462d826de.dll",
+      "sha256": "c1eeef7209721599d946a83cfb61d623f8f629826d0a7203d3c01ca1b4744462",
+      "wheel_member": "fiona.libs/libcurl-077ab0f5dc0e8b5f1ddd883462d826de.dll",
+      "constants": []
+    },
+    {
+      "path": "_internal/fiona.libs/libexpat-dd2f1ae151570af75ab8a932d0849f1d.dll",
+      "sha256": "0b2d9f2e2c80256da010ec3b106c303e79099854f2fbc4100257fd228eca1e0f",
+      "wheel_member": "fiona.libs/libexpat-dd2f1ae151570af75ab8a932d0849f1d.dll",
+      "constants": []
+    },
+    {
+      "path": "_internal/fiona.libs/liblzma-20b935dffc1aa59c3a410e536b235e0a.dll",
+      "sha256": "4849aef34f9b77c9d686d2ceeb68de25d875dc265d87be19a6ba1509470ca35d",
+      "wheel_member": "fiona.libs/liblzma-20b935dffc1aa59c3a410e536b235e0a.dll",
+      "constants": []
+    },
+    {
+      "path": "_internal/fiona.libs/libpng16-90b1d680f42f640415853ff0cd0b3490.dll",
+      "sha256": "c37e6f6d81ec19769ccac9b5834c6be043d0c1625cc6f655943629271f74a088",
+      "wheel_member": "fiona.libs/libpng16-90b1d680f42f640415853ff0cd0b3490.dll",
+      "constants": [
+        {
+          "export": "png_get_libpng_ver",
+          "value": "1.6.43",
+          "method": "x64 leaf function returns constant string; static inspection",
+          "initial_bytes_hex": "488d05f50f0200c3cccccccccccccccc"
+        }
+      ]
+    },
+    {
+      "path": "_internal/fiona.libs/libpq-6fb79053aa253f672cf825d175de737c.dll",
+      "sha256": "c5f56a229edb597b51d7b0d6eaf971b08eeabdddb8095d64347fa2037a4f0a75",
+      "wheel_member": "fiona.libs/libpq-6fb79053aa253f672cf825d175de737c.dll",
+      "constants": []
+    },
+    {
+      "path": "_internal/fiona.libs/libsharpyuv-cd7565f442be556cb3a5480d7bc360f8.dll",
+      "sha256": "1727cf2193a575b62bcd005657866cab084226ced76690cecf5de470c2daf10c",
+      "wheel_member": "fiona.libs/libsharpyuv-cd7565f442be556cb3a5480d7bc360f8.dll",
+      "constants": []
+    },
+    {
+      "path": "_internal/fiona.libs/libssl-3-x64-3ad97c6734bbfbaaeee5c2d6e92f2f4b.dll",
+      "sha256": "7b5b6d0d551f4a1b4a9281fa05325d7321417d03e45739c05f8c4dc73ae3eadc",
+      "wheel_member": "fiona.libs/libssl-3-x64-3ad97c6734bbfbaaeee5c2d6e92f2f4b.dll",
+      "constants": []
+    },
+    {
+      "path": "_internal/fiona.libs/libwebp-37f6ef74c6b7f8a08b41c1dc3407cc63.dll",
+      "sha256": "0423fc3d19414cf89247b7d21a2543aafda42d437b5e64a5ee43ac775eaaccdf",
+      "wheel_member": "fiona.libs/libwebp-37f6ef74c6b7f8a08b41c1dc3407cc63.dll",
+      "constants": [
+        {
+          "export": "WebPGetDecoderVersion",
+          "value": 66560,
+          "method": "x64 leaf function returns constant integer; static inspection",
+          "initial_bytes_hex": "b800040100c3cccccccccccccccccccc"
+        }
+      ]
+    },
+    {
+      "path": "_internal/fiona.libs/libxml2-1dc62481c9c5a2c7dfb648c92ddebe81.dll",
+      "sha256": "1394c68fcd7dec6cc3033be7af4725612809090099c52dc7421ab9a36da9df2c",
+      "wheel_member": "fiona.libs/libxml2-1dc62481c9c5a2c7dfb648c92ddebe81.dll",
+      "constants": []
+    },
+    {
+      "path": "_internal/fiona.libs/minizip-fa015f03fd057686544d654bf2c4ed9f.dll",
+      "sha256": "1c157c5ff585d51a57cc71a4d9677b58910bddcfd738de84557e62d27ff87156",
+      "wheel_member": "fiona.libs/minizip-fa015f03fd057686544d654bf2c4ed9f.dll",
+      "constants": []
+    },
+    {
+      "path": "_internal/fiona.libs/msvcp140-80cac3ebc22ff38cfcdee60334932058.dll",
+      "sha256": "32e6c8100bd62e7a91f50996c2a59692dc796b6f140a2dfa4de313ca43d4c748",
+      "wheel_member": "fiona.libs/msvcp140-80cac3ebc22ff38cfcdee60334932058.dll",
+      "constants": []
+    },
+    {
+      "path": "_internal/fiona.libs/netcdf-c388c80124356fa9f445a498e2550455.dll",
+      "sha256": "1707516daa261903d6df8f5353ba270688c0f3771e588b2487dbeca75df4d001",
+      "wheel_member": "fiona.libs/netcdf-c388c80124356fa9f445a498e2550455.dll",
+      "constants": [
+        {
+          "export": "nc_inq_libvers",
+          "value": "4.8.1 of Sep 16 2024 17:22:37 $",
+          "method": "x64 leaf function returns constant string; static inspection",
+          "initial_bytes_hex": "488d0589d70800c3cccccccccccccccc"
+        }
+      ]
+    },
+    {
+      "path": "_internal/fiona.libs/openjp2-fdb0b878068e74b970c325ed55edc3c5.dll",
+      "sha256": "13bb93a9bac69529157abee647fbb7c857e4dd61441029246257db182afde006",
+      "wheel_member": "fiona.libs/openjp2-fdb0b878068e74b970c325ed55edc3c5.dll",
+      "constants": [
+        {
+          "export": "opj_version",
+          "value": "2.5.2",
+          "method": "x64 leaf function returns constant string; static inspection",
+          "initial_bytes_hex": "488d05c9730200c3cccccccccccccccc"
+        }
+      ]
+    },
+    {
+      "path": "_internal/fiona.libs/pcre2-8-d813e6f0e805eab6d374671dc234e1ae.dll",
+      "sha256": "96b0abfd3a05978d190dfd3743f644cd89036ec0569aab2f85fa8df3009bf1d8",
+      "wheel_member": "fiona.libs/pcre2-8-d813e6f0e805eab6d374671dc234e1ae.dll",
+      "constants": []
+    },
+    {
+      "path": "_internal/fiona.libs/proj-3f82123c6982a15ab288894283554e44.dll",
+      "sha256": "a5c03916d54c3da94068ae63048c4f493e73f69e6142b768881e679fd541bd51",
+      "wheel_member": "fiona.libs/proj-3f82123c6982a15ab288894283554e44.dll",
+      "constants": []
+    },
+    {
+      "path": "_internal/fiona.libs/qhull_r-ca74792ac17586b5053948c65dfa8fb1.dll",
+      "sha256": "e27c101abb43d02829ae62ba79fe4a5dbe794cb6afb691ef7f975e315b3144ce",
+      "wheel_member": "fiona.libs/qhull_r-ca74792ac17586b5053948c65dfa8fb1.dll",
+      "constants": [
+        {
+          "export": "qh_version",
+          "value": "2020.2.r 2020/08/31",
+          "method": "exported constant data; static inspection",
+          "initial_bytes_hex": "323032302e322e7220323032302f3038"
+        }
+      ]
+    },
+    {
+      "path": "_internal/fiona.libs/spatialite-e03c16976c81110a807ddde663a483fb.dll",
+      "sha256": "aac50734dd21a12d40a112c423f518cd41bedc5aa3c9f4fe713eb361525b9df2",
+      "wheel_member": "fiona.libs/spatialite-e03c16976c81110a807ddde663a483fb.dll",
+      "constants": [
+        {
+          "export": "spatialite_version",
+          "value": "5.1.0",
+          "method": "x64 leaf function returns constant string; static inspection",
+          "initial_bytes_hex": "488d0549952800c3cccccccccccccccc"
+        }
+      ]
+    },
+    {
+      "path": "_internal/fiona.libs/sqlite3-0cb9f6e67fd2491114f55ace5268f7aa.dll",
+      "sha256": "70255ca0d3a5fa20cd10a2cbf41dd3e3819c82a42e825d2ec50d06838114fffb",
+      "wheel_member": "fiona.libs/sqlite3-0cb9f6e67fd2491114f55ace5268f7aa.dll",
+      "constants": []
+    },
+    {
+      "path": "_internal/fiona.libs/szip-d0425ee11b05cea2ef5907b56ab33522.dll",
+      "sha256": "aaff372f56a8221f198522cca5a5494109b3151613620c13aabdddbcedfdd876",
+      "wheel_member": "fiona.libs/szip-d0425ee11b05cea2ef5907b56ab33522.dll",
+      "constants": [
+        {
+          "export": "SZ_encoder_enabled",
+          "value": null,
+          "method": "unrecognized; not executed",
+          "initial_bytes_hex": "8b057a360000c3cc40534883ec20488b"
+        }
+      ]
+    },
+    {
+      "path": "_internal/fiona.libs/tiff-b54f5da03716c60a719064c5995ad1e3.dll",
+      "sha256": "06567d83b8ecccd8ef1fabcdfc1bf5b3a406e8a1b38b976a8a3ff5ea912df033",
+      "wheel_member": "fiona.libs/tiff-b54f5da03716c60a719064c5995ad1e3.dll",
+      "constants": [
+        {
+          "export": "TIFFGetVersion",
+          "value": "LIBTIFF, Version 4.6.0\nCopyright (c) 1988-1996 Sam Leffler\nCopyright (c) 1991-1996 Silicon Graphics, Inc.",
+          "method": "x64 leaf function returns constant string; static inspection",
+          "initial_bytes_hex": "488d0519a10200c3cccccccccccccccc"
+        }
+      ]
+    },
+    {
+      "path": "_internal/fiona.libs/zlib1-6bb9d46bd47056cba4611655f416dee7.dll",
+      "sha256": "2926e6a8fcffc8cf7adad4efc0e5194fb3b605123d503e340438cf393c6abd23",
+      "wheel_member": "fiona.libs/zlib1-6bb9d46bd47056cba4611655f416dee7.dll",
+      "constants": [
+        {
+          "export": "zlibVersion",
+          "value": "1.3.1",
+          "method": "x64 leaf function returns constant string; static inspection",
+          "initial_bytes_hex": "488d05d91c0000c340534883ec20488b"
+        }
+      ]
+    },
+    {
+      "path": "_internal/fiona.libs/zstd-1f2b45f957344521af92666b31d73de1.dll",
+      "sha256": "41e4385d78fb312117a519f78549834a70a047b5a1c9feaf0b5f9ad28efcd526",
+      "wheel_member": "fiona.libs/zstd-1f2b45f957344521af92666b31d73de1.dll",
+      "constants": [
+        {
+          "export": "ZSTD_versionString",
+          "value": "1.5.6",
+          "method": "x64 leaf function returns constant string; static inspection",
+          "initial_bytes_hex": "488d05b5980800c3cccccccccccccccc"
+        }
+      ]
+    }
+  ],
+  "native_code_executed": false
+}

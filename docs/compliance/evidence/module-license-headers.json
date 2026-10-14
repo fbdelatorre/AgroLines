@@ -1,0 +1,189 @@
+[
+  {
+    "name": "qt-base",
+    "url": "https://github.com/qt/qtbase/blob/v6.12.0/src/corelib/kernel/qcoreapplication.cpp",
+    "status": "read",
+    "blob_sha": "b87c6f6a2d646d165aa3d5c2cc92b5446a44e8b8",
+    "sha256": "2f6c9fb4ed03112816a294ac973d650cf85f0f81ab2304a63c79d9a6e8e7f77b",
+    "bytes": 117858,
+    "notice_path": "notices/upstream/qt-base-header.txt",
+    "notice_sha256": "42a5182500f6260b5ec9c837c22ba2c3c0f33f24635a399f5d7194e2ecc71ee1",
+    "scope": "Versioned source excerpt, LGPL alternative exists; exact binary and all embedded code NOT verified"
+  },
+  {
+    "name": "qt-qml",
+    "url": "https://github.com/qt/qtdeclarative/blob/v6.12.0/src/qml/qml/qqmlengine.cpp",
+    "status": "read",
+    "blob_sha": "bc0b655f42e7ea48ffaabf47b2ff1a2a98ae739a",
+    "sha256": "6d7e07e9f5d4db060e027ed8ee6f35162c7d7a243cb25482d85c68189b00c960",
+    "bytes": 59318,
+    "notice_path": "notices/upstream/qt-qml-header.txt",
+    "notice_sha256": "5f027d4bed901c48233cd446af4c70f88958c4adcc9e6aa24829b51596c4e57a",
+    "scope": "Versioned source excerpt, LGPL alternative exists; exact binary and all embedded code NOT verified"
+  },
+  {
+    "name": "qt-quick",
+    "url": "https://github.com/qt/qtdeclarative/blob/v6.12.0/src/quick/items/qquickitem.cpp",
+    "status": "read",
+    "blob_sha": "eb754d9bdf75f9ee480dd3a9ea029b8ffd5881de",
+    "sha256": "cd2b3b4c1f1af748f6046a7e52c12ed694d3f3397e0e3b1a79a535052f7e99e5",
+    "bytes": 342101,
+    "notice_path": "notices/upstream/qt-quick-header.txt",
+    "notice_sha256": "81b3842e5bfe57b14c22422373e9741c96257cd8e3aec0cf45e498a5ea3dac99",
+    "scope": "Versioned source excerpt, LGPL alternative exists; exact binary and all embedded code NOT verified"
+  },
+  {
+    "name": "qt-svg",
+    "url": "https://github.com/qt/qtsvg/blob/v6.12.0/src/svg/qsvgrenderer.cpp",
+    "status": "read",
+    "blob_sha": "a15adf7e830bc021061be564e9a903a49289659f",
+    "sha256": "a7b0a467e11f15a27d7e5464e17189a26c1db3384d58cc200ce543363583c435",
+    "bytes": 15683,
+    "notice_path": "notices/upstream/qt-svg-header.txt",
+    "notice_sha256": "9c9032025983c8f6b9544ae00c8e1ef5e7e467cdeee6eefe9cdf65c7a933e34d",
+    "scope": "Versioned source excerpt, LGPL alternative exists; exact binary and all embedded code NOT verified"
+  },
+  {
+    "name": "qt-webchannel",
+    "url": "https://github.com/qt/qtwebchannel/blob/v6.12.0/src/webchannel/qwebchannel.cpp",
+    "status": "read",
+    "blob_sha": "8319cc90c3e5fbf1e0a58d72e2ed6534fe6c5373",
+    "sha256": "1c1be407fa3789d4bb566dc72f1ae0058dbb312f0ae7c11fb312a1d8dd38feb5",
+    "bytes": 11160,
+    "notice_path": "notices/upstream/qt-webchannel-header.txt",
+    "notice_sha256": "b7d1002e885e18b8348c0f4ba80b2a0bfc51d00845ca5b582c29e7c3d480054a",
+    "scope": "Versioned source excerpt, LGPL alternative exists; exact binary and all embedded code NOT verified"
+  },
+  {
+    "name": "qt-positioning",
+    "url": "https://github.com/qt/qtpositioning/blob/v6.12.0/src/positioning/qgeopositioninfosource.cpp",
+    "status": "read",
+    "blob_sha": "4477d1de21c1690d0577eacb3700394d44b5af85",
+    "sha256": "da5af17eb6eeea1029022612411635857864cbdb4986dbd8819778314e8d0a9a",
+    "bytes": 22752,
+    "notice_path": "notices/upstream/qt-positioning-header.txt",
+    "notice_sha256": "67557e9e3a4c4e4cbcac36a1f8500f0021685a52a6e7ddfef1d4c2b7f6ac243b",
+    "scope": "Versioned source excerpt, LGPL alternative exists; exact binary and all embedded code NOT verified"
+  },
+  {
+    "name": "qt-gui",
+    "url": "https://github.com/qt/qtbase/blob/v6.12.0/src/gui/kernel/qguiapplication.cpp",
+    "status": "read",
+    "blob_sha": "64fc3679922d4222c00eea46e203273a179d45eb",
+    "sha256": "a89d0b514c939c00436aca301e02a91a56efa2794c52a11b2a5b01aa56bf6166",
+    "bytes": 177269,
+    "notice_path": "notices/upstream/qt-gui-header.txt",
+    "notice_sha256": "33e50c9687890282e8158f7ae2a5251054f9b8e5e3b0c52cbe447e483fdba712",
+    "scope": "Versioned source excerpt, LGPL alternative exists; exact binary and all embedded code NOT verified"
+  },
+  {
+    "name": "qt-widgets",
+    "url": "https://github.com/qt/qtbase/blob/v6.12.0/src/widgets/kernel/qapplication.cpp",
+    "status": "read",
+    "blob_sha": "4187c22e0156ed3849ba324585f7e53c37275177",
+    "sha256": "3775ea392eebbe98e5f11816e66ebb32e7a67591e5dd73c3e2d2097713aa21c4",
+    "bytes": 148125,
+    "notice_path": "notices/upstream/qt-widgets-header.txt",
+    "notice_sha256": "9c9032025983c8f6b9544ae00c8e1ef5e7e467cdeee6eefe9cdf65c7a933e34d",
+    "scope": "Versioned source excerpt, LGPL alternative exists; exact binary and all embedded code NOT verified"
+  },
+  {
+    "name": "qt-network",
+    "url": "https://github.com/qt/qtbase/blob/v6.12.0/src/network/access/qnetworkaccessmanager.cpp",
+    "status": "read",
+    "blob_sha": "447f40769eb435d4d7b3942abff6d8f37cc36b93",
+    "sha256": "d9750407b5f4ff00643f92c365cd729c966b63aecc15a5acaa038ea8a4a1b3ae",
+    "bytes": 65530,
+    "notice_path": "notices/upstream/qt-network-header.txt",
+    "notice_sha256": "f5ca0c8092f9e31c35df17d3a7bbc6c7cf14826693f2735c84bbe7759c9eb10f",
+    "scope": "Versioned source excerpt, LGPL alternative exists; exact binary and all embedded code NOT verified"
+  },
+  {
+    "name": "qt-printsupport",
+    "url": "https://github.com/qt/qtbase/blob/v6.12.0/src/printsupport/kernel/qprinter.cpp",
+    "status": "read",
+    "blob_sha": "e17602e28826355ff7929f15aa4ec97845bc3192",
+    "sha256": "d60acd1ef95f66c8e3cf088845c8968cca74793618098e89d39cf442d8930823",
+    "bytes": 46120,
+    "notice_path": "notices/upstream/qt-printsupport-header.txt",
+    "notice_sha256": "9c9032025983c8f6b9544ae00c8e1ef5e7e467cdeee6eefe9cdf65c7a933e34d",
+    "scope": "Versioned source excerpt, LGPL alternative exists; exact binary and all embedded code NOT verified"
+  },
+  {
+    "name": "qt-opengl",
+    "url": "https://github.com/qt/qtbase/blob/v6.12.0/src/opengl/qopenglbuffer.cpp",
+    "status": "read",
+    "blob_sha": "5ef23128de8027a93912817c07f248f54786c975",
+    "sha256": "0231d60615da6bb3af98b8f5f27c2113a624f675379acbcfa590c765a29507ff",
+    "bytes": 18951,
+    "notice_path": "notices/upstream/qt-opengl-header.txt",
+    "notice_sha256": "9c9032025983c8f6b9544ae00c8e1ef5e7e467cdeee6eefe9cdf65c7a933e34d",
+    "scope": "Versioned source excerpt, LGPL alternative exists; exact binary and all embedded code NOT verified"
+  },
+  {
+    "name": "qt-quickwidgets",
+    "url": "https://github.com/qt/qtdeclarative/blob/v6.12.0/src/quickwidgets/qquickwidget.cpp",
+    "status": "read",
+    "blob_sha": "8bf1e6fd978323bbaad933f8efcfc360e34cf7d3",
+    "sha256": "6024968e782fe40624db6bb19dc52ae412077560a0557a79b418d4e5a2d382a2",
+    "bytes": 73569,
+    "notice_path": "notices/upstream/qt-quickwidgets-header.txt",
+    "notice_sha256": "6975a5d3dd6bb9e5fa9058f5d8739b68ca7d635fcfae8bec21949ec4331813ec",
+    "scope": "Versioned source excerpt, LGPL alternative exists; exact binary and all embedded code NOT verified"
+  },
+  {
+    "name": "qt-windows-plugin",
+    "url": "https://github.com/qt/qtbase/blob/v6.12.0/src/plugins/platforms/windows/qwindowsintegration.cpp",
+    "status": "read",
+    "blob_sha": "79038f0f9387b6a2c4894771f9c409e3ba2afa66",
+    "sha256": "6e5663905f422981c47b7030c56334827d1b69ce24a99849ff4e9a595ffe3da9",
+    "bytes": 27725,
+    "notice_path": "notices/upstream/qt-windows-plugin-header.txt",
+    "notice_sha256": "a3734998919c798629a37d04512927a65e5d6300205e9d0c29af02d9ec8bdecd",
+    "scope": "Versioned source excerpt, LGPL alternative exists; exact binary and all embedded code NOT verified"
+  },
+  {
+    "id": "pyside-pyside6",
+    "url": "https://api.github.com/repos/pyside/pyside-setup/contents/sources/pyside6/libpyside/pyside.cpp?ref=v6.12.0",
+    "status": "read",
+    "git_blob": "c94694a7841176a324c93aa619e25d871833c8dc",
+    "sha256": "1f21ca591de01501649196aba5a471f30ecfb8ad4ea54a634881477d093b586b",
+    "notice_sha256": "9c9032025983c8f6b9544ae00c8e1ef5e7e467cdeee6eefe9cdf65c7a933e34d",
+    "file": "notices/upstream/pyside-pyside6-header.txt",
+    "scope": "versioned header; not proof of binary build correspondence",
+    "accessed_utc": "2026-10-14"
+  },
+  {
+    "id": "pyside-shiboken",
+    "url": "https://api.github.com/repos/pyside/pyside-setup/contents/sources/shiboken6/libshiboken/basewrapper.cpp?ref=v6.12.0",
+    "status": "read",
+    "git_blob": "a79a931f960314f69b546ac89e85dcc83828dabc",
+    "sha256": "199a86e6daf4447ff77b364e1dd3da9fcbc8bbf4299bcf6bf4ee95eaaa9c15af",
+    "notice_sha256": "e4b9d932296b66365dd4b81b69fba693c7b1323c466473cace2622a74898fa91",
+    "file": "notices/upstream/pyside-shiboken-header.txt",
+    "scope": "versioned header; not proof of binary build correspondence",
+    "accessed_utc": "2026-10-14"
+  },
+  {
+    "id": "qt-imageformats",
+    "url": "https://api.github.com/repos/qt/qtimageformats/contents/src/plugins/imageformats/tiff/qtiffhandler.cpp?ref=v6.12.0",
+    "status": "read",
+    "git_blob": "1abe60aac09c168243c8ed96b0c2549bee288381",
+    "sha256": "d988d4433ebd92887c5137c88ae349446a14d3670d62cef2bfc629e298c02a4f",
+    "notice_sha256": "6ee9f8524265084c66706965814b60dda705887c5618719fabc28b6e183e223b",
+    "file": "notices/upstream/qt-imageformats-header.txt",
+    "scope": "versioned header; not proof of binary build correspondence",
+    "accessed_utc": "2026-10-14"
+  },
+  {
+    "id": "qt-serialport",
+    "url": "https://api.github.com/repos/qt/qtserialport/contents/src/serialport/qserialport.cpp?ref=v6.12.0",
+    "status": "read",
+    "git_blob": "e673bc40d4c85aae12ef88c2277a81315e3b3a72",
+    "sha256": "d7cd4b8682dece4b05f9b4442a631e27b460dba2589e17d154d0001d3d8e70e3",
+    "notice_sha256": "17294fb51ea39fc0c61ba39c9236d1c690383144f9668926d1de855463f839c5",
+    "file": "notices/upstream/qt-serialport-header.txt",
+    "scope": "versioned header; not proof of binary build correspondence",
+    "accessed_utc": "2026-10-14"
+  }
+]

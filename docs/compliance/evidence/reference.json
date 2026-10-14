@@ -1,0 +1,11 @@
+{
+  "msix_sha256": "75fe75bd8d7097b826d46c4cd50576162f99aede3eb2db9def34d21a3b25ac90",
+  "size_bytes": 240744630,
+  "reference_run": 38647878392,
+  "capture_run": 38652646576,
+  "source_commit": "f11542027ce33561826dac00c961f726defc46e2",
+  "branch_commit": "c7e32477e51a0ece2c304afe2a549abcdb76af22",
+  "msix_file": "AgroLines-1.0.0.0-x64-DIAGNOSTICO-ASSINATURA-PENDENTE.msix",
+  "artifact_id": 11933945487,
+  "reference_modified": false
+}
