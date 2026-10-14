@@ -1,6 +1,6 @@
-# Minuta — participação no programa de testes AgroLines
+# Termo de Participação — versão final proposta 2.0 (14/10/2026)
 
-**Não adotado nem assinado. Revisão jurídica e confirmação operacional necessárias.**
+**Proposta para revisão e adoção; não juridicamente aprovada, enviada ou aceita.**
 Responsável: FABRICIO JOSE DELATORRE; contato:
 fabricio.grupodelatorre@gmail.com. Nome de publicação: Delatorre COrporation,
 sem afirmar existência de pessoa jurídica. Grupo: “AgroLines - Testadores Internos”.
@@ -50,9 +50,8 @@ todas as hipóteses de tratamento, inclusive dados de terceiros em arquivos de s
 ## Confidencialidade
 
 Não divulgar arquivos pessoais, dados de terceiros ou credenciais recebidos durante
-os testes. A eventual confidencialidade de versões e materiais experimentais deve
-ter escopo, duração e exceções definidos previamente pelo responsável.
-**[DECIDIR: se haverá obrigação adicional; quais materiais, duração e exceções.]**
+os testes. Esta proposta não estabelece obrigação adicional de sigilo geral sobre o software.
+Se desejada, ela exige escopo, duração, exceções e revisão antes da adoção.
 Não se pretende impedir denúncias legítimas ou exercício de direitos legais.
 
 ## Saída e dados
@@ -70,17 +69,59 @@ Suporte: até 90 dias após encerramento. Pedidos de privacidade: até 12 meses 
 conclusão, com dados mínimos e exceções legais justificadas. A política detalha
 histórico local, originais, backups, ausência de cifra própria e procedimentos manuais.
 
-## Referência e adoção
+## Duração e acesso — proposta para adoção
 
-**[PREENCHER: URL HTTPS da política final, versão, data de vigência e forma de
-aceitação do termo.]** Não solicitar documento, CPF ou coleta adicional para aceitar
-sem necessidade comprovada. Não há formulário ou coleta de aceite implementados.
-O controle 18+ é uma condição do programa privado, distinta da classificação de
-conteúdo Brasil Livre / IARC 3+ / Microsoft 3+, informada pelo responsável e mantida
-sem alteração. A audiência permanece privada, no grupo informado; um link direto
-não substitui a conta elegível e incluída no grupo. Não verificamos o painel em tempo real.
+A participação começa após o aceite registrado e a inclusão no grupo, e termina
+com a saída solicitada pelo participante ou o encerramento informado pelo
+responsável. Não há data final definida nesta proposta. O responsável informará o
+encerramento pelo canal da participação, explicando eventual retirada de acesso
+individual. A saída é voluntária, sem necessidade de justificativa. Não se promete
+bloqueio remoto de cópia offline instalada ou apagamento dos projetos locais.
+Regras adicionais exigem informação prévia e revisão antes da adoção.
 
-**[CONFIRMAR: duração/encerramento do programa, condições de retirada do acesso,
-procedimento de aceite e execução do controle manual 18+.]** Esta minuta não
-altera a configuração do Partner Center, não habilita licenciamento comercial e não
-comprova que contrato já exista.
+## Aceite verificável por e-mail — proposta para adoção
+
+O responsável enviará individualmente o termo e a política final aprovados,
+identificando versões, datas, URL pública HTTPS testada e SHA-256 dos arquivos.
+O participante responderá pelo contato do convite com declaração expressa:
+
+> Declaro ter 18 anos ou mais. Quero participar voluntária e gratuitamente do
+> programa privado AgroLines - Testadores Internos. Li e aceito o Termo de
+> Participação versão [VERSÃO ENVIADA], de [DATA]. Recebi e li a Política de
+> Privacidade offline versão [VERSÃO ENVIADA], vigente desde [DATA]. Entendo que
+> não preciso enviar arquivos para participar e que posso solicitar minha saída
+> pelo e-mail fabricio.grupodelatorre@gmail.com.
+
+Conferir remetente, resposta, maioridade declarada e versões, preservando a ligação
+com o convite e a mensagem privada de aceite. Se o contato diferir da conta Microsoft
+pessoal necessária ao grupo, confirmar a associação pelo canal já utilizado, sem
+senhas/documentos. Resposta ambígua ou de outra versão exige esclarecimento antes
+da inclusão. Não presumir aceite pelo silêncio, download ou relação pessoal.
+
+É evidência rastreável, não assinatura digital certificada, prova absoluta da idade
+ou identidade, nem consentimento para outras finalidades. Os campos da resposta
+serão preenchidos conforme os documentos efetivamente enviados; não são aceites
+obtidos. Mudanças nas condições do termo exigem nova versão e novo aceite antes de
+aplicar condições novas. Mudanças relevantes da política serão comunicadas manualmente
+por e-mail e na página pública aprovada, sem envio automático pelo aplicativo.
+
+Os comprovantes mínimos de declaração/aceite seguem a retenção da participação:
+durante participação + até 30 dias após saída/encerramento, salvo exceção concreta
+justificada e documentada. Não estender sua guarda automaticamente a 12 meses.
+
+## Condições para adoção — uso interno
+
+Aprovar juridicamente e operacionalmente esta versão: aceite por e-mail, duração
+sem data final e proteção de dados sem sigilo adicional. Definir bases e transferências
+por finalidade; completar política, data de vigência e URL pública testada antes do
+convite. Não enviar documentos com campos jurídicos de confirmação pendentes.
+Congelar versão/hash dos documentos aprovados e guardar a cópia exata em local privado.
+A assinatura/aceite não resolve, por si só, bases de terceiros em arquivos recebidos.
+
+O controle 18+ é distinto da classificação Brasil Livre / IARC 3+ / Microsoft 3+,
+informada pelo responsável e mantida. Audiência privada e grupo permanecem; não
+verificamos o painel em tempo real. Não existe coleta de aceite no aplicativo.
+O [plano mínimo](plano-operacional-minimo.md) descreve o registro e a guarda privada;
+a [matriz de 12 finalidades](hipoteses-legais-e-fornecedores.md) mantém as decisões
+jurídicas abertas. Esta proposta não afirma contrato já firmado nem autoriza Pages,
+merge, publicação ou certificação.

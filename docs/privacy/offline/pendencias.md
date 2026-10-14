@@ -45,6 +45,14 @@ na edição offline. A auditoria original do PR #9 permanece preservada.
 
 ## Análise documental atualizada
 
+O [plano operacional mínimo](plano-operacional-minimo.md) propõe versão final 2.0
+do termo e aceite rastreável por e-mail, três modelos vazios privados, checklist
+Gmail e exclusão manual. **Proposto, não adotado juridicamente nem configurado**.
+O responsável precisa aprovar duração sem data final, ausência de sigilo adicional,
+critério de fechamento, destino/backup e necessidade/prazos de convites não aceitos,
+comprovantes de descarte e incidentes. Nada muda as retenções já decididas.
+Documentos-modelo não contêm dados reais; preenchimento deve ocorrer fora do GitHub.
+
 A [matriz de finalidades e decisões](hipoteses-legais-e-fornecedores.md) separa
 dados locais, grupo, avisos, suporte futuro, direitos, provas mínimas, relatórios
 condicionais e tratamentos próprios das plataformas. A [memória de fontes](fontes-bases-transferencias.md) registra documentos oficiais conferidos e fontes
