@@ -27,9 +27,9 @@ def render():
         + "\n".join(blocks)
         + "\n</body></html>\n"
     )
-    (ROOT / "politica-privacidade.html").write_text(document, encoding="utf-8")
+    (ROOT / "politica-privacidade.html").write_text(document, encoding="utf-8", newline="\n")
     plain = re.sub(r"(?m)^#{1,6} ", "", source)
-    (ROOT / "politica-privacidade.txt").write_text(plain, encoding="utf-8")
+    (ROOT / "politica-privacidade.txt").write_text(plain, encoding="utf-8", newline="\n")
 
 
 if __name__ == "__main__":

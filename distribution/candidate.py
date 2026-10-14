@@ -93,12 +93,14 @@ def inspect_package(path):
         }
         if policy_names != set(PRIVACY_FILES):
             raise ValueError("Policy payload contains missing or internal documents")
+        policy_hashes = {}
         for name in PRIVACY_FILES:
             if (
                 archive.read(privacy_prefix + name)
                 != (ROOT / "docs/privacy/offline" / name).read_bytes()
             ):
                 raise ValueError("Packaged policy differs from reviewed source")
+            policy_hashes[name] = hashlib.sha256(archive.read(privacy_prefix + name)).hexdigest()
     with Path(path).open("rb") as source:
         digest = hashlib.file_digest(source, "sha256").hexdigest()
     return {
@@ -113,6 +115,7 @@ def inspect_package(path):
         "signature": "unsigned-store-submission",
         "components": components,
         "privacy_files": sorted(policy_names),
+        "privacy_sha256": policy_hashes,
         "privacy_policy_approved": False,
         "installed_msix_validated": False,
         "sac_approved": False,

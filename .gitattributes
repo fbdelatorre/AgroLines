@@ -1,0 +1,4 @@
+# Keep reviewed policy bytes identical in Windows/Linux and in the MSIX/Pages pipelines.
+docs/privacy/offline/politica-privacidade.html text eol=lf
+docs/privacy/offline/politica-privacidade.md text eol=lf
+docs/privacy/offline/politica-privacidade.txt text eol=lf

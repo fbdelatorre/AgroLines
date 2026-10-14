@@ -72,6 +72,13 @@ Nenhuma funcionalidade foi reconstruída ou sobrescrita manualmente.
    omitidos: não se instala/inicia PostgreSQL e não se testa instalador não assinado.
    Jobs e testes de servidor permanecem disponíveis nas demais branches; testes de
    autenticação/permissões em SQLite e todo pytest Windows continuam executados.
+5. `.gitattributes` fixa LF nos três arquivos da política, e o renderer escreve LF
+   explicitamente. O CI Windows verifica que regenerar as cópias não altera seus
+   bytes. A primeira execução confirmou hashes distintos por CRLF do checkout
+   Windows: LF `a886904a5b746b0ecd4ee64590dfe1300168c83be5447d754fc76573278f605c`,
+   CRLF `f8d740a00c42f3671fdf426345a339e63ce1356d93ef697bb5e436147b04cb7d`.
+   Canonicalizar quebra de linha preserva o conteúdo jurídico e o hash revisado,
+   sem aprovar o texto. O relatório do MSIX inclui hashes das três cópias reais.
 
 Não foram modificados motor/precisão, bancos existentes, política jurídica,
 classificação, audiência/grupo, identidade, licenciamento ou proteções Windows.

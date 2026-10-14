@@ -20,6 +20,15 @@ jobs:
       - run: python -m pip install -e ".[dev,desktop]"
       - run: ruff check .
       - run: ruff format --check .
+      - name: Policy copies reproduce the reviewed bytes on Windows
+        shell: python
+        run: |
+          from pathlib import Path
+          import subprocess, sys
+          paths = [Path('docs/privacy/offline') / ('politica-privacidade.' + extension) for extension in ('md', 'html', 'txt')]
+          before = {path: path.read_bytes() for path in paths}
+          subprocess.run([sys.executable, '-m', 'scripts.render_offline_privacy'], check=True)
+          assert all(path.read_bytes() == content for path, content in before.items())
       - run: python -m pytest -q
   msix-candidate:
     needs: candidate-tests
