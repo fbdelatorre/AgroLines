@@ -107,14 +107,14 @@ class WebMap(QWidget):
     featureSelected = Signal(dict)
     readyChanged = Signal()
 
-    def __init__(self):
+    def __init__(self, offline=False):
         super().__init__()
         self.is_ready = False
         self.collection = {"type": "FeatureCollection", "features": []}
         self.fit_pending = False
         self.current_id = None
         self.set_work_crs("EPSG:32723")
-        self.imagery = imagery_configuration()
+        self.imagery = None if offline else imagery_configuration()
         body = QVBoxLayout(self)
         body.setContentsMargins(0, 0, 0, 0)
         body.setSpacing(0)

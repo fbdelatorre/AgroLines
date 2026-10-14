@@ -14,7 +14,37 @@ STARTED = datetime.now(UTC)
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--smoke-report", type=Path, help="Maintainer CI output; auto closes")
+    parser.add_argument("--local", action="store_true", help="Open offline projects without login")
     args = parser.parse_args()
+    if (
+        args.local
+        and sys.platform == "win32"
+        and (
+            os.getenv("QTWEBENGINE_DISABLE_SANDBOX") == "1"
+            or "--no-sandbox" in os.getenv("QTWEBENGINE_CHROMIUM_FLAGS", "")
+        )
+    ):
+        return 1
+    if args.local:
+        from PySide6.QtGui import QIcon
+        from PySide6.QtWidgets import QApplication
+
+        from desktop.local_projects import LocalProjectsWindow
+
+        assets = (
+            Path(sys._MEIPASS) / "distribution/windows"
+            if getattr(sys, "frozen", False)
+            else Path(__file__).parent / "windows"
+        )
+        metadata = json.loads((assets / "metadata.json").read_text(encoding="utf-8"))
+        local_app = QApplication(sys.argv[:1])
+        local_app.setApplicationName(metadata["name"])
+        local_app.setApplicationVersion(metadata["version"])
+        local_app.setOrganizationName(metadata["manufacturer"])
+        local_app.setWindowIcon(QIcon(str(assets / "brand.svg")))
+        local_window = LocalProjectsWindow()
+        local_window.show()
+        return local_app.exec()
     directory = (
         Path(os.getenv("LOCALAPPDATA", str(Path.home()))) / "AgroLinesDistributionPoC" / "evidence"
     )
@@ -28,7 +58,7 @@ def main():
         "checks_passed": False,
         "sac_compatibility_proven": False,
     }
-    app = window = web_map = None
+    app = window = web_map = local_window = None
     exit_code = 1
 
     def save():
@@ -86,6 +116,9 @@ def main():
         status.setWordWrap(True)
         layout.addWidget(status)
         result = run_checks()
+        from distribution.offline_checks import run_offline_checks
+
+        report["offline_projects"] = run_offline_checks()
         report.update(result)
         report["evidence_before"] = collect(STARTED, ["AgroLinesPoC.exe"])
         web_map = WebMap()
@@ -109,6 +142,18 @@ def main():
             lambda: QDesktopServices.openUrl(QUrl.fromLocalFile(str(output.parent)))
         )
         layout.addWidget(button)
+        from desktop.local_projects import LocalProjectsWindow
+
+        local_window = []
+
+        def open_local():
+            project_window = LocalProjectsWindow()
+            local_window.append(project_window)
+            project_window.show()
+
+        local_button = QPushButton("Projetos locais · sem conexão ou login")
+        local_button.clicked.connect(open_local)
+        layout.addWidget(local_button)
         window.setCentralWidget(panel)
         window.show()
         finished = False
@@ -136,7 +181,11 @@ def main():
                     and manifest_path.exists()
                     and verify(payload, json.loads(manifest_path.read_text()))
                 )
-                report["checks_passed"] = report["geospatial_checks_passed"] and web_map.is_ready
+                report["checks_passed"] = (
+                    report["geospatial_checks_passed"]
+                    and web_map.is_ready
+                    and report["offline_projects"]["passed"]
+                )
                 report["qt_webengine_map_ready"] = web_map.is_ready
                 after = report["evidence_after"]
                 report["sac_run_observed"] = (
@@ -199,6 +248,9 @@ def main():
                 None, report["error"] + f"\nEvidência: {output}", "AgroLines", 0x10
             )
     finally:
+        if local_window:
+            for project_window in local_window:
+                project_window.close()
         if web_map:
             web_map.dispose()
         if window:

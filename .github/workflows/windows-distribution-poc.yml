@@ -1,9 +1,9 @@
 name: Windows Distribution PoC (not SAC approval)
 on:
   push:
-    paths: ['distribution/**', 'core/**', 'desktop/map_assets/**', 'desktop/gis_map.py', 'scripts/precision_report.py', '.github/workflows/windows-distribution-poc.yml']
+    paths: ['distribution/**', 'core/**', 'desktop/map_assets/**', 'desktop/gis_map.py', 'desktop/local_projects.py', 'scripts/precision_report.py', '.github/workflows/windows-distribution-poc.yml']
   pull_request:
-    paths: ['distribution/**', 'core/**', 'desktop/map_assets/**', 'desktop/gis_map.py', 'scripts/precision_report.py', '.github/workflows/windows-distribution-poc.yml']
+    paths: ['distribution/**', 'core/**', 'desktop/map_assets/**', 'desktop/gis_map.py', 'desktop/local_projects.py', 'scripts/precision_report.py', '.github/workflows/windows-distribution-poc.yml']
   workflow_dispatch:
 permissions:
   contents: read
