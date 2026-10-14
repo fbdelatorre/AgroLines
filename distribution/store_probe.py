@@ -12,6 +12,7 @@ from core.offline_policy import REMOTE_MODULES, enforce, require_local_path
 
 def run(output, probe_url="http://127.0.0.1:9/forbidden"):
     enforce()
+    require_local_path(output)
     from PySide6.QtCore import QTimer
     from PySide6.QtWidgets import QApplication
 

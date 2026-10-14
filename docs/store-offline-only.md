@@ -21,7 +21,9 @@ remotos e conexões/DNS Python, ignora configuração de tiles/debugging e desab
 rede PROJ. Fiona restringe importação aos drivers vetoriais locais e o contexto GDAL
 omite WMS/WCS/HTTP. Arquivos KML com referências externas continuam rejeitados.
 Projetos/importação/backup/restauração rejeitam URLs, /vsi, UNC e unidades Windows
-mapeadas de rede. Pastas locais sincronizadas por outro software não são controladas
+mapeadas de rede. Destinos de diagnóstico também são verificados antes de gravar.
+No Windows, temporários ficam na pasta local AgroLines/Temp; configurações externas
+de plugin/processo Qt e dados GIS são removidas antes dos hooks embutidos. Pastas locais sincronizadas por outro software não são controladas
 pelo AgroLines; isso está explicado na política.
 
 O WebEngine usa assets locais, sem fonte ou biblioteca remota obrigatória. A página

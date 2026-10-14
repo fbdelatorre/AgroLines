@@ -6,6 +6,8 @@ import sys
 import uuid
 from pathlib import Path
 
+from core.offline_policy import require_local_path
+
 
 def local_app_data():
     if sys.platform != "win32":
@@ -51,5 +53,6 @@ def data_directory():
 
 def project_directory():
     path = data_directory() / "Projects"
+    require_local_path(path)
     path.mkdir(parents=True, exist_ok=True)
     return path

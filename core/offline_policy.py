@@ -41,8 +41,12 @@ def require_local_path(path):
     if sys.platform == "win32":
         import ctypes
 
-        root = Path(path).resolve().anchor
-        if ctypes.windll.kernel32.GetDriveTypeW(root) == 4:
+        # Inspect the lexical drive before resolving/accessing a mapped network path.
+        root = Path(path).absolute().anchor
+        kernel = ctypes.WinDLL("kernel32", use_last_error=True)
+        kernel.GetDriveTypeW.argtypes = [ctypes.c_wchar_p]
+        kernel.GetDriveTypeW.restype = ctypes.c_uint
+        if kernel.GetDriveTypeW(root) in (0, 1, 4):
             raise ValueError("Unidades de rede não são aceitas nesta edição offline.")
 
 
@@ -64,9 +68,36 @@ def enforce(native=True):
     for name in ("connect", "connect_ex", "sendto", "sendmsg"):
         if hasattr(socket.socket, name):
             setattr(socket.socket, name, denied)
-    for name in ("create_connection", "getaddrinfo", "gethostbyname", "gethostbyname_ex"):
+    for name in (
+        "create_connection",
+        "getaddrinfo",
+        "gethostbyname",
+        "gethostbyname_ex",
+        "gethostbyaddr",
+        "getnameinfo",
+    ):
         setattr(socket, name, denied)
+    for name in (
+        "PROJ_LIB",
+        "PROJ_DATA",
+        "GDAL_DATA",
+        "QT_PLUGIN_PATH",
+        "QTWEBENGINEPROCESS_PATH",
+        "QTWEBENGINE_RESOURCES_PATH",
+        "QTWEBENGINE_LOCALES_PATH",
+    ):
+        os.environ.pop(name, None)
     os.environ["PROJ_NETWORK"] = "OFF"
+    if sys.platform == "win32":
+        import tempfile
+
+        from desktop.storage import data_directory
+
+        temporary = data_directory() / "Temp"
+        require_local_path(temporary)
+        temporary.mkdir(parents=True, exist_ok=True)
+        tempfile.tempdir = str(temporary)
+        os.environ["TMP"] = os.environ["TEMP"] = str(temporary)
     # Do not honor environment flags that could enable remote debugging or alter
     # Chromium operation. Never disable its sandbox or Windows protections.
     os.environ.pop("QTWEBENGINE_REMOTE_DEBUGGING", None)
