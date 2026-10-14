@@ -62,7 +62,9 @@ def capture(output, revision, configure_hosted_display=False):
             original_mode, report["display_mode"] = native.configure_hosted_display()
             QTest.qWait(1000)
         app.setApplicationName("AgroLines")
-        app.setWindowIcon(QIcon(str(Path("distribution/windows/brand.svg").resolve())))
+        app.setWindowIcon(
+            QIcon(str(Path("assets/branding/AgroLines_Arte_Caixa_1080x1080.png").resolve()))
+        )
         project_path = prepare(output / "dados-ficticios")
         window = local_ui.LocalProjectsWindow()
         window.load(project_path)

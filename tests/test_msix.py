@@ -5,7 +5,7 @@ import pytest
 from PySide6.QtGui import QImage
 
 from distribution.build import prepare
-from distribution.msix import CONFIG, NS, identity, stage, validate_manifest
+from distribution.msix import CONFIG, NS, identity, package_family_name, stage, validate_manifest
 from distribution.package_runtime import package_evidence
 from distribution.payload import manifest, verify
 
@@ -33,6 +33,10 @@ def payload(tmp_path):
 
 def test_exact_case_sensitive_partner_center_identity():
     assert identity() == OFFICIAL
+    assert (
+        package_family_name(OFFICIAL["name"], OFFICIAL["publisher"])
+        == OFFICIAL["package_family_name"]
+    )
     tree = validate_manifest(CONFIG / "AppxManifest.xml")
     assert tree.getroot().find("f:Identity", NS).attrib["Version"] == "1.0.0.0"
     capabilities = [element.attrib["Name"] for element in tree.getroot().find("f:Capabilities", NS)]
@@ -44,6 +48,13 @@ def test_stage_complete_payload_assets_and_roundtrip_hashes(payload, tmp_path):
     output = tmp_path / "stage"
     result = stage(payload, output, "1.0.0.0")
     assert not result["installed_msix_validated"] and not result["sac_approved"]
+    assert len(result["branding"]["assets"]) == 32
+    for name, item in result["branding"]["assets"].items():
+        import hashlib
+
+        file = output / "Assets" / name
+        assert hashlib.sha256(file.read_bytes()).hexdigest() == item["sha256"]
+        assert QImage(str(file)).width() == item["size"]
     assert verify(
         output / "VFS/ProgramFilesX64/AgroLines",
         json.loads((payload / "payload-manifest.json").read_text()),

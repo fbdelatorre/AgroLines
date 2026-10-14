@@ -59,7 +59,16 @@ def main():
         local_app.setApplicationName(metadata["name"])
         local_app.setApplicationVersion(metadata["version"])
         local_app.setOrganizationName(metadata["manufacturer"])
-        local_app.setWindowIcon(QIcon(str(assets / "brand.svg")))
+        local_app.setWindowIcon(
+            QIcon(
+                str(
+                    assets / "AgroLines.ico"
+                    if getattr(sys, "frozen", False)
+                    else Path(__file__).parent.parent
+                    / "assets/branding/AgroLines_Arte_Caixa_1080x1080.png"
+                )
+            )
+        )
         local_window = LocalProjectsWindow()
         local_window.show()
         return local_app.exec()
@@ -122,7 +131,16 @@ def main():
         app.setApplicationVersion(metadata["version"])
         app.setOrganizationName(metadata["manufacturer"])
         app.setStyleSheet(THEME)
-        app.setWindowIcon(QIcon(str(assets / "brand.svg")))
+        app.setWindowIcon(
+            QIcon(
+                str(
+                    assets / "AgroLines.ico"
+                    if getattr(sys, "frozen", False)
+                    else Path(__file__).parent.parent
+                    / "assets/branding/AgroLines_Arte_Caixa_1080x1080.png"
+                )
+            )
+        )
         window = QMainWindow()
         window.setWindowTitle(f"AgroLines · Prova de distribuição {metadata['version']}")
         window.resize(1000, 720)
