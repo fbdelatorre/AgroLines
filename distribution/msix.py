@@ -1,11 +1,14 @@
 """Stage the complete PyInstaller payload; official Store identity is never substituted."""
 
 import argparse
+import base64
+import hashlib
 import json
 import shutil
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
+from distribution.branding import generate_assets
 from distribution.build import version_tuple
 from distribution.payload import verify
 
@@ -17,6 +20,13 @@ NS = {"f": FOUNDATION}
 
 def identity():
     return json.loads((CONFIG / "identity.json").read_text(encoding="utf-8"))
+
+
+def package_family_name(name, publisher):
+    # Windows publisher ID: SHA-256 UTF-16LE, first 64 bits, custom base32 alphabet.
+    suffix = base64.b32encode(hashlib.sha256(publisher.encode("utf-16le")).digest()[:8])
+    alphabet = str.maketrans("ABCDEFGHIJKLMNOPQRSTUVWXYZ234567", "0123456789abcdefghjkmnpqrstvwxyz")
+    return name + "_" + suffix.decode().rstrip("=").translate(alphabet)
 
 
 def validate_manifest(path):
@@ -34,35 +44,14 @@ def validate_manifest(path):
         or application.attrib["Id"] != expected["application_id"]
         or application.attrib["Executable"] != r"VFS\ProgramFilesX64\AgroLines\AgroLinesPoC.exe"
         or application.attrib["EntryPoint"] != "Windows.FullTrustApplication"
+        or package_family_name(declared.attrib["Name"], declared.attrib["Publisher"])
+        != expected["package_family_name"]
     ):
         raise ValueError("MSIX must retain the exact official Store identity and executable")
     parts = version_tuple(declared.attrib["Version"])
     if parts[0] == 0 or parts[3] != 0:
         raise ValueError("Store version must be nonzero and its fourth component must be zero")
     return tree
-
-
-def generate_assets(destination):
-    from PySide6.QtCore import Qt
-    from PySide6.QtGui import QImage, QPainter
-    from PySide6.QtSvg import QSvgRenderer
-
-    destination.mkdir()
-    renderer = QSvgRenderer(str(ROOT / "distribution/windows/brand.svg"))
-    if not renderer.isValid():
-        raise ValueError("Invalid brand SVG")
-    for name, size in (
-        ("StoreLogo.png", 50),
-        ("Square44x44Logo.png", 44),
-        ("Square150x150Logo.png", 150),
-    ):
-        image = QImage(size, size, QImage.Format_ARGB32)
-        image.fill(Qt.transparent)
-        painter = QPainter(image)
-        renderer.render(painter)
-        painter.end()
-        if not image.save(str(destination / name), "PNG"):
-            raise ValueError("Unable to generate Store assets")
 
 
 def stage(payload, output, version):
@@ -92,7 +81,7 @@ def stage(payload, output, version):
         shutil.copytree(payload, app)
         if not verify(app, data):
             raise ValueError("Copied payload differs from audited runtime")
-        generate_assets(output / "Assets")
+        branding = generate_assets(output / "Assets")
         # Preserve namespace prefixes, including prefixes used in IgnorableNamespaces.
         template = (CONFIG / "AppxManifest.xml").read_text(encoding="utf-8")
         template = template.replace('Version="1.0.0.0"', f'Version="{version}"', 1)
@@ -102,6 +91,7 @@ def stage(payload, output, version):
         shutil.rmtree(output)
         raise
     return {
+        "branding": branding,
         "identity": identity(),
         "version": version,
         "architecture": "x64",

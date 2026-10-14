@@ -14,7 +14,8 @@ a = Analysis(
     binaries=[],
     datas=[
         (str(root / 'desktop/map_assets'), 'desktop/map_assets'),
-        (str(root / 'distribution/windows/brand.svg'), 'distribution/windows'),
+        (str(prepared / 'AgroLines.ico'), 'distribution/windows'),
+        (str(root / 'assets/branding/AgroLines_Arte_Caixa_1080x1080.png'), 'assets/branding'),
         (str(prepared / 'metadata.json'), 'distribution/windows'),
         (str(root / 'distribution/windows/msix/identity.json'), 'distribution/windows/msix'),
     ] + ([(str(root / 'docs/privacy/offline'), 'desktop/privacy_assets')] if store else [])

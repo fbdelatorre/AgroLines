@@ -1,0 +1,38 @@
+{
+  "source": "ZIP original fornecido pelo responsável nesta conversa",
+  "master": "AgroLines_Arte_Caixa_1080x1080.png",
+  "files": [
+    {
+      "name": "AgroLines_Arte_Caixa_1080x1080.png",
+      "sha256": "7796067bb7fff3014ec679f446f5e5e1e011aea4060f7b5f67cc8c58ee35cd7d",
+      "width": 1080,
+      "height": 1080,
+      "alpha_channel": false,
+      "corner_alpha": 255
+    },
+    {
+      "name": "AgroLines_Icone_150x150.png",
+      "sha256": "b3d198694da50b3b5044066c3d8d542c643f77664fc5d3b99f3c0b10dc60e0b4",
+      "width": 150,
+      "height": 150,
+      "alpha_channel": false,
+      "corner_alpha": 255
+    },
+    {
+      "name": "AgroLines_Icone_300x300.png",
+      "sha256": "76e5bf6287c36049b5ec23a2686ed303ee61d71b8a2d85e037571cb34084ddaa",
+      "width": 300,
+      "height": 300,
+      "alpha_channel": false,
+      "corner_alpha": 255
+    },
+    {
+      "name": "AgroLines_Icone_71x71.png",
+      "sha256": "0d2c54e056b985d008042cf0b0dfce5dacafa00c3c65e8f91421007fe4f743d4",
+      "width": 71,
+      "height": 71,
+      "alpha_channel": false,
+      "corner_alpha": 255
+    }
+  ]
+}
