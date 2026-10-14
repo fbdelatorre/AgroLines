@@ -41,7 +41,8 @@ function Invoke-AgroPackageProbe {
     if (-not (Test-Path $reportPath)) { throw 'Aplicativo nao gravou evidencia externa.' }
     $result = Get-Content $reportPath -Raw | ConvertFrom-Json
     if (-not $result.frozen -or -not $result.checks_passed -or -not $result.msix_validation_passed -or
-        -not $result.payload_integrity_verified -or -not $result.offline_projects.passed) {
+        -not $result.payload_integrity_verified -or -not $result.offline_projects.passed -or
+        -not $result.offline_only) {
         throw 'Identidade, componentes, subprocessos Qt ou persistencia MSIX nao comprovados.'
     }
     return $result

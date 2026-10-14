@@ -1,5 +1,7 @@
 """Offline project workspace: deliberately never constructs an API client."""
 
+from pathlib import Path
+
 from pyproj import CRS
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import (
@@ -16,10 +18,12 @@ from PySide6.QtWidgets import (
     QPushButton,
     QSpinBox,
     QSplitter,
+    QTextBrowser,
     QVBoxLayout,
 )
 
 from core.local_projects import LocalProject
+from core.offline_policy import is_offline_only, require_local_path, require_remote
 from core.precision import VertexEditor
 from desktop.gis_map import WebMap
 from desktop.storage import project_directory
@@ -107,7 +111,10 @@ class LocalProjectsWindow(QMainWindow):
         self.setStyleSheet(THEME)
         toolbar = self.addToolBar("Projeto local")
         toolbar.setMovable(False)
-        toolbar.addAction("Colaboração online", self.open_remote)
+        if not is_offline_only():
+            toolbar.addAction("Colaboração online", self.open_remote)
+        if is_offline_only():
+            toolbar.addAction("Privacidade", self.show_privacy)
         self.remote_windows = []
         for title, callback in (
             ("Novo", self.create_project),
@@ -131,7 +138,27 @@ class LocalProjectsWindow(QMainWindow):
             "Offline · Abra ou crie um projeto. Sincronização não habilitada."
         )
 
+    def show_privacy(self):
+        bundled = Path(__file__).parent / "privacy_assets/politica-privacidade.html"
+        source = Path(__file__).parent.parent / "docs/privacy/offline/politica-privacidade.html"
+        content = bundled if bundled.is_file() else source
+        dialog = QDialog(self)
+        dialog.setWindowTitle("Privacidade · AgroLines offline")
+        dialog.resize(760, 600)
+        layout = QVBoxLayout(dialog)
+        browser = QTextBrowser()
+        browser.setOpenExternalLinks(False)
+        browser.setOpenLinks(False)
+        browser.setHtml(content.read_text(encoding="utf-8"))
+        layout.addWidget(browser)
+        buttons = QDialogButtonBox(QDialogButtonBox.Close)
+        buttons.rejected.connect(dialog.reject)
+        layout.addWidget(buttons)
+        dialog.exec()
+
     def open_remote(self):
+        require_remote()
+
         def open_window():
             from desktop.main import MainWindow
 
@@ -148,6 +175,7 @@ class LocalProjectsWindow(QMainWindow):
             QMessageBox.warning(self, "Projeto local", str(exc))
 
     def load(self, path):
+        require_local_path(path)
         project = LocalProject(path)
         if self.project:
             self.project.close()

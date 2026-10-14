@@ -22,6 +22,7 @@ from PySide6.QtWidgets import (
     QVBoxLayout,
 )
 
+from core.offline_policy import require_remote
 from core.passwords import MAX_PASSWORD_LENGTH, MIN_PASSWORD_LENGTH
 from desktop.client import ApiClient, ApiError
 from desktop.geography import GeographyController
@@ -66,6 +67,7 @@ class Job(QThread):
 
 class MainWindow(PageBuilders, QMainWindow):
     def __init__(self, client=None):
+        require_remote()
         super().__init__()
         apply_theme()
         self.client = client or ApiClient(os.getenv("AGROLINES_API_URL", "http://127.0.0.1:8000"))

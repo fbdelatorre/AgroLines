@@ -78,7 +78,11 @@ def stage(payload, output, version):
     if not executable.is_file() or executable.read_bytes()[:2] != b"MZ":
         raise ValueError("Expected Windows PyInstaller executable")
     metadata = json.loads((payload / "_internal/distribution/windows/metadata.json").read_text())
-    if metadata.get("store_identity") != identity() or metadata["version"] != version:
+    if (
+        metadata.get("store_identity") != identity()
+        or metadata["version"] != version
+        or metadata.get("offline_only") is not True
+    ):
         raise ValueError("Build the Store payload with matching metadata/version first")
     if output == payload or output.is_relative_to(payload) or payload.is_relative_to(output):
         raise ValueError("MSIX staging must be separate from the payload")

@@ -4,6 +4,7 @@ from urllib.error import HTTPError, URLError
 from urllib.parse import urlsplit
 from urllib.request import HTTPRedirectHandler, Request, build_opener
 
+from core.offline_policy import require_remote
 from desktop.vault import WindowsVault
 
 
@@ -21,6 +22,7 @@ class NoRedirect(HTTPRedirectHandler):
 
 class ApiClient:
     def __init__(self, url, vault=None):
+        require_remote()
         parsed = urlsplit(url)
         if (
             parsed.scheme not in ("http", "https")
@@ -42,6 +44,7 @@ class ApiClient:
         self.state["origin"] = self.url
 
     def raw(self, method, path, body=None, access=None):
+        require_remote()
         headers = {"Accept": "application/json"}
         if access:
             headers["Authorization"] = "Bearer " + access
