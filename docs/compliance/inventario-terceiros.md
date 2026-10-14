@@ -87,3 +87,14 @@ Todos os 798 caminhos foram registrados; 178 são PE. Isso não fecha os compone
 A versão de cada DLL no PE, quando presente, permanece no registro por arquivo; versões ausentes não foram adivinhadas. OpenBLAS 0.3.34.106.0 é declaração do `numpy/__config__.py` do wheel exato, não identificação de commit ou do LAPACK/GCC. GEOS 3.11.3 e 3.14.1 foram conferidos nas strings dos dois pares de DLLs de wheels com SHA validado, e a segunda também no probe congelado. PROJ 9.3.1 consta no SPDX/CMake da Fiona; PROJ 9.8.1 no probe do pyproj.
 
 Os copyrights transcritos e os textos completos conservam o escopo original. Não se usa o copyright da FSF no texto LGPL como se fosse o copyright de Qt ou GEOS. A inexistência de patch AgroLines não comprova que o fornecedor não aplicou patches, nem elimina os reparos do delvewheel.
+
+## Bases de coordenadas realmente incluídas
+
+Os dois proj.db foram lidos com SQLite `mode=ro&immutable=1`, após confirmar seus
+hashes contra o manifesto do MSIX; hashes permaneceram iguais. Fiona: PROJ 9.3.1,
+PROJ_DATA 1.16, EPSG v10.098 (24/11/2023), ESRI ArcGIS Pro 3.2. pyproj: PROJ 9.8.1,
+PROJ_DATA 1.24, EPSG v12.029 (02/10/2025), ESRI ArcGIS Pro 3.6. Também contêm
+registros IGNF e NKG com versões/origens em
+[evidence/proj-databases.json](evidence/proj-databases.json). Isso identifica as
+bases, sem aplicar automaticamente a licença MIT do software aos datasets.
+Nenhuma base, configuração de projeção, grid ou algoritmo foi alterado/atualizado.

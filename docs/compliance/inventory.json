@@ -10368,7 +10368,7 @@
     {
       "id": "Fiona-data",
       "producer": "See path-level origin and parent component",
-      "version": null,
+      "version": "PROJ data portion 1.16 / EPSG v10.098 / ESRI ArcGIS Pro 3.2 / IGNF 3.1.0 / NKG 1.0.0; remaining GDAL data per file",
       "license_evidence": "Resource provenance/subcomponent review; no license inferred",
       "notice_files": [],
       "copyright_evidence": [],
@@ -10383,12 +10383,13 @@
         "Classify embedded resource content; filename coverage is not source-code SBOM completeness"
       ],
       "source_requirement": "embedded_license_review",
-      "copyright_scope_confirmed": false
+      "copyright_scope_confirmed": false,
+      "dataset_evidence": "evidence/proj-databases.json"
     },
     {
       "id": "PROJ-data",
       "producer": "See path-level origin and parent component",
-      "version": null,
+      "version": "PROJ data 1.24 / EPSG v12.029 / ESRI ArcGIS Pro 3.6 / IGNF 3.1.0 / NKG 1.0.w (database metadata)",
       "license_evidence": "Resource provenance/subcomponent review; no license inferred",
       "notice_files": [],
       "copyright_evidence": [],
@@ -10403,7 +10404,8 @@
         "Classify embedded resource content; filename coverage is not source-code SBOM completeness"
       ],
       "source_requirement": "embedded_license_review",
-      "copyright_scope_confirmed": false
+      "copyright_scope_confirmed": false,
+      "dataset_evidence": "evidence/proj-databases.json"
     },
     {
       "id": "archive-notices-only",

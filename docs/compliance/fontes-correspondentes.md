@@ -95,3 +95,9 @@ os scripts/alvos de créditos e preparar a solicitação exata ao fornecedor. A 
 Windows de ausência de chrome://credits está em `evidence/qt-credits-runtime.json`;
 a captura falhou e não foi apresentada como aviso reunido. Ver
 [solicitações não enviadas](solicitacoes-fornecedores.md).
+
+As versões das bases PROJ/EPSG/ESRI/IGNF/NKG foram identificadas diretamente nos
+dois bancos incluídos, em modo somente leitura e com hashes conferidos antes/depois.
+Os metadados e o método estão em `evidence/proj-databases.json`; revisar termos e
+atribuições desses dados separadamente. Não baixar grids ou atualizar bases como
+forma de obter avisos: isso mudaria o candidato e a fundação de precisão.
