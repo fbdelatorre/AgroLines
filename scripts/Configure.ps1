@@ -22,7 +22,8 @@ try {
     if ($LASTEXITCODE -ne 0) { throw 'Falha ao instalar dependencias.' }
     & $python -m pip check
     if ($LASTEXITCODE -ne 0) { throw 'Dependencias incompativeis.' }
-    Write-Host 'Configuracao concluida. Execute scripts\Start-Server.ps1 apos preparar PostgreSQL/PostGIS.'
+    Write-Host 'Dependencias instaladas; assinatura e compatibilidade Smart App Control ainda exigem auditoria (docs\windows-security.md).'
+    Write-Host 'Configuracao de desenvolvimento concluida. Execute scripts\Start-Server.ps1 apos preparar PostgreSQL/PostGIS.'
 } finally {
     Pop-Location
 }

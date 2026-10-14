@@ -22,8 +22,10 @@ from PySide6.QtWidgets import (
     QVBoxLayout,
 )
 
+from core.offline_policy import require_remote
 from core.passwords import MAX_PASSWORD_LENGTH, MIN_PASSWORD_LENGTH
 from desktop.client import ApiClient, ApiError
+from desktop.geography import GeographyController
 from desktop.health import check_health
 from desktop.icons import icon
 from desktop.labels import ROLE_DESCRIPTIONS, ROLE_NAMES, SECTIONS, STATUSES, scope_text
@@ -65,12 +67,14 @@ class Job(QThread):
 
 class MainWindow(PageBuilders, QMainWindow):
     def __init__(self, client=None):
+        require_remote()
         super().__init__()
         apply_theme()
         self.client = client or ApiClient(os.getenv("AGROLINES_API_URL", "http://127.0.0.1:8000"))
         self.online = None
         self.job = None
         self.pending_read = None
+        self.geo = None
         self.farms = []
         self.invite_records = []
         self._populating = False
@@ -206,6 +210,14 @@ class MainWindow(PageBuilders, QMainWindow):
         self.workspace.activate_map(title == "Mapa")
         if hasattr(self, "section_title"):
             self.section_title.setText(title + (" · Em desenvolvimento" if title == "Mapa" else ""))
+        if title == "Mapa":
+            if self.geo is None:
+                try:
+                    self.geo = GeographyController(self)
+                except ValueError as exc:
+                    self.notice(str(exc))
+                    return
+            self.geo.refresh()
         if title == "Convites recebidos e enviados" and self.client.state.get("access_token"):
             self.load_invites()
         elif title == "Usuários e permissões" and self.member_farm.currentData():
@@ -238,6 +250,20 @@ class MainWindow(PageBuilders, QMainWindow):
         self.context_property.setAccessibleName("Contexto da propriedade")
         self.context_property.currentIndexChanged.connect(self.context_changed)
         row.addWidget(self.context_property, 1)
+        self.context_season = QComboBox()
+        self.context_season.setSizePolicy(QSizePolicy.Ignored, QSizePolicy.Preferred)
+        self.context_season.setMinimumWidth(75)
+        self.context_season.setPlaceholderText("Safra")
+        self.context_season.setAccessibleName("Safra do mapa")
+        self.context_season.currentIndexChanged.connect(self.geo_scope_changed)
+        row.addWidget(self.context_season, 1)
+        self.context_plot = QComboBox()
+        self.context_plot.setSizePolicy(QSizePolicy.Ignored, QSizePolicy.Preferred)
+        self.context_plot.setMinimumWidth(75)
+        self.context_plot.setPlaceholderText("Talhão")
+        self.context_plot.setAccessibleName("Talhão do mapa")
+        self.context_plot.currentIndexChanged.connect(self.geo_plot_changed)
+        row.addWidget(self.context_plot, 1)
         self.section_title = label("Entrar / Cadastro", "Hint")
         self.section_title.setWordWrap(False)
         row.addWidget(self.section_title)
@@ -257,8 +283,25 @@ class MainWindow(PageBuilders, QMainWindow):
 
     def context_changed(self, *_):
         farm_id = self.context_property.currentData()
+        if self.geo and not self._populating and not self.geo.allow_context_change(farm_id):
+            return
         farm = next((f for f in self.farms if f["id"] == farm_id), None)
         self.workspace.set_context(farm)
+        if self.geo and not self._populating:
+            self.context_season.blockSignals(True)
+            self.context_season.clear()
+            self.context_season.blockSignals(False)
+            self.context_plot.clear()
+            self.geo.refresh()
+
+    def geo_scope_changed(self, *_):
+        if self.geo and not self._populating:
+            self.geo.refresh()
+
+    def geo_plot_changed(self, *_):
+        if self.geo and self.context_plot.currentData():
+            self.geo.map.run("select", self.context_plot.currentData())
+            self.geo.map.run("fit", self.context_plot.currentData())
 
     def open_context_property(self, farm_id):
         farm = next((f for f in self.farms if f["id"] == farm_id), None)
@@ -306,7 +349,9 @@ class MainWindow(PageBuilders, QMainWindow):
         for split in self.responsive_splits:
             split.setOrientation(Qt.Horizontal if self.width() >= 1100 else Qt.Vertical)
         self.workspace.adapt(self.width() < 1050)
-        self.section_title.setVisible(self.width() >= 1100)
+        self.section_title.setVisible(self.width() >= 1400)
+        self.context_plot.setVisible(self.width() >= 1000)
+        self.context_season.setVisible(self.width() >= 800)
         self.account_button.setToolButtonStyle(
             Qt.ToolButtonIconOnly if self.width() < 900 else Qt.ToolButtonTextBesideIcon
         )
@@ -1145,6 +1190,8 @@ class MainWindow(PageBuilders, QMainWindow):
         self.pending_read = None
         self.farms = []
         self.invite_records = []
+        if self.geo:
+            self.geo.clear()
         for listing in (
             self.owned_list,
             self.shared_list,
@@ -1166,6 +1213,8 @@ class MainWindow(PageBuilders, QMainWindow):
         self.account_email.clear()
         self.account_id.clear()
         self.context_property.clear()
+        self.context_season.clear()
+        self.context_plot.clear()
         self.workspace.set_context(None)
         self.account_button.setText("Minha conta")
         self.account_button.setToolTip("Minha conta")
@@ -1186,6 +1235,8 @@ class MainWindow(PageBuilders, QMainWindow):
     def show_health(self, online):
         was_online = self.online
         self.online = online
+        if self.geo:
+            self.geo.map.set_online(online)
         self.connection.setText("● Servidor online" if online else "● Servidor offline")
         self.connection.setStyleSheet("color: #7dda9f" if online else "color: #ecaa80")
         self.connection.setToolTip(
@@ -1209,15 +1260,26 @@ class MainWindow(PageBuilders, QMainWindow):
     def closeEvent(self, event):
         self.timer.stop()
         self.worker.wait()
+        if self.geo and not self.geo.allow_close():
+            event.ignore()
+            self.timer.start(10000)
+            return
         if self.job:
             self.job.wait()
+        if self.geo:
+            self.geo.dispose()
         event.accept()
 
 
 def main():
     app = QApplication(sys.argv)
     try:
-        window = MainWindow()
+        if "--remote" not in sys.argv:
+            from desktop.local_projects import LocalProjectsWindow
+
+            window = LocalProjectsWindow()
+        else:
+            window = MainWindow()
     except ValueError as exc:
         QMessageBox.critical(None, "Configuração inválida", str(exc))
         return 1

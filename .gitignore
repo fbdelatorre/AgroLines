@@ -15,3 +15,7 @@ backups/
 customer-data/
 *.pem
 *.key
+
+build-env/
+evidence/
+acceptance/

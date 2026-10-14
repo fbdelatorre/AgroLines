@@ -3,17 +3,21 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 
 from server.auth import router as auth_router
+from server.body_limit import BodyLimit
 from server.config import get_settings
+from server.geography import router as geography_router
 from server.properties import router as properties_router
 
 
 def create_app(settings=None, engine=None) -> FastAPI:
     settings = settings or get_settings()
     app = FastAPI(title=settings.app_name)
+    app.add_middleware(BodyLimit)
     app.state.settings = settings
     app.state.engine = engine
     app.include_router(auth_router)
     app.include_router(properties_router)
+    app.include_router(geography_router)
 
     @app.exception_handler(RequestValidationError)
     async def validation_error(request, exc):

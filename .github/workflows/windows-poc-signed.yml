@@ -1,0 +1,66 @@
+name: Windows PoC trusted signing and real SAC acceptance
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  signed-build:
+    # Retired: use guarded native signing in windows-msix.yml. No key access here.
+    if: ${{ false }}
+    # Register a dedicated trusted builder. Never executes pull_request/fork code.
+    runs-on: [self-hosted, Windows, X64, agrolines-signing]
+    environment: windows-signing
+    steps:
+      - uses: actions/checkout@v4
+      - name: Require configured legal identity and signing certificate
+        shell: pwsh
+        env:
+          MANUFACTURER: ${{ vars.AGROLINES_MANUFACTURER }}
+          THUMBPRINT: ${{ vars.AGROLINES_SIGNING_THUMBPRINT }}
+          SUBJECT: ${{ vars.AGROLINES_SIGNER_SUBJECT }}
+        run: |
+          if (-not $env:MANUFACTURER -or -not $env:THUMBPRINT -or -not $env:SUBJECT) { throw 'Configure identidade/certificado no ambiente protegido windows-signing; nao use certificado autoassinado.' }
+          if ($env:MANUFACTURER -match 'pendente') { throw 'Identidade juridica deve ser real.' }
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.10'
+      - name: Build exact runtime
+        env:
+          MANUFACTURER: ${{ vars.AGROLINES_MANUFACTURER }}
+        run: |
+          python -m venv build-env
+          ./build-env/Scripts/python.exe -m pip install --require-hashes --only-binary=:all: -r distribution/windows/requirements.lock
+          ./build-env/Scripts/python.exe -m distribution.build --manufacturer "$env:MANUFACTURER"
+      - name: Sign native payload and installer including uninstaller
+        shell: pwsh
+        env:
+          MANUFACTURER: ${{ vars.AGROLINES_MANUFACTURER }}
+          THUMBPRINT: ${{ vars.AGROLINES_SIGNING_THUMBPRINT }}
+          SUBJECT: ${{ vars.AGROLINES_SIGNER_SUBJECT }}
+        run: |
+          ./distribution/windows/Sign-Payload.ps1 -Payload dist/AgroLinesPoC -CertificateThumbprint $env:THUMBPRINT -ExpectedSignerSubject $env:SUBJECT
+          ./build-env/Scripts/python.exe -m distribution.payload --root dist/AgroLinesPoC --manifest --output dist/AgroLinesPoC/payload-manifest.json
+          ./distribution/windows/Build-Installer.ps1 -Manufacturer $env:MANUFACTURER -CertificateThumbprint $env:THUMBPRINT
+          if ((Get-AuthenticodeSignature dist/installers/AgroLinesPoC-0.1.0.1-windows-x64.exe).Status -ne 'Valid') { throw 'Instalador nao verificado.' }
+      - uses: actions/upload-artifact@v4
+        with:
+          name: windows-poc-signed-candidate
+          path: dist/installers/*.exe
+  windows11-sac:
+    needs: signed-build
+    runs-on: [self-hosted, Windows, X64, agrolines-windows11-sac]
+    environment: windows-sac-acceptance
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: windows-poc-signed-candidate
+          path: candidate
+      - name: Install and execute on real Windows 11 with SAC enforced
+        shell: pwsh
+        run: ./distribution/windows/Test-Installed.ps1 -Installer candidate/AgroLinesPoC-0.1.0.1-windows-x64.exe -InstallDirectory "$env:LOCALAPPDATA/AgroLinesPoCAcceptance" -OutputDirectory acceptance -RequireSac
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: windows11-sac-real-machine-evidence-review-required
+          path: acceptance/

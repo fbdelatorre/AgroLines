@@ -1,0 +1,163 @@
+{
+  "consulted_date": "2026-10-14",
+  "documents": [
+    {
+      "id": "anpd-transfers",
+      "url": "https://www.gov.br/anpd/pt-br/assuntos/noticias/anpd-publica-regulamento-de-transferencia-internacional-de-dados",
+      "consulted_date": "2026-10-14",
+      "status": "not_retrieved",
+      "error_type": "URLError",
+      "reason": "Tunnel connection failed: 403 Forbidden",
+      "url_status": "candidate path; origin content/existence not confirmed due to proxy block",
+      "legal_mechanism_adopted": false
+    },
+    {
+      "id": "google-frameworks",
+      "url": "https://policies.google.com/privacy/frameworks?hl=pt-BR",
+      "consulted_date": "2026-10-14",
+      "status": "not_retrieved",
+      "error_type": "URLError",
+      "reason": "Tunnel connection failed: 403 Forbidden",
+      "legal_mechanism_adopted": false
+    },
+    {
+      "id": "google-privacy",
+      "url": "https://policies.google.com/privacy?hl=pt-BR",
+      "consulted_date": "2026-10-14",
+      "status": "not_retrieved",
+      "error_type": "URLError",
+      "reason": "Tunnel connection failed: 403 Forbidden",
+      "legal_mechanism_adopted": false
+    },
+    {
+      "id": "google-terms",
+      "url": "https://policies.google.com/terms?hl=pt-BR",
+      "consulted_date": "2026-10-14",
+      "status": "not_retrieved",
+      "error_type": "URLError",
+      "reason": "Tunnel connection failed: 403 Forbidden",
+      "legal_mechanism_adopted": false
+    },
+    {
+      "id": "iarc-privacy",
+      "url": "https://www.globalratings.com/privacy-policy.aspx",
+      "consulted_date": "2026-10-14",
+      "status": "not_retrieved",
+      "error_type": "URLError",
+      "reason": "Tunnel connection failed: 403 Forbidden",
+      "url_status": "candidate path; origin content/existence not confirmed due to proxy block",
+      "legal_mechanism_adopted": false
+    },
+    {
+      "id": "lgpd",
+      "url": "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm",
+      "consulted_date": "2026-10-14",
+      "status": "not_retrieved",
+      "error_type": "URLError",
+      "reason": "Tunnel connection failed: 403 Forbidden",
+      "legal_mechanism_adopted": false
+    },
+    {
+      "id": "microsoft-groups",
+      "url": "https://learn.microsoft.com/en-us/windows/apps/publish/create-customer-groups",
+      "consulted_date": "2026-10-14",
+      "status": "retrieved",
+      "http_status": 200,
+      "final_url": "https://learn.microsoft.com/en-us/windows/apps/publish/create-customer-groups",
+      "sha256": "95d82e98fe4b80b087ecedd52056f7e359e7514e603aa5e45e29ce11dd8f090b",
+      "legal_mechanism_adopted": false
+    },
+    {
+      "id": "microsoft-privacy",
+      "url": "https://privacy.microsoft.com/pt-br/privacystatement",
+      "consulted_date": "2026-10-14",
+      "status": "not_retrieved",
+      "error_type": "URLError",
+      "reason": "Tunnel connection failed: 403 Forbidden",
+      "legal_mechanism_adopted": false
+    },
+    {
+      "id": "microsoft-ratings",
+      "url": "https://learn.microsoft.com/en-us/windows/apps/publish/publish-your-app/age-ratings",
+      "consulted_date": "2026-10-14",
+      "status": "retrieved",
+      "http_status": 200,
+      "final_url": "https://learn.microsoft.com/en-us/windows/apps/publish/publish-your-app/msix/age-ratings",
+      "sha256": "315950590105ba74967429d773b9b2d197ac45909a52819f578bb9c975a46ca4",
+      "legal_mechanism_adopted": false
+    },
+    {
+      "id": "microsoft-store-privacy",
+      "url": "https://learn.microsoft.com/en-us/windows/apps/publish/store-policies",
+      "consulted_date": "2026-10-14",
+      "status": "retrieved",
+      "http_status": 200,
+      "final_url": "https://learn.microsoft.com/en-us/windows/apps/publish/store-policies",
+      "sha256": "4cc644837d5d8a9c0f1ecddc6eae03f9320da93c0ea70186263f9cb3ec198d19",
+      "legal_mechanism_adopted": false
+    },
+    {
+      "id": "microsoft-terms",
+      "url": "https://www.microsoft.com/pt-br/servicesagreement",
+      "consulted_date": "2026-10-14",
+      "status": "not_retrieved",
+      "error_type": "URLError",
+      "reason": "Tunnel connection failed: 403 Forbidden",
+      "legal_mechanism_adopted": false
+    },
+    {
+      "id": "microsoft-eu-clauses",
+      "url": "https://learn.microsoft.com/en-us/compliance/regulatory/offering-eu-model-clauses",
+      "consulted_date": "2026-10-14",
+      "status": "retrieved",
+      "sha256": "e9ba63871b6abedf2640f0411c8a4b9fe11f88c1d1c8ba23521210983def5173",
+      "scope": "Only documented in-scope services; not proof of applicability to consumer Store/Partner Center",
+      "legal_mechanism_adopted": false
+    },
+    {
+      "id": "github-privacy",
+      "url": "https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement",
+      "retrieved_via": "https://github.com/github/site-policy/blob/main/Policies/privacy-policies/github-general-privacy-statement.md",
+      "blob_sha": "b845c1d819e4a661873a8ac0d60b25c577e3aa9a",
+      "consulted_date": "2026-10-14",
+      "status": "retrieved",
+      "sha256": "a66eb8ad9a5eacc29f692e898238ec6eb0e469199755c2a355596c696d9adf82",
+      "legal_mechanism_adopted": false
+    },
+    {
+      "id": "microsoft-actionable-analytics-insights",
+      "url": "https://learn.microsoft.com/en-us/windows/apps/publish/actionable-analytics-insights",
+      "retrieved_via": "https://github.com/MicrosoftDocs/windows-dev-docs/blob/docs/hub/apps/publish/actionable-analytics-insights.md",
+      "blob_sha": "81714432c407d17f808ba2789868805659acb9ce",
+      "status": "retrieved",
+      "consulted_date": "2026-10-14",
+      "legal_mechanism_adopted": false,
+      "live_page_retrieved": true,
+      "live_page_sha256": "384990318861e8678aa2f874f88343f63e8375f3c8af9868b4f6b0a0c3b7a0a7"
+    },
+    {
+      "id": "microsoft-improved-health-report",
+      "url": "https://learn.microsoft.com/en-us/windows/apps/publish/improved-health-report",
+      "retrieved_via": "https://github.com/MicrosoftDocs/windows-dev-docs/blob/docs/hub/apps/publish/improved-health-report.md",
+      "blob_sha": "8a724f28d6adea69d0dae5f42e57cdc413c12129",
+      "status": "retrieved",
+      "consulted_date": "2026-10-14",
+      "legal_mechanism_adopted": false,
+      "live_page_retrieved": true,
+      "live_page_sha256": "80bf85924a379804a6bd489e33132ec608781c1aa81d4aa109e5982b6dc1ee80"
+    },
+    {
+      "id": "microsoft-recent-data-acquisitions-reports",
+      "url": "https://learn.microsoft.com/en-us/windows/apps/publish/recent-data-acquisitions-reports",
+      "retrieved_via": "https://github.com/MicrosoftDocs/windows-dev-docs/blob/docs/hub/apps/publish/recent-data-acquisitions-reports.md",
+      "blob_sha": "7bb812618c17f2f6ecfb1dc5013a9604e2e0d898",
+      "status": "retrieved",
+      "consulted_date": "2026-10-14",
+      "legal_mechanism_adopted": false,
+      "live_page_retrieved": true,
+      "live_page_sha256": "ae8ce2621e1258034530c45e1f2b82abea2c4fce5fdf6fe651624d368095496f"
+    }
+  ],
+  "private_accounts_inspected": false,
+  "policy_legally_approved": false
+}

@@ -3,7 +3,7 @@
 O CI `windows-visual` abre a interface com o plugin Qt `windows`, fonte Segoe UI,
 dados sintéticos e API isolada. Captura a janela nativa com `QScreen.grabWindow`
 em escalas 100%, 125% e 150%, sem fallback offscreen. Captura indisponível ou vazia
-falha o job. Cada artefato contém 15 telas PNG e um manifesto com plataforma,
+falha o job. Cada artefato contém 19 telas PNG e um manifesto com plataforma,
 resolução lógica/física, fonte e escala. Revisar as imagens é necessário: o job
 não julga contraste, legibilidade ou organização sozinho.
 
@@ -50,3 +50,11 @@ A barra superior seleciona propriedades realmente autorizadas; o painel inferior
 mostra perfis/escopos reais e abre o cadastro ou consulta correspondente. Logout,
 expiração e revalidação limpam esse contexto junto com as telas existentes.
 Não há chamadas de mapas, provedores de imagens ou cálculos em segundo plano.
+
+## Etapa 3.1
+
+A área Mapa agora usa Leaflet real via Qt WebEngine. As capturas usam polígonos
+sintéticos importados pela API; testam um clique de identificação real, prévia,
+salvamento e edição numérica de 1 mm com nova versão. Não há fotografia de satélite
+ou dados de clientes. Roda, pan e comportamento multi-monitor continuam no checklist
+manual Windows, e imagens offscreen não aprovam esse comportamento.

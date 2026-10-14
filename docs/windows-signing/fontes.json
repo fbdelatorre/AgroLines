@@ -1,0 +1,140 @@
+{
+  "consulted_date": "2026-10-14",
+  "sources": [
+    {
+      "name": "ssl-iv",
+      "url": "https://www.ssl.com/certificates/code-signing/",
+      "status": "unavailable",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "name": "ssl-esigner",
+      "url": "https://www.ssl.com/esigner/",
+      "status": "unavailable",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "name": "ssl-code-validation",
+      "url": "https://www.ssl.com/how-to/validation-requirements-for-code-signing-and-ev-code-signing-certificates/",
+      "status": "unavailable",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "name": "ssl-individual",
+      "url": "https://www.ssl.com/how-to/individual-validation-requirements/",
+      "status": "unavailable",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "name": "certum-standard",
+      "url": "https://shop.certum.eu/certum-code-signing.html",
+      "status": "unavailable",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "name": "certum-simplysign",
+      "url": "https://www.certum.eu/en/simplysign/",
+      "status": "unavailable",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "name": "digicert-code",
+      "url": "https://www.digicert.com/signing/code-signing-certificates",
+      "status": "unavailable",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "name": "digicert-individual",
+      "url": "https://docs.digicert.com/en/certcentral/manage-certificates/code-signing-certificates/individual-code-signing-certificates.html",
+      "status": "unavailable",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "name": "globalsign-code",
+      "url": "https://www.globalsign.com/en/code-signing-certificate",
+      "status": "unavailable",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "name": "azure-public",
+      "url": "https://learn.microsoft.com/en-us/azure/artifact-signing/quickstart",
+      "resolved_url": "https://learn.microsoft.com/en-us/azure/artifact-signing/quickstart",
+      "status": "read",
+      "bytes": 104863,
+      "sha256": "3dcda74ed3eeae48d5b529a823278723969b62234b685031e46dbcb9a2153099"
+    },
+    {
+      "name": "store-internals",
+      "url": "https://learn.microsoft.com/en-us/windows/apps/develop/smart-app-control/code-signing-for-smart-app-control",
+      "resolved_url": "https://learn.microsoft.com/en-us/windows/apps/develop/smart-app-control/code-signing-for-smart-app-control",
+      "status": "read",
+      "bytes": 51808,
+      "sha256": "0a795ccf45f117221d706c142b2ff44bb7bdb6603acd1f0f8e935ac40b6cb62a"
+    },
+    {
+      "name": "store-sign",
+      "url": "https://learn.microsoft.com/en-us/windows/msix/package/signing-package-overview",
+      "resolved_url": "https://learn.microsoft.com/en-us/windows/msix/package/signing-package-overview",
+      "status": "read",
+      "bytes": 57528,
+      "sha256": "b2c41c26ef86552474859860b36ec4335f0ad5b5fe8a282083f3c149c964f528"
+    },
+    {
+      "name": "ms-signing",
+      "url": "https://learn.microsoft.com/en-us/windows/msix/package/sign-app-package-using-signtool",
+      "resolved_url": "https://learn.microsoft.com/en-us/windows/msix/package/sign-app-package-using-signtool",
+      "status": "read",
+      "bytes": 53593,
+      "sha256": "70801cafbbaa6562af7f8fe3f4fa3a4befae9000b7319645e2ae948051edd12f"
+    },
+    {
+      "name": "cabf-code",
+      "url": "https://cabforum.org/working-groups/code-signing/requirements/",
+      "status": "unavailable",
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "name": "ms-options",
+      "url": "https://learn.microsoft.com/en-us/windows/apps/package-and-deploy/code-signing-options",
+      "resolved_url": "https://learn.microsoft.com/en-us/windows/apps/package-and-deploy/code-signing-options",
+      "status": "read",
+      "sha256": "2cd09baf0e7d8ea773e4148acc5c6c07b4a90d61384571d6150e8a70359ce82f",
+      "bytes": 61360
+    },
+    {
+      "name": "ssl-github",
+      "url": "https://github.com/SSLcom/esigner-codesign/blob/develop/README.md",
+      "status": "read",
+      "blob_sha": "37413ed464badf43a2365d1d174941c148bf396f",
+      "sha256": "566d588f32b8fba6d758869b949d6d91bd1c1385b912f228402e397826fff4a7",
+      "bytes": 2593
+    },
+    {
+      "name": "digicert-github",
+      "url": "https://github.com/digicert/ssm-code-signing/blob/master/README.md",
+      "status": "read",
+      "blob_sha": "2b37e64b4cea772fc10cb375955cf08822a93106",
+      "sha256": "1de8e4d76123d0d968e122fe19a4b5d065d778f0dc5be172550b85cdb907ef17",
+      "bytes": 5779
+    },
+    {
+      "name": "digicert-current-github",
+      "url": "https://github.com/digicert/code-signing-software-trust-action/blob/main/README.md",
+      "status": "read",
+      "blob_sha": "530083d34321ec43bd02690787272a4975fe77c4",
+      "sha256": "ad377ff0eb907c2cf310f3e2c92f2c6c1a20e30bd046e0ea26ee2241437266da",
+      "bytes": 14101
+    },
+    {
+      "name": "cabf-github",
+      "url": "https://github.com/cabforum/code-signing/blob/main/docs/CSBR.md",
+      "status": "read",
+      "blob_sha": "7210e31c30c750fc175be786d441e8b1e0cb8e96",
+      "sha256": "92b7860709c9b92719e4ed73d43f3230d5b437b78ab382423b84e6b0f6d74ac7",
+      "bytes": 296528
+    }
+  ],
+  "provider_brazil_individual_eligibility_confirmed": false,
+  "services_purchased": false,
+  "store_submission_authorized": false
+}

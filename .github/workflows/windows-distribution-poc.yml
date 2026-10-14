@@ -1,0 +1,72 @@
+name: Windows Distribution PoC (not SAC approval)
+on:
+  push:
+    paths: ['distribution/**', 'core/**', 'desktop/map_assets/**', 'desktop/gis_map.py', 'desktop/local_projects.py', 'scripts/precision_report.py', '.github/workflows/windows-distribution-poc.yml']
+  pull_request:
+    paths: ['distribution/**', 'core/**', 'desktop/map_assets/**', 'desktop/gis_map.py', 'desktop/local_projects.py', 'scripts/precision_report.py', '.github/workflows/windows-distribution-poc.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  frozen-installer:
+    # The Store integration uses MSIX extraction/probes, not the legacy unsigned installer.
+    if: github.ref != 'refs/heads/integration/store-candidate' && github.head_ref != 'integration/store-candidate'
+    runs-on: windows-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.10'
+      - name: Parse maintainer PowerShell scripts
+        shell: pwsh
+        run: |
+          foreach ($file in (Get-ChildItem distribution/windows -Filter '*.ps1')) {
+            $tokens = $null; $errors = $null
+            [System.Management.Automation.Language.Parser]::ParseFile($file.FullName, [ref]$tokens, [ref]$errors) | Out-Null
+            if ($errors.Count) { throw ($errors | Out-String) }
+          }
+      - name: Create isolated, hashed build environment
+        run: |
+          python -m venv build-env
+          ./build-env/Scripts/python.exe -m pip install --require-hashes --only-binary=:all: -r distribution/windows/requirements.lock
+          ./build-env/Scripts/python.exe -m pip check
+      - name: Current public signing prices (informative, not a release gate)
+        run: ./build-env/Scripts/python.exe -m distribution.costs --output evidence/signing-prices.json
+      - name: Frozen executable 0.1.0.1
+        run: ./build-env/Scripts/python.exe -m distribution.build --version 0.1.0.1
+      - name: Audit the actual payload, not builder packages
+        run: ./build-env/Scripts/python.exe -m distribution.payload --root dist/AgroLinesPoC --output evidence/native-inventory.json
+      - name: Authenticode audit (unsigned internal build, SAC unproven)
+        shell: pwsh
+        run: ./scripts/Audit-NativeWindows.ps1 -Inventory evidence/native-inventory.json -Output evidence/native-signatures.json
+      - name: Hash final runtime resources
+        run: ./build-env/Scripts/python.exe -m distribution.payload --root dist/AgroLinesPoC --manifest --output dist/AgroLinesPoC/payload-manifest.json
+      - name: Build installer
+        shell: pwsh
+        run: ./distribution/windows/Build-Installer.ps1 -Version 0.1.0.1
+      - name: Install, run frozen app, uninstall (hosted Windows is not SAC acceptance)
+        shell: pwsh
+        run: ./distribution/windows/Test-Installed.ps1 -Installer dist/installers/AgroLinesPoC-0.1.0.1-windows-x64.exe -InstallDirectory "$env:LOCALAPPDATA/AgroLinesPoCTestInstall" -OutputDirectory evidence/installed
+      - name: Frozen update 0.1.0.2
+        run: |
+          ./build-env/Scripts/python.exe -m distribution.build --version 0.1.0.2
+          ./build-env/Scripts/python.exe -m distribution.payload --root dist/AgroLinesPoC --manifest --output dist/AgroLinesPoC/payload-manifest.json
+      - name: Build update installer and test upgrade
+        shell: pwsh
+        run: |
+          ./distribution/windows/Build-Installer.ps1 -Version 0.1.0.2
+          ./distribution/windows/Test-Upgrade.ps1 -FirstInstaller dist/installers/AgroLinesPoC-0.1.0.1-windows-x64.exe -NextInstaller dist/installers/AgroLinesPoC-0.1.0.2-windows-x64.exe -InstallDirectory "$env:LOCALAPPDATA/AgroLinesPoCTestUpgrade" -OutputDirectory evidence/upgrade
+      - name: Hash artifacts
+        shell: pwsh
+        run: |
+          Get-ChildItem dist/installers -File | Get-FileHash -Algorithm SHA256 | Select-Object Hash,Path | ConvertTo-Json | Set-Content evidence/artifact-hashes.json
+          Write-Output '::warning::Build INTERNO NAO ASSINADO. CI nao homologa Smart App Control. Nao publicar como release comercial.'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: windows-distribution-poc-unsigned-internal
+          path: |
+            dist/installers/*.exe
+            evidence/
+          if-no-files-found: error

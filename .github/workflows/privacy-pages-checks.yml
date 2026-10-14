@@ -1,0 +1,30 @@
+name: Privacy Pages preparation checks (no publication)
+on:
+  push:
+    paths: ['scripts/prepare_privacy_pages.py', 'scripts/check_privacy_layout.py', 'tests/test_privacy_pages.py', 'docs/privacy/offline/**', '.github/workflows/privacy-pages*.yml']
+  pull_request:
+    paths: ['scripts/prepare_privacy_pages.py', 'scripts/check_privacy_layout.py', 'tests/test_privacy_pages.py', 'docs/privacy/offline/**', '.github/workflows/privacy-pages*.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  private-layout-check:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Browser automation tooling (not included in AgroLines)
+        run: |
+          python -m pip install --only-binary=:all: playwright==1.62.0
+      - name: Check existing HTML locally in signed Chrome with sandbox enabled
+        shell: pwsh
+        run: |
+          $browser = 'C:/Program Files/Google/Chrome/Application/chrome.exe'
+          if (-not (Test-Path $browser)) { throw 'Chrome do runner nao encontrado; nao desativar sandbox.' }
+          if ((Get-AuthenticodeSignature $browser).Status -ne 'Valid') { throw 'Assinatura do navegador invalida.' }
+          python -m scripts.check_privacy_layout --browser $browser --output build/privacy-layout
+          if ($LASTEXITCODE) { throw 'Verificacao de layout falhou.' }
+      # No deployment, Pages write permission, site artifact or draft screenshots uploaded.

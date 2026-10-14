@@ -1,0 +1,11 @@
+# Exact PoC inputs. Compile requirements.lock for Windows/Python 3.12 with hashes.
+numpy==2.5.4
+shapely==2.2.0
+pyproj==3.8.0
+fiona==1.10.1
+PySide6==6.12.0
+defusedxml==0.7.1
+pyinstaller==6.22.3
+pyinstaller-hooks-contrib==2026.8
+# Existing remote collaboration UI, opened only on explicit request.
+email-validator==2.3.0

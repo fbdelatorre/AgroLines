@@ -28,7 +28,7 @@ try {
     }
     # Additive versioned migration only: never creates/drops the database or erases user data.
     & $python -m alembic upgrade head
-    if ($LASTEXITCODE -ne 0) { throw 'Migracao falhou. Servidor nao sera iniciado.' }
+    if ($LASTEXITCODE -ne 0) { throw 'Migracao falhou. Servidor nao sera iniciado. Para bloqueios de Controle de Aplicativo, consulte docs\windows-security.md; nao desative protecoes.' }
     & $python -m uvicorn server.main:app --host 127.0.0.1 --port $Port
     if ($LASTEXITCODE -ne 0) { throw 'Servidor encerrado com erro.' }
 } finally {

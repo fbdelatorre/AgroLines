@@ -1,0 +1,94 @@
+[
+  {
+    "name": "store-signing",
+    "url": "https://learn.microsoft.com/en-us/windows/msix/package/signing-package-overview",
+    "status": 200,
+    "sha256": "b2c41c26ef86552474859860b36ec4335f0ad5b5fe8a282083f3c149c964f528",
+    "bytes": 57528,
+    "accessed_utc": "2026-10-14"
+  },
+  {
+    "name": "signing-options",
+    "url": "https://learn.microsoft.com/en-us/windows/apps/package-and-deploy/code-signing-options",
+    "status": 200,
+    "sha256": "2cd09baf0e7d8ea773e4148acc5c6c07b4a90d61384571d6150e8a70359ce82f",
+    "bytes": 61360,
+    "accessed_utc": "2026-10-14"
+  },
+  {
+    "name": "sac",
+    "url": "https://learn.microsoft.com/en-us/windows/apps/develop/smart-app-control/code-signing-for-smart-app-control",
+    "status": 200,
+    "sha256": "0a795ccf45f117221d706c142b2ff44bb7bdb6603acd1f0f8e935ac40b6cb62a",
+    "bytes": 51808,
+    "accessed_utc": "2026-10-14"
+  },
+  {
+    "name": "audience",
+    "url": "https://learn.microsoft.com/en-us/windows/apps/publish/publish-your-app/msix/visibility",
+    "status": "unavailable",
+    "error": "HTTPError"
+  },
+  {
+    "name": "flights",
+    "url": "https://learn.microsoft.com/en-us/windows/apps/publish/package-flights",
+    "status": 200,
+    "sha256": "054387121a07f4505ba1db42325163994edc489836ac9ff1b5d8cd6799cdf83c",
+    "bytes": 67266,
+    "accessed_utc": "2026-10-14"
+  },
+  {
+    "name": "audience-confirmed",
+    "url": "https://learn.microsoft.com/en-us/windows/apps/publish/publish-your-app/msix/visibility-options",
+    "status": 200,
+    "sha256": "4d413e034e169a2c2547c6a67f5def6c19ca5cfffff52839bc8169ee3e4f798c",
+    "bytes": 64329,
+    "accessed_utc": "2026-10-14"
+  },
+  {
+    "name": "msix-overview",
+    "url": "https://learn.microsoft.com/en-us/windows/msix/overview",
+    "status": 200,
+    "sha256": "7649a009c7dccaa1dfa62d3c5c940a31f1200a053e53015fa9814f81bea69ba5",
+    "bytes": 53088,
+    "accessed_utc": "2026-10-14"
+  },
+  {
+    "name": "win32-packaging",
+    "url": "https://learn.microsoft.com/en-us/windows/msix/desktop/desktop-to-uwp-root",
+    "status": 200,
+    "sha256": "d8b2a14a4f2a9c08fd611dbe03387996dfde0aa0a260f3296d7ab0c2a500a6f0",
+    "bytes": 51285,
+    "accessed_utc": "2026-10-14"
+  },
+  {
+    "name": "ucrt",
+    "url": "https://learn.microsoft.com/en-us/cpp/windows/universal-crt-deployment?view=msvc-170",
+    "status": 200,
+    "sha256": "aac514ba77010fceeff82a400f496c2a8d001806b58f56137af62427127646c4",
+    "bytes": 53739,
+    "accessed_utc": "2026-10-14"
+  },
+  {
+    "name": "qt-serialport-retained",
+    "url": "https://github.com/qt/qtserialport/blob/v6.12.0/src/serialport/qserialport.cpp",
+    "blob_sha": "e673bc40d4c85aae12ef88c2277a81315e3b3a72",
+    "sha256": "d7cd4b8682dece4b05f9b4442a631e27b460dba2589e17d154d0001d3d8e70e3",
+    "status": "read",
+    "accessed_utc": "2026-10-14",
+    "scope": "Upstream header v6.12.0; does not replace full wheel source/license review"
+  },
+  {
+    "name": "qtwebengine-6.140-tags",
+    "url": "https://api.github.com/repos/qt/qtwebengine/git/matching-refs/tags/v6.140",
+    "status": "read",
+    "accessed_utc": "2026-10-14",
+    "refs": [
+      "v6.140.0-beta1",
+      "v6.140.0-beta2",
+      "v6.140.0-rc"
+    ],
+    "final_ref_found": false,
+    "scope": "Runtime reports 6.140.0; beta/RC source is not verified corresponding source for final wheel"
+  }
+]

@@ -1,0 +1,27 @@
+name: Signed Microsoft Store MSIX validation (manual, no publication)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  signed-package:
+    runs-on: [self-hosted, Windows, X64, agrolines-store-validation]
+    environment: microsoft-store-validation
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate trusted packages on real clean Windows 11 with SAC
+        shell: pwsh
+        env:
+          AGROLINES_MSIX_FIRST: ${{ vars.AGROLINES_MSIX_FIRST }}
+          AGROLINES_MSIX_UPDATE: ${{ vars.AGROLINES_MSIX_UPDATE }}
+        run: |
+          if (-not $env:AGROLINES_MSIX_FIRST -or -not $env:AGROLINES_MSIX_UPDATE) { throw 'Defina caminhos locais dos dois MSIX assinados pela Store/identidade oficial; nao colocar credenciais no repositorio.' }
+          ./distribution/windows/msix/Test-SignedMSIX.ps1 -FirstPackage $env:AGROLINES_MSIX_FIRST -UpdatePackage $env:AGROLINES_MSIX_UPDATE -OutputDirectory evidence/msix-installed -RequireSac -RequireCleanMachine
+          Write-Output '::warning::Conexao do runner GitHub ativa: executar separadamente o roteiro fisicamente desconectado antes de homologar offline.'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: signed-msix-installed-evidence-physical-offline-still-required
+          path: evidence/msix-installed/
+          if-no-files-found: error

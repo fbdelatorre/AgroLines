@@ -1,0 +1,70 @@
+name: Privacy policy Pages (manual, reviewed text only)
+on:
+  workflow_dispatch:
+    inputs:
+      acknowledgement:
+        description: Digite PUBLICAR_POLITICA_REVISADA apenas depois da revisão jurídica e operacional
+        required: true
+        type: string
+      approved_html_sha256:
+        description: SHA-256 exato do HTML revisado e aprovado (64 caracteres)
+        required: true
+        type: string
+permissions:
+  contents: read
+concurrency:
+  group: privacy-pages
+  cancel-in-progress: false
+jobs:
+  prepare:
+    if: inputs.acknowledgement == 'PUBLICAR_POLITICA_REVISADA'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      pages: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Stage only approved public HTML without rewriting it
+        env:
+          APPROVED_HTML_SHA256: ${{ inputs.approved_html_sha256 }}
+        run: |
+          python -m scripts.prepare_privacy_pages --approved-sha256 "$APPROVED_HTML_SHA256"
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: false
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: build/privacy-site
+  deploy:
+    needs: prepare
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: https://fbdelatorre.github.io/AgroLines/privacidade/
+    steps:
+      - uses: actions/deploy-pages@v4
+        id: deployment
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify anonymous HTTPS page matches approved HTML
+        env:
+          APPROVED_HTML_SHA256: ${{ inputs.approved_html_sha256 }}
+        run: |
+          for attempt in 1 2 3 4 5 6; do
+            if python -m scripts.prepare_privacy_pages --approved-sha256 "$APPROVED_HTML_SHA256" --verify-public; then
+              exit 0
+            fi
+            sleep 10
+          done
+          exit 1

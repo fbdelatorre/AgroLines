@@ -2,14 +2,23 @@
 Aplicativo nativo Windows para planejamento agrícola, com servidor próprio, sem Supabase.
 A **Etapa 2.1** refina a interface escura e adota senhas de 6–128 caracteres.
 A identidade visual segue a referência fornecida: barra superior, menu compacto
-e estrutura central de mapa com painéis redimensionáveis/recolhíveis. A seção
-**Mapa** é preparação visual explícita; cartografia continua não implementada.
+e estrutura central de mapa com painéis redimensionáveis/recolhíveis. A **Etapa 3.1** acrescenta mapa vetorial, importação de polígonos e edição numérica
+como primeiro incremento da Etapa 3; veja [cartografia](docs/geography.md) e
+[precisão](docs/precision.md). A Etapa 3 completa ainda não foi aprovada.
 A **Etapa 2** implementa contas, autenticação, propriedades, safras/operações mínimas
 para escopos, convites e permissões persistentes. A navegação da Etapa 1 e seu
 healthcheck foram preservados. Talhões, equipamentos, geometria, planos, exportadores
 e sincronização completa continuam **Em desenvolvimento**.
 
-## Windows 11 — sem Docker
+## Distribuição Windows para clientes
+
+O produto final terá runtime embutido e instalador, sem exigir Python, pip,
+PowerShell ou PostgreSQL local do cliente. A prova de distribuição ainda não está
+aprovada para SAC: veja [executável, instalador e homologação](docs/windows-distribution-poc.md).
+Delatorre Corporation é a marca informada, com identidade jurídica ainda não verificada.
+
+## Desenvolvimento do servidor no Windows 11 — sem Docker
+Estas instruções são para mantenedores do servidor, não para clientes.
 Instale Python 3.12 e PostgreSQL com a extensão PostGIS compatível (por exemplo,
 instalador PostgreSQL e PostGIS pelo Stack Builder). Docker é opcional.
 A Etapa 2 foi validada pelo usuário com PostgreSQL 18/PostGIS 3.6.2 no Windows 11;
@@ -17,8 +26,6 @@ o ambiente de integração automatizado usa PostgreSQL 16/PostGIS 3.4.
 
 No PowerShell, na raiz do checkout:
 ```powershell
-# Se a política local impedir scripts, apenas nesta sessão:
-Set-ExecutionPolicy -Scope Process RemoteSigned
 .\scripts\Configure.ps1 -Desktop
 ```
 Para **um banco novo**, configure uma conta própria e o banco. Não execute criação
@@ -119,3 +126,28 @@ consultas e encerramento com consulta em andamento. Offscreen não substitui ess
 Veja [autenticação e configuração](docs/authentication.md), [permissões](docs/permissions.md),
 [arquitetura](docs/architecture.md), [roadmap](docs/roadmap.md), [backup](docs/backup.md)
 e [dependências/licenças](docs/dependencies.md). Não avançar à Etapa 3 sem aprovação.
+
+Compatibilidade Windows 11 com Smart App Control ativo ainda exige homologação.
+Veja [diagnóstico, auditoria e aceitação](docs/windows-security.md); não desative
+proteções para iniciar componentes bloqueados.
+
+Prova de executável/instalador Windows com runtime embutido: [distribuição comercial](docs/windows-distribution-poc.md). Aprovação SAC e assinatura final continuam condicionadas à homologação real.
+
+### Projetos locais e preparação comercial
+
+O desktop abre projetos locais por padrão, sem login, API ou PostgreSQL.
+Crie um arquivo `.agrolines`, importe polígonos, edite vértices, salve versões e
+faça backup/restauração. A colaboração anterior continua disponível pela ação
+**Colaboração online** ou, para mantenedores, `python -m desktop.main --remote`.
+No PoC Windows, use **Projetos locais** ou o argumento `--local`.
+Consulte [plano, execução e critérios offline/licenciamento](docs/offline-and-licensing.md).
+Licenciamento comercial é um contrato futuro; desenvolvimento permanece liberado.
+A homologação Windows 11/SAC com internet desconectada continua pendente.
+
+### Microsoft Store / MSIX
+
+A identidade oficial do Partner Center está configurada, sem publicação automática.
+O pipeline gera um candidato MSIX x64 com todo o payload PyInstaller e dados locais
+fora da instalação. Consulte [Microsoft Store: geração, homologação e pendências](docs/microsoft-store-msix.md).
+Instalação MSIX, subprocessos Qt sob identidade de pacote e SAC só serão declarados
+validados com pacote confiavelmente assinado e bancada Windows 11 real.
