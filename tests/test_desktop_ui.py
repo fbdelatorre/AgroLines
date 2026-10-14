@@ -255,3 +255,59 @@ def test_future_map_replacement_keeps_existing_navigation(qt):
     assert pages.widget(form_index) is form
     assert pages.widget(workspace.map_index) is replacement
     workspace.close()
+
+
+def test_numeric_dialog_grid_millimetre_save_and_undo(api, qt, monkeypatch):
+    from pyproj import CRS
+    from shapely.geometry import Polygon, mapping
+
+    from desktop.vertex_editor import NumericVertexDialog
+    from tests.test_geography import body
+
+    _, headers, _ = account(api)
+    farm = api.post("/farms", headers=headers, json={"name": "Numeric dialog"}).json()
+    geometry = mapping(
+        Polygon([(300000.000123, 7500000), (300100, 7500000), (300100, 7500100), (300000, 7500100)])
+    )
+    imported = api.post(f"/farms/{farm['id']}/plots/import", headers=headers, json=body(geometry))
+    assert imported.status_code == 201
+    monkeypatch.setattr("desktop.main.check_health", lambda url: True)
+    client = client_for(api)
+    client.authenticate("owner@example.com", "Senha sintetica 123!")
+    window = MainWindow(client)
+    window.timer.stop()
+    window.worker.wait()
+    qt.processEvents()
+    wait_for_idle(window)
+    window.resize(1280, 860)
+    window.show()
+    try:
+        window.navigate_to("Mapa")
+        wait_for_idle(window)
+        feature = window.geo.features[0]
+        dialog = NumericVertexDialog(window.geo, feature)
+        original_x = dialog.number(dialog.x)
+        assert abs(original_x - 300000.000123) < 0.005
+        assert CRS.from_user_input(dialog.editor.work_crs).to_epsg() == 32723
+        dialog.distance.setText("0,001")
+        dialog.move()
+        assert abs(dialog.number(dialog.x) - original_x - 0.001) < 1e-8
+        dialog.undo()
+        assert dialog.number(dialog.x) == original_x
+        dialog.redo()
+        dialog.save()
+        wait_for_idle(window)
+        assert dialog.saved
+        current = api.get(f"/farms/{farm['id']}/plots", headers=headers).json()["features"][0]
+        assert current["properties"]["revision"] == 2
+        assert (
+            abs(
+                current["properties"]["original_geometry"]["coordinates"][0][0][0]
+                - 300000.000123
+                - 0.001
+            )
+            < 1e-8
+        )
+    finally:
+        window.close()
+        qt.processEvents()
