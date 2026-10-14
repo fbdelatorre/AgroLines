@@ -120,3 +120,7 @@ consultas e encerramento com consulta em andamento. Offscreen não substitui ess
 Veja [autenticação e configuração](docs/authentication.md), [permissões](docs/permissions.md),
 [arquitetura](docs/architecture.md), [roadmap](docs/roadmap.md), [backup](docs/backup.md)
 e [dependências/licenças](docs/dependencies.md). Não avançar à Etapa 3 sem aprovação.
+
+Compatibilidade Windows 11 com Smart App Control ativo ainda exige homologação.
+Veja [diagnóstico, auditoria e aceitação](docs/windows-security.md); não desative
+proteções para iniciar componentes bloqueados.

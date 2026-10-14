@@ -22,3 +22,7 @@ localmente sob BSD-2-Clause, com aviso em desktop/map_assets/LEAFLET-LICENSE.
 Qt WebEngine inclui Chromium e seus avisos de terceiros; o instalador deverá
 redistribuir esses avisos e cumprir as obrigações dos módulos Qt efetivamente usados.
 As wheels de Fiona/PROJ/GEOS trazem bibliotecas nativas; não é exigido um QGIS instalado.
+
+Wheels não comprovam assinatura Authenticode ou compatibilidade Smart App Control.
+A auditoria por arquivo e o plano de distribuição segura constam em
+[segurança Windows](windows-security.md). Não reduzir a precisão GIS para evitar bloqueios.
