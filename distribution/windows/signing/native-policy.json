@@ -3216,25 +3216,6 @@
       "blocker": null
     },
     {
-      "path": "_internal/shiboken6/MSVCP140_1.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "shiboken6",
-          "version": "6.12.0",
-          "input_relative": "shiboken6/msvcp140_1.dll"
-        }
-      ],
-      "baseline_sha256": "eea79bc8561325f10ebf50564091ea48a893f9733aaa91962825d1e250992cc3",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
       "path": "_internal/shiboken6/Shiboken.pyd",
       "group": "qt",
       "packages": [
@@ -5047,10 +5028,16 @@
         "sha256": "38835acb174be35a612cb28ea2f447badfa0d198f53b1c9e7194d49c25e1868c",
         "family": null,
         "reason": "QML debugger/profiler/transport plugin; release Widgets/WebEngine app has no QML debugging interface"
+      },
+      {
+        "path": "_internal/shiboken6/MSVCP140_1.dll",
+        "sha256": "eea79bc8561325f10ebf50564091ea48a893f9733aaa91962825d1e250992cc3",
+        "family": null,
+        "reason": "Additional Shiboken MSVCP140_1 copy has no retained Shiboken PE importer; required PySide6/MSVCP140_1.dll remains at sha256 2be87527c41e1ba8aff48e326e0adcd4743516e0bbcc9304986c726e27de6aca; all native regressions still required"
       }
     ],
     "evidence": "docs/qt-minimal/README.md; evidence/qt-minimal/build-inputs.json and native-current.json in Actions",
-    "measurement_run": "https://github.com/fbdelatorre/AgroLines/actions/runs/38640766301"
+    "measurement_run": "https://github.com/fbdelatorre/AgroLines/actions/runs/38646680618"
   },
   "release_reviews": {
     "licensing": {

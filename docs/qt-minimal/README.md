@@ -127,3 +127,16 @@ a exclusão não depende de uma versão futura do JDK/MySQL estar no PATH; o gua
 de 44 hashes continua protegendo eventuais cópias legadas que reapareçam por outro
 input. Os demais PE retidos já foram rastreados a Python/build-env, e nunca a
 software GIS/Java/MySQL externo. A regressão congelada continua obrigatória.
+
+A execução `38646680618` mediu **178 PE**: 100 assinaturas aceitas, 78 unsigned,
+zero origem pendente, 177 fontes de build idênticas e 799 arquivos totais. Bloqueou
+corretamente a remoção não prevista de uma cópia adicional de
+`shiboken6/MSVCP140_1.dll` (SHA `eea79bc8561325f10ebf50564091ea48a893f9733aaa91962825d1e250992cc3`).
+A revisão do grafo PE confirma que a cópia necessária permanece em
+`PySide6/MSVCP140_1.dll` (SHA `2be87527c41e1ba8aff48e326e0adcd4743516e0bbcc9304986c726e27de6aca`),
+importada por Qt Core/Gui/Network/Quick/Widgets; nenhum PE Shiboken retido importa
+a cópia adicional. São versões/hashes diferentes, não cópias byte a byte idênticas.
+A política atual lista 178 caminhos e 275 remoções revisadas, sem inserir arquivo
+dispensável para manter contagem. A regressão completa continua obrigatória para
+confirmar a resolução em runtime. Direitos Microsoft de redistribuição das cópias
+retidas permanecem sujeitos à revisão; isto não os aprova.
