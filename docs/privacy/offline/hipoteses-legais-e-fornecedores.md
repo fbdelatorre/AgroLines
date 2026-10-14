@@ -16,9 +16,13 @@ de legítimo interesse. Esta análise não declara conformidade integral com a L
 | Estatísticas fornecidas pela plataforma, se consultadas | Avaliar se agregação elimina identificação e, se não, hipótese adequada ao uso real | Conferir relatório/campos e finalidade; não presumir anonimização |
 
 Dados sensíveis exigem análise própria do art. 11, não aplicação automática do art. 7º.
-Crianças/adolescentes exigem melhor interesse (art. 14) e salvaguardas proporcionais;
-não presumir proibição geral nem que um termo elimina proteção adicional. Rever
-classificação etária e procedimentos antes da distribuição sem restrição definida.
+O programa inicial é exclusivo para adultos 18+. Declaração de idade e aceite são
+controles manuais propostos, sem documentos como prova padrão ou cadastro no app;
+não selecionam por si só base legal para todo tratamento. Crianças/adolescentes
+não serão admitidos por autorização parental nesta fase. Uma futura ampliação exige
+revisão jurídica e operacional; dados incidentais de menores continuam exigindo
+melhor interesse (art. 14) e salvaguardas proporcionais. A classificação Livre/3+
+avalia conteúdo e não contradiz uma audiência privada de testadores adultos.
 
 ## Serviços identificados e documentação pública
 
