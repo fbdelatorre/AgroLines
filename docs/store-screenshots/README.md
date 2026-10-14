@@ -66,7 +66,11 @@ Na página **Actions → Real Windows offline Store screenshots**, abrir a execu
 - `agrolines-offline-real-windows-screenshots-REVIEW-REQUIRED`: somente se as quatro
   capturas reais concluírem e passarem nas verificações técnicas. Contém PNGs e evidência.
 
-Baixar o ZIP clicando no artefato (pode exigir login GitHub). O aviso de captura
+Baixar o ZIP clicando no artefato (pode exigir login GitHub). Em sucesso, a execução
+também preserva os PNGs e evidências em `captures/run-ID` nesta branch de screenshots.
+Somente esta branch pode receber os arquivos; nunca main ou outra branch/PR.
+Esse caminho permite baixar por Git/GitHub mesmo quando a origem Azure de artefatos
+está inacessível ao ambiente. São cópias exatas, com os mesmos hashes, para revisão. O aviso de captura
 indisponível permite concluir o workflow e entregar o diagnóstico; **workflow verde
 não significa que houve quatro screenshots**. Conferir `completed=true`, quatro
 nomes e hashes na evidência, além da revisão humana abaixo.

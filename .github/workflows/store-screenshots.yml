@@ -7,6 +7,9 @@ permissions:
   contents: read
 jobs:
   capture:
+    if: github.ref == 'refs/heads/chore/store-screenshots'
+    permissions:
+      contents: write
     runs-on: windows-latest
     timeout-minutes: 12
     steps:
@@ -59,3 +62,20 @@ jobs:
             store-capture/capture-evidence.json
             store-capture/README.md
           if-no-files-found: error
+      - name: Preserve actual PNGs in the screenshot PR branch
+        if: steps.capture.outcome == 'success' && github.ref == 'refs/heads/chore/store-screenshots'
+        shell: pwsh
+        run: |
+          git pull --ff-only origin chore/store-screenshots
+          if ($LASTEXITCODE) { throw 'Branch changed; no force push permitted.' }
+          $destination = "docs/store-screenshots/captures/run-$env:GITHUB_RUN_ID"
+          if (Test-Path $destination) { throw 'Do not overwrite an existing capture set.' }
+          New-Item $destination -ItemType Directory | Out-Null
+          Copy-Item store-capture/*.png,store-capture/capture-evidence.json,store-capture/README.md $destination
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- $destination
+          git commit -m "docs: preserve actual Windows screenshot set $env:GITHUB_RUN_ID [skip ci]"
+          if ($LASTEXITCODE) { throw 'Screenshot commit failed.' }
+          git push origin HEAD:chore/store-screenshots
+          if ($LASTEXITCODE) { throw 'Screenshot branch push failed; artifact remains available.' }
