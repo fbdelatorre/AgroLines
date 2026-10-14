@@ -88,3 +88,23 @@ def test_probe_error_output_does_not_disclose_secrets(monkeypatch, capsys):
     assert error.value.code == 1
     output = capsys.readouterr().err
     assert "private-password" not in output and "FAILED (RuntimeError)" in output
+
+
+def test_installed_native_dependency_outside_prefix_is_included(tmp_path):
+    root = tmp_path / "runtime"
+    root.mkdir()
+    external = tmp_path / "external.pyd"
+    native_file(external)
+
+    class Distribution:
+        metadata = {"Name": "ExternalDependency"}
+        version = "1.0"
+        files = [Path("external.pyd")]
+
+        def locate_file(self, _):
+            return external
+
+    result = inventory([root], [Distribution()])
+    assert result["inspection_complete"]
+    assert result["files"][0]["path"] == str(external)
+    assert result["files"][0]["packages"][0]["name"] == "ExternalDependency"

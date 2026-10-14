@@ -86,7 +86,9 @@ registrar a versão/hash do ambiente que falhou.
 .\scripts\Audit-NativeWindows.ps1 -Inventory evidence\native-inventory.json -Output evidence\native-signatures.json
 ```
 
-Os roots padrão são o ambiente Python e o runtime base. Para instalador futuro,
+Os roots padrão são o ambiente Python e o runtime base; arquivos nativos listados
+nos metadados das distribuições instaladas também entram, inclusive fora desses roots.
+Para instalador futuro,
 repetir `--root` para **todos** os diretórios de payload, runtime, plugins, auxiliares
 e processos filhos. O relatório só cobre esses roots. Symlinks, falta de permissão,
 arquivos alterados e inspeção parcial são falhas, nunca aprovação silenciosa.

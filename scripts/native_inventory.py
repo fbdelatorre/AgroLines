@@ -47,14 +47,21 @@ def inventory(roots, distributions=None):
         importlib.metadata.distributions() if distributions is None else distributions
     )
     owners, packages, errors = {}, [], []
+    paths = set()
     for distribution in distributions:
         name, version = distribution.metadata["Name"], distribution.version
         packages.append({"name": name, "version": version})
         for entry in distribution.files or []:
             if Path(entry).suffix.lower() in NATIVE_SUFFIXES:
-                path = str(Path(distribution.locate_file(entry)).absolute()).casefold()
-                owners.setdefault(path, []).append({"name": name, "version": version})
-    paths = set()
+                native_path = Path(distribution.locate_file(entry))
+                if native_path.is_symlink():
+                    errors.append({"path": str(native_path), "error": "symlink_not_scanned"})
+                    continue
+                native_path = native_path.resolve()
+                paths.add(native_path)  # Include installed distributions outside sys.prefix, too.
+                owners.setdefault(str(native_path).casefold(), []).append(
+                    {"name": name, "version": version}
+                )
     resolved_roots = sorted({str(Path(root).resolve()) for root in roots})
     for root in resolved_roots:
         if not Path(root).is_dir():
@@ -76,7 +83,7 @@ def inventory(roots, distributions=None):
                     if path.is_symlink():
                         errors.append({"path": str(path), "error": "symlink_not_scanned"})
                     else:
-                        paths.add(path.absolute())
+                        paths.add(path.resolve())
     records = []
     for path in sorted(paths):
         try:
