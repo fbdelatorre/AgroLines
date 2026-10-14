@@ -26,11 +26,15 @@ class NumericVertexDialog(QDialog):
         self.controller = controller
         self.feature = feature
         self.properties = feature["properties"]
-        report = self.properties.get("precision_report") or {}
+        farm = next(
+            f
+            for f in controller.window.farms
+            if f["id"] == controller.window.context_property.currentData()
+        )
         self.editor = VertexEditor(
             self.properties["original_geometry"],
             self.properties["source_crs"],
-            report.get("metric_crs_wkt"),
+            farm.get("work_crs", "EPSG:32723"),
         )
         self.locations = [location for location, _ in self.editor.vertices()]
         self.saved = False

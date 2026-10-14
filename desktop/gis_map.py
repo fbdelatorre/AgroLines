@@ -6,6 +6,7 @@ import os
 from pathlib import Path
 from urllib.parse import urlsplit
 
+from pyproj import CRS
 from PySide6.QtCore import QObject, Qt, QUrl, Signal, Slot
 from PySide6.QtWebChannel import QWebChannel
 from PySide6.QtWebEngineCore import (
@@ -17,6 +18,7 @@ from PySide6.QtWebEngineCore import (
 from PySide6.QtWebEngineWidgets import QWebEngineView
 from PySide6.QtWidgets import QHBoxLayout, QLabel, QVBoxLayout, QWidget
 
+from core.geography import exact_transform
 from desktop.ui import action, label
 
 ASSETS = Path(__file__).parent / "map_assets"
@@ -86,6 +88,11 @@ class LocalPage(QWebEnginePage):
 class Bridge(QObject):
     loaded = Signal()
     selection = Signal(str)
+    position = Signal(float, float)
+
+    @Slot(float, float)
+    def cursor(self, longitude, latitude):
+        self.position.emit(longitude, latitude)
 
     @Slot()
     def ready(self):
@@ -106,6 +113,7 @@ class WebMap(QWidget):
         self.collection = {"type": "FeatureCollection", "features": []}
         self.fit_pending = False
         self.current_id = None
+        self.set_work_crs("EPSG:32723")
         self.imagery = imagery_configuration()
         body = QVBoxLayout(self)
         body.setContentsMargins(0, 0, 0, 0)
@@ -137,12 +145,27 @@ class WebMap(QWidget):
         self.page.setWebChannel(self.channel)
         self.bridge.loaded.connect(self.loaded)
         self.bridge.selection.connect(self.selected)
+        self.bridge.position.connect(self.cursor)
         body.addWidget(self.view, 1)
         self.state_label = QLabel("Carregando renderizador cartográfico local…")
         self.state_label.setTextFormat(Qt.PlainText)
         self.state_label.setObjectName("Hint")
         body.addWidget(self.state_label)
         self.view.load(QUrl.fromLocalFile(str(ASSETS / "map.html")))
+
+    def set_work_crs(self, value):
+        self.work_crs = value
+        self.cursor_transform = exact_transform(CRS.from_epsg(4326), CRS.from_user_input(value))
+
+    def cursor(self, longitude, latitude):
+        try:
+            east, north = self.cursor_transform.transform(longitude, latitude, errcheck=True)
+            self.state_label.setText(
+                f"Lat {latitude:.7f}° · Lon {longitude:.7f}° | "
+                f"E {east:.3f} m · N {north:.3f} m · {self.work_crs} · cursor visual"
+            )
+        except Exception:
+            self.state_label.setText("Coordenadas do cursor fora do domínio do SRC.")
 
     def loaded(self):
         self.is_ready = True

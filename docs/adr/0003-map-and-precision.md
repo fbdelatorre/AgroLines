@@ -21,10 +21,11 @@ dupla precisão; SRC personalizado sem EPSG permanece SRID 0 com WKT explícito.
 Originais e atributos são preservados, incluindo Z e metadados de levantamento.
 A representação 2D do mapa nunca substitui esses dados nem alimenta cálculos por pixels.
 
-UTM é o fluxo de trabalho preferencial: manter UTM original em metros ou permitir
-escolha manual, inclusive WGS84/UTM. Para arquivos geográficos, selecionar UTM no
-mesmo datum declarado; se isso não for identificável, exigir escolha manual.
-Não trocar SIRGAS 2000 por WGS84 silenciosamente. Transformações usam `always_xy`
+Os padrões oficiais são EPSG:4326 geográfico e EPSG:32723 de trabalho.
+Cada propriedade inicia em UTM 23S e permite escolher outro UTM EPSG em metros.
+O SRC original é sempre preservado, inclusive SIRGAS 2000. Alterar o SRC de trabalho
+não reescreve versões históricas nem comprova equivalência centimétrica entre datums.
+Transformações usam `always_xy`
 e `TransformerGroup` sem ballpark; falta da melhor grade/parâmetro bloqueia o fluxo.
 Datums dinâmicos são recusados até existir transformação temporal validada.
 
@@ -43,7 +44,7 @@ controle otimista para não sobrescrever trabalho concorrente. Não há simplifi
 destrutiva nem exportação classificada como centimétrica.
 
 ## Persistência e autorização
-Migrações 0003/0004 são aditivas; 0004 não reconstrói coordenadas nem inventa relatórios
+Migrações 0003/0004/0005 são aditivas; 0004 não reconstrói coordenadas nem inventa relatórios
 para versões legadas. Elas continuam disponíveis com originais e precisão desconhecida.
 Importação é atômica sob lock da propriedade, deduplica geometria exata normalizada,
 verifica hashes de originais e requer confirmação para sobreposições acima de 0,01 m².

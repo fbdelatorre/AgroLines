@@ -13,7 +13,7 @@ instalados, execute na raiz:
 .\.venv\Scripts\python.exe -m desktop.main
 ```
 
-O servidor aplica migrações 0003/0004 aditivas. Não recrie o banco. PostgreSQL 18 e
+O servidor aplica migrações 0003/0004/0005 aditivas. Não recrie o banco. PostgreSQL 18 e
 PostGIS 3.6.2 seguem o mesmo procedimento nativo; CI também testa séries 16/3.4 e
 18/3.6. Nunca altere a versão principal de um volume Docker existente sem um plano
 separado de upgrade PostgreSQL. A imagem padrão e o PGDATA de uso existente são mantidos.
@@ -32,8 +32,14 @@ conter múltiplas camadas poligonais. KML declara WGS84 por especificação; KMZ
 um documento KML, sem links/entidades externas. GeoJSON sem SRC declarado exige
 confirmação explícita pelo campo SRC; não se presume um datum desconhecido.
 
-O SRC original e um SRC de trabalho em metros podem ser informados. UTM original é
-mantido quando apropriado; WGS84/UTM é uma escolha válida para trabalhar em metros.
+Os padrões oficiais são WGS 84 (EPSG:4326) para coordenadas geográficas e
+WGS 84 / UTM 23S (EPSG:32723) para cálculos métricos. Cada propriedade inicia em
+EPSG:32723; no painel Camadas, **Salvar SRC** permite outro UTM.
+A alteração não reescreve versões anteriores. O SRC original permanece preservado,
+inclusive quando diferente de WGS84; entradas sem referencial exigem confirmação.
+O cursor mostra latitude/longitude e coordenadas no SRC de trabalho via PROJ.
+O mapa usa EPSG:3857 exclusivamente para apresentação, nunca para cálculos.
+
 Confira a prévia, atributos pelo mapa e avisos. Correção GEOS só ocorre ao marcar
 **Corrigir inválidas**. Originais nunca são sobrescritos por essa correção. Sobreposições
 exigem confirmação; geometrias exatamente repetidas não criam outro talhão.

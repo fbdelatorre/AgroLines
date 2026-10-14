@@ -33,5 +33,6 @@ window.agro={
   if(config){raster=L.tileLayer(config.url,{attribution:config.attribution,minZoom:0,maxZoom:19,crossOrigin:false});if(online)raster.addTo(map);}},
  online(value){online=value;if(raster){if(value)raster.addTo(map);else map.removeLayer(raster);}}
 };
-map.on('mousemove',e=>{document.getElementById('coordinates').textContent=`${e.latlng.lat.toFixed(7)}, ${e.latlng.lng.toFixed(7)} · WGS84 | visualização EPSG:3857`;});
+let lastCursor=0;
+map.on('mousemove',e=>{const now=Date.now();if(bridge && now-lastCursor>80){bridge.cursor(e.latlng.lng,e.latlng.lat);lastCursor=now;}document.getElementById('coordinates').textContent=`${e.latlng.lat.toFixed(7)}, ${e.latlng.lng.toFixed(7)} · WGS84 | visualização EPSG:3857`;});
 new QWebChannel(qt.webChannelTransport,channel=>{bridge=channel.objects.bridge;window.agro.ready=true;bridge.ready();});

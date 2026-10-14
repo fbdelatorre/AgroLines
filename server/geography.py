@@ -142,6 +142,10 @@ def import_plots(farm_id: str, body: ImportInput, actor: Actor, db: DB):
                 raise ValueError("Geometria original acima de 8 MiB.")
             if len(json.dumps(item.metadata, allow_nan=False)) > 65536:
                 raise ValueError("Metadados excedem 64 KiB.")
+            if item.work_crs and CRS.from_user_input(item.work_crs) != CRS.from_user_input(
+                farm.work_crs
+            ):
+                raise ValueError("SRC de trabalho deve corresponder à configuração da propriedade.")
             if not item.name.strip():
                 raise ValueError("Nome do talhão obrigatório.")
             if len(json.dumps(item.attributes, allow_nan=False)) > 65536:
@@ -150,7 +154,7 @@ def import_plots(farm_id: str, body: ImportInput, actor: Actor, db: DB):
                 item.original_geometry,
                 item.source_crs,
                 body.repair_invalid,
-                work_crs=item.work_crs,
+                work_crs=farm.work_crs,
                 metadata=item.metadata,
             )
             # Server recomputes the transformation and all metrics from the original.
@@ -320,7 +324,7 @@ def revise_geometry(farm_id: str, plot_id: str, body: RevisionInput, actor: Acto
         raise HTTPException(422, "A edição não pode substituir o SRC original silenciosamente.")
     try:
         result = inspect_polygon(
-            body.original_geometry, body.source_crs, work_crs=body.work_crs, metadata=body.metadata
+            body.original_geometry, body.source_crs, work_crs=farm.work_crs, metadata=body.metadata
         )
         from shapely.geometry import shape
 
@@ -366,3 +370,28 @@ def revise_geometry(farm_id: str, plot_id: str, body: RevisionInput, actor: Acto
     db.flush()
     security.audit(db, actor[0].id, "plot.geometry.revise", plot.id, farm.id)
     return version_json(plot, version)
+
+
+class FarmWorkSettings(BaseModel):
+    work_crs: str = Field(min_length=1, max_length=32)
+
+
+@router.patch("/farms/{farm_id}/geography-settings")
+def configure_work_crs(farm_id: str, body: FarmWorkSettings, actor: Actor, db: DB):
+    farm = farm_for(db, actor[0].id, farm_id, "edit", lock=True)
+    try:
+        crs = CRS.from_user_input(body.work_crs)
+        authority = crs.to_authority()
+        if (
+            not authority
+            or authority[0] != "EPSG"
+            or not crs.is_projected
+            or not crs.utm_zone
+            or any(a.unit_conversion_factor != 1 for a in crs.axis_info[:2])
+        ):
+            raise ValueError("Escolha um SRC UTM EPSG em metros.")
+    except Exception as exc:
+        raise HTTPException(422, "SRC de trabalho deve ser UTM EPSG em metros.") from exc
+    farm.work_crs = ":".join(authority)
+    security.audit(db, actor[0].id, "farm.work_crs.configure", farm.id, farm.id)
+    return {"work_crs": farm.work_crs}

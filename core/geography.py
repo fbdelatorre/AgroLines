@@ -5,13 +5,13 @@ import math
 from dataclasses import dataclass
 
 from pyproj import CRS, Proj
-from pyproj.aoi import AreaOfInterest
-from pyproj.database import query_utm_crs_info
 from pyproj.transformer import TransformerGroup
 from shapely import force_2d, get_coordinates, make_valid, normalize, transform
 from shapely.geometry import MultiPolygon, Polygon, mapping, shape
 from shapely.geometry.polygon import orient
 from shapely.validation import explain_validity
+
+from core.crs import DEFAULT_WORK_CRS
 
 MAX_VERTICES = 100_000
 NUMERIC_TOLERANCE_M = 0.005
@@ -103,31 +103,19 @@ def inspect_polygon(data, source_crs, repair=False, work_crs=None, metadata=None
         raise ValueError("Coordenadas fora do domínio WGS84/UTM suportado (-80° a 84°).")
     if east - west > 3 or north - south > 3:
         raise ValueError("Extensão excede o domínio local deste incremento (3°).")
-    if work_crs:
-        metric_crs = CRS.from_user_input(work_crs)
-    elif crs.is_projected and all(a.unit_conversion_factor == 1 for a in crs.axis_info[:2]):
-        metric_crs = crs
-    else:
-        center = canonical.centroid
-        zone = min(60, max(1, int((center.x + 180) / 6) + 1))
-        zone_name = f"{zone}{'N' if center.y >= 0 else 'S'}"
-        candidates = query_utm_crs_info(
-            datum_name=crs.geodetic_crs.name,
-            area_of_interest=AreaOfInterest(west, south, east, north),
+    metric_crs = CRS.from_user_input(work_crs or DEFAULT_WORK_CRS)
+    area = metric_crs.area_of_use
+    center = canonical.centroid
+    if (
+        area
+        and metric_crs.utm_zone
+        and not (
+            area.west - 0.5 <= center.x <= area.east + 0.5 and area.south <= center.y <= area.north
         )
-        metric_crs = next(
-            (
-                candidate
-                for info in candidates
-                if (candidate := CRS.from_authority(info.auth_name, info.code)).utm_zone
-                == zone_name
-            ),
-            None,
+    ):
+        raise ValueError(
+            "Área fora da zona UTM de trabalho. Altere o SRC nas configurações da propriedade."
         )
-        if metric_crs is None:
-            raise ValueError(
-                "UTM no datum original não identificado; escolha o SRC de trabalho manualmente."
-            )
     if not metric_crs.is_projected or not all(
         a.unit_conversion_factor == 1 for a in metric_crs.axis_info[:2]
     ):

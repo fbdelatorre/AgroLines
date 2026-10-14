@@ -29,7 +29,7 @@ def test_metric_polygon_and_original_precision(square):
     assert result.area_m2 == pytest.approx(10000, rel=1e-7)
     assert result.perimeter_m == pytest.approx(400, rel=1e-7)
     assert result.source_geometry == square
-    assert result.metric_crs == "EPSG:31983"
+    assert result.metric_crs == "EPSG:32723"
 
 
 @pytest.mark.parametrize("longitude", [-48.00001, -47.99999])
@@ -227,3 +227,31 @@ def test_forged_metrics_geometry_and_invalid_source_rollback(api, square):
         Polygon([(-47, -22), (-46, -22), (-46, -21), (-47, -22)])
     )
     assert api.post(path + "/import", headers=headers, json=payload).status_code == 422
+
+
+def test_official_farm_crs_configuration(api):
+    _, headers, _ = account(api)
+    _, stranger, _ = account(api, "crs-stranger@example.com")
+    farm = api.post("/farms", headers=headers, json={"name": "CRS farm"}).json()
+    assert farm["work_crs"] == "EPSG:32723"
+    route = f"/farms/{farm['id']}/geography-settings"
+    assert api.patch(route, headers=stranger, json={"work_crs": "EPSG:32722"}).status_code == 404
+    assert api.patch(route, headers=headers, json={"work_crs": "EPSG:4326"}).status_code == 422
+    response = api.patch(route, headers=headers, json={"work_crs": "EPSG:32722"})
+    assert response.status_code == 200
+    assert response.json()["work_crs"] == "EPSG:32722"
+    assert (
+        next(f for f in api.get("/farms", headers=headers).json() if f["id"] == farm["id"])[
+            "work_crs"
+        ]
+        == "EPSG:32722"
+    )
+
+
+def test_other_zone_requires_explicit_work_crs():
+    original = mapping(Polygon([(-52, -22), (-51.999, -22), (-51.999, -21.999), (-52, -21.999)]))
+    with pytest.raises(ValueError, match="zona"):
+        inspect_polygon(original, 4326)
+    result = inspect_polygon(original, 4326, work_crs="EPSG:32722")
+    assert result.metric_crs == "EPSG:32722"
+    assert result.source_geometry == original

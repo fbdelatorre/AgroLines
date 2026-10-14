@@ -15,6 +15,7 @@ from sqlalchemy import (
 )
 from sqlalchemy.orm import Mapped, mapped_column
 
+from core.crs import DEFAULT_WORK_CRS
 from server.db import Base
 from server.spatial_type import NativeGeometry, PolygonGeometry
 
@@ -71,6 +72,9 @@ class RateBucket(Base):
 
 class Farm(Base):
     __tablename__ = "farms"
+    work_crs: Mapped[str] = mapped_column(
+        String(32), default=DEFAULT_WORK_CRS, server_default=DEFAULT_WORK_CRS
+    )
     id: Mapped[str] = mapped_column(String(36), primary_key=True, default=new_id)
     owner_id: Mapped[str] = mapped_column(ForeignKey("users.id"), index=True)
     name: Mapped[str] = mapped_column(String(120))

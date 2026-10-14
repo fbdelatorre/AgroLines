@@ -4,11 +4,14 @@ A geometria de precisão trabalha em Python/GEOS/PROJ; Leaflet/Qt só apresenta 
 Nenhum pixel, simplificação visual ou valor arredondado de um rótulo é salvo como vértice.
 
 ## SRC de trabalho e de exportação
-UTM pode ser usado como no QGIS. Preservar UTM/datum originais quando declarados, ou
-escolher explicitamente outro SRC projetado em metros, incluindo WGS84/UTM (EPSG
-326xx/327xx). Geometria de apresentação é EPSG:4326 e o mapa usa EPSG:3857; este último
-não é o SRC de cálculo. Em entradas geográficas, a seleção automática busca UTM no
-mesmo datum; se não houver informação suficiente, exige escolha manual.
+Os padrões oficiais são WGS 84 (EPSG:4326) para coordenadas geográficas e
+WGS 84 / UTM 23S (EPSG:32723) para cálculos métricos. Cada propriedade inicia em
+EPSG:32723; no painel Camadas, **Salvar SRC** permite outro UTM.
+A alteração não reescreve versões anteriores. O SRC original permanece preservado,
+inclusive quando diferente de WGS84; entradas sem referencial exigem confirmação.
+O cursor mostra latitude/longitude e coordenadas no SRC de trabalho via PROJ.
+O mapa usa EPSG:3857 exclusivamente para apresentação, nunca para cálculos.
+
 
 Futuros monitores podem exigir SHP WGS84 geográfico (`EPSG:4326`). Isso é separado do
 SRC de cálculo das linhas. A futura exportação deverá verificar datum, época, precisão

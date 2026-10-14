@@ -258,6 +258,7 @@ def test_future_map_replacement_keeps_existing_navigation(qt):
 
 
 def test_numeric_dialog_grid_millimetre_save_and_undo(api, qt, monkeypatch):
+    from pyproj import CRS
     from shapely.geometry import Polygon, mapping
 
     from desktop.vertex_editor import NumericVertexDialog
@@ -286,7 +287,8 @@ def test_numeric_dialog_grid_millimetre_save_and_undo(api, qt, monkeypatch):
         feature = window.geo.features[0]
         dialog = NumericVertexDialog(window.geo, feature)
         original_x = dialog.number(dialog.x)
-        assert original_x == 300000.000123
+        assert abs(original_x - 300000.000123) < 0.005
+        assert CRS.from_user_input(dialog.editor.work_crs).to_epsg() == 32723
         dialog.distance.setText("0,001")
         dialog.move()
         assert abs(dialog.number(dialog.x) - original_x - 0.001) < 1e-8
@@ -301,7 +303,7 @@ def test_numeric_dialog_grid_millimetre_save_and_undo(api, qt, monkeypatch):
         assert (
             abs(
                 current["properties"]["original_geometry"]["coordinates"][0][0][0]
-                - original_x
+                - 300000.000123
                 - 0.001
             )
             < 1e-8

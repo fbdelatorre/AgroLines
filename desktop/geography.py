@@ -127,9 +127,10 @@ class GeographyController(QObject):
         options.addWidget(label("SRC de origem (se ausente ou incorreto)", "Hint"))
         self.source_crs = input_field("Ex.: EPSG:31983")
         options.addWidget(self.source_crs)
-        options.addWidget(label("SRC de trabalho em metros (opcional)", "Hint"))
-        self.work_crs = input_field("Ex.: EPSG:31983")
+        options.addWidget(label("SRC de trabalho da propriedade", "Hint"))
+        self.work_crs = input_field("EPSG:32723")
         options.addWidget(self.work_crs)
+        self.configure_button = action("Salvar SRC", self.configure_crs, options, "check")
         self.repair = QCheckBox("Corrigir inválidas (GEOS)")
         self.repair.setToolTip(
             "A prévia mostra a correção antes de gravar; originais são preservados."
@@ -137,6 +138,29 @@ class GeographyController(QObject):
         options.addWidget(self.repair)
         body_layers = layers.layout()
         body_layers.insertWidget(1, self.import_options)
+
+    def configure_crs(self):
+        if self.preview:
+            self.window.notice("Salve ou descarte a prévia antes de alterar o SRC.")
+            return
+        farm_id = self.window.context_property.currentData()
+        value = self.work_crs.text().strip()
+        if not farm_id:
+            return
+
+        def saved(result):
+            for farm in self.window.farms:
+                if farm["id"] == farm_id:
+                    farm["work_crs"] = result["work_crs"]
+            self.refresh()
+            self.window.notice("SRC de trabalho atualizado; versões existentes preservadas.")
+
+        self.window.call(
+            lambda: self.window.client.request(
+                "PATCH", f"/farms/{farm_id}/geography-settings", {"work_crs": value}
+            ),
+            saved,
+        )
 
     def refresh(self, *_):
         if self.disposed or not self.window.workspace.map_active:
@@ -151,7 +175,13 @@ class GeographyController(QObject):
         self.details.clear()
         self.fit_button.setEnabled(False)
         farm = next(f for f in self.window.farms if f["id"] == farm_id)
+        self.work_crs.setText(farm.get("work_crs", "EPSG:32723"))
+        self.map.set_work_crs(self.work_crs.text())
+        self.edit_button.setEnabled(False)
         permissions = farm["permissions"]
+        self.configure_button.setEnabled(
+            any("edit" in p["actions"] and p.get("season_id") is None for p in permissions)
+        )
         whole = any(p.get("season_id") is None for p in permissions)
 
         def fetch():
