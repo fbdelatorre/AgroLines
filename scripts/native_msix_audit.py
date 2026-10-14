@@ -256,6 +256,9 @@ def correlate(output, native, signatures, tools, loads, baseline, notices, packa
                     "duration_ms": phase["duration_ms"],
                     "processes": sorted({m["process"] for m in phase["modules"]}),
                     "modules_by_scope": dict(Counter(m["scope"] for m in phase["modules"])),
+                    "external_module_paths": sorted(
+                        {m["path"] for m in phase["modules"] if m["scope"] == "external"}
+                    ),
                     "complete_image_load_trace": False,
                 }
             )
