@@ -40,3 +40,14 @@ Primeiro adaptador: New Holland IntelliView 12, ISOXML ISO 11783 TaskData (usar 
 
 ## Qualidade
 Testes unitários para geometria, limites de permissão e serialização; integração para API e migrações; fixtures sintéticas; testes de sincronização com servidor indisponível e retorno; CI GitHub Actions em Linux e Windows; build Windows só após o MVP estável. Documentar dependências, licença e configuração.
+
+## Segurança e compatibilidade Windows
+- Windows 11 com Smart App Control ativo é requisito obrigatório; instalação pip e CI Windows comum não comprovam aceitação. Antes da Etapa 3.2, apresentar diagnóstico, correções viáveis e evidências/limitações de aceitação, conforme docs/windows-security.md.
+- Nunca desativar ou contornar SAC, Defender, WDAC ou integridade de código; não liberar DLLs por exclusões, registro, certificados autoassinados ou carregamento alternativo.
+- Preservar GEOS/GDAL/PROJ e as tolerâncias geométricas. Solicitar aprovação antes de modificar a arquitetura por conflito de segurança/precisão.
+- Auditar DLL/PYD/EXE, assinaturas/cadeias e 3077/3033; distribuição exige runtime embutido, payload/instalador confiáveis e atualização verificável. Seguir docs/windows-security.md e declarar evidências ainda pendentes.
+
+## Distribuição comercial
+- Produto final Windows deve embutir runtime/dependências e ter instalador, identidade, versão, atualização e desinstalação; clientes não precisam de Python, pip, PowerShell ou PostgreSQL local configurado manualmente.
+- Preservar Python/PySide6 e o núcleo GIS. Prova de distribuição só é aprovada com assinatura/auditoria e validação Windows 11 real com SAC ativo; CI hospedado não substitui essa evidência.
+- Seguir docs/windows-distribution-poc.md; não iniciar funcionalidades agrícolas seguintes antes da validação dessa fundação. Não usar publisher/certificado fictício nem adquirir serviços pagos sem autorização.

@@ -45,6 +45,7 @@ def farm_json(db, farm, user_id):
     return {
         "id": farm.id,
         "name": farm.name,
+        "work_crs": farm.work_crs,
         "owned": farm.owner_id == user_id,
         "permissions": permissions,
     }

@@ -8,6 +8,7 @@ import argparse
 import json
 import os
 import platform
+import tempfile
 from pathlib import Path
 
 parser = argparse.ArgumentParser()
@@ -25,13 +26,14 @@ os.environ["QT_SCALE_FACTOR"] = args.scale
 
 # Qt reads QPA and scaling settings during import; configure them above first.
 from fastapi.testclient import TestClient  # noqa: E402
-from PySide6.QtCore import qVersion  # noqa: E402
+from PySide6.QtCore import QPoint, Qt, qVersion  # noqa: E402
 from PySide6.QtTest import QTest  # noqa: E402
 from PySide6.QtWidgets import QApplication  # noqa: E402
 from sqlalchemy import create_engine  # noqa: E402
 from sqlalchemy.pool import StaticPool  # noqa: E402
 
 import desktop.main as desktop_main  # noqa: E402
+from core.geography import inspect_polygon  # noqa: E402
 from server.config import Settings  # noqa: E402
 from server.main import create_app  # noqa: E402
 from server.models import Base  # noqa: E402
@@ -67,10 +69,45 @@ def fixtures(api):
     for title in ("Fazenda São João", "Fazenda Horizonte"):
         farm = api.post("/farms", headers=ana[1], json={"name": title}).json()
         farms.append(farm)
+        geometry = {
+            "type": "Polygon",
+            "coordinates": [
+                [
+                    [-47.05, -22.10],
+                    [-47.045, -22.10],
+                    [-47.045, -22.095],
+                    [-47.05, -22.095],
+                    [-47.05, -22.10],
+                ]
+            ],
+        }
+        normalized = inspect_polygon(geometry, "EPSG:4326")
+        plot_response = api.post(
+            f"/farms/{farm['id']}/plots/import",
+            headers=ana[1],
+            json={
+                "plots": [
+                    {
+                        "name": "Talhão sintético 01",
+                        "geometry": normalized.geometry,
+                        "original_geometry": geometry,
+                        "source_crs": "EPSG:4326",
+                        "attributes": {"cultura": "Dados sintéticos"},
+                    }
+                ]
+            },
+        )
+        assert plot_response.status_code == 201
+        plot_id = plot_response.json()["created"][0]["id"]
         for year in ("2026/2027", "2027/2028"):
             season = api.post(
                 f"/farms/{farm['id']}/seasons", headers=ana[1], json={"name": year}
             ).json()
+            api.post(
+                f"/farms/{farm['id']}/plots/{plot_id}/scopes",
+                headers=ana[1],
+                json={"season_ids": [season["id"]]},
+            )
             for operation in ("Plantio", "Colheita"):
                 api.post(
                     f"/farms/{farm['id']}/seasons/{season['id']}/operations",
@@ -149,11 +186,18 @@ def main():
         window.activateWindow()
         QTest.qWait(250)
 
-        def capture(name):
+        def capture(name, target=None):
+            target = target or window
             wait(window)
-            QTest.qWait(100)
+            if window.geo:
+                for _ in range(1000):
+                    if window.geo.map.is_ready:
+                        break
+                    QTest.qWait(10)
+                assert window.geo.map.is_ready, "Native cartographic renderer did not initialize"
+            QTest.qWait(400)
             image = (
-                window.grab() if args.reference else app.primaryScreen().grabWindow(window.winId())
+                target.grab() if args.reference else app.primaryScreen().grabWindow(target.winId())
             )
             if image.isNull():
                 raise RuntimeError("Native screen capture is unavailable; no offscreen fallback.")
@@ -171,9 +215,9 @@ def main():
             diagnostics.append(
                 {
                     "file": filename,
-                    "logical_size": [window.width(), window.height()],
+                    "logical_size": [target.width(), target.height()],
                     "pixels": [image.width(), image.height()],
-                    "device_pixel_ratio": window.devicePixelRatioF(),
+                    "device_pixel_ratio": target.devicePixelRatioF(),
                 }
             )
 
@@ -239,6 +283,25 @@ def main():
             for name, dock in window.workspace.docks.items():
                 if not dock.isVisible():
                     window.workspace.toggles[name].trigger()
+        wait(window)
+        for _ in range(1000):
+            if window.geo.map.is_ready:
+                break
+            QTest.qWait(10)
+        assert window.geo.map.is_ready
+        QTest.qWait(400)
+        if window.geo.features:
+            viewport = window.geo.map.view
+            QTest.mouseClick(
+                viewport.focusProxy() or viewport,
+                Qt.LeftButton,
+                Qt.NoModifier,
+                QPoint(viewport.width() // 2, viewport.height() // 2),
+            )
+            QTest.qWait(150)
+            assert window.geo.map.current_id is not None, (
+                "Native map click did not identify polygon"
+            )
         capture("12-map-workspace")
         window.workspace.toggles["layers"].trigger()
         capture("13-map-panels-toggle")
@@ -250,6 +313,69 @@ def main():
         capture("14-compact-layout")
         window.navigate_to("Mapa")
         capture("15-compact-map")
+        window.resize(width, height)
+        with tempfile.TemporaryDirectory() as directory:
+            local = Path(directory, "preview.geojson")
+            local.write_text(
+                json.dumps(
+                    {
+                        "type": "Feature",
+                        "properties": {"name": "Importação sintética"},
+                        "crs": {"type": "name", "properties": {"name": "EPSG:4326"}},
+                        "geometry": {
+                            "type": "Polygon",
+                            "coordinates": [
+                                [
+                                    [-47.043, -22.10],
+                                    [-47.04, -22.10],
+                                    [-47.04, -22.097],
+                                    [-47.043, -22.097],
+                                    [-47.043, -22.10],
+                                ]
+                            ],
+                        },
+                    }
+                ),
+                encoding="utf-8",
+            )
+            window.geo.import_files([str(local)])
+            wait(window)
+            assert window.geo.preview is not None
+            capture("16-cartographic-import-preview")
+            window.geo.save()
+            wait(window)
+            assert window.geo.preview is None
+            capture("17-cartographic-import-saved")
+            from desktop.vertex_editor import NumericVertexDialog
+
+            feature = window.geo.features[0]
+            dialog = NumericVertexDialog(window.geo, feature)
+            dialog.show()
+            dialog.raise_()
+            dialog.distance.setText("0.001")
+            initial_x = dialog.number(dialog.x)
+            QTest.mouseClick(dialog.move_button, Qt.LeftButton)
+            assert abs(dialog.number(dialog.x) - initial_x - 0.001) < 1e-8
+            dialog.activateWindow()
+            QTest.qWait(150)
+            if args.reference:
+                app.setActiveWindow(dialog)
+            QTest.keyClick(dialog, Qt.Key_Z, Qt.ControlModifier)
+            QTest.qWait(100)
+            assert dialog.number(dialog.x) == initial_x, "Native Ctrl+Z changed precision"
+            QTest.keyClick(dialog, Qt.Key_Y, Qt.ControlModifier)
+            QTest.qWait(100)
+            assert abs(dialog.number(dialog.x) - initial_x - 0.001) < 1e-8, (
+                "Native Ctrl+Y changed precision"
+            )
+            capture("18-numeric-vertex-millimetre-edit", dialog)
+            dialog.save()
+            wait(window)
+            assert dialog.saved, "Numeric edit did not persist as a new version"
+            updated = next(f for f in window.geo.features if f["id"] == feature["id"])
+            assert updated["properties"]["revision"] == feature["properties"]["revision"] + 1
+            window.geo.map.run("select", updated["id"])
+            capture("19-numeric-vertex-saved-version")
         window.close()
         app.processEvents()
     engine.dispose()

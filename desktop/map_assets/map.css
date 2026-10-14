@@ -1,0 +1,8 @@
+html,body,#map{height:100%;width:100%;margin:0;background:#16252b;color:#d7e5e7;font:12px 'Segoe UI',sans-serif}
+.leaflet-container{background:#16252b;outline:none}
+.leaflet-control-zoom a,.leaflet-bar a{background:#101c24;color:#d4e7de;border-color:#33464f}
+.leaflet-control-attribution{background:#0e1921d9!important;color:#afc4ca!important;font-size:10px}
+.leaflet-control-attribution a{color:#82d7ac}
+.leaflet-control-scale-line{background:#0e1921cc;color:#d9e6e7;border-color:#c6d5d8;text-shadow:none}
+#empty{position:absolute;z-index:500;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;text-align:center;max-width:420px;color:#94aeb5}
+#coordinates{position:absolute;z-index:800;bottom:24px;right:8px;background:#0e1921e6;padding:5px 8px;border-radius:3px;font-size:10px;pointer-events:none}

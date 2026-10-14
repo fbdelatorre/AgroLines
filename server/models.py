@@ -1,9 +1,23 @@
 from uuid import uuid4
 
-from sqlalchemy import Boolean, CheckConstraint, ForeignKey, Integer, String, Text
+from sqlalchemy import (
+    JSON,
+    Boolean,
+    CheckConstraint,
+    Float,
+    ForeignKey,
+    Index,
+    Integer,
+    LargeBinary,
+    String,
+    Text,
+    UniqueConstraint,
+)
 from sqlalchemy.orm import Mapped, mapped_column
 
+from core.crs import DEFAULT_WORK_CRS
 from server.db import Base
+from server.spatial_type import NativeGeometry, PolygonGeometry
 
 
 def new_id() -> str:
@@ -58,6 +72,9 @@ class RateBucket(Base):
 
 class Farm(Base):
     __tablename__ = "farms"
+    work_crs: Mapped[str] = mapped_column(
+        String(32), default=DEFAULT_WORK_CRS, server_default=DEFAULT_WORK_CRS
+    )
     id: Mapped[str] = mapped_column(String(36), primary_key=True, default=new_id)
     owner_id: Mapped[str] = mapped_column(ForeignKey("users.id"), index=True)
     name: Mapped[str] = mapped_column(String(120))
@@ -123,3 +140,66 @@ class AuditEvent(Base):
     resource_id: Mapped[str | None] = mapped_column(String(36))
     farm_id: Mapped[str | None] = mapped_column(ForeignKey("farms.id"), index=True)
     occurred: Mapped[int] = mapped_column(Integer)
+
+
+# Stage 3.1: append-only geometry versions; existing Stage 2 tables are unchanged.
+class Plot(Base):
+    __tablename__ = "plots"
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=new_id)
+    farm_id: Mapped[str] = mapped_column(ForeignKey("farms.id"), index=True)
+    name: Mapped[str] = mapped_column(String(120))
+    current_revision: Mapped[int] = mapped_column(Integer)
+    fingerprint: Mapped[str] = mapped_column(String(64))
+    __table_args__ = (UniqueConstraint("farm_id", "fingerprint", name="uq_plot_geometry"),)
+
+
+class PlotVersion(Base):
+    __tablename__ = "plot_versions"
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=new_id)
+    plot_id: Mapped[str] = mapped_column(ForeignKey("plots.id"), index=True)
+    revision: Mapped[int] = mapped_column(Integer)
+    actor_id: Mapped[str] = mapped_column(ForeignKey("users.id"))
+    created: Mapped[int] = mapped_column(Integer)
+    geometry: Mapped[dict] = mapped_column(PolygonGeometry())
+    original_geometry: Mapped[dict] = mapped_column(JSON)
+    native_geometry: Mapped[dict | None] = mapped_column(NativeGeometry())
+    precision_report: Mapped[dict | None] = mapped_column(JSON)
+    source_crs: Mapped[str] = mapped_column(Text)
+    metric_crs: Mapped[str] = mapped_column(String(32))
+    attributes: Mapped[dict] = mapped_column(JSON)
+    area_m2: Mapped[float] = mapped_column(Float)
+    perimeter_m: Mapped[float] = mapped_column(Float)
+    __table_args__ = (
+        UniqueConstraint("plot_id", "revision", name="uq_plot_revision"),
+        Index("ix_plot_versions_geometry", "geometry", postgresql_using="gist"),
+    )
+
+
+class ImportSource(Base):
+    __tablename__ = "import_sources"
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=new_id)
+    farm_id: Mapped[str] = mapped_column(ForeignKey("farms.id"), index=True)
+    actor_id: Mapped[str] = mapped_column(ForeignKey("users.id"))
+    name: Mapped[str] = mapped_column(String(255))
+    sha256: Mapped[str] = mapped_column(String(64))
+    content: Mapped[bytes] = mapped_column(LargeBinary)
+    created: Mapped[int] = mapped_column(Integer)
+    __table_args__ = (UniqueConstraint("farm_id", "sha256", name="uq_source_content"),)
+
+
+class VersionSource(Base):
+    __tablename__ = "version_sources"
+    version_id: Mapped[str] = mapped_column(ForeignKey("plot_versions.id"), primary_key=True)
+    source_id: Mapped[str] = mapped_column(ForeignKey("import_sources.id"), primary_key=True)
+
+
+class PlotSeason(Base):
+    __tablename__ = "plot_seasons"
+    plot_id: Mapped[str] = mapped_column(ForeignKey("plots.id"), primary_key=True)
+    season_id: Mapped[str] = mapped_column(ForeignKey("seasons.id"), primary_key=True)
+
+
+class PlotOperation(Base):
+    __tablename__ = "plot_operations"
+    plot_id: Mapped[str] = mapped_column(ForeignKey("plots.id"), primary_key=True)
+    operation_id: Mapped[str] = mapped_column(ForeignKey("operations.id"), primary_key=True)
