@@ -1,0 +1,165 @@
+{
+  "consulted_date": "2026-10-14",
+  "sources": [
+    {
+      "name": "sac-signing",
+      "url": "https://learn.microsoft.com/en-us/windows/apps/develop/smart-app-control/code-signing-for-smart-app-control",
+      "resolved_url": "https://learn.microsoft.com/en-us/windows/apps/develop/smart-app-control/code-signing-for-smart-app-control",
+      "bytes": 51808,
+      "sha256": "0a795ccf45f117221d706c142b2ff44bb7bdb6603acd1f0f8e935ac40b6cb62a",
+      "status": "read"
+    },
+    {
+      "name": "store-signing",
+      "url": "https://learn.microsoft.com/en-us/windows/msix/package/signing-package-overview",
+      "resolved_url": "https://learn.microsoft.com/en-us/windows/msix/package/signing-package-overview",
+      "bytes": 57528,
+      "sha256": "b2c41c26ef86552474859860b36ec4335f0ad5b5fe8a282083f3c149c964f528",
+      "status": "read"
+    },
+    {
+      "name": "artifact-overview",
+      "url": "https://learn.microsoft.com/en-us/azure/artifact-signing/overview",
+      "resolved_url": "https://learn.microsoft.com/en-us/azure/artifact-signing/overview",
+      "bytes": 48485,
+      "sha256": "376983f345d79a6259495e561cacb5477802647b17d6c171566723acc3a5c924",
+      "status": "read"
+    },
+    {
+      "name": "artifact-identity",
+      "url": "https://learn.microsoft.com/en-us/azure/artifact-signing/quickstart",
+      "resolved_url": "https://learn.microsoft.com/en-us/azure/artifact-signing/quickstart",
+      "bytes": 104863,
+      "sha256": "3dcda74ed3eeae48d5b529a823278723969b62234b685031e46dbcb9a2153099",
+      "status": "read"
+    },
+    {
+      "name": "qt-lgpl",
+      "url": "https://doc.qt.io/qt-6/lgpl.html",
+      "status": "unavailable",
+      "error": "URLError: <urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "name": "qt-licensing",
+      "url": "https://doc.qt.io/qt-6/licensing.html",
+      "status": "unavailable",
+      "error": "URLError: <urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "name": "qtwebengine-license",
+      "url": "https://doc.qt.io/qt-6/qtwebengine-licensing.html",
+      "status": "unavailable",
+      "error": "URLError: <urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "name": "winverifytrust",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/wintrust/nf-wintrust-winverifytrust",
+      "resolved_url": "https://learn.microsoft.com/en-us/windows/win32/api/wintrust/nf-wintrust-winverifytrust",
+      "bytes": 59948,
+      "sha256": "25225b6c3e6e5141e554f30946fc55bd67157f525828d5715c608120d53421cb",
+      "status": "read"
+    },
+    {
+      "name": "x509chain",
+      "url": "https://learn.microsoft.com/en-us/dotnet/api/system.security.cryptography.x509certificates.x509chainpolicy.verificationtime",
+      "resolved_url": "https://learn.microsoft.com/en-us/dotnet/api/system.security.cryptography.x509certificates.x509chainpolicy.verificationtime?view=net-10.0",
+      "bytes": 63924,
+      "sha256": "988f8141275fdf7fe1a4f00a5952a90dddf1c6b0f83712b5da22fec5f44eb7d5",
+      "status": "read"
+    },
+    {
+      "name": "python-license",
+      "url": "https://docs.python.org/3.12/license.html",
+      "status": "unavailable",
+      "error": "URLError: <urlopen error Tunnel connection failed: 403 Forbidden>"
+    },
+    {
+      "name": "qt-charts",
+      "url": "https://github.com/qt/qtcharts/blob/v6.12.0/src/charts/qchart.cpp",
+      "status": "read",
+      "blob_sha": "aca7361726fbbc9f7655cc3183f39c7f25d45c07",
+      "sha256": "691edd14706ab4dd08b0a428520357b143f0e67c6a5051fadf8ea67677501016",
+      "bytes": 26363
+    },
+    {
+      "name": "qt-graphs",
+      "url": "https://github.com/qt/qtgraphs/blob/v6.12.0/src/graphs2d/qgraphsview.cpp",
+      "status": "read",
+      "blob_sha": "6039bc10a505bc834edcd9a4f3d902ccfc48f1d1",
+      "sha256": "b163ad6a8cdea427649bd90601dbd0a1ca9446540a451e74f72dbb0b6f565637",
+      "bytes": 59687
+    },
+    {
+      "name": "qt-base",
+      "url": "https://github.com/qt/qtbase/blob/v6.12.0/src/corelib/kernel/qcoreapplication.cpp",
+      "status": "read",
+      "blob_sha": "b87c6f6a2d646d165aa3d5c2cc92b5446a44e8b8",
+      "sha256": "2f6c9fb4ed03112816a294ac973d650cf85f0f81ab2304a63c79d9a6e8e7f77b",
+      "bytes": 117858
+    },
+    {
+      "name": "qt-webengine",
+      "url": "https://github.com/qt/qtwebengine/blob/v6.12.0/src/core/api/qwebenginepage.cpp",
+      "status": "unavailable",
+      "error": "GitHub source lookup failed; ref/path not verified"
+    },
+    {
+      "name": "shapely-license",
+      "url": "https://github.com/shapely/shapely/blob/main/LICENSE.txt",
+      "status": "read",
+      "blob_sha": "c2da06d68d2beb4b807017c876d03230051bc630",
+      "sha256": "4a207eac9bf257ed286e1c6f0fce253d1abfdb134fc61ec855e37f5692a3f754",
+      "bytes": 1583
+    },
+    {
+      "name": "geos-license",
+      "url": "https://github.com/libgeos/geos/blob/main/COPYING",
+      "status": "read",
+      "blob_sha": "4362b49151d7b34ef83b3067a8f9c9f877d72a0e",
+      "sha256": "dc626520dcd53a22f727af3ee42c770e56c97a64fe3adb063799d8ab032fe551",
+      "bytes": 26530
+    },
+    {
+      "name": "proj-license",
+      "url": "https://github.com/OSGeo/PROJ/blob/master/COPYING",
+      "status": "read",
+      "blob_sha": "d46f95cd6cccd0261593379658fd05c08f95bf49",
+      "sha256": "6a8f30793e877d32e3f88b972f0970a051a3b5a26cd057d3993cb51e21c43319",
+      "bytes": 1784
+    },
+    {
+      "name": "gdal-license",
+      "url": "https://github.com/OSGeo/gdal/blob/master/LICENSE.TXT",
+      "status": "read",
+      "blob_sha": "cd24b533bddcf6971fa61ef2622abd1a90b188fc",
+      "sha256": "1dae3468e81d00da56e2936f74d33b8b3ad09d726437f19ce209a5dabea41f77",
+      "bytes": 21841
+    },
+    {
+      "name": "numpy-license",
+      "url": "https://github.com/numpy/numpy/blob/main/LICENSE.txt",
+      "status": "read",
+      "blob_sha": "f37a12cc4cccf83af4517809791777e71c1df2a9",
+      "sha256": "1be1df33863f97a7bc1c4d67980bd6c69c9a6fef0a5ee76e6ad6cb91e56e8491",
+      "bytes": 1543
+    },
+    {
+      "name": "pyinstaller-license",
+      "url": "https://github.com/pyinstaller/pyinstaller/blob/develop/COPYING.txt",
+      "status": "read",
+      "blob_sha": "d6caec5ab5778c36bd7e26d8d7a48eba1ac23dee",
+      "sha256": "0598064c7d2718e38d7914a7d08343b2fa008e3bea9ebba2aa7a6ffa5900dd64",
+      "bytes": 32604
+    },
+    {
+      "name": "python-license-git",
+      "url": "https://github.com/python/cpython/blob/v3.12.10/LICENSE",
+      "status": "read",
+      "blob_sha": "f26bcf4d2de6eb136e31006ca3ab447d5e488adf",
+      "sha256": "3b2f81fe21d181c499c59a256c8e1968455d6689d269aa85373bfb6af41da3bf",
+      "bytes": 13936
+    }
+  ],
+  "contracts_or_certificates_purchased": false,
+  "license_choice_approved": false
+}

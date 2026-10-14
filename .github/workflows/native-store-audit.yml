@@ -1,0 +1,85 @@
+name: Native audit of immutable Store candidate (no signing or installation)
+on:
+  push:
+    paths: ['scripts/native_msix_audit.py', 'scripts/Test-NativeAuthenticode.ps1', 'scripts/Observe-NativeModules.ps1', 'scripts/Audit-NativeWindows.ps1', '.github/workflows/native-store-audit.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  audit:
+    runs-on: windows-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.10'
+          architecture: x64
+      - name: Download original PR14 candidate evidence
+        uses: actions/download-artifact@v4
+        with:
+          name: agrolines-official-store-msix-UNSIGNED-submission-candidate
+          run-id: 38615384532
+          github-token: ${{ github.token }}
+          path: build/native-input
+      - name: Verify exact original archive and unpack with trusted SDK
+        shell: pwsh
+        run: |
+          $package = 'build/native-input/dist/msix/AgroLines-1.0.0.0-x64-STORE-SUBMISSION-UNSIGNED.msix'
+          if ((Get-FileHash $package -Algorithm SHA256).Hash.ToLowerInvariant() -ne '22286add49d873625f6a3ab898dc2b772b5514dd4fc30cddcfdbcfa369ea2a36') { throw 'Original MSIX hash mismatch.' }
+          $sdkRoot = Join-Path ${env:ProgramFiles(x86)} 'Windows Kits/10/bin'
+          $sdk = Get-ChildItem $sdkRoot -Directory | Where-Object { $_.Name -match '^10\.0\.\d+\.\d+$' -and (Test-Path (Join-Path $_.FullName 'x64/makeappx.exe')) } | Sort-Object { [version]$_.Name } -Descending | Select-Object -First 1
+          $tool = Join-Path $sdk.FullName 'x64/makeappx.exe'
+          if ((Get-AuthenticodeSignature $tool).Status -ne 'Valid') { throw 'Untrusted SDK.' }
+          & $tool unpack /p $package /d build/native-original /v
+          if ($LASTEXITCODE) { throw 'MSIX unpack failed.' }
+          foreach ($file in (Get-ChildItem scripts -Filter '*.ps1')) {
+            $tokens = $null; $errors = $null
+            [System.Management.Automation.Language.Parser]::ParseFile($file.FullName,[ref]$tokens,[ref]$errors) | Out-Null
+            if ($errors.Count) { throw ($errors | Out-String) }
+          }
+      - name: Pinned input metadata for hash-based provenance (builder only)
+        run: |
+          python -m venv build-env
+          ./build-env/Scripts/python.exe -m pip install --require-hashes --only-binary=:all: -r distribution/windows/requirements.lock
+          ./build-env/Scripts/python.exe -m pip check
+          ./build-env/Scripts/python.exe -m scripts.native_msix_audit --prepare --payload build/native-original/VFS/ProgramFilesX64/AgroLines --output build/native-inventory.json
+      - name: Authenticode and current-time X509 chains (read only)
+        shell: pwsh
+        run: ./scripts/Audit-NativeWindows.ps1 -Inventory build/native-inventory.json -Output build/native-signatures.json
+      - name: SignTool Authenticode policy and trusted timestamps (read only)
+        shell: pwsh
+        run: ./scripts/Test-NativeAuthenticode.ps1 -Inventory build/native-inventory.json -Output build/native-signtool.json
+      - name: Observe original executable and Qt helper modules (synthetic operations only)
+        shell: pwsh
+        run: ./scripts/Observe-NativeModules.ps1 -Executable build/native-original/VFS/ProgramFilesX64/AgroLines/AgroLinesPoC.exe -OutputDirectory build/native-observations
+      - name: Correlate all 453 files with original bytes, origins, trust and observations
+        run: >-
+          ./build-env/Scripts/python.exe -m scripts.native_msix_audit
+          --native build/native-inventory.json
+          --signatures build/native-signatures.json
+          --tools build/native-signtool.json
+          --loads build/native-observations/loads.json
+          --baseline build/native-input/evidence/native-signatures.json
+          --notices build/native-original/VFS/ProgramFilesX64/AgroLines/third-party-notices
+          --package-sha 22286add49d873625f6a3ab898dc2b772b5514dd4fc30cddcfdbcfa369ea2a36
+          --output build/native-audit
+      - name: Preserve original archive and native integrity after inspection
+        shell: pwsh
+        run: |
+          $package = 'build/native-input/dist/msix/AgroLines-1.0.0.0-x64-STORE-SUBMISSION-UNSIGNED.msix'
+          if ((Get-FileHash $package -Algorithm SHA256).Hash.ToLowerInvariant() -ne '22286add49d873625f6a3ab898dc2b772b5514dd4fc30cddcfdbcfa369ea2a36') { throw 'Archive changed.' }
+          ./build-env/Scripts/python.exe -c "from distribution.payload import verify; from scripts.native_msix_audit import read_json; from pathlib import Path; root=Path('build/native-original/VFS/ProgramFilesX64/AgroLines'); assert verify(root,read_json(root/'payload-manifest.json'))"
+          if ($LASTEXITCODE) { throw 'Payload changed.' }
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: agrolines-original-msix-native-audit
+          path: |
+            build/native-audit/
+            build/native-inventory.json
+            build/native-signatures.json
+            build/native-signtool.json
+            build/native-observations/
+          if-no-files-found: error

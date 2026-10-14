@@ -18,6 +18,10 @@ foreach ($file in $data.files) {
         status = 'InspectionError'; signature_type = $null; signer = $null
         signer_thumbprint = $null; timestamp_signer = $null
         chain_valid = $false; chain_status = @(); integrity_matches = $false
+        status_message = $null; inspection_error = $null
+        signer_not_before_utc = $null; signer_not_after_utc = $null
+        timestamp_not_before_utc = $null; timestamp_not_after_utc = $null
+        chain_elements = @(); public_key_algorithm = $null
     }
     try {
         if ($file.format -ne 'PE') { throw 'Native format is not PE; cannot approve on Windows.' }
@@ -25,11 +29,15 @@ foreach ($file in $data.files) {
         if (-not $record.integrity_matches) { throw 'Arquivo mudou depois do inventario.' }
         $signature = Get-AuthenticodeSignature -LiteralPath $file.path
         $record.status = $signature.Status.ToString()
+        $record.status_message = $signature.StatusMessage
         $record.signature_type = $signature.SignatureType.ToString()
         if ($signature.SignerCertificate) {
             $cert = $signature.SignerCertificate
             $record.signer = $cert.Subject
             $record.signer_thumbprint = $cert.Thumbprint
+            $record.signer_not_before_utc = $cert.NotBefore.ToUniversalTime().ToString('o')
+            $record.signer_not_after_utc = $cert.NotAfter.ToUniversalTime().ToString('o')
+            $record.public_key_algorithm = $cert.PublicKey.Oid.Value
             if (-not $chains.ContainsKey($cert.Thumbprint)) {
                 $chain = [System.Security.Cryptography.X509Certificates.X509Chain]::new()
                 try {
@@ -40,16 +48,29 @@ foreach ($file in $data.files) {
                     $chains[$cert.Thumbprint] = @{
                         valid = $valid
                         status = @($chain.ChainStatus | ForEach-Object { $_.Status.ToString() })
+                        elements = @($chain.ChainElements | ForEach-Object {
+                            @{
+                                subject = $_.Certificate.Subject; issuer = $_.Certificate.Issuer
+                                not_before_utc = $_.Certificate.NotBefore.ToUniversalTime().ToString('o')
+                                not_after_utc = $_.Certificate.NotAfter.ToUniversalTime().ToString('o')
+                                statuses = @($_.ChainElementStatus | ForEach-Object {
+                                    @{ flag = $_.Status.ToString(); information = $_.StatusInformation.Trim() }
+                                })
+                            }
+                        })
                     }
                 } finally { $chain.Dispose() }
             }
             $record.chain_valid = $chains[$cert.Thumbprint].valid
             $record.chain_status = $chains[$cert.Thumbprint].status
+            $record.chain_elements = $chains[$cert.Thumbprint].elements
         }
         if ($signature.TimeStamperCertificate) {
             $record.timestamp_signer = $signature.TimeStamperCertificate.Subject
+            $record.timestamp_not_before_utc = $signature.TimeStamperCertificate.NotBefore.ToUniversalTime().ToString('o')
+            $record.timestamp_not_after_utc = $signature.TimeStamperCertificate.NotAfter.ToUniversalTime().ToString('o')
         }
-    } catch { $record.status = 'InspectionError' }
+    } catch { $record.status = 'InspectionError'; $record.inspection_error = $_.Exception.Message }
     $results += [PSCustomObject]$record
 }
 $unverified = @($results | Where-Object { $_.status -ne 'Valid' -or -not $_.chain_valid -or -not $_.integrity_matches })
@@ -60,6 +81,11 @@ $report = [ordered]@{
     inspected_pe_files = $results.Count; unverified_files = $unverified.Count
     signatures_and_chains_verified = ($results.Count -gt 0 -and $unverified.Count -eq 0)
     smart_app_control_compatibility_proven = $false
+    chain_policy = @{
+        verification_time = 'Current system time; NOT Authenticode signing/timestamp time'
+        revocation_mode = 'Online'; revocation_flag = 'ExcludeRoot'; retrieval_timeout_seconds = 5
+        verification_flags = 'Default; no ignored errors'; application_policy = 'Generic X509 chain'
+    }
     note = 'Assinatura/cadeia valida nao comprova reputacao nem aceitacao pelo SAC.'
 }
 $parent = Split-Path -Parent ([IO.Path]::GetFullPath($Output))
