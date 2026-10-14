@@ -70,7 +70,7 @@ function Get-AgroPublicSigningCertificate {
         $chain.ChainPolicy.RevocationMode = 'Online'
         $chain.ChainPolicy.RevocationFlag = 'ExcludeRoot'
         $chain.ChainPolicy.UrlRetrievalTimeout = [TimeSpan]::FromSeconds(10)
-        $chain.ChainPolicy.ApplicationPolicy.Add([Security.Cryptography.Oid]::new('1.3.6.1.5.5.7.3.3'))
+        $chain.ChainPolicy.ApplicationPolicy.Add([Security.Cryptography.Oid]::new('1.3.6.1.5.5.7.3.3')) | Out-Null
         if (-not $chain.Build($cert)) { throw 'Current signing certificate chain/revocation not accepted; no overrides.' }
         $anchor = $chain.ChainElements[$chain.ChainElements.Count - 1].Certificate
         $rootHash = [Convert]::ToHexString([Security.Cryptography.SHA256]::HashData($anchor.RawData)).ToLowerInvariant()
