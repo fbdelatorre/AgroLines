@@ -323,6 +323,12 @@ def revise_geometry(farm_id: str, plot_id: str, body: RevisionInput, actor: Acto
     if CRS.from_user_input(body.source_crs) != CRS.from_user_input(previous.source_crs):
         raise HTTPException(422, "A edição não pode substituir o SRC original silenciosamente.")
     try:
+        if body.work_crs and CRS.from_user_input(body.work_crs) != CRS.from_user_input(
+            farm.work_crs
+        ):
+            raise ValueError("SRC de trabalho alterado. Recarregue a propriedade antes de editar.")
+        if len(json.dumps(body.metadata, allow_nan=False)) > 65536:
+            raise ValueError("Metadados excedem o limite permitido.")
         result = inspect_polygon(
             body.original_geometry, body.source_crs, work_crs=farm.work_crs, metadata=body.metadata
         )
