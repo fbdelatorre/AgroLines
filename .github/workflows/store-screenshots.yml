@@ -1,0 +1,54 @@
+name: Real Windows offline Store screenshots (desktop required)
+on:
+  push:
+    paths: ['scripts/capture_store_windows.py', 'scripts/windows_screen_capture.py', 'scripts/store_demo.py', '.github/workflows/store-screenshots.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  capture:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.10'
+          architecture: x64
+      - name: Exact developer runtime (not installing a user MSIX)
+        run: |
+          python -m venv capture-env
+          ./capture-env/Scripts/python.exe -m pip install --require-hashes --only-binary=:all: -r distribution/windows/requirements.lock
+      - name: Synthetic project for manual capture fallback
+        run: ./capture-env/Scripts/python.exe -m scripts.store_demo --directory store-demo
+      - uses: actions/upload-artifact@v4
+        with:
+          name: agrolines-synthetic-local-projects
+          path: store-demo/
+          if-no-files-found: error
+      - name: Real input desktop, native screen and offline UI
+        id: capture
+        continue-on-error: true
+        env:
+          QT_QPA_PLATFORM: windows
+        run: ./capture-env/Scripts/python.exe -m scripts.capture_store_windows --output store-capture --revision ${{ github.sha }}
+      - name: No substitute screenshots
+        if: steps.capture.outcome != 'success'
+        shell: pwsh
+        run: Write-Output '::warning::Capturas indisponiveis. Consulte capture-evidence.json; obter em Windows interativo adequado. CI passing is not desktop evidence.'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: windows-store-capture-readiness
+          path: |
+            store-capture/capture-evidence.json
+            store-capture/README.md
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        if: steps.capture.outcome == 'success'
+        with:
+          name: agrolines-offline-real-windows-screenshots-REVIEW-REQUIRED
+          path: |
+            store-capture/*.png
+            store-capture/capture-evidence.json
+            store-capture/README.md
+          if-no-files-found: error
