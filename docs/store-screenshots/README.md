@@ -1,5 +1,9 @@
 # Capturas da listagem pt-BR — edição Store offline
 
+**Entrega revisada:** [quatro PNGs, evidências e limites](revisao-visual.md).
+Usar o conjunto `run-38570070770`; o anterior é histórico e foi substituído após
+revisão. O seletor nativo da quarta imagem usa textos Windows em inglês.
+
 Base funcional: PR #10 e suas dependências #6–#9. As ferramentas deste incremento
 não alteram o motor geográfico ou projetos reais. A revisão visual motivou correções
 mínimas reais de contraste de QDialog/QSpinBox, tradução dos botões Salvar/Cancelar/
