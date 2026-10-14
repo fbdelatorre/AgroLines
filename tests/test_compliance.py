@@ -200,3 +200,15 @@ def test_capture_refuses_other_msix_without_execution(tmp_path):
     package.write_bytes(b"another candidate")
     with pytest.raises(ValueError, match="reference MSIX mismatch"):
         compliance_capture.capture(package, tmp_path, tmp_path / "output")
+
+
+def test_missing_binary_provenance_cannot_be_cleared_by_document_refresh(dossier):
+    alter(
+        dossier,
+        "evidence/native.json",
+        lambda rows: rows[0].update(pinned_origin_confirmed=False, exact_build_source_match=False),
+    )
+    manifest(dossier)
+    errors = verify(dossier)["technical_failure"]
+    assert any("without verified provenance" in error for error in errors)
+    assert any("input hash not established" in error for error in errors)

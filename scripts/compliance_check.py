@@ -62,6 +62,10 @@ def verify(root, payload_manifest=None):
             fail("Forbidden Qt component: " + path)
     for native in natives:
         row = actual.get(native["path"], {})
+        if not native.get("pinned_origin_confirmed"):
+            fail("File without verified provenance: " + native["path"])
+        if native["path"] != "AgroLinesPoC.exe" and not native.get("exact_build_source_match"):
+            fail("Third-party build input hash not established: " + native["path"])
         if row.get("owner_packages") != native["packages"]:
             fail("Owner/version drift: " + native["path"])
         version = (native["build_input_metadata"] or {}).get("product_version")
