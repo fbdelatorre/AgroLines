@@ -1,0 +1,142 @@
+{
+  "started_utc": "2026-10-14T13:14:37.937531+00:00",
+  "platform": "Windows",
+  "os_version": "10.0.26100",
+  "source_revision": "931ff189b94f07ec609b02a1f41613c86c203082",
+  "images": {
+    "01-tela-principal.png": {
+      "session_id": 2,
+      "session_active": true,
+      "input_desktop_matches": true,
+      "window_hwnd": 131594,
+      "foreground_hwnd": 131594,
+      "process_id": 7332,
+      "width": 1920,
+      "height": 1080,
+      "bytes": 48223,
+      "method": "Windows desktop GDI BitBlt/GetDIBits",
+      "sha256": "b539fcf3e680ddb1187fcace3b2497af5aefce085ebbd3a3cbe2b9515c89d628",
+      "description": "Projeto fictício, limite e três talhões no mapa vetorial local"
+    },
+    "02-camadas-importadas.png": {
+      "session_id": 2,
+      "session_active": true,
+      "input_desktop_matches": true,
+      "window_hwnd": 131594,
+      "foreground_hwnd": 131594,
+      "process_id": 7332,
+      "width": 1920,
+      "height": 1080,
+      "bytes": 49913,
+      "method": "Windows desktop GDI BitBlt/GetDIBits",
+      "sha256": "f9b74cf4342ee78820ae1512d8223c8dd3c5fee766535b04c7ce4aaf07507983",
+      "description": "Camadas realmente importadas de GeoJSON, SHP e GPKG"
+    },
+    "03-edicao-de-vertices.png": {
+      "session_id": 2,
+      "session_active": true,
+      "input_desktop_matches": true,
+      "window_hwnd": 131594,
+      "foreground_hwnd": 66072,
+      "process_id": 7332,
+      "width": 1920,
+      "height": 1080,
+      "bytes": 60942,
+      "method": "Windows desktop GDI BitBlt/GetDIBits",
+      "sha256": "673e59e8a6f03072260f81542aa6504ac5146b11f76b348550166341b5ba18f6",
+      "description": "Diálogo real de edição, com coordenadas métricas numéricas"
+    },
+    "04-projetos-e-backups.png": {
+      "session_id": 2,
+      "session_active": true,
+      "input_desktop_matches": true,
+      "window_hwnd": 131594,
+      "foreground_hwnd": 66078,
+      "process_id": 7332,
+      "width": 1920,
+      "height": 1080,
+      "bytes": 72170,
+      "method": "Windows desktop GDI BitBlt/GetDIBits",
+      "sha256": "e2bbf6f220ed8bb7a235c4cad8137fcb8b55a4ba8d8b94f4231e9351ffb6f238",
+      "description": "Diálogo real de abertura de projetos e cópias de backup"
+    }
+  },
+  "completed": true,
+  "synthetic_only": true,
+  "store_installed": false,
+  "sac_approved": false,
+  "desktop": {
+    "session_id": 2,
+    "session_active": true,
+    "input_desktop_matches": true
+  },
+  "display_mode": {
+    "original": [
+      1024,
+      768
+    ],
+    "available_modes": [
+      [
+        640,
+        480
+      ],
+      [
+        800,
+        600
+      ],
+      [
+        1024,
+        768
+      ],
+      [
+        1152,
+        864
+      ],
+      [
+        1280,
+        720
+      ],
+      [
+        1280,
+        800
+      ],
+      [
+        1280,
+        1024
+      ],
+      [
+        1366,
+        768
+      ],
+      [
+        1440,
+        900
+      ],
+      [
+        1600,
+        900
+      ],
+      [
+        1600,
+        1200
+      ],
+      [
+        1680,
+        1050
+      ],
+      [
+        1920,
+        1080
+      ]
+    ],
+    "changed": true,
+    "native_mode_test_result": 0,
+    "native_mode_apply_result": 0,
+    "restored": true
+  },
+  "qt_webengine_ready": true,
+  "feature_count": 4,
+  "history_revisions": 2,
+  "backup_restored": true,
+  "manual_visual_review_required": true
+}
