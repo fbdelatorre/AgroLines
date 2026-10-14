@@ -48,7 +48,7 @@ def policy_records(policy):
     return rows
 
 
-def pe_content_digest(path):
+def pe_content_digest(path, expected_unsigned_size=None, require_unsigned=False):
     """Mutation guard, not an Authenticode implementation or trust decision."""
     import hashlib
 
@@ -67,6 +67,17 @@ def pe_content_digest(path):
     start, size = struct.unpack_from("<II", data, security)
     if bool(start) != bool(size) or size and (start < security + 8 or start + size > len(data)):
         raise ValueError("Invalid PE certificate table")
+    if require_unsigned and size:
+        raise ValueError("Unrecognized existing certificate table must not be overwritten")
+    if expected_unsigned_size is not None and (
+        not size
+        or start != (expected_unsigned_size + 7) // 8 * 8
+        or start + size != len(data)
+        or any(data[expected_unsigned_size:start])
+    ):
+        raise ValueError(
+            "Only an appended certificate table and zero alignment padding are allowed"
+        )
     data[optional + 64 : optional + 68] = b"\0" * 4
     data[security : security + 8] = b"\0" * 8
     if size:
@@ -177,7 +188,12 @@ def evaluate(root, policy, native, signatures, signtool, source_commit, policy_s
             {
                 "path": relative,
                 "sha256": file["sha256"],
-                "pe_content_sha256": pe_content_digest(path),
+                "size_bytes": path.stat().st_size,
+                "pe_content_sha256": (
+                    pe_content_digest(path, require_unsigned=True)
+                    if sig["status"] == "NotSigned"
+                    else None
+                ),
                 "group": entry["group"] if entry else "unknown",
                 "action": action,
                 "sign_authorized": authorization and sig["status"] == "NotSigned",
@@ -191,6 +207,8 @@ def evaluate(root, policy, native, signatures, signtool, source_commit, policy_s
     if removed:
         violations.append("Native removals require policy update/dependency regression evidence")
     unknown = sorted(seen - set(rows))
+    if unknown:
+        violations.append("New native files require exact provenance/rights policy review")
     ready = (
         not violations
         and not unknown
@@ -252,7 +270,10 @@ def transition(plan, root, after, tools, signer_subject, thumbprint):
         if sig["status"] != "Valid" or tool["exit_code"] != 0:
             raise ValueError("All PE require accepted Authenticode after signing")
         if before["sign_authorized"]:
-            if pe_content_digest(root / path) != before["pe_content_sha256"]:
+            if (
+                pe_content_digest(root / path, expected_unsigned_size=before["size_bytes"])
+                != before["pe_content_sha256"]
+            ):
                 raise ValueError("PE content changed beyond signature fields/certificate table")
             if (
                 sig["signer"] != signer_subject

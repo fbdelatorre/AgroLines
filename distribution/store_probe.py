@@ -101,6 +101,7 @@ def run(output, probe_url="http://127.0.0.1:9/forbidden"):
             json.dumps(
                 {
                     "type": "Feature",
+                    "crs": {"type": "name", "properties": {"name": "EPSG:4326"}},
                     "properties": {"name": "Synthetic"},
                     "geometry": {
                         "type": "Polygon",

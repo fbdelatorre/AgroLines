@@ -174,7 +174,7 @@ def test_image_content_mutation_guard_excludes_only_signature_fields(tmp_path):
     struct.pack_into("<II", raw, 88 + 112 + 32, certificate, 16)
     raw[88 + 64 : 88 + 68] = b"ABCD"
     path.write_bytes(raw)
-    assert pe_content_digest(path) == before
+    assert pe_content_digest(path, expected_unsigned_size=513) == before
     raw[400] = 1
     path.write_bytes(raw)
     assert pe_content_digest(path) != before
@@ -215,13 +215,20 @@ def test_original_vendor_bytes_cannot_change_after_signing(specimen):
         )
     for tool in tools["files"]:
         tool["exit_code"] = 0
+    # Byte-layout fixture only: this is not an X509 certificate or valid signature.
+    own = root / "AgroLinesPoC.exe"
+    own_data = bytearray(own.read_bytes())
+    own_data.extend(b"\0" * (-len(own_data) % 8))
+    offset = len(own_data)
+    own_data.extend(b"TESTCERTNOTVALID")
+    struct.pack_into("<II", own_data, 88 + 112 + 32, offset, 16)
+    own.write_bytes(own_data)
     vendor = root / "_internal/vendor.dll"
     data = bytearray(vendor.read_bytes())
     data[400] = 1
     vendor.write_bytes(data)
     for rows in (signatures["files"], tools["files"]):
         for row in rows:
-            if Path(row["path"]) == vendor:
-                row["sha256"] = file_hash(vendor)
+            row["sha256"] = file_hash(row["path"])
     with pytest.raises(ValueError, match="vendor"):
         transition(plan, root, signatures, tools, "our-subject", "c" * 40)
