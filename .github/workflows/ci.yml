@@ -48,12 +48,40 @@ jobs:
         if: matrix.os == 'windows-latest'
         shell: pwsh
         run: |
-          foreach ($file in @('scripts/Configure.ps1','scripts/Start-Server.ps1')) {
+          foreach ($file in (Get-ChildItem scripts -Filter '*.ps1')) {
             $tokens = $null
             $errors = $null
-            [System.Management.Automation.Language.Parser]::ParseFile((Resolve-Path $file), [ref]$tokens, [ref]$errors) | Out-Null
+            [System.Management.Automation.Language.Parser]::ParseFile((Resolve-Path $file.FullName), [ref]$tokens, [ref]$errors) | Out-Null
             if ($errors.Count) { throw ($errors | Out-String) }
           }
+  windows-native-audit:
+    # Hosted Windows is not a Windows 11/SAC acceptance machine.
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -e ".[dev,desktop]"
+      - name: Inventariar sem importar dependencias nativas
+        run: python -m scripts.native_inventory --output native-evidence/native-inventory.json
+      - name: Verificar Authenticode e cadeias (nao homologa SAC)
+        shell: pwsh
+        run: |
+          ./scripts/Audit-NativeWindows.ps1 -Inventory native-evidence/native-inventory.json -Output native-evidence/native-signatures.json
+          $report = Get-Content native-evidence/native-signatures.json -Raw | ConvertFrom-Json
+          if ($report.unverified_files -gt 0) {
+            Write-Output "::warning::Ha componentes sem assinatura/cadeia verificadas. Compatibilidade SAC nao comprovada."
+          }
+      - name: Validar correlacao e recusa de adulteracao
+        shell: pwsh
+        run: ./scripts/Test-WindowsSecurityHelpers.ps1 -Python (Get-Command python).Source
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: windows-native-evidence
+          path: native-evidence/
+          if-no-files-found: error
   integration:
     strategy:
       fail-fast: false
