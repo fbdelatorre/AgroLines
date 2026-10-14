@@ -2,6 +2,7 @@
 
 import argparse
 
+from sqlalchemy import text
 from sqlalchemy.orm import Session
 
 from server.config import get_settings
@@ -28,7 +29,11 @@ def main():
             db.add(
                 Credential(user_id=USER_ID, password_hash=hash_password("Synthetic preserved 123!"))
             )
-            db.add(Farm(id=FARM_ID, owner_id=USER_ID, name="Fazenda preservada"))
+            # Seed the historical schema, without columns introduced after Stage 2.
+            db.execute(
+                text("INSERT INTO farms (id, owner_id, name) VALUES (:id, :owner, :name)"),
+                {"id": FARM_ID, "owner": USER_ID, "name": "Fazenda preservada"},
+            )
             db.add(
                 AuthSession(
                     id=SESSION_ID,
@@ -50,6 +55,7 @@ def main():
                 db.get(Credential, USER_ID).password_hash, "Synthetic preserved 123!"
             )
             assert db.get(Farm, FARM_ID).name == "Fazenda preservada"
+            assert db.get(Farm, FARM_ID).work_crs == "EPSG:32723"
             assert db.get(Season, SEASON_ID).farm_id == FARM_ID
             assert db.get(Operation, OPERATION_ID).season_id == SEASON_ID
             assert db.get(AuthSession, SESSION_ID).access_hash == digest(
