@@ -169,6 +169,13 @@ prova contendo dados pessoais deve permanecer em arquivo privado controlado.
 
 ## 6. Conclusão e próximas verificações
 
+A revisão operacional das **12 finalidades** está no [plano mínimo](plano-operacional-minimo.md),
+com termo final proposto 2.0, aceite por e-mail, modelos privados vazios, segurança
+Gmail e tabela de descarte. Isso não adota hipóteses desta matriz, não constitui
+contrato/aceite nem comprova configuração. Relatórios F08 são dispensáveis ao
+processo inicial; retenção de convites pendentes, comprovantes de descarte e
+incidentes exige decisão específica. Prazos já propostos permanecem preservados.
+
 A [memória de fontes](fontes-bases-transferencias.md) distingue textos consultados,
 blocos 403 e contratos privados não inspecionados. O registro técnico de consulta
 é `evidencias-fontes-transferencias.json`, sem mensagens, credenciais ou dados reais.

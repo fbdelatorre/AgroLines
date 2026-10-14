@@ -11,6 +11,11 @@ histórico de atendimentos nessa conta informado, encaminhamento a outros servi�
 ou download de anexos de suporte para pastas sincronizadas. Os controles abaixo
 ainda precisam ser configurados e testados; não estão comprovados pela documentação.
 
+Para executar com uma única pessoa, usar o [plano mínimo](plano-operacional-minimo.md),
+os [modelos vazios](modelos-registros/README.md), a [tabela de retenção](retencao-e-exclusao.md)
+e o [checklist Gmail](seguranca-gmail.md). Não preencher registros reais no checkout.
+O termo final proposto 2.0 descreve aceite por e-mail; continua sem aprovação/aceites.
+
 ## 1. Preparar antes de receber dados
 
 - Conferir fontes/termos e bases por finalidade conforme
@@ -54,6 +59,9 @@ ainda precisam ser configurados e testados; não estão comprovados pela documen
 3. Localizar mensagens, anexos baixados, cópias de projetos, capturas, relatórios e
    repositórios/artefatos sob controle do responsável pelo ID e registro de destinos.
 4. Excluir as cópias selecionadas, inclusive lixeiras sob controle quando cabível.
+   No Gmail pessoal, selecionar as mensagens pertinentes e apagá-las definitivamente
+   até o limite; não esvaziar toda a lixeira nem remover mensagens de outra finalidade
+   ainda necessária. Arquivar ou remover rótulos não elimina mensagens/anexos.
    Verificar que não permanecem nas contas/pastas/repositórios relacionados. Não
    prometer destruição forense ou eliminação imediata de backups do provedor.
 5. Registrar confirmação de descarte sem reproduzir os dados eliminados. Se houver
@@ -88,6 +96,10 @@ minuta de participação e o documento de hipóteses antes de receber dados reai
 ## 4. Atender direitos
 
 - Registrar data e pedido, confirmar recebimento e localizar dados sob controle.
+- Manter ID, contato necessário, tipo do direito, prazo aplicável verificado,
+  conclusão e referência à resposta privada no modelo de direitos; não copiar
+  conteúdo integral ou documentos para o controle. O limite de guarda é distinto
+  do prazo legal para responder.
 - Preferir confirmação pelo canal já usado e perguntas mínimas. Documentos só quando
   necessários e proporcionais; não exigir cópia automaticamente ou pedir senha/token.
 - Tratar confirmação/acesso conforme LGPD art. 19, inclusive resposta simplificada
