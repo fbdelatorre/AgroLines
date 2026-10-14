@@ -24,8 +24,21 @@ if (-not $files.Count) { throw 'No native package files.' }
 $results = @(); $i = 0
 foreach ($file in $files) {
     $relative = $file.FullName.Substring($pkg.InstallLocation.Length).TrimStart('\').Replace('\','/')
-    & $tools.signtool verify /pa /all /v /tw $file.FullName *> (Join-Path $directory "embedded-$i.txt")
-    $embedded = $LASTEXITCODE
+    $stream = [IO.File]::OpenRead($file.FullName)
+    $reader = [IO.BinaryReader]::new($stream)
+    try {
+        $stream.Position = 60; $pe = $reader.ReadUInt32()
+        $stream.Position = $pe + 24; $magic = $reader.ReadUInt16()
+        if ($magic -eq 0x20b) { $directoryOffset = 112 } elseif ($magic -eq 0x10b) { $directoryOffset = 96 } else { throw 'Invalid PE optional header.' }
+        $stream.Position = $pe + 24 + $directoryOffset + 32
+        $start = $reader.ReadUInt32(); $size = $reader.ReadUInt32()
+        $embeddedPresent = ($start -gt 0 -and $size -gt 0)
+    } finally { $reader.Dispose() }
+    $embedded = $null
+    if ($embeddedPresent) {
+        & $tools.signtool verify /pa /all /v /tw $file.FullName *> (Join-Path $directory "embedded-$i.txt")
+        $embedded = $LASTEXITCODE
+    }
     $catalogCode = $null
     if ($catalogValid) {
         & $tools.signtool verify /pa /v /c $catalog $file.FullName *> (Join-Path $directory "catalog-member-$i.txt")
@@ -33,8 +46,8 @@ foreach ($file in $files) {
     }
     $results += @{
         path=$relative; sha256=(Get-FileHash -LiteralPath $file.FullName -Algorithm SHA256).Hash.ToLowerInvariant()
-        embedded_verify_exit=$embedded; explicit_catalog_verify_exit=$catalogCode
-        trust_verified=($embedded -eq 0 -or ($catalogValid -and $catalogCode -eq 0))
+        embedded_certificate_table_present=$embeddedPresent; embedded_verify_exit=$embedded; explicit_catalog_verify_exit=$catalogCode
+        trust_verified=(($embeddedPresent -and $embedded -eq 0) -or ($catalogValid -and $catalogCode -eq 0))
     }
     $i++
 }

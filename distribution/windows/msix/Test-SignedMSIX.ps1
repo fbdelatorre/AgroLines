@@ -90,14 +90,15 @@ try {
     }
     Add-AppxPackage -Path ([IO.Path]::GetFullPath($FirstPackage)) -ErrorAction Stop
     $installed = Get-AppxPackage -Name 'DelatorreCOrporation.AgroLines'
-    if ($installed.PackageFamilyName -cne 'DelatorreCOrporation.AgroLines_pj9w8xnf5vxmg' -or $installed.Version -ne $firstVersion) { throw 'Instalacao divergente.' }
+    if ($installed.PackageFamilyName -cne 'DelatorreCOrporation.AgroLines_pj9w8xnf5vxmg' -or $installed.Version -ne $firstVersion -or
+        $installed.SignatureKind.ToString() -cne 'Store') { throw 'Exigir instalacao real do pacote oficial entregue pela Store.' }
     $nativeNames = @(Get-ChildItem $installed.InstallLocation -Recurse -File | Where-Object Extension -In @('.dll','.pyd','.exe') | Select-Object -ExpandProperty Name -Unique)
     $first = Invoke-AgroPackageProbe -Report "$OutputDirectory/first.json" -ProjectDirectory $projectDirectory
     $formats = Invoke-AgroPackageOfflineFormatsProbe -Report "$OutputDirectory/formats.json"
     $before = (Get-FileHash "$projectDirectory/project.agrolines" -Algorithm SHA256).Hash
     Add-AppxPackage -Path ([IO.Path]::GetFullPath($UpdatePackage)) -ErrorAction Stop
     $installed = Get-AppxPackage -Name 'DelatorreCOrporation.AgroLines'
-    if ($installed.Version -ne $nextVersion) { throw 'Versao MSIX nao atualizada.' }
+    if ($installed.Version -ne $nextVersion -or $installed.SignatureKind.ToString() -cne 'Store') { throw 'Versao/assinatura Store nao atualizada.' }
     $next = Invoke-AgroPackageProbe -Report "$OutputDirectory/update.json" -ProjectDirectory $projectDirectory
     if (-not $next.offline_projects.existing_project_preserved -or
         (Get-FileHash "$projectDirectory/project.agrolines" -Algorithm SHA256).Hash -ne $before) { throw 'Projeto mudou na atualizacao.' }
@@ -115,6 +116,7 @@ try {
     if ($RequireDisconnected -and (Get-NetAdapter -ErrorAction Stop | Where-Object Status -EQ 'Up')) {
         throw 'Bancada reconectada antes de concluir a validacao offline.'
     }
+    $defenderAfter = Assert-AgroDefenderActive
     $summary.installed_msix_validated = $true
     $summary.projects_preserved = $true
     $summary.real_clean_disconnected_sac_acceptance = [bool]($RequireSac -and $RequireCleanMachine -and $RequireDisconnected)
@@ -123,7 +125,7 @@ try {
     $summary.project_sha256 = $before
     $summary.project_directory = $projectDirectory
     $summary.local_formats = $formats.local_formats
-    $summary.defender_after = Assert-AgroDefenderActive
+    $summary.defender_after = $defenderAfter
 } finally {
     $env:PATH = $initialPath
     foreach ($name in $removedVariables.Keys) { [Environment]::SetEnvironmentVariable($name,$removedVariables[$name],'Process') }

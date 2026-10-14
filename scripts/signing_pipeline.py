@@ -151,7 +151,11 @@ def evaluate(root, policy, native, signatures, signtool, source_commit, policy_s
                     violations.append(
                         relative + ": own exemption is restricted to the built entrypoint"
                     )
-                authorization = entry["rights_confirmed"] is True
+                authorization = (
+                    entry["rights_confirmed"] is True
+                    and entry["origin_confirmed"] is True
+                    and bool(entry.get("rights_evidence"))
+                )
                 blocker = (
                     "Certificate/signing service not configured"
                     if authorization
