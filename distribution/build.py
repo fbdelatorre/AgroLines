@@ -91,7 +91,10 @@ def collect_notices(payload):
             }
         )
         for entry in package.files or []:
-            if "license" not in str(entry).casefold() and "copyright" not in str(entry).casefold():
+            lower = str(entry).casefold()
+            if not any(word in lower for word in ("license", "copyright", "copying", "notice")):
+                continue
+            if Path(entry).suffix.lower() in (".py", ".pyc", ".pyd", ".dll", ".exe"):
                 continue
             source = Path(package.locate_file(entry))
             if source.is_file():
@@ -103,6 +106,9 @@ def collect_notices(payload):
     python_license = Path(sys.base_prefix) / "LICENSE.txt"
     if python_license.exists():
         shutil.copyfile(python_license, notices / "Python-LICENSE.txt")
+    supplement = ROOT / "distribution/windows/third-party"
+    if supplement.is_dir():
+        shutil.copytree(supplement, notices / "reviewed-texts", dirs_exist_ok=True)
     (notices / "README.txt").write_text(
         "Dependency notices collected for internal PoC. Commercial redistribution "
         "requires review of Qt/Chromium notices, LGPL/source obligations, "

@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 from PyInstaller.utils.hooks import collect_data_files
 from distribution.build import privacy_assets
+from distribution.qt_payload import PYTHON_EXCLUDES, record_analysis
 
 root = Path(SPECPATH).parent.parent
 prepared = root / 'build' / 'distribution'
@@ -22,11 +23,12 @@ a = Analysis(
     ] + (privacy_assets() if store else [])
       + collect_data_files('pyproj') + collect_data_files('fiona'),
     hiddenimports=[],
-    hookspath=[],
+    hookspath=[str(root / 'distribution/windows/hooks')],
     runtime_hooks=[str(root / 'distribution/windows/offline_hook.py')] if store else [],
-    excludes=['PyQt5', 'PyQt6', 'PySide2', 'tkinter'] + (remote if store else []),
+    excludes=['PyQt5', 'PyQt6', 'PySide2', 'tkinter'] + PYTHON_EXCLUDES + (remote if store else []),
     noarchive=False,
 )
+record_analysis(a, root / 'evidence/qt-minimal/build-inputs.json')
 if store and any(name == module or name.startswith(module + '.')
                  for name, _, _ in a.pure for module in remote):
     raise RuntimeError('Remote module leaked into offline Store payload')

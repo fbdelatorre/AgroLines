@@ -1,0 +1,33 @@
+{
+  "texts": [
+    {
+      "name": "lgpl3",
+      "url": "https://github.com/qt/qtbase/blob/v6.12.0/LICENSES/LGPL-3.0-only.txt",
+      "status": "read",
+      "blob_sha": "65c5ca88a67c30becee01c5a8816d964b03862f9",
+      "sha256": "da7eabb7bafdf7d3ae5e9f223aa5bdc1eece45ac569dc21b3b037520b4464768",
+      "bytes": 7651,
+      "local_file": "LGPL-3.0-only.txt"
+    },
+    {
+      "name": "gpl3",
+      "url": "https://github.com/qt/qtbase/blob/v6.12.0/LICENSES/GPL-3.0-only.txt",
+      "status": "read",
+      "blob_sha": "94a9ed024d3859793618152ea559a168bbcbb5e2",
+      "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903",
+      "bytes": 35147,
+      "local_file": "GPL-3.0-only.txt"
+    },
+    {
+      "name": "geos-license",
+      "url": "https://github.com/libgeos/geos/blob/main/COPYING",
+      "status": "read",
+      "blob_sha": "4362b49151d7b34ef83b3067a8f9c9f877d72a0e",
+      "sha256": "dc626520dcd53a22f727af3ee42c770e56c97a64fe3adb063799d8ab032fe551",
+      "bytes": 26530,
+      "local_file": "LGPL-2.1-only.txt"
+    }
+  ],
+  "source_compliance_complete": false,
+  "legal_compliance_approved": false
+}

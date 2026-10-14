@@ -2699,25 +2699,6 @@
       "blocker": null
     },
     {
-      "path": "_internal/PySide6/plugins/platforminputcontexts/qtvirtualkeyboardplugin.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Essentials",
-          "version": "6.12.0",
-          "input_relative": "PySide6/plugins/platforminputcontexts/qtvirtualkeyboardplugin.dll"
-        }
-      ],
-      "baseline_sha256": "bbf479e6380061699e734a32f4fe0b6fc8bc2de007ae53b0206e6e36abf1e3e2",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
       "path": "_internal/PySide6/plugins/platforms/qdirect2d.dll",
       "group": "qt",
       "packages": [
@@ -2994,25 +2975,6 @@
         }
       ],
       "baseline_sha256": "e3772d71561a88bf8373aa14ec5b5cae6cc193db68c7ec1ca6f55d802f03e2dc",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/plugins/qmltooling/qmldbg_quick3dprofiler.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Essentials",
-          "version": "6.12.0",
-          "input_relative": "PySide6/plugins/qmltooling/qmldbg_quick3dprofiler.dll"
-        }
-      ],
-      "baseline_sha256": "b0b70e67eb10d908ba61b967b3d4c06055aabbe42f04b5a916bf0cea9dbb027b",
       "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
       "action": "preserve_original",
       "proposed_action": null,
@@ -3554,25 +3516,6 @@
       "blocker": null
     },
     {
-      "path": "_internal/PySide6/qml/QtCharts/qtchartsqml2plugin.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Addons",
-          "version": "6.12.0",
-          "input_relative": "PySide6/qml/QtCharts/qtchartsqml2plugin.dll"
-        }
-      ],
-      "baseline_sha256": "d9699fb80ee2b65dab6cef2e8574cb2e6b9100bd8bb23ec0d8b3929a4512dbb4",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
       "path": "_internal/PySide6/qml/QtCore/qtqmlcoreplugin.dll",
       "group": "qt",
       "packages": [
@@ -3583,44 +3526,6 @@
         }
       ],
       "baseline_sha256": "71c8fcb5e4dfd3490a2a6dea58e04efcc0bf2841ae65884e030b8e68d068a79c",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/qml/QtDataVisualization/datavisualizationqmlplugin.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Addons",
-          "version": "6.12.0",
-          "input_relative": "PySide6/qml/QtDataVisualization/datavisualizationqmlplugin.dll"
-        }
-      ],
-      "baseline_sha256": "bde0588c6a558626a0c9d010ef0b0ed572c2934e7d139cd8bef694d8fff6dedf",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/qml/QtGraphs/graphsplugin.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Addons",
-          "version": "6.12.0",
-          "input_relative": "PySide6/qml/QtGraphs/graphsplugin.dll"
-        }
-      ],
-      "baseline_sha256": "317994c9231c30a59c87c8613413293cf73bf1dd093c49192da1a756d633206d",
       "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
       "action": "preserve_original",
       "proposed_action": null,
@@ -4409,44 +4314,6 @@
       "blocker": null
     },
     {
-      "path": "_internal/PySide6/qml/QtQuick/Timeline/BlendTrees/qtquicktimelineblendtreesplugin.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Essentials",
-          "version": "6.12.0",
-          "input_relative": "PySide6/qml/QtQuick/Timeline/BlendTrees/qtquicktimelineblendtreesplugin.dll"
-        }
-      ],
-      "baseline_sha256": "c5fb4de419282bbb8f1809d56f4581e4762ee4af033f770162b2d2a4bba8ff76",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/qml/QtQuick/Timeline/qtquicktimelineplugin.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Essentials",
-          "version": "6.12.0",
-          "input_relative": "PySide6/qml/QtQuick/Timeline/qtquicktimelineplugin.dll"
-        }
-      ],
-      "baseline_sha256": "770238ea72b59171af09377ce2d2745b8bc3a1c4896ed2b9059fb78657508799",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
       "path": "_internal/PySide6/qml/QtQuick/tooling/quicktoolingplugin.dll",
       "group": "qt",
       "packages": [
@@ -4504,253 +4371,6 @@
       "blocker": null
     },
     {
-      "path": "_internal/PySide6/qml/QtQuick/VirtualKeyboard/Components/qtvkbcomponentsplugin.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Essentials",
-          "version": "6.12.0",
-          "input_relative": "PySide6/qml/QtQuick/VirtualKeyboard/Components/qtvkbcomponentsplugin.dll"
-        }
-      ],
-      "baseline_sha256": "22b5d1e4da36d239a41b51736d407fb80276effad47563f679b0e4a91403d5c4",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/qml/QtQuick/VirtualKeyboard/Core/virtualkeyboardplugin.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Essentials",
-          "version": "6.12.0",
-          "input_relative": "PySide6/qml/QtQuick/VirtualKeyboard/Core/virtualkeyboardplugin.dll"
-        }
-      ],
-      "baseline_sha256": "d329dab3d4bdff92a4fa6a8231f7ec49a1f28a26b16073cc946ff742f9e006ee",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/qml/QtQuick/VirtualKeyboard/Layouts/qtvkblayoutsplugin.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Essentials",
-          "version": "6.12.0",
-          "input_relative": "PySide6/qml/QtQuick/VirtualKeyboard/Layouts/qtvkblayoutsplugin.dll"
-        }
-      ],
-      "baseline_sha256": "e96589970c1d624e15b59237de96600c79549352cf04ef4c8342792b40eb08ef",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/qml/QtQuick/VirtualKeyboard/Plugins/Hangul/qtvkbhangulplugin.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Essentials",
-          "version": "6.12.0",
-          "input_relative": "PySide6/qml/QtQuick/VirtualKeyboard/Plugins/Hangul/qtvkbhangulplugin.dll"
-        }
-      ],
-      "baseline_sha256": "73d370870054fad368e683372805a2d04de58f8de65d708d3cd5aa4aa07b09f9",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/qml/QtQuick/VirtualKeyboard/Plugins/OpenWNN/qtvkbopenwnnplugin.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Essentials",
-          "version": "6.12.0",
-          "input_relative": "PySide6/qml/QtQuick/VirtualKeyboard/Plugins/OpenWNN/qtvkbopenwnnplugin.dll"
-        }
-      ],
-      "baseline_sha256": "fb448752b6bcc5c584e7fecb8065ba01e25554c4a3eee50812f6c2ab554ec395",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/qml/QtQuick/VirtualKeyboard/Plugins/Pinyin/qtvkbpinyinplugin.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Essentials",
-          "version": "6.12.0",
-          "input_relative": "PySide6/qml/QtQuick/VirtualKeyboard/Plugins/Pinyin/qtvkbpinyinplugin.dll"
-        }
-      ],
-      "baseline_sha256": "8bfc0d643c78eed575c82945439d6a0205647f3c4f1a474af69739cefac79180",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/qml/QtQuick/VirtualKeyboard/Plugins/qtvkbpluginsplugin.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Essentials",
-          "version": "6.12.0",
-          "input_relative": "PySide6/qml/QtQuick/VirtualKeyboard/Plugins/qtvkbpluginsplugin.dll"
-        }
-      ],
-      "baseline_sha256": "a035e1ae770f43704fef921d73d1775505c430eb534489296888824b61865800",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/qml/QtQuick/VirtualKeyboard/Plugins/TCIme/qtvkbtcimeplugin.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Essentials",
-          "version": "6.12.0",
-          "input_relative": "PySide6/qml/QtQuick/VirtualKeyboard/Plugins/TCIme/qtvkbtcimeplugin.dll"
-        }
-      ],
-      "baseline_sha256": "88bb0077f92ad95b8321d0fc4cbc149426da06d2480883e6958d532e0e449368",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/qml/QtQuick/VirtualKeyboard/Plugins/Thai/qtvkbthaiplugin.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Essentials",
-          "version": "6.12.0",
-          "input_relative": "PySide6/qml/QtQuick/VirtualKeyboard/Plugins/Thai/qtvkbthaiplugin.dll"
-        }
-      ],
-      "baseline_sha256": "360e1fa778de6a8c2b579821775c145c1495d92f3c0ebfcb168dfafbf07e23c7",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/qml/QtQuick/VirtualKeyboard/qtvkbplugin.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Essentials",
-          "version": "6.12.0",
-          "input_relative": "PySide6/qml/QtQuick/VirtualKeyboard/qtvkbplugin.dll"
-        }
-      ],
-      "baseline_sha256": "45cc6b1d79b051536f6ad12076442d11a69f63e3946b97d601dec312e325abf2",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/qml/QtQuick/VirtualKeyboard/Settings/qtvkbsettingsplugin.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Essentials",
-          "version": "6.12.0",
-          "input_relative": "PySide6/qml/QtQuick/VirtualKeyboard/Settings/qtvkbsettingsplugin.dll"
-        }
-      ],
-      "baseline_sha256": "e1b2559fa65e53fb68ebe931b6348988d4e4541eb5ae45dccc2a8ba17e3b196f",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/qml/QtQuick/VirtualKeyboard/Styles/Builtin/qtvkbbuiltinstylesplugin.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Essentials",
-          "version": "6.12.0",
-          "input_relative": "PySide6/qml/QtQuick/VirtualKeyboard/Styles/Builtin/qtvkbbuiltinstylesplugin.dll"
-        }
-      ],
-      "baseline_sha256": "c5f7423f0a1d802bec6cac0d3e8fb5d28ca9b1c78afc6d8298cf267ddb5525d2",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/qml/QtQuick/VirtualKeyboard/Styles/qtvkbstylesplugin.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Essentials",
-          "version": "6.12.0",
-          "input_relative": "PySide6/qml/QtQuick/VirtualKeyboard/Styles/qtvkbstylesplugin.dll"
-        }
-      ],
-      "baseline_sha256": "e54c9ca37d8e94170b087f58aeee62ea37d4892430be13b419591731f4cba39e",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
       "path": "_internal/PySide6/qml/QtQuick/Window/quickwindowplugin.dll",
       "group": "qt",
       "packages": [
@@ -4761,215 +4381,6 @@
         }
       ],
       "baseline_sha256": "46207153bbe9cde731e9dc92c11dc5dd2158402445eb5dccc538253fcbf0986d",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/qml/QtQuick3D/AssetUtils/qtquick3dassetutilsplugin.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Addons",
-          "version": "6.12.0",
-          "input_relative": "PySide6/qml/QtQuick3D/AssetUtils/qtquick3dassetutilsplugin.dll"
-        }
-      ],
-      "baseline_sha256": "a4d5cf58dfc737425977191ad63e4804e795abaac5d2cb417c1c3134c7ea37ea",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/qml/QtQuick3D/Effects/qtquick3deffectplugin.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Addons",
-          "version": "6.12.0",
-          "input_relative": "PySide6/qml/QtQuick3D/Effects/qtquick3deffectplugin.dll"
-        }
-      ],
-      "baseline_sha256": "1896501c56aa579062fb5bcd43b52805fd5076def1078acf3dd97ceabee89dd3",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/qml/QtQuick3D/Helpers/impl/qtquick3dhelpersimplplugin.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Addons",
-          "version": "6.12.0",
-          "input_relative": "PySide6/qml/QtQuick3D/Helpers/impl/qtquick3dhelpersimplplugin.dll"
-        }
-      ],
-      "baseline_sha256": "3b7dd55707a1ea4b4594b930b6d4b777a2db82eb3a4a6e5bdce2c7762ba5dd0a",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/qml/QtQuick3D/Helpers/qtquick3dhelpersplugin.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Addons",
-          "version": "6.12.0",
-          "input_relative": "PySide6/qml/QtQuick3D/Helpers/qtquick3dhelpersplugin.dll"
-        }
-      ],
-      "baseline_sha256": "711393df7a480783b60dc41cf8955df129dbecb415c1d065a6cecbe3762835ca",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/qml/QtQuick3D/ParticleEffects/qtquick3dparticleeffectsplugin.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Addons",
-          "version": "6.12.0",
-          "input_relative": "PySide6/qml/QtQuick3D/ParticleEffects/qtquick3dparticleeffectsplugin.dll"
-        }
-      ],
-      "baseline_sha256": "47576d9cb8b32f075994e07e8e8c0cc49446effd4435ea0c4fcf6ddca4929394",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/qml/QtQuick3D/Particles3D/qtquick3dparticles3dplugin.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Addons",
-          "version": "6.12.0",
-          "input_relative": "PySide6/qml/QtQuick3D/Particles3D/qtquick3dparticles3dplugin.dll"
-        }
-      ],
-      "baseline_sha256": "f7755967b38c34df4e9a0830f0b4853facca0eaa241d22472d3e5165def3055d",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/qml/QtQuick3D/Physics/Helpers/qtquick3dphysicshelpersplugin.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Addons",
-          "version": "6.12.0",
-          "input_relative": "PySide6/qml/QtQuick3D/Physics/Helpers/qtquick3dphysicshelpersplugin.dll"
-        }
-      ],
-      "baseline_sha256": "7d4ecf6ccdab57d49bf956f2cba5eaae3aae8ae668109be81bee2f7ee5a07251",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/qml/QtQuick3D/Physics/qquick3dphysicsplugin.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Addons",
-          "version": "6.12.0",
-          "input_relative": "PySide6/qml/QtQuick3D/Physics/qquick3dphysicsplugin.dll"
-        }
-      ],
-      "baseline_sha256": "c4b22e0b33e5519f7dc6a0fafd474c3013d5e68937d058a258dde99408362049",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/qml/QtQuick3D/qquick3dplugin.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Addons",
-          "version": "6.12.0",
-          "input_relative": "PySide6/qml/QtQuick3D/qquick3dplugin.dll"
-        }
-      ],
-      "baseline_sha256": "6e6a720a623135c14387aa705aaeccba1f151b60a81654a6dac57d1300538e4e",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/qml/QtQuick3D/SpatialAudio/quick3dspatialaudioplugin.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Addons",
-          "version": "6.12.0",
-          "input_relative": "PySide6/qml/QtQuick3D/SpatialAudio/quick3dspatialaudioplugin.dll"
-        }
-      ],
-      "baseline_sha256": "bda969537718cb0f970376196b612592f25c60d855a15d9c48fe18e3e07ce44f",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/qml/QtQuick3D/Xr/quick3dxrplugin.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Addons",
-          "version": "6.12.0",
-          "input_relative": "PySide6/qml/QtQuick3D/Xr/quick3dxrplugin.dll"
-        }
-      ],
-      "baseline_sha256": "bac34824eceedf533b21952dda1fb2605b01a77891784aa4a2669326c8010820",
       "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
       "action": "preserve_original",
       "proposed_action": null,
@@ -5435,44 +4846,6 @@
       "blocker": null
     },
     {
-      "path": "_internal/PySide6/Qt6Charts.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Addons",
-          "version": "6.12.0",
-          "input_relative": "PySide6/Qt6Charts.dll"
-        }
-      ],
-      "baseline_sha256": "44ee6f27317b2aa7b1a77d6acd2b33e68c143f86224ed4e4275f3dde143460b2",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/Qt6ChartsQml.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Addons",
-          "version": "6.12.0",
-          "input_relative": "PySide6/Qt6ChartsQml.dll"
-        }
-      ],
-      "baseline_sha256": "289bd8e6f8b8ad485919092f0a91799b7ca6afff1e6bbe08820c106a76105dbc",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
       "path": "_internal/PySide6/Qt6Concurrent.dll",
       "group": "qt",
       "packages": [
@@ -5502,63 +4875,6 @@
         }
       ],
       "baseline_sha256": "f57ed38afd95d0306cca9d88d997f639f70c7628a4f1f064eae291d579487121",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/Qt6DataVisualization.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Addons",
-          "version": "6.12.0",
-          "input_relative": "PySide6/Qt6DataVisualization.dll"
-        }
-      ],
-      "baseline_sha256": "873a8a0260a22847fce9a65040e029f6b10c6c820df1c77b4736c6b1dfc8be6e",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/Qt6DataVisualizationQml.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Addons",
-          "version": "6.12.0",
-          "input_relative": "PySide6/Qt6DataVisualizationQml.dll"
-        }
-      ],
-      "baseline_sha256": "52d2ef13b6ec7bf322ce271dee10d2df3d03b993a94aed8862004b3f108b5ab8",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/Qt6Graphs.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Addons",
-          "version": "6.12.0",
-          "input_relative": "PySide6/Qt6Graphs.dll"
-        }
-      ],
-      "baseline_sha256": "992c79bcedee69618bfc3697f6db3a725a47b4d9007a7eac7ca73fb88e863f59",
       "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
       "action": "preserve_original",
       "proposed_action": null,
@@ -6176,272 +5492,6 @@
       "blocker": null
     },
     {
-      "path": "_internal/PySide6/Qt6Quick3D.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Addons",
-          "version": "6.12.0",
-          "input_relative": "PySide6/Qt6Quick3D.dll"
-        }
-      ],
-      "baseline_sha256": "951a81051de342b4cb7087b1a7501351578f5069614a4750b82b69bec61d64fe",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/Qt6Quick3DAssetImport.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Addons",
-          "version": "6.12.0",
-          "input_relative": "PySide6/Qt6Quick3DAssetImport.dll"
-        }
-      ],
-      "baseline_sha256": "c74aff88ce91f4f635730439cdc6be66e1b35aa5283caf20df57e83d83d3e2a3",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/Qt6Quick3DAssetUtils.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Addons",
-          "version": "6.12.0",
-          "input_relative": "PySide6/Qt6Quick3DAssetUtils.dll"
-        }
-      ],
-      "baseline_sha256": "5fcb3d842f50f876525ac985fd4fd1e99686de824d488572f110834c87d94e26",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/Qt6Quick3DEffects.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Addons",
-          "version": "6.12.0",
-          "input_relative": "PySide6/Qt6Quick3DEffects.dll"
-        }
-      ],
-      "baseline_sha256": "f9569bac54bd40e51b690e5d37cbddd6bdc882e19473c7031f8657f8ba3d9429",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/Qt6Quick3DHelpers.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Addons",
-          "version": "6.12.0",
-          "input_relative": "PySide6/Qt6Quick3DHelpers.dll"
-        }
-      ],
-      "baseline_sha256": "ff56c8f9ec1e0a8aeba8f5254471a6b420cfa5306c90666be6284a21c15e6e01",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/Qt6Quick3DHelpersImpl.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Addons",
-          "version": "6.12.0",
-          "input_relative": "PySide6/Qt6Quick3DHelpersImpl.dll"
-        }
-      ],
-      "baseline_sha256": "4680395f35de3ed3e8f7d721e612dc97026b5642399d2aa18ed0a8828f8dd9e4",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/Qt6Quick3DParticleEffects.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Addons",
-          "version": "6.12.0",
-          "input_relative": "PySide6/Qt6Quick3DParticleEffects.dll"
-        }
-      ],
-      "baseline_sha256": "7e277ecf7110deba64b3ada7295419bc28521beb34f581f93c55fb106ae5f4cb",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/Qt6Quick3DParticles.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Addons",
-          "version": "6.12.0",
-          "input_relative": "PySide6/Qt6Quick3DParticles.dll"
-        }
-      ],
-      "baseline_sha256": "c797e0495d57623fc58bd8c4e831d2025c13d16d3e27348b061b10634c9bc79d",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/Qt6Quick3DPhysics.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Addons",
-          "version": "6.12.0",
-          "input_relative": "PySide6/Qt6Quick3DPhysics.dll"
-        }
-      ],
-      "baseline_sha256": "f54f789f17f35677e78181fd47c4376bc38e92b4b9ec4cdf97a7cb4a9e4db9fb",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/Qt6Quick3DPhysicsHelpers.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Addons",
-          "version": "6.12.0",
-          "input_relative": "PySide6/Qt6Quick3DPhysicsHelpers.dll"
-        }
-      ],
-      "baseline_sha256": "aabc32135f9dc26e94657d3318ca7b9c07b863563eb103309cfdc540b307bbac",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/Qt6Quick3DRuntimeRender.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Addons",
-          "version": "6.12.0",
-          "input_relative": "PySide6/Qt6Quick3DRuntimeRender.dll"
-        }
-      ],
-      "baseline_sha256": "bcbffd8944e3be183d8f294844bea82026e2c7d9af608315167bbc3b8ed2586d",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/Qt6Quick3DSpatialAudio.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Addons",
-          "version": "6.12.0",
-          "input_relative": "PySide6/Qt6Quick3DSpatialAudio.dll"
-        }
-      ],
-      "baseline_sha256": "ff2aa1d004d6dbd0cd36033dbe767ba9d147f80c77fe939ae65b70533c5827ff",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/Qt6Quick3DUtils.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Addons",
-          "version": "6.12.0",
-          "input_relative": "PySide6/Qt6Quick3DUtils.dll"
-        }
-      ],
-      "baseline_sha256": "08c936f555e46c3640c1f188ebd0c7ecdcdaffaf1796335fd8a4070cd5cbcc91",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/Qt6Quick3DXr.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Addons",
-          "version": "6.12.0",
-          "input_relative": "PySide6/Qt6Quick3DXr.dll"
-        }
-      ],
-      "baseline_sha256": "3579c89eb9b6a420f81094893d8735ffc85e5ca38e6dfc25010a663d60e3fb12",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
       "path": "_internal/PySide6/Qt6QuickControls2.dll",
       "group": "qt",
       "packages": [
@@ -6974,44 +6024,6 @@
       "blocker": null
     },
     {
-      "path": "_internal/PySide6/Qt6QuickTimeline.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Essentials",
-          "version": "6.12.0",
-          "input_relative": "PySide6/Qt6QuickTimeline.dll"
-        }
-      ],
-      "baseline_sha256": "88092345621c98649f803cf9fd13dcdecf75393089818eb91f2f466576ee660f",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/Qt6QuickTimelineBlendTrees.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Essentials",
-          "version": "6.12.0",
-          "input_relative": "PySide6/Qt6QuickTimelineBlendTrees.dll"
-        }
-      ],
-      "baseline_sha256": "5ccdcf37655273f7e9b0f358c712073b2be2c8b3379c95c305e0db422028b40c",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
       "path": "_internal/PySide6/Qt6QuickVectorImage.dll",
       "group": "qt",
       "packages": [
@@ -7364,63 +6376,6 @@
         }
       ],
       "baseline_sha256": "dfdb1c677b0acb15ecb08b2b6261c8a53904e7a4099699620e4b66a7fb573e18",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/Qt6VirtualKeyboard.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Addons",
-          "version": "6.12.0",
-          "input_relative": "PySide6/Qt6VirtualKeyboard.dll"
-        }
-      ],
-      "baseline_sha256": "973369caa6d13fa08f6b1cd57004dcf4f137f8ef98ec6876ad07ba690ee0b9a3",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/Qt6VirtualKeyboardQml.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Addons",
-          "version": "6.12.0",
-          "input_relative": "PySide6/Qt6VirtualKeyboardQml.dll"
-        }
-      ],
-      "baseline_sha256": "2efa7a0da5175f2a92d9a2c531c269ea847c4ce969429d642be8f1c91543775a",
-      "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
-      "action": "preserve_original",
-      "proposed_action": null,
-      "rights_confirmed": false,
-      "rights_evidence": null,
-      "origin_confirmed": true,
-      "blocker": null
-    },
-    {
-      "path": "_internal/PySide6/Qt6VirtualKeyboardSettings.dll",
-      "group": "qt",
-      "packages": [
-        {
-          "name": "PySide6_Addons",
-          "version": "6.12.0",
-          "input_relative": "PySide6/Qt6VirtualKeyboardSettings.dll"
-        }
-      ],
-      "baseline_sha256": "0baeb91615a3221903f097201807f3b063852c29ba3e7d82c5cd8653e0c07a45",
       "baseline_signer": "CN=The QT Company Oy, O=The QT Company Oy, L=Espoo, S=Uusimaa, C=FI, SERIALNUMBER=2637805-2, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.3=FI",
       "action": "preserve_original",
       "proposed_action": null,
@@ -8330,5 +7285,286 @@
       "blocker": null
     }
   ],
-  "approved_public_roots": []
+  "approved_public_roots": [],
+  "qt_minimization": {
+    "review_status": "technical regression required; no legal approval",
+    "removed_from_original": [
+      {
+        "path": "_internal/PySide6/plugins/platforminputcontexts/qtvirtualkeyboardplugin.dll",
+        "sha256": "bbf479e6380061699e734a32f4fe0b6fc8bc2de007ae53b0206e6e36abf1e3e2",
+        "family": "VirtualKeyboard"
+      },
+      {
+        "path": "_internal/PySide6/plugins/qmltooling/qmldbg_quick3dprofiler.dll",
+        "sha256": "b0b70e67eb10d908ba61b967b3d4c06055aabbe42f04b5a916bf0cea9dbb027b",
+        "family": "Quick3D"
+      },
+      {
+        "path": "_internal/PySide6/qml/QtCharts/qtchartsqml2plugin.dll",
+        "sha256": "d9699fb80ee2b65dab6cef2e8574cb2e6b9100bd8bb23ec0d8b3929a4512dbb4",
+        "family": "Charts"
+      },
+      {
+        "path": "_internal/PySide6/qml/QtDataVisualization/datavisualizationqmlplugin.dll",
+        "sha256": "bde0588c6a558626a0c9d010ef0b0ed572c2934e7d139cd8bef694d8fff6dedf",
+        "family": "DataVisualization"
+      },
+      {
+        "path": "_internal/PySide6/qml/QtGraphs/graphsplugin.dll",
+        "sha256": "317994c9231c30a59c87c8613413293cf73bf1dd093c49192da1a756d633206d",
+        "family": "Graphs"
+      },
+      {
+        "path": "_internal/PySide6/qml/QtQuick/Timeline/BlendTrees/qtquicktimelineblendtreesplugin.dll",
+        "sha256": "c5fb4de419282bbb8f1809d56f4581e4762ee4af033f770162b2d2a4bba8ff76",
+        "family": "QuickTimeline"
+      },
+      {
+        "path": "_internal/PySide6/qml/QtQuick/Timeline/qtquicktimelineplugin.dll",
+        "sha256": "770238ea72b59171af09377ce2d2745b8bc3a1c4896ed2b9059fb78657508799",
+        "family": "QuickTimeline"
+      },
+      {
+        "path": "_internal/PySide6/qml/QtQuick/VirtualKeyboard/Components/qtvkbcomponentsplugin.dll",
+        "sha256": "22b5d1e4da36d239a41b51736d407fb80276effad47563f679b0e4a91403d5c4",
+        "family": "VirtualKeyboard"
+      },
+      {
+        "path": "_internal/PySide6/qml/QtQuick/VirtualKeyboard/Core/virtualkeyboardplugin.dll",
+        "sha256": "d329dab3d4bdff92a4fa6a8231f7ec49a1f28a26b16073cc946ff742f9e006ee",
+        "family": "VirtualKeyboard"
+      },
+      {
+        "path": "_internal/PySide6/qml/QtQuick/VirtualKeyboard/Layouts/qtvkblayoutsplugin.dll",
+        "sha256": "e96589970c1d624e15b59237de96600c79549352cf04ef4c8342792b40eb08ef",
+        "family": "VirtualKeyboard"
+      },
+      {
+        "path": "_internal/PySide6/qml/QtQuick/VirtualKeyboard/Plugins/Hangul/qtvkbhangulplugin.dll",
+        "sha256": "73d370870054fad368e683372805a2d04de58f8de65d708d3cd5aa4aa07b09f9",
+        "family": "VirtualKeyboard"
+      },
+      {
+        "path": "_internal/PySide6/qml/QtQuick/VirtualKeyboard/Plugins/OpenWNN/qtvkbopenwnnplugin.dll",
+        "sha256": "fb448752b6bcc5c584e7fecb8065ba01e25554c4a3eee50812f6c2ab554ec395",
+        "family": "VirtualKeyboard"
+      },
+      {
+        "path": "_internal/PySide6/qml/QtQuick/VirtualKeyboard/Plugins/Pinyin/qtvkbpinyinplugin.dll",
+        "sha256": "8bfc0d643c78eed575c82945439d6a0205647f3c4f1a474af69739cefac79180",
+        "family": "VirtualKeyboard"
+      },
+      {
+        "path": "_internal/PySide6/qml/QtQuick/VirtualKeyboard/Plugins/qtvkbpluginsplugin.dll",
+        "sha256": "a035e1ae770f43704fef921d73d1775505c430eb534489296888824b61865800",
+        "family": "VirtualKeyboard"
+      },
+      {
+        "path": "_internal/PySide6/qml/QtQuick/VirtualKeyboard/Plugins/TCIme/qtvkbtcimeplugin.dll",
+        "sha256": "88bb0077f92ad95b8321d0fc4cbc149426da06d2480883e6958d532e0e449368",
+        "family": "VirtualKeyboard"
+      },
+      {
+        "path": "_internal/PySide6/qml/QtQuick/VirtualKeyboard/Plugins/Thai/qtvkbthaiplugin.dll",
+        "sha256": "360e1fa778de6a8c2b579821775c145c1495d92f3c0ebfcb168dfafbf07e23c7",
+        "family": "VirtualKeyboard"
+      },
+      {
+        "path": "_internal/PySide6/qml/QtQuick/VirtualKeyboard/qtvkbplugin.dll",
+        "sha256": "45cc6b1d79b051536f6ad12076442d11a69f63e3946b97d601dec312e325abf2",
+        "family": "VirtualKeyboard"
+      },
+      {
+        "path": "_internal/PySide6/qml/QtQuick/VirtualKeyboard/Settings/qtvkbsettingsplugin.dll",
+        "sha256": "e1b2559fa65e53fb68ebe931b6348988d4e4541eb5ae45dccc2a8ba17e3b196f",
+        "family": "VirtualKeyboard"
+      },
+      {
+        "path": "_internal/PySide6/qml/QtQuick/VirtualKeyboard/Styles/Builtin/qtvkbbuiltinstylesplugin.dll",
+        "sha256": "c5f7423f0a1d802bec6cac0d3e8fb5d28ca9b1c78afc6d8298cf267ddb5525d2",
+        "family": "VirtualKeyboard"
+      },
+      {
+        "path": "_internal/PySide6/qml/QtQuick/VirtualKeyboard/Styles/qtvkbstylesplugin.dll",
+        "sha256": "e54c9ca37d8e94170b087f58aeee62ea37d4892430be13b419591731f4cba39e",
+        "family": "VirtualKeyboard"
+      },
+      {
+        "path": "_internal/PySide6/qml/QtQuick3D/AssetUtils/qtquick3dassetutilsplugin.dll",
+        "sha256": "a4d5cf58dfc737425977191ad63e4804e795abaac5d2cb417c1c3134c7ea37ea",
+        "family": "Quick3D"
+      },
+      {
+        "path": "_internal/PySide6/qml/QtQuick3D/Effects/qtquick3deffectplugin.dll",
+        "sha256": "1896501c56aa579062fb5bcd43b52805fd5076def1078acf3dd97ceabee89dd3",
+        "family": "Quick3D"
+      },
+      {
+        "path": "_internal/PySide6/qml/QtQuick3D/Helpers/impl/qtquick3dhelpersimplplugin.dll",
+        "sha256": "3b7dd55707a1ea4b4594b930b6d4b777a2db82eb3a4a6e5bdce2c7762ba5dd0a",
+        "family": "Quick3D"
+      },
+      {
+        "path": "_internal/PySide6/qml/QtQuick3D/Helpers/qtquick3dhelpersplugin.dll",
+        "sha256": "711393df7a480783b60dc41cf8955df129dbecb415c1d065a6cecbe3762835ca",
+        "family": "Quick3D"
+      },
+      {
+        "path": "_internal/PySide6/qml/QtQuick3D/ParticleEffects/qtquick3dparticleeffectsplugin.dll",
+        "sha256": "47576d9cb8b32f075994e07e8e8c0cc49446effd4435ea0c4fcf6ddca4929394",
+        "family": "Quick3D"
+      },
+      {
+        "path": "_internal/PySide6/qml/QtQuick3D/Particles3D/qtquick3dparticles3dplugin.dll",
+        "sha256": "f7755967b38c34df4e9a0830f0b4853facca0eaa241d22472d3e5165def3055d",
+        "family": "Quick3D"
+      },
+      {
+        "path": "_internal/PySide6/qml/QtQuick3D/Physics/Helpers/qtquick3dphysicshelpersplugin.dll",
+        "sha256": "7d4ecf6ccdab57d49bf956f2cba5eaae3aae8ae668109be81bee2f7ee5a07251",
+        "family": "Quick3D"
+      },
+      {
+        "path": "_internal/PySide6/qml/QtQuick3D/Physics/qquick3dphysicsplugin.dll",
+        "sha256": "c4b22e0b33e5519f7dc6a0fafd474c3013d5e68937d058a258dde99408362049",
+        "family": "Quick3D"
+      },
+      {
+        "path": "_internal/PySide6/qml/QtQuick3D/qquick3dplugin.dll",
+        "sha256": "6e6a720a623135c14387aa705aaeccba1f151b60a81654a6dac57d1300538e4e",
+        "family": "Quick3D"
+      },
+      {
+        "path": "_internal/PySide6/qml/QtQuick3D/SpatialAudio/quick3dspatialaudioplugin.dll",
+        "sha256": "bda969537718cb0f970376196b612592f25c60d855a15d9c48fe18e3e07ce44f",
+        "family": "Quick3D"
+      },
+      {
+        "path": "_internal/PySide6/qml/QtQuick3D/Xr/quick3dxrplugin.dll",
+        "sha256": "bac34824eceedf533b21952dda1fb2605b01a77891784aa4a2669326c8010820",
+        "family": "Quick3D"
+      },
+      {
+        "path": "_internal/PySide6/Qt6Charts.dll",
+        "sha256": "44ee6f27317b2aa7b1a77d6acd2b33e68c143f86224ed4e4275f3dde143460b2",
+        "family": "Charts"
+      },
+      {
+        "path": "_internal/PySide6/Qt6ChartsQml.dll",
+        "sha256": "289bd8e6f8b8ad485919092f0a91799b7ca6afff1e6bbe08820c106a76105dbc",
+        "family": "Charts"
+      },
+      {
+        "path": "_internal/PySide6/Qt6DataVisualization.dll",
+        "sha256": "873a8a0260a22847fce9a65040e029f6b10c6c820df1c77b4736c6b1dfc8be6e",
+        "family": "DataVisualization"
+      },
+      {
+        "path": "_internal/PySide6/Qt6DataVisualizationQml.dll",
+        "sha256": "52d2ef13b6ec7bf322ce271dee10d2df3d03b993a94aed8862004b3f108b5ab8",
+        "family": "DataVisualization"
+      },
+      {
+        "path": "_internal/PySide6/Qt6Graphs.dll",
+        "sha256": "992c79bcedee69618bfc3697f6db3a725a47b4d9007a7eac7ca73fb88e863f59",
+        "family": "Graphs"
+      },
+      {
+        "path": "_internal/PySide6/Qt6Quick3D.dll",
+        "sha256": "951a81051de342b4cb7087b1a7501351578f5069614a4750b82b69bec61d64fe",
+        "family": "Quick3D"
+      },
+      {
+        "path": "_internal/PySide6/Qt6Quick3DAssetImport.dll",
+        "sha256": "c74aff88ce91f4f635730439cdc6be66e1b35aa5283caf20df57e83d83d3e2a3",
+        "family": "Quick3D"
+      },
+      {
+        "path": "_internal/PySide6/Qt6Quick3DAssetUtils.dll",
+        "sha256": "5fcb3d842f50f876525ac985fd4fd1e99686de824d488572f110834c87d94e26",
+        "family": "Quick3D"
+      },
+      {
+        "path": "_internal/PySide6/Qt6Quick3DEffects.dll",
+        "sha256": "f9569bac54bd40e51b690e5d37cbddd6bdc882e19473c7031f8657f8ba3d9429",
+        "family": "Quick3D"
+      },
+      {
+        "path": "_internal/PySide6/Qt6Quick3DHelpers.dll",
+        "sha256": "ff56c8f9ec1e0a8aeba8f5254471a6b420cfa5306c90666be6284a21c15e6e01",
+        "family": "Quick3D"
+      },
+      {
+        "path": "_internal/PySide6/Qt6Quick3DHelpersImpl.dll",
+        "sha256": "4680395f35de3ed3e8f7d721e612dc97026b5642399d2aa18ed0a8828f8dd9e4",
+        "family": "Quick3D"
+      },
+      {
+        "path": "_internal/PySide6/Qt6Quick3DParticleEffects.dll",
+        "sha256": "7e277ecf7110deba64b3ada7295419bc28521beb34f581f93c55fb106ae5f4cb",
+        "family": "Quick3D"
+      },
+      {
+        "path": "_internal/PySide6/Qt6Quick3DParticles.dll",
+        "sha256": "c797e0495d57623fc58bd8c4e831d2025c13d16d3e27348b061b10634c9bc79d",
+        "family": "Quick3D"
+      },
+      {
+        "path": "_internal/PySide6/Qt6Quick3DPhysics.dll",
+        "sha256": "f54f789f17f35677e78181fd47c4376bc38e92b4b9ec4cdf97a7cb4a9e4db9fb",
+        "family": "Quick3D"
+      },
+      {
+        "path": "_internal/PySide6/Qt6Quick3DPhysicsHelpers.dll",
+        "sha256": "aabc32135f9dc26e94657d3318ca7b9c07b863563eb103309cfdc540b307bbac",
+        "family": "Quick3D"
+      },
+      {
+        "path": "_internal/PySide6/Qt6Quick3DRuntimeRender.dll",
+        "sha256": "bcbffd8944e3be183d8f294844bea82026e2c7d9af608315167bbc3b8ed2586d",
+        "family": "Quick3D"
+      },
+      {
+        "path": "_internal/PySide6/Qt6Quick3DSpatialAudio.dll",
+        "sha256": "ff2aa1d004d6dbd0cd36033dbe767ba9d147f80c77fe939ae65b70533c5827ff",
+        "family": "Quick3D"
+      },
+      {
+        "path": "_internal/PySide6/Qt6Quick3DUtils.dll",
+        "sha256": "08c936f555e46c3640c1f188ebd0c7ecdcdaffaf1796335fd8a4070cd5cbcc91",
+        "family": "Quick3D"
+      },
+      {
+        "path": "_internal/PySide6/Qt6Quick3DXr.dll",
+        "sha256": "3579c89eb9b6a420f81094893d8735ffc85e5ca38e6dfc25010a663d60e3fb12",
+        "family": "Quick3D"
+      },
+      {
+        "path": "_internal/PySide6/Qt6QuickTimeline.dll",
+        "sha256": "88092345621c98649f803cf9fd13dcdecf75393089818eb91f2f466576ee660f",
+        "family": "QuickTimeline"
+      },
+      {
+        "path": "_internal/PySide6/Qt6QuickTimelineBlendTrees.dll",
+        "sha256": "5ccdcf37655273f7e9b0f358c712073b2be2c8b3379c95c305e0db422028b40c",
+        "family": "QuickTimeline"
+      },
+      {
+        "path": "_internal/PySide6/Qt6VirtualKeyboard.dll",
+        "sha256": "973369caa6d13fa08f6b1cd57004dcf4f137f8ef98ec6876ad07ba690ee0b9a3",
+        "family": "VirtualKeyboard"
+      },
+      {
+        "path": "_internal/PySide6/Qt6VirtualKeyboardQml.dll",
+        "sha256": "2efa7a0da5175f2a92d9a2c531c269ea847c4ce969429d642be8f1c91543775a",
+        "family": "VirtualKeyboard"
+      },
+      {
+        "path": "_internal/PySide6/Qt6VirtualKeyboardSettings.dll",
+        "sha256": "0baeb91615a3221903f097201807f3b063852c29ba3e7d82c5cd8653e0c07a45",
+        "family": "VirtualKeyboard"
+      }
+    ],
+    "evidence": "docs/qt-minimal/README.md; evidence/qt-minimal/build-inputs.json and native-current.json in Actions"
+  }
 }
