@@ -31,7 +31,7 @@ jobs:
         continue-on-error: true
         env:
           QT_QPA_PLATFORM: windows
-        run: ./capture-env/Scripts/python.exe -m scripts.capture_store_windows --output store-capture --revision ${{ github.sha }}
+        run: ./capture-env/Scripts/python.exe -m scripts.capture_store_windows --output store-capture --revision ${{ github.sha }} --configure-hosted-display
       - name: Publish bounded readiness evidence in job log
         shell: pwsh
         run: |

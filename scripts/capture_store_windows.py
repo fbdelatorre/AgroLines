@@ -19,7 +19,7 @@ TITLES = {
 }
 
 
-def capture(output, revision):
+def capture(output, revision, configure_hosted_display=False):
     output = Path(output).resolve()
     output.mkdir(parents=True, exist_ok=False)
     report = {
@@ -33,7 +33,7 @@ def capture(output, revision):
         "store_installed": False,
         "sac_approved": False,
     }
-    window = app = None
+    window = app = native = original_mode = None
     error = None
     try:
         if sys.platform != "win32":
@@ -58,6 +58,9 @@ def capture(output, revision):
         from scripts.store_demo import prepare
 
         app = QApplication(sys.argv[:1])
+        if configure_hosted_display:
+            original_mode, report["display_mode"] = native.configure_hosted_display()
+            QTest.qWait(1000)
         app.setApplicationName("AgroLines")
         app.setWindowIcon(QIcon(str(Path("distribution/windows/brand.svg").resolve())))
         project_path = prepare(output / "dados-ficticios")
@@ -177,6 +180,8 @@ def capture(output, revision):
             window.close()
         if app:
             app.processEvents()
+        if original_mode is not None:
+            report["display_mode"]["restored"] = native.restore_display(original_mode)
         (output / "capture-evidence.json").write_text(
             json.dumps(report, indent=2, ensure_ascii=False), encoding="utf-8"
         )
@@ -205,5 +210,6 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", required=True)
     parser.add_argument("--revision", default="não informado")
+    parser.add_argument("--configure-hosted-display", action="store_true")
     args = parser.parse_args()
-    raise SystemExit(capture(args.output, args.revision))
+    raise SystemExit(capture(args.output, args.revision, args.configure_hosted_display))

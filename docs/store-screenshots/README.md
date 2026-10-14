@@ -40,7 +40,11 @@ com Win32 GDI BitBlt/GetDIBits e apenas codifica o buffer em PNG. Não usa
 O diálogo de projetos é o seletor existente do Windows. Apenas sua pasta inicial
 é dirigida à pasta sintética, equivalente a navegar até ela; não é substituído
 por UI inventada. Capturas são realizadas dentro da área da janela fullscreen do
-app, incluindo seus diálogos modais reais. Não há alteração da resolução do monitor.
+app, incluindo seus diálogos modais reais. Por padrão não altera a resolução do monitor. No workflow hospedado, a opção
+`--configure-hosted-display` pode aplicar temporariamente 1920×1080 somente se o
+driver enumerar esse modo e CDS_TEST aprovar; restaura o modo anterior ao concluir.
+A opção é recusada fora de runner GitHub hospedado. Não instala driver, persiste
+registro, cria display artificial ou aumenta resolução de PNG.
 
 Se qualquer requisito falhar, o conjunto parcial é removido e nenhuma imagem é
 entregue como captura Store. `capture-evidence.json` e README registram o motivo;
