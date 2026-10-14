@@ -14,7 +14,7 @@ $chains = @{}
 $results = @()
 foreach ($file in $data.files) {
     $record = [ordered]@{
-        path = $file.path; sha256 = $file.sha256; packages = @($file.packages)
+        path = $file.path; resolved_path = $file.resolved_path; sha256 = $file.sha256; packages = @($file.packages)
         status = 'InspectionError'; signature_type = $null; signer = $null
         signer_thumbprint = $null; timestamp_signer = $null
         chain_valid = $false; chain_status = @(); integrity_matches = $false
@@ -70,5 +70,20 @@ foreach ($group in ($results | Group-Object { if ($_.packages.Count) { $_.packag
     $valid = @($group.Group | Where-Object { $_.status -eq 'Valid' }).Count
     $unsigned = @($group.Group | Where-Object { $_.status -eq 'NotSigned' }).Count
     Write-Output "$($group.Name): total=$($group.Count), assinaturaValid=$valid, NotSigned=$unsigned"
+}
+if ($env:GITHUB_ACTIONS -eq 'true') {
+    $summary = @($results | Group-Object { if ($_.packages.Count) { $_.packages[0].name } else { 'runtime/unowned' } } | ForEach-Object {
+        @{
+            package = $_.Name
+            versions = @($_.Group | ForEach-Object { $_.packages | ForEach-Object version } | Sort-Object -Unique)
+            files = $_.Count
+            valid_signature = @($_.Group | Where-Object { $_.status -eq 'Valid' }).Count
+            valid_chain = @($_.Group | Where-Object chain_valid).Count
+            unsigned = @($_.Group | Where-Object { $_.status -eq 'NotSigned' }).Count
+            inspection_error = @($_.Group | Where-Object { $_.status -eq 'InspectionError' }).Count
+        }
+    })
+    $line = ($summary | ConvertTo-Json -Depth 8 -Compress).Replace('%','%25').Replace("`r",'%0D').Replace("`n",'%0A')
+    Write-Output "::notice title=Native trust audit (SAC unproven)::$line"
 }
 if ($Strict -and -not $report.signatures_and_chains_verified) { exit 1 }

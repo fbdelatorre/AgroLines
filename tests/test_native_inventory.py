@@ -108,3 +108,32 @@ def test_installed_native_dependency_outside_prefix_is_included(tmp_path):
     assert result["inspection_complete"]
     assert result["files"][0]["path"] == str(external)
     assert result["files"][0]["packages"][0]["name"] == "ExternalDependency"
+
+
+def test_existing_internal_runtime_file_alias_is_audited(tmp_path):
+    target = tmp_path / "python.exe"
+    native_file(target)
+    alias = tmp_path / "python3.exe"
+    try:
+        alias.symlink_to(target)
+    except OSError:
+        pytest.skip("Creating symlinks is unavailable to this test account")
+    result = inventory([tmp_path], [])
+    assert result["inspection_complete"] and len(result["files"]) == 2
+    file = next(f for f in result["files"] if f["path"] == str(alias))
+    assert file["is_symlink"] and file["resolved_path"] == str(target)
+    assert file["sha256"] == hashlib.sha256(target.read_bytes()).hexdigest()
+
+
+def test_external_native_file_alias_cannot_escape_scope(tmp_path):
+    root = tmp_path / "root"
+    root.mkdir()
+    target = tmp_path / "external.dll"
+    native_file(target)
+    try:
+        (root / "alias.dll").symlink_to(target)
+    except OSError:
+        pytest.skip("Creating symlinks is unavailable to this test account")
+    result = inventory([root], [])
+    assert not result["inspection_complete"] and not result["files"]
+    assert result["errors"][0]["error"] == "external_symlink_not_scanned"

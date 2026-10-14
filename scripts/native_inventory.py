@@ -48,21 +48,33 @@ def inventory(roots, distributions=None):
     )
     owners, packages, errors = {}, [], []
     paths = set()
+    resolved_roots = sorted({str(Path(root).resolve()) for root in roots})
+
+    def include_file(path):
+        try:
+            resolved = path.resolve()
+            if path.is_symlink() and not any(
+                resolved.is_relative_to(root) for root in resolved_roots
+            ):
+                errors.append({"path": str(path), "error": "external_symlink_not_scanned"})
+                return
+            # Keep existing in-scope file aliases visible; read/hash their actual target bytes.
+            paths.add(path.parent.resolve() / path.name)
+        except (OSError, RuntimeError) as error:
+            errors.append({"path": str(path), "error": type(error).__name__})
+
     for distribution in distributions:
         name, version = distribution.metadata["Name"], distribution.version
         packages.append({"name": name, "version": version})
         for entry in distribution.files or []:
             if Path(entry).suffix.lower() in NATIVE_SUFFIXES:
                 native_path = Path(distribution.locate_file(entry))
-                if native_path.is_symlink():
-                    errors.append({"path": str(native_path), "error": "symlink_not_scanned"})
-                    continue
-                native_path = native_path.resolve()
-                paths.add(native_path)  # Include installed distributions outside sys.prefix, too.
-                owners.setdefault(str(native_path).casefold(), []).append(
+                include_file(
+                    native_path
+                )  # Include installed distributions outside sys.prefix, too.
+                owners.setdefault(str(native_path.resolve()).casefold(), []).append(
                     {"name": name, "version": version}
                 )
-    resolved_roots = sorted({str(Path(root).resolve()) for root in roots})
     for root in resolved_roots:
         if not Path(root).is_dir():
             errors.append({"path": root, "error": "root_missing"})
@@ -80,10 +92,7 @@ def inventory(roots, distributions=None):
             for name in files:
                 path = Path(directory) / name
                 if path.suffix.lower() in NATIVE_SUFFIXES:
-                    if path.is_symlink():
-                        errors.append({"path": str(path), "error": "symlink_not_scanned"})
-                    else:
-                        paths.add(path.resolve())
+                    include_file(path)
     records = []
     for path in sorted(paths):
         try:
@@ -91,11 +100,13 @@ def inventory(roots, distributions=None):
             records.append(
                 {
                     "path": str(path),
+                    "resolved_path": str(path.resolve()),
+                    "is_symlink": path.is_symlink(),
                     "size_bytes": path.stat().st_size,
                     "sha256": file_hash(path),
                     "format": kind,
                     "architecture": architecture,
-                    "packages": owners.get(str(path).casefold(), []),
+                    "packages": owners.get(str(path.resolve()).casefold(), []),
                 }
             )
         except OSError as error:

@@ -2,8 +2,8 @@
 
 ## Situação e diagnóstico
 
-**Compatibilidade com Smart App Control ativo ainda não homologada. Não avançar
-para a Etapa 3.2 antes de resolver esse bloqueio de aceitação.** O CI Windows testa
+**Compatibilidade com Smart App Control ativo ainda não homologada. A Etapa 3.2
+não é iniciada nesta entrega de diagnóstico e correções viáveis.** O CI Windows testa
 comportamento e executa auditoria; seus runners não comprovam Windows 11 com SAC
 ativo. Não há instalador profissional assinado nesta entrega.
 
@@ -90,8 +90,11 @@ Os roots padrão são o ambiente Python e o runtime base; arquivos nativos lista
 nos metadados das distribuições instaladas também entram, inclusive fora desses roots.
 Para instalador futuro,
 repetir `--root` para **todos** os diretórios de payload, runtime, plugins, auxiliares
-e processos filhos. O relatório só cobre esses roots. Symlinks, falta de permissão,
+e processos filhos. O relatório só cobre esses roots. Links externos/de diretórios, falta de permissão,
 arquivos alterados e inspeção parcial são falhas, nunca aprovação silenciosa.
+Aliases de arquivo já existentes dentro dos roots (como `python3.exe` do runtime
+oficial usado pelo CI) são registrados com caminho resolvido e bytes reais auditados;
+nenhum alias é criado pela ferramenta.
 `-Strict` retorna falha quando há PE sem assinatura/cadeia verificadas. A cadeia é
 consultada com revogação online; falha de rede é evidência incompleta. Um certificado
 vencido com assinatura timestamped pode exigir avaliação adicional com SignTool;
