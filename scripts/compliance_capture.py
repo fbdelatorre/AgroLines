@@ -42,7 +42,18 @@ def capture(package, evidence, output):
                 raise ValueError("Payload hash mismatch: " + path)
             records.append({"path": path, "sha256": sha, "size_bytes": len(raw)})
             # Only legal documents are copied. No application source, bytecode or binaries.
-            if path.startswith("third-party-notices/"):
+            if (
+                path.startswith("third-party-notices/")
+                or (
+                    any(
+                        word in PurePosixPath(path).name.casefold()
+                        for word in ("license", "copying", "copyright", "notice", "authors")
+                    )
+                    and PurePosixPath(path).suffix.lower()
+                    not in (".py", ".pyc", ".dll", ".pyd", ".exe")
+                )
+                or path.endswith("vcpkg.spdx.json")
+            ):
                 target = output / path
                 target.parent.mkdir(parents=True, exist_ok=True)
                 target.write_bytes(raw)
@@ -64,7 +75,10 @@ def capture(package, evidence, output):
         }
         for key, value in reports.items():
             (output / (key + ".json")).write_text(json.dumps(value, indent=2), encoding="utf-8")
-            if key == "native":
+            if key == "analysis":
+                for module in value["python_modules"]:
+                    print("AGROLINES_COMPLIANCE_MODULE=" + json.dumps(module))
+            elif key == "native":
                 for row in value["files"]:
                     print("AGROLINES_COMPLIANCE_NATIVE=" + json.dumps(row))
             elif key == "payload":
