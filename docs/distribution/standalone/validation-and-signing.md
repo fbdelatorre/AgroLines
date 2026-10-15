@@ -6,7 +6,8 @@ Build experimental não assinado, identificado como `EXPERIMENTAL-UNSIGNED`, com
 hashes e origem. `Prepare-SigningPlan.ps1` inventaria PE e consulta Authenticode/
 SignTool; gera plano sem acessar chave. A política standalone herda direitos,
 hashes e bloqueios da política existente, alterando só o nome do executável próprio.
-Não autoriza assinar os 78 PE de terceiros por inferência. Novos hashes de terceiros,
+Não autoriza assinar dependências por inferência. Dos 78 PE sem assinatura na
+referência, 77 são de terceiros e um é o executável próprio. Novos hashes de terceiros,
 procedência desconhecida, assinatura inválida e divergência de payload continuam
 bloqueando aprovação. Cadeia genérica inconclusiva não equivale automaticamente a
 malware; avaliar verificação Authenticode com timestamp e origem em conjunto.
