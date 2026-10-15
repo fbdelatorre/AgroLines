@@ -2,7 +2,9 @@
 
 import ctypes
 import json
+import os
 import sys
+import tempfile
 from pathlib import Path
 
 from desktop.storage import data_directory
@@ -59,10 +61,17 @@ class WindowsVault:
             return False
         blob = self.crypt(json.dumps(data).encode(), False)
         self.path.parent.mkdir(parents=True, exist_ok=True)
-        temporary = self.path.with_suffix(".tmp")
-        temporary.write_bytes(blob)
-        temporary.replace(self.path)
-        return True
+        descriptor, name = tempfile.mkstemp(prefix=self.path.name + ".", dir=self.path.parent)
+        temporary = Path(name)
+        try:
+            with os.fdopen(descriptor, "wb") as stream:
+                stream.write(blob)
+                stream.flush()
+                os.fsync(stream.fileno())
+            temporary.replace(self.path)
+            return True
+        finally:
+            temporary.unlink(missing_ok=True)
 
     def clear(self):
         self.path.unlink(missing_ok=True)

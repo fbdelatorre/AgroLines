@@ -85,7 +85,7 @@ class CommercialWindow(LocalProjectsWindow):
         state = self.manager.verify()
         try:
             value = self.manager.parsed() if self.manager.state.get("license") else None
-        except ValueError:
+        except (ValueError, OSError):
             value = None
         suffix = ""
         if value:

@@ -29,7 +29,7 @@ a = Analysis(
     ] + ([(str(root / 'distribution/windows/msix/identity.json'), 'distribution/windows/msix')] if not standalone else [])
       + (privacy_assets(standalone=standalone, commercial=commercial) if store else [])
       + collect_data_files('pyproj') + collect_data_files('fiona'),
-    hiddenimports=[],
+    hiddenimports=["_cffi_backend"] if commercial else [],
     hookspath=[str(root / 'distribution/windows/hooks')] if store else [],
     runtime_hooks=[str(root / ('distribution/windows/commercial_hook.py' if commercial else 'distribution/windows/offline_hook.py'))] if store else [],
     excludes=['PyQt5', 'PyQt6', 'PySide2', 'tkinter'] + (PYTHON_EXCLUDES + remote if store else []),

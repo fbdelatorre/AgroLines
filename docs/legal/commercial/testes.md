@@ -26,6 +26,7 @@ python -m scripts.precision_report --output precision-report.json
 |16/17 Substituição/desativação | rotação controlada da chave e revogação antiga | Computador antigo offline conserva validade até conhecer decisão/vencer |
 |18 Revogação persistida | restauração do arquivo anterior não remove registro independente | Não é prova contra restauração completa deWindows/registro |
 |19 Reinstalação | recarga do mesmo vault/âncora preservaUUID; DPAPI congelado | Instalação/desinstalação física do setup continua pendente |
+|Duas instâncias abertas | testesde recarga/mescla e resposta atrasada; provaWindows comdois processos congelados eDPAPI/mutex | Não instala nem altera registroWindows protegido; usa chaveLab própria descartável |
 |20 Atualização | estado fora da versão, reabertura e verificações do launcher | Ciclo de setup confiável real ainda não executado |
 |Salvar GIS emandamento após expirar | test_already_started_vertex_edit_can_save_after_license_expires | Permissão capturada sópara a operação iniciada |
 |Recuperar semativação válida | test_recovery_shell_can_open_existing_project_without_activation | Não permite criar/importar/iniciar novas edições |

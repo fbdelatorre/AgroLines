@@ -10,6 +10,32 @@ enforce(licensing_endpoint=ORIGIN)
 def main():
     import sys
 
+    if TEST_PROFILE and len(sys.argv) == 5 and sys.argv[1] == "--license-concurrency":
+        from distribution.commercial_probe import concurrency
+
+        try:
+            return concurrency(sys.argv[3], sys.argv[4], sys.argv[2])
+        except Exception as exc:
+            import json
+            import os
+            from pathlib import Path
+
+            mode = (
+                sys.argv[2]
+                if sys.argv[2] in ("init", "observer", "writer", "cleanup")
+                else "unknown"
+            )
+            if (
+                os.getenv("GITHUB_ACTIONS") == "true"
+                and os.getenv("RUNNER_ENVIRONMENT") == "github-hosted"
+            ):
+                target = Path(os.environ["RUNNER_TEMP"]) / (
+                    "license-concurrency-" + mode + "-error.json"
+                )
+                target.write_text(
+                    json.dumps({"error_type": type(exc).__name__, "message": str(exc)})
+                )
+            return 1
     if TEST_PROFILE and len(sys.argv) == 3 and sys.argv[1] == "--binding-report":
         import os
 

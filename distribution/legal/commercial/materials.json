@@ -9,9 +9,9 @@
       "natives": [
         {
           "wheel_file": "_cffi_backend.cp312-win_amd64.pyd",
-          "path": "_internal/_cffi_backend.pyd",
+          "path": "_internal/_cffi_backend.cp312-win_amd64.pyd",
           "sha256": "53de34afc3939d81bf2498b77425c52e2c3f3164f8cfe2543d3acc8f24134488",
-          "path_mapping": "PyInstaller normalizes the extension ABI suffix; exact native bytes/hash remain mandatory"
+          "path_mapping": "Explicit hidden import required: the compiled nacl extension imports _cffi_backend dynamically. Original ABI suffix and bytes/hash are preserved."
         }
       ],
       "notices": [

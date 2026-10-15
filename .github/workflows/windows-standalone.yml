@@ -8,6 +8,37 @@ concurrency:
   group: standalone-${{ github.event.pull_request.head.ref || github.ref }}
   cancel-in-progress: true
 jobs:
+  commercial-crypto-preflight:
+    if: github.head_ref == 'compliance/commercial-licensing-foundation'
+    runs-on: windows-latest
+    timeout-minutes: 12
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12.10'
+          architecture: x64
+      - run: ./distribution/windows/standalone/Assert-Laboratory.ps1
+      - name: Verify frozen CFFI dynamic import before the full GIS build
+        run: |
+          python -m venv build-env
+          ./build-env/Scripts/python.exe -m pip install --require-hashes --only-binary=:all: -r distribution/windows/requirements-commercial.lock
+          if ($LASTEXITCODE) { throw 'Locked crypto preflight inputs failed.' }
+          ./build-env/Scripts/python.exe -m PyInstaller --onedir --clean --noconfirm --name CryptoVerificationLab --hidden-import _cffi_backend --distpath build/crypto-lab --workpath build/crypto-work tools/licensing-lab/verify_frozen.py
+          if ($LASTEXITCODE) { throw 'Synthetic frozen crypto build failed.' }
+          New-Item evidence/crypto-preflight -ItemType Directory -Force | Out-Null
+          & ./build/crypto-lab/CryptoVerificationLab/CryptoVerificationLab.exe evidence/crypto-preflight/result.json
+          if ($LASTEXITCODE) { throw 'Synthetic frozen crypto runtime failed.' }
+          Get-Content evidence/crypto-preflight/result.json -Raw
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: frozen-commercial-crypto-EVIDENCE-ONLY
+          path: evidence/crypto-preflight/
+          if-no-files-found: error
   experimental-build:
     runs-on: windows-latest
     timeout-minutes: 50
@@ -139,6 +170,7 @@ jobs:
           } finally { $env:PATH=$oldPath }
           $license=Get-Content evidence/commercial/frozen-license.json -Raw | ConvertFrom-Json
           if (-not $license.passed -or -not $license.frozen -or -not $license.dpapi_roundtrip -or $license.sac_approved) { throw 'Invalid commercial proof.' }
+          ./distribution/windows/standalone/Test-LicenseConcurrency.ps1 -Executable dist/AgroLines/AgroLines.exe -Fixture "$env:RUNNER_TEMP/licensing-fixture/fixture.json" -Output evidence/commercial/concurrency
           ./distribution/windows/standalone/Test-CommercialBindingReplacement.ps1 -Payload dist/AgroLines -Fixture "$env:RUNNER_TEMP/licensing-fixture/fixture.json" -Copy "$env:RUNNER_TEMP/commercial-binding-copy" -Output evidence/commercial/binding-replacement
           ./distribution/windows/standalone/Prepare-SigningPlan.ps1 -Payload dist/AgroLines -SourceCommit $env:GITHUB_SHA -PythonExecutable ./build-env/Scripts/python.exe -Output evidence/commercial/signing
           $compiler=Join-Path '${{ runner.temp }}' 'agrolines-inno/compiler/ISCC.exe'

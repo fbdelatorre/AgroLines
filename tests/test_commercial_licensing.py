@@ -36,6 +36,12 @@ class MemoryVault:
 
     def __init__(self):
         self.value = None
+        from threading import RLock
+
+        self.lock = RLock()
+
+    def transaction(self):
+        return self.lock
 
     def load(self):
         return copy.deepcopy(self.value)
@@ -267,12 +273,14 @@ def test_device_replacement_deactivation_reinstall_and_clock(licensed):
 def test_admin_strong_auth_and_no_secret_echo(licensed):
     api, admin, sub, keys, engine, issuer, secret = licensed
     assert api.post("/admin/users", json={"email": "a@example.com", "name": "A"}).status_code == 401
+    with Session(engine) as db:
+        accepted_counter = db.scalar(select(LicenseAdministrator)).last_counter
     repeated = api.post(
         "/admin/login",
         json={
             "email": "admin@example.com",
             "password": "Synthetic admin password!",
-            "code": totp(secret, security.now() // 30),
+            "code": totp(secret, accepted_counter),
         },
     )
     assert repeated.status_code == 401  # TOTP replay cannot grant another session
@@ -474,3 +482,55 @@ def test_client_cannot_choose_expiry_and_revoked_seat_cannot_list_other_devices(
     first.check()
     assert first.state["devices"] == []
     assert first.verify().read_only
+
+
+def test_two_open_instances_cannot_erase_each_others_revocation(licensed):
+    api, admin, sub, keys, engine, issuer, secret = licensed
+    first = manager(api, keys)
+    value = activate(first, sub)
+    other = LicenseManager(first.vault, first.anchor, keys, ASGITransport(api))
+    before = copy.deepcopy(first.vault.value)
+    api.post("/admin/activations/" + value["activation_id"] + "/revoke", headers=admin, json={})
+    first.check()
+    first.vault.value = before
+    assert other.verify().read_only  # stale instance must merge the protected decision
+    assert first.verify().read_only
+    assert value["activation_id"] in first.anchor.value["revoked"]
+
+
+def test_delayed_response_cannot_replace_a_newer_activation_from_another_instance(licensed):
+    api, admin, sub, keys, engine, issuer, secret = licensed
+    first = manager(api, keys)
+    value = activate(first, sub)
+    other = LicenseManager(first.vault, first.anchor, keys, ASGITransport(api))
+    replacement = api.post(
+        "/admin/subscriptions/" + sub["id"] + "/slots/1/replace", headers=admin, json={}
+    ).json()["key"]
+    pending = first.transport.post(
+        "check",
+        {
+            "activation_id": value["activation_id"],
+            "installation_id": first.state["installation_id"],
+            "credential": first.state["credential"],
+        },
+    )
+    updated = other.activate("tester@example.com", replacement, "Substituição no mesmo perfil")
+    first.accept(pending, authoritative=True, expected_activation=value["activation_id"])
+    assert first.parsed()["activation_id"] == updated["activation_id"]
+    assert first.verify().permits(Module.GEOMETRY)
+    assert other.verify().permits(Module.GEOMETRY)
+    assert value["activation_id"] in first.anchor.value["revoked"]
+
+
+def test_clock_reconciliation_reaches_an_already_open_instance(licensed):
+    api, admin, sub, keys, engine, issuer, secret = licensed
+    first = manager(api, keys)
+    activate(first, sub)
+    stale = LicenseManager(
+        first.vault, first.anchor, keys, ASGITransport(api), clock=lambda: time.time() + 86400
+    )
+    assert first.verify().read_only
+    first.check()
+    stale.clock = time.time
+    assert stale.verify().permits(Module.GEOMETRY)
+    assert first.verify().permits(Module.GEOMETRY)

@@ -1,6 +1,7 @@
 """Offline-valid signed licenses. DPAPI vault and independent anchor are injected."""
 
 import time
+from contextlib import nullcontext
 from functools import wraps
 from threading import RLock
 from uuid import UUID, uuid4
@@ -14,8 +15,20 @@ RECOVERY = frozenset({Module.PROJECTS, Module.BACKUP})
 def synchronized(method):
     @wraps(method)
     def call(self, *args, **kwargs):
-        with self.lock:
-            return method(self, *args, **kwargs)
+        try:
+            with self.lock, self.transaction():
+                self._reload()
+                return method(self, *args, **kwargs)
+        except (OSError, ValueError):
+            if method.__name__ == "verify":
+                return Entitlements(
+                    "recovery",
+                    RECOVERY,
+                    True,
+                    "Registro protegido indisponível; recuperação de dados permanece disponível.",
+                    read_only=True,
+                )
+            raise
 
     return call
 
@@ -26,8 +39,15 @@ class LicenseManager:
         self.vault, self.anchor, self.keyring, self.transport = vault, anchor, keyring, transport
         self.clock = clock
         self.error = ""
-        self.state = vault.load()
-        saved_anchor = anchor.load()
+        with self.transaction():
+            self._initialize()
+
+    def transaction(self):
+        return self.anchor.transaction() if hasattr(self.anchor, "transaction") else nullcontext()
+
+    def _initialize(self):
+        self.state = self.vault.load()
+        saved_anchor = self.anchor.load()
         if self.state is None:
             if saved_anchor:
                 raise ValueError("Registro de ativação incompleto; restaure ou contate o suporte.")
@@ -58,8 +78,43 @@ class LicenseManager:
             raise ValueError("Revisões protegidas inválidas.")
         if saved_anchor.get("installation_id") != self.state["installation_id"]:
             raise ValueError("Identidade protegida da instalação divergente.")
+        saved_anchor.setdefault("clock_revision", 0)
         self.guard = saved_anchor
         self._record_time()
+
+    def _reload(self):
+        latest = self.anchor.load()
+        if latest:
+            if (
+                not isinstance(latest, dict)
+                or latest.get("installation_id") != self.state["installation_id"]
+                or not isinstance(latest.get("generations"), dict)
+                or not isinstance(latest.get("revoked"), list)
+                or type(latest.get("max_time")) is not int
+                or type(latest.get("clock_revision", 0)) is not int
+                or any(type(v) is not int or v < 0 for v in latest["generations"].values())
+                or any(not isinstance(v, str) for v in latest["revoked"])
+            ):
+                raise ValueError("Registro protegido inválido.")
+            revision = latest.get("clock_revision", 0)
+            if revision > self.guard["clock_revision"]:
+                self.guard["max_time"] = latest["max_time"]
+                self.guard["clock_revision"] = revision
+            else:
+                self.guard["max_time"] = max(self.guard["max_time"], latest["max_time"])
+            self.guard["revoked"] = sorted(set(self.guard["revoked"]) | set(latest["revoked"]))
+            for key, generation in latest["generations"].items():
+                self.guard["generations"][key] = max(
+                    generation, self.guard["generations"].get(key, 0)
+                )
+        state = self.vault.load()
+        if state is not None:
+            if (
+                not isinstance(state, dict)
+                or state.get("installation_id") != self.state["installation_id"]
+            ):
+                raise ValueError("Identidade da licença local divergente.")
+            self.state = state
 
     def _persist(self):
         if not self.vault.save(self.state):
@@ -107,7 +162,7 @@ class LicenseManager:
         return Entitlements("recovery", RECOVERY, True, reason, read_only=True)
 
     @synchronized
-    def accept(self, result, authoritative=False):
+    def accept(self, result, authoritative=False, expected_activation=None):
         if not isinstance(result, dict) or "license" not in result:
             raise ValueError("Resposta de licenciamento inválida.")
         if "credential" in result and (
@@ -131,6 +186,8 @@ class LicenseManager:
             raise ValueError("Lista de computadores inválida.")
         value = verify(result["license"], self.keyring, self.state["installation_id"])
         identifier, generation = value["activation_id"], value["generation"]
+        if expected_activation is not None and identifier != expected_activation:
+            raise ValueError("Resposta para outra ativação recusada.")
         if generation < self.guard["generations"].get(identifier, 0):
             raise ValueError("Resposta de licença antiga recusada.")
         if value["issued_at"] > int(self.clock()) + 300:
@@ -145,11 +202,24 @@ class LicenseManager:
             # A fresh HTTPS response with a newer server revision permits recovery
             # after a legitimate correction of a previously advanced local clock.
             self.guard["max_time"] = int(self.clock())
+            self.guard["clock_revision"] += 1
         if value["status"] == "revoked" and identifier not in self.guard["revoked"]:
             self.guard["revoked"].append(identifier)
         self.guard["generations"][identifier] = generation
         # Revocation/high-water mark saved independently BEFORE the replaceable license file.
         self._record_time()
+        try:
+            current = (
+                verify(self.state["license"], self.keyring, self.state["installation_id"])
+                if self.state.get("license")
+                else None
+            )
+        except ValueError:
+            current = None
+        if expected_activation is not None and current and current["activation_id"] != identifier:
+            # Another process deliberately activated a different seat while this
+            # check was in flight. Keep its license; the old revocation is still anchored.
+            return value
         self.state["license"] = result["license"]
         if "credential" in result:
             self.state["credential"] = result["credential"]
@@ -174,19 +244,24 @@ class LicenseManager:
         )
 
     def check(self, deactivate=False):
-        value = self.parsed()
-        if not value or not self.state.get("credential"):
+        with self.lock:
+            value = self.parsed()
+            credential = self.state.get("credential")
+            installation = self.state["installation_id"]
+        if not value or not credential:
             raise ValueError("Ative este computador primeiro.")
         try:
             result = self.transport.post(
                 "deactivate" if deactivate else "check",
                 {
                     "activation_id": value["activation_id"],
-                    "installation_id": self.state["installation_id"],
-                    "credential": self.state["credential"],
+                    "installation_id": installation,
+                    "credential": credential,
                 },
             )
-            return self.accept(result, authoritative=True)
+            return self.accept(
+                result, authoritative=True, expected_activation=value["activation_id"]
+            )
         except (OSError, TimeoutError, ValueError) as exc:
             self.error = "Não foi possível verificar agora. A validade local foi preservada."
             raise OSError(self.error) from exc

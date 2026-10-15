@@ -72,6 +72,10 @@ Esse resultado não é atribuído ao perfil comercial posterior ou às adições
   Consulta assíncrona no início e a cada15min quando em execução, com timeout;
   falhas não revogam. Revogações assinadas/revisões ficam em registroDPAPI
   independente do arquivo local; restaurar só o arquivo antigo não elimina a decisão.
+  As instâncias usam mutexWindows porperfil e recarga/mescla das revisões e revogações;
+  uma instância antiga não pode sobrescrever decisões confirmadas poroutra. Arquivo
+  DPAPI é gravado por substituição atômica, comtemporário exclusivo eflush. Uma
+  resposta atrasada para outra ativação não substitui a licença atual.
 - DPAPI por perfilWindows, UUID aleatório estável, sem coleta de MAC/serial/CPF.
   A identidade representa instalação/perfil, não atestado físico anticlonagem.
   Reinstalação no mesmo perfil preserva dados/registro; novo perfil exige tratamento
@@ -113,7 +117,8 @@ extraídas não demonstramWindows11/SAC ou o ciclo instalado.
 
 1. **Fontes/avisos exatos ainda faltantes:** Qt/PySide/Shiboken/Chromium/PDFium e
    fornecedores estáticos/vendorizados/bases especificados na tabela. Pesquisa
-   adicional está em[records](records/); tags e histórico consultados mantêm.264,
+   adicional está em[records](records/); inclusive branches6.140/6.140.0 e
+   tagsbeta/rc: todas mantêm.264,
    enquanto o runtime observado é.225. Não foi provada correspondência final.
    Ambiente localLinux com menos de5GiB livres emworkspace, semMSVC, não comporta
    reconstruçãoWindowsChromium. Rebuild de outrocommit não provaria o binário real.

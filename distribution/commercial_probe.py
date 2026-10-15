@@ -123,3 +123,83 @@ def run(fixture_path, output):
             winreg.DeleteKey(winreg.HKEY_CURRENT_USER, anchor.path)
         except FileNotFoundError:
             pass
+
+
+def concurrency(fixture_path, directory, mode):
+    """Two independent frozen processes, one protected state; no production registry path."""
+    import time
+    from uuid import UUID
+
+    from _agrolines_license_settings import KEYRING, TEST_PROFILE
+
+    if (
+        not TEST_PROFILE
+        or os.getenv("GITHUB_ACTIONS") != "true"
+        or os.getenv("RUNNER_ENVIRONMENT") != "github-hosted"
+        or sys.platform != "win32"
+    ):
+        raise PermissionError(
+            "Concurrent licensing experiment requires authorized disposable builder"
+        )
+    root = Path(directory).resolve()
+    if not root.is_relative_to(Path(os.environ["RUNNER_TEMP"]).resolve()):
+        raise ValueError("Laboratory state must stay inside the disposable runner temp")
+    identifier = str(UUID(root.name))
+    if identifier != root.name:
+        raise ValueError("Canonical laboratory identifier required")
+    from core.license_protocol import decode, verify
+    from desktop.license_client import LicenseManager
+    from desktop.license_storage import RegistryAnchor
+    from desktop.protected_storage import WindowsVault
+
+    fixture = json.loads(Path(fixture_path).read_text())
+    installation = json.loads(decode(fixture["active"]["payload"]))["installation_id"]
+    verify(fixture["active"], KEYRING, installation)
+    anchor = RegistryAnchor()
+    anchor.path = RegistryAnchor.path + "Lab\\" + identifier
+    if mode == "cleanup":
+        import winreg
+
+        try:
+            winreg.DeleteKey(winreg.HKEY_CURRENT_USER, anchor.path)
+        except FileNotFoundError:
+            pass
+        return 0
+    vault = WindowsVault(root / "license.dpapi")
+
+    class NoNetwork:
+        def post(self, *args):
+            raise OSError("Synthetic offline experiment")
+
+    if mode == "init":
+        root.mkdir(parents=True, exist_ok=False)
+        vault.save({"installation_id": installation, "license": None, "credential": None})
+        manager = LicenseManager(vault, anchor, KEYRING, NoNetwork())
+        manager.accept({"license": fixture["active"]})
+    elif mode == "observer":
+        manager = LicenseManager(vault, anchor, KEYRING, NoNetwork())
+        assert not manager.verify().read_only
+        (root / "observer.ready").write_text("ready")
+        deadline = time.monotonic() + 20
+        while not (root / "writer.done").exists():
+            if time.monotonic() > deadline:
+                raise TimeoutError("Other laboratory process did not finish")
+            time.sleep(0.05)
+        assert manager.verify().read_only
+        result = {
+            "stale_process_cannot_erase_revocation": True,
+            "different_frozen_processes": True,
+            "dpapi_used": True,
+            "named_mutex_used": True,
+            "sac_approved": False,
+        }
+        (root / "observer.json").write_text(json.dumps(result) + "\n")
+    elif mode == "writer":
+        manager = LicenseManager(vault, anchor, KEYRING, NoNetwork())
+        previous = vault.path.read_bytes()
+        manager.accept({"license": fixture["revoked"]})
+        vault.path.write_bytes(previous)  # deliberate file-restore negative control, lab data only
+        (root / "writer.done").write_text("revocation persisted; old file restored")
+    else:
+        raise ValueError("Unknown laboratory role")
+    return 0
