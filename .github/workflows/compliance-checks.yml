@@ -1,0 +1,45 @@
+name: Material compliance checks (not legal approval)
+on:
+  push:
+    paths:
+      - 'docs/compliance/**'
+      - 'distribution/notices.py'
+      - 'scripts/compliance*.py'
+      - 'tests/test_compliance.py'
+      - '.github/workflows/compliance-checks.yml'
+  pull_request:
+    paths:
+      - 'docs/compliance/**'
+      - 'distribution/notices.py'
+      - 'scripts/compliance*.py'
+      - 'tests/test_compliance.py'
+      - '.github/workflows/compliance-checks.yml'
+permissions:
+  contents: read
+jobs:
+  verify:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.12.10'
+      - name: Verify inventory, original texts and evidence without running the application
+        run: python -m scripts.compliance_check --output build/compliance/verification.json
+      - name: Confirm that documentary checks do not authorize submission
+        shell: python
+        run: |
+          import subprocess, sys
+          result = subprocess.run([sys.executable, '-m', 'scripts.compliance_check', '--submission'], capture_output=True)
+          assert result.returncode == 2, result.stderr
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: agrolines-compliance-status-${{ matrix.os }}-NOT-LEGAL-APPROVAL
+          path: build/compliance/verification.json
+          if-no-files-found: error

@@ -149,8 +149,12 @@ jobs:
       - name: Bind diagnostic artifact to exact source, lock and policy
         shell: pwsh
         run: |
-          Move-Item dist/msix/AgroLines-1.0.0.0-x64-STORE-SUBMISSION-UNSIGNED.msix dist/msix/AgroLines-1.0.0.0-x64-DIAGNOSTICO-ASSINATURA-PENDENTE.msix
-          ./build-env/Scripts/python.exe -m scripts.signing_pipeline bind --package dist/msix/AgroLines-1.0.0.0-x64-DIAGNOSTICO-ASSINATURA-PENDENTE.msix --plan evidence/signing/plan.json --source-commit $env:GITHUB_SHA --lock distribution/windows/requirements.lock --policy distribution/windows/signing/native-policy.json --output evidence/signing/input-binding.json
+          $diagnostic = 'dist/msix/AgroLines-1.0.0.0-x64-DIAGNOSTICO-ASSINATURA-PENDENTE.msix'
+          if ($env:GITHUB_HEAD_REF -eq 'compliance/lgpl-store-dossier' -or $env:GITHUB_REF_NAME -eq 'compliance/lgpl-store-dossier') {
+            $diagnostic = 'dist/msix/AgroLines-1.0.0.0-x64-CONFORMIDADE-' + $env:GITHUB_SHA.Substring(0,12) + '-DIAGNOSTICO-ASSINATURA-PENDENTE.msix'
+          }
+          Move-Item dist/msix/AgroLines-1.0.0.0-x64-STORE-SUBMISSION-UNSIGNED.msix $diagnostic
+          ./build-env/Scripts/python.exe -m scripts.signing_pipeline bind --package $diagnostic --plan evidence/signing/plan.json --source-commit $env:GITHUB_SHA --lock distribution/windows/requirements.lock --policy distribution/windows/signing/native-policy.json --output evidence/signing/input-binding.json
           if ($LASTEXITCODE) { throw 'Artifact binding failed.' }
           ./build-env/Scripts/python.exe -m scripts.technical_report --evidence evidence
           if ($LASTEXITCODE) { throw 'Same-run technical evidence report failed.' }

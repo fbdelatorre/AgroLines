@@ -1,0 +1,13 @@
+diff --git a/capi/geos_ts_c.cpp b/capi/geos_ts_c.cpp
+index ae3a4f2..449870e 100644
+--- a/capi/geos_ts_c.cpp
++++ b/capi/geos_ts_c.cpp
+@@ -2324,7 +2324,7 @@ extern "C" {
+     const char* GEOSversion()
+     {
+         static char version[256];
+-        snprintf(version, sizeof(version), "%s", GEOS_CAPI_VERSION);
++        snprintf(version, sizeof(version), "%s-agrolines-synthetic", GEOS_CAPI_VERSION);
+         return version;
+     }
+ 

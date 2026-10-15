@@ -1,0 +1,91 @@
+{
+  "scope": "All six PROJ build recipe/patch input file hashes exactly match bundled SPDX; not complete Windows binary reproduction",
+  "records": [
+    {
+      "file": "ports/proj/fix-proj4-targets-cmake.patch",
+      "repository": "https://github.com/sgillies/fiona-wheels.git",
+      "commit": "01866e10db4e92a8cdaf5ed3d2813e2d535127b8",
+      "git_blob": "d0e132bbcc0125ac6c874723a0846520b1b463f2",
+      "lf_sha256": "0bcc51d69830a495a955cb97a8a1f91d9cec0410cbd8198f82f4fe60169d696f",
+      "windows_crlf_sha256": "d92803e2b1aeaf5b0218b8c6a4de4ad6f49ec502f4bd7c641fef31face6f7dac",
+      "sbom_sha256": "d92803e2b1aeaf5b0218b8c6a4de4ad6f49ec502f4bd7c641fef31face6f7dac",
+      "exact_match_after_windows_checkout_line_endings": true
+    },
+    {
+      "file": "ports/proj/fix-win-output-name.patch",
+      "repository": "https://github.com/sgillies/fiona-wheels.git",
+      "commit": "01866e10db4e92a8cdaf5ed3d2813e2d535127b8",
+      "git_blob": "09256144109853fac2a109084a6f673030f4e9e4",
+      "lf_sha256": "706e536cfe9a90c1b071ab5b00932fa96bb35c67fcb0f96c0fc4feb7c0b44011",
+      "windows_crlf_sha256": "a73a3720dd596992ab1bbe4ea9c32e42e1d13cf3069682ba70c7ee63b289c650",
+      "sbom_sha256": "a73a3720dd596992ab1bbe4ea9c32e42e1d13cf3069682ba70c7ee63b289c650",
+      "exact_match_after_windows_checkout_line_endings": true
+    },
+    {
+      "file": "ports/proj/portfile.cmake",
+      "repository": "https://github.com/sgillies/fiona-wheels.git",
+      "commit": "01866e10db4e92a8cdaf5ed3d2813e2d535127b8",
+      "git_blob": "fdf74fe05a573b04c968d1bc66b8a4fc5788cd06",
+      "lf_sha256": "a2e8b50094aa33ed9cd84a6d14448cd549652c41f35c077e145e47dd933b86db",
+      "windows_crlf_sha256": "9ba219c77615773af1ed82aa5d02389be80b1c518dff97db07c80ebea33c9073",
+      "sbom_sha256": "9ba219c77615773af1ed82aa5d02389be80b1c518dff97db07c80ebea33c9073",
+      "exact_match_after_windows_checkout_line_endings": true
+    },
+    {
+      "file": "ports/proj/remove_toolset_restriction.patch",
+      "repository": "https://github.com/sgillies/fiona-wheels.git",
+      "commit": "01866e10db4e92a8cdaf5ed3d2813e2d535127b8",
+      "git_blob": "7da27379565f3434f1caaf3472f76a01b3d7708e",
+      "lf_sha256": "25c1c986673bd539f5ec920684a08b38d0d37d9e24b6793e5b79dbd717bde04e",
+      "windows_crlf_sha256": "b21e0c56702cb1cd8b2bc07cc85a4b2bc15e23a9635fae37cd0c87d6b8306b83",
+      "sbom_sha256": "b21e0c56702cb1cd8b2bc07cc85a4b2bc15e23a9635fae37cd0c87d6b8306b83",
+      "exact_match_after_windows_checkout_line_endings": true
+    },
+    {
+      "file": "ports/proj/usage",
+      "repository": "https://github.com/sgillies/fiona-wheels.git",
+      "commit": "01866e10db4e92a8cdaf5ed3d2813e2d535127b8",
+      "git_blob": "59044f7d29212326357cf1cf43660408bcb104f8",
+      "lf_sha256": "26169363c27e71a44cba9d703b22bbd13c191ab5e2d0612b3dd35c735c971fe6",
+      "windows_crlf_sha256": "6e599122e9ee03cfe3a611bca09d2a5ba351fc74c901cf8dacf45536f87b58bd",
+      "sbom_sha256": "6e599122e9ee03cfe3a611bca09d2a5ba351fc74c901cf8dacf45536f87b58bd",
+      "exact_match_after_windows_checkout_line_endings": true
+    },
+    {
+      "file": "ports/proj/vcpkg.json",
+      "repository": "https://github.com/sgillies/fiona-wheels.git",
+      "commit": "01866e10db4e92a8cdaf5ed3d2813e2d535127b8",
+      "git_blob": "7357f0764552913d34d6261cb62d11ceb1b37dc2",
+      "lf_sha256": "2f34898563093bd228e7e1a804dd09e4689b9d4198374c887d6be15194ae61ec",
+      "windows_crlf_sha256": "281fd43344ed6bc70f7ece4c7cc424f9aa7691c0ef5b87ac191022aa5f162eee",
+      "sbom_sha256": "281fd43344ed6bc70f7ece4c7cc424f9aa7691c0ef5b87ac191022aa5f162eee",
+      "exact_match_after_windows_checkout_line_endings": true
+    }
+  ],
+  "exact_binary_correspondence": false,
+  "source_code_payload_modified": false,
+  "recipe_redistribution_terms_review_pending": true,
+  "upstream_source_input": {
+    "sha256": "ead6a1d15ac35013db32046e46d36e93caeb1d8f6b83a44bce120bd5a8cf53c2",
+    "sha512": "45775e2b2a6b5bc490743c562155521a2ef48c5a8834cc96f88784aea785df10688f8962ae22fcac64d3b2f85378539ef1d3a082243cdc0ca3695ed8b9efa18b",
+    "exact_spdx_sha512_match": true,
+    "url": "https://github.com/OSGeo/PROJ/archive/refs/tags/9.3.1.tar.gz"
+  },
+  "patch_applicability": [
+    {
+      "patch": "fix-win-output-name.patch",
+      "check_passed": true,
+      "applied_in_isolated_source_copy": true
+    },
+    {
+      "patch": "fix-proj4-targets-cmake.patch",
+      "check_passed": true,
+      "applied_in_isolated_source_copy": true
+    },
+    {
+      "patch": "remove_toolset_restriction.patch",
+      "check_passed": true,
+      "applied_in_isolated_source_copy": true
+    }
+  ]
+}

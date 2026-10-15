@@ -8,3 +8,7 @@ distribution/windows/requirements.lock text eol=lf
 distribution/windows/third-party/* text eol=lf
 distribution/windows/signing/retired-system-copies.json text eol=lf
 docs/qt-minimal/*.csv text eol=lf
+
+# Preserve original legal-document bytes and pinned evidence across platforms.
+docs/compliance/** -text
+tools/compliance-poc/** -text

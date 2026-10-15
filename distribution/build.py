@@ -1,7 +1,6 @@
 """Prepare exact metadata/version/icon then build a Windows onedir PoC."""
 
 import argparse
-import importlib.metadata
 import json
 import os
 import shutil
@@ -107,33 +106,12 @@ def prepare(output, version, manufacturer, store=False):
     return metadata
 
 
-def collect_notices(payload):
+def collect_notices(payload, analysis_path=None):
     notices = Path(payload) / "third-party-notices"
-    notices.mkdir(parents=True, exist_ok=True)
-    packages = []
-    for package in importlib.metadata.distributions():
-        name = package.metadata["Name"]
-        packages.append(
-            {
-                "name": name,
-                "version": package.version,
-                "license": package.metadata.get("License-Expression")
-                or package.metadata.get("License", "not declared"),
-            }
-        )
-        for entry in package.files or []:
-            lower = str(entry).casefold()
-            if not any(word in lower for word in ("license", "copyright", "copying", "notice")):
-                continue
-            if Path(entry).suffix.lower() in (".py", ".pyc", ".pyd", ".dll", ".exe"):
-                continue
-            source = Path(package.locate_file(entry))
-            if source.is_file():
-                safe = "".join(c if c.isalnum() or c in "-_." else "_" for c in str(entry))
-                target = notices / name / safe
-                target.parent.mkdir(parents=True, exist_ok=True)
-                shutil.copyfile(source, target)
-    (notices / "packages.json").write_text(json.dumps(packages, indent=2), encoding="utf-8")
+    from distribution.notices import collect
+
+    modules = json.loads(Path(analysis_path).read_text())["python_modules"] if analysis_path else []
+    collect(payload, modules)
     python_license = Path(sys.base_prefix) / "LICENSE.txt"
     if python_license.exists():
         shutil.copyfile(python_license, notices / "Python-LICENSE.txt")
@@ -190,7 +168,10 @@ def main():
         cwd=ROOT,
         env=builder_environment,
     )
-    collect_notices(ROOT / "dist/AgroLinesPoC")
+    collect_notices(
+        ROOT / "dist/AgroLinesPoC",
+        ROOT / "evidence/qt-minimal/build-inputs.json" if args.store else None,
+    )
     if args.store:
         shutil.copyfile(
             ROOT / "distribution/windows/signing/native-policy.json",

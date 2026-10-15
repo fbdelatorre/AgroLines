@@ -1,0 +1,129 @@
+{
+  "wheel": "pyproj-3.8.0-cp312-cp312-win_amd64.whl",
+  "wheel_sha256": "0556ce011e1530aea2084a12e39dc9c6ccd25a16c1db5457f39bf83161e7c301",
+  "files": [
+    {
+      "path": "_internal/pyproj/database.cp312-win_amd64.pyd",
+      "sha256": "bf206af8ad166366fa4f1d206b622e78eb09d9af6a7eca1d7da0b7cdd54d8684",
+      "wheel_member": "pyproj/database.cp312-win_amd64.pyd",
+      "constants": []
+    },
+    {
+      "path": "_internal/pyproj/list.cp312-win_amd64.pyd",
+      "sha256": "1faf222c20aee8f10e46c2ea1ed2213316f8824ad202f84d5c27d6dcba2e80f5",
+      "wheel_member": "pyproj/list.cp312-win_amd64.pyd",
+      "constants": []
+    },
+    {
+      "path": "_internal/pyproj/_compat.cp312-win_amd64.pyd",
+      "sha256": "1203c44446312f7f2b42296d4753c168a9365b73dee23c8fbbd13ddc213f6aa2",
+      "wheel_member": "pyproj/_compat.cp312-win_amd64.pyd",
+      "constants": []
+    },
+    {
+      "path": "_internal/pyproj/_context.cp312-win_amd64.pyd",
+      "sha256": "f49e2bda20a75ee1be52aa38257836a62e1f59e5fb8536b24045ac09e4dd55c6",
+      "wheel_member": "pyproj/_context.cp312-win_amd64.pyd",
+      "constants": []
+    },
+    {
+      "path": "_internal/pyproj/_crs.cp312-win_amd64.pyd",
+      "sha256": "70c8245dfe975fa75fa0997a5d95ffe2a3264acba82522dc2f378fdb107c83a0",
+      "wheel_member": "pyproj/_crs.cp312-win_amd64.pyd",
+      "constants": []
+    },
+    {
+      "path": "_internal/pyproj/_geod.cp312-win_amd64.pyd",
+      "sha256": "484d9c068d6297cb3ea4b206a108f4d65c826475df7139befe714ef3f216378a",
+      "wheel_member": "pyproj/_geod.cp312-win_amd64.pyd",
+      "constants": []
+    },
+    {
+      "path": "_internal/pyproj/_network.cp312-win_amd64.pyd",
+      "sha256": "272dcdbf2bf642be069bfa4a9d8aec024ed54e416887afc05f30732188b9b464",
+      "wheel_member": "pyproj/_network.cp312-win_amd64.pyd",
+      "constants": []
+    },
+    {
+      "path": "_internal/pyproj/_sync.cp312-win_amd64.pyd",
+      "sha256": "4dec24b633e1218b47de1d91f6cfdfcbc3ecf931ba0ea012179f0093b3a881de",
+      "wheel_member": "pyproj/_sync.cp312-win_amd64.pyd",
+      "constants": []
+    },
+    {
+      "path": "_internal/pyproj/_transformer.cp312-win_amd64.pyd",
+      "sha256": "9bcd428b6e4d51939df27809f2ec0f75c5676ff25444ccfc090937f290ed7d44",
+      "wheel_member": "pyproj/_transformer.cp312-win_amd64.pyd",
+      "constants": []
+    },
+    {
+      "path": "_internal/pyproj/_version.cp312-win_amd64.pyd",
+      "sha256": "6919b589cb13b59dc9175f7afd8654d5217a9dfb54df88eba9d2c8ce5855bf8c",
+      "wheel_member": "pyproj/_version.cp312-win_amd64.pyd",
+      "constants": []
+    },
+    {
+      "path": "_internal/pyproj.libs/jpeg62-971fedc88cb0e86c3ad978ae1b7646db.dll",
+      "sha256": "971fedc88cb0e86c3ad978ae1b7646db16efcc79ad69ebf6bf98e6bed1d248f8",
+      "wheel_member": "pyproj.libs/jpeg62-971fedc88cb0e86c3ad978ae1b7646db.dll",
+      "constants": []
+    },
+    {
+      "path": "_internal/pyproj.libs/libcurl-f49442d4be7d953952a0509cdd4501fa.dll",
+      "sha256": "f220ceab38fa39a61b4ac2ad28dfc8624219c6c293dc32eecaea8a755dc655c8",
+      "wheel_member": "pyproj.libs/libcurl-f49442d4be7d953952a0509cdd4501fa.dll",
+      "constants": []
+    },
+    {
+      "path": "_internal/pyproj.libs/liblzma-3c4c8780fcad6ce56344d2b5594bda5b.dll",
+      "sha256": "3c4c8780fcad6ce56344d2b5594bda5b9a8af9da0af75a9e7d72c3d0c5480ff2",
+      "wheel_member": "pyproj.libs/liblzma-3c4c8780fcad6ce56344d2b5594bda5b.dll",
+      "constants": []
+    },
+    {
+      "path": "_internal/pyproj.libs/msvcp140-7c26614e1d733892c2deac7e245ce115.dll",
+      "sha256": "7c26614e1d733892c2deac7e245ce115504b1d80592dd0a01b08e3e5a55f89ca",
+      "wheel_member": "pyproj.libs/msvcp140-7c26614e1d733892c2deac7e245ce115.dll",
+      "constants": []
+    },
+    {
+      "path": "_internal/pyproj.libs/proj_9-7e5618bddacc5af688a84f477cf114c3.dll",
+      "sha256": "a2bbe765d31e257b018c1792f10e009427841b3383f83c5c8b781845461d9343",
+      "wheel_member": "pyproj.libs/proj_9-7e5618bddacc5af688a84f477cf114c3.dll",
+      "constants": []
+    },
+    {
+      "path": "_internal/pyproj.libs/sqlite3-9415ebc42378ab15b741623972c45846.dll",
+      "sha256": "9415ebc42378ab15b741623972c458464ccd8ad141310e5f92c9d2b2ba9defa0",
+      "wheel_member": "pyproj.libs/sqlite3-9415ebc42378ab15b741623972c45846.dll",
+      "constants": []
+    },
+    {
+      "path": "_internal/pyproj.libs/tiff-69dcdf91c822b00d23e8dbf49655fe78.dll",
+      "sha256": "ad27d079a0ca8d75fb72093ec4e01b21f9105cc71a16b2277c6511f87dc94aaa",
+      "wheel_member": "pyproj.libs/tiff-69dcdf91c822b00d23e8dbf49655fe78.dll",
+      "constants": [
+        {
+          "export": "TIFFGetVersion",
+          "value": "LIBTIFF, Version 4.7.1\nCopyright (c) 1988-1996 Sam Leffler\nCopyright (c) 1991-1996 Silicon Graphics, Inc.",
+          "method": "x64 leaf function returns constant string; static inspection",
+          "initial_bytes_hex": "488d0539b40200c3cccccccccccccccc"
+        }
+      ]
+    },
+    {
+      "path": "_internal/pyproj.libs/zlib1-985e9fefa27bf900be8e4df7dcc97287.dll",
+      "sha256": "985e9fefa27bf900be8e4df7dcc972877cf3314b279ecf8d58643baa8f559a88",
+      "wheel_member": "pyproj.libs/zlib1-985e9fefa27bf900be8e4df7dcc97287.dll",
+      "constants": [
+        {
+          "export": "zlibVersion",
+          "value": "1.3.1",
+          "method": "x64 leaf function returns constant string; static inspection",
+          "initial_bytes_hex": "488d05791b0000c340534883ec20488b"
+        }
+      ]
+    }
+  ],
+  "native_code_executed": false
+}

@@ -1,0 +1,137 @@
+[
+  {
+    "name": "altgraph",
+    "version": "0.17.5",
+    "license": "MIT"
+  },
+  {
+    "name": "attrs",
+    "version": "26.1.0",
+    "license": "MIT"
+  },
+  {
+    "name": "certifi",
+    "version": "2026.7.22",
+    "license": "MPL-2.0"
+  },
+  {
+    "name": "click",
+    "version": "8.5.0",
+    "license": "BSD-3-Clause"
+  },
+  {
+    "name": "click-plugins",
+    "version": "1.1.1.2",
+    "license": "New BSD"
+  },
+  {
+    "name": "cligj",
+    "version": "0.7.2",
+    "license": "BSD"
+  },
+  {
+    "name": "defusedxml",
+    "version": "0.7.1",
+    "license": "PSFL"
+  },
+  {
+    "name": "dnspython",
+    "version": "2.9.0",
+    "license": "ISC"
+  },
+  {
+    "name": "email-validator",
+    "version": "2.3.0",
+    "license": "Unlicense"
+  },
+  {
+    "name": "fiona",
+    "version": "1.10.1",
+    "license": "BSD 3-Clause"
+  },
+  {
+    "name": "idna",
+    "version": "3.20",
+    "license": "BSD-3-Clause"
+  },
+  {
+    "name": "numpy",
+    "version": "2.5.4",
+    "license": "BSD-3-Clause AND 0BSD AND MIT AND Zlib AND CC0-1.0"
+  },
+  {
+    "name": "packaging",
+    "version": "26.3",
+    "license": "Apache-2.0 OR BSD-2-Clause"
+  },
+  {
+    "name": "pefile",
+    "version": "2024.8.26",
+    "license": "MIT"
+  },
+  {
+    "name": "pip",
+    "version": "25.0.1",
+    "license": "MIT"
+  },
+  {
+    "name": "pyinstaller",
+    "version": "6.22.3",
+    "license": "GPLv2-or-later with a special exception which allows to use PyInstaller to build and distribute non-free programs (including commercial ones)"
+  },
+  {
+    "name": "pyinstaller-hooks-contrib",
+    "version": "2026.8",
+    "license": "not declared"
+  },
+  {
+    "name": "pyproj",
+    "version": "3.8.0",
+    "license": "MIT"
+  },
+  {
+    "name": "PySide6",
+    "version": "6.12.0",
+    "license": "LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "name": "PySide6_Addons",
+    "version": "6.12.0",
+    "license": "LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "name": "PySide6_Essentials",
+    "version": "6.12.0",
+    "license": "LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "name": "PySide6_Pdf",
+    "version": "6.12.0.140",
+    "license": "LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "name": "PySide6_WebEngine",
+    "version": "6.12.0.140",
+    "license": "LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  },
+  {
+    "name": "pywin32-ctypes",
+    "version": "0.2.3",
+    "license": "BSD-3-Clause"
+  },
+  {
+    "name": "setuptools",
+    "version": "84.0.0",
+    "license": "MIT"
+  },
+  {
+    "name": "shapely",
+    "version": "2.2.0",
+    "license": "BSD-3-Clause"
+  },
+  {
+    "name": "shiboken6",
+    "version": "6.12.0",
+    "license": "LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only"
+  }
+]

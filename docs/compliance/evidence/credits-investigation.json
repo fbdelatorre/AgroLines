@@ -1,0 +1,14 @@
+{
+  "first_probe_run": "https://github.com/fbdelatorre/AgroLines/actions/runs/38655061315",
+  "result": "Qt reference hashes passed; chrome://credits load failed; no legal credits exported",
+  "upstream_repository": "https://github.com/qt/qtwebengine",
+  "candidate_source_commit": "bd0394311780388e4b2c72cee6095f51886fd6fd",
+  "binary_source_correspondence_proven": false,
+  "upstream_test": "QTest::newRow(\"credits\") << QUrl(\"chrome://credits\") << true << false;",
+  "attribution_targets": {
+    "QtWebEngineCore": "generate_chromium_attributions -> chromium_attributions.qdoc",
+    "QtPdf": "generate_pdf_attributions -> pdf_attributions.qdoc"
+  },
+  "scope": "Upstream candidate explains unsupported route; exact Windows runtime observed failure independently",
+  "legal_compliance_approved": false
+}
