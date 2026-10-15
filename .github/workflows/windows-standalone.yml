@@ -8,6 +8,37 @@ concurrency:
   group: standalone-${{ github.event.pull_request.head.ref || github.ref }}
   cancel-in-progress: true
 jobs:
+  commercial-crypto-preflight:
+    if: github.head_ref == 'compliance/commercial-licensing-foundation'
+    runs-on: windows-latest
+    timeout-minutes: 12
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12.10'
+          architecture: x64
+      - run: ./distribution/windows/standalone/Assert-Laboratory.ps1
+      - name: Verify frozen CFFI dynamic import before the full GIS build
+        run: |
+          python -m venv build-env
+          ./build-env/Scripts/python.exe -m pip install --require-hashes --only-binary=:all: -r distribution/windows/requirements-commercial.lock
+          if ($LASTEXITCODE) { throw 'Locked crypto preflight inputs failed.' }
+          ./build-env/Scripts/python.exe -m PyInstaller --onedir --clean --noconfirm --name CryptoVerificationLab --hidden-import _cffi_backend --distpath build/crypto-lab --workpath build/crypto-work tools/licensing-lab/verify_frozen.py
+          if ($LASTEXITCODE) { throw 'Synthetic frozen crypto build failed.' }
+          New-Item evidence/crypto-preflight -ItemType Directory -Force | Out-Null
+          & ./build/crypto-lab/CryptoVerificationLab/CryptoVerificationLab.exe evidence/crypto-preflight/result.json
+          if ($LASTEXITCODE) { throw 'Synthetic frozen crypto runtime failed.' }
+          Get-Content evidence/crypto-preflight/result.json -Raw
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: frozen-commercial-crypto-EVIDENCE-ONLY
+          path: evidence/crypto-preflight/
+          if-no-files-found: error
   experimental-build:
     runs-on: windows-latest
     timeout-minutes: 50
@@ -47,9 +78,16 @@ jobs:
         run: |
           ./distribution/windows/standalone/Build-Libaec.ps1
           ./distribution/windows/standalone/Test-Libaec.ps1
+      - name: Prepare version-local third-party source delivery, never publish source archive
+        run: |
+          ./build-env/Scripts/python.exe -m distribution.source_bundle --cache build/source-cache --output build/source-delivery/AgroLines-Third-Party-Sources.zip
+          if ($LASTEXITCODE) { throw 'Source delivery integrity failed.' }
+          Copy-Item build/source-delivery/AgroLines-Third-Party-Sources.json evidence/standalone/source-delivery.json
+      - name: Build the same two GEOS versions from the delivered pinned source archives
+        run: ./distribution/windows/standalone/Build-GeosSources.ps1
       - name: Build standalone offline onedir and verify actual PYZ/external bindings
         run: |
-          ./build-env/Scripts/python.exe -m distribution.build --standalone --version 1.0.0.2
+          ./build-env/Scripts/python.exe -m distribution.build --standalone --version 1.0.0.3
           if ($LASTEXITCODE) { throw 'Standalone build failed.' }
       - name: Verify exact legal materials in the built payload (not legal approval)
         run: |
@@ -76,7 +114,7 @@ jobs:
           ./distribution/windows/standalone/Prepare-Compiler.ps1 -Directory "${{ runner.temp }}/agrolines-inno"
           $compiler = Join-Path '${{ runner.temp }}' 'agrolines-inno/compiler/ISCC.exe'
           Copy-Item (Join-Path '${{ runner.temp }}' 'agrolines-inno/provenance.json') evidence/standalone/compiler-provenance.json
-          ./distribution/windows/Build-Installer.ps1 -Standalone -Experimental -Version 1.0.0.2 -CandidateId ($env:GITHUB_SHA.Substring(0,12)) -Compiler $compiler -PythonExecutable ./build-env/Scripts/python.exe
+          ./distribution/windows/Build-Installer.ps1 -Standalone -Experimental -Version 1.0.0.3 -CandidateId ($env:GITHUB_SHA.Substring(0,12)) -Compiler $compiler -PythonExecutable ./build-env/Scripts/python.exe
       - name: Bind experimental installer to source, lock, layout and exact payload
         run: |
           $files = @(Get-ChildItem dist/installers -Filter '*EXPERIMENTAL-UNSIGNED.exe')
@@ -86,7 +124,7 @@ jobs:
           if ($signature.Status -ne 'NotSigned') { throw 'Unexpected signing in unsigned workflow.' }
           $report = @{
             file=$file.Name; sha256=(Get-FileHash $file.FullName -Algorithm SHA256).Hash.ToLowerInvariant(); size_bytes=$file.Length
-            version='1.0.0.2'; architecture='x64'; profile='standalone-offline'; source_commit=$env:GITHUB_SHA
+            version='1.0.0.3'; architecture='x64'; profile='standalone-offline'; source_commit=$env:GITHUB_SHA
             source_head_commit='${{ github.event.pull_request.head.sha }}'
             run_url="https://github.com/$env:GITHUB_REPOSITORY/actions/runs/$env:GITHUB_RUN_ID"
             lock_sha256=(Get-FileHash distribution/windows/requirements.lock -Algorithm SHA256).Hash.ToLowerInvariant()
@@ -100,8 +138,52 @@ jobs:
           Add-Content $env:GITHUB_STEP_SUMMARY ('Experimental installer: `' + $file.Name + '`')
           Add-Content $env:GITHUB_STEP_SUMMARY ('SHA-256: `' + $report.sha256 + '`')
           Add-Content $env:GITHUB_STEP_SUMMARY 'UNSIGNED. Build/probes only. No installation, signing, SAC approval, publication or commercial authorization.'
+      - name: Build separate experimental commercial profile with public synthetic trust only
+        if: github.head_ref == 'compliance/commercial-licensing-foundation'
+        run: |
+          Copy-Item evidence/qt-minimal/build-inputs.json evidence/standalone/offline-build-inputs.json
+          Move-Item dist/AgroLines dist/AgroLines-offline
+          ./build-env/Scripts/python.exe -m pip install --require-hashes --only-binary=:all: -r distribution/windows/requirements-commercial.lock
+          if ($LASTEXITCODE) { throw 'Commercial locked dependency installation failed.' }
+          ./build-env/Scripts/python.exe -m pip check
+          if ($LASTEXITCODE) { throw 'Commercial dependency consistency failed.' }
+          ./build-env/Scripts/python.exe -m scripts.prepare_license_lab --output "$env:RUNNER_TEMP/licensing-fixture"
+          if ($LASTEXITCODE) { throw 'Synthetic public trust preparation failed.' }
+          ./build-env/Scripts/python.exe -m distribution.build --commercial --version 1.0.0.4 --license-origin https://licenses.example.test --public-keys "$env:RUNNER_TEMP/licensing-fixture/public.json" --experimental-licensing
+          if ($LASTEXITCODE) { throw 'Separate commercial build failed.' }
+          New-Item evidence/commercial -ItemType Directory -Force | Out-Null
+          Copy-Item dist/AgroLines/legal evidence/commercial/packaged-legal -Recurse
+          Copy-Item dist/AgroLines/standalone-layout.json evidence/commercial/layout.json
+          ./build-env/Scripts/python.exe -c "import json; from pathlib import Path; d=json.loads(Path('dist/AgroLines/legal/legal-manifest.json').read_text(encoding='utf-8')); s=[{k:r[k] for k in ('component','version','license_evidence')} for r in d['components']]; print('AGROLINES_COMMERCIAL_COMPONENTS='+json.dumps(s)); print('AGROLINES_SOURCE_DELIVERY_SHA256='+d['source_delivery']['sha256'])"
+      - name: Frozen DPAPI, offline GIS, revocation persistence and separate commercial installer (never install)
+        if: github.head_ref == 'compliance/commercial-licensing-foundation'
+        run: |
+          $oldPath=$env:PATH
+          try {
+            $env:PATH="$env:WINDIR/System32;$env:WINDIR"
+            $process=Start-Process dist/AgroLines/AgroLines.exe -ArgumentList @('--licensing-probe', "$env:RUNNER_TEMP/licensing-fixture/fixture.json", 'evidence/commercial/frozen-license.json') -PassThru
+            if (-not $process.WaitForExit(180000)) { Stop-Process -Id $process.Id; throw 'Commercial probe timeout.' }
+            if ($process.ExitCode -ne 0) {
+              if (Test-Path evidence/commercial/frozen-license.json) { Get-Content evidence/commercial/frozen-license.json -Raw }
+              throw 'Frozen commercial/DPAPI/GIS probe failed.'
+            }
+          } finally { $env:PATH=$oldPath }
+          $license=Get-Content evidence/commercial/frozen-license.json -Raw | ConvertFrom-Json
+          if (-not $license.passed -or -not $license.frozen -or -not $license.dpapi_roundtrip -or -not $license.signed_license_gis_edit_history_backup_and_recovery -or $license.sac_approved) { throw 'Invalid commercial proof.' }
+          Write-Output ('AGROLINES_COMMERCIAL_FROZEN=' + (($license | Select-Object frozen,passed,dpapi_roundtrip,offline_valid,activation_dialog_visible,activation_key_field_hidden,signed_license_gis_edit_history_backup_and_recovery,revocation_survived_file_restore,sac_approved,deployed_https_activation_proven) | ConvertTo-Json -Compress))
+          ./distribution/windows/standalone/Test-LicenseConcurrency.ps1 -Executable dist/AgroLines/AgroLines.exe -Fixture "$env:RUNNER_TEMP/licensing-fixture/fixture.json" -Output evidence/commercial/concurrency
+          ./distribution/windows/standalone/Test-CommercialBindingReplacement.ps1 -Payload dist/AgroLines -Fixture "$env:RUNNER_TEMP/licensing-fixture/fixture.json" -Copy "$env:RUNNER_TEMP/commercial-binding-copy" -Output evidence/commercial/binding-replacement
+          ./distribution/windows/standalone/Prepare-SigningPlan.ps1 -Payload dist/AgroLines -SourceCommit $env:GITHUB_SHA -PythonExecutable ./build-env/Scripts/python.exe -Output evidence/commercial/signing
+          $compiler=Join-Path '${{ runner.temp }}' 'agrolines-inno/compiler/ISCC.exe'
+          ./distribution/windows/Build-Installer.ps1 -Standalone -Experimental -Version 1.0.0.4 -CandidateId ($env:GITHUB_SHA.Substring(0,12)) -Compiler $compiler -PythonExecutable ./build-env/Scripts/python.exe
+          $file=Get-ChildItem dist/installers -Filter '*1.0.0.4*EXPERIMENTAL-UNSIGNED.exe' | Select-Object -First 1
+          if (-not $file) { throw 'Missing experimental commercial installer.' }
+          $report=@{file=$file.Name;sha256=(Get-FileHash $file.FullName -Algorithm SHA256).Hash.ToLowerInvariant();version='1.0.0.4';profile='commercial-standalone';source_commit=$env:GITHUB_SHA;source_head_commit='${{ github.event.pull_request.head.sha }}';unsigned=$true;installed=$false;distributed=$false;sac_approved=$false;deployed_https_activation_proven=$false}
+          $report | ConvertTo-Json | Set-Content evidence/commercial/artifact.json -Encoding utf8
+          Write-Output ('AGROLINES_COMMERCIAL_ARTIFACT=' + ($report | ConvertTo-Json -Compress))
+          # Explicitly NO installer/runtime/source ZIP upload; evidence only below.
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
-        if: always() && !contains(fromJSON('["compliance/standalone-native-validation","compliance/standalone-legal-materials"]'), github.head_ref)
+        if: always() && !contains(fromJSON('["compliance/standalone-native-validation","compliance/standalone-legal-materials","compliance/commercial-licensing-foundation"]'), github.head_ref)
         with:
           name: agrolines-standalone-EXPERIMENTAL-UNSIGNED
           path: |
@@ -111,7 +193,7 @@ jobs:
           if-no-files-found: error
           retention-days: 30
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
-        if: always() && contains(fromJSON('["compliance/standalone-native-validation","compliance/standalone-legal-materials"]'), github.head_ref)
+        if: always() && contains(fromJSON('["compliance/standalone-native-validation","compliance/standalone-legal-materials","compliance/commercial-licensing-foundation"]'), github.head_ref)
         with:
           name: agrolines-standalone-HOMOLOGATION-EVIDENCE-ONLY
           path: evidence/

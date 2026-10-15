@@ -1,4 +1,4 @@
-"""Latched Store policy. No user setting can enable remote functionality."""
+"""Latched agricultural policy; commercial licensing has a separate fixed HTTPS origin."""
 
 import importlib.abc
 import os
@@ -6,6 +6,7 @@ import socket
 import sys
 from pathlib import Path
 
+_CREATE_CONNECTION = socket.create_connection
 _ENABLED = False
 _CONTEXT = None
 REMOTE_MODULES = ("desktop.main", "desktop.client", "desktop.health", "desktop.vault", "server")
@@ -17,7 +18,7 @@ def is_offline_only():
 
 def require_remote():
     if _ENABLED:
-        raise PermissionError("Esta edição Store é exclusivamente offline.")
+        raise PermissionError("Colaboração remota indisponível neste perfil.")
 
 
 class RemoteImports(importlib.abc.MetaPathFinder):
@@ -28,7 +29,7 @@ class RemoteImports(importlib.abc.MetaPathFinder):
 
 
 def denied(*args, **kwargs):
-    raise PermissionError("Conexões de rede próprias são proibidas nesta edição Store.")
+    raise PermissionError("Rede indisponível neste contexto de execução.")
 
 
 def require_local_path(path):
@@ -50,7 +51,7 @@ def require_local_path(path):
             raise ValueError("Unidades de rede não são aceitas nesta edição offline.")
 
 
-def enforce(native=True):
+def enforce(native=True, licensing_endpoint=None):
     global _ENABLED, _CONTEXT
     if sys.platform == "win32" and (
         os.getenv("QTWEBENGINE_DISABLE_SANDBOX") == "1"
@@ -61,6 +62,10 @@ def enforce(native=True):
         if native:
             configure_native()
         return
+    if licensing_endpoint is not None:
+        from core.license_network import configure
+
+        configure(licensing_endpoint)
     _ENABLED = True
     sys.meta_path.insert(0, RemoteImports())
     # Also covers previously imported Python clients. Native networking is separately
@@ -77,6 +82,13 @@ def enforce(native=True):
         "getnameinfo",
     ):
         setattr(socket, name, denied)
+    if licensing_endpoint is not None:
+        from core.license_network import guarded_connect, guarded_dns
+
+        socket.socket.connect = guarded_connect
+        socket.getaddrinfo = guarded_dns
+        # stdlib create_connection is still the original; its DNS/connect are guarded.
+        socket.create_connection = _CREATE_CONNECTION
     for name in (
         "PROJ_LIB",
         "PROJ_DATA",

@@ -104,9 +104,10 @@ class LocalVertexDialog(QDialog):
 
 
 class LocalProjectsWindow(QMainWindow):
-    def __init__(self):
+    def __init__(self, license_verifier=None):
         super().__init__()
         self.project = None
+        self.license_verifier = license_verifier
         self._closed = False
         self.setWindowTitle("AgroLines · Projetos locais")
         self.resize(1100, 750)
@@ -143,6 +144,7 @@ class LocalProjectsWindow(QMainWindow):
     def show_privacy(self):
         bundled = Path(__file__).parent / "privacy_assets/politica-privacidade.html"
         source = Path(__file__).parent.parent / "docs/privacy/offline/politica-privacidade.html"
+        source = getattr(self, "privacy_source", source)
         content = bundled if bundled.is_file() else source
         dialog = QDialog(self)
         dialog.setWindowTitle("Privacidade · AgroLines offline")
@@ -179,7 +181,7 @@ class LocalProjectsWindow(QMainWindow):
 
     def load(self, path):
         require_local_path(path)
-        project = LocalProject(path)
+        project = LocalProject(path, self.license_verifier)
         if self.project:
             self.project.close()
         self.project = project
@@ -223,7 +225,7 @@ class LocalProjectsWindow(QMainWindow):
         if path:
 
             def create():
-                project = LocalProject.create(path, name, crs)
+                project = LocalProject.create(path, name, crs, self.license_verifier)
                 project.close()
                 self.load(path)
 
@@ -290,7 +292,7 @@ class LocalProjectsWindow(QMainWindow):
         if target:
 
             def restore():
-                restored = LocalProject.restore(source, target)
+                restored = LocalProject.restore(source, target, self.license_verifier)
                 restored.close()
                 self.load(target)
 

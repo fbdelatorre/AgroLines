@@ -715,6 +715,253 @@
       "size_bytes": 2416,
       "license": "libtiff (original copyright and permissive terms)",
       "kind": "license_notice"
+    },
+    {
+      "file": "licenses/PCRE2-10.43-LICENCE.txt",
+      "components": [
+        "pcre2-Fiona"
+      ],
+      "sha256": "030087e2e8dd7c1bdd26057d25d4ded8f45bbf01ad458d68665ad04b8b0fbedf",
+      "size_bytes": 3477,
+      "license": "BSD-3-Clause",
+      "kind": "license_notice",
+      "origin": {
+        "url": "https://raw.githubusercontent.com/PCRE2Project/pcre2/pcre2-10.43/LICENCE",
+        "document_sha256": "030087e2e8dd7c1bdd26057d25d4ded8f45bbf01ad458d68665ad04b8b0fbedf",
+        "scope": "Versioned upstream original; binary version mapping remains explicit where not confirmed"
+      }
+    },
+    {
+      "file": "licenses/LERC-js-v4.0.4-LICENSE.txt",
+      "components": [],
+      "sha256": "77a8b761727c75e2167b15bfdf61b2c0bcf8792271228bebe80779106ad00671",
+      "size_bytes": 9198,
+      "license": "Apache-2.0",
+      "kind": "license_notice",
+      "origin": {
+        "url": "https://raw.githubusercontent.com/Esri/lerc/js_v4.0.4/LICENSE",
+        "document_sha256": "77a8b761727c75e2167b15bfdf61b2c0bcf8792271228bebe80779106ad00671",
+        "scope": "Research only; not attributed to the native LERC binary and not packaged"
+      }
+    },
+    {
+      "file": "licenses/LERC-js-v4.0.4-NOTICE.txt",
+      "components": [],
+      "sha256": "4b358a6807dec2f782d030d1514ef1a83e1297db8bd8bdd88d6bdc02f82196c2",
+      "size_bytes": 679,
+      "license": "Apache-2.0",
+      "kind": "license_notice",
+      "origin": {
+        "url": "https://raw.githubusercontent.com/Esri/lerc/js_v4.0.4/NOTICE",
+        "document_sha256": "4b358a6807dec2f782d030d1514ef1a83e1297db8bd8bdd88d6bdc02f82196c2",
+        "scope": "Research only; not attributed to the native LERC binary and not packaged"
+      }
+    },
+    {
+      "file": "licenses/libgeotiff-1.7.3-LICENSE.txt",
+      "components": [
+        "geotiff-Fiona"
+      ],
+      "sha256": "a822a731a7ac4ba7d8f18fa0dc29db2e68a5dcfc315b46e4a4c8956720d55d93",
+      "size_bytes": 3634,
+      "license": "MIT and public-domain portions",
+      "kind": "license_notice",
+      "origin": {
+        "url": "https://raw.githubusercontent.com/OSGeo/libgeotiff/1.7.3/libgeotiff/LICENSE",
+        "document_sha256": "a822a731a7ac4ba7d8f18fa0dc29db2e68a5dcfc315b46e4a4c8956720d55d93",
+        "scope": "Versioned upstream original; binary version mapping remains explicit where not confirmed"
+      }
+    },
+    {
+      "file": "licenses/libwebp-1.4.0-PATENTS.txt",
+      "components": [
+        "libwebp-Fiona"
+      ],
+      "sha256": "cc3273e0694ea5896145e0677699b53471b03ea43021ddc50e7923fbb9f5023c",
+      "size_bytes": 1436,
+      "license": "Patent grant accompanying BSD code",
+      "kind": "license_notice",
+      "origin": {
+        "url": "https://raw.githubusercontent.com/webmproject/libwebp/v1.4.0/PATENTS",
+        "document_sha256": "cc3273e0694ea5896145e0677699b53471b03ea43021ddc50e7923fbb9f5023c",
+        "scope": "Versioned upstream original; binary version mapping remains explicit where not confirmed"
+      }
+    },
+    {
+      "file": "licenses/libiconv-1.17-COPYING.LIB.txt",
+      "components": [
+        "iconv-Fiona"
+      ],
+      "sha256": "dc626520dcd53a22f727af3ee42c770e56c97a64fe3adb063799d8ab032fe551",
+      "size_bytes": 26530,
+      "license": "LGPL-2.1-or-later",
+      "kind": "license_notice",
+      "origin": {
+        "url": "https://raw.githubusercontent.com/arthenica/libiconv/v1.17/COPYING.LIB",
+        "document_sha256": "dc626520dcd53a22f727af3ee42c770e56c97a64fe3adb063799d8ab032fe551",
+        "scope": "Versioned upstream original; binary version mapping remains explicit where not confirmed"
+      }
+    },
+    {
+      "file": "licenses/NKG-CC-BY-4.0.txt",
+      "components": [
+        "Fiona-data",
+        "PROJ-data"
+      ],
+      "sha256": "cce5d01fa4a83b794271bd2c28cffdf99afd43c803e6ddefddae39b591ea7448",
+      "size_bytes": 18652,
+      "license": "CC-BY-4.0",
+      "kind": "license_notice",
+      "origin": {
+        "url": "https://raw.githubusercontent.com/NordicGeodesy/NordicTransformations/4e109e8b3dc94f8c0c45a9a46380aae65b09445e/LICENSE",
+        "scope": "NKG origin identified by delivered PROJ database; do not imply optional grids are included"
+      }
+    },
+    {
+      "file": "licenses/NKG-original-attributions.md",
+      "components": [
+        "Fiona-data",
+        "PROJ-data"
+      ],
+      "sha256": "b7c60b17ae9a54b069b3871c2a3205273f8c18607269935a41727bf3ad613832",
+      "size_bytes": 10125,
+      "license": "CC-BY-4.0",
+      "kind": "license_notice",
+      "origin": {
+        "url": "https://raw.githubusercontent.com/NordicGeodesy/NordicTransformations/4e109e8b3dc94f8c0c45a9a46380aae65b09445e/README.md",
+        "scope": "NKG origin identified by delivered PROJ database; do not imply optional grids are included"
+      }
+    },
+    {
+      "file": "recipes/proj-9.8.1/pkgconfig.diff",
+      "components": [
+        "PROJ-pyproj",
+        "PROJ-data"
+      ],
+      "sha256": "f45c12bb9f42c30ad4df196c67a644ab8c224c7e4ac607d9793c598349fd22b2",
+      "size_bytes": 1206,
+      "license": "MIT (vcpkg build recipe)",
+      "kind": "source_recipe",
+      "origin": {
+        "url": "https://raw.githubusercontent.com/microsoft/vcpkg/50515af4d522e4153e501a1c1417e15744baa88d/ports/proj/pkgconfig.diff",
+        "exact_distributed_spdx_match": true
+      }
+    },
+    {
+      "file": "recipes/proj-9.8.1/portfile.cmake",
+      "components": [
+        "PROJ-pyproj",
+        "PROJ-data"
+      ],
+      "sha256": "7a987b7671751d1081d862714fae9944ab4f32270f0edab9b2612b5b9535b815",
+      "size_bytes": 2157,
+      "license": "MIT (vcpkg build recipe)",
+      "kind": "source_recipe",
+      "origin": {
+        "url": "https://raw.githubusercontent.com/microsoft/vcpkg/50515af4d522e4153e501a1c1417e15744baa88d/ports/proj/portfile.cmake",
+        "exact_distributed_spdx_match": true
+      }
+    },
+    {
+      "file": "recipes/proj-9.8.1/remove_toolset_restriction.patch",
+      "components": [
+        "PROJ-pyproj",
+        "PROJ-data"
+      ],
+      "sha256": "25c1c986673bd539f5ec920684a08b38d0d37d9e24b6793e5b79dbd717bde04e",
+      "size_bytes": 1001,
+      "license": "MIT (vcpkg build recipe)",
+      "kind": "source_recipe",
+      "origin": {
+        "url": "https://raw.githubusercontent.com/microsoft/vcpkg/50515af4d522e4153e501a1c1417e15744baa88d/ports/proj/remove_toolset_restriction.patch",
+        "exact_distributed_spdx_match": true
+      }
+    },
+    {
+      "file": "recipes/proj-9.8.1/usage",
+      "components": [
+        "PROJ-pyproj",
+        "PROJ-data"
+      ],
+      "sha256": "ae06beae83376cd9f11db8c2596bd038f89ae1e2cd32b82ee333f1572070370a",
+      "size_bytes": 206,
+      "license": "MIT (vcpkg build recipe)",
+      "kind": "source_recipe",
+      "origin": {
+        "url": "https://raw.githubusercontent.com/microsoft/vcpkg/50515af4d522e4153e501a1c1417e15744baa88d/ports/proj/usage",
+        "exact_distributed_spdx_match": true
+      }
+    },
+    {
+      "file": "recipes/proj-9.8.1/vcpkg.json",
+      "components": [
+        "PROJ-pyproj",
+        "PROJ-data"
+      ],
+      "sha256": "d815b36240dad016c483c2757b2963732d348eb83eef6c2ae831505c3035d727",
+      "size_bytes": 1053,
+      "license": "MIT (vcpkg build recipe)",
+      "kind": "source_recipe",
+      "origin": {
+        "url": "https://raw.githubusercontent.com/microsoft/vcpkg/50515af4d522e4153e501a1c1417e15744baa88d/ports/proj/vcpkg.json",
+        "exact_distributed_spdx_match": true
+      }
+    },
+    {
+      "file": "licenses/Inno-Setup-7.1.0-license.txt",
+      "components": [
+        "InnoSetup-embedded"
+      ],
+      "sha256": "2e5346868c2a18434489824e11d65c3031620f792fefc415d05f19cd441abf5c",
+      "size_bytes": 1521,
+      "license": "Inno Setup License",
+      "kind": "license_notice",
+      "origin": {
+        "url": "https://raw.githubusercontent.com/jrsoftware/issrc/7d634620f1d1caca6c76e8398da7133153db9e7b/license.txt",
+        "scope": "Versioned original; Inno exact pinned compiler, LERC native version correspondence remains declared separately"
+      }
+    },
+    {
+      "file": "licenses/LERC-v4.0.0-LICENSE.txt",
+      "components": [
+        "lerc-Fiona"
+      ],
+      "sha256": "77a8b761727c75e2167b15bfdf61b2c0bcf8792271228bebe80779106ad00671",
+      "size_bytes": 9198,
+      "license": "Apache-2.0",
+      "kind": "license_notice",
+      "origin": {
+        "url": "https://raw.githubusercontent.com/Esri/lerc/v4.0.0/LICENSE",
+        "scope": "Versioned original; Inno exact pinned compiler, LERC native version correspondence remains declared separately"
+      }
+    },
+    {
+      "file": "licenses/LERC-v4.0.0-NOTICE.txt",
+      "components": [
+        "lerc-Fiona"
+      ],
+      "sha256": "4b358a6807dec2f782d030d1514ef1a83e1297db8bd8bdd88d6bdc02f82196c2",
+      "size_bytes": 679,
+      "license": "Apache-2.0",
+      "kind": "license_notice",
+      "origin": {
+        "url": "https://raw.githubusercontent.com/Esri/lerc/v4.0.0/NOTICE",
+        "scope": "Versioned original; Inno exact pinned compiler, LERC native version correspondence remains declared separately"
+      }
+    },
+    {
+      "file": "recipes/geos-same-version-build.txt",
+      "components": [
+        "GEOS-Fiona",
+        "GEOS-Shapely"
+      ],
+      "sha256": "a27e1dcadeaeb8fed15dc91dc01b4058b908f77765f331945753826c3d30197e",
+      "size_bytes": 1720,
+      "license": "Build instructions for LGPL-2.1 GEOS; not application source",
+      "kind": "build_recipe",
+      "origin": {
+        "scope": "AgroLines same-version source build recipe; full per-build provenance accompanies runtime"
+      }
     }
   ],
   "upstream_source_records": [

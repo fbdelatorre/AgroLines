@@ -169,7 +169,7 @@ def evaluate(root, policy, native, signatures, signtool, source_commit, policy_s
             if action == "sign_own":
                 own_entrypoint = (
                     "AgroLines.exe"
-                    if policy.get("profile") == "standalone-offline"
+                    if policy.get("profile") in ("standalone-offline", "commercial-standalone")
                     else "AgroLinesPoC.exe"
                 )
                 if relative != own_entrypoint or file["packages"]:

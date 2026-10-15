@@ -19,3 +19,8 @@ customer-data/
 build-env/
 evidence/
 acceptance/
+
+# Server licensing secrets are never application assets.
+_secrets/
+.env.licensing
+*.private-key

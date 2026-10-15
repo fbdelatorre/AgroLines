@@ -2,6 +2,7 @@ from uuid import uuid4
 
 from sqlalchemy import (
     JSON,
+    BigInteger,
     Boolean,
     CheckConstraint,
     Float,
@@ -203,3 +204,60 @@ class PlotOperation(Base):
     __tablename__ = "plot_operations"
     plot_id: Mapped[str] = mapped_column(ForeignKey("plots.id"), primary_key=True)
     operation_id: Mapped[str] = mapped_column(ForeignKey("operations.id"), primary_key=True)
+
+
+class LicenseSubscription(Base):
+    __tablename__ = "license_subscriptions"
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=new_id)
+    user_id: Mapped[str] = mapped_column(ForeignKey("users.id"), index=True)
+    plan: Mapped[str] = mapped_column(String(12))
+    edition: Mapped[str] = mapped_column(String(20), default="individual")
+    expires: Mapped[int] = mapped_column(BigInteger)
+    status: Mapped[str] = mapped_column(String(12), default="active")
+    __table_args__ = (
+        CheckConstraint("plan IN ('monthly','annual')"),
+        CheckConstraint("status IN ('active','suspended','revoked')"),
+        CheckConstraint("edition IN ('individual','professional','enterprise')"),
+    )
+
+
+class LicenseSlot(Base):
+    __tablename__ = "license_slots"
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=new_id)
+    subscription_id: Mapped[str] = mapped_column(ForeignKey("license_subscriptions.id"), index=True)
+    position: Mapped[int] = mapped_column(Integer)
+    key_hash: Mapped[str] = mapped_column(String(64), unique=True)
+    current_activation: Mapped[str | None] = mapped_column(String(36), nullable=True)
+    __table_args__ = (
+        UniqueConstraint("subscription_id", "position"),
+        CheckConstraint("position IN (1,2)"),
+    )
+
+
+class LicenseActivation(Base):
+    __tablename__ = "license_activations"
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=new_id)
+    slot_id: Mapped[str] = mapped_column(ForeignKey("license_slots.id"), index=True)
+    installation_id: Mapped[str] = mapped_column(String(36))
+    device_label: Mapped[str] = mapped_column(String(80))
+    credential_hash: Mapped[str] = mapped_column(String(64), unique=True)
+    revoked: Mapped[bool] = mapped_column(Boolean, default=False)
+    generation: Mapped[int] = mapped_column(Integer, default=0)
+    created: Mapped[int] = mapped_column(BigInteger)
+    checked: Mapped[int] = mapped_column(BigInteger)
+
+
+class LicenseAdministrator(Base):
+    __tablename__ = "license_administrators"
+    user_id: Mapped[str] = mapped_column(ForeignKey("users.id"), primary_key=True)
+    role: Mapped[str] = mapped_column(String(12))
+    totp_sealed: Mapped[bytes] = mapped_column(LargeBinary)
+    last_counter: Mapped[int] = mapped_column(Integer, default=-1)
+    __table_args__ = (CheckConstraint("role IN ('viewer','manager','owner')"),)
+
+
+class LicenseAdminSession(Base):
+    __tablename__ = "license_admin_sessions"
+    token_hash: Mapped[str] = mapped_column(String(64), primary_key=True)
+    user_id: Mapped[str] = mapped_column(ForeignKey("license_administrators.user_id"), index=True)
+    expires: Mapped[int] = mapped_column(BigInteger)

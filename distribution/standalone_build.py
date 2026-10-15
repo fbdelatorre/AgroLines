@@ -13,20 +13,33 @@ ROOT = Path(__file__).resolve().parent.parent
 BINDINGS = ("PySide6", "shiboken6")
 
 
+def profile_valid(metadata):
+    legacy = (
+        metadata.get("distribution_channel") == "standalone-offline"
+        and metadata.get("offline_only") is True
+    )
+    commercial = (
+        metadata.get("distribution_channel") == "commercial-standalone"
+        and metadata.get("offline_only") is False
+        and metadata.get("agricultural_offline") is True
+        and metadata.get("licensing_online") is True
+    )
+    return (legacy or commercial) and not metadata.get("store_identity")
+
+
 def inspect_layout(root, embedded_modules):
     root = Path(root)
     internal = root / "_internal"
     metadata = json.loads((internal / "distribution/windows/metadata.json").read_text())
-    if (
-        metadata.get("distribution_channel") != "standalone-offline"
-        or metadata.get("offline_only") is not True
-        or metadata.get("store_identity")
-    ):
-        raise ValueError("Explicit standalone offline profile required")
+    if not profile_valid(metadata):
+        raise ValueError("Explicit standalone offline profile or commercial profile required")
+    commercial = metadata.get("distribution_channel") == "commercial-standalone"
     inspect_tree(root, embedded_modules)
-    if not {"core.local_projects", "desktop.local_projects", "distribution.poc"}.issubset(
-        embedded_modules
-    ):
+    if not {
+        "core.local_projects",
+        "desktop.local_projects",
+        "desktop.commercial" if commercial else "distribution.poc",
+    }.issubset(embedded_modules):
         raise ValueError("Missing own application modules in PYZ")
     for name in embedded_modules:
         if any(name == p or name.startswith(p + ".") for p in BINDINGS):
@@ -58,7 +71,9 @@ def inspect_layout(root, embedded_modules):
     return {
         "external_bindings": list(BINDINGS),
         "own_modules_kept_in_pyz": True,
-        "offline_only": True,
+        "offline_only": not commercial,
+        "agricultural_offline": True,
+        "licensing_online": commercial,
         "layout_passed": True,
         "legal_approval": False,
     }
@@ -69,6 +84,9 @@ def prepare_materials(root):
     from PyInstaller.archive.readers import CArchiveReader
 
     root = Path(root)
+    from distribution.source_bundle import stage
+
+    stage(root, ROOT / "build/source-delivery/AgroLines-Third-Party-Sources.zip")
     embedded = CArchiveReader(str(root / "AgroLines.exe")).open_embedded_archive("PYZ.pyz")
     report = inspect_layout(root, embedded.toc)
     policy_path = ROOT / "distribution/windows/signing/native-policy.json"
@@ -76,11 +94,41 @@ def prepare_materials(root):
     for record in policy["files"]:
         if record["path"] == "AgroLinesPoC.exe" and record["group"] == "own":
             record["path"] = "AgroLines.exe"
-    policy["profile"] = "standalone-offline"
+    from distribution.license_dependencies import additions, records
+
+    extra, components = additions(root)
+    for path, row in extra.items():
+        package = next(p for p in records() if p["name"] == row["component"])
+        policy["files"].append(
+            {
+                "path": path,
+                "group": row["component"],
+                "baseline_sha256": row["sha256"],
+                "packages": [
+                    {
+                        "name": package["name"],
+                        "version": package["version"],
+                        "input_relative": next(
+                            n["wheel_file"] for n in package["natives"] if n["path"] == path
+                        ),
+                        "wheel": package["wheel"],
+                        "wheel_sha256": package["sha256"],
+                    }
+                ],
+                "action": "sign_third_party",
+                "origin_confirmed": True,
+                "rights_confirmed": False,
+                "blocker": "Official wheel identified; signing approval pending",
+            }
+        )
+    policy["profile"] = "commercial-standalone" if extra else "standalone-offline"
     from distribution.libaec_build import SLOT
     from distribution.libaec_build import evidence as codec_evidence
 
     codec = codec_evidence(root)
+    from distribution.geos_delivery import evidence as geos_evidence
+
+    geos = geos_evidence(root)
     for record in policy["files"]:
         if record["path"] == SLOT:
             record.update(
@@ -90,6 +138,13 @@ def prepare_materials(root):
                 source_build_provenance="libaec-provenance.json",
                 origin_confirmed=True,
                 blocker="BSD source/build proven; signature/distribution review pending",
+            )
+        elif record["path"] in geos:
+            record.update(
+                baseline_sha256=geos[record["path"]]["sha256"],
+                source_build_provenance="geos-source-builds.json",
+                origin_confirmed=True,
+                blocker="Same-version GEOS source/build bound; signature review pending",
             )
     policy["inherited_store_policy_sha256"] = file_hash(policy_path)
     (root / "native-signing-policy.json").write_text(json.dumps(policy, indent=2), encoding="utf-8")
@@ -113,9 +168,7 @@ def validate_installer_input(root, version, manufacturer):
     root = Path(root)
     metadata = json.loads((root / "_internal/distribution/windows/metadata.json").read_text())
     if (
-        metadata.get("distribution_channel") != "standalone-offline"
-        or metadata.get("offline_only") is not True
-        or metadata.get("store_identity")
+        not profile_valid(metadata)
         or metadata["version"] != version
         or metadata["manufacturer"] != manufacturer
     ):

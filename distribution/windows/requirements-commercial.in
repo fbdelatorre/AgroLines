@@ -1,0 +1,5 @@
+# Preserve all reviewed GIS/Qt versions. Commercial crypto is a separate profile.
+-r requirements.lock
+PyNaCl==1.6.2
+cffi==2.0.0
+pycparser==2.23

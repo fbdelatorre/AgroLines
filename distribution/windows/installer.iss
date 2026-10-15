@@ -87,6 +87,7 @@ Source: "..\..\dist\AgroLinesPoC\*"; DestDir: "{app}\app"; Flags: ignoreversion 
 #ifdef Standalone
 Name: "{group}\{#ProductName}"; Filename: "{app}\AgroLines.exe"; WorkingDir: "{app}"; AppUserModelID: "Delatorre.AgroLines.Standalone"
 Name: "{group}\Avisos e documentos jurídicos"; Filename: "{#RuntimeDir}\legal\THIRD_PARTY_NOTICES.txt"; WorkingDir: "{#RuntimeDir}\legal"
+Name: "{group}\Fontes de componentes de terceiros"; Filename: "{#RuntimeDir}\third-party-sources\AgroLines-Third-Party-Sources.zip"; WorkingDir: "{#RuntimeDir}\third-party-sources"
 Name: "{autodesktop}\{#ProductName}"; Filename: "{app}\AgroLines.exe"; WorkingDir: "{app}"; AppUserModelID: "Delatorre.AgroLines.Standalone"; Tasks: desktopicon
 #else
 Name: "{group}\{#ProductName}"; Filename: "{#RuntimeDir}\{#BinaryName}.exe"; WorkingDir: "{#RuntimeDir}"

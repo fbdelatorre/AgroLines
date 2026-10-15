@@ -1,4 +1,4 @@
-"""Local entitlement boundary; issuance and commercial activation are intentionally absent."""
+"""Entitlement boundary shared by development, offline and commercial adapters."""
 
 from dataclasses import dataclass
 from enum import StrEnum
@@ -18,6 +18,7 @@ class Entitlements:
     modules: frozenset[Module]
     valid: bool
     reason: str
+    read_only: bool = False
 
     def permits(self, module: Module) -> bool:
         return self.valid and module in self.modules

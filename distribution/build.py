@@ -15,9 +15,11 @@ ROOT = Path(__file__).resolve().parent.parent
 PRIVACY_FILES = ("politica-privacidade.html", "politica-privacidade.md", "politica-privacidade.txt")
 
 
-def privacy_assets(standalone=False):
+def privacy_assets(standalone=False, commercial=False):
     """Ship policy copies only, never internal audits or operational records."""
     folder = "docs/legal/standalone" if standalone else "docs/privacy/offline"
+    if commercial:
+        folder = "docs/legal/commercial"
     return [(str(ROOT / folder / name), "desktop/privacy_assets") for name in PRIVACY_FILES]
 
 
@@ -58,7 +60,9 @@ def version_tuple(value):
     return tuple(int(p) for p in pieces)
 
 
-def prepare(output, version, manufacturer, store=False, standalone=False):
+def prepare(output, version, manufacturer, store=False, standalone=False, commercial=False):
+    if commercial and not standalone:
+        raise ValueError("Commercial profile requires standalone layout")
     if store and standalone:
         raise ValueError("Choose one distribution profile")
     parts = version_tuple(version)
@@ -85,11 +89,15 @@ def prepare(output, version, manufacturer, store=False, standalone=False):
     if standalone:
         metadata.update(
             name="AgroLines Experimental",
-            distribution_channel="standalone-offline",
+            distribution_channel="commercial-standalone" if commercial else "standalone-offline",
             offline_only=True,
             executable="AgroLines.exe",
             lgpl_python_external=True,
+            agricultural_offline=True,
+            licensing_online=commercial,
         )
+    if commercial:
+        metadata["offline_only"] = False
     (output / "metadata.json").write_text(
         json.dumps(metadata, ensure_ascii=False), encoding="utf-8"
     )
@@ -141,7 +149,20 @@ def main():
     profile = parser.add_mutually_exclusive_group()
     profile.add_argument("--store", action="store_true")
     profile.add_argument("--standalone", action="store_true")
+    profile.add_argument("--commercial", action="store_true")
+    parser.add_argument("--license-origin")
+    parser.add_argument("--public-keys", type=Path)
+    parser.add_argument("--experimental-licensing", action="store_true")
     args = parser.parse_args()
+    if args.commercial:
+        if not args.license_origin or not args.public_keys:
+            parser.error("Commercial build requires explicit HTTPS origin and public keys")
+        from distribution.commercial_profile import prepare_trust
+
+        trust = ROOT / "build/distribution/_agrolines_license_settings.py"
+        trust.parent.mkdir(parents=True, exist_ok=True)
+        prepare_trust(trust, args.license_origin, args.public_keys, args.experimental_licensing)
+        args.standalone = True
     if sys.platform != "win32":
         raise SystemExit("Windows build requires a Windows builder")
     prepare(
@@ -150,6 +171,7 @@ def main():
         args.manufacturer,
         store=args.store,
         standalone=args.standalone,
+        commercial=args.commercial,
     )
     offline = args.store or args.standalone
     builder_environment = store_builder_environment() if offline else os.environ.copy()
@@ -190,6 +212,9 @@ def main():
         from distribution.libaec_build import stage as stage_codec
 
         stage_codec(payload)
+        from distribution.geos_delivery import stage as stage_geos
+
+        stage_geos(payload)
     collect_notices(payload, ROOT / "evidence/qt-minimal/build-inputs.json" if offline else None)
     if args.store:
         shutil.copyfile(

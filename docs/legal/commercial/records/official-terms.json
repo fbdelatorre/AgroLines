@@ -1,0 +1,16 @@
+[
+  {
+    "url": "https://learn.microsoft.com/en-us/visualstudio/releases/2022/redistribution",
+    "retrieved": "2026-10-15",
+    "sha256": "37bdedf9831ba710ba4c37afcc51adeb193d630f7ec5cb2dffc350bec185511e",
+    "bytes": 62616,
+    "scope": "Official page consulted; no contract acceptance inferred"
+  },
+  {
+    "url": "https://visualstudio.microsoft.com/license-terms/vs2022-ga-community/",
+    "retrieved": "2026-10-15",
+    "sha256": "a246a6a492be87a06111798405748f14d7b78e78069f574b5f2f5d2e997f2c01",
+    "bytes": 234733,
+    "scope": "Official page consulted; no contract acceptance inferred"
+  }
+]

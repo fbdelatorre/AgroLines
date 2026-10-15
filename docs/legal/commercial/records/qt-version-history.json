@@ -1,0 +1,68 @@
+[
+  {
+    "commit": "b5476977c97d90f6894d64a16ae52223a13f5e82",
+    "url": "https://raw.githubusercontent.com/qt/qtwebengine/b5476977c97d90f6894d64a16ae52223a13f5e82/CHROMIUM_VERSION",
+    "sha256": "e141b7c2620b0e50d312a070f09446c78b907ffde844a2f3cc45438d1fa06bed",
+    "text": "Based on Chromium version:                                      140.0.7339.264\nPatched with security patches up to Chromium version:           155.0.8059.40\n"
+  },
+  {
+    "commit": "7ec8f61cbf7f69562480c20f2b86f9c36715e154",
+    "url": "https://raw.githubusercontent.com/qt/qtwebengine/7ec8f61cbf7f69562480c20f2b86f9c36715e154/CHROMIUM_VERSION",
+    "sha256": "88dded31d75961773baa567f30cb6839bdaa71b9452d2d3dd848c678c2bd4336",
+    "text": "Based on Chromium version:                                      140.0.7339.264\nPatched with security patches up to Chromium version:           154.0.8037.98\n"
+  },
+  {
+    "commit": "a7a7106bc839974d9172c19707da15c21a8a7126",
+    "url": "https://raw.githubusercontent.com/qt/qtwebengine/a7a7106bc839974d9172c19707da15c21a8a7126/CHROMIUM_VERSION",
+    "sha256": "6307b592b84bc78ee446f92f95cbde07709eafbaf422682a1a02e844717b13b5",
+    "text": "Based on Chromium version:                                      140.0.7339.264\nPatched with security patches up to Chromium version:           154.0.8037.93\n"
+  },
+  {
+    "commit": "910c37443e0979e61370902bdd6b94eab91cb4ca",
+    "url": "https://raw.githubusercontent.com/qt/qtwebengine/910c37443e0979e61370902bdd6b94eab91cb4ca/CHROMIUM_VERSION",
+    "sha256": "ed5d72839099a8eadf24b29e3bd078a71dd43001f42012c1dbf8d93302e3056a",
+    "text": "Based on Chromium version:                                      140.0.7339.264\nPatched with security patches up to Chromium version:           143.0.7499.146\n"
+  },
+  {
+    "commit": "54afb5e9649632c6ca2ce50d1d785184e38c77f7",
+    "url": "https://raw.githubusercontent.com/qt/qtwebengine/54afb5e9649632c6ca2ce50d1d785184e38c77f7/CHROMIUM_VERSION",
+    "sha256": "67f2e08f7126275727de90af5092bf20d0cfb31baf9b718346355ec418b4b6b9",
+    "text": "Based on Chromium version:                                      140.0.7339.264\nPatched with security patches up to Chromium version:           142.0.7444.162\n"
+  },
+  {
+    "commit": "e03e20bd39e4a58733c7f1d034bd9add0903f6a9",
+    "url": "https://raw.githubusercontent.com/qt/qtwebengine/e03e20bd39e4a58733c7f1d034bd9add0903f6a9/CHROMIUM_VERSION",
+    "sha256": "2a2e35c89985c86c6e950683a61f0bfac9362ce34168998167e6a8cca07f9bf3",
+    "text": "Based on Chromium version:                                      140.0.7339.264\nPatched with security patches up to Chromium version:           141.0.7390.122\n"
+  },
+  {
+    "commit": "6b33d501adc67a5700d5415cd9b0fa7fd4f4ca71",
+    "url": "https://raw.githubusercontent.com/qt/qtwebengine/6b33d501adc67a5700d5415cd9b0fa7fd4f4ca71/CHROMIUM_VERSION",
+    "sha256": "6f43a88fdd0a19e53f8bd6add258dcbe624b99b113ccb1adcd036be56ddaff1b",
+    "text": "Based on Chromium version:                                      140.0.7339.264\nPatched with security patches up to Chromium version:           140.0.7339.264\n"
+  },
+  {
+    "commit": "ca3caadaf40c0ed48cbc03449f08e7b8affc53f8",
+    "url": "https://raw.githubusercontent.com/qt/qtwebengine/ca3caadaf40c0ed48cbc03449f08e7b8affc53f8/CHROMIUM_VERSION",
+    "sha256": "0ceedd4815909bcb63936b8e4a4f7770dce2bf3cc9956aa845fb5091eefe32de",
+    "text": "Based on Chromium version:                                      134.0.6998.208\nPatched with security patches up to Chromium version:           142.0.7444.176\n"
+  },
+  {
+    "commit": "de8438814a552cd9586c14ebf7fae400cd18ed50",
+    "url": "https://raw.githubusercontent.com/qt/qtwebengine/de8438814a552cd9586c14ebf7fae400cd18ed50/CHROMIUM_VERSION",
+    "sha256": "a81ba566bbc6dbee6d1e44cb91000b09f8d45673bb61c4a9dd607d2ad320bfd8",
+    "text": "Based on Chromium version:                                      134.0.6998.208\nPatched with security patches up to Chromium version:           142.0.7444.135\n"
+  },
+  {
+    "commit": "ce191e5f3503b3026aa46cfeef7b04e4fda92cbd",
+    "url": "https://raw.githubusercontent.com/qt/qtwebengine/ce191e5f3503b3026aa46cfeef7b04e4fda92cbd/CHROMIUM_VERSION",
+    "sha256": "a93161d57ea38b27cc2c67618037ad6cc285d3d566d7b4dcda4eb0e3ba97af22",
+    "text": "Based on Chromium version:                                      134.0.6998.208\nPatched with security patches up to Chromium version:           140.0.7339.207\n"
+  },
+  {
+    "commit": "3d43383a11cd03727be07768b0b18daea039006a",
+    "url": "https://raw.githubusercontent.com/qt/qtwebengine/3d43383a11cd03727be07768b0b18daea039006a/CHROMIUM_VERSION",
+    "sha256": "f41af0dee0e1059e675009494bcefc9de2278671911c1bbd776b792de3fbe0d3",
+    "text": "Based on Chromium version:                                      134.0.6998.208\nPatched with security patches up to Chromium version:           140.0.7339.133\n"
+  }
+]

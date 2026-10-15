@@ -1,0 +1,84 @@
+﻿# AgroLines — licença comercial proposta
+
+MINUTA PARA REVISÃO. Não adotada, não autoriza distribuição nem comprova aceite.
+Identificação contratual completa do fornecedor, preços, tributos, meios de pagamento,
+data de vigência, canal de contratação e condições de suporte permanecem a definir.
+Contato de suporte e privacidade confirmado: fabricio.grupodelatorre@gmail.com.
+
+## Concessão e assinatura
+
+O código próprio do AgroLines é proprietário. Propõe-se licença de uso pessoal,
+não exclusiva, por usuário identificado, mediante assinatura mensal ou anual.
+Uma assinatura permite duas ativações simultâneas, uma por computador, com a mesma
+validade e titularidade. Duas chaves representam duas vagas, não duas assinaturas
+ou autorização para compartilhar a licença entre usuários. Preços e renovação
+comercial não são estabelecidos por esta minuta; nenhum pagamento é cobrado pelo
+serviço implementado neste PR. Regras de cancelamento, arrependimento, garantias e
+reembolso devem ser revisadas conforme a legislação aplicável antes de contratar.
+
+## Ativação, offline, renovação e computadores
+
+A primeira ativação requer HTTPS válido e identificação do titular com a chave de
+uma vaga disponível. O programa recebe licença assinada pelo emissor e a protege
+no perfil Windows. Não utiliza CPF, RG, MAC ou serial de disco para essa finalidade.
+A assinatura válida permite operações agrícolas locais sem internet até seu
+vencimento. Quando em execução, tenta consultar o servidor no início e a cada
+15 minutos; esse intervalo NÃO limita o período de uso offline. Falhas de rede ou
+do servidor não equivalem a revogação e não reduzem a validade já assinada.
+
+A renovação é autorizada no servidor e somente alcança a cópia offline quando ela
+recebe uma licença assinada atualizada. Não exige reinstalar o aplicativo. A
+assinatura não pode ser renovada editando arquivos ou o relógio. Inconsistências
+relevantes de data exigem correção e verificação; não se promete impedir manipulação
+por administrador com controle integral do computador.
+
+É possível consultar as duas vagas, desativar este computador e solicitar ao suporte
+a substituição controlada de computador antigo. A substituição revoga a ativação
+anterior e gira a chave da vaga. A cópia desligada da internet só conhece essa
+revogação ao reconectar ou perde a validade ao vencer: essa limitação é inerente
+ao uso offline, não é ocultada. Revogação confirmada é preservada localmente;
+suspensão temporária pode ser revista por decisão autenticada posterior.
+
+## Dados e continuidade do trabalho
+
+Projetos, geometrias, originais, versões e backups permanecem locais. O licenciamento
+não envia arquivos agrícolas. Após vencimento, suspensão ou revogação, abrir,
+consultar, exportar dados e fazer backup/restauração continuam disponíveis para
+recuperação. Novas edições e projetos exigem autorização válida. Uma edição de
+vértices já iniciada pode salvar sua alteração sem interrupção pelo resultado de
+uma consulta de licença. Não há eliminação de projetos como penalidade.
+
+## Direitos de terceiros e limites das restrições
+
+Os termos proprietários aplicam-se ao código próprio, preservando os direitos
+concedidos pelas licenças de terceiros. Avisos e textos originais acompanham a
+versão em legal/. A licença não proíbe modificar/substituir componentes LGPL nem
+engenharia reversa necessária para depurar essas modificações. Não condiciona o
+exercício desses direitos à compra de outra licença AgroLines. A substituição deve
+preservar interfaces compatíveis; compatibilidade, funcionamento em Windows
+protegido e instruções de instalação continuam sujeitos às evidências do dossiê.
+Não se promete que PyInstaller impeça a extração do código empacotado.
+
+Para os trabalhos combinados sujeitos à LGPLv2.1 §6, os termos permitem ao cliente
+modificar o trabalho para seu próprio uso e realizar engenharia reversa para depurar
+essas modificações. Para LGPLv3, preservam-se as permissões necessárias à modificação
+das partes da biblioteca e à engenharia reversa para depurar tais modificações.
+Essas ressalvas não concedem autorização geral para redistribuir o código próprio
+do AgroLines além do que as licenças aplicáveis efetivamente exigirem. A redação,
+o mecanismo compartilhado e eventuais informações de instalação continuam sujeitos
+à revisão profissional indicada no dossiê.
+
+A assinatura própria do AgroLines não é uma chave de emissão de licenças de Qt/GEOS
+nem restringe direitos sobre essas bibliotecas. Bibliotecas modificadas legitimamente
+não serão recusadas apenas por um hash diferente em um mecanismo LGPL autorizado;
+manifestos de procedência não são uma política DRM de bibliotecas.
+
+## Responsabilidades e adoção
+
+Não há homologação de condução agrícola automática. Precisão computacional medida
+não substitui avaliação de SRC, distorções e validação de campo. Esta minuta não
+retira direitos legais obrigatórios do consumidor nem inventa foro, limitação de
+indenização ou prazo de suporte. A versão definitiva deve identificar o fornecedor,
+as condições da oferta, atendimento, atualizações e procedimento verificável de
+aceite e disponibilizar uma cópia conservável ao contratante. Ainda não há aceite
+contratual de cliente implementado ou comprovado por estes testes sintéticos.
