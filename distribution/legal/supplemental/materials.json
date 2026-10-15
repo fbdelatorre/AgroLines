@@ -683,6 +683,38 @@
       "size_bytes": 1002,
       "license": "Zlib",
       "kind": "license_notice"
+    },
+    {
+      "file": "upstream/tiff-4.6.0--tiff-4.6.0__LICENSE.md",
+      "components": [
+        "tiff-Fiona"
+      ],
+      "origin": {
+        "url": "https://download.osgeo.org/libtiff/tiff-4.6.0.tar.gz",
+        "archive_sha256": "88b3979e6d5c7e32b50d7ec72fb15af724f6ab2cbf7e10880c360a77e4b5d99a",
+        "archive_member": "tiff-4.6.0/LICENSE.md",
+        "obtained_in_run": 38758884599
+      },
+      "sha256": "0780558a8bfba0af1160ec1ff11ade4f41c0d7deafd6ecfc796b492a788e380d",
+      "size_bytes": 1164,
+      "license": "libtiff (original copyright and permissive terms)",
+      "kind": "license_notice"
+    },
+    {
+      "file": "upstream/tiff-4.7.1--tiff-4.7.1__LICENSE.md",
+      "components": [
+        "tiff-pyproj"
+      ],
+      "origin": {
+        "url": "https://download.osgeo.org/libtiff/tiff-4.7.1.tar.gz",
+        "archive_sha256": "f698d94f3103da8ca7438d84e0344e453fe0ba3b7486e04c5bf7a9a3fabe9b69",
+        "archive_member": "tiff-4.7.1/LICENSE.md",
+        "obtained_in_run": 38758884599
+      },
+      "sha256": "0e27c2382d7b8147972bbb746e04059a1152c8d0fda9d03ef1399d1a433c4ade",
+      "size_bytes": 2416,
+      "license": "libtiff (original copyright and permissive terms)",
+      "kind": "license_notice"
     }
   ],
   "upstream_source_records": [
