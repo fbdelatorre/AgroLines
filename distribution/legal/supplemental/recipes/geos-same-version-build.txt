@@ -1,0 +1,20 @@
+GEOS third-party build recipe for AgroLines, no application source.
+Source archives/commits/checksums: geos-3.11.3 and geos-3.14.1 in source manifest.
+Extract original archive, preserve COPYING/AUTHORS and source.
+Use MSVC x64, Ninja, Release, BUILD_SHARED_LIBS=ON, BUILD_TESTING=OFF,
+BUILD_BENCHMARKS=OFF, CMAKE_POLICY_VERSION_MINIMUM=3.5.
+The only source-tree change is appending to CMakeLists.txt:
+set_target_properties(geos PROPERTIES OUTPUT_NAME "BASENAME_REQUIRED_BY_CONSUMER")
+set_target_properties(geos_c PROPERTIES OUTPUT_NAME "BASENAME_REQUIRED_BY_CONSUMER_C")
+Use the two precise basenames in the delivered legal/geos-fontes-build.json,
+separately for GEOS-Fiona 3.11.3 and GEOS-Shapely 3.14.1. Do not mix versions.
+Configure with cmake -S SOURCE -B BUILD -G Ninja plus the flags above.
+Build with cmake --build BUILD --parallel 2.
+The delivered build JSON contains actual source pin, exact CMake addition,
+configure arguments, original/new DLL hashes and unmodified algorithm-input check.
+No algorithm or C/C++ header patch is applied. Preserve the pair of C and C++ DLLs.
+No claim of bit-for-bit reconstruction on a different compiler/toolchain.
+Compiler paths/toolset can differ; use an ABI-compatible x64 MSVC toolchain.
+Validate all imported symbol names before testing. Never replace Windows system DLLs.
+Preserve the original runtime; use an independent local copy for LGPL modifications.
+Windows trust requirements still apply; do not disable SAC/Defender or install test certificates.

@@ -123,17 +123,23 @@ jobs:
           New-Item evidence/commercial -ItemType Directory -Force | Out-Null
           Copy-Item dist/AgroLines/legal evidence/commercial/packaged-legal -Recurse
           Copy-Item dist/AgroLines/standalone-layout.json evidence/commercial/layout.json
+          ./build-env/Scripts/python.exe -c "import json; from pathlib import Path; d=json.loads(Path('dist/AgroLines/legal/legal-manifest.json').read_text(encoding='utf-8')); s=[{k:r[k] for k in ('component','version','license_evidence')} for r in d['components']]; print('AGROLINES_COMMERCIAL_COMPONENTS='+json.dumps(s)); print('AGROLINES_SOURCE_DELIVERY_SHA256='+d['source_delivery']['sha256'])"
       - name: Frozen DPAPI, offline GIS, revocation persistence and separate commercial installer (never install)
         if: github.head_ref == 'compliance/commercial-licensing-foundation'
         run: |
           $oldPath=$env:PATH
           try {
             $env:PATH="$env:WINDIR/System32;$env:WINDIR"
-            $process=Start-Process dist/AgroLines/AgroLines.exe -ArgumentList @('--licensing-probe', "$env:RUNNER_TEMP/licensing-fixture/fixture.json", 'evidence/commercial/frozen-license.json') -Wait -PassThru
-            if ($process.ExitCode -ne 0) { throw 'Frozen commercial/DPAPI/GIS probe failed.' }
+            $process=Start-Process dist/AgroLines/AgroLines.exe -ArgumentList @('--licensing-probe', "$env:RUNNER_TEMP/licensing-fixture/fixture.json", 'evidence/commercial/frozen-license.json') -PassThru
+            if (-not $process.WaitForExit(180000)) { Stop-Process -Id $process.Id; throw 'Commercial probe timeout.' }
+            if ($process.ExitCode -ne 0) {
+              if (Test-Path evidence/commercial/frozen-license.json) { Get-Content evidence/commercial/frozen-license.json -Raw }
+              throw 'Frozen commercial/DPAPI/GIS probe failed.'
+            }
           } finally { $env:PATH=$oldPath }
           $license=Get-Content evidence/commercial/frozen-license.json -Raw | ConvertFrom-Json
           if (-not $license.passed -or -not $license.frozen -or -not $license.dpapi_roundtrip -or $license.sac_approved) { throw 'Invalid commercial proof.' }
+          ./distribution/windows/standalone/Test-CommercialBindingReplacement.ps1 -Payload dist/AgroLines -Fixture "$env:RUNNER_TEMP/licensing-fixture/fixture.json" -Copy "$env:RUNNER_TEMP/commercial-binding-copy" -Output evidence/commercial/binding-replacement
           ./distribution/windows/standalone/Prepare-SigningPlan.ps1 -Payload dist/AgroLines -SourceCommit $env:GITHUB_SHA -PythonExecutable ./build-env/Scripts/python.exe -Output evidence/commercial/signing
           $compiler=Join-Path '${{ runner.temp }}' 'agrolines-inno/compiler/ISCC.exe'
           ./distribution/windows/Build-Installer.ps1 -Standalone -Experimental -Version 1.0.0.4 -CandidateId ($env:GITHUB_SHA.Substring(0,12)) -Compiler $compiler -PythonExecutable ./build-env/Scripts/python.exe

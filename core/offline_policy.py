@@ -1,4 +1,4 @@
-"""Latched Store policy. No user setting can enable remote functionality."""
+"""Latched agricultural policy; commercial licensing has a separate fixed HTTPS origin."""
 
 import importlib.abc
 import os
@@ -18,7 +18,7 @@ def is_offline_only():
 
 def require_remote():
     if _ENABLED:
-        raise PermissionError("Esta edição Store é exclusivamente offline.")
+        raise PermissionError("Colaboração remota indisponível neste perfil.")
 
 
 class RemoteImports(importlib.abc.MetaPathFinder):
@@ -29,7 +29,7 @@ class RemoteImports(importlib.abc.MetaPathFinder):
 
 
 def denied(*args, **kwargs):
-    raise PermissionError("Conexões de rede próprias são proibidas nesta edição Store.")
+    raise PermissionError("Rede indisponível neste contexto de execução.")
 
 
 def require_local_path(path):

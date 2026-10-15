@@ -9,8 +9,9 @@
       "natives": [
         {
           "wheel_file": "_cffi_backend.cp312-win_amd64.pyd",
-          "path": "_internal/_cffi_backend.cp312-win_amd64.pyd",
-          "sha256": "53de34afc3939d81bf2498b77425c52e2c3f3164f8cfe2543d3acc8f24134488"
+          "path": "_internal/_cffi_backend.pyd",
+          "sha256": "53de34afc3939d81bf2498b77425c52e2c3f3164f8cfe2543d3acc8f24134488",
+          "path_mapping": "PyInstaller normalizes the extension ABI suffix; exact native bytes/hash remain mandatory"
         }
       ],
       "notices": [
@@ -26,9 +27,22 @@
         },
         {
           "file": "cffi/LICENSE.libffi.txt",
-          "sha256": "a534fd4dd3550e2f501c61b8b1fd62217c573ccb84dad2b69e019f841e09e18c",
-          "wheel_file": "upstream sdist: src/c/libffi_x86_x64/ffi.h (original copyright and permission header)",
-          "source_archive_sha256": "44d1b5909021139fe36001ae048dbdde8214afa20200eda0f64c068cac5d5529"
+          "sha256": "2b276e32f7686f6a53a8cdfa79e29e03d7c81ac34aeaf634e592ff10fd085db7",
+          "wheel_file": "Original copyright/permission headers, src/c/libffi_x86_x64/ in verified cffi 2.0.0 sdist; no executable source included",
+          "source_archive_sha256": "44d1b5909021139fe36001ae048dbdde8214afa20200eda0f64c068cac5d5529",
+          "origin": {
+            "url": "https://files.pythonhosted.org/packages/eb/56/b1ba7935a17738ae8453301356628e8147c79dbb825bcbc73dc7401f9846/cffi-2.0.0.tar.gz",
+            "archive_sha256": "44d1b5909021139fe36001ae048dbdde8214afa20200eda0f64c068cac5d5529",
+            "members": [
+              "cffi-2.0.0/src/c/libffi_x86_x64/ffi.c",
+              "cffi-2.0.0/src/c/libffi_x86_x64/ffi.h",
+              "cffi-2.0.0/src/c/libffi_x86_x64/ffitarget.h",
+              "cffi-2.0.0/src/c/libffi_x86_x64/prep_cif.c",
+              "cffi-2.0.0/src/c/libffi_x86_x64/types.c",
+              "cffi-2.0.0/src/c/libffi_x86_x64/win32.c"
+            ],
+            "transformation": "Per member: filename label, then verbatim leading copyright/permission comment through first */; no executable source"
+          }
         }
       ]
     },
@@ -70,6 +84,11 @@
           "file": "PyNaCl/LICENSE.libsodium.txt",
           "sha256": "93e7cac854d71cdafc9d9e4e9f8fd28d87ae541b3dda224d7c8fe23d37875704",
           "wheel_file": "pynacl-1.6.2.dist-info/licenses/licenses/LICENSE.libsodium.txt"
+        },
+        {
+          "file": "PyNaCl/COPYRIGHT-Python.txt",
+          "sha256": "e1224abc54bf0d59dcb81c30b5ac79a470d9e335d0f39a894c611efb24560ba3",
+          "wheel_file": "nacl/__init__.py original copyright/license header only"
         }
       ]
     }

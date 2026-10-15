@@ -222,7 +222,12 @@ def create_app(issuer, settings=None, engine=None):
         user = db.get(User, sub.user_id)
         if slot.current_activation != activation.id or not user or not user.active:
             activation.revoked = True
-        return {"license": issue(db, issuer, activation, sub), "devices": devices(db, sub)}
+        return {
+            "license": issue(db, issuer, activation, sub),
+            "devices": devices(db, sub)
+            if not activation.revoked and sub.status == "active"
+            else [],
+        }
 
     @app.post("/v1/deactivate")
     def deactivate(body: Device, request: Request, db: DB):
@@ -234,7 +239,7 @@ def create_app(issuer, settings=None, engine=None):
             slot.current_activation = None
             slot.key_hash = security.digest(security.token())
         security.audit(db, sub.user_id, "license.deactivate", activation.id)
-        return {"license": issue(db, issuer, activation, sub), "devices": devices(db, sub)}
+        return {"license": issue(db, issuer, activation, sub), "devices": []}
 
     @app.post("/admin/login")
     def login(body: Login, request: Request, db: DB):
@@ -306,6 +311,22 @@ def create_app(issuer, settings=None, engine=None):
         db.add(user)
         db.flush()
         security.audit(db, actor.user_id, "license.user.create", user.id)
+        return {"id": user.id}
+
+    @app.put("/admin/users/{identifier}")
+    def correct_user(identifier: UUID, body: NewUser, actor: Admin, db: DB):
+        write_access(actor)
+        user = db.scalar(select(User).where(User.id == str(identifier)).with_for_update())
+        if not user:
+            raise HTTPException(404, "Usuário não encontrado.")
+        email = str(body.email).lower()
+        other = db.scalar(select(User).where(User.email == email, User.id != user.id))
+        if other:
+            raise HTTPException(409, "E-mail pertence a outro cadastro.")
+        if db.get(LicenseAdministrator, user.id):
+            raise HTTPException(403, "Conta administrativa exige manutenção privilegiada própria.")
+        user.name, user.email = body.name, email
+        security.audit(db, actor.user_id, "license.user.correct", user.id)
         return {"id": user.id}
 
     @app.get("/admin/subscriptions")

@@ -35,7 +35,7 @@ def test_local_delivery_has_exact_inputs_and_survives_copy_to_payload(tmp_path):
         assert package.read(result["sources"][0]["archive_path"]).startswith(b"inert")
     payload = tmp_path / "payload"
     payload.mkdir()
-    staged = stage(payload, output)
+    staged = stage(payload, output, lock)
     assert (payload / staged["payload_file"]).is_file()
     assert staged["sha256"] == result["sha256"]
 
@@ -70,3 +70,12 @@ def test_source_offer_is_never_promoted_by_a_local_manifest(tmp_path):
     result = create(cache, output, lock)
     sidecar = json.loads(output.with_suffix(".json").read_text())
     assert result["legal_approved"] is False and sidecar["distribution_approved"] is False
+
+
+def test_self_consistent_but_unregistered_source_bundle_is_refused(tmp_path):
+    cache, lock = source(tmp_path)
+    output = tmp_path / "delivery.zip"
+    create(cache, output, lock)
+    # Even a perfectly consistent sidecar is not the approved production source registry.
+    with pytest.raises(ValueError, match="Unauthorized source identity"):
+        stage(tmp_path / "payload", output)

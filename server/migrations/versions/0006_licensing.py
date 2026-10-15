@@ -16,7 +16,7 @@ def upgrade():
         sa.Column("user_id", sa.String(36), sa.ForeignKey("users.id"), nullable=False),
         sa.Column("plan", sa.String(12), nullable=False),
         sa.Column("edition", sa.String(20), nullable=False),
-        sa.Column("expires", sa.Integer, nullable=False),
+        sa.Column("expires", sa.BigInteger, nullable=False),
         sa.Column("status", sa.String(12), nullable=False),
         sa.CheckConstraint("plan IN ('monthly','annual')"),
         sa.CheckConstraint("status IN ('active','suspended','revoked')"),
@@ -48,8 +48,8 @@ def upgrade():
         sa.Column("credential_hash", sa.String(64), nullable=False, unique=True),
         sa.Column("revoked", sa.Boolean, nullable=False),
         sa.Column("generation", sa.Integer, nullable=False),
-        sa.Column("created", sa.Integer, nullable=False),
-        sa.Column("checked", sa.Integer, nullable=False),
+        sa.Column("created", sa.BigInteger, nullable=False),
+        sa.Column("checked", sa.BigInteger, nullable=False),
     )
     op.create_index("ix_license_activations_slot_id", "license_activations", ["slot_id"])
     op.create_table(
@@ -69,7 +69,7 @@ def upgrade():
             sa.ForeignKey("license_administrators.user_id"),
             nullable=False,
         ),
-        sa.Column("expires", sa.Integer, nullable=False),
+        sa.Column("expires", sa.BigInteger, nullable=False),
     )
     op.create_index("ix_license_admin_sessions_user_id", "license_admin_sessions", ["user_id"])
 

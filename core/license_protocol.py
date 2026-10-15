@@ -40,7 +40,12 @@ def canonical(data):
 
 
 def claims(value):
-    if not isinstance(value, dict) or set(value) != FIELDS or value["format"] != 1:
+    if (
+        not isinstance(value, dict)
+        or set(value) != FIELDS
+        or type(value["format"]) is not int
+        or value["format"] != 1
+    ):
         raise ValueError("Formato de licença não suportado.")
     for field in ("subscription_id", "activation_id", "installation_id", "user_id"):
         if str(UUID(value[field])) != value[field]:

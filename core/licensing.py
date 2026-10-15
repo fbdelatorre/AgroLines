@@ -1,4 +1,4 @@
-"""Local entitlement boundary; issuance and commercial activation are intentionally absent."""
+"""Entitlement boundary shared by development, offline and commercial adapters."""
 
 from dataclasses import dataclass
 from enum import StrEnum

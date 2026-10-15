@@ -10,10 +10,46 @@ enforce(licensing_endpoint=ORIGIN)
 def main():
     import sys
 
+    if TEST_PROFILE and len(sys.argv) == 3 and sys.argv[1] == "--binding-report":
+        import os
+
+        if (
+            os.getenv("GITHUB_ACTIONS") != "true"
+            or os.getenv("RUNNER_ENVIRONMENT") != "github-hosted"
+        ):
+            raise PermissionError(
+                "Laboratory diagnostics unavailable outside the authorized builder"
+            )
+        from distribution.standalone_support import binding_report
+
+        binding_report(sys.argv[2])
+        return 0
     if TEST_PROFILE and len(sys.argv) == 4 and sys.argv[1] == "--licensing-probe":
         from distribution.commercial_probe import run
 
-        return run(sys.argv[2], sys.argv[3])
+        try:
+            return run(sys.argv[2], sys.argv[3])
+        except Exception as exc:
+            import json
+            import traceback
+            from pathlib import Path
+
+            frames = [
+                {"file": row.filename, "line": row.lineno, "function": row.name}
+                for row in traceback.extract_tb(exc.__traceback__)
+            ]
+            Path(sys.argv[3]).write_text(
+                json.dumps(
+                    {
+                        "passed": False,
+                        "error_type": type(exc).__name__,
+                        "message": str(exc),
+                        "frames": frames,
+                    },
+                    indent=2,
+                )
+            )
+            return 1
 
     from PySide6.QtWidgets import QApplication, QMessageBox
 
@@ -33,10 +69,12 @@ def main():
     app.setWindowIcon(QIcon(str(assets / "AgroLines.ico")))
     try:
         manager = make_manager(KEYRING, LicenseTransport(ORIGIN))
-        window = CommercialWindow(manager)
     except (ValueError, OSError) as exc:
-        QMessageBox.critical(None, "Ativação protegida", str(exc))
-        return 1
+        from desktop.license_client import RecoveryManager
+
+        manager = RecoveryManager(exc)
+        QMessageBox.warning(None, "Ativação protegida", manager.reason)
+    window = CommercialWindow(manager)
     window.show()
     return app.exec()
 

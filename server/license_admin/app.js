@@ -12,7 +12,14 @@ async function request(path, method = 'GET', body) {
 function clear() { bearer=''; el('panel').hidden=true; el('login').hidden=false; el('keys').textContent=''; el('users').textContent=''; el('audit').textContent=''; el('subscriptions').replaceChildren(); }
 async function safely(work) { try { await work(); el('message').textContent='Operação concluída.'; } catch(error) { el('message').textContent=error.message; } }
 async function refresh() {
-    el('users').textContent=JSON.stringify(await request('/admin/users'),null,2);
+    el('users').replaceChildren();
+    for (const user of await request('/admin/users')) {
+        const item=document.createElement('div'); const text=document.createElement('span');
+        text.textContent=user.id+' | '+user.name+' | '+user.email+' '; item.append(text);
+        const edit=document.createElement('button'); edit.textContent='Corrigir cadastro';
+        edit.onclick=()=>safely(async()=> { const name=prompt('Nome corrigido',user.name); if(!name)return; const email=prompt('E-mail corrigido',user.email); if(!email)return; await request('/admin/users/'+user.id,'PUT',{name,email}); await refresh(); });
+        item.append(edit); el('users').append(item);
+    }
     el('audit').textContent=JSON.stringify(await request('/admin/audit'),null,2);
     const rows=await request('/admin/subscriptions'); el('subscriptions').replaceChildren();
     for (const row of rows) {
@@ -20,6 +27,8 @@ async function refresh() {
         text.textContent=JSON.stringify(row,null,2); card.append(text);
         const action=(label, path, body) => { const button=document.createElement('button'); button.textContent=label; button.onclick=()=>safely(async()=> { if (!confirm(label+'?')) return; const result=await request(path,'POST',body); if(result.key) el('keys').textContent=JSON.stringify(result,null,2); await refresh(); }); card.append(button); };
         for (const [label, operation] of [['Renovar','renew'],['Suspender','suspend'],['Retomar','resume'],['Revogar definitivamente','revoke']]) action(label,'/admin/subscriptions/'+row.id,{action:operation});
+        action('Renovar como mensal','/admin/subscriptions/'+row.id,{action:'renew',plan:'monthly'});
+        action('Renovar como anual','/admin/subscriptions/'+row.id,{action:'renew',plan:'annual'});
         for (const device of row.devices) { action('Substituir vaga '+device.slot,'/admin/subscriptions/'+row.id+'/slots/'+device.slot+'/replace',{}); if(device.activation_id) action('Revogar computador '+device.slot,'/admin/activations/'+device.activation_id+'/revoke',{}); }
         el('subscriptions').append(card);
     }

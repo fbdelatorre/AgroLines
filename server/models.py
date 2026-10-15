@@ -2,6 +2,7 @@ from uuid import uuid4
 
 from sqlalchemy import (
     JSON,
+    BigInteger,
     Boolean,
     CheckConstraint,
     Float,
@@ -211,7 +212,7 @@ class LicenseSubscription(Base):
     user_id: Mapped[str] = mapped_column(ForeignKey("users.id"), index=True)
     plan: Mapped[str] = mapped_column(String(12))
     edition: Mapped[str] = mapped_column(String(20), default="individual")
-    expires: Mapped[int] = mapped_column(Integer)
+    expires: Mapped[int] = mapped_column(BigInteger)
     status: Mapped[str] = mapped_column(String(12), default="active")
     __table_args__ = (
         CheckConstraint("plan IN ('monthly','annual')"),
@@ -242,8 +243,8 @@ class LicenseActivation(Base):
     credential_hash: Mapped[str] = mapped_column(String(64), unique=True)
     revoked: Mapped[bool] = mapped_column(Boolean, default=False)
     generation: Mapped[int] = mapped_column(Integer, default=0)
-    created: Mapped[int] = mapped_column(Integer)
-    checked: Mapped[int] = mapped_column(Integer)
+    created: Mapped[int] = mapped_column(BigInteger)
+    checked: Mapped[int] = mapped_column(BigInteger)
 
 
 class LicenseAdministrator(Base):
@@ -259,4 +260,4 @@ class LicenseAdminSession(Base):
     __tablename__ = "license_admin_sessions"
     token_hash: Mapped[str] = mapped_column(String(64), primary_key=True)
     user_id: Mapped[str] = mapped_column(ForeignKey("license_administrators.user_id"), index=True)
-    expires: Mapped[int] = mapped_column(Integer)
+    expires: Mapped[int] = mapped_column(BigInteger)

@@ -83,13 +83,22 @@ class CommercialWindow(LocalProjectsWindow):
 
     def update_status(self):
         state = self.manager.verify()
-        value = self.manager.parsed() if self.manager.state.get("license") else None
+        try:
+            value = self.manager.parsed() if self.manager.state.get("license") else None
+        except ValueError:
+            value = None
         suffix = ""
         if value:
             suffix = " · vence " + datetime.fromtimestamp(value["expires_at"], UTC).strftime(
                 "%d/%m/%Y %H:%M UTC"
             )
-        self.license_status.setText(state.reason + suffix)
+        self.license_status.setToolTip(state.reason + suffix)
+        self.license_status.setMaximumWidth(380)
+        self.license_status.setText(
+            "Licença ativa" + suffix
+            if not state.read_only
+            else "Licença pendente · recuperação de dados disponível"
+        )
 
     def async_work(self, work, done=None):
         if self.busy:
@@ -250,3 +259,7 @@ class CommercialWindow(LocalProjectsWindow):
                 json.dump(value, stream, ensure_ascii=False, allow_nan=False)
 
         self.run(export)
+
+    def closeEvent(self, event):
+        self.timer.stop()
+        super().closeEvent(event)

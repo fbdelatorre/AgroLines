@@ -733,9 +733,7 @@
     },
     {
       "file": "licenses/LERC-js-v4.0.4-LICENSE.txt",
-      "components": [
-        "lerc-Fiona"
-      ],
+      "components": [],
       "sha256": "77a8b761727c75e2167b15bfdf61b2c0bcf8792271228bebe80779106ad00671",
       "size_bytes": 9198,
       "license": "Apache-2.0",
@@ -743,14 +741,12 @@
       "origin": {
         "url": "https://raw.githubusercontent.com/Esri/lerc/js_v4.0.4/LICENSE",
         "document_sha256": "77a8b761727c75e2167b15bfdf61b2c0bcf8792271228bebe80779106ad00671",
-        "scope": "Versioned upstream original; binary version mapping remains explicit where not confirmed"
+        "scope": "Research only; not attributed to the native LERC binary and not packaged"
       }
     },
     {
       "file": "licenses/LERC-js-v4.0.4-NOTICE.txt",
-      "components": [
-        "lerc-Fiona"
-      ],
+      "components": [],
       "sha256": "4b358a6807dec2f782d030d1514ef1a83e1297db8bd8bdd88d6bdc02f82196c2",
       "size_bytes": 679,
       "license": "Apache-2.0",
@@ -758,7 +754,7 @@
       "origin": {
         "url": "https://raw.githubusercontent.com/Esri/lerc/js_v4.0.4/NOTICE",
         "document_sha256": "4b358a6807dec2f782d030d1514ef1a83e1297db8bd8bdd88d6bdc02f82196c2",
-        "scope": "Versioned upstream original; binary version mapping remains explicit where not confirmed"
+        "scope": "Research only; not attributed to the native LERC binary and not packaged"
       }
     },
     {
@@ -909,6 +905,62 @@
       "origin": {
         "url": "https://raw.githubusercontent.com/microsoft/vcpkg/50515af4d522e4153e501a1c1417e15744baa88d/ports/proj/vcpkg.json",
         "exact_distributed_spdx_match": true
+      }
+    },
+    {
+      "file": "licenses/Inno-Setup-7.1.0-license.txt",
+      "components": [
+        "InnoSetup-embedded"
+      ],
+      "sha256": "2e5346868c2a18434489824e11d65c3031620f792fefc415d05f19cd441abf5c",
+      "size_bytes": 1521,
+      "license": "Inno Setup License",
+      "kind": "license_notice",
+      "origin": {
+        "url": "https://raw.githubusercontent.com/jrsoftware/issrc/7d634620f1d1caca6c76e8398da7133153db9e7b/license.txt",
+        "scope": "Versioned original; Inno exact pinned compiler, LERC native version correspondence remains declared separately"
+      }
+    },
+    {
+      "file": "licenses/LERC-v4.0.0-LICENSE.txt",
+      "components": [
+        "lerc-Fiona"
+      ],
+      "sha256": "77a8b761727c75e2167b15bfdf61b2c0bcf8792271228bebe80779106ad00671",
+      "size_bytes": 9198,
+      "license": "Apache-2.0",
+      "kind": "license_notice",
+      "origin": {
+        "url": "https://raw.githubusercontent.com/Esri/lerc/v4.0.0/LICENSE",
+        "scope": "Versioned original; Inno exact pinned compiler, LERC native version correspondence remains declared separately"
+      }
+    },
+    {
+      "file": "licenses/LERC-v4.0.0-NOTICE.txt",
+      "components": [
+        "lerc-Fiona"
+      ],
+      "sha256": "4b358a6807dec2f782d030d1514ef1a83e1297db8bd8bdd88d6bdc02f82196c2",
+      "size_bytes": 679,
+      "license": "Apache-2.0",
+      "kind": "license_notice",
+      "origin": {
+        "url": "https://raw.githubusercontent.com/Esri/lerc/v4.0.0/NOTICE",
+        "scope": "Versioned original; Inno exact pinned compiler, LERC native version correspondence remains declared separately"
+      }
+    },
+    {
+      "file": "recipes/geos-same-version-build.txt",
+      "components": [
+        "GEOS-Fiona",
+        "GEOS-Shapely"
+      ],
+      "sha256": "330987998b0edefd9e767922f4a7f966718fa5e692f2bf74c2a8059154c86212",
+      "size_bytes": 1505,
+      "license": "Build instructions for LGPL-2.1 GEOS; not application source",
+      "kind": "build_recipe",
+      "origin": {
+        "scope": "AgroLines same-version source build recipe; full per-build provenance accompanies runtime"
       }
     }
   ],

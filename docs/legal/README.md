@@ -1,5 +1,7 @@
 # Saneamento material da distribuição standalone — PR #20
 
+Atualização posterior, sem substituir este histórico: [correções e licenciamento no PR #21](commercial/README.md).
+
 Evidências de 15/10/2026. [PR #20](https://github.com/fbdelatorre/AgroLines/pull/20),
 dependente do [#19](https://github.com/fbdelatorre/AgroLines/pull/19).
 Este documento registra entregas executadas. **Não autoriza distribuição comercial,

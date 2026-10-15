@@ -11,7 +11,8 @@ Python, pip ou serviços locais. A licença comercial é um perfil compilado sep
 1. Definir domínioHTTPS, hospedagem/região, responsável operacional, acesso e backups.
    Não há servidor real, domínio ou provedor contratado/configurado neste PR.
 2. No servidor, Python3.12 e `pip install '.[licensing]'`, ou construir
-   `infra/Dockerfile.licensing`. Não executar esses comandos no cliente Windows.
+   `infra/Dockerfile.licensing`, que instala o lock com hashes
+   `infra/licensing-requirements.lock`. Não executar esses comandos no cliente Windows.
    Restringir rede do banco; somente APIHTTPS deve ser alcançável por clientes.
 3. Configurar `AGROLINES_DATABASE_URL` apontando PostgreSQL sob controle do operador.
    Em instância do esquema AgroLines, fazer backup testado e `alembic upgrade head`.

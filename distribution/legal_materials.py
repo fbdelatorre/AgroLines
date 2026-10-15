@@ -166,6 +166,15 @@ def _component_rows(payload, registry):
                     raise ValueError("Commercial Python dependency version differs")
                 selected.add(item["id"])
 
+    selected.add("InnoSetup-embedded")
+    registry["components"].append(
+        {
+            "id": "InnoSetup-embedded",
+            "version": "7.1.0",
+            "license_evidence": "Inno Setup License; enclosing installer bootstrap",
+            "notice_files": [],
+        }
+    )
     registry["components"].append(
         {
             "id": "libaec-SZIP",
@@ -275,7 +284,7 @@ def prepare(payload):
                 copy(
                     safe_file(MATERIALS, item["file"]),
                     destination,
-                    component["wheel_origin"]["url"] + "#" + item["wheel_file"],
+                    item.get("origin", component["wheel_origin"]["url"] + "#" + item["wheel_file"]),
                     component["id"],
                 )
                 copies.append(destination)

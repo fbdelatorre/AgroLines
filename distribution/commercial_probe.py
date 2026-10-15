@@ -52,8 +52,39 @@ def run(fixture_path, output):
             assert vault.save({"installation_id": install, "license": None, "credential": None})
             manager = LicenseManager(vault, anchor, KEYRING, NoNetwork())
             assert manager.verify().read_only
+            from PySide6.QtCore import QTimer
+            from PySide6.QtWidgets import QApplication, QDialog, QLineEdit
+
+            from desktop.commercial import CommercialWindow
+
+            app = QApplication.instance() or QApplication([])
+            window = CommercialWindow(manager)
+            window.show()
+
+            def observe_dialog():
+                for widget in app.topLevelWidgets():
+                    if (
+                        isinstance(widget, QDialog)
+                        and "Ativação e assinatura" in widget.windowTitle()
+                    ):
+                        result["activation_dialog_visible"] = widget.isVisible()
+                        result["activation_key_field_hidden"] = any(
+                            field.echoMode() == QLineEdit.Password
+                            for field in widget.findChildren(QLineEdit)
+                        )
+                        widget.reject()
+                QTimer.singleShot(0, window.close)
+
+            QTimer.singleShot(700, observe_dialog)
+            app.exec()
+            assert result.get("activation_dialog_visible") and result.get(
+                "activation_key_field_hidden"
+            )
             manager.accept(
-                {"license": fixture["active"], "credential": "synthetic-not-a-server-token"}
+                {
+                    "license": fixture["active"],
+                    "credential": "synthetic-not-a-server-token-for-laboratory",
+                }
             )
             assert manager.verify().permits(Module.GEOMETRY)
             assert fixture["active"]["payload"].encode() not in vault.path.read_bytes()

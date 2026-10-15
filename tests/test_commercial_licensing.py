@@ -389,3 +389,88 @@ def test_viewer_cannot_write_and_activation_rate_limit(licensed):
     )
     assert response.status_code == 429
     assert response.headers["retry-after"]
+
+
+def test_clock_correction_requires_fresh_server_response(licensed):
+    api, admin, sub, keys, engine, issuer, secret = licensed
+    client = manager(api, keys)
+    activate(client, sub)
+    client.clock = lambda: time.time() + 86400 * 10
+    client.verify()
+    client.clock = time.time
+    assert client.verify().read_only
+    client.transport.failed = True
+    with pytest.raises(OSError):
+        client.check()
+    assert client.verify().read_only
+    client.transport.failed = False
+    client.check()
+    assert client.verify().permits(Module.GEOMETRY)
+
+
+def test_administrative_correction_is_authenticated_audited_and_not_a_transfer_to_admin(licensed):
+    api, admin, sub, keys, engine, issuer, secret = licensed
+    with Session(engine) as db:
+        user_id = db.get(LicenseSubscription, sub["id"]).user_id
+        owner = db.scalar(select(LicenseAdministrator)).user_id
+    corrected = {"name": "Titular corrigido sintético", "email": "corrected@example.com"}
+    assert api.put("/admin/users/" + user_id, json=corrected).status_code == 401
+    assert api.put("/admin/users/" + user_id, json=corrected, headers=admin).status_code == 200
+    assert api.put("/admin/users/" + owner, json=corrected, headers=admin).status_code == 409
+    assert any(
+        row["action"] == "license.user.correct"
+        for row in api.get("/admin/audit", headers=admin).json()
+    )
+    client = manager(api, keys)
+    client.activate("corrected@example.com", sub["keys"][0]["key"], "Synthetic corrected owner")
+    assert client.verify().permits(Module.GEOMETRY)
+
+
+def test_corrupt_local_guard_and_untrusted_response_fail_closed(licensed, tmp_path):
+    api, admin, sub, keys, engine, issuer, secret = licensed
+    client = manager(api, keys)
+    activate(client, sub)
+    old = copy.deepcopy(client.state)
+    with pytest.raises(ValueError):
+        client.accept({"license": client.state["license"], "devices": "invalid-list"})
+    assert client.state == old
+    client.anchor.value = {"installation_id": client.state["installation_id"]}
+    with pytest.raises(ValueError, match="Registro protegido"):
+        LicenseManager(client.vault, client.anchor, keys, client.transport)
+
+
+def test_server_maintenance_does_not_revoke_a_valid_local_license(licensed, monkeypatch):
+    api, admin, sub, keys, engine, issuer, secret = licensed
+    client = manager(api, keys)
+    activate(client, sub)
+    from fastapi import HTTPException
+
+    from server import license_service
+
+    def maintenance(*args):
+        raise HTTPException(503, "Synthetic maintenance")
+
+    monkeypatch.setattr(license_service, "sign", maintenance)
+    with pytest.raises(OSError):
+        client.check()
+    assert client.verify().permits(Module.GEOMETRY)
+
+
+def test_client_cannot_choose_expiry_and_revoked_seat_cannot_list_other_devices(licensed):
+    api, admin, sub, keys, engine, issuer, secret = licensed
+    first, second = manager(api, keys), manager(api, keys)
+    bad = {
+        "email": "tester@example.com",
+        "key": sub["keys"][0]["key"],
+        "installation_id": first.state["installation_id"],
+        "label": "Synthetic",
+        "expires_at": 9999999999,
+    }
+    assert api.post("/v1/activate", json=bad).status_code == 422
+    value = activate(first, sub)
+    activate(second, sub, 1)
+    assert len(first.state["devices"]) == 2
+    api.post("/admin/activations/" + value["activation_id"] + "/revoke", headers=admin, json={})
+    first.check()
+    assert first.state["devices"] == []
+    assert first.verify().read_only

@@ -5,7 +5,9 @@ COPY server ./server
 COPY core ./core
 COPY desktop ./desktop
 COPY exporters ./exporters
-RUN pip install --no-cache-dir '.[licensing]'
+COPY infra/licensing-requirements.lock ./licensing-requirements.lock
+RUN pip install --no-cache-dir --require-hashes --only-binary=:all: -r licensing-requirements.lock
+RUN pip install --no-cache-dir --no-deps .
 RUN useradd --create-home agrolines && chmod -R a+rX /app
 USER agrolines
 EXPOSE 8001

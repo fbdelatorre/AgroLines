@@ -95,6 +95,8 @@ def create(cache, output, lock=None):
         from distribution.legal_materials import safe_file
 
         for row in materials["materials"]:
+            if not row["components"]:
+                continue
             path = safe_file(ROOT / "distribution/legal/supplemental", row["file"])
             if sha(path) != row["sha256"]:
                 raise ValueError("Changed source recipe/notice")
@@ -115,18 +117,43 @@ def create(cache, output, lock=None):
     return result
 
 
-def stage(payload, source):
+def stage(payload, source, lock=None):
     import shutil
 
     source, payload = Path(source), Path(payload)
     record = json.loads(source.with_suffix(".json").read_text())
+    lock = lock or json.loads((ROOT / "distribution/legal/source-delivery.json").read_text())
+
     if sha(source) != record["sha256"] or record["own_application_source_included"]:
         raise ValueError("Invalid third-party source delivery")
     with zipfile.ZipFile(source) as package:
         internal = json.loads(package.read("manifest.json"))
         if internal["sources"] != record["sources"]:
             raise ValueError("Source delivery manifest mismatch")
+        measured = [
+            {k: v for k, v in row.items() if k not in ("archive_path", "size_bytes")}
+            for row in record["sources"]
+        ]
+        if measured != lock["sources"]:
+            raise ValueError("Unauthorized source identity or version")
         expected = {r["archive_path"] for r in record["sources"]}
+        materials = json.loads(
+            (ROOT / "distribution/legal/supplemental/materials.json").read_text()
+        )
+        legal_files = {
+            "materials/" + r["file"]: r["sha256"] for r in materials["materials"] if r["components"]
+        }
+        if set(package.namelist()) != expected | set(legal_files) | {
+            "manifest.json",
+            "LEIA-ME.txt",
+        }:
+            raise ValueError("Unauthorized source-bundle member")
+        if len(package.namelist()) != len(set(package.namelist())):
+            raise ValueError("Duplicate source-bundle member")
+        for name, expected_hash in legal_files.items():
+            if hashlib.sha256(package.read(name)).hexdigest() != expected_hash:
+                raise ValueError("Changed source recipe/notice")
+
         if any(
             not name.startswith(("sources/", "materials/"))
             and name not in ("manifest.json", "LEIA-ME.txt")

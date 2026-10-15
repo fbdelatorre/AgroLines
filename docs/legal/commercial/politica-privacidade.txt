@@ -26,7 +26,7 @@ offline até vencer. Tentativas automáticas posteriores ocorrem no início e a 
 15 minutos de execução, sem conexão obrigatória em intervalos de dias.
 
 São enviados e registrados conforme a operação: e-mail do titular, identificadores
-de usuário/assinatura/ativação, modalidade, validade, situação, UUID aleatório estável
+de usuário/assinatura/ativação, modalidade, validade, situação, datas de ativação e última verificação, UUID aleatório estável
 da instalação e nome do computador informado pelo usuário. Não informe dados
 pessoais desnecessários nesse nome. Não são coletados seriais de hardware, MAC,
 CPF, RG ou data de nascimento. A chave de ativação e a credencial da instalação
@@ -40,7 +40,8 @@ nem impede toda manipulação por um administrador. Os registros preservam a ide
 de instalação entre versões; troca de perfil/computador pode exigir suporte.
 
 O servidor observa o endereço IP de conexão; o limitador conserva um hash de chave
-que incorpora IP ou e-mail, contador e início da janela. Registra operações
+que incorpora IP ou e-mail, contador e início da janela. Esse hash e os identificadores
+não são declarados dados anônimos. Registra operações
 administrativas com ator, ação, recurso e momento, sem senhas ou chaves. Logs do
 servidor/reverse proxy precisam ser minimizados e configurados pelo operador. Não
 está aprovado um prazo de retenção de cadastro, assinatura, ativações, auditoria,

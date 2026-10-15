@@ -61,6 +61,8 @@ def version_tuple(value):
 
 
 def prepare(output, version, manufacturer, store=False, standalone=False, commercial=False):
+    if commercial and not standalone:
+        raise ValueError("Commercial profile requires standalone layout")
     if store and standalone:
         raise ValueError("Choose one distribution profile")
     parts = version_tuple(version)

@@ -7,7 +7,7 @@ import hmac
 import json
 import secrets
 import struct
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import UTC, datetime
 from pathlib import Path
 
@@ -23,8 +23,8 @@ from server.models import LicenseActivation, LicenseSlot, LicenseSubscription
 @dataclass(frozen=True)
 class Issuer:
     kid: str
-    signing_key: Ed25519PrivateKey
-    wrapping_key: bytes
+    signing_key: Ed25519PrivateKey = field(repr=False)
+    wrapping_key: bytes = field(repr=False)
 
     @classmethod
     def from_files(cls, kid, signing_file, wrapping_file):

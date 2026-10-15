@@ -32,3 +32,7 @@ jobs:
       - run: alembic check
       - name: Full lifecycle and simultaneous claims against real PostgreSQL row locks
         run: python -m pytest tests/test_commercial_licensing.py -v
+      - name: Build server image with locked dependencies, never publish or start public service
+        run: |
+          docker build -f infra/Dockerfile.licensing -t agrolines-license-synthetic .
+          docker run --rm --network none agrolines-license-synthetic python -c "import unittest; from server.license_runtime import application; unittest.TestCase().assertRaises(RuntimeError, application)"
