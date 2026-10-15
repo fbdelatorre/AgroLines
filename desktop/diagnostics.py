@@ -210,6 +210,7 @@ def review_export(parent):
     modules.toggled.connect(refresh)
     buttons = QDialogButtonBox(QDialogButtonBox.Save | QDialogButtonBox.Cancel)
     buttons.button(QDialogButtonBox.Save).setText("Salvar ZIP revisado…")
+    buttons.button(QDialogButtonBox.Cancel).setText("Cancelar")
     buttons.accepted.connect(dialog.accept)
     buttons.rejected.connect(dialog.reject)
     layout.addWidget(buttons)

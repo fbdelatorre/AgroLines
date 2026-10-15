@@ -25,13 +25,17 @@ def prepare_trust(output, origin, keyfile, experimental=False, lab_ca_file=None)
     if lab_ca_file:
         if not experimental:
             raise ValueError("Laboratory TLS trust is forbidden in production")
-        from cryptography import x509
+        import ssl
 
         ca = Path(lab_ca_file).read_text(encoding="ascii")
         if len(ca) > 12000 or "PRIVATE KEY" in ca:
             raise ValueError("Only a public laboratory CA certificate is accepted")
-        cert = x509.load_pem_x509_certificate(ca.encode("ascii"))
-        if not cert.extensions.get_extension_for_class(x509.BasicConstraints).value.ca:
+        context = ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
+        context.load_verify_locations(cadata=ca)
+        if (
+            ca.count("-----BEGIN CERTIFICATE-----") != 1
+            or context.cert_store_stats()["x509_ca"] != 1
+        ):
             raise ValueError("Laboratory trust must identify a CA certificate")
     Path(output).write_text(
         "ORIGIN = "

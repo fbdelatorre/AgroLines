@@ -336,3 +336,33 @@ runpy.run_module('scripts.prepare_license_lab', run_name='__main__')
     assert lab_inputs(output) == "https://localhost"
     assert (private / "tls-server.key").is_file()
     assert not any("PRIVATE KEY" in file.read_text() for file in output.iterdir())
+
+
+def test_client_build_validates_lab_ca_without_cryptography(laboratory, tmp_path):
+    import subprocess
+
+    _, public = laboratory
+    output = tmp_path / "settings.py"
+    code = """
+import importlib.abc, sys
+class NoCrypto(importlib.abc.MetaPathFinder):
+    def find_spec(self, fullname, *args):
+        if fullname.split('.')[0] == 'cryptography':
+            raise AssertionError('The client build lock does not include cryptography')
+sys.meta_path.insert(0, NoCrypto())
+from distribution.commercial_profile import prepare_trust
+prepare_trust(sys.argv[1], 'https://localhost', sys.argv[2], True, sys.argv[3])
+"""
+    subprocess.run(
+        [
+            sys.executable,
+            "-c",
+            code,
+            str(output),
+            str(public / "public.json"),
+            str(public / "tls-ca.pem"),
+        ],
+        check=True,
+        capture_output=True,
+    )
+    assert "LAB_TLS_CA_PEM" in output.read_text()

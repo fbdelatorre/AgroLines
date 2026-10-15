@@ -1,0 +1,5 @@
+# BUILD/SERVER TOOLS ONLY, isolated venv; never add these to the client lock/payload.
+cryptography==46.0.3
+PyNaCl==1.6.2
+cffi==2.0.0
+pycparser==2.23

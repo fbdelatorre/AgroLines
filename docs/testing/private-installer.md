@@ -57,6 +57,9 @@ acesso ou mudada visibilidade. Não existe link privado de instalador antes diss
 
 O workflow reutiliza o pipeline funcional do #23; não precisa de certificado
 Authenticode nesta fase. Nenhum segredo do servidor é necessário no Actions.
+Quando gera a CA sintética do próprio CI, usa `build/lab-tools-env` separado,
+com lock e hashes próprios. `cryptography` é ferramenta de build/servidor;
+não é acrescentado ao lock ou ao payload do cliente, que mantém PyNaCl.
 Usar runner privado exigiria configuração explícita adicional e proteção dos
 dados desse runner; **não foi cadastrado ou selecionado um self-hosted runner**.
 
@@ -69,7 +72,8 @@ Nesta VM de build são necessários Python 3.12 x64, Git, PowerShell 7, MSVC x64
 instaladores oficiais assinados. Não instale ferramentas de desenvolvimento na
 VM destinada à prova de ausência de dependências.
 
-Abra PowerShell 7 **dentro da VM de build**, no checkout autorizado desta revisão:
+Abra PowerShell 7 como administrador **dentro da VM de build**, no checkout
+autorizado desta revisão (as leituras de Secure Boot/TPM exigem essa permissão):
 
 ```powershell
 python -m venv build-env

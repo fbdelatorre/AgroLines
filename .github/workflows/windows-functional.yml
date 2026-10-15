@@ -2,7 +2,7 @@ name: Windows functional candidate (private binaries, evidence only)
 on:
   pull_request:
     branches: ['compliance/webengine-source-linkage', 'distribution/functional-candidate-1.0.0.5']
-    paths: ['distribution/**', 'desktop/**', 'core/**', 'scripts/Observe-NativeModules.ps1', 'tests/test_functional_candidate.py', 'tests/test_vm_homologation.py', 'scripts/vm_license_lab.py', 'scripts/prepare_vm_fixtures.py', '.github/workflows/windows-functional.yml', 'docs/distribution/functional/**']
+    paths: ['distribution/**', 'desktop/**', 'core/**', 'scripts/Observe-NativeModules.ps1', 'tests/test_functional_candidate.py', 'tests/test_vm_homologation.py', 'scripts/vm_license_lab.py', 'scripts/prepare_vm_fixtures.py', 'scripts/prepare_license_lab.py', '.github/workflows/windows-functional.yml', 'docs/distribution/functional/**']
   workflow_call:
     inputs:
       private_delivery:
@@ -63,6 +63,11 @@ jobs:
           if ($LASTEXITCODE) { throw 'Locked build inputs failed.' }
           ./build-env/Scripts/python.exe -m pip check
           if ($LASTEXITCODE) { throw 'Dependency consistency failed.' }
+          if (-not $env:PUBLIC_LAB_INPUTS) {
+            python -m venv build/lab-tools-env
+            ./build/lab-tools-env/Scripts/python.exe -m pip install --require-hashes --only-binary=:all: -r distribution/windows/requirements-lab-tools.lock
+            if ($LASTEXITCODE) { throw 'Isolated TLS build tools failed.' }
+          }
           $epoch=git show -s --format=%ct $env:GITHUB_SHA
           Add-Content $env:GITHUB_ENV "SOURCE_DATE_EPOCH=$epoch"
           Add-Content $env:GITHUB_ENV 'PYTHONHASHSEED=0'
@@ -85,7 +90,7 @@ jobs:
             Copy-Item $inputPath $fixture -Recurse
             $caArgs=@('--lab-tls-ca',"$fixture/tls-ca.pem")
           } else {
-            ./build-env/Scripts/python.exe -m scripts.prepare_license_lab --output $fixture --tls-origin https://localhost --tls-private-directory "$env:RUNNER_TEMP/synthetic-tls-server-secrets"
+            ./build/lab-tools-env/Scripts/python.exe -m scripts.prepare_license_lab --output $fixture --tls-origin https://localhost --tls-private-directory "$env:RUNNER_TEMP/synthetic-tls-server-secrets"
             if ($LASTEXITCODE) { throw 'Synthetic public trust preparation failed.' }
             $origin='https://localhost'
             $caArgs=@('--lab-tls-ca',"$fixture/tls-ca.pem")
