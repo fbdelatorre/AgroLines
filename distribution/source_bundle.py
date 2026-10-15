@@ -51,6 +51,8 @@ def obtain(row, cache):
                         work,
                         "-c",
                         "tar.umask=0002",
+                        "-c",
+                        "core.autocrlf=false",
                         "archive",
                         "--format=tar",
                         "--prefix=" + row["source_prefix"] + "/",
