@@ -1,5 +1,9 @@
 # AgroLines 1.0.0.5 TESTE — compilação e homologação funcional
 
+Registro da etapa do PR #23. O incremento para entrega privada/VM e a candidata
+1.0.0.7 estão em [docs/testing/private-installer.md](../../testing/private-installer.md).
+O workflow atual evoluiu para essas versões; os hashes/evidências 1.0.0.5 permanecem históricos.
+
 Base: HEAD do PR #22, preservando a cadeia #18 → #19 → #20 → #21 → #22.
 Investigação jurídica pausada. Avisos, fontes e gates existentes preservados;
 não há aprovação jurídica, comercial ou SAC por passar esta validação.

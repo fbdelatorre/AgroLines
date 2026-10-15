@@ -68,9 +68,12 @@ class RegistryAnchor:
         return True
 
 
-def make_manager(keyring, transport):
+def make_manager(keyring, transport, *, test_profile=False):
     from desktop.license_client import LicenseManager
 
-    return LicenseManager(
-        WindowsVault(data_directory() / "license.dpapi"), RegistryAnchor(), keyring, transport
-    )
+    root = data_directory()
+    anchor = RegistryAnchor()
+    if test_profile:
+        root = root / "TestProfile"
+        anchor.path += r"\TestProfile"
+    return LicenseManager(WindowsVault(root / "license.dpapi"), anchor, keyring, transport)

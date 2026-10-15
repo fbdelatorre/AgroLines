@@ -1,5 +1,5 @@
 # Explicit user-authorized installation ONLY on disposable hosted Windows Server.
-param([Parameter(Mandatory)][string]$Installer,[Parameter(Mandatory)][string]$Upgrade,[Parameter(Mandatory)][string]$Fixture,[string]$Output='evidence/functional/installed')
+param([Parameter(Mandatory)][string]$Installer,[Parameter(Mandatory)][string]$Upgrade,[Parameter(Mandatory)][string]$Fixture,[string]$Output='evidence/functional/installed',[string]$Version='1.0.0.5',[string]$UpgradeVersion='1.0.0.6')
 $ErrorActionPreference='Stop'
 & (Join-Path $PSScriptRoot 'Assert-Laboratory.ps1')
 $principal=[Security.Principal.WindowsPrincipal]::new([Security.Principal.WindowsIdentity]::GetCurrent())
@@ -45,7 +45,7 @@ if (-not $refused -or [IO.File]::ReadAllText((Join-Path $foreign 'AgroLines.exe'
     (Test-Path (Join-Path $foreign 'AgroLines.test-channel'))) { throw 'Unrelated installation was overwritten.' }
 Install $Installer 'clean-install'
 $registration='HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{77EA2840-FDA9-4634-88DA-FC049E901050}_is1'
-if ((Get-ItemProperty $registration).DisplayVersion -ne '1.0.0.5') { throw 'Installed version not registered.' }
+if ((Get-ItemProperty $registration).DisplayVersion -ne $Version) { throw 'Installed version not registered.' }
 $desktopShortcut=Join-Path ([Environment]::GetFolderPath('CommonDesktopDirectory')) 'AgroLines TESTE.lnk'
 if (-not (Test-Path $desktopShortcut)) { throw 'Opted-in desktop shortcut missing.' }
 $first=Get-Content (Join-Path $install 'AgroLines.current.txt') -Raw
@@ -66,7 +66,7 @@ $copy.Save()
 Invoke-Child (Join-Path $lab 'Atalho de teste.lnk') @() $true
 Probe 'verify' 'reopen-after-install'
 Install $Upgrade 'upgrade'
-if ((Get-ItemProperty $registration).DisplayVersion -ne '1.0.0.6') { throw 'Upgrade version not registered.' }
+if ((Get-ItemProperty $registration).DisplayVersion -ne $UpgradeVersion) { throw 'Upgrade version not registered.' }
 $second=(Get-Content (Join-Path $install 'AgroLines.current.txt') -Raw).Trim()
 if ($first -eq $second -or -not (Test-Path $old) -or (Get-FileHash $old -Algorithm SHA256).Hash -cne $oldHash) { throw 'Previous runtime not preserved byte for byte.' }
 Probe 'verify' 'after-upgrade'

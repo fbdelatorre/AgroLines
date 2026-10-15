@@ -13,14 +13,26 @@ class NoRedirect(urllib.request.HTTPRedirectHandler):
         raise OSError("Redirecionamento do serviço de licenças recusado.")
 
 
+def tls_context(lab_ca_pem=None, *, test_profile=False):
+    if lab_ca_pem is None:
+        return ssl.create_default_context()
+    if not test_profile:
+        raise ValueError("Laboratory TLS trust is forbidden in production")
+    # Trust only this public laboratory CA in this process. Never change Windows roots.
+    context = ssl.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
+    context.minimum_version = ssl.TLSVersion.TLSv1_2
+    context.load_verify_locations(cadata=lab_ca_pem)
+    return context
+
+
 class LicenseTransport:
-    def __init__(self, origin, timeout=5):
+    def __init__(self, origin, timeout=5, *, lab_ca_pem=None, test_profile=False):
         self.origin = validate_origin(origin)
         self.timeout = timeout
         self.opener = urllib.request.build_opener(
             urllib.request.ProxyHandler({}),
             NoRedirect(),
-            urllib.request.HTTPSHandler(context=ssl.create_default_context()),
+            urllib.request.HTTPSHandler(context=tls_context(lab_ca_pem, test_profile=test_profile)),
         )
 
     def post(self, operation, value):

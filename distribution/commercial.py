@@ -1,6 +1,6 @@
 """Explicit commercial standalone entry point, distinct from the closed offline editions."""
 
-from _agrolines_license_settings import KEYRING, ORIGIN, TEST_PROFILE
+from _agrolines_license_settings import KEYRING, LAB_TLS_CA_PEM, ORIGIN, TEST_PROFILE
 
 from core.offline_policy import enforce
 
@@ -109,7 +109,11 @@ def main():
         app.setApplicationName("AgroLines TESTE")
     app.setWindowIcon(QIcon(str(assets / "AgroLines.ico")))
     try:
-        manager = make_manager(KEYRING, LicenseTransport(ORIGIN))
+        manager = make_manager(
+            KEYRING,
+            LicenseTransport(ORIGIN, lab_ca_pem=LAB_TLS_CA_PEM, test_profile=TEST_PROFILE),
+            test_profile=TEST_PROFILE,
+        )
     except (ValueError, OSError) as exc:
         from desktop.license_client import RecoveryManager
 

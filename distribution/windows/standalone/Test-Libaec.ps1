@@ -1,6 +1,7 @@
 # Fresh copies, synthetic HDF5 only. Never call the original restricted encoder.
+param([switch]$AuthorizedHyperVBuildVM)
 $ErrorActionPreference='Stop'
-& (Join-Path $PSScriptRoot 'Assert-Laboratory.ps1')
+& (Join-Path $PSScriptRoot 'Assert-Laboratory.ps1') -AuthorizedHyperVBuildVM:$AuthorizedHyperVBuildVM -BuildOnly
 $site=[IO.Path]::GetFullPath('build-env/Lib/site-packages')
 $lab=Join-Path $env:RUNNER_TEMP ('agrolines-codec-' + [Guid]::NewGuid().ToString('N'))
 New-Item $lab -ItemType Directory | Out-Null
