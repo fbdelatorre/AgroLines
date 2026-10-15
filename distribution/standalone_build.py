@@ -69,6 +69,9 @@ def prepare_materials(root):
     from PyInstaller.archive.readers import CArchiveReader
 
     root = Path(root)
+    from distribution.source_bundle import stage
+
+    stage(root, ROOT / "build/source-delivery/AgroLines-Third-Party-Sources.zip")
     embedded = CArchiveReader(str(root / "AgroLines.exe")).open_embedded_archive("PYZ.pyz")
     report = inspect_layout(root, embedded.toc)
     policy_path = ROOT / "distribution/windows/signing/native-policy.json"
@@ -81,6 +84,9 @@ def prepare_materials(root):
     from distribution.libaec_build import evidence as codec_evidence
 
     codec = codec_evidence(root)
+    from distribution.geos_delivery import evidence as geos_evidence
+
+    geos = geos_evidence(root)
     for record in policy["files"]:
         if record["path"] == SLOT:
             record.update(
@@ -90,6 +96,13 @@ def prepare_materials(root):
                 source_build_provenance="libaec-provenance.json",
                 origin_confirmed=True,
                 blocker="BSD source/build proven; signature/distribution review pending",
+            )
+        elif record["path"] in geos:
+            record.update(
+                baseline_sha256=geos[record["path"]]["sha256"],
+                source_build_provenance="geos-source-builds.json",
+                origin_confirmed=True,
+                blocker="Same-version GEOS source/build bound; signature review pending",
             )
     policy["inherited_store_policy_sha256"] = file_hash(policy_path)
     (root / "native-signing-policy.json").write_text(json.dumps(policy, indent=2), encoding="utf-8")

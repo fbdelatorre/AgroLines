@@ -34,6 +34,9 @@ def material_payload(tmp_path, monkeypatch):
         "attrs",
         "certifi",
         "defusedxml",
+        "Fiona-data",
+        "Fiona-bindings",
+        "proj-Fiona",
     ]
     payload = tmp_path / "payload"
     payload.mkdir()
@@ -156,3 +159,38 @@ def test_signature_region_is_distinct_from_content_and_never_approves_trust(mate
     assert result["authenticode_content_only_files"] == ["AgroLines.exe"]
     assert result["cryptographic_trust_validated"] is False
     assert result["legal_approved"] is False
+
+
+@pytest.mark.parametrize("extension", [".txt", ".html"])
+def test_stale_legal_representations_are_rejected(material_payload, extension):
+    (legal.POLICIES / ("EULA" + extension)).write_text("previous contract text")
+    with pytest.raises(ValueError, match="Stale"):
+        legal.prepare(material_payload)
+
+
+@pytest.mark.parametrize("mutation", ["changed", "new"])
+def test_real_data_resources_are_bound_even_without_native_changes(material_payload, mutation):
+    resource = material_payload / "_internal/fiona/proj_data/proj.db"
+    resource.parent.mkdir(parents=True)
+    resource.write_bytes(b"inert database fixture, never opened")
+    path = legal.DOSSIER / "inventory.json"
+    data = json.loads(path.read_text())
+    data["files"].append(
+        {
+            "path": resource.relative_to(material_payload).as_posix(),
+            "sha256": legal.digest(resource),
+            "component": "Fiona-data",
+        }
+    )
+    path.write_text(json.dumps(data))
+    manifest = legal.prepare(material_payload)
+    assert any(
+        row["component"] == "Fiona-data" and row["notices"] for row in manifest["components"]
+    )
+    assert legal.verify(material_payload)["resource_files"] == 1
+    if mutation == "changed":
+        resource.write_bytes(b"different geodetic data")
+    else:
+        (resource.parent / "unreviewed-grid.gtx").write_bytes(b"new grid")
+    with pytest.raises(ValueError, match="resource"):
+        legal.verify(material_payload)

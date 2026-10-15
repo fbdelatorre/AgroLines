@@ -190,6 +190,9 @@ def main():
         from distribution.libaec_build import stage as stage_codec
 
         stage_codec(payload)
+        from distribution.geos_delivery import stage as stage_geos
+
+        stage_geos(payload)
     collect_notices(payload, ROOT / "evidence/qt-minimal/build-inputs.json" if offline else None)
     if args.store:
         shutil.copyfile(

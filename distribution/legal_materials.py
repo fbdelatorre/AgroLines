@@ -11,6 +11,19 @@ POLICIES = ROOT / "docs/legal/standalone"
 DOSSIER = ROOT / "docs/compliance"
 SUPPLEMENT = ROOT / "distribution/legal/supplemental"
 DOCUMENTS = ("EULA.md", "politica-privacidade.md", "INSTRUCOES-LGPL.md", "LEIA-ME.md")
+RESOURCE_ROOTS = (
+    "_internal/fiona/",
+    "_internal/pyproj/",
+    "_internal/PySide6/resources/",
+    "_internal/PySide6/translations/",
+    "_internal/desktop/map_assets/",
+    "_internal/certifi/",
+)
+RESOURCE_NOTICES = {
+    "Fiona-data": ("Fiona-bindings", "proj-Fiona"),
+    "PROJ-data": ("pyproj-bindings",),
+    "Qt-resources": ("Qt-Base", "Qt-WebEngine"),
+}
 
 
 def digest(path):
@@ -53,6 +66,39 @@ def render_policies():
             source.with_suffix(".html").write_text(render_markdown(text), encoding="utf-8")
 
 
+def verify_policy_copies():
+    for name in DOCUMENTS:
+        source = safe_file(POLICIES, name)
+        text = source.read_text(encoding="utf-8")
+        if source.with_suffix(".txt").read_bytes() != b"\xef\xbb\xbf" + text.encode():
+            raise ValueError("Stale plain-text legal draft: " + name)
+        if name in ("EULA.md", "politica-privacidade.md"):
+            if source.with_suffix(".html").read_bytes() != render_markdown(text).encode():
+                raise ValueError("Stale HTML legal draft: " + name)
+
+
+def resource_files(payload):
+    return {
+        p.relative_to(payload).as_posix(): p
+        for p in Path(payload).rglob("*")
+        if p.is_file()
+        and p.suffix.casefold() not in (".dll", ".pyd", ".exe")
+        and p.relative_to(payload).as_posix().startswith(RESOURCE_ROOTS)
+    }
+
+
+def _resource_rows(payload, registry):
+    audited = {row["path"]: row for row in registry["files"]}
+    selected, rows = set(), []
+    for relative, path in resource_files(payload).items():
+        original = audited.get(relative)
+        if original is None or digest(path) != original["sha256"]:
+            raise ValueError("Unregistered/changed third-party resource: " + relative)
+        selected.add(original["component"])
+        rows.append({"path": relative, "component": original["component"], "sha256": digest(path)})
+    return selected, rows
+
+
 def _component_rows(payload, registry):
     """Bind all actual native files to the pre-existing audited origins."""
     native = {r["path"].casefold(): r for r in registry["files"]}
@@ -61,12 +107,17 @@ def _component_rows(payload, registry):
     from distribution.libaec_build import evidence as codec_evidence
 
     codec = codec_evidence(payload)
+    from distribution.geos_delivery import evidence as geos_evidence
+
+    geos = geos_evidence(payload)
     for file in sorted(Path(payload).rglob("*")):
         if not file.is_file() or file.suffix.casefold() not in (".dll", ".pyd", ".exe"):
             continue
         relative = file.relative_to(payload).as_posix()
         if relative == SLOT:
             component = "libaec-SZIP"
+        elif relative in geos:
+            component = geos[relative]["component"]
         elif relative == "AgroLines.exe":
             component = "AgroLines-executable"
         else:
@@ -115,7 +166,17 @@ def prepare(payload):
         raise ValueError("Fresh legal output required")
     registry = json.loads((DOSSIER / "inventory.json").read_text())
     selected, natives = _component_rows(payload, registry)
+    resource_components, resources = _resource_rows(payload, registry)
+    selected.update(resource_components)
+    components_by_id = {row["id"]: row for row in registry["components"]}
+    for resource, owners in RESOURCE_NOTICES.items():
+        if resource in selected:
+            components_by_id[resource]["notice_files"] = sorted(
+                {notice for owner in owners for notice in components_by_id[owner]["notice_files"]}
+            )
+    verify_policy_copies()
     supplemental = json.loads((SUPPLEMENT / "materials.json").read_text())
+    choices = json.loads((ROOT / "distribution/legal/license-choices.json").read_text())
     audited_hashes = {
         row["path"]: row["sha256"]
         for row in json.loads((DOSSIER / "documents.json").read_text())["files"]
@@ -190,7 +251,10 @@ def prepare(payload):
             {
                 "component": component["id"],
                 "version": component["version"],
-                "license_evidence": component["license_evidence"],
+                "license_evidence": choices.get(component["id"], {}).get(
+                    "selected", component["license_evidence"]
+                ),
+                "license_choice_scope": choices.get(component["id"]),
                 "notices": copies,
                 "scope_complete": False,
             }
@@ -237,17 +301,39 @@ def prepare(payload):
         "third-party-notices",
     )
     copy(
+        ROOT / "distribution/legal/license-choices.json",
+        "alternativas-adotadas.json",
+        "Documented license elections, covered files only",
+        "third-party-notices",
+    )
+    copy(
         payload / "libaec-provenance.json",
         "libaec-build.json",
         "Pinned official libaec source and local build recipe",
         "libaec-SZIP",
     )
+    source_delivery = None
+    delivery = payload / "third-party-sources/delivery.json"
+    if delivery.is_file():
+        source_delivery = json.loads(delivery.read_text())
+        if digest(payload / source_delivery["payload_file"]) != source_delivery["sha256"]:
+            raise ValueError("Source delivery differs from its manifest")
+        copy(delivery, "fontes-disponibilizadas.json", "Version-local source delivery", "sources")
+    if (payload / "geos-source-builds.json").is_file():
+        copy(
+            payload / "geos-source-builds.json",
+            "geos-fontes-build.json",
+            "Same-version builds with unmodified algorithm inputs",
+            "GEOS",
+        )
     docs = {
         "schema_version": 1,
         "documents": documents,
         "notices_index_sha256": digest(target / "THIRD_PARTY_NOTICES.txt"),
         "components": component_rows,
         "native_files": natives,
+        "resource_files": resources,
+        "source_delivery": source_delivery,
         "distribution_approved": False,
         "legal_approved": False,
         "draft_fields_pending": True,
@@ -305,10 +391,23 @@ def verify(payload):
     for component in data["components"]:
         if any(path not in expected for path in component["notices"]):
             raise ValueError("Missing component license reference")
+    resources = {row["path"]: row for row in data["resource_files"]}
+    actual_resources = resource_files(payload)
+    if set(resources) != set(actual_resources):
+        raise ValueError("Third-party resource set changed")
+    for relative, path in actual_resources.items():
+        if digest(path) != resources[relative]["sha256"]:
+            raise ValueError("Third-party resource content changed: " + relative)
+    if data.get("source_delivery"):
+        delivery = data["source_delivery"]
+        source = safe_file(payload, delivery["payload_file"])
+        if digest(source) != delivery["sha256"]:
+            raise ValueError("Third-party source bundle changed")
     return {
         "legal_material_presence_verified": True,
         "documents": len(data["documents"]),
         "native_files": len(native_expected),
+        "resource_files": len(resources),
         "authenticode_content_only_files": signature_only,
         "cryptographic_trust_validated": False,
         "legal_approved": False,
