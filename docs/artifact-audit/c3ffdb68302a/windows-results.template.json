@@ -1,0 +1,121 @@
+{
+  "purpose": "Future controlled test template; not evidence or authorization. Keep completed copy private.",
+  "reference_msix_installation_prohibited": true,
+  "installation_authorized": false,
+  "submission_authorized": false,
+  "sac_approved": false,
+  "legal_compliance_approved": false,
+  "machine": {
+    "windows11_physical": null,
+    "sac_ui_on": null,
+    "defender_realtime_enabled": null,
+    "python_absent": null,
+    "postgresql_absent": null
+  },
+  "store_delivery_record": null,
+  "old_package_identity": null,
+  "new_package_identity": null,
+  "test_start_utc": null,
+  "test_end_utc": null,
+  "tests": [
+    {
+      "id": "W00-preflight",
+      "status": "not_run",
+      "expected": null,
+      "actual": null,
+      "evidence_private_path": null,
+      "evidence_sha256": null,
+      "blockers": []
+    },
+    {
+      "id": "W01-install",
+      "status": "not_run",
+      "expected": null,
+      "actual": null,
+      "evidence_private_path": null,
+      "evidence_sha256": null,
+      "blockers": []
+    },
+    {
+      "id": "W02-disconnected-start",
+      "status": "not_run",
+      "expected": null,
+      "actual": null,
+      "evidence_private_path": null,
+      "evidence_sha256": null,
+      "blockers": []
+    },
+    {
+      "id": "W03-five-import-formats",
+      "status": "not_run",
+      "expected": null,
+      "actual": null,
+      "evidence_private_path": null,
+      "evidence_sha256": null,
+      "blockers": []
+    },
+    {
+      "id": "W04-edit-undo-redo",
+      "status": "not_run",
+      "expected": null,
+      "actual": null,
+      "evidence_private_path": null,
+      "evidence_sha256": null,
+      "blockers": []
+    },
+    {
+      "id": "W05-history-backup-restore",
+      "status": "not_run",
+      "expected": null,
+      "actual": null,
+      "evidence_private_path": null,
+      "evidence_sha256": null,
+      "blockers": []
+    },
+    {
+      "id": "W06-connected-native-network",
+      "status": "not_run",
+      "expected": null,
+      "actual": null,
+      "evidence_private_path": null,
+      "evidence_sha256": null,
+      "blockers": []
+    },
+    {
+      "id": "W07-update",
+      "status": "not_run",
+      "expected": null,
+      "actual": null,
+      "evidence_private_path": null,
+      "evidence_sha256": null,
+      "blockers": []
+    },
+    {
+      "id": "W08-uninstall",
+      "status": "not_run",
+      "expected": null,
+      "actual": null,
+      "evidence_private_path": null,
+      "evidence_sha256": null,
+      "blockers": []
+    },
+    {
+      "id": "W09-reinstall",
+      "status": "not_run",
+      "expected": null,
+      "actual": null,
+      "evidence_private_path": null,
+      "evidence_sha256": null,
+      "blockers": []
+    },
+    {
+      "id": "W10-trust-events-modules",
+      "status": "not_run",
+      "expected": null,
+      "actual": null,
+      "evidence_private_path": null,
+      "evidence_sha256": null,
+      "blockers": []
+    }
+  ]
+}

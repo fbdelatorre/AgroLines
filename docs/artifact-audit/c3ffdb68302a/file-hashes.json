@@ -1,0 +1,19 @@
+{
+  ".github/workflows/artifact-static-audit.yml": "00f2ce09bd585127bfd3d7f81a3390dc8c4cc6185f16e7e045f44e635d08ad0a",
+  "docs/artifact-audit/c3ffdb68302a/.gitattributes": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
+  "docs/artifact-audit/c3ffdb68302a/README.md": "a35813924e75a23870c2a880fcab5fe9b901b9aaeaef4278c50e27d85f93d5a8",
+  "docs/artifact-audit/c3ffdb68302a/audit.json": "9f3288f72eb5fcb5e62a63cdd9416f4351da61db3995d6299012e6ca6f1dc343",
+  "docs/artifact-audit/c3ffdb68302a/blockers-corrections.md": "669bb18ecb6f9f815680d2db4d73ea68af1f3921c88615c7367dc7d7b1dfaf5e",
+  "docs/artifact-audit/c3ffdb68302a/ci-results.json": "637a11be875f046a5ef61c38b10a7e63cec20259c9a133212f6db02536feecb3",
+  "docs/artifact-audit/c3ffdb68302a/licenses-privacy.md": "0f7c4c281b1f85a6206ed77a51ce3520e4beebaff915e7bc51789a38af7e641f",
+  "docs/artifact-audit/c3ffdb68302a/native-files.csv": "080a556dc28ecd51e0dadfc0c733dee5e6afdd585f372ce828669e59e710a460",
+  "docs/artifact-audit/c3ffdb68302a/native-files.json": "4c7f9fbb690812fbcf026e26ee571b6e0167998c4d1d5ed0b4ead986c6c3aedb",
+  "docs/artifact-audit/c3ffdb68302a/reproducibility.md": "f3814a97daa8c6d83dcd50bd523e7cf656ace1c6bb735e727b276539d7e48df9",
+  "docs/artifact-audit/c3ffdb68302a/validation.json": "6bfdbdb0974fda3e9caed39cc5a5df352de1d8a04f2a5e4c63c16cea61fb9044",
+  "docs/artifact-audit/c3ffdb68302a/windows-acceptance.md": "c5fc0d579913466ca11b413c44b85dd65a1fa3fb3c4fa0c95960293a24290347",
+  "docs/artifact-audit/c3ffdb68302a/windows-results.template.json": "4893c2a7f1fb1043048dbb33281e7c88d560792078e2f1b9ff86647890894655",
+  "tools/artifact-audit/README.md": "998584d00fe383b10384ae60cb4b0852674ed7d9810091ea10e685059f1e788e",
+  "tools/artifact-audit/audit.py": "cbe643ffe52ecf84b96e7b2be7ba88fd097543cc681ad7d3cd3762b2188d60b0",
+  "tools/artifact-audit/project_snapshot.py": "8fc21e2cb916f97376b5731c6bddc2f8562d8b48f47309981d63c02d2e56f161",
+  "tools/artifact-audit/test_audit.py": "46dcb313ab8c81b8f45305bfde561443ae3ac1a2c8086b169c0cdf05ea7e2265"
+}

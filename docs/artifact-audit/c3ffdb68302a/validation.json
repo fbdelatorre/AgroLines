@@ -1,0 +1,54 @@
+{
+  "date": "2026-10-15",
+  "tests": {
+    "linux_existing": {
+      "tests": 226,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 1,
+      "passed": 225,
+      "junit_sha256": "f589be60bf6a63e61c63874341b40d6c2e0e644af95ad1fbcf61f40fbcd73d0c"
+    },
+    "audit_controls": {
+      "tests": 16,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 16,
+      "junit_sha256": "d05389feb44f64a5d7dfcc8cc18c5cb63aa75cf01068b731365ce2d3953f286a"
+    }
+  },
+  "precision": {
+    "passed": 22,
+    "total": 22,
+    "field_accuracy_validated": false
+  },
+  "ruff_check": "passed",
+  "ruff_format_check": "passed",
+  "new_windows_ci": "passed_static_archive_audit_and_16_controls",
+  "physical_windows_tests": "not_run",
+  "native_binaries_executed_from_artifact": false,
+  "msix_installed": false,
+  "signed": false,
+  "published": false,
+  "main_sha_observed": "a7af60408fbd85105d58696386a0b985668b4bb9",
+  "base_commit": "5990d29026e1f9ad0e74895cd046e5506887980a",
+  "application_payload_files_modified": false,
+  "reference_msix_sha256": "e6a2ab8e65a91df3a2a1613d22b3ecc3c478d774e1d08b39561960085686068b",
+  "linux_test_environment_note": "Existing root/offscreen Qt tests use the repository Linux CI sandbox flags only; no Windows/client security changed.",
+  "ci_history": [
+    {
+      "run_id": 38669928187,
+      "linux_static_audit": "success",
+      "windows_controls": "14 passed, 1 failed",
+      "reason": "Windows ZipInfo normalized the synthetic backslash filename before audit; fixture patched at ZIP header bytes to retain malicious name, without weakening rejection criteria. Original artifact unchanged."
+    },
+    {
+      "run_id": 38670147818,
+      "linux_static_audit": "success",
+      "windows_controls": "14 passed, 1 failed",
+      "reason": "ZipInfo also normalizes names during Windows read. Auditor hardened to validate orig_filename and reject silent normalization/truncation; added host-independent regression control. No criteria weakened or payload changed."
+    }
+  ],
+  "ci_results": "ci-results.json"
+}
