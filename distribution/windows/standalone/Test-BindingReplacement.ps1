@@ -52,5 +52,7 @@ $smoke = Get-Content (Join-Path $output 'modified-smoke.json') -Raw | ConvertFro
 $offline = Get-Content (Join-Path $output 'modified-offline.json') -Raw | ConvertFrom-Json
 if (-not $smoke.checks_passed -or -not $offline.passed -or $smoke.payload_integrity_verified) { throw 'Modified-copy functional/integrity negative control failed.' }
 if ((Get-FileHash (Join-Path $payload 'payload-manifest.json')).Hash -cne $originalManifest) { throw 'Original manifest changed.' }
-@{ modified_python_bindings_loaded=$true; frozen_agrolines_exercised=$true; computational_precision_checks=@($smoke.precision.checks).Count; offline_passed=$offline.passed; original_binary_unchanged=((Get-FileHash (Join-Path $payload 'AgroLines.exe')).Hash -ceq (Get-FileHash (Join-Path $copy 'AgroLines.exe')).Hash); native_qt_geos_modified_in_this_experiment=$false; full_lgpl_compliance_approved=$false; sac_approved=$false } |
+$binaryUnchanged = ((Get-FileHash (Join-Path $payload 'AgroLines.exe')).Hash -ceq (Get-FileHash (Join-Path $copy 'AgroLines.exe')).Hash)
+if (-not $binaryUnchanged) { throw 'Laboratory must not modify the own executable.' }
+@{ modified_python_bindings_loaded=$true; frozen_agrolines_exercised=$true; computational_precision_checks=@($smoke.precision.checks).Count; offline_passed=$offline.passed; original_binary_unchanged=$binaryUnchanged; native_qt_geos_modified_in_this_experiment=$false; full_lgpl_compliance_approved=$false; sac_approved=$false } |
     ConvertTo-Json -Depth 5 | Set-Content (Join-Path $output 'replacement-result.json') -Encoding utf8

@@ -82,6 +82,8 @@ jobs:
             signature_status=$signature.Status.ToString(); installer_executed=$false; distribution_approved=$false; sac_approved=$false
           }
           $report | ConvertTo-Json -Depth 6 | Set-Content evidence/standalone/artifact.json -Encoding utf8
+          # Keep exact installer identity/hash inspectable through the API/logs too.
+          Write-Output ('AGROLINES_STANDALONE_ARTIFACT=' + ($report | ConvertTo-Json -Depth 6 -Compress))
           Add-Content $env:GITHUB_STEP_SUMMARY ('Experimental installer: `' + $file.Name + '`')
           Add-Content $env:GITHUB_STEP_SUMMARY ('SHA-256: `' + $report.sha256 + '`')
           Add-Content $env:GITHUB_STEP_SUMMARY 'UNSIGNED. Build/probes only. No installation, signing, SAC approval, publication or commercial authorization.'
