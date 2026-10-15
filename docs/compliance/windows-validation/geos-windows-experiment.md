@@ -61,3 +61,27 @@ O nível sintético e o nível congelado isolado são informados separadamente p
 cada versão. **GEOS em MSIX confiável NÃO DEMONSTRADO / BLOQUEADO POR REQUISITO
 EXTERNO.** Nenhuma DLL do candidato foi substituída. Não há inferência automática
 de cumprimento LGPL2.1, fonte exata dos wheels ou aceitação SAC.
+
+## Resultado executado e arquivado
+
+[Execução Windows aprovada](https://github.com/fbdelatorre/AgroLines/actions/runs/38664013105)
+(commit `34a9793599e14bdd4fc8d6b7a5d267cb84bd507b`). Os três relatórios brutos
+`lab-*.json` foram preservados byte a byte, com hashes conferidos contra a
+captura dos artefatos e dados iguais aos logs. Ver
+[validation-results.json](validation-results.json) e
+[verificação](lab-evidence-verification.json).
+
+**DEMONSTRADO NO WINDOWS / DEMONSTRADO SOMENTE EM CONSUMIDOR SINTÉTICO.**
+O host foi **Windows Server 2025 Datacenter, build 26100, x64**. Estado SAC não
+confirmado; serviço/antivírus Defender ativos, proteção em tempo real reportada
+`false`. Nenhuma configuração foi alterada. Não é Windows 11 físico com SAC On.
+Não usar este resultado como prova de integridade/instalação MSIX ou proteção ativa.
+
+**GEOS 3.11.3 e 3.14.1:** consumidor Python independente e consumidor congelado
+PyInstaller passaram com original/modificada. Os módulos C API **e** C++ foram
+observados nas pastas esperadas. Em cada versão, as quatro áreas permanecem
+`0.000001, 1, 100, 10000`; o C++ GEOS permanece com mesmo hash, mudando somente
+a DLL C API que contém a string de versão marcada. Hashes completos, versões,
+caminhos e SHA do mesmo consumidor congelado por versão constam dos dois
+relatórios brutos. Nada disso comprova a substituição das cópias vendorizadas
+usadas por Shapely/Fiona no AgroLines ou seu pacote Store.

@@ -69,3 +69,26 @@ consumidor MSVC exigindo `/Zc:__cplusplus` e `/permissive-`, conforme
 `src/corelib/global/qcompilerdetection.h` e `cmake/QtFlagHandlingHelpers.cmake`
 do commit fixado. As duas opções estão explícitas. Não foram modificados headers,
 asserções Qt ou critérios para ocultar as falhas.
+
+## Resultado executado e arquivado
+
+[Execução Windows aprovada](https://github.com/fbdelatorre/AgroLines/actions/runs/38664013105)
+(commit `34a9793599e14bdd4fc8d6b7a5d267cb84bd507b`). Os três relatórios brutos
+`lab-*.json` foram preservados byte a byte, com hashes conferidos contra a
+captura dos artefatos e dados iguais aos logs. Ver
+[validation-results.json](validation-results.json) e
+[verificação](lab-evidence-verification.json).
+
+**DEMONSTRADO NO WINDOWS / DEMONSTRADO SOMENTE EM CONSUMIDOR SINTÉTICO.**
+O host foi **Windows Server 2025 Datacenter, build 26100, x64**. Estado SAC não
+confirmado; serviço/antivírus Defender ativos, proteção em tempo real reportada
+`false`. Nenhuma configuração foi alterada. Não é Windows 11 físico com SAC On.
+Não usar este resultado como prova de integridade/instalação MSIX ou proteção ativa.
+
+Qt6Core original `0532ec4cd6d66c355ff5dedfe870327e24db7beb296c5ec4c798d1c45358b559`;
+modificada `3e7d3883a2a05dde1e036d302b27ea29dc7f212193cd8b08e9e589dc39e02a7f`.
+Mesmo consumidor SHA-256
+`a0159d9315c21364bc67e7032592e5002b96099204b82e924d39cb572f426507`,
+QString length 16 nas duas fases; qVersion passou de `6.12.0` para
+`6.12.0-agrolines-synthetic`; GetModuleFileNameW mostrou a pasta original/modificada
+selecionada. Recombinação AgroLines e MSIX confiável continuam não demonstrados.

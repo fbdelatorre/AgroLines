@@ -42,3 +42,30 @@ Os únicos artefatos novos publicados pelo workflow de laboratório são JSON,
 patches sintéticos e CMakeCache de build sem credenciais. Não incluem executáveis,
 fontes/bytecode/objetos AgroLines, MSIX, projetos ou informações de testadores.
 Evidências físicas do coletor são privadas e **não** são enviadas pelo workflow.
+
+## Execuções e download
+
+- [Windows Qt/GEOS: sucesso](https://github.com/fbdelatorre/AgroLines/actions/runs/38664013105).
+- [Regressões Windows/Linux: sucesso](https://github.com/fbdelatorre/AgroLines/actions/runs/38664082723).
+- [Consolidação de evidências: sucesso](https://github.com/fbdelatorre/AgroLines/actions/runs/38664078921).
+- [Artefato de evidências, NÃO instalador](https://github.com/fbdelatorre/AgroLines/actions/runs/38664078921/artifacts/11940062835):
+  `windows-lgpl-consolidated-EVIDENCE-NOT-LEGAL-APPROVAL`. GitHub pode exigir login
+  para baixar artefatos de Actions; também pode-se abrir a execução → Artifacts.
+  SHA-256 ZIP informado pelo GitHub:
+  `294f4f28fff11c5149cfdd5b887b868c435070197d8d8812743e9188a90ec5ee`.
+  O endpoint de download ZIP não ficou acessível neste ambiente; os três JSON
+  foram recuperados por logs/annotations e seus hashes originais conferidos.
+  O job GitHub baixou os originais e incluiu copyrights/textos LGPL/GPL para
+  acompanhar os patches, sem binários e sem código AgroLines.
+
+[Resultados consolidados](validation-results.json), [host](lab-hosts.json),
+[preservação do candidato](preservation.json) e relatórios brutos permanecem no
+repositório, além dos artefatos com retenção finita do GitHub. Windows: 224 passed /
+2 skipped; Linux: 225 passed / 1 skipped; precisão baseline 22/22 em ambos; cinco
+controles negativos adicionais locais, quatro por job Windows. Ruff aprovado.
+Os skips anteriores não foram removidos. Nenhuma regressão do aplicativo observada.
+
+O Windows hospedado é Server 2025, SAC não confirmado e proteção em tempo real
+Defender reportada inativa, sem alteração por este trabalho. Não equivale ao cenário
+de homologação exigido. MSIX/Qt sob identidade Store, instalação/atualização/
+desinstalação e operação física desconectada continuam pendentes.

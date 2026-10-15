@@ -913,8 +913,8 @@
     },
     {
       "path": "windows-validation/README.md",
-      "sha256": "5fe98888956a0b53da545ec39b11b4ec333150efea18ee5e0675fe74e5fdb92a",
-      "size_bytes": 2633
+      "sha256": "b7f69b9ee101780a559e473fa6a1f14bf7aeddcae8bf79b6c7713e4acc7ded12",
+      "size_bytes": 4511
     },
     {
       "path": "windows-validation/functional-results.template.json",
@@ -928,8 +928,33 @@
     },
     {
       "path": "windows-validation/geos-windows-experiment.md",
-      "sha256": "f06ea40d7b413611550b345d85d195349d0d9a4bf91f1a1c6c83efb50135ef26",
-      "size_bytes": 3960
+      "sha256": "7ce1e3f187534ec94e4df9f8fb51a64dd95c54e3ef09026ac309f4dca2f871b9",
+      "size_bytes": 5434
+    },
+    {
+      "path": "windows-validation/lab-evidence-verification.json",
+      "sha256": "981378f5bfb015ae77e0dfda3f49b225489007d787fbe5af36cf4666b17db6fe",
+      "size_bytes": 1724
+    },
+    {
+      "path": "windows-validation/lab-geos-3.11.3.json",
+      "sha256": "f2a0ff8730d45f9ae0ed727f21b7d6a85c4dc4609db4c5d199de7bbc099adb07",
+      "size_bytes": 3935
+    },
+    {
+      "path": "windows-validation/lab-geos-3.14.1.json",
+      "sha256": "fb82128e26d6f9901699e787112b93c2f97161fe027c060e7a697294b1c68973",
+      "size_bytes": 3935
+    },
+    {
+      "path": "windows-validation/lab-hosts.json",
+      "sha256": "880f2be9550af8aeecd8b5e22efdb790dba9e3c5bbee4441b1ab0c03881bf959",
+      "size_bytes": 1439
+    },
+    {
+      "path": "windows-validation/lab-qtbase-6.12.0.json",
+      "sha256": "ded5d5692bb90dc3d99b67ba61c71cbd39e7ae845c53bef0b70aac6683d049d9",
+      "size_bytes": 2314
     },
     {
       "path": "windows-validation/lab-source-headers.json",
@@ -963,8 +988,8 @@
     },
     {
       "path": "windows-validation/qt-windows-experiment.md",
-      "sha256": "7ad40672e4d9114d676ef5effba75a00a45fc1ec443583581b3e72fcb9f95511",
-      "size_bytes": 4781
+      "sha256": "969613d51051816c602dbabd8e68b6b53e7814d283557503bfcedd1506545b69",
+      "size_bytes": 6135
     },
     {
       "path": "windows-validation/reference-components.json",
@@ -1070,6 +1095,11 @@
       "path": "windows-validation/upstream-cases.json",
       "sha256": "f62f3858e2b08280f719154ea35c682b21b0e283b5f375a0073436a772fbf2b0",
       "size_bytes": 4557
+    },
+    {
+      "path": "windows-validation/validation-results.json",
+      "sha256": "58cb105aed46aca7be6e03ec7a3336785a4766e31b2e33d2acec52149804efbf",
+      "size_bytes": 3569
     }
   ]
 }

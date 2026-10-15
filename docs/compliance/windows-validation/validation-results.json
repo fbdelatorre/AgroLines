@@ -1,0 +1,96 @@
+{
+  "lab_run": {
+    "id": 38664013105,
+    "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38664013105",
+    "head_sha": "34a9793599e14bdd4fc8d6b7a5d267cb84bd507b",
+    "conclusion": "success"
+  },
+  "evidence_capture_run": 38664078921,
+  "quality_run": {
+    "id": 38664082723,
+    "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38664082723",
+    "head_sha": "d8f4b0878f58d3a38a9fd1389fe99d37ab938a48",
+    "conclusion": "success"
+  },
+  "tests": {
+    "windows": {
+      "passed": 224,
+      "skipped": 2
+    },
+    "linux": {
+      "passed": 225,
+      "skipped": 1
+    },
+    "precision_references_windows": 22,
+    "precision_references_linux": 22,
+    "baseline_precision_is_not_compiled_lab_geos_coverage": true,
+    "additional_local_negative_controls_passed": 5,
+    "additional_windows_negative_controls_per_job": 4
+  },
+  "components": [
+    {
+      "component": "qtbase-6.12.0",
+      "platform_status": "DEMONSTRADO NO WINDOWS",
+      "scope_status": "DEMONSTRADO SOMENTE EM CONSUMIDOR SINTÉTICO",
+      "frozen_synthetic_demonstrated": false,
+      "full_agrolines_recombination_demonstrated": false,
+      "trusted_msix_demonstrated": false,
+      "report": "lab-qtbase-6.12.0.json",
+      "report_sha256": "ded5d5692bb90dc3d99b67ba61c71cbd39e7ae845c53bef0b70aac6683d049d9",
+      "observed": {
+        "original": {
+          "version": "6.12.0",
+          "loaded_library_sha256": "0532ec4cd6d66c355ff5dedfe870327e24db7beb296c5ec4c798d1c45358b559"
+        },
+        "modified": {
+          "version": "6.12.0-agrolines-synthetic",
+          "loaded_library_sha256": "3e7d3883a2a05dde1e036d302b27ea29dc7f212193cd8b08e9e589dc39e02a7f"
+        }
+      }
+    },
+    {
+      "component": "geos-3.11.3",
+      "platform_status": "DEMONSTRADO NO WINDOWS",
+      "scope_status": "DEMONSTRADO SOMENTE EM CONSUMIDOR SINTÉTICO",
+      "frozen_synthetic_demonstrated": true,
+      "full_agrolines_recombination_demonstrated": false,
+      "trusted_msix_demonstrated": false,
+      "report": "lab-geos-3.11.3.json",
+      "report_sha256": "f2a0ff8730d45f9ae0ed727f21b7d6a85c4dc4609db4c5d199de7bbc099adb07",
+      "observed": {
+        "original": {
+          "version": "3.11.3-CAPI-1.17.3",
+          "loaded_library_sha256": "0dd895449c35f605a9911483815bf2956a32c5b0a1e286dd58f15cda291d98ed"
+        },
+        "modified": {
+          "version": "3.11.3-CAPI-1.17.3-agrolines-synthetic",
+          "loaded_library_sha256": "0dc16cb0ebfad80880584ca0d321350b7a8e0f9549644bb9bd459c2a3576010e"
+        }
+      }
+    },
+    {
+      "component": "geos-3.14.1",
+      "platform_status": "DEMONSTRADO NO WINDOWS",
+      "scope_status": "DEMONSTRADO SOMENTE EM CONSUMIDOR SINTÉTICO",
+      "frozen_synthetic_demonstrated": true,
+      "full_agrolines_recombination_demonstrated": false,
+      "trusted_msix_demonstrated": false,
+      "report": "lab-geos-3.14.1.json",
+      "report_sha256": "fb82128e26d6f9901699e787112b93c2f97161fe027c060e7a697294b1c68973",
+      "observed": {
+        "original": {
+          "version": "3.14.1-CAPI-1.20.5",
+          "loaded_library_sha256": "a899e50a7e02220b5286cf4773d56eeb66edeb8bd5a371f49951f36eb96c8f58"
+        },
+        "modified": {
+          "version": "3.14.1-CAPI-1.20.5-agrolines-synthetic",
+          "loaded_library_sha256": "92649b3ef9b62688a49b3bc1eaf690cd4322dbf47c19db05e9cac7609df5181e"
+        }
+      }
+    }
+  ],
+  "official_candidate_payload_changed": false,
+  "physical_windows11_sac_test_performed": false,
+  "legal_approved": false,
+  "store_submission_performed": false
+}
