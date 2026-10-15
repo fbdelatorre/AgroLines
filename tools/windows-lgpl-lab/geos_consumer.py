@@ -72,6 +72,7 @@ def main():
     for handle in handles[: needed.value // ctypes.sizeof(ctypes.c_void_p)]:
         if (
             kernel.GetModuleFileNameW(handle, buf, len(buf))
+            and Path(buf.value).suffix.lower() == ".dll"
             and "geos" in Path(buf.value).name.lower()
         ):
             modules.append(buf.value)
