@@ -1,7 +1,7 @@
 name: Windows standalone offline experimental
 on:
   pull_request:
-    paths: ['distribution/**', 'docs/distribution/standalone/**', 'tests/test_standalone.py', 'scripts/signing_pipeline.py', 'scripts/Observe-NativeModules.ps1', '.github/workflows/windows-standalone.yml']
+    paths: ['distribution/**', 'docs/distribution/standalone/**', 'tests/test_standalone.py', 'tests/test_legal_materials.py', 'docs/legal/**', 'tools/legal-native/**', 'scripts/signing_pipeline.py', 'scripts/Observe-NativeModules.ps1', '.github/workflows/windows-standalone.yml']
 permissions:
   contents: read
 concurrency:
@@ -43,10 +43,18 @@ jobs:
           if ($LASTEXITCODE -or $epoch -notmatch '^\d+$') { throw 'Source epoch missing.' }
           Add-Content $env:GITHUB_ENV "SOURCE_DATE_EPOCH=$epoch"
           Add-Content $env:GITHUB_ENV 'PYTHONHASHSEED=0'
+      - name: Build BSD SZIP-compatible libaec and verify original decoder interoperability
+        run: |
+          ./distribution/windows/standalone/Build-Libaec.ps1
+          ./distribution/windows/standalone/Test-Libaec.ps1
       - name: Build standalone offline onedir and verify actual PYZ/external bindings
         run: |
-          ./build-env/Scripts/python.exe -m distribution.build --standalone --version 1.0.0.1
+          ./build-env/Scripts/python.exe -m distribution.build --standalone --version 1.0.0.2
           if ($LASTEXITCODE) { throw 'Standalone build failed.' }
+      - name: Verify exact legal materials in the built payload (not legal approval)
+        run: |
+          ./build-env/Scripts/python.exe -m distribution.legal_materials --payload dist/AgroLines --output evidence/standalone/legal-materials.json
+          if ($LASTEXITCODE) { throw 'Legal material integrity failed.' }
       - name: Observe normal GUI, WebEngine helper, GIS and offline operation with system-only PATH
         run: |
           ./scripts/Observe-NativeModules.ps1 -Executable dist/AgroLines/AgroLines.exe -OutputDirectory evidence/standalone/loads
@@ -66,7 +74,7 @@ jobs:
           ./distribution/windows/standalone/Prepare-Compiler.ps1 -Directory "${{ runner.temp }}/agrolines-inno"
           $compiler = Join-Path '${{ runner.temp }}' 'agrolines-inno/compiler/ISCC.exe'
           Copy-Item (Join-Path '${{ runner.temp }}' 'agrolines-inno/provenance.json') evidence/standalone/compiler-provenance.json
-          ./distribution/windows/Build-Installer.ps1 -Standalone -Experimental -Version 1.0.0.1 -CandidateId ($env:GITHUB_SHA.Substring(0,12)) -Compiler $compiler -PythonExecutable ./build-env/Scripts/python.exe
+          ./distribution/windows/Build-Installer.ps1 -Standalone -Experimental -Version 1.0.0.2 -CandidateId ($env:GITHUB_SHA.Substring(0,12)) -Compiler $compiler -PythonExecutable ./build-env/Scripts/python.exe
       - name: Bind experimental installer to source, lock, layout and exact payload
         run: |
           $files = @(Get-ChildItem dist/installers -Filter '*EXPERIMENTAL-UNSIGNED.exe')
@@ -76,7 +84,7 @@ jobs:
           if ($signature.Status -ne 'NotSigned') { throw 'Unexpected signing in unsigned workflow.' }
           $report = @{
             file=$file.Name; sha256=(Get-FileHash $file.FullName -Algorithm SHA256).Hash.ToLowerInvariant(); size_bytes=$file.Length
-            version='1.0.0.1'; architecture='x64'; profile='standalone-offline'; source_commit=$env:GITHUB_SHA
+            version='1.0.0.2'; architecture='x64'; profile='standalone-offline'; source_commit=$env:GITHUB_SHA
             source_head_commit='${{ github.event.pull_request.head.sha }}'
             run_url="https://github.com/$env:GITHUB_REPOSITORY/actions/runs/$env:GITHUB_RUN_ID"
             lock_sha256=(Get-FileHash distribution/windows/requirements.lock -Algorithm SHA256).Hash.ToLowerInvariant()
@@ -91,7 +99,7 @@ jobs:
           Add-Content $env:GITHUB_STEP_SUMMARY ('SHA-256: `' + $report.sha256 + '`')
           Add-Content $env:GITHUB_STEP_SUMMARY 'UNSIGNED. Build/probes only. No installation, signing, SAC approval, publication or commercial authorization.'
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
-        if: always() && github.head_ref != 'compliance/standalone-native-validation'
+        if: always() && !contains(fromJSON('["compliance/standalone-native-validation","compliance/standalone-legal-materials"]'), github.head_ref)
         with:
           name: agrolines-standalone-EXPERIMENTAL-UNSIGNED
           path: |
@@ -101,7 +109,7 @@ jobs:
           if-no-files-found: error
           retention-days: 30
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
-        if: always() && github.head_ref == 'compliance/standalone-native-validation'
+        if: always() && contains(fromJSON('["compliance/standalone-native-validation","compliance/standalone-legal-materials"]'), github.head_ref)
         with:
           name: agrolines-standalone-HOMOLOGATION-EVIDENCE-ONLY
           path: evidence/

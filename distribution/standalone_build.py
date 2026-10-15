@@ -77,10 +77,27 @@ def prepare_materials(root):
         if record["path"] == "AgroLinesPoC.exe" and record["group"] == "own":
             record["path"] = "AgroLines.exe"
     policy["profile"] = "standalone-offline"
+    from distribution.libaec_build import SLOT
+    from distribution.libaec_build import evidence as codec_evidence
+
+    codec = codec_evidence(root)
+    for record in policy["files"]:
+        if record["path"] == SLOT:
+            record.update(
+                baseline_sha256=codec["binary_sha256"],
+                group="libaec",
+                packages=[],
+                source_build_provenance="libaec-provenance.json",
+                origin_confirmed=True,
+                blocker="BSD source/build proven; signature/distribution review pending",
+            )
     policy["inherited_store_policy_sha256"] = file_hash(policy_path)
     (root / "native-signing-policy.json").write_text(json.dumps(policy, indent=2), encoding="utf-8")
     docs = root / "standalone-docs"
     shutil.copytree(ROOT / "docs/distribution/standalone", docs)
+    from distribution.legal_materials import prepare as prepare_legal
+
+    prepare_legal(root)
     report["external_python_sources"] = [
         {"path": p.relative_to(root).as_posix(), "sha256": file_hash(p)}
         for package in BINDINGS
@@ -105,6 +122,9 @@ def validate_installer_input(root, version, manufacturer):
         raise ValueError("Installer metadata/profile mismatch")
     if not verify(root, json.loads((root / "payload-manifest.json").read_text())):
         raise ValueError("Installer input hash mismatch")
+    from distribution.legal_materials import verify as verify_legal
+
+    verify_legal(root)
     from PyInstaller.archive.readers import CArchiveReader
 
     embedded = CArchiveReader(str(root / "AgroLines.exe")).open_embedded_archive("PYZ.pyz")

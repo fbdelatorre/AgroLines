@@ -26,7 +26,7 @@ a = Analysis(
         (str(root / 'assets/branding/AgroLines_Arte_Caixa_1080x1080.png'), 'assets/branding'),
         (str(prepared / 'metadata.json'), 'distribution/windows'),
     ] + ([(str(root / 'distribution/windows/msix/identity.json'), 'distribution/windows/msix')] if not standalone else [])
-      + (privacy_assets() if store else [])
+      + (privacy_assets(standalone=standalone) if store else [])
       + collect_data_files('pyproj') + collect_data_files('fiona'),
     hiddenimports=[],
     hookspath=[str(root / 'distribution/windows/hooks')] if store else [],

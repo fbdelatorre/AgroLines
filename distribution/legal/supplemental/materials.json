@@ -1,0 +1,757 @@
+{
+  "schema_version": 1,
+  "materials": [
+    {
+      "file": "upstream/libiconv-1.17--libiconv-1.17__COPYING.LIB",
+      "components": [
+        "iconv-Fiona"
+      ],
+      "origin": {
+        "url": "https://ftp.gnu.org/gnu/libiconv/libiconv-1.17.tar.gz",
+        "archive_sha256": "8f74213b56238c85a50a5329f77e06198771e70dd9a739779f4c02f65d971313",
+        "archive_member": "libiconv-1.17/COPYING.LIB",
+        "source_recipe_sha512_matched": true,
+        "obtained_in_run": 38750994975
+      },
+      "sha256": "dc626520dcd53a22f727af3ee42c770e56c97a64fe3adb063799d8ab032fe551",
+      "size_bytes": 26530,
+      "license": "LGPL-2.1-or-later",
+      "kind": "license_notice"
+    },
+    {
+      "file": "upstream/libiconv-1.17--libiconv-1.17__AUTHORS",
+      "components": [
+        "iconv-Fiona"
+      ],
+      "origin": {
+        "url": "https://ftp.gnu.org/gnu/libiconv/libiconv-1.17.tar.gz",
+        "archive_sha256": "8f74213b56238c85a50a5329f77e06198771e70dd9a739779f4c02f65d971313",
+        "archive_member": "libiconv-1.17/AUTHORS",
+        "source_recipe_sha512_matched": true,
+        "obtained_in_run": 38750994975
+      },
+      "sha256": "ed10ef2a01effb12849006d43262ffde5cf72a7d5423bbc8aa66fc6959774c0c",
+      "size_bytes": 31,
+      "license": "LGPL-2.1-or-later",
+      "kind": "license_notice"
+    },
+    {
+      "file": "upstream/libiconv-1.17--libiconv-1.17__libcharset__COPYING.LIB",
+      "components": [
+        "iconv-Fiona"
+      ],
+      "origin": {
+        "url": "https://ftp.gnu.org/gnu/libiconv/libiconv-1.17.tar.gz",
+        "archive_sha256": "8f74213b56238c85a50a5329f77e06198771e70dd9a739779f4c02f65d971313",
+        "archive_member": "libiconv-1.17/libcharset/COPYING.LIB",
+        "source_recipe_sha512_matched": true,
+        "obtained_in_run": 38750994975
+      },
+      "sha256": "dc626520dcd53a22f727af3ee42c770e56c97a64fe3adb063799d8ab032fe551",
+      "size_bytes": 26530,
+      "license": "LGPL-2.1-or-later",
+      "kind": "license_notice"
+    },
+    {
+      "file": "upstream/libiconv-1.17--libiconv-1.17__libcharset__AUTHORS",
+      "components": [
+        "iconv-Fiona"
+      ],
+      "origin": {
+        "url": "https://ftp.gnu.org/gnu/libiconv/libiconv-1.17.tar.gz",
+        "archive_sha256": "8f74213b56238c85a50a5329f77e06198771e70dd9a739779f4c02f65d971313",
+        "archive_member": "libiconv-1.17/libcharset/AUTHORS",
+        "source_recipe_sha512_matched": true,
+        "obtained_in_run": 38750994975
+      },
+      "sha256": "ed10ef2a01effb12849006d43262ffde5cf72a7d5423bbc8aa66fc6959774c0c",
+      "size_bytes": 31,
+      "license": "LGPL-2.1-or-later",
+      "kind": "license_notice"
+    },
+    {
+      "file": "upstream/freexl-2.0.0--freexl-2.0.0__AUTHORS",
+      "components": [
+        "freexl-Fiona"
+      ],
+      "origin": {
+        "url": "https://www.gaia-gis.it/gaia-sins/freexl-2.0.0.tar.gz",
+        "archive_sha256": "176705f1de58ab7c1eebbf5c6de46ab76fcd8b856508dbd28f5648f7c6e1a7f0",
+        "archive_member": "freexl-2.0.0/AUTHORS",
+        "source_recipe_sha512_matched": true,
+        "obtained_in_run": 38750994975
+      },
+      "sha256": "cd86708460dd406440f3e75ec2e62a451f09e9c48dc7954978e945c98fb449bb",
+      "size_bytes": 103,
+      "license": "See original COPYING; alternatives not automatically elected",
+      "kind": "license_notice"
+    },
+    {
+      "file": "upstream/freexl-2.0.0--freexl-2.0.0__COPYING",
+      "components": [
+        "freexl-Fiona"
+      ],
+      "origin": {
+        "url": "https://www.gaia-gis.it/gaia-sins/freexl-2.0.0.tar.gz",
+        "archive_sha256": "176705f1de58ab7c1eebbf5c6de46ab76fcd8b856508dbd28f5648f7c6e1a7f0",
+        "archive_member": "freexl-2.0.0/COPYING",
+        "source_recipe_sha512_matched": true,
+        "obtained_in_run": 38750994975
+      },
+      "sha256": "122e48ceeb04ac94ee94acd4e6841059096e14d89f258243ff50165b41d5e369",
+      "size_bytes": 25872,
+      "license": "See original COPYING; alternatives not automatically elected",
+      "kind": "license_notice"
+    },
+    {
+      "file": "upstream/spatialite-5.1.0--libspatialite-5.1.0__AUTHORS",
+      "components": [
+        "spatialite-Fiona"
+      ],
+      "origin": {
+        "url": "https://www.gaia-gis.it/gaia-sins/libspatialite-sources/libspatialite-5.1.0.tar.gz",
+        "archive_sha256": "43be2dd349daffe016dd1400c5d11285828c22fea35ca5109f21f3ed50605080",
+        "archive_member": "libspatialite-5.1.0/AUTHORS",
+        "source_recipe_sha512_matched": true,
+        "obtained_in_run": 38750994975
+      },
+      "sha256": "c7fba3d93fbe024276756796841d55ca3374db8043044ba39bf980e64b80d6fc",
+      "size_bytes": 427,
+      "license": "See original COPYING; alternatives not automatically elected",
+      "kind": "license_notice"
+    },
+    {
+      "file": "upstream/spatialite-5.1.0--libspatialite-5.1.0__COPYING",
+      "components": [
+        "spatialite-Fiona"
+      ],
+      "origin": {
+        "url": "https://www.gaia-gis.it/gaia-sins/libspatialite-sources/libspatialite-5.1.0.tar.gz",
+        "archive_sha256": "43be2dd349daffe016dd1400c5d11285828c22fea35ca5109f21f3ed50605080",
+        "archive_member": "libspatialite-5.1.0/COPYING",
+        "source_recipe_sha512_matched": true,
+        "obtained_in_run": 38750994975
+      },
+      "sha256": "b81965482914858383484d7e63b5de1d0c4647fa7f527e78d4499e4a7b76aab5",
+      "size_bytes": 26152,
+      "license": "See original COPYING; alternatives not automatically elected",
+      "kind": "license_notice"
+    },
+    {
+      "file": "upstream/geos-3.14.1--geos-3.14.1__COPYING",
+      "components": [
+        "GEOS-Shapely"
+      ],
+      "origin": {
+        "url": "https://download.osgeo.org/geos/geos-3.14.1.tar.bz2",
+        "archive_sha256": "3c20919cda9a505db07b5216baa980bacdaa0702da715b43f176fb07eff7e716",
+        "archive_member": "geos-3.14.1/COPYING",
+        "source_recipe_sha512_matched": false,
+        "obtained_in_run": 38750994975
+      },
+      "sha256": "dc626520dcd53a22f727af3ee42c770e56c97a64fe3adb063799d8ab032fe551",
+      "size_bytes": 26530,
+      "license": "See original COPYING; alternatives not automatically elected",
+      "kind": "license_notice"
+    },
+    {
+      "file": "upstream/geos-3.14.1--geos-3.14.1__AUTHORS",
+      "components": [
+        "GEOS-Shapely"
+      ],
+      "origin": {
+        "url": "https://download.osgeo.org/geos/geos-3.14.1.tar.bz2",
+        "archive_sha256": "3c20919cda9a505db07b5216baa980bacdaa0702da715b43f176fb07eff7e716",
+        "archive_member": "geos-3.14.1/AUTHORS",
+        "source_recipe_sha512_matched": false,
+        "obtained_in_run": 38750994975
+      },
+      "sha256": "289ba8fde56a09ccd36d197c221a5f6163f4523a45b8ced1e39b60490f135266",
+      "size_bytes": 2255,
+      "license": "See original COPYING; alternatives not automatically elected",
+      "kind": "license_notice"
+    },
+    {
+      "file": "licenses/vcpkg-license.txt",
+      "components": [
+        "iconv-Fiona",
+        "freexl-Fiona",
+        "spatialite-Fiona"
+      ],
+      "origin": "https://github.com/microsoft/vcpkg/blob/1de2026f28ead93ff1773e6e680387643e914ea1/LICENSE.txt",
+      "sha256": "1ee376fc340e0aa6ad6a3581c94126e741468705096ac92263048a21daa86460",
+      "size_bytes": 1073,
+      "license": "MIT",
+      "kind": "license_notice"
+    },
+    {
+      "file": "licenses/shapely-win32-license.txt",
+      "components": [
+        "Shapely-bindings"
+      ],
+      "origin": "https://github.com/shapely/shapely/blob/229c71f7128713b37201f3c77336d32b52467454/ci/wheelbuilder/LICENSE_win32",
+      "sha256": "d13fd8b2b8ce957ad47d722ef1e7b8c91841a8feb3fe4e7b9bd4148ba2b560bd",
+      "size_bytes": 1154,
+      "license": "Microsoft pass-through conditions; see original",
+      "kind": "license_notice"
+    },
+    {
+      "file": "licenses/attrs-license.txt",
+      "components": [
+        "attrs"
+      ],
+      "origin": "https://github.com/python-attrs/attrs/blob/26.1.0/LICENSE",
+      "sha256": "882115c95dfc2af1eeb6714f8ec6d5cbcabf667caff8729f42420da63f714e9f",
+      "size_bytes": 1109,
+      "license": "MIT",
+      "kind": "license_notice"
+    },
+    {
+      "file": "licenses/libaec-LICENSE.txt.txt",
+      "components": [
+        "libaec-SZIP"
+      ],
+      "origin": "https://github.com/Deutsches-Klimarechenzentrum/libaec/blob/0c4c01463d2c64a112a61271d317b74efb660608/LICENSE.txt",
+      "sha256": "9fdabba96fbc46af0ca018f86329f1e06e873b25801732001128d5afca265e36",
+      "size_bytes": 1346,
+      "license": "BSD-2-Clause",
+      "kind": "license_notice"
+    },
+    {
+      "file": "licenses/libaec-AUTHORS.txt",
+      "components": [
+        "libaec-SZIP"
+      ],
+      "origin": "https://github.com/Deutsches-Klimarechenzentrum/libaec/blob/0c4c01463d2c64a112a61271d317b74efb660608/AUTHORS",
+      "sha256": "0480abb45c212723a0c5f8456a5831b5ebb32c699a18b5f4bf7b2fc29636def1",
+      "size_bytes": 209,
+      "license": "BSD-2-Clause",
+      "kind": "license_notice"
+    },
+    {
+      "file": "licenses/openblas-lapack-license.txt",
+      "components": [
+        "OpenBLAS-NumPy"
+      ],
+      "origin": "https://github.com/OpenMathLib/OpenBLAS/blob/446c436e10450c348169808f1a6b3fae0925c9f7/lapack-netlib/LICENSE",
+      "sha256": "978539245c405775bf347b1256c36df4daf8b69a64b099e94b1d53742201621e",
+      "size_bytes": 2266,
+      "license": "BSD-3-Clause",
+      "kind": "license_notice"
+    },
+    {
+      "file": "licenses/openblas-upstream-license.txt",
+      "components": [
+        "OpenBLAS-NumPy"
+      ],
+      "origin": "https://github.com/OpenMathLib/OpenBLAS/blob/446c436e10450c348169808f1a6b3fae0925c9f7/LICENSE",
+      "sha256": "190b5a9c8d9723fe958ad33916bd7346d96fab3c5ea90832bb02d854f620fcff",
+      "size_bytes": 1548,
+      "license": "BSD-3-Clause",
+      "kind": "license_notice"
+    },
+    {
+      "file": "licenses/scipy-openblas64-0.3.34.106.0-LICENSE.txt",
+      "components": [
+        "OpenBLAS-NumPy"
+      ],
+      "origin": {
+        "wheel": "scipy_openblas64-0.3.34.106.0-py3-none-win_amd64.whl",
+        "sha256": "ea34bf76b8427ac2eca7a99334cbd8937a040303fa8364f9ed8e667d7c8e2c7d",
+        "url": "https://files.pythonhosted.org/packages/0c/17/ffc91653b566011d7c790116759266ec0a588fdd0e2f839d0343f3f79e0e/scipy_openblas64-0.3.34.106.0-py3-none-win_amd64.whl",
+        "members": [
+          "scipy_openblas64/include/openblas_config.h",
+          "scipy_openblas64-0.3.34.106.0.dist-info/licenses/LICENSE.txt"
+        ]
+      },
+      "sha256": "7317b3a9eb806cc83a0cc6b1c7c2fbe6018eed556daa9996e6e3a727a2a5bfbe",
+      "size_bytes": 46462,
+      "license": "BSD packaging/OpenBLAS/LAPACK; GPL-3.0 with GCC Runtime Library Exception 3.1 (full originals)",
+      "kind": "license_notice"
+    },
+    {
+      "file": "recipes/vcpkg/libiconv/0002-Config-for-MSVC.patch",
+      "components": [
+        "iconv-Fiona"
+      ],
+      "origin": "https://github.com/microsoft/vcpkg/blob/1de2026f28ead93ff1773e6e680387643e914ea1/ports/libiconv/0002-Config-for-MSVC.patch",
+      "sha256": "7eb9dded5bc1e34a02d2bfa88f8c1cf1f454b3cf5e82d0d0c45cf7bf45a54c19",
+      "size_bytes": 881,
+      "license": "MIT vcpkg; underlying component license separate",
+      "kind": "source_recipe"
+    },
+    {
+      "file": "recipes/vcpkg/libiconv/0003-Add-export.patch",
+      "components": [
+        "iconv-Fiona"
+      ],
+      "origin": "https://github.com/microsoft/vcpkg/blob/1de2026f28ead93ff1773e6e680387643e914ea1/ports/libiconv/0003-Add-export.patch",
+      "sha256": "e920b915952a0fb574a10538ac117e2d668465ea5353586296a923cb3319159d",
+      "size_bytes": 732,
+      "license": "MIT vcpkg; underlying component license separate",
+      "kind": "source_recipe"
+    },
+    {
+      "file": "recipes/vcpkg/libiconv/0004-ModuleFileName.patch",
+      "components": [
+        "iconv-Fiona"
+      ],
+      "origin": "https://github.com/microsoft/vcpkg/blob/1de2026f28ead93ff1773e6e680387643e914ea1/ports/libiconv/0004-ModuleFileName.patch",
+      "sha256": "5405e2493fa1846788e2bb2fd62334d2d98d2a5fa47a36a52047608472125d46",
+      "size_bytes": 554,
+      "license": "MIT vcpkg; underlying component license separate",
+      "kind": "source_recipe"
+    },
+    {
+      "file": "recipes/vcpkg/libiconv/clang-fortify.patch",
+      "components": [
+        "iconv-Fiona"
+      ],
+      "origin": "https://github.com/microsoft/vcpkg/blob/1de2026f28ead93ff1773e6e680387643e914ea1/ports/libiconv/clang-fortify.patch",
+      "sha256": "1e8bf046ffe3fe05d7b7485489a8aed80df5a084341c986a72b809aa91d9a500",
+      "size_bytes": 1743,
+      "license": "MIT vcpkg; underlying component license separate",
+      "kind": "source_recipe"
+    },
+    {
+      "file": "recipes/vcpkg/libiconv/portfile.cmake",
+      "components": [
+        "iconv-Fiona"
+      ],
+      "origin": "https://github.com/microsoft/vcpkg/blob/1de2026f28ead93ff1773e6e680387643e914ea1/ports/libiconv/portfile.cmake",
+      "sha256": "a8ffd508764e172b0afe6e179513428188858aedf437c967914adbf30d2ac1a9",
+      "size_bytes": 2383,
+      "license": "MIT vcpkg; underlying component license separate",
+      "kind": "source_recipe"
+    },
+    {
+      "file": "recipes/vcpkg/libiconv/usage",
+      "components": [
+        "iconv-Fiona"
+      ],
+      "origin": "https://github.com/microsoft/vcpkg/blob/1de2026f28ead93ff1773e6e680387643e914ea1/ports/libiconv/usage",
+      "sha256": "d7cbdf659f9d8a102889357ffb9957ce898867c64c20e6afbe736bd21a85a887",
+      "size_bytes": 127,
+      "license": "MIT vcpkg; underlying component license separate",
+      "kind": "source_recipe"
+    },
+    {
+      "file": "recipes/vcpkg/libiconv/vcpkg-cmake-wrapper.cmake",
+      "components": [
+        "iconv-Fiona"
+      ],
+      "origin": "https://github.com/microsoft/vcpkg/blob/1de2026f28ead93ff1773e6e680387643e914ea1/ports/libiconv/vcpkg-cmake-wrapper.cmake",
+      "sha256": "d83d9ca94c91ac33648d4286a7a7b855cf1abd53895e82832e389c3362d6c94f",
+      "size_bytes": 1239,
+      "license": "MIT vcpkg; underlying component license separate",
+      "kind": "source_recipe"
+    },
+    {
+      "file": "recipes/vcpkg/libiconv/vcpkg.json",
+      "components": [
+        "iconv-Fiona"
+      ],
+      "origin": "https://github.com/microsoft/vcpkg/blob/1de2026f28ead93ff1773e6e680387643e914ea1/ports/libiconv/vcpkg.json",
+      "sha256": "941db5b59b1e160165706545c3858056878fe16339d87054fb0ec49225680ed7",
+      "size_bytes": 190,
+      "license": "MIT vcpkg; underlying component license separate",
+      "kind": "source_recipe"
+    },
+    {
+      "file": "recipes/vcpkg/libspatialite/fix-linux-configure.patch",
+      "components": [
+        "spatialite-Fiona"
+      ],
+      "origin": "https://github.com/microsoft/vcpkg/blob/1de2026f28ead93ff1773e6e680387643e914ea1/ports/libspatialite/fix-linux-configure.patch",
+      "sha256": "e9531c9e8a83f4cc52adf313cdcdff8150d49d523da1decf25ae9f14fc326d95",
+      "size_bytes": 1296,
+      "license": "MIT vcpkg; underlying component license separate",
+      "kind": "source_recipe"
+    },
+    {
+      "file": "recipes/vcpkg/libspatialite/fix-makefiles.patch",
+      "components": [
+        "spatialite-Fiona"
+      ],
+      "origin": "https://github.com/microsoft/vcpkg/blob/1de2026f28ead93ff1773e6e680387643e914ea1/ports/libspatialite/fix-makefiles.patch",
+      "sha256": "0d8be12599436f0a942d351598a188523a5558348347b6a5adfd4f6d583804ab",
+      "size_bytes": 1506,
+      "license": "MIT vcpkg; underlying component license separate",
+      "kind": "source_recipe"
+    },
+    {
+      "file": "recipes/vcpkg/libspatialite/fix-mingw.patch",
+      "components": [
+        "spatialite-Fiona"
+      ],
+      "origin": "https://github.com/microsoft/vcpkg/blob/1de2026f28ead93ff1773e6e680387643e914ea1/ports/libspatialite/fix-mingw.patch",
+      "sha256": "509f3838c32d04eab9a0ae8cae891376d40bac8c89e2b12fb21d34792f545a03",
+      "size_bytes": 526,
+      "license": "MIT vcpkg; underlying component license separate",
+      "kind": "source_recipe"
+    },
+    {
+      "file": "recipes/vcpkg/libspatialite/fix-utf8-source.patch",
+      "components": [
+        "spatialite-Fiona"
+      ],
+      "origin": "https://github.com/microsoft/vcpkg/blob/1de2026f28ead93ff1773e6e680387643e914ea1/ports/libspatialite/fix-utf8-source.patch",
+      "sha256": "7a992aff209dff3bf6c1497b07a9a57ea8db66e050fddfa82d6ce04cea437e56",
+      "size_bytes": 1648,
+      "license": "MIT vcpkg; underlying component license separate",
+      "kind": "source_recipe"
+    },
+    {
+      "file": "recipes/vcpkg/libspatialite/gaiaconfig-msvc.patch",
+      "components": [
+        "spatialite-Fiona"
+      ],
+      "origin": "https://github.com/microsoft/vcpkg/blob/1de2026f28ead93ff1773e6e680387643e914ea1/ports/libspatialite/gaiaconfig-msvc.patch",
+      "sha256": "d9a077d182035bf6fcc0782bd4d934f8fd71e31677c481ccb32f1d3e13c9f56c",
+      "size_bytes": 1015,
+      "license": "MIT vcpkg; underlying component license separate",
+      "kind": "source_recipe"
+    },
+    {
+      "file": "recipes/vcpkg/libspatialite/portfile.cmake",
+      "components": [
+        "spatialite-Fiona"
+      ],
+      "origin": "https://github.com/microsoft/vcpkg/blob/1de2026f28ead93ff1773e6e680387643e914ea1/ports/libspatialite/portfile.cmake",
+      "sha256": "1c9eb370ac0fdf0cb695d3ff256a6631e3e83a5cb2f6ac806e9c26be581f52d7",
+      "size_bytes": 8803,
+      "license": "MIT vcpkg; underlying component license separate",
+      "kind": "source_recipe"
+    },
+    {
+      "file": "recipes/vcpkg/libspatialite/vcpkg.json",
+      "components": [
+        "spatialite-Fiona"
+      ],
+      "origin": "https://github.com/microsoft/vcpkg/blob/1de2026f28ead93ff1773e6e680387643e914ea1/ports/libspatialite/vcpkg.json",
+      "sha256": "b7e406c618451b7cfb0cf424d54bf0ff63bcdaa53134e01816e66d2fccf1ec7c",
+      "size_bytes": 1169,
+      "license": "MIT vcpkg; underlying component license separate",
+      "kind": "source_recipe"
+    },
+    {
+      "file": "recipes/vcpkg/freexl/dependencies.patch",
+      "components": [
+        "freexl-Fiona"
+      ],
+      "origin": "https://github.com/microsoft/vcpkg/blob/1de2026f28ead93ff1773e6e680387643e914ea1/ports/freexl/dependencies.patch",
+      "sha256": "bb4baa8fefce0ef0e0d7574805600a18f61ea505d7f70cebc9f9afaa35ea6059",
+      "size_bytes": 2286,
+      "license": "MIT vcpkg; underlying component license separate",
+      "kind": "source_recipe"
+    },
+    {
+      "file": "recipes/vcpkg/freexl/portfile.cmake",
+      "components": [
+        "freexl-Fiona"
+      ],
+      "origin": "https://github.com/microsoft/vcpkg/blob/1de2026f28ead93ff1773e6e680387643e914ea1/ports/freexl/portfile.cmake",
+      "sha256": "70fa556d5866e2013e6912bd4372818e71b9674ad8b3c1fa29aa7b77f169c76b",
+      "size_bytes": 979,
+      "license": "MIT vcpkg; underlying component license separate",
+      "kind": "source_recipe"
+    },
+    {
+      "file": "recipes/vcpkg/freexl/subdirs.patch",
+      "components": [
+        "freexl-Fiona"
+      ],
+      "origin": "https://github.com/microsoft/vcpkg/blob/1de2026f28ead93ff1773e6e680387643e914ea1/ports/freexl/subdirs.patch",
+      "sha256": "2e9d3cb3c438ca0ba0d639c87ac1147245bddb89fd70c6113d79e43ebdc2fd64",
+      "size_bytes": 341,
+      "license": "MIT vcpkg; underlying component license separate",
+      "kind": "source_recipe"
+    },
+    {
+      "file": "recipes/vcpkg/freexl/vcpkg.json",
+      "components": [
+        "freexl-Fiona"
+      ],
+      "origin": "https://github.com/microsoft/vcpkg/blob/1de2026f28ead93ff1773e6e680387643e914ea1/ports/freexl/vcpkg.json",
+      "sha256": "61446d1f42144880949642cc2f64034e410a92d9388a2bd172c32bf5ebb49d49",
+      "size_bytes": 359,
+      "license": "MIT vcpkg; underlying component license separate",
+      "kind": "source_recipe"
+    },
+    {
+      "file": "recipes/openblas/openblas-build-windows.sh",
+      "components": [
+        "OpenBLAS-NumPy"
+      ],
+      "origin": "https://github.com/MacPython/openblas-libs/tree/78fc0eaf6de71d92fd98f74f7e5bfa356a2f83e3",
+      "sha256": "4a6220eaf499d5b401c0d6bd9d881b7566cbf81c3d2903e247daff6db97f454f",
+      "size_bytes": 5988,
+      "license": "BSD-2-Clause packaging project; underlying components separate",
+      "kind": "source_recipe"
+    },
+    {
+      "file": "recipes/openblas/openblas-pyproject.toml",
+      "components": [
+        "OpenBLAS-NumPy"
+      ],
+      "origin": "https://github.com/MacPython/openblas-libs/tree/78fc0eaf6de71d92fd98f74f7e5bfa356a2f83e3",
+      "sha256": "04585869a1f2e34a891fa5c30364ced7d032666ba1a3ac5d6064b2ecdad111b3",
+      "size_bytes": 1505,
+      "license": "BSD-2-Clause packaging project; underlying components separate",
+      "kind": "source_recipe"
+    },
+    {
+      "file": "recipes/openblas/openblas-build-steps.sh",
+      "components": [
+        "OpenBLAS-NumPy"
+      ],
+      "origin": "https://github.com/MacPython/openblas-libs/tree/78fc0eaf6de71d92fd98f74f7e5bfa356a2f83e3",
+      "sha256": "ec73326c6aaa33dc4a15224d78453ae0561ff010124a7608a44c1ed24343c795",
+      "size_bytes": 8497,
+      "license": "BSD-2-Clause packaging project; underlying components separate",
+      "kind": "source_recipe"
+    },
+    {
+      "file": "recipes/openblas/openblas-windows.yml",
+      "components": [
+        "OpenBLAS-NumPy"
+      ],
+      "origin": "https://github.com/MacPython/openblas-libs/tree/78fc0eaf6de71d92fd98f74f7e5bfa356a2f83e3",
+      "sha256": "58b3d71461aef220a8f653336659dd361929a12122ee4643a973926418bbbe0c",
+      "size_bytes": 7052,
+      "license": "BSD-2-Clause packaging project; underlying components separate",
+      "kind": "source_recipe"
+    },
+    {
+      "file": "recipes/openblas/openblas-patches-windows_openblas-make-libs.patch",
+      "components": [
+        "OpenBLAS-NumPy"
+      ],
+      "origin": "https://github.com/MacPython/openblas-libs/tree/78fc0eaf6de71d92fd98f74f7e5bfa356a2f83e3",
+      "sha256": "d77d006b8f58267c2b416738fbd31e1a9e4ff629e82cccf8ca8565de182ecc17",
+      "size_bytes": 943,
+      "license": "BSD-2-Clause packaging project; underlying components separate",
+      "kind": "source_recipe"
+    },
+    {
+      "file": "recipes/openblas/openblas-build-openblas.sh",
+      "components": [
+        "OpenBLAS-NumPy"
+      ],
+      "origin": "https://github.com/MacPython/openblas-libs/tree/78fc0eaf6de71d92fd98f74f7e5bfa356a2f83e3",
+      "sha256": "896532481fd6701ae2906f9e8fcaf7d6a30aa262e712bf25d2888403bd237626",
+      "size_bytes": 325,
+      "license": "BSD-2-Clause packaging project; underlying components separate",
+      "kind": "source_recipe"
+    },
+    {
+      "file": "recipes/openblas/openblas-openblas_commit.txt",
+      "components": [
+        "OpenBLAS-NumPy"
+      ],
+      "origin": "https://github.com/MacPython/openblas-libs/tree/78fc0eaf6de71d92fd98f74f7e5bfa356a2f83e3",
+      "sha256": "a5377571f2180894f34f420543843936db89ae666b41b4fc23d2d4dd8fd42081",
+      "size_bytes": 22,
+      "license": "BSD-2-Clause packaging project; underlying components separate",
+      "kind": "source_recipe"
+    },
+    {
+      "file": "recipes/openblas/openblas-github_commit.txt",
+      "components": [
+        "OpenBLAS-NumPy"
+      ],
+      "origin": "https://github.com/MacPython/openblas-libs/tree/78fc0eaf6de71d92fd98f74f7e5bfa356a2f83e3",
+      "sha256": "306cc4930fb09451244780250dcf7626f0c52be353cb8c27cb97446a0b409629",
+      "size_bytes": 22,
+      "license": "BSD-2-Clause packaging project; underlying components separate",
+      "kind": "source_recipe"
+    },
+    {
+      "file": "recipes/openblas/openblas-ci-before-build.sh",
+      "components": [
+        "OpenBLAS-NumPy"
+      ],
+      "origin": "https://github.com/MacPython/openblas-libs/tree/78fc0eaf6de71d92fd98f74f7e5bfa356a2f83e3",
+      "sha256": "3c581c45e325103634a5229a87e62a4edee3e3a488492f076defa5f8e1679261",
+      "size_bytes": 1407,
+      "license": "BSD-2-Clause packaging project; underlying components separate",
+      "kind": "source_recipe"
+    },
+    {
+      "file": "recipes/shapely/install_geos.cmd.txt",
+      "components": [
+        "GEOS-Shapely"
+      ],
+      "origin": "https://github.com/shapely/shapely/blob/229c71f7128713b37201f3c77336d32b52467454/ci/install_geos.cmd",
+      "sha256": "540ece44323dfdff7cabd8cee8c4206fd086cfeeda9d9672845c6be251f2b89e",
+      "size_bytes": 1100,
+      "license": "BSD-3-Clause Shapely; LGPL-2.1 GEOS source separate",
+      "kind": "source_recipe"
+    },
+    {
+      "file": "recipes/shapely/release.yml.txt",
+      "components": [
+        "GEOS-Shapely"
+      ],
+      "origin": "https://github.com/shapely/shapely/blob/229c71f7128713b37201f3c77336d32b52467454/.github/workflows/release.yml",
+      "sha256": "2f6c2cfe1954b6b969519badd332f64b17f089d8dbd18475089bf6f1bdd7578f",
+      "size_bytes": 8525,
+      "license": "BSD-3-Clause Shapely",
+      "kind": "source_recipe"
+    },
+    {
+      "file": "recipes/shapely/pyproject.toml.txt",
+      "components": [
+        "GEOS-Shapely"
+      ],
+      "origin": "https://github.com/shapely/shapely/blob/229c71f7128713b37201f3c77336d32b52467454/pyproject.toml",
+      "sha256": "b3fbd82ba76d0cd6fa32e3698f5c6a3d45b6b3b1730c3ec3f6cfcc733267354c",
+      "size_bytes": 4818,
+      "license": "BSD-3-Clause Shapely",
+      "kind": "source_recipe"
+    },
+    {
+      "file": "licenses/CPython-Windows-Microsoft-conditions.txt",
+      "components": [
+        "Microsoft-VC-runtime"
+      ],
+      "origin": {
+        "source": "Audited official Windows CPython 3.12.10 LICENSE.txt",
+        "sha256": "e502c6b880ff58d614901495a9009c136539cd0b1e2a2abb8fc00b934c203419",
+        "scope": "Additional Conditions for this Windows binary build; not blanket license for all other MSVC components"
+      },
+      "sha256": "e502c6b880ff58d614901495a9009c136539cd0b1e2a2abb8fc00b934c203419",
+      "size_bytes": 36874,
+      "license": "PSF/historical terms and additional Windows Microsoft conditions; original full text",
+      "kind": "license_notice"
+    }
+  ],
+  "upstream_source_records": [
+    {
+      "component": "libiconv-1.17",
+      "url": "https://ftp.gnu.org/gnu/libiconv/libiconv-1.17.tar.gz",
+      "source_binary_correspondence": false,
+      "documents": [
+        {
+          "archive_member": "libiconv-1.17/COPYING.LIB",
+          "filename": "libiconv-1.17--libiconv-1.17__COPYING.LIB",
+          "sha256": "dc626520dcd53a22f727af3ee42c770e56c97a64fe3adb063799d8ab032fe551",
+          "bytes": 26530
+        },
+        {
+          "archive_member": "libiconv-1.17/AUTHORS",
+          "filename": "libiconv-1.17--libiconv-1.17__AUTHORS",
+          "sha256": "ed10ef2a01effb12849006d43262ffde5cf72a7d5423bbc8aa66fc6959774c0c",
+          "bytes": 31
+        },
+        {
+          "archive_member": "libiconv-1.17/libcharset/COPYING.LIB",
+          "filename": "libiconv-1.17--libiconv-1.17__libcharset__COPYING.LIB",
+          "sha256": "dc626520dcd53a22f727af3ee42c770e56c97a64fe3adb063799d8ab032fe551",
+          "bytes": 26530
+        },
+        {
+          "archive_member": "libiconv-1.17/libcharset/AUTHORS",
+          "filename": "libiconv-1.17--libiconv-1.17__libcharset__AUTHORS",
+          "sha256": "ed10ef2a01effb12849006d43262ffde5cf72a7d5423bbc8aa66fc6959774c0c",
+          "bytes": 31
+        },
+        {
+          "archive_member": "libiconv-1.17/COPYING",
+          "filename": "libiconv-1.17--libiconv-1.17__COPYING",
+          "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903",
+          "bytes": 35147
+        }
+      ],
+      "sha256": "8f74213b56238c85a50a5329f77e06198771e70dd9a739779f4c02f65d971313",
+      "sha512": "18a09de2d026da4f2d8b858517b0f26d853b21179cf4fa9a41070b2d140030ad9525637dc4f34fc7f27abca8acdc84c6751dfb1d426e78bf92af4040603ced86",
+      "size_bytes": 5413283,
+      "declared_source_input_checksum_matched": true,
+      "archive_file": "sources/libiconv-1.17.tar.gz",
+      "status": "downloaded_source_and_extracted_original_notices"
+    },
+    {
+      "component": "freexl-2.0.0",
+      "url": "https://www.gaia-gis.it/gaia-sins/freexl-2.0.0.tar.gz",
+      "source_binary_correspondence": false,
+      "documents": [
+        {
+          "archive_member": "freexl-2.0.0/AUTHORS",
+          "filename": "freexl-2.0.0--freexl-2.0.0__AUTHORS",
+          "sha256": "cd86708460dd406440f3e75ec2e62a451f09e9c48dc7954978e945c98fb449bb",
+          "bytes": 103
+        },
+        {
+          "archive_member": "freexl-2.0.0/COPYING",
+          "filename": "freexl-2.0.0--freexl-2.0.0__COPYING",
+          "sha256": "122e48ceeb04ac94ee94acd4e6841059096e14d89f258243ff50165b41d5e369",
+          "bytes": 25872
+        }
+      ],
+      "sha256": "176705f1de58ab7c1eebbf5c6de46ab76fcd8b856508dbd28f5648f7c6e1a7f0",
+      "sha512": "663ccc321c2f0dcab8ad9255b2a77066c2046d531a0aa723fb114301fa27b53bf980787dd2548c46541036eceef988c5eedf2bec053adf628929470e67ddc17a",
+      "size_bytes": 991565,
+      "declared_source_input_checksum_matched": true,
+      "archive_file": "sources/freexl-2.0.0.tar.gz",
+      "status": "downloaded_source_and_extracted_original_notices"
+    },
+    {
+      "component": "spatialite-5.1.0",
+      "url": "https://www.gaia-gis.it/gaia-sins/libspatialite-sources/libspatialite-5.1.0.tar.gz",
+      "source_binary_correspondence": false,
+      "documents": [
+        {
+          "archive_member": "libspatialite-5.1.0/AUTHORS",
+          "filename": "spatialite-5.1.0--libspatialite-5.1.0__AUTHORS",
+          "sha256": "c7fba3d93fbe024276756796841d55ca3374db8043044ba39bf980e64b80d6fc",
+          "bytes": 427
+        },
+        {
+          "archive_member": "libspatialite-5.1.0/COPYING",
+          "filename": "spatialite-5.1.0--libspatialite-5.1.0__COPYING",
+          "sha256": "b81965482914858383484d7e63b5de1d0c4647fa7f527e78d4499e4a7b76aab5",
+          "bytes": 26152
+        }
+      ],
+      "sha256": "43be2dd349daffe016dd1400c5d11285828c22fea35ca5109f21f3ed50605080",
+      "sha512": "2745b373e31cea58623224def6090c491b58409803bb71231450dfa2cfdf3aafc3fc6f680585d55d085008f8cf362c3062ae67ffc7d80257775a22eb81ef1e57",
+      "size_bytes": 6517377,
+      "declared_source_input_checksum_matched": true,
+      "archive_file": "sources/libspatialite-5.1.0.tar.gz",
+      "status": "downloaded_source_and_extracted_original_notices"
+    },
+    {
+      "component": "geos-3.14.1",
+      "url": "https://download.osgeo.org/geos/geos-3.14.1.tar.bz2",
+      "source_binary_correspondence": false,
+      "documents": [
+        {
+          "archive_member": "geos-3.14.1/COPYING",
+          "filename": "geos-3.14.1--geos-3.14.1__COPYING",
+          "sha256": "dc626520dcd53a22f727af3ee42c770e56c97a64fe3adb063799d8ab032fe551",
+          "bytes": 26530
+        },
+        {
+          "archive_member": "geos-3.14.1/AUTHORS",
+          "filename": "geos-3.14.1--geos-3.14.1__AUTHORS",
+          "sha256": "289ba8fde56a09ccd36d197c221a5f6163f4523a45b8ced1e39b60490f135266",
+          "bytes": 2255
+        }
+      ],
+      "sha256": "3c20919cda9a505db07b5216baa980bacdaa0702da715b43f176fb07eff7e716",
+      "sha512": "a5a27c34249a6b7fa8bc5d6d557f278bcc3a81ca188f9f543bee7afb6e47d9f8a545e676c5884c0651530bccd24eb929feaaf95cda8e73b033296073e6626f0d",
+      "size_bytes": 7013834,
+      "declared_source_input_checksum_matched": false,
+      "archive_file": "sources/geos-3.14.1.tar.bz2",
+      "status": "downloaded_source_and_extracted_original_notices"
+    }
+  ],
+  "remaining_materials": [
+    "U01: exact Qt/PySide6/Shiboken wheel build patches/configuration and static attribution coverage beyond already proven replacement.",
+    "U02: final WebEngine/PDFium/Chromium revisions, build patches/GN arguments and generated notices for the actual 6.140.0 payload.",
+    "U04: full Fiona static vendor/driver notice map and confirmation of build recipes beyond checked source inputs; no GCP/RTTOPO reopening.",
+    "U06: complete actual PROJ datasets/vendor attribution scope; MIT does not require generic full source distribution.",
+    "Independent legal review of LGPL mechanisms, EULA, Microsoft redistribution conditions and privacy remains required."
+  ],
+  "legal_approved": false
+}
