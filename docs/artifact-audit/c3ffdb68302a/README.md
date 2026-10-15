@@ -110,4 +110,8 @@ O run original informa **224 testes Windows aprovados, 2 skips**. Evidências Li
 e laboratórios Windows posteriores estão no PR #16 e são identificadas como
 posteriores: QtCore sintético modificado; GEOS sintético e consumidor congelado.
 Não retroagem aprovação para esta cópia nem demonstram recombinação do AgroLines.
-Resultados desta nova auditoria constam em [validation.json](validation.json).
+Resultados desta nova auditoria constam em [validation.json](validation.json) e
+[ci-results.json](ci-results.json): auditor estático e 16 controles aprovados em
+Windows/Linux; suíte existente Windows 224/2 skips, Linux 225/1 skip, precisão
+22/22 em ambos. Estes resultados pertencem ao SHA de código explicitado no registro;
+commits posteriores apenas documentais não mudam o candidato.

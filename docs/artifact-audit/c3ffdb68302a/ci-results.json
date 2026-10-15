@@ -1,0 +1,54 @@
+{
+  "tested_code_commit": "bb975fe34d60110d0d739cff138154ba55a09fa3",
+  "reference_commit_audited": "c3ffdb68302a0c46e640e68dc0b561acce250e6d",
+  "static_audit": {
+    "run_id": 38670332915,
+    "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38670332915",
+    "conclusion": "success",
+    "linux_controls_passed": 16,
+    "windows_controls_passed": 16,
+    "both_platforms_audited_original_pinned_zip": true,
+    "native_files": 178,
+    "historical_chain_valid": 72,
+    "current_time_expiry_historical_signtool_accepted": 28,
+    "unsigned": 78,
+    "payload_hashes": 768,
+    "block_map_files": 802,
+    "artifacts": [
+      {
+        "id": 11943745810,
+        "name": "c3ffdb-readonly-audit-windows-latest",
+        "zip_digest": "sha256:4d03ce3fad96f0d3214d37c6f74f272c4c6f21ac9641219cd8808875400e7a2d"
+      },
+      {
+        "id": 11943686513,
+        "name": "c3ffdb-readonly-audit-ubuntu-latest",
+        "zip_digest": "sha256:9eb72259cc89b3372d3ad77ad386b5b027c4799fefc204f7e7da2f59daa3e698"
+      }
+    ]
+  },
+  "quality": {
+    "run_id": 38670329044,
+    "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38670329044",
+    "conclusion": "success",
+    "windows_passed": 224,
+    "windows_skipped": 2,
+    "linux_passed": 225,
+    "linux_skipped": 1,
+    "precision_passed_each_platform": 22,
+    "visual_scales": [
+      1,
+      1.25,
+      1.5
+    ],
+    "native_audit": "success",
+    "isolated_server_integration": "success"
+  },
+  "limitations": [
+    "Hosted Windows is not a physical Windows 11/SAC acceptance test.",
+    "Static Windows audit rechecks archive/report bindings, not current Windows Authenticode trust of every PE.",
+    "No installation, signing, reference payload mutation, legal approval or publication.",
+    "Artifact report ZIP retrieval from this cloud was unavailable; cross-platform output byte equality is not asserted."
+  ],
+  "reference_msix_sha256_unchanged": "e6a2ab8e65a91df3a2a1613d22b3ecc3c478d774e1d08b39561960085686068b"
+}

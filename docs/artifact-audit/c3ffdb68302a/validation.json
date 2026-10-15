@@ -25,7 +25,7 @@
   },
   "ruff_check": "passed",
   "ruff_format_check": "passed",
-  "new_windows_ci": "pending_reader_normalization_fix",
+  "new_windows_ci": "passed_static_archive_audit_and_16_controls",
   "physical_windows_tests": "not_run",
   "native_binaries_executed_from_artifact": false,
   "msix_installed": false,
@@ -49,5 +49,6 @@
       "windows_controls": "14 passed, 1 failed",
       "reason": "ZipInfo also normalizes names during Windows read. Auditor hardened to validate orig_filename and reject silent normalization/truncation; added host-independent regression control. No criteria weakened or payload changed."
     }
-  ]
+  ],
+  "ci_results": "ci-results.json"
 }
