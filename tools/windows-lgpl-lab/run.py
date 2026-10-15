@@ -158,6 +158,7 @@ def main():
                 "cl",
                 "/nologo",
                 "/std:c++17",
+                "/Zc:__cplusplus",
                 "/EHsc",
                 "/MD",
                 "/I" + str(build / "include"),
