@@ -2,7 +2,7 @@ name: Windows functional candidate (private binaries, evidence only)
 on:
   pull_request:
     branches: ['compliance/webengine-source-linkage']
-    paths: ['distribution/**', 'desktop/diagnostics.py', 'scripts/Observe-NativeModules.ps1', '.github/workflows/windows-functional.yml', 'docs/distribution/functional/**']
+    paths: ['distribution/**', 'desktop/**', 'core/**', 'scripts/Observe-NativeModules.ps1', 'tests/test_functional_candidate.py', '.github/workflows/windows-functional.yml', 'docs/distribution/functional/**']
 permissions:
   contents: read
 concurrency:
