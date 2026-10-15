@@ -116,6 +116,12 @@ def _component_rows(payload, registry):
 
     extra_natives, extra_components = additions(payload)
     registry["components"].extend(extra_components)
+    for component in registry["components"]:
+        if any(row["component"] == component["id"] for row in geos.values()):
+            component["license_evidence"] = (
+                "LGPL-2.1; same-version source build with recorded OUTPUT_NAME modification; "
+                "source/build correspondence proven for this pair; LGPL delivery review separate"
+            )
     for file in sorted(Path(payload).rglob("*")):
         if not file.is_file() or file.suffix.casefold() not in (".dll", ".pyd", ".exe"):
             continue

@@ -2,9 +2,11 @@
 
 import argparse
 import json
+import os
 import shutil
 import subprocess
 import tarfile
+from datetime import UTC, datetime
 from pathlib import Path
 
 from distribution.source_bundle import obtain, sha
@@ -46,8 +48,11 @@ def build(work, cache):
         targets = [r for r in original["files"] if r["component"] == component]
         if len(targets) != 2:
             raise ValueError("Expected both GEOS C/C++ DLLs")
+        modification_date = datetime.fromtimestamp(int(os.environ["SOURCE_DATE_EPOCH"]), UTC).date()
         addition = (
-            "\n"
+            "\n# Modified by AgroLines on "
+            + str(modification_date)
+            + ": output library basenames only; original GEOS LGPL terms retained.\n"
             + "\n".join(
                 "set_target_properties("
                 + ("geos_c" if Path(r["path"]).name.startswith("geos_c-") else "geos")

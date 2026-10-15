@@ -36,6 +36,7 @@ try {
     Finish-Lab (Start-Lab 'writer')
     try { Finish-Lab $observer } finally { $observer=$null }
     Copy-Item (Join-Path $directory 'observer.json') (Join-Path $Output 'two-process-state.json')
+    Write-Output ('AGROLINES_LICENSE_CONCURRENCY=' + (Get-Content (Join-Path $Output 'two-process-state.json') -Raw))
 } finally {
     if ($observer) { if (-not $observer.HasExited) { $observer.Kill($true) }; $observer.Dispose() }
     Finish-Lab (Start-Lab 'cleanup')

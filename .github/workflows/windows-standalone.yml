@@ -169,7 +169,8 @@ jobs:
             }
           } finally { $env:PATH=$oldPath }
           $license=Get-Content evidence/commercial/frozen-license.json -Raw | ConvertFrom-Json
-          if (-not $license.passed -or -not $license.frozen -or -not $license.dpapi_roundtrip -or $license.sac_approved) { throw 'Invalid commercial proof.' }
+          if (-not $license.passed -or -not $license.frozen -or -not $license.dpapi_roundtrip -or -not $license.signed_license_gis_edit_history_backup_and_recovery -or $license.sac_approved) { throw 'Invalid commercial proof.' }
+          Write-Output ('AGROLINES_COMMERCIAL_FROZEN=' + (($license | Select-Object frozen,passed,dpapi_roundtrip,offline_valid,activation_dialog_visible,activation_key_field_hidden,signed_license_gis_edit_history_backup_and_recovery,revocation_survived_file_restore,sac_approved,deployed_https_activation_proven) | ConvertTo-Json -Compress))
           ./distribution/windows/standalone/Test-LicenseConcurrency.ps1 -Executable dist/AgroLines/AgroLines.exe -Fixture "$env:RUNNER_TEMP/licensing-fixture/fixture.json" -Output evidence/commercial/concurrency
           ./distribution/windows/standalone/Test-CommercialBindingReplacement.ps1 -Payload dist/AgroLines -Fixture "$env:RUNNER_TEMP/licensing-fixture/fixture.json" -Copy "$env:RUNNER_TEMP/commercial-binding-copy" -Output evidence/commercial/binding-replacement
           ./distribution/windows/standalone/Prepare-SigningPlan.ps1 -Payload dist/AgroLines -SourceCommit $env:GITHUB_SHA -PythonExecutable ./build-env/Scripts/python.exe -Output evidence/commercial/signing

@@ -167,6 +167,29 @@ def test_full_lifecycle_two_seats_offline_renewal_revocation(licensed, tmp_path)
     project = LocalProject.create(
         tmp_path / "agricultura.agrolines", "Projeto sintético", license_verifier=first
     )
+    import json
+
+    from core.precision import VertexEditor
+
+    source = tmp_path / "licensed-offline.geojson"
+    source.write_text(
+        json.dumps(
+            {
+                "type": "Polygon",
+                "coordinates": [[[-45, -22], [-44.999, -22], [-44.999, -21.999], [-45, -22]]],
+            }
+        )
+    )
+    project.import_files([source], source_crs="EPSG:4326", acknowledge_warnings=True)
+    feature = project.features()[0]
+    editor = VertexEditor(feature["original_geometry"], feature["source_crs"], project.work_crs)
+    location, coordinate = next(editor.vertices())
+    editor.set_vertex(location, coordinate[0] + 0.02, coordinate[1])
+    editor.undo()
+    editor.redo()
+    project.save_geometry(feature["id"], editor.source_geometry(), feature["revision"])
+    preserved_features = project.features()
+    assert len(project.history(feature["id"])) == 2
     project.backup(tmp_path / "before.agrolines")
     first.transport.failed = False
     old_expiry = first.parsed()["expires_at"]
@@ -197,7 +220,7 @@ def test_full_lifecycle_two_seats_offline_renewal_revocation(licensed, tmp_path)
     recovered = LicenseManager(first.vault, first.anchor, keyring, first.transport)
     assert recovered.verify().read_only
     project.backup(tmp_path / "after.agrolines")  # user data stays recoverable
-    assert project.features() == []
+    assert project.features() == preserved_features
     with pytest.raises(PermissionError):
         LocalProject.create(tmp_path / "blocked.agrolines", "Blocked", license_verifier=recovered)
     project.close()

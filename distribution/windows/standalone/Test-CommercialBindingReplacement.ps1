@@ -41,3 +41,5 @@ if ((Get-FileHash (Join-Path $copy 'AgroLines.exe') -Algorithm SHA256).Hash -cne
     (Get-FileHash (Join-Path $payload 'AgroLines.exe') -Algorithm SHA256).Hash -cne $original) { throw 'Own executable changed during experiment.' }
 @{ modified_bindings_loaded=$true; licensed_frozen_gis_passed=$true; own_executable_unchanged=$true; native_qt_rebuilt_in_this_experiment=$false; legal_approved=$false; sac_approved=$false } |
     ConvertTo-Json | Set-Content (Join-Path $output 'result.json') -Encoding utf8
+
+Write-Output ('AGROLINES_COMMERCIAL_BINDING_REPLACEMENT=' + (Get-Content (Join-Path $output 'result.json') -Raw))

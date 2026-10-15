@@ -955,8 +955,8 @@
         "GEOS-Fiona",
         "GEOS-Shapely"
       ],
-      "sha256": "330987998b0edefd9e767922f4a7f966718fa5e692f2bf74c2a8059154c86212",
-      "size_bytes": 1505,
+      "sha256": "a27e1dcadeaeb8fed15dc91dc01b4058b908f77765f331945753826c3d30197e",
+      "size_bytes": 1720,
       "license": "Build instructions for LGPL-2.1 GEOS; not application source",
       "kind": "build_recipe",
       "origin": {

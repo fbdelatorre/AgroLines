@@ -87,6 +87,40 @@ def run(fixture_path, output):
                 }
             )
             assert manager.verify().permits(Module.GEOMETRY)
+            from core.local_projects import LocalProject
+            from core.precision import VertexEditor
+
+            source = Path(work) / "licensed-offline.geojson"
+            source.write_text(
+                json.dumps(
+                    {
+                        "type": "Polygon",
+                        "coordinates": [
+                            [[-45, -22], [-44.999, -22], [-44.999, -21.999], [-45, -22]]
+                        ],
+                    }
+                )
+            )
+            project_path = Path(work) / "licensed.agrolines"
+            project = LocalProject.create(
+                project_path, "Projeto licenciado sintético", license_verifier=manager
+            )
+            try:
+                project.import_files([source], source_crs="EPSG:4326", acknowledge_warnings=True)
+                feature = project.features()[0]
+                editor = VertexEditor(
+                    feature["original_geometry"], feature["source_crs"], project.work_crs
+                )
+                location, coordinate = next(editor.vertices())
+                editor.set_vertex(location, coordinate[0] + 0.02, coordinate[1])
+                editor.undo()
+                editor.redo()
+                project.save_geometry(feature["id"], editor.source_geometry(), feature["revision"])
+                preserved = project.features()
+                assert len(project.history(feature["id"])) == 2
+                project.backup(Path(work) / "licensed-backup.agrolines")
+            finally:
+                project.close()
             assert fixture["active"]["payload"].encode() not in vault.path.read_bytes()
             reopened = LicenseManager(vault, anchor, KEYRING, NoNetwork())
             assert reopened.state["installation_id"] == install
@@ -101,6 +135,13 @@ def run(fixture_path, output):
             vault.path.write_bytes(previous)
             restored = LicenseManager(vault, anchor, KEYRING, NoNetwork())
             assert restored.verify().read_only
+            recovery = LocalProject(project_path, restored)
+            try:
+                assert recovery.features() == preserved
+                recovery.backup(Path(work) / "after-revocation.agrolines")
+            finally:
+                recovery.close()
+            result["signed_license_gis_edit_history_backup_and_recovery"] = True
             result.update(
                 dpapi_roundtrip=True,
                 offline_valid=True,

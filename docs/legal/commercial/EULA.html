@@ -59,6 +59,15 @@ preservar interfaces compatíveis; compatibilidade, funcionamento em Windows
 protegido e instruções de instalação continuam sujeitos às evidências do dossiê.
 Não se promete que PyInstaller impeça a extração do código empacotado.
 
+Para os trabalhos combinados sujeitos à LGPLv2.1 §6, os termos permitem ao cliente
+modificar o trabalho para seu próprio uso e realizar engenharia reversa para depurar
+essas modificações. Para LGPLv3, preservam-se as permissões necessárias à modificação
+das partes da biblioteca e à engenharia reversa para depurar tais modificações.
+Essas ressalvas não concedem autorização geral para redistribuir o código próprio
+do AgroLines além do que as licenças aplicáveis efetivamente exigirem. A redação,
+o mecanismo compartilhado e eventuais informações de instalação continuam sujeitos
+à revisão profissional indicada no dossiê.
+
 A assinatura própria do AgroLines não é uma chave de emissão de licenças de Qt/GEOS
 nem restringe direitos sobre essas bibliotecas. Bibliotecas modificadas legitimamente
 não serão recusadas apenas por um hash diferente em um mecanismo LGPL autorizado;

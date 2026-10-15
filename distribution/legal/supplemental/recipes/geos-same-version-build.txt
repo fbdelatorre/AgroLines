@@ -3,7 +3,9 @@ Source archives/commits/checksums: geos-3.11.3 and geos-3.14.1 in source manifes
 Extract original archive, preserve COPYING/AUTHORS and source.
 Use MSVC x64, Ninja, Release, BUILD_SHARED_LIBS=ON, BUILD_TESTING=OFF,
 BUILD_BENCHMARKS=OFF, CMAKE_POLICY_VERSION_MINIMUM=3.5.
-The only source-tree change is appending to CMakeLists.txt:
+The only source-tree change is appending to CMakeLists.txt (retain this modification
+notice with the actual UTC modification date, recorded in the delivered build JSON):
+# Modified by AgroLines on YYYY-MM-DD: output library basenames only; original GEOS LGPL terms retained.
 set_target_properties(geos PROPERTIES OUTPUT_NAME "BASENAME_REQUIRED_BY_CONSUMER")
 set_target_properties(geos_c PROPERTIES OUTPUT_NAME "BASENAME_REQUIRED_BY_CONSUMER_C")
 Use the two precise basenames in the delivered legal/geos-fontes-build.json,
