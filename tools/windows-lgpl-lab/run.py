@@ -138,6 +138,7 @@ def main():
                 "testlib",
                 "icu",
                 "glib",
+                "windeployqt",
             )
         ]
     else:
@@ -247,7 +248,7 @@ def main():
         "configure": [str(x) for x in config],
         "results": results,
         "windows": sys.getwindowsversion().build,
-        "compiler": "MSVC; version recorded in workflow log",
+        "compiler": subprocess.run(["cl"], capture_output=True, text=True).stderr.strip(),
         "trusted_msix_demonstrated": False,
         "agrolines_recombination_demonstrated": False,
         "sac_approved": False,

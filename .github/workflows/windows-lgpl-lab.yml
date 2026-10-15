@@ -23,6 +23,13 @@ jobs:
           architecture: x64
       - name: Prepare build tools and baseline regression dependencies
         run: python -m pip install -e ".[dev,desktop]" "pyinstaller==6.22.3" "cmake==4.4.4" "ninja==1.13.2"
+      - name: Record hosted laboratory security state without changing settings
+        shell: pwsh
+        run: |
+          . ./scripts/Windows-Security.ps1
+          $defender = $null
+          try { $defender = Get-MpComputerStatus | Select-Object AMServiceEnabled,AntivirusEnabled,RealTimeProtectionEnabled } catch {}
+          @{ os=(Get-CimInstance Win32_OperatingSystem | Select-Object Caption,Version,BuildNumber,OSArchitecture); sac=(Get-AgroSacState); defender=$defender; physical_win11_approved=$false } | ConvertTo-Json -Depth 12 | Set-Content (Join-Path $env:RUNNER_TEMP 'lab-security.json')
       - name: Negative controls for evidence and architecture guards
         run: python -m pytest -q tools/windows-lgpl-lab/test_lab.py
       - name: Baseline computational precision (shipped engine, separate from compiled laboratory GEOS)
@@ -48,4 +55,5 @@ jobs:
           path: |
             ${{ runner.temp }}/lgpl-lab/evidence/
             baseline-precision.json
+            ${{ runner.temp }}/lab-security.json
           if-no-files-found: error
