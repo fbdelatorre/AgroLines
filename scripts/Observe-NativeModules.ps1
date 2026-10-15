@@ -7,6 +7,8 @@ $prefix = $root.TrimEnd('\') + '\'
 $windowsPrefix = $env:WINDIR.TrimEnd('\') + '\'
 New-Item -ItemType Directory -Path $OutputDirectory -Force | Out-Null
 $directory = [IO.Path]::GetFullPath($OutputDirectory)
+$imageName = [IO.Path]::GetFileName($Executable)
+if ($imageName -notin @('AgroLines.exe','AgroLinesPoC.exe')) { throw 'Unexpected application image.' }
 $allErrors = [Collections.Generic.List[object]]::new()
 function Observe-Probe {
     param([string]$Name, [string]$Argument)
@@ -30,7 +32,7 @@ function Observe-Probe {
         $proc.Start() | Out-Null
         $known.Add($proc.Id) | Out-Null
         while (-not $proc.HasExited -and $timer.ElapsedMilliseconds -lt 120000) {
-            $entries = @(Get-CimInstance Win32_Process -Filter "Name = 'AgroLinesPoC.exe' OR Name = 'QtWebEngineProcess.exe'")
+            $entries = @(Get-CimInstance Win32_Process -Filter "Name = '$imageName' OR Name = 'QtWebEngineProcess.exe'")
             $changed = $true
             while ($changed) {
                 $changed = $false

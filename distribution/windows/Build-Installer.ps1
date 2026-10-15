@@ -1,15 +1,34 @@
 param(
     [string]$Version = '0.1.0.1',
     [string]$Manufacturer = 'Delatorre Corporation',
-    [string]$CertificateThumbprint
+    [string]$CertificateThumbprint,
+    [switch]$Standalone,
+    [switch]$Experimental,
+    [string]$CandidateId,
+    [string]$Compiler,
+    [string]$PythonExecutable = 'python'
 )
 $ErrorActionPreference = 'Stop'
 $root = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
-$compiler = Join-Path ${env:ProgramFiles(x86)} 'Inno Setup 6\ISCC.exe'
-if (-not (Test-Path -LiteralPath $compiler)) { throw 'Instale o compilador Inno Setup 6 no builder, nao no cliente.' }
+if (-not $Compiler) {
+    $Compiler = Join-Path ${env:ProgramFiles(x86)} 'Inno Setup 6\ISCC.exe'
+}
+if (-not (Test-Path -LiteralPath $Compiler)) { throw 'Compilador Inno Setup indisponivel no builder.' }
+if ((Get-AuthenticodeSignature -LiteralPath $Compiler).Status -ne 'Valid') { throw 'Compilador sem assinatura confiavel.' }
 if ($Manufacturer -match '["\r\n]' -or $Manufacturer.Length -gt 120) { throw 'Fabricante invalido.' }
 if ($Version -notmatch '^\d+\.\d+\.\d+\.\d+$') { throw 'Versao invalida.' }
 $arguments = @('/Qp', "/DVersion=$Version", "/DManufacturer=$Manufacturer")
+if ($Standalone) {
+    if (-not $Experimental -or $CertificateThumbprint) { throw 'Standalone limitado a compilacao experimental sem assinatura nesta etapa.' }
+    if ($CandidateId -notmatch '^[0-9a-f]{12}$') { throw 'Identificador de candidato invalido.' }
+    # Validate exact payload/metadata before compiling. Never install or launch it here.
+    Push-Location $root
+    try {
+        & $PythonExecutable -m distribution.standalone_build --root dist/AgroLines --version $Version --manufacturer $Manufacturer
+        if ($LASTEXITCODE) { throw 'Payload standalone invalido.' }
+    } finally { Pop-Location }
+    $arguments += @('/DStandalone', '/DExperimental', "/DCandidateId=$CandidateId")
+}
 if ($CertificateThumbprint) {
     if ($CertificateThumbprint -notmatch '^[0-9a-fA-F]{40}$') { throw 'Thumbprint invalido.' }
     $signTool = Get-ChildItem 'C:\Program Files (x86)\Windows Kits\10\bin' -Filter signtool.exe -Recurse | Where-Object FullName -match '\\x64\\signtool.exe$' | Sort-Object FullName -Descending | Select-Object -First 1
@@ -20,6 +39,6 @@ if ($CertificateThumbprint) {
     $arguments += '/Sagrolines=' + $command
 }
 $arguments += (Join-Path $PSScriptRoot 'installer.iss')
-& $compiler @arguments
+& $Compiler @arguments
 if ($LASTEXITCODE -ne 0) { throw 'Compilacao do instalador falhou.' }
 if (-not $CertificateThumbprint) { Write-Output 'ARTEFATO INTERNO NAO ASSINADO: nao aprovado para SAC/distribuicao.' }

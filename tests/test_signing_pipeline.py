@@ -95,6 +95,23 @@ def test_valid_timestamp_policy_does_not_reject_generic_expiry(specimen):
     assert not result["sac_approved"] and not result["distribution_approved"]
 
 
+@pytest.mark.parametrize("standalone", [False, True])
+def test_standalone_own_entrypoint_requires_explicit_profile(specimen, standalone):
+    root, policy, native, signatures, tools = specimen
+    previous = root / "AgroLinesPoC.exe"
+    target = root / "AgroLines.exe"
+    previous.rename(target)
+    for document in (native, signatures, tools):
+        next(f for f in document["files"] if Path(f["path"]) == previous)["path"] = str(target)
+    next(r for r in policy["files"] if r["action"] == "sign_own")["path"] = "AgroLines.exe"
+    if standalone:
+        policy["profile"] = "standalone-offline"
+    (root / "payload-manifest.json").write_text(json.dumps(manifest(root)))
+    result = run(specimen)
+    assert result["ready_for_authorized_signing"] is standalone
+    assert not result["signing_performed"] and not result["distribution_approved"]
+
+
 @pytest.mark.parametrize(
     "field,value",
     [("origin_confirmed", False), ("rights_confirmed", False), ("rights_evidence", None)],
