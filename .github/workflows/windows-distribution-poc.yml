@@ -12,7 +12,7 @@ jobs:
     # The Store integration uses MSIX extraction/probes, not the legacy unsigned installer.
     # Compliance work inherits the Store candidate: never install the legacy unsigned PoC.
     # Store extraction/probes, quality and native/compliance audits remain enabled.
-    if: github.ref != 'refs/heads/integration/store-candidate' && github.head_ref != 'integration/store-candidate' && github.base_ref != 'integration/store-candidate' && !startsWith(github.ref_name, 'compliance/') && !startsWith(github.head_ref, 'compliance/')
+    if: github.ref != 'refs/heads/integration/store-candidate' && github.head_ref != 'integration/store-candidate' && github.base_ref != 'integration/store-candidate' && !startsWith(github.ref_name, 'compliance/') && !startsWith(github.head_ref, 'compliance/') && !startsWith(github.head_ref, 'distribution/functional-candidate-') && !startsWith(github.ref_name, 'distribution/functional-candidate-')
     runs-on: windows-latest
     timeout-minutes: 40
     steps:

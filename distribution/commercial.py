@@ -10,6 +10,19 @@ enforce(licensing_endpoint=ORIGIN)
 def main():
     import sys
 
+    if TEST_PROFILE and len(sys.argv) == 6 and sys.argv[1] == "--installed-probe":
+        from distribution.installed_probe import run
+
+        try:
+            return run(sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5])
+        except Exception as exc:
+            import json
+            from pathlib import Path
+
+            Path(sys.argv[5]).write_text(
+                json.dumps({"passed": False, "error_type": type(exc).__name__, "message": str(exc)})
+            )
+            return 1
     if TEST_PROFILE and len(sys.argv) == 5 and sys.argv[1] == "--license-concurrency":
         from distribution.commercial_probe import concurrency
 
@@ -92,6 +105,8 @@ def main():
 
     assets = Path(sys._MEIPASS) / "distribution/windows"
     app.setApplicationName("AgroLines")
+    if TEST_PROFILE:
+        app.setApplicationName("AgroLines TESTE")
     app.setWindowIcon(QIcon(str(assets / "AgroLines.ico")))
     try:
         manager = make_manager(KEYRING, LicenseTransport(ORIGIN))
@@ -101,9 +116,16 @@ def main():
         manager = RecoveryManager(exc)
         QMessageBox.warning(None, "Ativação protegida", manager.reason)
     window = CommercialWindow(manager)
+    if TEST_PROFILE:
+        from PySide6.QtWidgets import QLabel
+
+        window.setWindowTitle(window.windowTitle() + " · TESTE")
+        window.statusBar().addPermanentWidget(QLabel("TESTE · sem validade comercial"))
     window.show()
     return app.exec()
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    from desktop.diagnostics import run
+
+    raise SystemExit(run(main))

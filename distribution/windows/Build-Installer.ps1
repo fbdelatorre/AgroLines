@@ -4,6 +4,7 @@ param(
     [string]$CertificateThumbprint,
     [switch]$Standalone,
     [switch]$Experimental,
+    [switch]$FunctionalTest,
     [string]$CandidateId,
     [string]$Compiler,
     [string]$PythonExecutable = 'python'
@@ -18,6 +19,11 @@ if ((Get-AuthenticodeSignature -LiteralPath $Compiler).Status -ne 'Valid') { thr
 if ($Manufacturer -match '["\r\n]' -or $Manufacturer.Length -gt 120) { throw 'Fabricante invalido.' }
 if ($Version -notmatch '^\d+\.\d+\.\d+\.\d+$') { throw 'Versao invalida.' }
 $arguments = @('/Qp', "/DVersion=$Version", "/DManufacturer=$Manufacturer")
+if ($FunctionalTest -and (-not $Standalone -or -not $Experimental)) { throw 'FunctionalTest requires explicit experimental standalone.' }
+if ($FunctionalTest) {
+    $trust=Join-Path $root 'build/distribution/_agrolines_license_settings.py'
+    if (-not (Test-Path $trust) -or (Get-Content $trust -Raw) -notmatch '(?m)^TEST_PROFILE = True\r?$') { throw 'FunctionalTest requires synthetic compiled trust; production is not a test unlock.' }
+}
 if ($Standalone) {
     if (-not $Experimental -or $CertificateThumbprint) { throw 'Standalone limitado a compilacao experimental sem assinatura nesta etapa.' }
     if ($CandidateId -notmatch '^[0-9a-f]{12}$') { throw 'Identificador de candidato invalido.' }
@@ -33,6 +39,7 @@ if ($Standalone) {
         (Get-FileHash (Join-Path $PSScriptRoot 'standalone/launcher.cpp') -Algorithm SHA256).Hash.ToLowerInvariant() -cne $launcherProvenance.source_sha256) { throw 'Launcher build/source changed.' }
     [IO.File]::WriteAllText((Join-Path $root 'build/distribution/AgroLines.current.txt'), "$Version-$CandidateId`n", [Text.Encoding]::ASCII)
     $arguments += @('/DStandalone', '/DExperimental', "/DCandidateId=$CandidateId")
+    if ($FunctionalTest) { $arguments += '/DFunctionalTest' }
     # Keep compiler inclusion evidence for the actual legal files, without installation.
     $arguments = @($arguments | Where-Object { $_ -cne '/Qp' })
 }

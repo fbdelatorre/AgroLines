@@ -1,6 +1,6 @@
 # Observe only processes we start and their descendants. No injection or global ETW trace.
 [CmdletBinding()]
-param([string]$Executable, [string]$OutputDirectory)
+param([string]$Executable, [string]$OutputDirectory, [string]$CommercialFixture)
 $ErrorActionPreference = 'Stop'
 $root = Split-Path -Parent ([IO.Path]::GetFullPath($Executable))
 $prefix = $root.TrimEnd('\') + '\'
@@ -22,6 +22,7 @@ function Observe-Probe {
     }
     if ($Argument) {
         $proc.StartInfo.ArgumentList.Add($Argument)
+        if ($CommercialFixture) { $proc.StartInfo.ArgumentList.Add([IO.Path]::GetFullPath($CommercialFixture)) }
         $proc.StartInfo.ArgumentList.Add((Join-Path $directory "$Name-probe.json"))
     }
     $known = [Collections.Generic.HashSet[int]]::new()
@@ -95,11 +96,13 @@ function Observe-Probe {
         $proc.Dispose()
     }
 }
-$phases = @(
+$phases = if ($CommercialFixture) { @(
+    (Observe-Probe -Name 'commercial-startup-and-gis' -Argument '--licensing-probe')
+) } else { @(
     (Observe-Probe -Name 'normal-offline-startup' -Argument '')
     (Observe-Probe -Name 'smoke-startup-and-gis' -Argument '--smoke-report')
     (Observe-Probe -Name 'offline-import-edit-backup' -Argument '--offline-network-report')
-)
+) }
 @{
     phases = $phases; errors = @($allErrors.ToArray()); sac_approved = $false
     method = 'Read-only Process.Modules snapshots and descendant discovery; transient loads/access failures may be missed'
