@@ -64,6 +64,8 @@ def run(phase, fixture, directory, output):
     app = QApplication.instance() or QApplication([])
     projects = run_offline_checks(root / "projects", manager)
     window = CommercialWindow(manager)
+    window.load(root / "projects/project.agrolines")
+    assert len(window.features) == 1
     window.setWindowTitle("AgroLines · TESTE · homologação instalada")
     window.show()
     ready = []

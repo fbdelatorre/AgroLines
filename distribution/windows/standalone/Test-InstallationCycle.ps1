@@ -31,6 +31,18 @@ function Install([string]$Package,[string]$Label) {
 function Probe([string]$Phase,[string]$Label) {
     Invoke-Child (Join-Path $install 'AgroLines.exe') @('--installed-probe',$Phase,$fixture,$state,(Join-Path $output ($Label+'.json')))
 }
+$foreign=Join-Path $lab 'Outra instalação preservada'
+New-Item $foreign -ItemType Directory -Force | Out-Null
+[IO.File]::WriteAllText((Join-Path $foreign 'AgroLines.exe'),'inert foreign-install sentinel')
+$refused=$false
+try {
+    Invoke-Child $Installer @('/VERYSILENT','/SUPPRESSMSGBOXES','/NORESTART','/SP-',('/DIR='+$foreign),('/LOG='+$output+'/foreign-refusal.log'))
+} catch {
+    if ($_.Exception.Message -notmatch 'exit [1-9]') { throw }
+    $refused=$true
+}
+if (-not $refused -or [IO.File]::ReadAllText((Join-Path $foreign 'AgroLines.exe')) -cne 'inert foreign-install sentinel' -or
+    (Test-Path (Join-Path $foreign 'AgroLines.test-channel'))) { throw 'Unrelated installation was overwritten.' }
 Install $Installer 'clean-install'
 $registration='HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{77EA2840-FDA9-4634-88DA-FC049E901050}_is1'
 if ((Get-ItemProperty $registration).DisplayVersion -ne '1.0.0.5') { throw 'Installed version not registered.' }
@@ -71,6 +83,6 @@ foreach ($file in @('license.dpapi','projects/project.agrolines','projects/backu
 Install $Installer 'reinstall'
 Probe 'verify' 'after-reinstall'
 Probe 'cleanup' 'cleanup-anchor'
-$report=@{clean_install=$true;installer_executed=$true;start_menu_shortcut_started=$true;optional_desktop_shortcut=$true;version_registration=$true;unicode_and_spaces_path=$true;upgraded=$true;old_runtime_preserved=$true;old_version_executed=$true;uninstalled=$true;reinstalled=$true;projects_preserved=$true;activation_preserved=$true;server_builder_only=$true;windows11_physical=$false;sac_approved=$false;production_https_activation_proven=$false;protections_modified=$false}
+$report=@{clean_install=$true;foreign_installation_refused=$true;installer_executed=$true;start_menu_shortcut_started=$true;optional_desktop_shortcut=$true;version_registration=$true;unicode_and_spaces_path=$true;upgraded=$true;old_runtime_preserved=$true;old_version_executed=$true;uninstalled=$true;reinstalled=$true;projects_preserved=$true;activation_preserved=$true;server_builder_only=$true;windows11_physical=$false;sac_approved=$false;production_https_activation_proven=$false;protections_modified=$false}
 $report | ConvertTo-Json | Set-Content (Join-Path $output 'result.json') -Encoding utf8
 Write-Output ('AGROLINES_INSTALLATION_CYCLE='+($report | ConvertTo-Json -Compress))
