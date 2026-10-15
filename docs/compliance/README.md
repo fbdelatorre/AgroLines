@@ -1,5 +1,8 @@
 # Dossiê de terceiros do AgroLines — proposta para revisão
 
+Adendo específico: [WebEngine, fontes oficiais `.225` e verificação do wheel](webengine/README.md).
+O adendo corrige a interpretação da divergência de versões; não aprova a distribuição.
+
 Revisão: 14/10/2026. Produto próprio pretendido: proprietário/comercial. Não se
 adota nem se altera a licença do projeto. Não há autorização de distribuição.
 

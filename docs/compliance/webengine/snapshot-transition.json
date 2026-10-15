@@ -1,0 +1,26 @@
+[
+  {
+    "date": "2026-10-01T03:36:52Z",
+    "message": "Update Chromium",
+    "sha": "8d840c658c23254c1d894a6d659b97bbdfa80079",
+    "chromium_gitlink": "6afdf8e13161a5b61b03d3733d90aaefbdc09c21",
+    "chrome_version": "MAJOR=140\nMINOR=0\nBUILD=7339\nPATCH=264\n",
+    "url": "https://raw.githubusercontent.com/qt/qtwebengine-chromium/6afdf8e13161a5b61b03d3733d90aaefbdc09c21/chromium/chrome/VERSION"
+  },
+  {
+    "date": "2026-09-30T07:19:58Z",
+    "message": "Update Chromium",
+    "sha": "f20f43f1d8a6e7fc3d67c2cfffbc1b5d2f88ea92",
+    "chromium_gitlink": "5ac0e9e440463ae1e8349fc3ecba23afca2a7f6a",
+    "chrome_version": "MAJOR=140\nMINOR=0\nBUILD=7339\nPATCH=225\n",
+    "url": "https://raw.githubusercontent.com/qt/qtwebengine-chromium/5ac0e9e440463ae1e8349fc3ecba23afca2a7f6a/chromium/chrome/VERSION"
+  },
+  {
+    "date": "2026-09-08T19:19:37Z",
+    "message": "Update Chromium",
+    "sha": "62d4c2c322b7cfc7e0f5c6a76429dc455048243f",
+    "chromium_gitlink": "39352427a3245a19fb395547b3aa38be9d091ec4",
+    "chrome_version": "MAJOR=140\nMINOR=0\nBUILD=7339\nPATCH=225\n",
+    "url": "https://raw.githubusercontent.com/qt/qtwebengine-chromium/39352427a3245a19fb395547b3aa38be9d091ec4/chromium/chrome/VERSION"
+  }
+]

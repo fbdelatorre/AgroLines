@@ -1,0 +1,31 @@
+{
+  "checked_on": "2026-10-15",
+  "documents": [
+    {
+      "url": "https://raw.githubusercontent.com/qt/qtwebengine/d505fc23640d2bd6345e6483eb73daf4e19f5829/CHROMIUM_VERSION",
+      "sha256": "45a7445852ef7acf2ac564bf8f60cf9b57a11bf074a72eb34a1497479934c62d",
+      "bytes": 157
+    },
+    {
+      "url": "https://raw.githubusercontent.com/qt/qtwebengine/d505fc23640d2bd6345e6483eb73daf4e19f5829/src/core/configure/BUILD.root.gn.in",
+      "sha256": "62496772e1c22627bb0bb5ef10264d785bddfc5b3fbc84f998ec349f5c6297b0",
+      "bytes": 32704
+    },
+    {
+      "url": "https://raw.githubusercontent.com/qt/qtwebengine/d505fc23640d2bd6345e6483eb73daf4e19f5829/cmake/QtGnCredits.cmake",
+      "sha256": "7bf2bd849e6336fc9308d103537b603ea43c3a82e9573ea2d66b149643d64b34",
+      "bytes": 1673
+    },
+    {
+      "url": "https://raw.githubusercontent.com/qt/qtwebengine/d505fc23640d2bd6345e6483eb73daf4e19f5829/src/core/doc/src/qwebengine-licensing.qdoc",
+      "sha256": "638b418d86a964dd96c14f14d6ecd981511cc3d7cbb80507702b5deecef6b342",
+      "bytes": 2269
+    },
+    {
+      "url": "https://raw.githubusercontent.com/qt/qtwebengine-chromium/39352427a3245a19fb395547b3aa38be9d091ec4/chromium/chrome/VERSION",
+      "sha256": "ce3a513eaf4c8b8574f8512e64b0e51d66cae4ce1649cf17c2638910ae96a485",
+      "bytes": 39
+    }
+  ],
+  "exact_wheel_correspondence_proven": false
+}
