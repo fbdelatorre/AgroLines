@@ -13,7 +13,8 @@ from distribution.msix import identity, stage
 from distribution.payload import manifest
 
 
-def test_store_offline_native_workspace_ignores_online_configuration(tmp_path):
+@pytest.mark.parametrize("entrypoint", ["distribution.store", "distribution.standalone"])
+def test_store_offline_native_workspace_ignores_online_configuration(tmp_path, entrypoint):
     requests = []
 
     class Handler(BaseHTTPRequestHandler):
@@ -45,7 +46,7 @@ def test_store_offline_native_workspace_ignores_online_configuration(tmp_path):
             [
                 sys.executable,
                 "-m",
-                "distribution.store",
+                entrypoint,
                 "--offline-network-report",
                 str(output),
                 "--probe-url",

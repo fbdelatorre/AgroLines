@@ -1,0 +1,227 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-15",
+  "pull_request": "https://github.com/fbdelatorre/AgroLines/pull/18",
+  "artifact": {
+    "layout_sha256": "2469b2fdf02786b1108e20c013d2fb890d6931ef744c8d65fe4800b32d213bef",
+    "lock_sha256": "2582cbf5e7f586990c78a2f4ea70d4c7423a8878354e77b144dc632177a5d29e",
+    "installer_executed": false,
+    "distribution_approved": false,
+    "profile": "standalone-offline",
+    "sha256": "59c1312d1742a6b649483f6dcea5ce37b622b4eb24528c9c5633ceb9efe8b63f",
+    "sac_approved": false,
+    "payload_manifest_sha256": "cd462d33214018a28d364b2cea65a9e172a140a13fd50a2cdf162a43b95f32e0",
+    "version": "1.0.0.1",
+    "source_commit": "471a90560eb326b27acf75bcb47c700d66e51782",
+    "size_bytes": 159754061,
+    "architecture": "x64",
+    "source_head_commit": "710a9664fe7112570775224909d174a7738f24a5",
+    "signature_status": "NotSigned",
+    "run_url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38733288326",
+    "file": "AgroLines-Standalone-1.0.0.1-x64-471a90560eb3-EXPERIMENTAL-UNSIGNED.exe",
+    "source_tree": "25326d8c1b38b7c8527465e56903338abf6b2630"
+  },
+  "github_artifact": {
+    "id": 11970829773,
+    "name": "agrolines-standalone-EXPERIMENTAL-UNSIGNED",
+    "size_bytes": 396216470,
+    "zip_sha256_reported_by_github": "bcedac586746e44aa449159b5f4c890d69b9690234fcf7f698d001fc98aad99d",
+    "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38733288326/artifacts/11970829773"
+  },
+  "native_policy_gate": {
+    "status": "ASSINATURA PENDENTE",
+    "before": {
+      "Valid": 100,
+      "NotSigned": 78
+    },
+    "after": {
+      "Valid": 100,
+      "NotSigned": 78
+    },
+    "signing_performed": false,
+    "ready_for_authorized_signing": false,
+    "violations": [],
+    "new_paths": [],
+    "removed_paths": []
+  },
+  "startup_phases": [
+    {
+      "exit_code": 0,
+      "name": "normal-offline-startup",
+      "duration_ms": 13412,
+      "normal_window_observed": true,
+      "normal_close_requested": true,
+      "normal_first_window_ms": 7259
+    },
+    {
+      "exit_code": 0,
+      "name": "smoke-startup-and-gis",
+      "duration_ms": 6965,
+      "normal_window_observed": false,
+      "normal_close_requested": false,
+      "normal_first_window_ms": null
+    },
+    {
+      "exit_code": 0,
+      "name": "offline-import-edit-backup",
+      "duration_ms": 5875,
+      "normal_window_observed": false,
+      "normal_close_requested": false,
+      "normal_first_window_ms": null
+    }
+  ],
+  "original_bindings": {
+    "offline_only": true,
+    "frozen": true,
+    "qt_version": "6.12.0",
+    "modules": [
+      {
+        "module": "PySide6",
+        "path": "D:\\a\\AgroLines\\AgroLines\\dist\\AgroLines\\_internal\\PySide6\\__init__.py",
+        "sha256": "3b662ee91f12feb02507dfaff907b7306bf5c851f1374563f70fae19e13711fc",
+        "inside_runtime": true,
+        "marker": null
+      },
+      {
+        "module": "shiboken6",
+        "path": "D:\\a\\AgroLines\\AgroLines\\dist\\AgroLines\\_internal\\shiboken6\\__init__.py",
+        "sha256": "ac646c38845df8ed9ab6fd02aa09b1c007d22069098e41e4b7a9baaa73090910",
+        "inside_runtime": true,
+        "marker": null
+      },
+      {
+        "module": "PySide6.QtCore",
+        "path": "D:\\a\\AgroLines\\AgroLines\\dist\\AgroLines\\_internal\\PySide6\\QtCore.pyd",
+        "sha256": "6486f6f0a2fec42fc8c652c0b76bb3ad0d44eaccad9c72e577116a075681eebb",
+        "inside_runtime": true,
+        "marker": null
+      },
+      {
+        "module": "PySide6.QtWidgets",
+        "path": "D:\\a\\AgroLines\\AgroLines\\dist\\AgroLines\\_internal\\PySide6\\QtWidgets.pyd",
+        "sha256": "a8e323e56a93c1a8a70981c36a409c0a2546e7a08da5be8ca4e03dfd27febc2a",
+        "inside_runtime": true,
+        "marker": null
+      },
+      {
+        "module": "PySide6.QtSvg",
+        "path": "D:\\a\\AgroLines\\AgroLines\\dist\\AgroLines\\_internal\\PySide6\\QtSvg.pyd",
+        "sha256": "c9bdacf14ce30f4de75179f999ff20d7a8856126dbebd3a518a5e1c2916a3a6d",
+        "inside_runtime": true,
+        "marker": null
+      },
+      {
+        "module": "PySide6.QtWebChannel",
+        "path": "D:\\a\\AgroLines\\AgroLines\\dist\\AgroLines\\_internal\\PySide6\\QtWebChannel.pyd",
+        "sha256": "91d2f07ed120037ebf2ea35a259d6e97742f70b9ad8542c2d098145c387429ae",
+        "inside_runtime": true,
+        "marker": null
+      },
+      {
+        "module": "PySide6.QtWebEngineCore",
+        "path": "D:\\a\\AgroLines\\AgroLines\\dist\\AgroLines\\_internal\\PySide6\\QtWebEngineCore.pyd",
+        "sha256": "ccaf0e0e363ced8b337fc72f2f2be8420b7ad492c59a7829c07ab2de826c7e21",
+        "inside_runtime": true,
+        "marker": null
+      }
+    ],
+    "binding_call_passed": true,
+    "sac_approved": false,
+    "full_native_recombination_proven": false
+  },
+  "modified_bindings": {
+    "offline_only": true,
+    "frozen": true,
+    "qt_version": "6.12.0",
+    "modules": [
+      {
+        "module": "PySide6",
+        "path": "D:\\a\\_temp\\standalone-binding-lab\\_internal\\PySide6\\__init__.py",
+        "sha256": "8b65ab602a9a9b1cca541d819cdd0294a56afa9be3639d3b3c4138ca08154d25",
+        "inside_runtime": true,
+        "marker": "synthetic-standalone-lgpl-python-replacement-v1"
+      },
+      {
+        "module": "shiboken6",
+        "path": "D:\\a\\_temp\\standalone-binding-lab\\_internal\\shiboken6\\__init__.py",
+        "sha256": "1c91044bd409c0c3cd857a4bc1bfe25420464a2cee8f1bc6113ac9475ebdfc51",
+        "inside_runtime": true,
+        "marker": "synthetic-standalone-lgpl-python-replacement-v1"
+      },
+      {
+        "module": "PySide6.QtCore",
+        "path": "D:\\a\\_temp\\standalone-binding-lab\\_internal\\PySide6\\QtCore.pyd",
+        "sha256": "6486f6f0a2fec42fc8c652c0b76bb3ad0d44eaccad9c72e577116a075681eebb",
+        "inside_runtime": true,
+        "marker": null
+      },
+      {
+        "module": "PySide6.QtWidgets",
+        "path": "D:\\a\\_temp\\standalone-binding-lab\\_internal\\PySide6\\QtWidgets.pyd",
+        "sha256": "a8e323e56a93c1a8a70981c36a409c0a2546e7a08da5be8ca4e03dfd27febc2a",
+        "inside_runtime": true,
+        "marker": null
+      },
+      {
+        "module": "PySide6.QtSvg",
+        "path": "D:\\a\\_temp\\standalone-binding-lab\\_internal\\PySide6\\QtSvg.pyd",
+        "sha256": "c9bdacf14ce30f4de75179f999ff20d7a8856126dbebd3a518a5e1c2916a3a6d",
+        "inside_runtime": true,
+        "marker": null
+      },
+      {
+        "module": "PySide6.QtWebChannel",
+        "path": "D:\\a\\_temp\\standalone-binding-lab\\_internal\\PySide6\\QtWebChannel.pyd",
+        "sha256": "91d2f07ed120037ebf2ea35a259d6e97742f70b9ad8542c2d098145c387429ae",
+        "inside_runtime": true,
+        "marker": null
+      },
+      {
+        "module": "PySide6.QtWebEngineCore",
+        "path": "D:\\a\\_temp\\standalone-binding-lab\\_internal\\PySide6\\QtWebEngineCore.pyd",
+        "sha256": "ccaf0e0e363ced8b337fc72f2f2be8420b7ad492c59a7829c07ab2de826c7e21",
+        "inside_runtime": true,
+        "marker": null
+      }
+    ],
+    "binding_call_passed": true,
+    "sac_approved": false,
+    "full_native_recombination_proven": false
+  },
+  "quality": {
+    "run_url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38733288209",
+    "windows": {
+      "passed": 233,
+      "skipped": 2,
+      "precision_passed": 22,
+      "precision_total": 22
+    },
+    "linux": {
+      "passed": 234,
+      "skipped": 1,
+      "precision_passed": 22,
+      "precision_total": 22
+    }
+  },
+  "scope": {
+    "installer_compiled": true,
+    "installer_executed": false,
+    "frozen_app_executed_on_authorized_hosted_server": true,
+    "third_party_native_pe_preserved": 177,
+    "modified_lgpl_python_loaded_in_isolated_copy": true,
+    "modified_native_qt_geos_in_full_app_demonstrated": false,
+    "physical_windows11_validated": false,
+    "sac_approved": false,
+    "commercial_compliance_approved": false,
+    "github_pages_published": false,
+    "store_submission_performed": false,
+    "original_msix_modified": false,
+    "new_standalone_payload_identified": true
+  },
+  "evidence_limitations": [
+    "Values transcribed from same-run Actions logs and API; artifact byte download is blocked in the cloud environment.",
+    "Installer hash is reported by the authorized Windows builder; GitHub ZIP digest is distinct.",
+    "Hosted execution and local HTTP/WebEngine negative controls do not prove physical Windows 11/SAC or complete native network silence.",
+    "Full legal, corresponding-source, native replacement and lifecycle validation remain pending."
+  ]
+}

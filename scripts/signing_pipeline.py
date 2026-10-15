@@ -167,7 +167,12 @@ def evaluate(root, policy, native, signatures, signtool, source_commit, policy_s
             if action != "sign_own" and not same:
                 violations.append(relative + ": third-party SHA differs from approved baseline")
             if action == "sign_own":
-                if relative != "AgroLinesPoC.exe" or file["packages"]:
+                own_entrypoint = (
+                    "AgroLines.exe"
+                    if policy.get("profile") == "standalone-offline"
+                    else "AgroLinesPoC.exe"
+                )
+                if relative != own_entrypoint or file["packages"]:
                     violations.append(
                         relative + ": own exemption is restricted to the built entrypoint"
                     )

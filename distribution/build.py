@@ -60,7 +60,9 @@ def version_tuple(value):
     return tuple(int(p) for p in pieces)
 
 
-def prepare(output, version, manufacturer, store=False):
+def prepare(output, version, manufacturer, store=False, standalone=False):
+    if store and standalone:
+        raise ValueError("Choose one distribution profile")
     parts = version_tuple(version)
     if not manufacturer or len(manufacturer) > 120 or any(c in manufacturer for c in '\r\n"'):
         raise ValueError("Manufacturer must be a plain single-line name")
@@ -82,6 +84,14 @@ def prepare(output, version, manufacturer, store=False):
             store_identity=official,
             offline_only=True,
         )
+    if standalone:
+        metadata.update(
+            name="AgroLines Experimental",
+            distribution_channel="standalone-offline",
+            offline_only=True,
+            executable="AgroLines.exe",
+            lgpl_python_external=True,
+        )
     (output / "metadata.json").write_text(
         json.dumps(metadata, ensure_ascii=False), encoding="utf-8"
     )
@@ -90,8 +100,8 @@ def prepare(output, version, manufacturer, store=False):
         "CompanyName": manufacturer,
         "FileDescription": metadata["name"],
         "FileVersion": version,
-        "InternalName": "AgroLinesPoC",
-        "OriginalFilename": "AgroLinesPoC.exe",
+        "InternalName": "AgroLines" if standalone else "AgroLinesPoC",
+        "OriginalFilename": metadata.get("executable", "AgroLinesPoC.exe"),
         "ProductName": metadata["name"],
         "ProductVersion": version,
     }
@@ -130,13 +140,22 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--version", default="0.1.0.1")
     parser.add_argument("--manufacturer", default="Delatorre Corporation")
-    parser.add_argument("--store", action="store_true")
+    profile = parser.add_mutually_exclusive_group()
+    profile.add_argument("--store", action="store_true")
+    profile.add_argument("--standalone", action="store_true")
     args = parser.parse_args()
     if sys.platform != "win32":
         raise SystemExit("Windows build requires a Windows builder")
-    prepare(ROOT / "build/distribution", args.version, args.manufacturer, store=args.store)
-    builder_environment = store_builder_environment() if args.store else os.environ.copy()
-    if args.store:
+    prepare(
+        ROOT / "build/distribution",
+        args.version,
+        args.manufacturer,
+        store=args.store,
+        standalone=args.standalone,
+    )
+    offline = args.store or args.standalone
+    builder_environment = store_builder_environment() if offline else os.environ.copy()
+    if offline:
         report = ROOT / "evidence/qt-minimal/builder-environment.json"
         report.parent.mkdir(parents=True, exist_ok=True)
         report.write_text(
@@ -168,15 +187,17 @@ def main():
         cwd=ROOT,
         env=builder_environment,
     )
-    collect_notices(
-        ROOT / "dist/AgroLinesPoC",
-        ROOT / "evidence/qt-minimal/build-inputs.json" if args.store else None,
-    )
+    payload = ROOT / ("dist/AgroLines" if args.standalone else "dist/AgroLinesPoC")
+    collect_notices(payload, ROOT / "evidence/qt-minimal/build-inputs.json" if offline else None)
     if args.store:
         shutil.copyfile(
             ROOT / "distribution/windows/signing/native-policy.json",
             ROOT / "dist/AgroLinesPoC/native-signing-policy.json",
         )
+    if args.standalone:
+        from distribution.standalone_build import prepare_materials
+
+        prepare_materials(payload)
 
 
 if __name__ == "__main__":

@@ -48,7 +48,8 @@ function Get-AgroApprovedSigningSet {
         if ($file.sign_authorized) {
             if ($file.authenticode -ne 'NotSigned' -or -not $rule.rights_confirmed -or -not $rule.origin_confirmed -or -not $rule.rights_evidence) { throw 'Signing rights/origin not approved.' }
             if ($rule.action -eq 'sign_own') {
-                if ($file.path -cne 'AgroLinesPoC.exe') { throw 'Own signing restricted to built entrypoint.' }
+                $ownEntryPoint = if ($rules.profile -eq 'standalone-offline') { 'AgroLines.exe' } else { 'AgroLinesPoC.exe' }
+                if ($file.path -cne $ownEntryPoint) { throw 'Own signing restricted to built entrypoint.' }
             } elseif ($rule.action -ne 'sign_third_party' -or $rule.baseline_sha256 -cne $file.sha256) { throw 'Third-party signing not explicitly authorized by hash.' }
             $approved.Add(@{path=$path; sha256=$file.sha256; relative=$file.path})
         } elseif ($rule.action -ne 'preserve_original' -or -not $rule.origin_confirmed -or $rule.baseline_sha256 -cne $file.sha256) { throw 'Original vendor bytes/provenance must be preserved.' }

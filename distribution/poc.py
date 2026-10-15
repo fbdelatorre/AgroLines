@@ -160,8 +160,12 @@ def main():
 
         report["offline_projects"] = run_offline_checks(args.offline_project_root)
         report.update(result)
-        report["evidence_before"] = collect(STARTED, ["AgroLinesPoC.exe"])
-        web_map = WebMap(offline=bool(metadata.get("store_identity")) or args.require_msix)
+        report["evidence_before"] = collect(
+            STARTED, [Path(sys.executable).name if report["frozen"] else "AgroLinesPoC.exe"]
+        )
+        web_map = WebMap(
+            offline=is_offline_only() or bool(metadata.get("store_identity")) or args.require_msix
+        )
         layout.addWidget(web_map, 1)
         web_map.set_collection(
             {
