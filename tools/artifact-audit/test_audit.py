@@ -66,6 +66,10 @@ def test_unsafe_archive_refused(tmp_path, names):
     with ZipFile(target, "w") as archive:
         for name in names:
             archive.writestr(name, b"synthetic")
+    if any("\\" in name for name in names):
+        # ZipInfo normalizes the Windows OS separator while writing. Patch both
+        # synthetic filename headers, never payload/CRC, to exercise the reader.
+        target.write_bytes(target.read_bytes().replace(b"a/b", b"a\\b"))
     with ZipFile(target) as archive, pytest.raises(ValueError):
         audit.safe_entries(archive)
 

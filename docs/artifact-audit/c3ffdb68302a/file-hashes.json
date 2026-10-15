@@ -8,11 +8,11 @@
   "docs/artifact-audit/c3ffdb68302a/native-files.csv": "080a556dc28ecd51e0dadfc0c733dee5e6afdd585f372ce828669e59e710a460",
   "docs/artifact-audit/c3ffdb68302a/native-files.json": "4c7f9fbb690812fbcf026e26ee571b6e0167998c4d1d5ed0b4ead986c6c3aedb",
   "docs/artifact-audit/c3ffdb68302a/reproducibility.md": "f3814a97daa8c6d83dcd50bd523e7cf656ace1c6bb735e727b276539d7e48df9",
-  "docs/artifact-audit/c3ffdb68302a/validation.json": "6923555439aca1df853f12833b1bc21d52742d3d9134b1d27fc4bdf964b4a5f6",
+  "docs/artifact-audit/c3ffdb68302a/validation.json": "a8f4df83aa6ac1bb61885daece2337684627866d0f7b6f0fed87df3bb8015a45",
   "docs/artifact-audit/c3ffdb68302a/windows-acceptance.md": "c5fc0d579913466ca11b413c44b85dd65a1fa3fb3c4fa0c95960293a24290347",
   "docs/artifact-audit/c3ffdb68302a/windows-results.template.json": "4893c2a7f1fb1043048dbb33281e7c88d560792078e2f1b9ff86647890894655",
   "tools/artifact-audit/README.md": "998584d00fe383b10384ae60cb4b0852674ed7d9810091ea10e685059f1e788e",
   "tools/artifact-audit/audit.py": "281ebf884eb759448e83f233103021fb5fafb5613368f7c2f0a80e7ce2338146",
   "tools/artifact-audit/project_snapshot.py": "8fc21e2cb916f97376b5731c6bddc2f8562d8b48f47309981d63c02d2e56f161",
-  "tools/artifact-audit/test_audit.py": "337958fba5b9c5d44383436f9278362450601cc5317e90b79e7b5b54160d901a"
+  "tools/artifact-audit/test_audit.py": "a15c976442ab66f1e8375b048c6de494f8e6b9551678a983b0eef703f08176da"
 }

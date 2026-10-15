@@ -35,5 +35,13 @@
   "base_commit": "5990d29026e1f9ad0e74895cd046e5506887980a",
   "application_payload_files_modified": false,
   "reference_msix_sha256": "e6a2ab8e65a91df3a2a1613d22b3ecc3c478d774e1d08b39561960085686068b",
-  "linux_test_environment_note": "Existing root/offscreen Qt tests use the repository Linux CI sandbox flags only; no Windows/client security changed."
+  "linux_test_environment_note": "Existing root/offscreen Qt tests use the repository Linux CI sandbox flags only; no Windows/client security changed.",
+  "ci_history": [
+    {
+      "run_id": 38669928187,
+      "linux_static_audit": "success",
+      "windows_controls": "14 passed, 1 failed",
+      "reason": "Windows ZipInfo normalized the synthetic backslash filename before audit; fixture patched at ZIP header bytes to retain malicious name, without weakening rejection criteria. Original artifact unchanged."
+    }
+  ]
 }
