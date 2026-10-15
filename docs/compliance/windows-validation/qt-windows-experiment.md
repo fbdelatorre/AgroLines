@@ -59,3 +59,13 @@ WindowsApps e não contorna código bloqueado por SAC/Defender.
   não há cópia legitimamente entregue pela Store autorizada para o teste.
 - Cumprimento LGPL: **PENDENTE DE REVISÃO JURÍDICA** e fechamento U01/U02;
   experimento sintético não é aprovação.
+
+## Histórico das correções do laboratório
+
+As falhas anteriores permanecem no GitHub: geração de arquivo Git com conversões
+de host diferentes (opções agora explícitas, checksum esperado preservado); ferramenta
+windeployqt dependente de Network no configure Core-only (desativada apenas no lab);
+consumidor MSVC exigindo `/Zc:__cplusplus` e `/permissive-`, conforme
+`src/corelib/global/qcompilerdetection.h` e `cmake/QtFlagHandlingHelpers.cmake`
+do commit fixado. As duas opções estão explícitas. Não foram modificados headers,
+asserções Qt ou critérios para ocultar as falhas.

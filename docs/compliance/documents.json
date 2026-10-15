@@ -957,9 +957,14 @@
       "size_bytes": 9129
     },
     {
+      "path": "windows-validation/preservation.json",
+      "sha256": "f00773f7d4c6baa4cbae4fd6745de8f2ac4bbb84e6c8ddae6a4623d13899e6ae",
+      "size_bytes": 501
+    },
+    {
       "path": "windows-validation/qt-windows-experiment.md",
-      "sha256": "56ecb84ea02dc6a032156162e219f9d46ca4de8fc423208db6456f87472e6b42",
-      "size_bytes": 4184
+      "sha256": "7ad40672e4d9114d676ef5effba75a00a45fc1ec443583581b3e72fcb9f95511",
+      "size_bytes": 4781
     },
     {
       "path": "windows-validation/reference-components.json",
@@ -978,8 +983,8 @@
     },
     {
       "path": "windows-validation/sac-test-procedure.md",
-      "sha256": "66e4e06224d160f0569246d4a52ec8ccd6c4f9eec7621bdeee32c47da85c52c8",
-      "size_bytes": 5906
+      "sha256": "14393b8c38aef093f8667f9ecb0de49d3adc0910dbd0413ed07acc7201fff1cf",
+      "size_bytes": 6150
     },
     {
       "path": "windows-validation/store-private-homologation.md",

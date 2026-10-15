@@ -9,7 +9,10 @@ O novo coletor `tools/windows-lgpl-lab/Collect-Homologation.ps1` reutiliza
 `scripts/Windows-Security.ps1` e
 `distribution/windows/signing/Test-StoreDeliveredTrust.ps1`. Não instala/ativa
 aplicativos, certificados ou catálogos, não habilita logs, não altera registro,
-Defender/SAC/Developer Mode, não abre rede nem envia evidências. Só escreve em um
+Defender/SAC/Developer Mode e não envia evidências/projetos. A validação de
+confiança do Windows/SignTool pode consultar certificados/revogação quando houver
+rede; isso não é telemetria própria do AgroLines. Desconectado, registrar também
+indisponibilidade de consulta, sem afrouxar a verificação. Só escreve em um
 **novo diretório local fora do pacote e do repositório**.
 
 ## Antes e depois da sessão

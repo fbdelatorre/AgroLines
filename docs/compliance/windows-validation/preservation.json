@@ -1,0 +1,15 @@
+{
+  "reference_msix_sha256": "e6a2ab8e65a91df3a2a1613d22b3ecc3c478d774e1d08b39561960085686068b",
+  "reference_msix_size": 240694735,
+  "reference_run": 38657579756,
+  "verified_local_copy_bytes": true,
+  "production_paths_changed": [],
+  "third_party_pe_modified": 0,
+  "new_msix_generated": false,
+  "official_candidate_installed": false,
+  "store_submission_performed": false,
+  "pages_published": false,
+  "security_protections_changed": false,
+  "legal_approved": false,
+  "sac_approved": false
+}
