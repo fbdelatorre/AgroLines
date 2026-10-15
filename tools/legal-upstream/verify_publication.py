@@ -70,6 +70,20 @@ def main():
             # details remain in the original provenance, not an inferred rebuild.
             bundles = json.loads(provenance)["attestation_bundles"]
             row["publisher"] = [b["publisher"] for b in bundles]
+            from cryptography import x509
+            from cryptography.x509.oid import ObjectIdentifier
+
+            row["verified_certificate_source_commits"] = sorted(
+                {
+                    x509.load_der_x509_certificate(
+                        base64.b64decode(a["verification_material"]["certificate"])
+                    )
+                    .extensions.get_extension_for_oid(ObjectIdentifier("1.3.6.1.4.1.57264.1.3"))
+                    .value.value.decode("ascii")
+                    for b in bundles
+                    for a in b["attestations"]
+                }
+            )
             row["subjects"] = [
                 json.loads(base64.b64decode(a["envelope"]["statement"]))["subject"]
                 for b in bundles

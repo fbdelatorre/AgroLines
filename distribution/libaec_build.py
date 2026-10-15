@@ -132,8 +132,10 @@ def stage(root):
         if not path.is_file() or path.suffix.lower() not in (".exe", ".dll", ".pyd"):
             continue
         with pefile.PE(str(path), fast_load=True) as pe:
-            pe.parse_data_directories(directories=[1])
-            for entry in getattr(pe, "DIRECTORY_ENTRY_IMPORT", []):
+            pe.parse_data_directories(directories=[1, 13])
+            for entry in getattr(pe, "DIRECTORY_ENTRY_IMPORT", []) + getattr(
+                pe, "DIRECTORY_ENTRY_DELAY_IMPORT", []
+            ):
                 if entry.dll.decode().casefold() == target.name.casefold():
                     required.update(i.name.decode() for i in entry.imports if i.name)
     if not required or not required.issubset(record["exports"]):

@@ -55,6 +55,8 @@ jobs:
         run: |
           ./build-env/Scripts/python.exe -m distribution.legal_materials --payload dist/AgroLines --output evidence/standalone/legal-materials.json
           if ($LASTEXITCODE) { throw 'Legal material integrity failed.' }
+          Copy-Item dist/AgroLines/legal evidence/standalone/packaged-legal -Recurse
+          Copy-Item dist/AgroLines/libaec-provenance.json evidence/standalone/libaec-provenance-staged.json
       - name: Observe normal GUI, WebEngine helper, GIS and offline operation with system-only PATH
         run: |
           ./scripts/Observe-NativeModules.ps1 -Executable dist/AgroLines/AgroLines.exe -OutputDirectory evidence/standalone/loads

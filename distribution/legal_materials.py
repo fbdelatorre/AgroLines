@@ -214,6 +214,14 @@ def prepare(payload):
                 "",
             ]
         )
+    if any(row["component"].startswith("jpeg62-") for row in component_rows):
+        notice.extend(
+            [
+                "Reconhecimento exigido pelas bibliotecas IJG/libjpeg-turbo utilizadas:",
+                "This software is based in part on the work of the Independent JPEG Group.",
+                "",
+            ]
+        )
     (target / "THIRD_PARTY_NOTICES.txt").write_text("\n".join(notice), encoding="utf-8")
     # Exact source pins and limitations, not generic homepages or an approved offer.
     copy(

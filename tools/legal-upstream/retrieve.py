@@ -16,6 +16,8 @@ SOURCES = {
     "spatialite-5.1.0": "https://www.gaia-gis.it/gaia-sins/libspatialite-sources/libspatialite-5.1.0.tar.gz",
     "geos-3.14.1": "https://download.osgeo.org/geos/geos-3.14.1.tar.bz2",
     "szip-2.1.1": "https://support.hdfgroup.org/ftp/lib-external/szip/2.1.1/src/szip-2.1.1.tar.gz",
+    "tiff-4.6.0": "https://download.osgeo.org/libtiff/tiff-4.6.0.tar.gz",
+    "tiff-4.7.1": "https://download.osgeo.org/libtiff/tiff-4.7.1.tar.gz",
 }
 EXPECTED = {
     # Official vcpkg baseline declared by the Fiona Windows build recipe.

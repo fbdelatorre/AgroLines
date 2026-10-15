@@ -624,6 +624,65 @@
       "size_bytes": 36874,
       "license": "PSF/historical terms and additional Windows Microsoft conditions; original full text",
       "kind": "license_notice"
+    },
+    {
+      "file": "licenses/libjpeg-turbo-3.1.4.1-LICENSE.md.txt",
+      "components": [
+        "jpeg62-pyproj"
+      ],
+      "origin": "https://raw.githubusercontent.com/libjpeg-turbo/libjpeg-turbo/3.1.4.1/LICENSE.md",
+      "sha256": "e10114e6e40f3d0311c401ca25245ac5ef459a43c20f976fd63f03e816f5741f",
+      "size_bytes": 5622,
+      "license": "IJG / BSD-3-Clause; see precise scopes and required acknowledgement",
+      "kind": "license_notice"
+    },
+    {
+      "file": "licenses/libjpeg-turbo-3.1.4.1-README.ijg.txt",
+      "components": [
+        "jpeg62-pyproj"
+      ],
+      "origin": "https://raw.githubusercontent.com/libjpeg-turbo/libjpeg-turbo/3.1.4.1/README.ijg",
+      "sha256": "75815e3bf6484201a3c3d17a1bbf10f2e8e3237f84df10a2357ea896db2a81d6",
+      "size_bytes": 12799,
+      "license": "IJG / BSD-3-Clause; see precise scopes and required acknowledgement",
+      "kind": "license_notice"
+    },
+    {
+      "file": "licenses/libjpeg-turbo-3.0.3-LICENSE.md.txt",
+      "components": [
+        "jpeg62-Fiona"
+      ],
+      "origin": "https://raw.githubusercontent.com/libjpeg-turbo/libjpeg-turbo/3.0.3/LICENSE.md",
+      "sha256": "e548c96c0c09397c94b5c5531836c02ff2c403f1f2b130cad8e3ec9439b5a7cc",
+      "size_bytes": 5620,
+      "license": "IJG / BSD-3-Clause; see precise scopes and required acknowledgement",
+      "kind": "license_notice"
+    },
+    {
+      "file": "licenses/libjpeg-turbo-3.0.3-README.ijg.txt",
+      "components": [
+        "jpeg62-Fiona"
+      ],
+      "origin": "https://raw.githubusercontent.com/libjpeg-turbo/libjpeg-turbo/3.0.3/README.ijg",
+      "sha256": "5c1f9094835d21f66ee0e9ce81c57264d2dd50801b19832d6723dc8cdbda080e",
+      "size_bytes": 12739,
+      "license": "IJG / BSD-3-Clause; see precise scopes and required acknowledgement",
+      "kind": "license_notice"
+    },
+    {
+      "file": "licenses/zlib-1.3.1-original.txt",
+      "components": [
+        "zlib1-pyproj"
+      ],
+      "origin": {
+        "audited_document": "docs/compliance/notices/upstream/zlib1-Fiona-LICENSE.txt",
+        "version": "1.3.1",
+        "scope": "Exact same upstream version; no binary identity inferred"
+      },
+      "sha256": "845efc77857d485d91fb3e0b884aaa929368c717ae8186b66fe1ed2495753243",
+      "size_bytes": 1002,
+      "license": "Zlib",
+      "kind": "license_notice"
     }
   ],
   "upstream_source_records": [
