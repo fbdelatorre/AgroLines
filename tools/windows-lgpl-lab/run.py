@@ -94,6 +94,10 @@ def main():
     command(
         [
             "git",
+            "-c",
+            "core.autocrlf=false",
+            "-c",
+            "tar.umask=0002",
             "archive",
             "--format=tar",
             "--prefix=" + args.component + "/",
@@ -104,7 +108,7 @@ def main():
         cwd=tree,
     )
     if sha(archive) != record["sha256"]:
-        raise ValueError("Committed source archive mismatch")
+        raise ValueError("Committed source archive mismatch: " + sha(archive))
     qt = args.component.startswith("qt")
     config = [
         "cmake",
