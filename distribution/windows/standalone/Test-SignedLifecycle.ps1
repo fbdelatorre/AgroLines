@@ -7,6 +7,7 @@ param(
     [Parameter(Mandatory)][string]$NextInstaller,
     [Parameter(Mandatory)][string]$NextSha256,
     [Parameter(Mandatory)][string]$ExpectedSignerSubject,
+    [Parameter(Mandatory)][string[]]$ApprovedPublicRootSha256,
     [Parameter(Mandatory)][string]$EvidenceDirectory
 )
 $ErrorActionPreference='Stop'
@@ -29,6 +30,17 @@ function Assert-Signed([string]$File,[string]$Hash) {
     $sig=Get-AuthenticodeSignature -LiteralPath $File
     if ($sig.Status -ne 'Valid' -or $sig.SignerCertificate.Subject -cne $ExpectedSignerSubject -or
         $sig.SignerCertificate.Issuer -ceq $sig.SignerCertificate.Subject -or -not $sig.TimeStamperCertificate) { throw 'Legitimate matching Authenticode/timestamp required; unsigned/test certificates are not accepted.' }
+    $chain=[Security.Cryptography.X509Certificates.X509Chain]::new()
+    try {
+        # Cached revocation evidence only: never access network in this offline test.
+        $chain.ChainPolicy.RevocationMode='Offline'
+        $chain.ChainPolicy.RevocationFlag='ExcludeRoot'
+        $chain.ChainPolicy.ApplicationPolicy.Add([Security.Cryptography.Oid]::new('1.3.6.1.5.5.7.3.3')) | Out-Null
+        if (-not $chain.Build($sig.SignerCertificate)) { throw 'Offline public chain/revocation incomplete; preserve evidence and investigate, never disable verification.' }
+        $anchor=$chain.ChainElements[$chain.ChainElements.Count-1].Certificate
+        $rootHash=[Convert]::ToHexString([Security.Cryptography.SHA256]::HashData($anchor.RawData)).ToLowerInvariant()
+        if ($rootHash -cnotin $ApprovedPublicRootSha256) { throw 'Installer root absent from independently reviewed public CA dossier; local test trust is insufficient.' }
+    } finally { $chain.Dispose() }
 }
 Assert-Signed $FirstInstaller $FirstSha256
 Assert-Signed $NextInstaller $NextSha256

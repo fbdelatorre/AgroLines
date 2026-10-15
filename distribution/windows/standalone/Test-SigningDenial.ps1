@@ -17,7 +17,7 @@ try {
 } finally { $env:GITHUB_EVENT_NAME=$before }
 $denied=$false
 try {
-    & (Join-Path $PSScriptRoot 'Test-SignedLifecycle.ps1') -FirstInstaller nonexistent.exe -FirstSha256 nonexistent -NextInstaller nonexistent.exe -NextSha256 nonexistent -ExpectedSignerSubject nonexistent -EvidenceDirectory nonexistent
+    & (Join-Path $PSScriptRoot 'Test-SignedLifecycle.ps1') -FirstInstaller nonexistent.exe -FirstSha256 nonexistent -NextInstaller nonexistent.exe -NextSha256 nonexistent -ExpectedSignerSubject nonexistent -ApprovedPublicRootSha256 nonexistent -EvidenceDirectory nonexistent
 } catch {
     if ($_.Exception.Message -notlike 'Explicit authorization for synthetic installation required*') { throw }
     $denied=$true
