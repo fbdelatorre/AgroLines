@@ -7,7 +7,9 @@
 #endif
 #ifdef Standalone
   #ifndef Experimental
-    #error Standalone commercial distribution is blocked pending signing and legal review.
+    #ifndef SigningTool
+      #error Standalone commercial distribution is blocked pending signing and legal review.
+    #endif
   #endif
   #ifndef CandidateId
     #error CandidateId is required for isolated version directories.
@@ -26,7 +28,11 @@
 AppId={{942C9844-703C-4B75-BE59-A66F3C3D9847}
 DefaultDirName={autopf}\AgroLines Experimental
 DefaultGroupName=AgroLines Experimental
+#ifdef Experimental
 OutputBaseFilename=AgroLines-Standalone-{#Version}-x64-{#CandidateId}-EXPERIMENTAL-UNSIGNED
+#else
+OutputBaseFilename=AgroLines-Standalone-{#Version}-x64-{#CandidateId}-HOMOLOGACAO-ASSINADO-SAC-PENDENTE
+#endif
 PrivilegesRequired=admin
 UninstallFilesDir={app}\uninstall
 DisableProgramGroupPage=yes

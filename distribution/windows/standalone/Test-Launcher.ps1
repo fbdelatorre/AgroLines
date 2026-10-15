@@ -13,12 +13,12 @@ Copy-Item -LiteralPath $Payload -Destination "$root/versions/$first" -Recurse
 . (Join-Path $PSScriptRoot '../Run-Frozen.ps1')
 function Set-Pointer([string]$Value) { [IO.File]::WriteAllText("$root/AgroLines.current.txt", $Value, [Text.Encoding]::ASCII) }
 Set-Pointer $first
-Invoke-AgroFrozenProbe -Executable "$root/AgroLines.exe" -Report "$output/first.json"
+Invoke-AgroFrozenProbe -Executable "$root/AgroLines.exe" -Report "$output/projeto sintético com espaços.json"
 # Same stable executable/shortcut path, new version directory and selection.
 Move-Item "$root/versions/$first" "$root/versions/$second"
 Set-Pointer $second
 Invoke-AgroFrozenProbe -Executable "$root/AgroLines.exe" -Report "$output/second.json" -ReportArgument '--offline-network-report'
-$firstReport=Get-Content "$output/first.json" -Raw | ConvertFrom-Json
+$firstReport=Get-Content "$output/projeto sintético com espaços.json" -Raw | ConvertFrom-Json
 $secondReport=Get-Content "$output/second.json" -Raw | ConvertFrom-Json
 if (-not $firstReport.checks_passed -or -not $secondReport.passed) { throw 'Launcher functional test failed.' }
 # Invalid configuration must exit safely, without launching outside versions.

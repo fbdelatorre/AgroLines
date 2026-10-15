@@ -12,8 +12,38 @@ if (-not $installation) { throw 'MSVC x64 build tools unavailable.' }
 $developer=Join-Path $installation 'Common7/Tools/VsDevCmd.bat'
 $build=Join-Path (Split-Path -Parent $output) 'compile-launcher.cmd'
 $object=Join-Path (Split-Path -Parent $output) 'launcher.obj'
+$metadata=Get-Content (Join-Path $root 'build/distribution/metadata.json') -Raw | ConvertFrom-Json
+$version=$metadata.version.Replace('.',',')
+$resource=Join-Path (Split-Path -Parent $output) 'launcher.rc'
+$compiledResource=Join-Path (Split-Path -Parent $output) 'launcher.res'
+$icon=(Join-Path $root 'build/distribution/AgroLines.ico').Replace('\','/')
+@"
+1 ICON "$icon"
+1 VERSIONINFO
+FILEVERSION $version
+PRODUCTVERSION $version
+FILETYPE 1
+BEGIN
+ BLOCK "StringFileInfo"
+ BEGIN
+  BLOCK "041604b0"
+  BEGIN
+   VALUE "CompanyName", "$($metadata.manufacturer)\0"
+   VALUE "FileDescription", "AgroLines Stable Launcher\0"
+   VALUE "ProductName", "AgroLines\0"
+   VALUE "FileVersion", "$($metadata.version)\0"
+   VALUE "OriginalFilename", "AgroLines.exe\0"
+  END
+ END
+ BLOCK "VarFileInfo"
+ BEGIN
+  VALUE "Translation", 0x0416, 1200
+ END
+END
+"@ | Set-Content $resource -Encoding utf8
 @('@echo off', ('call "' + $developer + '" -arch=x64 -host_arch=x64'), 'if errorlevel 1 exit /b %errorlevel%',
-  ('cl /nologo /O2 /MT /W4 /WX /sdl /guard:cf /utf-8 /std:c++17 "' + $source + '" /Fo"' + $object + '" /Fe"' + $output + '" /link /SUBSYSTEM:WINDOWS /DYNAMICBASE /NXCOMPAT /HIGHENTROPYVA shell32.lib advapi32.lib user32.lib'),
+  ('rc /nologo /fo "' + $compiledResource + '" "' + $resource + '"'), 'if errorlevel 1 exit /b %errorlevel%',
+  ('cl /nologo /O2 /MT /W4 /WX /sdl /guard:cf /utf-8 /std:c++17 "' + $source + '" "' + $compiledResource + '" /Fo"' + $object + '" /Fe"' + $output + '" /link /SUBSYSTEM:WINDOWS /DYNAMICBASE /NXCOMPAT /HIGHENTROPYVA shell32.lib advapi32.lib user32.lib'),
   'exit /b %errorlevel%') | Set-Content $build -Encoding ascii
 & cmd.exe /d /c $build
 if ($LASTEXITCODE) { throw 'Launcher compilation failed.' }
