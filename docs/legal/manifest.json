@@ -1,0 +1,126 @@
+{
+  "algorithm": "SHA-256",
+  "scope": "Tracked legal drafts and documentary excerpts, not commercial approval or independent measurement of final Actions ZIP",
+  "files": [
+    {
+      "path": "distribution/legal/supplemental/materials.json",
+      "sha256": "5bc7d88700a21205ccfd88c12793e76f85a4c51c844d70ae288fbd63af71c06b",
+      "size_bytes": 35445
+    },
+    {
+      "path": "docs/legal/README.md",
+      "sha256": "2bd8c8d54df100ee23ec6f61c37ff65b299f038ddec1ef06d2749c61e2eefb43",
+      "size_bytes": 15914
+    },
+    {
+      "path": "docs/legal/casos.json",
+      "sha256": "719ad47fd622b11fca85c348b2a1a4aac5eef1eeabcf10e1c58d991523664198",
+      "size_bytes": 2470
+    },
+    {
+      "path": "docs/legal/decisoes-e-revisao.md",
+      "sha256": "7be87a5ee9802edfdf42c59bfb9ee40cdd316f8c41744a8c8a9650a97c2cb59b",
+      "size_bytes": 9594
+    },
+    {
+      "path": "docs/legal/records/build-artifacts-api.json",
+      "sha256": "71a0610d47d8d215e46d7fdde49a6c72b212498d01637b8b3e6ad895374e7067",
+      "size_bytes": 782
+    },
+    {
+      "path": "docs/legal/records/official-source-results.json",
+      "sha256": "81f66cd26b229470990b4c479b0e342f7b58ea900fd9d9309ac44c2b69f6c3ed",
+      "size_bytes": 8052
+    },
+    {
+      "path": "docs/legal/records/original-SZIP-COPYING.txt",
+      "sha256": "98cc66747133b26563fefc4630ad4c8c7848c722c7b8a60ecd4afbc4c7d7eb01",
+      "size_bytes": 1986
+    },
+    {
+      "path": "docs/legal/records/original-szip-static-inspection.json",
+      "sha256": "1da3c826651ee2428734a5a87c6b7a506efa9e8cc3802d66bb51ed8e86b44909",
+      "size_bytes": 374
+    },
+    {
+      "path": "docs/legal/records/publication-verification.json",
+      "sha256": "048905d9362b1e8ded59b8f5f3af2de5bf7c9e725541312ae0fd2fc79d11ea72",
+      "size_bytes": 3109
+    },
+    {
+      "path": "docs/legal/records/quality-results.json",
+      "sha256": "7470ab4aa10832004c05ec36cbc3fbbf76d1da20fff58435cf0498f92f130890",
+      "size_bytes": 1218
+    },
+    {
+      "path": "docs/legal/records/source-artifacts-api.json",
+      "sha256": "3d820bed71321b7c0cafabb5ace2d5b89c50813dd39a81f3b025b4e7a62f276d",
+      "size_bytes": 1532
+    },
+    {
+      "path": "docs/legal/records/windows-build-results.json",
+      "sha256": "616501004e54f8510a3da0bcd3d7a3766e5e79390fc44e143c4b3321ae10321d",
+      "size_bytes": 14674
+    },
+    {
+      "path": "docs/legal/standalone/EULA.html",
+      "sha256": "0a75257abdb728f375ddd73809bd4595645b54f86b92b2ae67fbcd012774165b",
+      "size_bytes": 15109
+    },
+    {
+      "path": "docs/legal/standalone/EULA.md",
+      "sha256": "be572f6c1298100fea68febb6df21cbe3874da9bb62416ccf99a0ccfe68e84b9",
+      "size_bytes": 14701
+    },
+    {
+      "path": "docs/legal/standalone/EULA.txt",
+      "sha256": "f68cb43bae1a0d899e6c83a99608c5fc9811bf83b78aeb6b8dfb595a05034354",
+      "size_bytes": 14704
+    },
+    {
+      "path": "docs/legal/standalone/INSTRUCOES-LGPL.md",
+      "sha256": "6dd24e854ae25ecdb7d5753542b7254375c7ddcf331db210ff04105100600523",
+      "size_bytes": 9913
+    },
+    {
+      "path": "docs/legal/standalone/INSTRUCOES-LGPL.txt",
+      "sha256": "47a1bc0dfd1490df09cacbdfb0788aa9b09b1543cdfa12668358161a4ca95fa9",
+      "size_bytes": 9916
+    },
+    {
+      "path": "docs/legal/standalone/LEIA-ME.md",
+      "sha256": "9787ed3b4ab3dd312eed7d584f0c5bc7d5af89a88f960fc3b90c9d0f4d4e701c",
+      "size_bytes": 1411
+    },
+    {
+      "path": "docs/legal/standalone/LEIA-ME.txt",
+      "sha256": "227f7331dd06a6f6ffc9135c4c2ea7e7fb5419df127209b99e80825b3e5dd604",
+      "size_bytes": 1414
+    },
+    {
+      "path": "docs/legal/standalone/politica-privacidade.html",
+      "sha256": "612ddb7077318777728bb24d40ebbd2bfce475d9eb2e857646e69c30ce2e03b8",
+      "size_bytes": 15665
+    },
+    {
+      "path": "docs/legal/standalone/politica-privacidade.md",
+      "sha256": "2046c8c1e5c0ee003ec585e4c3ead8ab593360924b9e03085b776345c28be411",
+      "size_bytes": 15257
+    },
+    {
+      "path": "docs/legal/standalone/politica-privacidade.txt",
+      "sha256": "21300d44bcb8cfddb6b9ed72bf867a26a6e857444ab8704332a8e88bb782b4ac",
+      "size_bytes": 15260
+    },
+    {
+      "path": "docs/legal/supplier-delta.md",
+      "sha256": "5ecde0a0fcd08b768cc0f72fc9043fa9f3ad87c39610481f5ce1866fb81208d8",
+      "size_bytes": 9090
+    },
+    {
+      "path": "docs/legal/szip-libaec.md",
+      "sha256": "347ea7f131ebbab24ac2dceaf0a81fae1b92e569b9a5ee3988504890be37a037",
+      "size_bytes": 3867
+    }
+  ]
+}

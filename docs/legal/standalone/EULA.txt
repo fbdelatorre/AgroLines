@@ -1,0 +1,246 @@
+﻿# AgroLines — licença de uso standalone
+
+MINUTA PARA REVISÃO JURÍDICA E PREENCHIMENTO. NÃO ADOTADA. NÃO CONSTITUI ACEITE.
+Versão documental: 15/10/2026. Vigência contratual: [DEFINIR ANTES DA CONTRATAÇÃO].
+
+## 1. Partes, identificação e documentos da contratação
+
+O licenciante proposto é FABRICIO JOSE DELATORRE, pessoa física, responsável pelo
+AgroLines. Contato de suporte e privacidade: fabricio.grupodelatorre@gmail.com.
+“AgroLines” é a identificação do produto; “Delatorre Corporation” é a marca
+informada para os recursos do executável, não declaração de pessoa jurídica
+constituída. Não se atribuem CNPJ, endereço ou certificação empresarial inexistentes.
+
+Antes da contratação, informar ao adquirente a identificação fiscal e o endereço
+de atendimento exigíveis pelo canal de venda, por meio apropriado e seguro:
+[PREENCHER INFORMAÇÕES DO FORNECEDOR NO DOCUMENTO CONTRATUAL/COMERCIAL, SEM
+PUBLICAR DOCUMENTOS PESSOAIS OU CREDENCIAIS NO REPOSITÓRIO].
+
+O licenciado é a pessoa identificada no documento de aquisição ou termo de testes.
+A versão contratual final, o resumo comercial, a política de privacidade e os
+avisos de terceiros devem ser entregues em formato acessível e durável. Termos
+adicionais não podem reduzir direitos legais ou de terceiros que prevaleçam.
+
+## 2. Quadro comercial a definir
+
+Este quadro deve ser preenchido e informado antes do aceite; nenhuma opção é
+selecionada automaticamente por esta minuta.
+
+- Modalidade: [ESCOLHER USUÁRIO OU DISPOSITIVO; DEFINIR LICENÇAS EMPRESARIAIS SE HOUVER].
+- Quantidade autorizada de usuários/dispositivos/instalações: [DEFINIR].
+- Edição e módulos efetivamente entregues: [DEFINIR, SEM PROMETER RECURSOS FUTUROS].
+- Duração do direito de uso: [DEFINIR PERMANENTE OU PRAZO DE ASSINATURA].
+- Preço, tributos, pagamento e eventual renovação: [DEFINIR NO DOCUMENTO COMERCIAL].
+- Prazo de validade técnica da versão comercializada e atendimento correspondente:
+  [DEFINIR CONFORME LEI 9.609/1998, ARTS. 7 E 8, E DEMAIS REGRAS APLICÁVEIS].
+- Atualizações incluídas e condições de suporte: [DEFINIR ESCOPO, CANAL E PRAZO,
+  RESPEITANDO AS OBRIGAÇÕES LEGAIS].
+- Data, número/versão deste contrato e modo de aceite: [DEFINIR E GUARDAR CÓPIA].
+
+O programa privado inicial de testes permanece voluntário, gratuito e exclusivo
+para participantes com pelo menos 18 anos, sujeito ao seu termo específico.
+Esta minuta comercial não converte o teste em assinatura ou obrigação de compra.
+
+## 3. Objeto e limites funcionais
+
+A licença proposta permite instalar e usar a versão contratada do AgroLines em
+Windows 11, conforme os limites expressamente acordados. O aplicativo incorpora
+runtime e bibliotecas; o cliente não precisa instalar Python, pip, QGIS ou
+PostgreSQL manualmente. A edição standalone atual é exclusivamente offline.
+
+Os recursos abrangidos são os efetivamente implementados e documentados para a
+versão entregue. Cadastro local de projetos SQLite .agrolines, importação GIS,
+visualização e edição, histórico e backup não significam homologação de monitor,
+comando de máquina, trajetória executável ou precisão absoluta centimétrica em
+campo. Não há declaração de segurança operacional ou de compatibilidade universal.
+
+## 4. Concessão de uso e propriedade intelectual
+
+O software próprio é licenciado, não vendido como transferência de seus direitos
+autorais. Resguardados os direitos legais e de terceiros abaixo, o licenciado pode
+instalar, executar e manter cópias de segurança necessárias ao uso autorizado.
+Os limites comerciais devem permitir recuperação/troca legítima de equipamento
+conforme o procedimento definido, sem perda indevida dos dados do usuário.
+
+Projetos, geometrias, arquivos de produção e demais dados do usuário não são
+transferidos ao licenciante pela instalação ou uso. O usuário deve possuir os
+direitos e autorizações necessários para os dados que utilizar ou compartilhar.
+
+## 5. Restrições relativas somente ao código próprio
+
+Sem autorização ou permissão legal aplicável, não é concedido o direito de
+revender, sublicenciar, oferecer o código próprio a terceiros, remover avisos de
+titularidade ou usar o produto para fins ilícitos. Restrições a cópia, alteração,
+descompilação ou engenharia reversa do código próprio não alcançam os direitos
+assegurados por lei e pelas licenças de terceiros nas seções seguintes.
+
+A assinatura digital, o formato onedir e o PyInstaller não garantem sigilo absoluto
+ou impossibilidade de extração de bytecode. Esta minuta não faz essa promessa.
+
+## 6. Bibliotecas de terceiros e prevalência de suas licenças
+
+Python, PySide6, Shiboken, Qt, Qt WebEngine, Chromium, GEOS, GDAL, Fiona, Shapely,
+PROJ, NumPy, libaec, Leaflet e outros componentes são de seus titulares e conservam suas
+licenças próprias. A relação real por versão, os textos integrais, copyrights e
+materiais de fontes ficam no diretório legal da versão, incluindo
+THIRD_PARTY_NOTICES.txt, licenses/, fontes-terceiros.json e INSTRUCOES-LGPL.txt.
+Essa relação deve refletir o conteúdo efetivamente entregue, inclusive vendors.
+
+Nada nesta EULA substitui ou limita permissões das licenças desses componentes.
+A presença do texto GPL não significa que o código próprio foi colocado sob GPL;
+é necessário observar a licença/alternativa e o escopo aplicável a cada componente.
+Também não se presume que toda dependência de um wheel tenha a mesma licença.
+
+## 7. Direitos LGPL, modificação e depuração
+
+São expressamente ressalvados, nas hipóteses e nos limites das licenças aplicáveis:
+
+- Modificar as bibliotecas LGPL e utilizar versões compatíveis com a interface.
+- Substituir/recombinar essas bibliotecas pelo mecanismo aplicável à cópia entregue.
+- Realizar engenharia reversa necessária à depuração de modificações dessas
+  bibliotecas, inclusive quando uma proibição geral do código próprio fosse lida
+  como impedimento a esse direito.
+- Obter os fontes, avisos, modificações, scripts e informações de instalação que
+  a licença efetivamente exigir, na modalidade adotada e com acesso adequado.
+
+Esses direitos não dependem de autorização discricionária do licenciante. O uso
+permitido de biblioteca modificada não deve, por si só, invalidar uma licença
+legítima do AgroLines. Eventuais limitações de suporte por alterações devem ser
+proporcionais à causa do problema e preservar garantias e direitos obrigatórios.
+
+A árvore onedir e as fontes Python externas dos bindings permitem substituição
+conforme as instruções e evidências disponíveis. Não se promete compatibilidade de
+qualquer biblioteca, ABI ou sistema operacional. Não se exige divulgar código
+proprietário quando o cumprimento da alternativa LGPL aplicável permitir preservá-lo.
+
+Esta minuta não permite desativar SAC/Defender, contornar integridade do Windows
+ou usar certificado de teste como prova de confiança. A convivência dos direitos
+LGPL com o mecanismo de confiança da distribuição real permanece sujeita à revisão
+jurídica e homologação especificadas nos documentos de liberação.
+
+## 8. Código redistribuível Microsoft
+
+Os componentes Microsoft conservam seus avisos e condições. Nas cópias abrangidas
+pelas condições adicionais do Python Windows, distribuidores e usuários finais
+devem observar as restrições aplicáveis ao Microsoft Distributable Code: não
+alterar seus avisos de copyright, marca ou patente; não usar marcas Microsoft
+para sugerir origem/endosso; não redistribuir esse código fora dos sistemas operacionais, tecnologias de
+runtime ou plataformas Microsoft permitidos; não o incluir em programas maliciosos, enganosos ou ilícitos.
+
+Essas restrições se referem ao código Microsoft, não alteram a licença do Python,
+das bibliotecas livres ou dos projetos do usuário. As condições integrais
+aplicáveis e os direitos de redistribuição de cada runtime devem acompanhar a
+versão liberada; não se infere autorização apenas de assinatura Authenticode válida.
+
+## 9. Instalação, atualizações e dados locais
+
+O instalador completo mantém runtime por versão e um launcher estável. Projetos,
+backups e configurações devem ficar fora da pasta de instalação. Antes de atualizar
+ou desinstalar, feche o projeto e mantenha backup verificável. Desinstalação não é
+um comando de exclusão de arquivos pessoais, cópias externas ou lixeira.
+
+A homologação física do ciclo de instalação/atualização/desinstalação ainda não
+foi concluída. Não se promete preservação já comprovada apenas pelo script Inno.
+O programa não acrescenta atualizador online obrigatório. Condições para novas
+versões, alterações contratuais e suporte precisam ser informadas antes de sua adoção.
+
+## 10. Ativação e funcionamento offline
+
+Não foi implementado nesta versão um sistema comercial completo de ativação,
+cobrança, assinatura, coleta de hardware ou revogação remota. Essa possibilidade
+futura não autoriza coleta atual nem cria obrigação de conexão contínua.
+
+Quando implementado e contratado, o licenciamento deve informar modalidade,
+validade, instalações e recuperação; licenças offline válidas não deverão depender
+de heartbeat obrigatório. Chave privada de emissão nunca acompanha o aplicativo.
+Mudanças exigem revisão contratual, técnica e de privacidade, preservando os direitos
+LGPL e os dados dos clientes. Nenhum recurso agrícola offline deve ser apresentado
+como dependente de serviço remoto inexistente.
+
+## 11. Suporte e arquivos enviados voluntariamente
+
+O contato previsto é fabricio.grupodelatorre@gmail.com. Níveis de serviço, horários
+e prazo comercial devem ser definidos no quadro contratual, sem reduzir obrigações
+legais. Não há promessa de atendimento 24 horas ou de correção em prazo não aprovado.
+
+O usuário pode descrever o problema e enviar somente o mínimo necessário. Não envie
+senhas, tokens, documentos pessoais, dados de terceiros ou projeto completo quando
+um exemplo sintético bastar. O envio para diagnóstico não concede autorização
+irrestrita de reutilização dos dados. Retenção e direitos seguem a política de
+privacidade; o aplicativo não envia automaticamente esses materiais por e-mail.
+
+## 12. Uso responsável e limites técnicos
+
+Origem, datum/SRC, qualidade do levantamento, projeção, distorção, altitude e dados
+de entrada afetam os resultados. Referências computacionais aprovadas não substituem
+levantamento, RTK ou validação agronômica/operacional apropriada. O operador deve
+conferir os dados e resultados antes de utilizá-los em decisões ou equipamentos.
+
+Essa orientação não exonera o fornecedor de responsabilidade legal pelo produto,
+informações prestadas ou defeitos. Não há promessa de adequação a todo equipamento
+nem autorização de condução automática decorrente da simples geometria exibida.
+
+## 13. Garantias, responsabilidade e consumidor
+
+São preservados os direitos irrenunciáveis e as garantias aplicáveis pelo CDC,
+Lei do Software e demais normas brasileiras. Não se adota exclusão genérica de
+responsabilidade, limite monetário inventado ou renúncia a indenização legal.
+
+Qualquer exclusão/limitação contratual adicional somente poderá constar da versão
+final após avaliação jurídica de sua validade, transparência e proporcionalidade,
+sem afastar dolo, direitos obrigatórios ou responsabilidade que a lei não permita
+limitar. Os disclaimers das licenças de terceiros conservam seu próprio escopo;
+não são apresentados como supressão dos deveres do fornecedor do AgroLines.
+
+Informações pré-contratuais, confirmação da contratação, mecanismos de correção,
+rescisão e exercício de arrependimento nas hipóteses de contratação à distância
+serão disponibilizados conforme a legislação aplicável. Não se presume renúncia
+por download, ativação, abertura do instalador ou uso de uma minuta.
+
+## 14. Rescisão e término
+
+O término observará as condições informadas na contratação e os direitos legais.
+Descumprimentos devem ser comunicados e tratados proporcionalmente, com oportunidade
+de esclarecimento/correção quando cabível. Não se concede autorização para apagar
+remotamente projetos, backups ou dados do usuário.
+
+O término de licença própria não extingue direitos recebidos diretamente sob
+licenças de terceiros. Retenção de registros contratuais/privacidade deverá ser
+justificada e informada, sem inventar prazo comercial ainda não decidido.
+
+## 15. Privacidade e comunicações
+
+A política standalone distingue processamento local, suporte voluntário e terceiros.
+Não há autorização genérica de telemetria, marketing, transferência de projetos
+ou uso de hardware nesta EULA. Mudanças relevantes e o canal de comunicação devem
+ser informados conforme a política e a base legal aplicável.
+
+## 16. Legislação, solução de conflitos e foro
+
+Aplica-se a legislação brasileira, respeitadas normas cogentes e direitos dos
+titulares das bibliotecas. Buscar solução pelo canal de atendimento não impede
+acesso à ANPD, órgãos de defesa do consumidor ou ao Judiciário.
+
+Não se impõe foro exclusivo desfavorável ao consumidor. O foro competente seguirá
+as regras legais aplicáveis, inclusive as de proteção do consumidor quando cabíveis.
+Nenhuma cidade ou endereço de foro foi inventado nesta minuta.
+
+## 17. Aceite verificável e documentos pendentes
+
+Somente a versão final revisada, identificada e disponibilizada previamente pode
+ser submetida a aceite. O registro deve vincular a versão/hash do texto, a edição,
+as condições comerciais, a declaração de ciência e a data do aceite, usando apenas
+dados necessários e base legal definida. Não há cadastro/aceite comercial automático
+implementado no aplicativo por esta tarefa.
+
+O instalador experimental exibe aviso de minuta; isso NÃO equivale a contratação
+ou consentimento de privacidade. O termo próprio de testes 18+ continua separado.
+
+## 18. Condições para adoção desta minuta
+
+Dependem do titular: quadro comercial, identificação/endereço de atendimento
+exigíveis, validade técnica/suporte, versão e vigência do contrato e canal de venda.
+Dependem de revisão jurídica: cláusulas de consumo, licença proprietária, LGPL,
+código redistribuível Microsoft, fontes/instalação e adequação da política.
+Dependem dos fornecedores: materiais correspondentes que ainda não estejam
+comprovados no inventário. Nenhum destes pontos é aprovado automaticamente por CI.

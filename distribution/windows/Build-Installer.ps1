@@ -33,6 +33,8 @@ if ($Standalone) {
         (Get-FileHash (Join-Path $PSScriptRoot 'standalone/launcher.cpp') -Algorithm SHA256).Hash.ToLowerInvariant() -cne $launcherProvenance.source_sha256) { throw 'Launcher build/source changed.' }
     [IO.File]::WriteAllText((Join-Path $root 'build/distribution/AgroLines.current.txt'), "$Version-$CandidateId`n", [Text.Encoding]::ASCII)
     $arguments += @('/DStandalone', '/DExperimental', "/DCandidateId=$CandidateId")
+    # Keep compiler inclusion evidence for the actual legal files, without installation.
+    $arguments = @($arguments | Where-Object { $_ -cne '/Qp' })
 }
 if ($CertificateThumbprint) {
     if ($CertificateThumbprint -notmatch '^[0-9a-fA-F]{40}$') { throw 'Thumbprint invalido.' }
@@ -44,6 +46,19 @@ if ($CertificateThumbprint) {
     $arguments += '/Sagrolines=' + $command
 }
 $arguments += (Join-Path $PSScriptRoot 'installer.iss')
-& $Compiler @arguments
+if ($Standalone) {
+    $log=Join-Path $root 'evidence/standalone/inno-compile.log'
+    & $Compiler @arguments 2>&1 | Tee-Object -FilePath $log
+} else {
+    & $Compiler @arguments
+}
 if ($LASTEXITCODE -ne 0) { throw 'Compilacao do instalador falhou.' }
+if ($Standalone) {
+    $compiled=Get-Content $log -Raw
+    foreach ($name in @('EULA.txt','politica-privacidade.txt','INSTRUCOES-LGPL.txt','THIRD_PARTY_NOTICES.txt','legal-manifest.json')) {
+        if ($compiled.IndexOf($name,[StringComparison]::OrdinalIgnoreCase) -lt 0) { throw ('Missing compiler inclusion evidence: ' + $name) }
+    }
+    & $PythonExecutable -m distribution.legal_materials --payload (Join-Path $root 'dist/AgroLines') --output (Join-Path $root 'evidence/standalone/compiled-legal-materials.json')
+    if ($LASTEXITCODE) { throw 'Legal input changed during compilation.' }
+}
 if (-not $CertificateThumbprint) { Write-Output 'ARTEFATO INTERNO NAO ASSINADO: nao aprovado para SAC/distribuicao.' }

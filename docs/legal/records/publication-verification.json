@@ -1,0 +1,101 @@
+[
+  {
+    "project": "shapely",
+    "version": "2.2.0",
+    "wheel": "shapely-2.2.0-cp312-cp312-win_amd64.whl",
+    "sha256": "90895df6542ae039fc6557dec6194e3509e883fbd6f5788e3c3e7a38fe46b257",
+    "expected_repository": "shapely/shapely",
+    "attestation_verified": true,
+    "exit_code": 0,
+    "tool": "pypi-attestations 0.0.30",
+    "scope": "Publisher and artifact integrity, not license/source-binary equivalence",
+    "tool_output": "OK: shapely-2.2.0-cp312-cp312-win_amd64.whl\n",
+    "publisher": [
+      {
+        "environment": "pypi",
+        "kind": "GitHub",
+        "repository": "shapely/shapely",
+        "workflow": "release.yml"
+      }
+    ],
+    "verified_certificate_source_commits": [
+      "229c71f7128713b37201f3c77336d32b52467454"
+    ],
+    "subjects": [
+      [
+        {
+          "name": "shapely-2.2.0-cp312-cp312-win_amd64.whl",
+          "digest": {
+            "sha256": "90895df6542ae039fc6557dec6194e3509e883fbd6f5788e3c3e7a38fe46b257"
+          }
+        }
+      ]
+    ]
+  },
+  {
+    "project": "scipy-openblas64",
+    "version": "0.3.34.106.0",
+    "wheel": "scipy_openblas64-0.3.34.106.0-py3-none-win_amd64.whl",
+    "sha256": "ea34bf76b8427ac2eca7a99334cbd8937a040303fa8364f9ed8e667d7c8e2c7d",
+    "expected_repository": "MacPython/openblas-libs",
+    "attestation_verified": true,
+    "exit_code": 0,
+    "tool": "pypi-attestations 0.0.30",
+    "scope": "Publisher and artifact integrity, not license/source-binary equivalence",
+    "tool_output": "OK: scipy_openblas64-0.3.34.106.0-py3-none-win_amd64.whl\n",
+    "publisher": [
+      {
+        "environment": "pypi",
+        "kind": "GitHub",
+        "repository": "MacPython/openblas-libs",
+        "workflow": "publish.yml"
+      }
+    ],
+    "verified_certificate_source_commits": [
+      "78fc0eaf6de71d92fd98f74f7e5bfa356a2f83e3"
+    ],
+    "subjects": [
+      [
+        {
+          "name": "scipy_openblas64-0.3.34.106.0-py3-none-win_amd64.whl",
+          "digest": {
+            "sha256": "ea34bf76b8427ac2eca7a99334cbd8937a040303fa8364f9ed8e667d7c8e2c7d"
+          }
+        }
+      ]
+    ]
+  },
+  {
+    "project": "numpy",
+    "version": "2.5.4",
+    "wheel": "numpy-2.5.4-cp312-cp312-win_amd64.whl",
+    "sha256": "a7b1b6353e36a7e50de2973a38d705c88ee93adcf120673cee7f45a4a3fa223a",
+    "expected_repository": "numpy/numpy-release",
+    "attestation_verified": true,
+    "exit_code": 0,
+    "tool": "pypi-attestations 0.0.30",
+    "scope": "Publisher and artifact integrity, not license/source-binary equivalence",
+    "tool_output": "OK: numpy-2.5.4-cp312-cp312-win_amd64.whl\n",
+    "publisher": [
+      {
+        "environment": "pypi",
+        "kind": "GitHub",
+        "repository": "numpy/numpy-release",
+        "workflow": "wheels.yml"
+      }
+    ],
+    "verified_certificate_source_commits": [
+      "a1cc2f4a9705f4171d480263fde93fa01ba816d6"
+    ],
+    "subjects": [
+      [
+        {
+          "name": "numpy-2.5.4-cp312-cp312-win_amd64.whl",
+          "digest": {
+            "sha256": "a7b1b6353e36a7e50de2973a38d705c88ee93adcf120673cee7f45a4a3fa223a"
+          }
+        }
+      ]
+    ]
+  }
+]

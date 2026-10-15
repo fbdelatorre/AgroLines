@@ -1,0 +1,65 @@
+{
+  "unit": "Original requested work packages; excludes already resolved U03 and new global owner decisions",
+  "original_requested_count": 7,
+  "counts": {
+    "RESOLVIDO": 1,
+    "DEPENDE DE TERCEIRO": 4,
+    "DEPENDE DO TITULAR": 0,
+    "REVISÃO JURÍDICA": 2,
+    "BLOQUEADO": 0
+  },
+  "cases": [
+    {
+      "id": "U01",
+      "component": "Qt/PySide6/Shiboken 6.12.0",
+      "state": "DEPENDE DE TERCEIRO",
+      "scope_or_missing": "Configuração/patches/BOM estática e avisos dos targets exatos dos wheels.",
+      "details": "supplier-delta.md#u01--qtpyside6shiboken"
+    },
+    {
+      "id": "U02",
+      "component": "WebEngine/PDF/Chromium/PDFium",
+      "state": "DEPENDE DE TERCEIRO",
+      "scope_or_missing": "Gitlinks finais, GN args, codecs e créditos dos targets efetivamente distribuídos.",
+      "details": "supplier-delta.md#u02--qt-webenginechromiumpdfium"
+    },
+    {
+      "id": "U04",
+      "component": "Fiona/GDAL/vendors",
+      "state": "DEPENDE DE TERCEIRO",
+      "scope_or_missing": "Mapa residual de fontes/patches, GEOS Fiona e avisos estáticos/drivers; SZIP corrigido.",
+      "details": "supplier-delta.md#u04--fionavendors"
+    },
+    {
+      "id": "U05",
+      "component": "Shapely 2.2.0/GEOS 3.14.1",
+      "state": "RESOLVIDO",
+      "scope_or_missing": "Encerramento documental do pedido upstream; fonte/receita/avisos obtidos; não aprovação global LGPL nem reprodução bit a bit.",
+      "details": "README.md#u05-escopo-exato-do-encerramento"
+    },
+    {
+      "id": "U06",
+      "component": "pyproj/PROJ/dados",
+      "state": "DEPENDE DE TERCEIRO",
+      "scope_or_missing": "Atribuições de bases e mapa residual build/estáticos aplicáveis ao conteúdo efetivo.",
+      "details": "supplier-delta.md#u06--pyprojprojdados"
+    },
+    {
+      "id": "U07",
+      "component": "NumPy/OpenBLAS/LAPACK/GCC",
+      "state": "REVISÃO JURÍDICA",
+      "scope_or_missing": "Identificador/fontes/receitas/textos resolvidos; aplicar GCC Runtime Library Exception ao processo concreto.",
+      "details": "decisoes-e-revisao.md"
+    },
+    {
+      "id": "U08",
+      "component": "Microsoft/MSVC/UCRT",
+      "state": "REVISÃO JURÍDICA",
+      "scope_or_missing": "Store dispensada para standalone; alcance dos termos de redistribuição por origem e ferramentas/CRT.",
+      "details": "decisoes-e-revisao.md"
+    }
+  ],
+  "legal_approved": false,
+  "distribution_approved": false,
+  "supplier_messages_sent": 0
+}

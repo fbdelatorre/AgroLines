@@ -15,12 +15,10 @@ ROOT = Path(__file__).resolve().parent.parent
 PRIVACY_FILES = ("politica-privacidade.html", "politica-privacidade.md", "politica-privacidade.txt")
 
 
-def privacy_assets():
+def privacy_assets(standalone=False):
     """Ship policy copies only, never internal audits or operational records."""
-    return [
-        (str(ROOT / "docs/privacy/offline" / name), "desktop/privacy_assets")
-        for name in PRIVACY_FILES
-    ]
+    folder = "docs/legal/standalone" if standalone else "docs/privacy/offline"
+    return [(str(ROOT / folder / name), "desktop/privacy_assets") for name in PRIVACY_FILES]
 
 
 def store_builder_environment():
@@ -188,6 +186,10 @@ def main():
         env=builder_environment,
     )
     payload = ROOT / ("dist/AgroLines" if args.standalone else "dist/AgroLinesPoC")
+    if args.standalone:
+        from distribution.libaec_build import stage as stage_codec
+
+        stage_codec(payload)
     collect_notices(payload, ROOT / "evidence/qt-minimal/build-inputs.json" if offline else None)
     if args.store:
         shutil.copyfile(

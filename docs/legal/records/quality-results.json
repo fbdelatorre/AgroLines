@@ -1,0 +1,36 @@
+{
+  "run_id": 38759477160,
+  "source_head": "cb7c6bc7f075bbb062d3313a2b5de467022342d5",
+  "windows": {
+    "passed": 246,
+    "skipped": 2,
+    "precision": {
+      "passed": 22,
+      "total": 22
+    }
+  },
+  "linux": {
+    "passed": 247,
+    "skipped": 1,
+    "precision": {
+      "passed": 22,
+      "total": 22
+    }
+  },
+  "lint": "passed",
+  "format": "passed",
+  "hosted_ci_only": true,
+  "sac_tested": false,
+  "excerpts": {
+    "windows": [
+      "checks (windows-latest)\tRun ruff check .\t2026-10-15T15:22:46.1958967Z All checks passed!",
+      "checks (windows-latest)\tRun ruff format --check .\t2026-10-15T15:22:46.6232392Z 143 files already formatted",
+      "checks (windows-latest)\tPytest\t2026-10-15T15:24:28.1915266Z ============ 246 passed, 2 skipped, 1 warning in 93.77s (0:01:33) ============="
+    ],
+    "linux": [
+      "checks (ubuntu-latest)\tRun ruff check .\t2026-10-15T15:21:15.4724243Z All checks passed!",
+      "checks (ubuntu-latest)\tRun ruff format --check .\t2026-10-15T15:21:15.5232342Z 143 files already formatted",
+      "checks (ubuntu-latest)\tPytest\t2026-10-15T15:22:13.3044985Z ================== 247 passed, 1 skipped, 1 warning in 54.46s =================="
+    ]
+  }
+}

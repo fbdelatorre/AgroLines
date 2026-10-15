@@ -35,6 +35,8 @@ OutputBaseFilename=AgroLines-Standalone-{#Version}-x64-{#CandidateId}-HOMOLOGACA
 #endif
 PrivilegesRequired=admin
 UninstallFilesDir={app}\uninstall
+; Draft information only: this is not an accepted commercial EULA or consent.
+InfoBeforeFile=..\..\dist\AgroLines\legal\LEIA-ME.txt
 DisableProgramGroupPage=yes
 RestartApplications=no
 AppMutex=Global\AgroLinesStandalone-942C9844-703C-4B75-BE59-A66F3C3D9847
@@ -84,6 +86,7 @@ Source: "..\..\dist\AgroLinesPoC\*"; DestDir: "{app}\app"; Flags: ignoreversion 
 [Icons]
 #ifdef Standalone
 Name: "{group}\{#ProductName}"; Filename: "{app}\AgroLines.exe"; WorkingDir: "{app}"; AppUserModelID: "Delatorre.AgroLines.Standalone"
+Name: "{group}\Avisos e documentos jurídicos"; Filename: "{#RuntimeDir}\legal\THIRD_PARTY_NOTICES.txt"; WorkingDir: "{#RuntimeDir}\legal"
 Name: "{autodesktop}\{#ProductName}"; Filename: "{app}\AgroLines.exe"; WorkingDir: "{app}"; AppUserModelID: "Delatorre.AgroLines.Standalone"; Tasks: desktopicon
 #else
 Name: "{group}\{#ProductName}"; Filename: "{#RuntimeDir}\{#BinaryName}.exe"; WorkingDir: "{#RuntimeDir}"
