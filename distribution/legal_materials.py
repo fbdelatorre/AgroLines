@@ -57,18 +57,20 @@ def render_markdown(text):
     )
 
 
-def render_policies():
+def render_policies(folder=None):
+    folder = folder or POLICIES
     for name in DOCUMENTS:
-        source = POLICIES / name
+        source = folder / name
         text = source.read_text(encoding="utf-8")
         source.with_suffix(".txt").write_text(text, encoding="utf-8-sig")
         if name in ("EULA.md", "politica-privacidade.md"):
             source.with_suffix(".html").write_text(render_markdown(text), encoding="utf-8")
 
 
-def verify_policy_copies():
+def verify_policy_copies(folder=None):
+    folder = folder or POLICIES
     for name in DOCUMENTS:
-        source = safe_file(POLICIES, name)
+        source = safe_file(folder, name)
         text = source.read_text(encoding="utf-8")
         if source.with_suffix(".txt").read_bytes() != b"\xef\xbb\xbf" + text.encode():
             raise ValueError("Stale plain-text legal draft: " + name)
@@ -110,6 +112,10 @@ def _component_rows(payload, registry):
     from distribution.geos_delivery import evidence as geos_evidence
 
     geos = geos_evidence(payload)
+    from distribution.license_dependencies import additions
+
+    extra_natives, extra_components = additions(payload)
+    registry["components"].extend(extra_components)
     for file in sorted(Path(payload).rglob("*")):
         if not file.is_file() or file.suffix.casefold() not in (".dll", ".pyd", ".exe"):
             continue
@@ -118,6 +124,8 @@ def _component_rows(payload, registry):
             component = "libaec-SZIP"
         elif relative in geos:
             component = geos[relative]["component"]
+        elif relative in extra_natives:
+            component = extra_natives[relative]["component"]
         elif relative == "AgroLines.exe":
             component = "AgroLines-executable"
         else:
@@ -148,6 +156,16 @@ def _component_rows(payload, registry):
         raise ValueError("No actual native payload to associate with legal materials")
     # These are actually frozen Python/JS/data inputs, not builder dependencies.
     selected.update(("PyInstaller-embedded", "Leaflet", "attrs", "certifi", "defusedxml"))
+    collected = Path(payload) / "third-party-notices/packages.json"
+    if extra_components and collected.exists():
+        packages = json.loads(collected.read_text())
+        for item in extra_components:
+            actual = next((p for p in packages if p["name"].lower() == item["id"].lower()), None)
+            if actual:
+                if actual["version"] != item["version"]:
+                    raise ValueError("Commercial Python dependency version differs")
+                selected.add(item["id"])
+
     registry["components"].append(
         {
             "id": "libaec-SZIP",
@@ -174,7 +192,6 @@ def prepare(payload):
             components_by_id[resource]["notice_files"] = sorted(
                 {notice for owner in owners for notice in components_by_id[owner]["notice_files"]}
             )
-    verify_policy_copies()
     supplemental = json.loads((SUPPLEMENT / "materials.json").read_text())
     choices = json.loads((ROOT / "distribution/legal/license-choices.json").read_text())
     audited_hashes = {
@@ -183,6 +200,9 @@ def prepare(payload):
     }
     target.mkdir()
     documents = []
+    commercial = any(row["id"] == "PyNaCl" for row in registry["components"])
+    policies = ROOT / "docs/legal/commercial" if commercial else POLICIES
+    verify_policy_copies(policies)
 
     def copy(source, relative, origin, component):
         destination = target / relative
@@ -204,9 +224,9 @@ def prepare(payload):
 
     for name in DOCUMENTS:
         for extension in (".md", ".txt"):
-            safe_file(POLICIES, str(Path(name).with_suffix(extension)))
+            safe_file(policies, str(Path(name).with_suffix(extension)))
         for extension in (".md", ".txt", ".html"):
-            source = POLICIES / Path(name).with_suffix(extension)
+            source = policies / Path(name).with_suffix(extension)
             if source.exists():
                 copy(
                     source,
@@ -247,6 +267,18 @@ def prepare(payload):
             destination = "licenses/supplemental/" + row["file"]
             copy(source, destination, row["origin"], component["id"])
             copies.append(destination)
+        if component.get("wheel_origin"):
+            from distribution.license_dependencies import MATERIALS
+
+            for item in component["wheel_origin"]["notices"]:
+                destination = "licenses/commercial/" + item["file"]
+                copy(
+                    safe_file(MATERIALS, item["file"]),
+                    destination,
+                    component["wheel_origin"]["url"] + "#" + item["wheel_file"],
+                    component["id"],
+                )
+                copies.append(destination)
         component_rows.append(
             {
                 "component": component["id"],
@@ -257,6 +289,7 @@ def prepare(payload):
                 "license_choice_scope": choices.get(component["id"]),
                 "notices": copies,
                 "scope_complete": False,
+                "wheel_origin": component.get("wheel_origin"),
             }
         )
     if selected - {r["component"] for r in component_rows}:

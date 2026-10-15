@@ -107,6 +107,42 @@ jobs:
           Add-Content $env:GITHUB_STEP_SUMMARY ('Experimental installer: `' + $file.Name + '`')
           Add-Content $env:GITHUB_STEP_SUMMARY ('SHA-256: `' + $report.sha256 + '`')
           Add-Content $env:GITHUB_STEP_SUMMARY 'UNSIGNED. Build/probes only. No installation, signing, SAC approval, publication or commercial authorization.'
+      - name: Build separate experimental commercial profile with public synthetic trust only
+        if: github.head_ref == 'compliance/commercial-licensing-foundation'
+        run: |
+          Copy-Item evidence/qt-minimal/build-inputs.json evidence/standalone/offline-build-inputs.json
+          Move-Item dist/AgroLines dist/AgroLines-offline
+          ./build-env/Scripts/python.exe -m pip install --require-hashes --only-binary=:all: -r distribution/windows/requirements-commercial.lock
+          if ($LASTEXITCODE) { throw 'Commercial locked dependency installation failed.' }
+          ./build-env/Scripts/python.exe -m pip check
+          if ($LASTEXITCODE) { throw 'Commercial dependency consistency failed.' }
+          ./build-env/Scripts/python.exe -m scripts.prepare_license_lab --output "$env:RUNNER_TEMP/licensing-fixture"
+          if ($LASTEXITCODE) { throw 'Synthetic public trust preparation failed.' }
+          ./build-env/Scripts/python.exe -m distribution.build --commercial --version 1.0.0.4 --license-origin https://licenses.example.test --public-keys "$env:RUNNER_TEMP/licensing-fixture/public.json" --experimental-licensing
+          if ($LASTEXITCODE) { throw 'Separate commercial build failed.' }
+          New-Item evidence/commercial -ItemType Directory -Force | Out-Null
+          Copy-Item dist/AgroLines/legal evidence/commercial/packaged-legal -Recurse
+          Copy-Item dist/AgroLines/standalone-layout.json evidence/commercial/layout.json
+      - name: Frozen DPAPI, offline GIS, revocation persistence and separate commercial installer (never install)
+        if: github.head_ref == 'compliance/commercial-licensing-foundation'
+        run: |
+          $oldPath=$env:PATH
+          try {
+            $env:PATH="$env:WINDIR/System32;$env:WINDIR"
+            $process=Start-Process dist/AgroLines/AgroLines.exe -ArgumentList @('--licensing-probe', "$env:RUNNER_TEMP/licensing-fixture/fixture.json", 'evidence/commercial/frozen-license.json') -Wait -PassThru
+            if ($process.ExitCode -ne 0) { throw 'Frozen commercial/DPAPI/GIS probe failed.' }
+          } finally { $env:PATH=$oldPath }
+          $license=Get-Content evidence/commercial/frozen-license.json -Raw | ConvertFrom-Json
+          if (-not $license.passed -or -not $license.frozen -or -not $license.dpapi_roundtrip -or $license.sac_approved) { throw 'Invalid commercial proof.' }
+          ./distribution/windows/standalone/Prepare-SigningPlan.ps1 -Payload dist/AgroLines -SourceCommit $env:GITHUB_SHA -PythonExecutable ./build-env/Scripts/python.exe -Output evidence/commercial/signing
+          $compiler=Join-Path '${{ runner.temp }}' 'agrolines-inno/compiler/ISCC.exe'
+          ./distribution/windows/Build-Installer.ps1 -Standalone -Experimental -Version 1.0.0.4 -CandidateId ($env:GITHUB_SHA.Substring(0,12)) -Compiler $compiler -PythonExecutable ./build-env/Scripts/python.exe
+          $file=Get-ChildItem dist/installers -Filter '*1.0.0.4*EXPERIMENTAL-UNSIGNED.exe' | Select-Object -First 1
+          if (-not $file) { throw 'Missing experimental commercial installer.' }
+          $report=@{file=$file.Name;sha256=(Get-FileHash $file.FullName -Algorithm SHA256).Hash.ToLowerInvariant();version='1.0.0.4';profile='commercial-standalone';source_commit=$env:GITHUB_SHA;source_head_commit='${{ github.event.pull_request.head.sha }}';unsigned=$true;installed=$false;distributed=$false;sac_approved=$false;deployed_https_activation_proven=$false}
+          $report | ConvertTo-Json | Set-Content evidence/commercial/artifact.json -Encoding utf8
+          Write-Output ('AGROLINES_COMMERCIAL_ARTIFACT=' + ($report | ConvertTo-Json -Compress))
+          # Explicitly NO installer/runtime/source ZIP upload; evidence only below.
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: always() && !contains(fromJSON('["compliance/standalone-native-validation","compliance/standalone-legal-materials","compliance/commercial-licensing-foundation"]'), github.head_ref)
         with:

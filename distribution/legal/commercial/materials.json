@@ -1,0 +1,78 @@
+{
+  "packages": [
+    {
+      "name": "cffi",
+      "version": "2.0.0",
+      "url": "https://files.pythonhosted.org/packages/f8/ed/13bd4418627013bec4ed6e54283b1959cf6db888048c7cf4b4c3b5b36002/cffi-2.0.0-cp312-cp312-win_amd64.whl",
+      "wheel": "cffi-2.0.0-cp312-cp312-win_amd64.whl",
+      "sha256": "da68248800ad6320861f129cd9c1bf96ca849a2771a59e0344e88681905916f5",
+      "natives": [
+        {
+          "wheel_file": "_cffi_backend.cp312-win_amd64.pyd",
+          "path": "_internal/_cffi_backend.cp312-win_amd64.pyd",
+          "sha256": "53de34afc3939d81bf2498b77425c52e2c3f3164f8cfe2543d3acc8f24134488"
+        }
+      ],
+      "notices": [
+        {
+          "file": "cffi/AUTHORS",
+          "sha256": "2a67a60bbfb33759d67d645ff131b8e6d6bc4cafc232d751fcac3eda4d314cc8",
+          "wheel_file": "cffi-2.0.0.dist-info/licenses/AUTHORS"
+        },
+        {
+          "file": "cffi/LICENSE",
+          "sha256": "5ba24ddc57067f9249add644c3afc41a5d6dc37e23433ef759d95df370b0af63",
+          "wheel_file": "cffi-2.0.0.dist-info/licenses/LICENSE"
+        },
+        {
+          "file": "cffi/LICENSE.libffi.txt",
+          "sha256": "a534fd4dd3550e2f501c61b8b1fd62217c573ccb84dad2b69e019f841e09e18c",
+          "wheel_file": "upstream sdist: src/c/libffi_x86_x64/ffi.h (original copyright and permission header)",
+          "source_archive_sha256": "44d1b5909021139fe36001ae048dbdde8214afa20200eda0f64c068cac5d5529"
+        }
+      ]
+    },
+    {
+      "name": "pycparser",
+      "version": "2.23",
+      "url": "https://files.pythonhosted.org/packages/a0/e3/59cd50310fc9b59512193629e1984c1f95e5c8ae6e5d8c69532ccc65a7fe/pycparser-2.23-py3-none-any.whl",
+      "wheel": "pycparser-2.23-py3-none-any.whl",
+      "sha256": "e5c6e8d3fbad53479cab09ac03729e0a9faf2bee3db8208a550daf5af81a5934",
+      "natives": [],
+      "notices": [
+        {
+          "file": "pycparser/LICENSE",
+          "sha256": "0c846399369ea76ddd7b5c44fe6d16497415fcf015f5cbb508c24bf98b81c5b1",
+          "wheel_file": "pycparser-2.23.dist-info/LICENSE"
+        }
+      ]
+    },
+    {
+      "name": "PyNaCl",
+      "version": "1.6.2",
+      "url": "https://files.pythonhosted.org/packages/41/ad/334600e8cacc7d86587fe5f565480fde569dfb487389c8e1be56ac21d8ac/pynacl-1.6.2-cp38-abi3-win_amd64.whl",
+      "wheel": "pynacl-1.6.2-cp38-abi3-win_amd64.whl",
+      "sha256": "62985f233210dee6548c223301b6c25440852e13d59a8b81490203c3227c5ba0",
+      "natives": [
+        {
+          "wheel_file": "nacl/_sodium.pyd",
+          "path": "_internal/nacl/_sodium.pyd",
+          "sha256": "57822e7aed944269943bcb855fc14560a5b6ae38869de4e3d00c380a5119ecc7"
+        }
+      ],
+      "notices": [
+        {
+          "file": "PyNaCl/LICENSE",
+          "sha256": "77af5bbded959114b6d7a5eea518b2be364e04f4f4a95f9e87d9870c27713d24",
+          "wheel_file": "pynacl-1.6.2.dist-info/licenses/LICENSE"
+        },
+        {
+          "file": "PyNaCl/LICENSE.libsodium.txt",
+          "sha256": "93e7cac854d71cdafc9d9e4e9f8fd28d87ae541b3dda224d7c8fe23d37875704",
+          "wheel_file": "pynacl-1.6.2.dist-info/licenses/licenses/LICENSE.libsodium.txt"
+        }
+      ]
+    }
+  ],
+  "distribution_approved": false
+}

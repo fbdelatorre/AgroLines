@@ -1,0 +1,34 @@
+name: Commercial license service (synthetic PostgreSQL, no deployment)
+on:
+  pull_request:
+    paths: ['server/**', 'core/license*', 'desktop/license*', 'tests/test_commercial_licensing.py', '.github/workflows/license-service.yml']
+permissions:
+  contents: read
+jobs:
+  postgres-two-seats:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    services:
+      db:
+        image: postgis/postgis:18-3.6
+        env:
+          POSTGRES_DB: agrolines_license_synthetic
+          POSTGRES_USER: synthetic_ci
+          POSTGRES_PASSWORD: synthetic-ci-isolated-not-production
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd "pg_isready -U synthetic_ci -d agrolines_license_synthetic"
+          --health-interval 10s --health-timeout 5s --health-retries 8
+    env:
+      AGROLINES_DATABASE_URL: postgresql+psycopg://synthetic_ci:synthetic-ci-isolated-not-production@localhost:5432/agrolines_license_synthetic
+      AGROLINES_LICENSE_TEST_DATABASE_URL: postgresql+psycopg://synthetic_ci:synthetic-ci-isolated-not-production@localhost:5432/agrolines_license_synthetic
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -e '.[dev]'
+      - run: alembic upgrade head
+      - run: alembic check
+      - name: Full lifecycle and simultaneous claims against real PostgreSQL row locks
+        run: python -m pytest tests/test_commercial_licensing.py -v

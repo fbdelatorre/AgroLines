@@ -1,0 +1,16 @@
+# AgroLines comercial — candidato experimental
+
+MINUTAS NÃO ADOTADAS. Perfil commercial-standalone: agricultura local e somente
+licenciamento HTTPS. Não é a edição exclusivamente offline da Store.
+Assinatura mensal/anual por usuário, duas vagas. Sem cobranças reais implementadas.
+Primeira ativação online; depois, licença assinada válida até a expiração.
+
+Confira EULA, política, THIRD_PARTY_NOTICES e instruções LGPL em legal/.
+Fontes de terceiros acompanham a versão em third-party-sources/, com manifesto,
+hashes e lacunas expressas. O ZIP ainda não é oferta completa enquanto essas
+lacunas persistirem. Não contém fontes próprias do AgroLines.
+
+Este candidato não assinado não é autorizado para instalação ou distribuição.
+Não desative SAC/Defender, não instale certificados de teste e não habilite
+Developer Mode. As provas de laboratório não são homologação comercial.
+Projetos e backups permanecem fora da instalação; assinatura não elimina dados.

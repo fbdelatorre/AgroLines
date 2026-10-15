@@ -67,7 +67,7 @@ class LocalProject:
     @classmethod
     def create(cls, path, name, work_crs="EPSG:32723", license_verifier=None):
         verifier = license_verifier or DevelopmentLicense()
-        if not verifier.verify().permits(Module.PROJECTS):
+        if verifier.verify().read_only or not verifier.verify().permits(Module.PROJECTS):
             raise PermissionError("Módulo indisponível na licença local.")
         if not name.strip():
             raise ValueError("Informe o nome do projeto.")

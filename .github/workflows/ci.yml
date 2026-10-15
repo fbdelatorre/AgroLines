@@ -129,7 +129,7 @@ jobs:
           PY
           docker compose --env-file .env -f infra/compose.yaml exec -T api alembic upgrade head
           docker compose --env-file .env -f infra/compose.yaml exec -T api alembic check
-          test "$(docker compose --env-file .env -f infra/compose.yaml exec -T db psql -U agrolines -d agrolines -Atc 'SELECT version_num FROM alembic_version')" = '0005'
+          test "$(docker compose --env-file .env -f infra/compose.yaml exec -T db psql -U agrolines -d agrolines -Atc 'SELECT version_num FROM alembic_version')" = '0006'
           docker compose --env-file .env -f infra/compose.yaml exec -T db psql -U agrolines -d agrolines -c 'SELECT PostGIS_Version();'
       - name: Backup e restauração isolada
         run: |
@@ -138,7 +138,7 @@ jobs:
           docker compose --env-file .env -f infra/compose.yaml exec -T db pg_dump -U agrolines -d agrolines -Fc > backups/test.dump
           docker compose --env-file .env -f infra/compose.yaml exec -T db createdb -U agrolines agrolines_restore
           docker compose --env-file .env -f infra/compose.yaml exec -T db pg_restore -U agrolines -d agrolines_restore --exit-on-error < backups/test.dump
-          test "$(docker compose --env-file .env -f infra/compose.yaml exec -T db psql -U agrolines -d agrolines_restore -Atc 'SELECT version_num FROM alembic_version')" = '0005'
+          test "$(docker compose --env-file .env -f infra/compose.yaml exec -T db psql -U agrolines -d agrolines_restore -Atc 'SELECT version_num FROM alembic_version')" = '0006'
           test "$(docker compose --env-file .env -f infra/compose.yaml exec -T db psql -U agrolines -d agrolines -Atc 'SELECT count(*) FROM users')" = "$(docker compose --env-file .env -f infra/compose.yaml exec -T db psql -U agrolines -d agrolines_restore -Atc 'SELECT count(*) FROM users')"
           test "$(docker compose --env-file .env -f infra/compose.yaml exec -T db psql -U agrolines -d agrolines -Atc 'SELECT count(*) FROM credentials')" = "$(docker compose --env-file .env -f infra/compose.yaml exec -T db psql -U agrolines -d agrolines_restore -Atc 'SELECT count(*) FROM credentials')"
       - name: Encerrar serviços

@@ -18,6 +18,7 @@ class Entitlements:
     modules: frozenset[Module]
     valid: bool
     reason: str
+    read_only: bool = False
 
     def permits(self, module: Module) -> bool:
         return self.valid and module in self.modules
