@@ -1,0 +1,33 @@
+{
+  "case": "U02",
+  "reference_msix_sha256": "e6a2ab8e65a91df3a2a1613d22b3ecc3c478d774e1d08b39561960085686068b",
+  "scope": "Only actual distributed files; bytes match immutable reference MSIX. No proprietary code or project data.",
+  "components": [
+    {
+      "component": "Qt-WebEngine",
+      "version": "6.140.0 / Chromium 140.0.7339.225",
+      "license_evidence": "Qt LGPL alternative candidate; exact 6.140.0 source and Chromium build credits NOT proven",
+      "existing_notices": [
+        "notices/reference/third-party-notices/reviewed-texts/GPL-3.0-only.txt",
+        "notices/reference/third-party-notices/reviewed-texts/LGPL-3.0-only.txt"
+      ]
+    },
+    {
+      "component": "Qt-PDF",
+      "version": "6.140.0 (wheel family; exact DLL version below)",
+      "license_evidence": "Exact module/source licensing and PDFium notices pending supplier evidence",
+      "existing_notices": [
+        "notices/reference/third-party-notices/reviewed-texts/GPL-3.0-only.txt",
+        "notices/reference/third-party-notices/reviewed-texts/LGPL-3.0-only.txt"
+      ]
+    },
+    {
+      "component": "Qt-resources",
+      "version": null,
+      "license_evidence": "Resource provenance/subcomponent review; no license inferred",
+      "existing_notices": []
+    }
+  ],
+  "files": [],
+  "requested_material": "Exact final 6.140.0 / Chromium 140.0.7339.225 / PDFium source gitlinks, all build patches/GN arguments, enabled codecs/features and generated attribution documents for the actual shipped GN targets."
+}

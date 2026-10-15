@@ -1,0 +1,79 @@
+{
+  "unit": "Eight targeted work packages, NOT counts of libraries or individual missing fields",
+  "initial": 8,
+  "closed_with_evidence": 1,
+  "remaining_contact_cases": 7,
+  "requests_sent": 0,
+  "cases": [
+    {
+      "id": "U01",
+      "name": "Qt Base / PySide6 / Shiboken / transitivos",
+      "status": "PENDENTE DE FORNECEDOR",
+      "material_missing": "Exact Windows wheel source/build correspondence, configure flags, compiler/CRT versions, patches, static third-party BOM and notices; QML transitive and software OpenGL provenance.",
+      "contact": "https://bugreports.qt.io/",
+      "attachment": "supplier-requests/qt-pyside-attachment.json",
+      "request": "supplier-requests/qt-pyside.md"
+    },
+    {
+      "id": "U02",
+      "name": "Qt WebEngine / Qt PDF / Chromium / PDFium",
+      "status": "PENDENTE DE FORNECEDOR",
+      "material_missing": "Exact final 6.140.0 / Chromium 140.0.7339.225 / PDFium source gitlinks, all build patches/GN arguments, enabled codecs/features and generated attribution documents for the actual shipped GN targets.",
+      "contact": "https://bugreports.qt.io/",
+      "attachment": "supplier-requests/qt-webengine-attachment.json",
+      "request": "supplier-requests/qt-webengine.md"
+    },
+    {
+      "id": "U03",
+      "name": "GDAL 3.9.1 declared recipe/source inputs",
+      "status": "CONCLUÍDO COM EVIDÊNCIA",
+      "evidence": "gdal-inputs-verification.json",
+      "scope": "Nine recipe hashes and official source SHA512 match bundled SPDX; full binary/static BOM remains U04"
+    },
+    {
+      "id": "U04",
+      "name": "Fiona / GEOS / dependências vendorizadas",
+      "status": "PENDENTE DE FORNECEDOR",
+      "material_missing": "Complete wheel native/static BOM, exact source/build/patch map for GEOS 3.11.3, libiconv 1.17, SpatiaLite 5.1.0 and FreeXL 2.0.0; selected license alternatives, copyright/notices and SZIP implementation/encoder configuration. Remaining driver/static notices and CRT redistribution provenance. GDAL recipe/source inputs already independently matched; do not resend generic links.",
+      "contact": "https://github.com/Toblerity/Fiona/issues",
+      "attachment": "supplier-requests/fiona-attachment.json",
+      "request": "supplier-requests/fiona.md"
+    },
+    {
+      "id": "U05",
+      "name": "Shapely / GEOS",
+      "status": "PENDENTE DE FORNECEDOR",
+      "material_missing": "Exact GEOS 3.14.1 source, patches, compiler/runtime, CMake flags and delvewheel import-repair recipe for the two renamed GEOS DLLs; all corresponding notices. LGPL-2.1 GEOS is separate from the BSD binding.",
+      "contact": "https://github.com/shapely/shapely/issues",
+      "attachment": "supplier-requests/shapely-attachment.json",
+      "request": "supplier-requests/shapely.md"
+    },
+    {
+      "id": "U06",
+      "name": "pyproj / PROJ / dados",
+      "status": "PENDENTE DE FORNECEDOR",
+      "material_missing": "Exact PROJ 9.8.1 and bundled native source/build mapping and patches; PROJ database/data release attribution and actual included dataset redistribution terms. No extra grids are requested.",
+      "contact": "https://github.com/pyproj4/pyproj/issues",
+      "attachment": "supplier-requests/pyproj-attachment.json",
+      "request": "supplier-requests/pyproj.md"
+    },
+    {
+      "id": "U07",
+      "name": "NumPy / OpenBLAS / LAPACK / GCC runtime",
+      "status": "PENDENTE DE FORNECEDOR",
+      "material_missing": "Resolve OpenBLAS build identifier 0.3.34.106.0 to exact upstream commit/patches, bundled LAPACK version and build recipe; identify static GCC runtime components and eligible compilation-process evidence for GCC Runtime Library Exception 3.1. The full bundled wheel license is already retained.",
+      "contact": "https://github.com/numpy/numpy/issues",
+      "attachment": "supplier-requests/numpy-attachment.json",
+      "request": "supplier-requests/numpy.md"
+    },
+    {
+      "id": "U08",
+      "name": "Microsoft / contrato e distribuição",
+      "status": "PENDENTE DE FORNECEDOR",
+      "material_missing": "Account-specific current developer agreement and standard/custom app license applicability; Individual account in Brazil with reserved publisher name, restricted capabilities, Store signing/catalog path and technical constraints relevant to LGPL replacement/recombination. No general legal approval is requested.",
+      "contact": "https://partner.microsoft.com/dashboard",
+      "attachment": "supplier-requests/microsoft-attachment.json",
+      "request": "supplier-requests/microsoft.md"
+    }
+  ]
+}

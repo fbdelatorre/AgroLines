@@ -1,0 +1,87 @@
+{
+  "wheel_sha256": "41cde2c52c614457e9094ea44b0d30483540789e62fe0fa758c2a2963e980817",
+  "spdx_sha256": "9199c40e55fce900a398cb781e65b668b96a44d34772872f39e2f781c7c08f8d",
+  "recipe_tree": "65b271a32a93a9dfa4dfd3905fcd0b5388926f81",
+  "records": [
+    {
+      "file": "cmake-project-include.cmake",
+      "git_blob": "409b7b1a6436fc23d90d0f299fc19fc8b94593d9",
+      "url": "https://api.github.com/repos/microsoft/vcpkg/git/blobs/409b7b1a6436fc23d90d0f299fc19fc8b94593d9",
+      "sha256": "60c0f79155c78ec0ec4ccdc77e00f4613ae4630c6697f51f884bf8f979a48593",
+      "windows_crlf": false,
+      "exact_spdx_match": true
+    },
+    {
+      "file": "find-link-libraries.patch",
+      "git_blob": "a802e42645f1d9c3830f0601113b9c957adda21d",
+      "url": "https://api.github.com/repos/microsoft/vcpkg/git/blobs/a802e42645f1d9c3830f0601113b9c957adda21d",
+      "sha256": "043cbdd6298fce33c29d128241470b71990dc13eb63bfa44b3d82b17f5384468",
+      "windows_crlf": false,
+      "exact_spdx_match": true
+    },
+    {
+      "file": "fix-gdal-target-interfaces.patch",
+      "git_blob": "bf159fce593af3183a408ca4623449b1c123d8bb",
+      "url": "https://api.github.com/repos/microsoft/vcpkg/git/blobs/bf159fce593af3183a408ca4623449b1c123d8bb",
+      "sha256": "9dbe9d5e0dbc3a21370bb3560aa32811d10cc0b19e4b6833cd7258699d206215",
+      "windows_crlf": false,
+      "exact_spdx_match": true
+    },
+    {
+      "file": "libkml.patch",
+      "git_blob": "ef25d06de5255146bd92ecdcf556bdff25119e14",
+      "url": "https://api.github.com/repos/microsoft/vcpkg/git/blobs/ef25d06de5255146bd92ecdcf556bdff25119e14",
+      "sha256": "fe888df8a7c9e468cdd87640c025f48f165d5264af1fa20604bd60859e6f000f",
+      "windows_crlf": false,
+      "exact_spdx_match": true
+    },
+    {
+      "file": "portfile.cmake",
+      "git_blob": "b82ec924254b204637470506fab2f71975fb760b",
+      "url": "https://api.github.com/repos/microsoft/vcpkg/git/blobs/b82ec924254b204637470506fab2f71975fb760b",
+      "sha256": "92a0c437215b5fed404a2deb00ade3a8cfb4da00c518af38525a3194a7d89c1a",
+      "windows_crlf": false,
+      "exact_spdx_match": true
+    },
+    {
+      "file": "target-is-valid.patch",
+      "git_blob": "c7acf739064a636ed6bd6f3df354bd316ff29989",
+      "url": "https://api.github.com/repos/microsoft/vcpkg/git/blobs/c7acf739064a636ed6bd6f3df354bd316ff29989",
+      "sha256": "6a369356c57860f97bd756d3604e7219774e2bfe5c74e5e0178496fad253900f",
+      "windows_crlf": false,
+      "exact_spdx_match": true
+    },
+    {
+      "file": "usage",
+      "git_blob": "6982a9a24259858280745646959c0deedb67d55a",
+      "url": "https://api.github.com/repos/microsoft/vcpkg/git/blobs/6982a9a24259858280745646959c0deedb67d55a",
+      "sha256": "c85584261e2011a94b86f04c3a28dd2e165c9e6b47677a9bee26a3d387bc05f2",
+      "windows_crlf": true,
+      "exact_spdx_match": true
+    },
+    {
+      "file": "vcpkg-cmake-wrapper.cmake",
+      "git_blob": "5b70b673b0979d23e1ddd045947602deeae4e564",
+      "url": "https://api.github.com/repos/microsoft/vcpkg/git/blobs/5b70b673b0979d23e1ddd045947602deeae4e564",
+      "sha256": "c507eaa077072e9877607fd5f70381eebf19900661e2e1fd099d84c4df1b8c24",
+      "windows_crlf": true,
+      "exact_spdx_match": true
+    },
+    {
+      "file": "vcpkg.json",
+      "git_blob": "a480aa10d5938c22a0596ae9bc514a2c40b997d4",
+      "url": "https://api.github.com/repos/microsoft/vcpkg/git/blobs/a480aa10d5938c22a0596ae9bc514a2c40b997d4",
+      "sha256": "71bb644d1501bdc16fbe5e88a45a27c478bee667cbace588c569de28778c89ff",
+      "windows_crlf": false,
+      "exact_spdx_match": true
+    }
+  ],
+  "source": {
+    "url": "https://github.com/OSGeo/gdal/archive/refs/tags/v3.9.1.tar.gz",
+    "sha512": "d9ab5d94dc870df17b010166d3ebbe897a1f673ba05bf31cd4bed437b6db303dd9e373ba5099d3a191ff3e48c995556fb5bcc77d03d975614df4aa20a2c2b085",
+    "sha256": "38d844e8e321e1bb1bfc87118740b28ca10bfc8b69e754a0f5f22d49fecca0e4",
+    "bytes": 36439420
+  },
+  "scope": "Exact declared source and recipe inputs; NOT binary reproduction or complete GDAL driver/source BOM",
+  "legal_approved": false
+}

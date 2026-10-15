@@ -1,0 +1,73 @@
+{
+  "case": "U04",
+  "reference_msix_sha256": "e6a2ab8e65a91df3a2a1613d22b3ecc3c478d774e1d08b39561960085686068b",
+  "scope": "Only actual distributed files; bytes match immutable reference MSIX. No proprietary code or project data.",
+  "components": [
+    {
+      "component": "Fiona-bindings",
+      "version": "1.10.1",
+      "license_evidence": "BSD-3-Clause; native dependencies separately recorded",
+      "existing_notices": [
+        "notices/reference/_internal/fiona/gdal_data/LICENSE.TXT",
+        "notices/reference/third-party-notices/fiona/fiona-1.10.1.dist-info_LICENSE.txt",
+        "notices/reference/third-party-notices/fiona/fiona_gdal_data_LICENSE.TXT",
+        "notices/reference/third-party-notices/fiona/fiona_gdal_data_copyright",
+        "notices/reference/third-party-notices/fiona/fiona_proj_data_copyright"
+      ]
+    },
+    {
+      "component": "GEOS-Fiona",
+      "version": "3.11.3",
+      "license_evidence": "LGPL-2.1 per GEOS COPYING; version/patch review pending",
+      "existing_notices": [
+        "notices/reference/third-party-notices/reviewed-texts/LGPL-2.1-only.txt",
+        "notices/upstream/geos-3.11.3-AUTHORS",
+        "notices/upstream/geos-3.11.3-COPYING"
+      ]
+    },
+    {
+      "component": "iconv-Fiona",
+      "version": "1.17",
+      "license_evidence": "GNU libiconv LGPL-2.1-or-later candidate; exact build notice/source pending",
+      "existing_notices": []
+    },
+    {
+      "component": "spatialite-Fiona",
+      "version": "5.1.0 (PE exported constant, read without execution)",
+      "license_evidence": "SpatiaLite LGPL/MPL/GPL alternatives require exact source/build evidence",
+      "existing_notices": []
+    },
+    {
+      "component": "freexl-Fiona",
+      "version": "2.0.0 (PE exported constant, read without execution)",
+      "license_evidence": "FreeXL dual licensing requires exact source/build evidence",
+      "existing_notices": []
+    },
+    {
+      "component": "szip-Fiona",
+      "version": null,
+      "license_evidence": "Exact component license pending supplier evidence",
+      "existing_notices": []
+    },
+    {
+      "component": "gdal-Fiona",
+      "version": "3.9.1",
+      "license_evidence": "MIT-style and terms in distributed GDAL LICENSE.TXT",
+      "existing_notices": [
+        "notices/reference/_internal/fiona/gdal_data/LICENSE.TXT",
+        "notices/reference/third-party-notices/fiona/fiona-1.10.1.dist-info_LICENSE.txt",
+        "notices/reference/third-party-notices/fiona/fiona_gdal_data_LICENSE.TXT",
+        "notices/reference/third-party-notices/fiona/fiona_gdal_data_copyright",
+        "notices/reference/third-party-notices/fiona/fiona_proj_data_copyright"
+      ]
+    },
+    {
+      "component": "Fiona-data",
+      "version": "PROJ data portion 1.16 / EPSG v10.098 / ESRI ArcGIS Pro 3.2 / IGNF 3.1.0 / NKG 1.0.0; remaining GDAL data per file",
+      "license_evidence": "Resource provenance/subcomponent review; no license inferred",
+      "existing_notices": []
+    }
+  ],
+  "files": [],
+  "requested_material": "Complete wheel native/static BOM, exact source/build/patch map for GEOS 3.11.3, libiconv 1.17, SpatiaLite 5.1.0 and FreeXL 2.0.0; selected license alternatives, copyright/notices and SZIP implementation/encoder configuration. Remaining driver/static notices and CRT redistribution provenance. GDAL recipe/source inputs already independently matched; do not resend generic links."
+}
