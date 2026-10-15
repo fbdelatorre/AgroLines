@@ -26,6 +26,7 @@ function Invoke-BindingReport([string]$Root,[string]$Report) {
     return (Get-Content $Report -Raw | ConvertFrom-Json)
 }
 $original = Invoke-BindingReport $payload (Join-Path $output 'bindings-original.json')
+Write-Output ('AGROLINES_BINDINGS_ORIGINAL=' + ($original | ConvertTo-Json -Depth 8 -Compress))
 $originalManifest = (Get-FileHash (Join-Path $payload 'payload-manifest.json')).Hash
 Copy-Item -LiteralPath $payload -Destination $copy -Recurse
 $marker = 'synthetic-standalone-lgpl-python-replacement-v1'
@@ -34,6 +35,7 @@ foreach ($package in @('PySide6','shiboken6')) {
     [IO.File]::AppendAllText($file, "`n# Isolated laboratory modification; no algorithms changed.`nAGROLINES_LGPL_LAB_MARKER = '$marker'`n", [Text.UTF8Encoding]::new($false))
 }
 $modified = Invoke-BindingReport $copy (Join-Path $output 'bindings-modified.json')
+Write-Output ('AGROLINES_BINDINGS_MODIFIED=' + ($modified | ConvertTo-Json -Depth 8 -Compress))
 foreach ($package in @('PySide6','shiboken6')) {
     $before = @($original.modules | Where-Object module -EQ $package)
     $after = @($modified.modules | Where-Object module -EQ $package)
