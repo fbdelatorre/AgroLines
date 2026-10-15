@@ -1,0 +1,41 @@
+name: Pinned c3ffdb artifact static audit (no install or signing)
+on:
+  pull_request:
+    paths: ['tools/artifact-audit/**', 'docs/artifact-audit/**', '.github/workflows/artifact-static-audit.yml']
+permissions:
+  contents: read
+  actions: read
+jobs:
+  audit:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -e ".[dev]"
+      - run: python -m pytest -q tools/artifact-audit
+      - name: Fetch historical source object without merge
+        run: git fetch origin c3ffdb68302a0c46e640e68dc0b561acce250e6d
+      - name: Download pinned existing evidence, no native execution
+        shell: python
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          import pathlib, subprocess, sys
+          with pathlib.Path('original-artifact.zip').open('wb') as output:
+              result = subprocess.run(['gh','api','repos/fbdelatorre/AgroLines/actions/artifacts/11938080390/zip'], stdout=output, stderr=subprocess.PIPE)
+          if result.returncode:
+              print('Original artifact unavailable. Stop; do not substitute a new build or expose redirect URLs.')
+              sys.exit(1)
+      - run: python tools/artifact-audit/audit.py original-artifact.zip --output audit-results
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: c3ffdb-readonly-audit-${{ matrix.os }}
+          path: audit-results/
+          if-no-files-found: error

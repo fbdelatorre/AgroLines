@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-15",
+  "tests": {
+    "linux_existing": {
+      "tests": 226,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 1,
+      "passed": 225,
+      "junit_sha256": "f589be60bf6a63e61c63874341b40d6c2e0e644af95ad1fbcf61f40fbcd73d0c"
+    },
+    "audit_controls": {
+      "tests": 15,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 15,
+      "junit_sha256": "64991889f36106f7e08e060b9349d186014ba69f583fb65a250f3145378e7536"
+    }
+  },
+  "precision": {
+    "passed": 22,
+    "total": 22,
+    "field_accuracy_validated": false
+  },
+  "ruff_check": "passed",
+  "ruff_format_check": "passed",
+  "new_windows_ci": "pending_at_recording",
+  "physical_windows_tests": "not_run",
+  "native_binaries_executed_from_artifact": false,
+  "msix_installed": false,
+  "signed": false,
+  "published": false,
+  "main_sha_observed": "a7af60408fbd85105d58696386a0b985668b4bb9",
+  "base_commit": "5990d29026e1f9ad0e74895cd046e5506887980a",
+  "application_payload_files_modified": false,
+  "reference_msix_sha256": "e6a2ab8e65a91df3a2a1613d22b3ecc3c478d774e1d08b39561960085686068b",
+  "linux_test_environment_note": "Existing root/offscreen Qt tests use the repository Linux CI sandbox flags only; no Windows/client security changed."
+}

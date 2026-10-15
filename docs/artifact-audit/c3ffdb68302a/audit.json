@@ -1,0 +1,119 @@
+{
+  "source_commit": "c3ffdb68302a0c46e640e68dc0b561acce250e6d",
+  "source_tree": "9da9efcecd00b510ec5732efe9efa47959d947ce",
+  "source_parents": [
+    "c7e32477e51a0ece2c304afe2a549abcdb76af22",
+    "cecd02a43a03f8dff08fb8706f8923afcbbb1aae"
+  ],
+  "outer_sha256": "daad44ae384df63c357225474e531bf8d7ba39205212b3b0c8a02b97a82679e1",
+  "msix_sha256": "e6a2ab8e65a91df3a2a1613d22b3ecc3c478d774e1d08b39561960085686068b",
+  "outer_size": 239270043,
+  "msix_size": 240694735,
+  "outer_entries": 26,
+  "msix_entries": 804,
+  "payload_manifest_verified": 768,
+  "block_map_files_verified": 802,
+  "native_files": 178,
+  "classifications": {
+    "current_time_expiry_historical_signtool_accepted": 28,
+    "unsigned_no_signer_chain": 78,
+    "historical_chain_valid": 72
+  },
+  "groups": {
+    "gdal": {
+      "total": 39,
+      "unsigned": 38,
+      "observed": 39
+    },
+    "geos": {
+      "total": 8,
+      "unsigned": 7,
+      "observed": 8
+    },
+    "numpy": {
+      "total": 15,
+      "unsigned": 14,
+      "observed": 4
+    },
+    "own": {
+      "total": 1,
+      "unsigned": 1,
+      "observed": 1
+    },
+    "proj": {
+      "total": 19,
+      "unsigned": 18,
+      "observed": 19
+    },
+    "python": {
+      "total": 26,
+      "unsigned": 0,
+      "observed": 22
+    },
+    "qt": {
+      "total": 70,
+      "unsigned": 0,
+      "observed": 40
+    }
+  },
+  "indexed_notices_verified": 40,
+  "privacy_pending_markers": {
+    "md": [
+      "[CONFIRMAR: URL HTTPS pública estável no GitHub Pages, testada sem login; a vigência será a data da primeira disponibilização efetiva, ainda não definida]",
+      "[CONFIRMAR: data da primeira disponibilização efetiva aos testadores privados]",
+      "[CONFIRMAR: documentar as bases legais aplicáveis por finalidade; não há termos adotados ou avaliação de legítimo interesse comprovados]",
+      "[CONFIRMAR: documentar os mecanismos de transferência internacional aplicáveis a Gmail, Microsoft e GitHub; confirmar eventuais destinatários adicionais nos procedimentos reais]"
+    ],
+    "html": [
+      "[CONFIRMAR: URL HTTPS pública estável no GitHub Pages, testada sem login; a vigência será a data da primeira disponibilização efetiva, ainda não definida]",
+      "[CONFIRMAR: data da primeira disponibilização efetiva aos testadores privados]",
+      "[CONFIRMAR: documentar as bases legais aplicáveis por finalidade; não há termos adotados ou avaliação de legítimo interesse comprovados]",
+      "[CONFIRMAR: documentar os mecanismos de transferência internacional aplicáveis a Gmail, Microsoft e GitHub; confirmar eventuais destinatários adicionais nos procedimentos reais]"
+    ],
+    "txt": [
+      "[CONFIRMAR: URL HTTPS pública estável no GitHub Pages, testada sem login; a vigência será a data da primeira disponibilização efetiva, ainda não definida]",
+      "[CONFIRMAR: data da primeira disponibilização efetiva aos testadores privados]",
+      "[CONFIRMAR: documentar as bases legais aplicáveis por finalidade; não há termos adotados ou avaliação de legítimo interesse comprovados]",
+      "[CONFIRMAR: documentar os mecanismos de transferência internacional aplicáveis a Gmail, Microsoft e GitHub; confirmar eventuais destinatários adicionais nos procedimentos reais]"
+    ]
+  },
+  "reproducibility_report": {
+    "payload_bytes_reproduced": true,
+    "files": 768,
+    "msix_bytes_reproduced": false,
+    "note": "Same pinned builder/commit/path/epoch; not independent build proof"
+  },
+  "msix_comparison_status": "not_run_no_second_msix",
+  "historical_signature_results_only": true,
+  "installed": false,
+  "sac_validated": false,
+  "legal_compliance_approved": false,
+  "artifact_members_sha256": {
+    "dist/msix/AgroLines-1.0.0.0-x64-CONFORMIDADE-c3ffdb68302a-DIAGNOSTICO-ASSINATURA-PENDENTE.msix": "e6a2ab8e65a91df3a2a1613d22b3ecc3c478d774e1d08b39561960085686068b",
+    "evidence/msix/branding.json": "1b8dfc02f840483bde44764c7622322f6a3b5675b973029b6810ec92aed4c71e",
+    "evidence/msix/candidate.json": "90ca0d847f88d0a410a308582b3f679d26248f47e5209298dea7637d2a546358",
+    "evidence/msix/package-1.0.0.0.json": "a37cac7b17658730975ef6cb41f55f3b14f12a82ca88239c763ef27a9734ad0a",
+    "evidence/msix/staging-1.0.0.0.json": "e8626a8818c238d882ac9b4915f2580d03a4227ce1194e17f594c037493fd549",
+    "evidence/native-inventory.json": "b09c13b1916b993e65da2ed969aab0c990809ae440ab4678807b56eab2d9aeba",
+    "evidence/native-signatures.json": "175852300629021eabc608ffc6541932bdc6e86027ee441eeccd4c58fde7294d",
+    "evidence/qt-minimal/build-inputs.json": "8bf62fc5a9fdbd9f45f576e85f97039ef28cfa90c5a6cbfbf109b736b534a2c9",
+    "evidence/qt-minimal/builder-environment.json": "38b14237efc7db29e18677dd57c9af0bdcf255baa420edd11a004e0a2096b61c",
+    "evidence/qt-minimal/loads/loads.json": "20f58709763f118acd3c2f75ef9036a95045e1e1944ae548ddb890dab38676e6",
+    "evidence/qt-minimal/loads/offline-import-edit-backup-probe.json": "505dd6a8c68a51b790ed6292d68ee4cc622b6a6b14e67a4511bccc64ec2e7801",
+    "evidence/qt-minimal/loads/smoke-startup-and-gis-probe.json": "02678a45ff18981debddd8a3cc1f56e1482e5c977951ac2613851bc610618fc9",
+    "evidence/qt-minimal/native-current.csv": "15b3bef4aa5ddcf7fb6482cd23a9642855d53e12304f13d5ed4f5f67955823f3",
+    "evidence/qt-minimal/native-current.json": "fa740bb4c73a47f9cb52864074345cf604d2eb2677f2622a9c7b8f739a2a7959",
+    "evidence/qt-minimal/source-metadata.json": "469fe8c3bbb7db8be86b0ca76d32d5f5130291972fbcacfc38eca360ba20c89d",
+    "evidence/README.md": "4502419e57af04443420fb1007fe1f6e8177245ac3a44dda21aaa2a5f71e1f74",
+    "evidence/signing/first-build.json": "b33763451648d034b96049da4eb721cd4914a38e00f3ebe084f8942a41674b15",
+    "evidence/signing/input-binding.json": "5ba5de57a0bbd0c0167410e79e6901e7a943d6d6c1aa14e7e7c166c745009f7b",
+    "evidence/signing/native-input.json": "6dd799ba985abe2fc2b932dedade1d58bb8cb840c9d8c40f644a1bc8a6521d34",
+    "evidence/signing/plan.json": "6d431c92f1c3198d770d31bcfc582bec58f36ed907c092d06c7d88151bb35ca4",
+    "evidence/signing/reproducibility.json": "7214931534d52e0df6d75543601da802aaa4aae9be55defb73c251ee5e599219",
+    "evidence/signing/signtool-before.json": "45f05ed166a47aab00ac6f1ebb4c75229a817066ab914a3a733758c0d11ab51b",
+    "evidence/technical-summary.json": "6ea012fa1a690c76b4b36b2e359d541da94c7153f450319807a62e34ca99a107",
+    "evidence/tests/windows.xml": "c45b5c32226d59d1cdf017bc26d7a3ab562682a1ca971545693a950dbe690a36",
+    "distribution/windows/msix/AppxManifest.xml": "96fa43ed393604546869c6f982545fe75cf85c761db5e8584c248cb1bbaa223e",
+    "distribution/windows/msix/identity.json": "838775d234c73c32ef6d9b555f071e76de719b096cdb2001ab0e78a8e2f419c6"
+  }
+}
