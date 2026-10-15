@@ -16,7 +16,8 @@ jobs:
         with:
           python-version: '3.12.10'
       - name: Pinned parser only; no application or native library installation
-        run: python -m pip install --require-hashes --only-binary=:all: -r tools/webengine_legal/requirements.lock
+        run: |
+          python -m pip install --require-hashes --only-binary=:all: -r tools/webengine_legal/requirements.lock
       - name: Read official source archive and Windows wheel without executing either
         run: python -m tools.webengine_legal.audit --directory "$RUNNER_TEMP/webengine-public-inputs"
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
