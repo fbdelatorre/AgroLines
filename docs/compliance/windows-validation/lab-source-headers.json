@@ -1,0 +1,29 @@
+[
+  {
+    "component": "qtbase-6.12.0",
+    "source_commit": "025bdad181de241e81bf853c8a2d7bf3d19261a9",
+    "source_file": "src/corelib/global/qlibraryinfo.cpp",
+    "source_file_sha256": "bceff9884fb469a2deef218e914f8ae3cf701ceb9a0abeed735c739d9dfbf1ef",
+    "official_source_url": "https://github.com/qt/qtbase/blob/025bdad181de241e81bf853c8a2d7bf3d19261a9/src/corelib/global/qlibraryinfo.cpp",
+    "original_header": "// Copyright (C) 2021 The Qt Company Ltd.\n// Copyright (C) 2021 Intel Corporation.\n// SPDX-License-Identifier: LicenseRef-Qt-Commercial OR LGPL-3.0-only OR GPL-2.0-only OR GPL-3.0-only\n// Qt-Security score:critical reason:execute-external-code",
+    "scope": "Original public third-party copyright/license header accompanying the synthetic version-only patch. No AgroLines implementation."
+  },
+  {
+    "component": "geos-3.11.3",
+    "source_commit": "17e3cb142d2592ce09c4530267ee2fb6ee1c6f79",
+    "source_file": "capi/geos_ts_c.cpp",
+    "source_file_sha256": "4728448bad667765385202c344f7f2850097f3a77789fa30aa13de6a7f576cde",
+    "official_source_url": "https://github.com/libgeos/geos/blob/17e3cb142d2592ce09c4530267ee2fb6ee1c6f79/capi/geos_ts_c.cpp",
+    "original_header": "/************************************************************************\n *\n *\n * C-Wrapper for GEOS library\n *\n * Copyright (C) 2005-2006 Refractions Research Inc.\n * Copyright (C) 2010-2012 Sandro Santilli <strk@kbt.io>\n * Copyright (C) 2016-2021 Daniel Baston <dbaston@gmail.com>\n *\n * This is free software; you can redistribute and/or modify it under\n * the terms of the GNU Lesser General Public Licence as published\n * by the Free Software Foundation.\n * See the COPYING file for more information.\n *\n * Author: Sandro Santilli <strk@kbt.io>\n * Thread Safety modifications: Chuck Thibert <charles.thibert@ingres.com>\n *\n ***********************************************************************/",
+    "scope": "Original public third-party copyright/license header accompanying the synthetic version-only patch. No AgroLines implementation."
+  },
+  {
+    "component": "geos-3.14.1",
+    "source_commit": "c389f532d25fe6228861d9b19339f9cb57ca4bdb",
+    "source_file": "capi/geos_ts_c.cpp",
+    "source_file_sha256": "2a94dd81cad69f0535636e35d17dbfeefcb78b959c8721f0743e7b91afce1d2b",
+    "official_source_url": "https://github.com/libgeos/geos/blob/c389f532d25fe6228861d9b19339f9cb57ca4bdb/capi/geos_ts_c.cpp",
+    "original_header": "/************************************************************************\n *\n *\n * C-Wrapper for GEOS library\n *\n * Copyright (C) 2005-2006 Refractions Research Inc.\n * Copyright (C) 2010-2012 Sandro Santilli <strk@kbt.io>\n * Copyright (C) 2016-2021 Daniel Baston <dbaston@gmail.com>\n *\n * This is free software; you can redistribute and/or modify it under\n * the terms of the GNU Lesser General Public Licence as published\n * by the Free Software Foundation.\n * See the COPYING file for more information.\n *\n * Author: Sandro Santilli <strk@kbt.io>\n * Thread Safety modifications: Chuck Thibert <charles.thibert@ingres.com>\n *\n ***********************************************************************/",
+    "scope": "Original public third-party copyright/license header accompanying the synthetic version-only patch. No AgroLines implementation."
+  }
+]

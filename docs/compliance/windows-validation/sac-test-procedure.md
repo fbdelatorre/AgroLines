@@ -64,6 +64,8 @@ não instalar ferramentas adicionais silenciosamente nem declarar tudo confiáve
 O coletor conserva os eventos em pasta privada: podem conter caminhos pessoais,
 outros aplicativos e detalhes de falhas. **Não commitar/reenviar automaticamente.**
 Minimizar/redigir antes de compartilhar, seguir retenção de suporte aplicável.
+Use `functional-results.template.json` como modelo; todos os resultados começam
+`not_run`, e a cópia preenchida fica privada, fora do repositório.
 
 Não existe captura de rede/ETW completa neste coletor. Snapshot, ausência de evento,
 assinatura válida e testes unitários offline não comprovam ausência de toda conexão

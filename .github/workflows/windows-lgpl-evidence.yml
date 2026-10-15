@@ -16,11 +16,14 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
-        run: gh run watch 38662108639 --exit-status --interval 30
+        run: gh run watch 38663014621 --exit-status --interval 30
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
       - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
         with:
           github-token: ${{ github.token }}
-          run-id: 38662108639
+          run-id: 38663014621
           pattern: lgpl-*-EVIDENCE-ONLY-NOT-FOR-INSTALL
           path: captured
       - name: Record small synthetic JSON results as check annotations
@@ -45,3 +48,22 @@ jobs:
               r = json.loads(path.read_text(encoding='utf-8-sig'))
               limited = {'os':r['os'], 'registry_state':r['sac']['registry_state'], 'sac_active_confirmed':r['sac']['active_confirmed'], 'errors':r['sac']['errors'], 'defender':r['defender'], 'physical_win11_approved':False}
               print('::notice title=LGPL-LAB-HOST::' + json.dumps(limited,separators=(',',':')))
+      - name: Supplement original patch attribution and license texts
+        shell: python
+        run: |
+          import shutil
+          from pathlib import Path
+          target = Path('captured/third-party-patch-notices')
+          target.mkdir()
+          for name in ('GPL-3.0-only.txt','LGPL-3.0-only.txt','LGPL-2.1-only.txt'):
+              shutil.copyfile(Path('docs/compliance/notices/reference/third-party-notices/reviewed-texts')/name, target/name)
+          shutil.copyfile('docs/compliance/windows-validation/lab-source-headers.json',target/'original-source-copyrights.json')
+          (target/'README.txt').write_text('Synthetic consumer code is 0BSD. Third-party Qt/GEOS marker patches retain original applicable LGPL terms/copyrights, not 0BSD. Sources are pinned in each results.json and source header record. This evidence contains no distributed Qt/GEOS binary and is NOT the AgroLines corresponding-source offer or legal approval.\n')
+          for file in Path('captured').rglob('*'):
+              if file.is_file():
+                  assert file.suffix in ('.json','.txt','.patch') or file.name == 'CMakeCache.txt', file
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: windows-lgpl-consolidated-EVIDENCE-NOT-LEGAL-APPROVAL
+          path: captured/
+          if-no-files-found: error

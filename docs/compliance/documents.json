@@ -917,6 +917,11 @@
       "size_bytes": 2633
     },
     {
+      "path": "windows-validation/functional-results.template.json",
+      "sha256": "091ad018e58a39804fc1bde7507a8c916992210f1c5db58dc261756d7e0bf69a",
+      "size_bytes": 3430
+    },
+    {
       "path": "windows-validation/gdal-inputs-verification.json",
       "sha256": "4d231be0f0738d89028df6f86fe4231e3f4cf6c4939f1c387aed83f3f9c80937",
       "size_bytes": 4050
@@ -925,6 +930,11 @@
       "path": "windows-validation/geos-windows-experiment.md",
       "sha256": "f06ea40d7b413611550b345d85d195349d0d9a4bf91f1a1c6c83efb50135ef26",
       "size_bytes": 3960
+    },
+    {
+      "path": "windows-validation/lab-source-headers.json",
+      "sha256": "47426990ed8be6c465f4e716e896ecf99bab82dbf45986b9e6a78a002bcdd043",
+      "size_bytes": 3335
     },
     {
       "path": "windows-validation/legal-review-questions.md",
@@ -963,18 +973,23 @@
     },
     {
       "path": "windows-validation/reproduction.md",
-      "sha256": "ba049c0ad56115cc4754873d4f10433e2a92288c79b95635e179cd2dc8ce325f",
-      "size_bytes": 2689
+      "sha256": "1b8dd097a65a0524676cceb068858f381a2747789e3a6447b64b3a3f10d4f776",
+      "size_bytes": 2910
     },
     {
       "path": "windows-validation/sac-test-procedure.md",
-      "sha256": "ecb7da31afad0ba1c00bbe16e2472450fe6784b533e4d5eb42900e1927dc88cd",
-      "size_bytes": 5756
+      "sha256": "66e4e06224d160f0569246d4a52ec8ccd6c4f9eec7621bdeee32c47da85c52c8",
+      "size_bytes": 5906
     },
     {
       "path": "windows-validation/store-private-homologation.md",
       "sha256": "c51da592c825ca66f69e8f30ac2ae7b8cf8ae6d13d31394a1ca60c51296a0f92",
       "size_bytes": 8552
+    },
+    {
+      "path": "windows-validation/supplier-requests/channels.json",
+      "sha256": "0e08537f351641b13b090293f8e3e9f8aae71abb1da9e4f030c027f2f0258cd7",
+      "size_bytes": 2013
     },
     {
       "path": "windows-validation/supplier-requests/fiona-attachment.json",

@@ -40,4 +40,7 @@ Results/patch/CMakeCache are uploaded by windows-lgpl-lab.yml; binaries/sources 
 application bytecode are not uploaded. Windows build host security state is recorded
 without modification and never treated as Windows 11 physical SAC acceptance.
 Read [the scoped analysis](README.md) before
-interpreting the results. This laboratory license does not change the AgroLines license.
+interpreting the results. The 0BSD license applies only to synthetic consumer/lab code; generated Qt/GEOS
+patches retain the original applicable LGPL terms and copyrights. The read-only
+evidence capture workflow supplements original headers and full LGPL/GPL texts.
+This does not change the AgroLines license.
