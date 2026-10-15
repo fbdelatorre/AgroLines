@@ -8,6 +8,18 @@ from pathlib import Path
 from core.offline_policy import is_offline_only, require_local_path
 
 
+def taskbar_identity():
+    """Match the stable installed shortcuts; this does not grant package identity/trust."""
+    if sys.platform == "win32":
+        import ctypes
+
+        function = ctypes.WinDLL("shell32").SetCurrentProcessExplicitAppUserModelID
+        function.argtypes = [ctypes.c_wchar_p]
+        function.restype = ctypes.c_long
+        if function("Delatorre.AgroLines.Standalone") < 0:
+            raise RuntimeError("Unable to configure standalone taskbar identity")
+
+
 def binding_report(output):
     require_local_path(output)
     import PySide6

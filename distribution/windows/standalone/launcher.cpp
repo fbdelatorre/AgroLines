@@ -92,6 +92,8 @@ int WINAPI wWinMain(HINSTANCE, HINSTANCE, PWSTR, int) {
     if (!mutex) return 9;
     STARTUPINFOW startup{};
     startup.cb = sizeof(startup);
+    startup.dwFlags = STARTF_TITLEISAPPID;
+    startup.lpTitle = const_cast<LPWSTR>(L"Delatorre.AgroLines.Standalone");
     PROCESS_INFORMATION process{};
     const BOOL started = CreateProcessW(target.c_str(), command.data(), nullptr, nullptr, TRUE,
         CREATE_UNICODE_ENVIRONMENT, nullptr, selected.c_str(), &startup, &process);

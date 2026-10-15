@@ -13,7 +13,7 @@ $developer=Join-Path $installation 'Common7/Tools/VsDevCmd.bat'
 $build=Join-Path (Split-Path -Parent $output) 'compile-launcher.cmd'
 $object=Join-Path (Split-Path -Parent $output) 'launcher.obj'
 @('@echo off', ('call "' + $developer + '" -arch=x64 -host_arch=x64'), 'if errorlevel 1 exit /b %errorlevel%',
-  ('cl /nologo /O2 /MT /W4 /WX /sdl /guard:cf /utf-8 /std:c++17 "' + $source + '" /Fo"' + $object + '" /Fe"' + $output + '" /link /SUBSYSTEM:WINDOWS /DYNAMICBASE /NXCOMPAT /HIGHENTROPYVA shell32.lib advapi32.lib'),
+  ('cl /nologo /O2 /MT /W4 /WX /sdl /guard:cf /utf-8 /std:c++17 "' + $source + '" /Fo"' + $object + '" /Fe"' + $output + '" /link /SUBSYSTEM:WINDOWS /DYNAMICBASE /NXCOMPAT /HIGHENTROPYVA shell32.lib advapi32.lib user32.lib'),
   'exit /b %errorlevel%') | Set-Content $build -Encoding ascii
 & cmd.exe /d /c $build
 if ($LASTEXITCODE) { throw 'Launcher compilation failed.' }
