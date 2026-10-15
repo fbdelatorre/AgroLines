@@ -1,0 +1,26 @@
+{
+  "wheel": {
+    "filename": "pyside6_webengine-6.12.0.140-cp310-abi3-win_amd64.whl",
+    "url": "https://files.pythonhosted.org/packages/21/0d/260c7c286f2d4e8a49c099152a385414a872f022117f937824ca0a3f38e5/pyside6_webengine-6.12.0.140-cp310-abi3-win_amd64.whl",
+    "sha256": "f9b61b1d457a591ee590a6b80515f25a3e61e2576a2a0a70566380f9d9de4ab0",
+    "dll": "PySide6/Qt6WebEngineCore.dll",
+    "dll_sha256": "54488cfc8fea4057377302cec5a1fb1100fb4bc4231cd7e60f43e4fcff28e89e"
+  },
+  "source_archive": {
+    "filename": "qtwebengine-everywhere-src-6.140.0-rc.tar.xz",
+    "url": "https://download.qt.io/development_releases/qtwebengine/6.140.0-rc/qtwebengine-everywhere-src-6.140.0-rc.tar.xz",
+    "sha256": "61257967afd9803a1db6403e86ea25c4efff8fad479bda365a9d81bfd709f621",
+    "checksum_url": "https://download.qt.io/development_releases/qtwebengine/6.140.0-rc/qtwebengine-everywhere-src-6.140.0-rc.tar.xz.sha256",
+    "exact_wheel_correspondence_proven": false
+  },
+  "candidate": {
+    "qt_webengine": "6.140.0",
+    "chromium": "140.0.7339.225",
+    "security_patch": "152.0.7977.83",
+    "qt_module_commit": "d505fc23640d2bd6345e6483eb73daf4e19f5829",
+    "qt_tag": "v6.140.0-rc",
+    "chromium_gitlink": "39352427a3245a19fb395547b3aa38be9d091ec4",
+    "other_tag_with_same_runtime_versions": "v6.140.0-beta2",
+    "version_match_is_not_exact_build_proof": true
+  }
+}

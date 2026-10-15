@@ -1,0 +1,29 @@
+name: WebEngine public source evidence (no build or publication)
+on:
+  pull_request:
+    paths: ['tools/webengine_legal/**', 'docs/compliance/webengine/**', '.github/workflows/webengine-materials.yml']
+permissions:
+  contents: read
+jobs:
+  public-materials:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12.10'
+      - name: Pinned parser only; no application or native library installation
+        run: |
+          python -m pip install --require-hashes --only-binary=:all: -r tools/webengine_legal/requirements.lock
+      - name: Read official source archive and Windows wheel without executing either
+        run: python -m tools.webengine_legal.audit --directory "$RUNNER_TEMP/webengine-public-inputs"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: webengine-source-evidence-ONLY
+          path: ${{ runner.temp }}/webengine-public-inputs/report.json
+          if-no-files-found: error
+          retention-days: 30
