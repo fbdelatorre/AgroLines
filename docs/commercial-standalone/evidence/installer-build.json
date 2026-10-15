@@ -1,0 +1,18 @@
+{
+  "profile": "standalone-offline",
+  "version": "1.0.0.1",
+  "installer_executed": false,
+  "architecture": "x64",
+  "file": "AgroLines-Standalone-1.0.0.1-x64-46b5152df560-EXPERIMENTAL-UNSIGNED.exe",
+  "size_bytes": 159869911,
+  "source_head_commit": "ed3b3cecc9605ef6c4daf7d7e74053063bf97d6d",
+  "distribution_approved": false,
+  "payload_manifest_sha256": "a49ec539b4cd6f33811af3e65edd2008dab8dfce1aaa00f8dcbb866b16938eed",
+  "sha256": "8dd54d6cd4db49917e2ce96af3b9019f806627acb93ac594282619d7966a183f",
+  "lock_sha256": "2582cbf5e7f586990c78a2f4ea70d4c7423a8878354e77b144dc632177a5d29e",
+  "signature_status": "NotSigned",
+  "source_commit": "46b5152df56008a278324718000a946b41bd97c8",
+  "run_url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38742958569",
+  "sac_approved": false,
+  "layout_sha256": "2469b2fdf02786b1108e20c013d2fb890d6931ef744c8d65fe4800b32d213bef"
+}

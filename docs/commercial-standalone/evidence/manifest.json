@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "collected_date": "2026-10-15",
+  "pr": 19,
+  "base_pr": 18,
+  "commercial_approved": false,
+  "signing_performed": false,
+  "installer_executed": false,
+  "sources": {
+    "native-results.json": {
+      "run": 38737953304,
+      "source": "AGROLINES_FULL_NATIVE_RESULT same-run logs",
+      "head_commit": "77ca169c376ae2292745194153f14062b0469341"
+    },
+    "license-configuration.json": {
+      "run": 38739437306,
+      "source": "same-run structured log record",
+      "head_commit": "382832f80ca3e7319ffea1df567b4b86ff4fc2f0"
+    },
+    "installer-build.json": {
+      "run": 38742958569,
+      "source": "AGROLINES_STANDALONE_ARTIFACT same-run logs",
+      "head_commit": "ed3b3cecc9605ef6c4daf7d7e74053063bf97d6d"
+    },
+    "signing-sources.json": {
+      "source": "direct read-only official HTTP fetch records; errors retained"
+    }
+  },
+  "quality": {
+    "run": 38742959630,
+    "head_commit": "ed3b3cecc9605ef6c4daf7d7e74053063bf97d6d",
+    "windows_passed": 236,
+    "windows_skipped": 2,
+    "linux_passed": 237,
+    "linux_skipped": 1,
+    "computational_precision": "22/22",
+    "field_centimeter_accuracy_validated": false
+  },
+  "artifacts": [
+    {
+      "run": 38742958569,
+      "id": 11976946285,
+      "name": "agrolines-standalone-HOMOLOGATION-EVIDENCE-ONLY",
+      "sha256_reported_by_actions": "82f9b3957ea1a978cd1556af98e2aed6697e9b49ad0b57550b5cb855a3a8e06a",
+      "local_zip_bytes_independently_verified": false
+    }
+  ],
+  "files": [
+    {
+      "path": "installer-build.json",
+      "sha256": "d61f1fd9ee678cfc7f3b13a6308995eaada8a1ce1a59655bec636fc613bcc9d6",
+      "size_bytes": 886
+    },
+    {
+      "path": "license-configuration.json",
+      "sha256": "add822406f5d2d717e09c00a29f3ed9b0a813d2f37383b185ea45c6d4e9e32a9",
+      "size_bytes": 1132
+    },
+    {
+      "path": "native-results.json",
+      "sha256": "6ae99ea59c00a18c29c467abde06861be826d4961db0ebe81a0b60ed7dcba873",
+      "size_bytes": 39407
+    },
+    {
+      "path": "signing-sources.json",
+      "sha256": "5ce3137c5896a405e366b69ca7c8913e755a1d0e222d11e0ebcd16bf25be2866",
+      "size_bytes": 1671
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "errors": [],
+  "qrc_notices": [],
+  "spatialite": {
+    "version": "5.1.0",
+    "HasGeos()": {
+      "sqlite_status": 0,
+      "values": [
+        "1"
+      ],
+      "error": null
+    },
+    "HasProj()": {
+      "sqlite_status": 0,
+      "values": [
+        "1"
+      ],
+      "error": null
+    },
+    "HasRtTopo()": {
+      "sqlite_status": 0,
+      "values": [
+        "0"
+      ],
+      "error": null
+    },
+    "HasGCP()": {
+      "sqlite_status": 0,
+      "values": [
+        "0"
+      ],
+      "error": null
+    }
+  },
+  "legal_approved": false,
+  "qrc_resources_scanned": 532,
+  "spatialite_module": {
+    "path": "D:\\a\\_temp\\license-probe\\app\\_internal\\fiona.libs\\spatialite-e03c16976c81110a807ddde663a483fb.dll",
+    "sha256": "aac50734dd21a12d40a112c423f518cd41bedc5aa3c9f4fe713eb361525b9df2"
+  },
+  "sqlite_module": {
+    "path": "D:\\a\\_temp\\license-probe\\app\\_internal\\fiona.libs\\sqlite3-0cb9f6e67fd2491114f55ace5268f7aa.dll",
+    "sha256": "70255ca0d3a5fa20cd10a2cbf41dd3e3819c82a42e825d2ec50d06838114fffb"
+  },
+  "own_exe_sha256": "e9a497948ecd272f4ba4b5c9f3ece4bcfee4624a33c44055ee2b89bebbe05cd7"
+}
