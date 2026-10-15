@@ -12,3 +12,6 @@ docs/qt-minimal/*.csv text eol=lf
 # Preserve original legal-document bytes and pinned evidence across platforms.
 docs/compliance/** -text
 tools/compliance-poc/** -text
+# Original upstream licenses/recipes and generated legal drafts are hash-bound.
+distribution/legal/** -text
+docs/legal/** -text
