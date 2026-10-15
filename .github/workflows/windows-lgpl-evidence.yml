@@ -1,0 +1,47 @@
+name: Capture existing Windows LGPL evidence (read only, no build)
+on:
+  push:
+    branches: [compliance/windows-lgpl-validation]
+    paths: ['.github/workflows/windows-lgpl-evidence.yml']
+permissions:
+  contents: read
+  actions: read
+  checks: write # Durable GitHub annotations of the small synthetic JSON reports only.
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Wait for the already running experiment (never starts another build)
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: gh run watch 38662108639 --exit-status --interval 30
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          github-token: ${{ github.token }}
+          run-id: 38662108639
+          pattern: lgpl-*-EVIDENCE-ONLY-NOT-FOR-INSTALL
+          path: captured
+      - name: Record small synthetic JSON results as check annotations
+        shell: python
+        run: |
+          import hashlib, json
+          from pathlib import Path
+          reports = list(Path('captured').rglob('results.json'))
+          assert len(reports) == 3
+          expected = {'qtbase-6.12.0', 'geos-3.11.3', 'geos-3.14.1'}
+          for path in reports:
+              report = json.loads(path.read_text())
+              assert report['component'] in expected
+              assert not report['sac_approved'] and not report['legal_approved']
+              assert not report['agrolines_recombination_demonstrated']
+              message = json.dumps({'results_sha256':hashlib.sha256(path.read_bytes()).hexdigest(), 'report':report}, separators=(',',':'))
+              assert len(message) < 60000
+              print('::notice title=LGPL-LAB-RESULT::' + message.replace('%','%25').replace('\r','%0D').replace('\n','%0A'))
+              expected.remove(report['component'])
+          assert not expected
+          for path in Path('captured').rglob('lab-security.json'):
+              r = json.loads(path.read_text(encoding='utf-8-sig'))
+              limited = {'os':r['os'], 'registry_state':r['sac']['registry_state'], 'sac_active_confirmed':r['sac']['active_confirmed'], 'errors':r['sac']['errors'], 'defender':r['defender'], 'physical_win11_approved':False}
+              print('::notice title=LGPL-LAB-HOST::' + json.dumps(limited,separators=(',',':')))
