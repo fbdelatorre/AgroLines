@@ -68,9 +68,13 @@ def pack(dossier, source_dir, output):
             entry = zipfile.ZipInfo(target, date_time=(2026, 1, 1, 0, 0, 0))
             entry.compress_type = zipfile.ZIP_DEFLATED
             archive.writestr(entry, source.read_bytes())
-        archive.writestr("sources-index.json", json.dumps(data, indent=2))
+        index_entry = zipfile.ZipInfo("sources-index.json", date_time=(2026, 1, 1, 0, 0, 0))
+        index_entry.compress_type = zipfile.ZIP_DEFLATED
+        archive.writestr(index_entry, json.dumps(data, indent=2))
+        readme_entry = zipfile.ZipInfo("README.txt", date_time=(2026, 1, 1, 0, 0, 0))
+        readme_entry.compress_type = zipfile.ZIP_DEFLATED
         archive.writestr(
-            "README.txt",
+            readme_entry,
             (
                 "PARTIAL THIRD-PARTY MATERIALS FOR REVIEW ONLY. NOT AN APPROVED SOURCE OFFER.\n"
                 "No AgroLines implementation, objects, bytecode, keys or customer data.\n"

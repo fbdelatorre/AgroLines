@@ -28,8 +28,8 @@
     },
     {
       "path": "evidence/local-source-bundle.json",
-      "sha256": "4b885edfd34885fbf042e8aecd02dd13213ed1f194511a463939dd0e03637362",
-      "size_bytes": 277
+      "sha256": "763a548ab34bc0ad37e38052df39d9da544ec655fa81425edd53d6e22efe500d",
+      "size_bytes": 265
     },
     {
       "path": "evidence/module-license-headers.json",

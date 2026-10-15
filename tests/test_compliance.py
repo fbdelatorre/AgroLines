@@ -195,6 +195,8 @@ def test_bundle_only_explicit_third_party_archives_and_notices(tmp_path):
     archive = tmp_path / "sources.zip"
     result = pack(dossier, sources, archive)
     assert not result["published"] and not result["complete_corresponding_source"]
+    duplicate = pack(dossier, sources, tmp_path / "same-materials.zip")
+    assert duplicate["sha256"] == result["sha256"]
     with zipfile.ZipFile(archive) as packed:
         assert set(packed.namelist()) == {
             "sources/upstream.tar",
