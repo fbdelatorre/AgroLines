@@ -85,9 +85,8 @@ jobs:
             Copy-Item $inputPath $fixture -Recurse
             $caArgs=@('--lab-tls-ca',"$fixture/tls-ca.pem")
           } else {
-            ./build-env/Scripts/python.exe -m scripts.vm_license_lab init --directory "$env:RUNNER_TEMP/synthetic-server-secrets" --origin https://localhost
+            ./build-env/Scripts/python.exe -m scripts.prepare_license_lab --output $fixture --tls-origin https://localhost --tls-private-directory "$env:RUNNER_TEMP/synthetic-tls-server-secrets"
             if ($LASTEXITCODE) { throw 'Synthetic public trust preparation failed.' }
-            Copy-Item "$env:RUNNER_TEMP/synthetic-server-secrets/client-build-inputs" $fixture -Recurse
             $origin='https://localhost'
             $caArgs=@('--lab-tls-ca',"$fixture/tls-ca.pem")
           }

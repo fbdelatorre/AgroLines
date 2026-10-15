@@ -313,3 +313,26 @@ def test_diagnostic_dialog_exports_exact_preview_and_cancel_writes_nothing(tmp_p
     assert len(list(tmp_path.glob("*.zip"))) == 1
     parent.close()
     app.processEvents()
+
+
+def test_builder_public_tls_fixture_never_imports_server_dependencies(tmp_path):
+    import subprocess
+
+    output, private = tmp_path / "public", tmp_path / "private"
+    code = """
+import importlib.abc, sys, runpy
+class NoServer(importlib.abc.MetaPathFinder):
+    def find_spec(self, fullname, *args):
+        if fullname.split('.')[0] in ('server', 'sqlalchemy', 'fastapi'):
+            raise AssertionError('Server dependencies must not enter the client builder')
+sys.meta_path.insert(0, NoServer())
+sys.argv = ['fixture', '--output', sys.argv[1], '--tls-origin', 'https://localhost',
+            '--tls-private-directory', sys.argv[2]]
+runpy.run_module('scripts.prepare_license_lab', run_name='__main__')
+"""
+    subprocess.run(
+        [sys.executable, "-c", code, str(output), str(private)], check=True, capture_output=True
+    )
+    assert lab_inputs(output) == "https://localhost"
+    assert (private / "tls-server.key").is_file()
+    assert not any("PRIVATE KEY" in file.read_text() for file in output.iterdir())

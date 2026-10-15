@@ -22,7 +22,11 @@ class LabSigner:
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--tls-origin")
+    parser.add_argument("--tls-private-directory", type=Path)
     args = parser.parse_args()
+    if bool(args.tls_origin) != bool(args.tls_private_directory):
+        parser.error("TLS laboratory requires explicit origin and separate private directory")
     args.output.mkdir(parents=True, exist_ok=True)
     signer = LabSigner()
     keyring = {"synthetic-lab-only": encode(bytes(signer.key.verify_key))}
@@ -47,6 +51,23 @@ def main():
     (args.output / "fixture.json").write_text(
         json.dumps({"active": active, "revoked": revoked}) + "\n"
     )
+    if args.tls_origin:
+        from core.license_network import validate_origin
+        from distribution.lab_tls import create_tls
+
+        origin = validate_origin(args.tls_origin)
+        private = args.tls_private_directory.resolve()
+        if private.is_relative_to(Path(__file__).resolve().parent.parent) or private.is_relative_to(
+            args.output.resolve()
+        ):
+            raise ValueError(
+                "Private TLS server material must be outside checkout/public build inputs"
+            )
+        private.mkdir(mode=0o700, parents=True, exist_ok=False)
+        (args.output / "tls-ca.pem").write_bytes(create_tls(private, origin))
+        (args.output / "origin.json").write_text(
+            json.dumps({"origin": origin, "test_profile": True})
+        )
     # Private synthetic signer exists only in process memory. No private-key file or logging.
 
 
