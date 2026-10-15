@@ -1,0 +1,9 @@
+{
+  "path": "_internal/fiona.libs/szip-d0425ee11b05cea2ef5907b56ab33522.dll",
+  "sha256": "aaff372f56a8221f198522cca5a5494109b3151613620c13aabdddbcedfdd876",
+  "export": "SZ_encoder_enabled",
+  "instruction_bytes": "8b057a360000c3",
+  "method": "x64 MOV EAX,[RIP+disp32];RET; inspect initial data only, no execution",
+  "initial_value": 1,
+  "native_code_executed": false
+}

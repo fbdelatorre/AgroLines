@@ -1,0 +1,412 @@
+{
+  "run_id": 38759477055,
+  "source_head": "cb7c6bc7f075bbb062d3313a2b5de467022342d5",
+  "origin": "GitHub Actions run log; excerpts, not local installer remeasurement",
+  "installation_performed": false,
+  "legal_approved": false,
+  "libaec_build": [
+    {
+      "component": "libaec-SZIP",
+      "version": "1.1.7",
+      "license": "BSD-2-Clause",
+      "source_commit": "0c4c01463d2c64a112a61271d317b74efb660608",
+      "source_url": "https://codeload.github.com/Deutsches-Klimarechenzentrum/libaec/tar.gz/0c4c01463d2c64a112a61271d317b74efb660608",
+      "source_archive_sha256": "33d1207ee309154331b58715cef998d65b86bd8421fa5418254c16e18ccb3da8",
+      "source_algorithm_modified": false,
+      "filename_only_cmake_addition": "\nset_target_properties(sz-shared PROPERTIES OUTPUT_NAME \"szip-d0425ee11b05cea2ef5907b56ab33522\")\n",
+      "binary": "D:\\a\\AgroLines\\AgroLines\\build\\legal-native\\build\\src\\szip-d0425ee11b05cea2ef5907b56ab33522.dll",
+      "binary_sha256": "6a03aef4acd2d846bbfd8e79c035cc9ffab61ff29c333657d76cc8cae3bf7c3a",
+      "binary_size": 33792,
+      "exports": [
+        "SZ_BufftoBuffCompress",
+        "SZ_BufftoBuffDecompress",
+        "SZ_encoder_enabled",
+        "aec_buffer_decode",
+        "aec_buffer_encode",
+        "aec_buffer_seek",
+        "aec_decode",
+        "aec_decode_count_offsets",
+        "aec_decode_enable_offsets",
+        "aec_decode_end",
+        "aec_decode_get_offsets",
+        "aec_decode_init",
+        "aec_decode_range",
+        "aec_encode",
+        "aec_encode_count_offsets",
+        "aec_encode_enable_offsets",
+        "aec_encode_end",
+        "aec_encode_get_offsets",
+        "aec_encode_init"
+      ],
+      "imports": [
+        "VCRUNTIME140.dll",
+        "api-ms-win-crt-heap-l1-1-0.dll",
+        "api-ms-win-crt-runtime-l1-1-0.dll",
+        "api-ms-win-crt-stdio-l1-1-0.dll",
+        "KERNEL32.dll"
+      ],
+      "configure": [
+        "cmake",
+        "-S",
+        "D:\\a\\AgroLines\\AgroLines\\build\\legal-native\\source\\libaec-0c4c01463d2c64a112a61271d317b74efb660608",
+        "-B",
+        "D:\\a\\AgroLines\\AgroLines\\build\\legal-native\\build",
+        "-G",
+        "Ninja",
+        "-DCMAKE_BUILD_TYPE=Release",
+        "-DBUILD_SHARED_LIBS=ON",
+        "-DBUILD_STATIC_LIBS=OFF",
+        "-DBUILD_TESTING=ON"
+      ],
+      "ctest_passed": true,
+      "ctest_output": "Test project D:/a/AgroLines/AgroLines/build/legal-native/build\n    Start 1: check_code_options\n1/6 Test #1: check_code_options ...............   Passed    7.88 sec\n    Start 2: check_buffer_sizes\n2/6 Test #2: check_buffer_sizes ...............   Passed    0.01 sec\n    Start 3: check_seeking\n3/6 Test #3: check_seeking ....................   Passed    0.08 sec\n    Start 4: check_long_fs\n4/6 Test #4: check_long_fs ....................   Passed    0.01 sec\n    Start 5: check_szcomp\n5/6 Test #5: check_szcomp .....................   Passed    0.03 sec\n    Start 6: check_rsi_block_access\n6/6 Test #6: check_rsi_block_access ...........   Passed    8.39 sec\n\n100% tests passed out of 6\n\nTotal Test time (real) =  17.65 sec\n",
+      "replaced_slot": "_internal/fiona.libs/szip-d0425ee11b05cea2ef5907b56ab33522.dll",
+      "original_sha256": "aaff372f56a8221f198522cca5a5494109b3151613620c13aabdddbcedfdd876",
+      "legal_approved": false,
+      "signing_performed": false
+    }
+  ],
+  "szip_interop": [
+    {
+      "cases": [
+        {
+          "type": "u8",
+          "options": 4,
+          "raw_bytes": 2048,
+          "stored_bytes": 1200,
+          "exact_bytes": true
+        },
+        {
+          "type": "u8",
+          "options": 32,
+          "raw_bytes": 2048,
+          "stored_bytes": 968,
+          "exact_bytes": true
+        },
+        {
+          "type": "u16",
+          "options": 4,
+          "raw_bytes": 4096,
+          "stored_bytes": 1232,
+          "exact_bytes": true
+        },
+        {
+          "type": "u16",
+          "options": 32,
+          "raw_bytes": 4096,
+          "stored_bytes": 1064,
+          "exact_bytes": true
+        },
+        {
+          "type": "u32",
+          "options": 4,
+          "raw_bytes": 8192,
+          "stored_bytes": 1392,
+          "exact_bytes": true
+        },
+        {
+          "type": "u32",
+          "options": 32,
+          "raw_bytes": 8192,
+          "stored_bytes": 1352,
+          "exact_bytes": true
+        },
+        {
+          "type": "f64",
+          "options": 4,
+          "raw_bytes": 16384,
+          "stored_bytes": 4352,
+          "exact_bytes": true
+        },
+        {
+          "type": "f64",
+          "options": 32,
+          "raw_bytes": 16384,
+          "stored_bytes": 3304,
+          "exact_bytes": true
+        }
+      ],
+      "hdf5_path": "D:\\a\\_temp\\agrolines-codec-d5f6d0b564d747839cd9002625f4568a\\bsd\\fiona.libs\\hdf5-fa46ddbc0e6f5f04b4dfa68ebf54461b.dll",
+      "hdf5_sha256": "b1eef1c184173d1f8dfd17232a842cd5399540e7cef9c7a315fbf58c16fe6ead",
+      "codec_path": "D:\\a\\_temp\\agrolines-codec-d5f6d0b564d747839cd9002625f4568a\\bsd\\fiona.libs\\szip-d0425ee11b05cea2ef5907b56ab33522.dll",
+      "codec_sha256": "6a03aef4acd2d846bbfd8e79c035cc9ffab61ff29c333657d76cc8cae3bf7c3a",
+      "original_szip_encoder_executed": false,
+      "bsd_codec_wrote_fixture": true,
+      "passed": true
+    },
+    {
+      "cases": [
+        {
+          "type": "u8",
+          "options": 4,
+          "raw_bytes": 2048,
+          "stored_bytes": 1200,
+          "exact_bytes": true
+        },
+        {
+          "type": "u8",
+          "options": 32,
+          "raw_bytes": 2048,
+          "stored_bytes": 968,
+          "exact_bytes": true
+        },
+        {
+          "type": "u16",
+          "options": 4,
+          "raw_bytes": 4096,
+          "stored_bytes": 1232,
+          "exact_bytes": true
+        },
+        {
+          "type": "u16",
+          "options": 32,
+          "raw_bytes": 4096,
+          "stored_bytes": 1064,
+          "exact_bytes": true
+        },
+        {
+          "type": "u32",
+          "options": 4,
+          "raw_bytes": 8192,
+          "stored_bytes": 1392,
+          "exact_bytes": true
+        },
+        {
+          "type": "u32",
+          "options": 32,
+          "raw_bytes": 8192,
+          "stored_bytes": 1352,
+          "exact_bytes": true
+        },
+        {
+          "type": "f64",
+          "options": 4,
+          "raw_bytes": 16384,
+          "stored_bytes": 4352,
+          "exact_bytes": true
+        },
+        {
+          "type": "f64",
+          "options": 32,
+          "raw_bytes": 16384,
+          "stored_bytes": 3304,
+          "exact_bytes": true
+        }
+      ],
+      "hdf5_path": "D:\\a\\_temp\\agrolines-codec-d5f6d0b564d747839cd9002625f4568a\\original-decoder\\fiona.libs\\hdf5-fa46ddbc0e6f5f04b4dfa68ebf54461b.dll",
+      "hdf5_sha256": "b1eef1c184173d1f8dfd17232a842cd5399540e7cef9c7a315fbf58c16fe6ead",
+      "codec_path": "D:\\a\\_temp\\agrolines-codec-d5f6d0b564d747839cd9002625f4568a\\original-decoder\\fiona.libs\\szip-d0425ee11b05cea2ef5907b56ab33522.dll",
+      "codec_sha256": "aaff372f56a8221f198522cca5a5494109b3151613620c13aabdddbcedfdd876",
+      "original_szip_encoder_executed": false,
+      "bsd_codec_wrote_fixture": false,
+      "passed": true
+    }
+  ],
+  "legal_materials": [
+    {
+      "legal_material_presence_verified": true,
+      "documents": 153,
+      "native_files": 178,
+      "authenticode_content_only_files": [],
+      "cryptographic_trust_validated": false,
+      "legal_approved": false
+    },
+    {
+      "legal_material_presence_verified": true,
+      "documents": 153,
+      "native_files": 178,
+      "authenticode_content_only_files": [],
+      "cryptographic_trust_validated": false,
+      "legal_approved": false
+    }
+  ],
+  "observation_errors": [
+    []
+  ],
+  "observation_phase": [
+    {
+      "duration_ms": 24090,
+      "exit_code": 0,
+      "name": "normal-offline-startup",
+      "normal_first_window_ms": 17899,
+      "normal_window_observed": true,
+      "normal_close_requested": true
+    },
+    {
+      "duration_ms": 7006,
+      "exit_code": 0,
+      "name": "smoke-startup-and-gis",
+      "normal_first_window_ms": null,
+      "normal_window_observed": false,
+      "normal_close_requested": false
+    },
+    {
+      "duration_ms": 4215,
+      "exit_code": 0,
+      "name": "offline-import-edit-backup",
+      "normal_first_window_ms": null,
+      "normal_window_observed": false,
+      "normal_close_requested": false
+    }
+  ],
+  "bindings_original": [
+    {
+      "offline_only": true,
+      "frozen": true,
+      "qt_version": "6.12.0",
+      "modules": [
+        {
+          "module": "PySide6",
+          "path": "D:\\a\\AgroLines\\AgroLines\\dist\\AgroLines\\_internal\\PySide6\\__init__.py",
+          "sha256": "3b662ee91f12feb02507dfaff907b7306bf5c851f1374563f70fae19e13711fc",
+          "inside_runtime": true,
+          "marker": null
+        },
+        {
+          "module": "shiboken6",
+          "path": "D:\\a\\AgroLines\\AgroLines\\dist\\AgroLines\\_internal\\shiboken6\\__init__.py",
+          "sha256": "ac646c38845df8ed9ab6fd02aa09b1c007d22069098e41e4b7a9baaa73090910",
+          "inside_runtime": true,
+          "marker": null
+        },
+        {
+          "module": "PySide6.QtCore",
+          "path": "D:\\a\\AgroLines\\AgroLines\\dist\\AgroLines\\_internal\\PySide6\\QtCore.pyd",
+          "sha256": "6486f6f0a2fec42fc8c652c0b76bb3ad0d44eaccad9c72e577116a075681eebb",
+          "inside_runtime": true,
+          "marker": null
+        },
+        {
+          "module": "PySide6.QtWidgets",
+          "path": "D:\\a\\AgroLines\\AgroLines\\dist\\AgroLines\\_internal\\PySide6\\QtWidgets.pyd",
+          "sha256": "a8e323e56a93c1a8a70981c36a409c0a2546e7a08da5be8ca4e03dfd27febc2a",
+          "inside_runtime": true,
+          "marker": null
+        },
+        {
+          "module": "PySide6.QtSvg",
+          "path": "D:\\a\\AgroLines\\AgroLines\\dist\\AgroLines\\_internal\\PySide6\\QtSvg.pyd",
+          "sha256": "c9bdacf14ce30f4de75179f999ff20d7a8856126dbebd3a518a5e1c2916a3a6d",
+          "inside_runtime": true,
+          "marker": null
+        },
+        {
+          "module": "PySide6.QtWebChannel",
+          "path": "D:\\a\\AgroLines\\AgroLines\\dist\\AgroLines\\_internal\\PySide6\\QtWebChannel.pyd",
+          "sha256": "91d2f07ed120037ebf2ea35a259d6e97742f70b9ad8542c2d098145c387429ae",
+          "inside_runtime": true,
+          "marker": null
+        },
+        {
+          "module": "PySide6.QtWebEngineCore",
+          "path": "D:\\a\\AgroLines\\AgroLines\\dist\\AgroLines\\_internal\\PySide6\\QtWebEngineCore.pyd",
+          "sha256": "ccaf0e0e363ced8b337fc72f2f2be8420b7ad492c59a7829c07ab2de826c7e21",
+          "inside_runtime": true,
+          "marker": null
+        }
+      ],
+      "binding_call_passed": true,
+      "sac_approved": false,
+      "full_native_recombination_proven": false
+    }
+  ],
+  "bindings_modified": [
+    {
+      "offline_only": true,
+      "frozen": true,
+      "qt_version": "6.12.0",
+      "modules": [
+        {
+          "module": "PySide6",
+          "path": "D:\\a\\_temp\\standalone-binding-lab\\_internal\\PySide6\\__init__.py",
+          "sha256": "8b65ab602a9a9b1cca541d819cdd0294a56afa9be3639d3b3c4138ca08154d25",
+          "inside_runtime": true,
+          "marker": "synthetic-standalone-lgpl-python-replacement-v1"
+        },
+        {
+          "module": "shiboken6",
+          "path": "D:\\a\\_temp\\standalone-binding-lab\\_internal\\shiboken6\\__init__.py",
+          "sha256": "1c91044bd409c0c3cd857a4bc1bfe25420464a2cee8f1bc6113ac9475ebdfc51",
+          "inside_runtime": true,
+          "marker": "synthetic-standalone-lgpl-python-replacement-v1"
+        },
+        {
+          "module": "PySide6.QtCore",
+          "path": "D:\\a\\_temp\\standalone-binding-lab\\_internal\\PySide6\\QtCore.pyd",
+          "sha256": "6486f6f0a2fec42fc8c652c0b76bb3ad0d44eaccad9c72e577116a075681eebb",
+          "inside_runtime": true,
+          "marker": null
+        },
+        {
+          "module": "PySide6.QtWidgets",
+          "path": "D:\\a\\_temp\\standalone-binding-lab\\_internal\\PySide6\\QtWidgets.pyd",
+          "sha256": "a8e323e56a93c1a8a70981c36a409c0a2546e7a08da5be8ca4e03dfd27febc2a",
+          "inside_runtime": true,
+          "marker": null
+        },
+        {
+          "module": "PySide6.QtSvg",
+          "path": "D:\\a\\_temp\\standalone-binding-lab\\_internal\\PySide6\\QtSvg.pyd",
+          "sha256": "c9bdacf14ce30f4de75179f999ff20d7a8856126dbebd3a518a5e1c2916a3a6d",
+          "inside_runtime": true,
+          "marker": null
+        },
+        {
+          "module": "PySide6.QtWebChannel",
+          "path": "D:\\a\\_temp\\standalone-binding-lab\\_internal\\PySide6\\QtWebChannel.pyd",
+          "sha256": "91d2f07ed120037ebf2ea35a259d6e97742f70b9ad8542c2d098145c387429ae",
+          "inside_runtime": true,
+          "marker": null
+        },
+        {
+          "module": "PySide6.QtWebEngineCore",
+          "path": "D:\\a\\_temp\\standalone-binding-lab\\_internal\\PySide6\\QtWebEngineCore.pyd",
+          "sha256": "ccaf0e0e363ced8b337fc72f2f2be8420b7ad492c59a7829c07ab2de826c7e21",
+          "inside_runtime": true,
+          "marker": null
+        }
+      ],
+      "binding_call_passed": true,
+      "sac_approved": false,
+      "full_native_recombination_proven": false
+    }
+  ],
+  "signing_status": [
+    {
+      "status": "ASSINATURA PENDENTE",
+      "before": {
+        "Valid": 100,
+        "NotSigned": 78
+      },
+      "after": {
+        "Valid": 100,
+        "NotSigned": 78
+      },
+      "signing_performed": false,
+      "ready_for_authorized_signing": false,
+      "violations": [],
+      "new_paths": [],
+      "removed_paths": []
+    }
+  ],
+  "standalone_artifact": [
+    {
+      "source_head_commit": "cb7c6bc7f075bbb062d3313a2b5de467022342d5",
+      "installer_executed": false,
+      "source_commit": "bc9ac1948cc865ea2ce0c69aae4a14375d70cd49",
+      "lock_sha256": "2582cbf5e7f586990c78a2f4ea70d4c7423a8878354e77b144dc632177a5d29e",
+      "signature_status": "NotSigned",
+      "architecture": "x64",
+      "run_url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38759477055",
+      "file": "AgroLines-Standalone-1.0.0.2-x64-bc9ac1948cc8-EXPERIMENTAL-UNSIGNED.exe",
+      "sac_approved": false,
+      "version": "1.0.0.2",
+      "profile": "standalone-offline",
+      "layout_sha256": "2469b2fdf02786b1108e20c013d2fb890d6931ef744c8d65fe4800b32d213bef",
+      "distribution_approved": false,
+      "payload_manifest_sha256": "461460d70397633163f97ae31b06e672e60b993cbeac1b7a26d4d54ecb8ed290",
+      "size_bytes": 159977796,
+      "sha256": "932860894fd6ace488b89c879927458439a064c3a79265039c816e3ff0626d73"
+    }
+  ]
+}

@@ -1,0 +1,181 @@
+{
+  "sources": [
+    {
+      "component": "libiconv-1.17",
+      "url": "https://ftp.gnu.org/gnu/libiconv/libiconv-1.17.tar.gz",
+      "source_binary_correspondence": false,
+      "documents": [
+        {
+          "archive_member": "libiconv-1.17/COPYING.LIB",
+          "filename": "libiconv-1.17--libiconv-1.17__COPYING.LIB",
+          "sha256": "dc626520dcd53a22f727af3ee42c770e56c97a64fe3adb063799d8ab032fe551",
+          "bytes": 26530
+        },
+        {
+          "archive_member": "libiconv-1.17/AUTHORS",
+          "filename": "libiconv-1.17--libiconv-1.17__AUTHORS",
+          "sha256": "ed10ef2a01effb12849006d43262ffde5cf72a7d5423bbc8aa66fc6959774c0c",
+          "bytes": 31
+        },
+        {
+          "archive_member": "libiconv-1.17/libcharset/COPYING.LIB",
+          "filename": "libiconv-1.17--libiconv-1.17__libcharset__COPYING.LIB",
+          "sha256": "dc626520dcd53a22f727af3ee42c770e56c97a64fe3adb063799d8ab032fe551",
+          "bytes": 26530
+        },
+        {
+          "archive_member": "libiconv-1.17/libcharset/AUTHORS",
+          "filename": "libiconv-1.17--libiconv-1.17__libcharset__AUTHORS",
+          "sha256": "ed10ef2a01effb12849006d43262ffde5cf72a7d5423bbc8aa66fc6959774c0c",
+          "bytes": 31
+        },
+        {
+          "archive_member": "libiconv-1.17/COPYING",
+          "filename": "libiconv-1.17--libiconv-1.17__COPYING",
+          "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903",
+          "bytes": 35147
+        }
+      ],
+      "sha256": "8f74213b56238c85a50a5329f77e06198771e70dd9a739779f4c02f65d971313",
+      "sha512": "18a09de2d026da4f2d8b858517b0f26d853b21179cf4fa9a41070b2d140030ad9525637dc4f34fc7f27abca8acdc84c6751dfb1d426e78bf92af4040603ced86",
+      "size_bytes": 5413283,
+      "declared_source_input_checksum_matched": true,
+      "archive_file": "sources/libiconv-1.17.tar.gz",
+      "status": "downloaded_source_and_extracted_original_notices"
+    },
+    {
+      "component": "freexl-2.0.0",
+      "url": "https://www.gaia-gis.it/gaia-sins/freexl-2.0.0.tar.gz",
+      "source_binary_correspondence": false,
+      "documents": [
+        {
+          "archive_member": "freexl-2.0.0/AUTHORS",
+          "filename": "freexl-2.0.0--freexl-2.0.0__AUTHORS",
+          "sha256": "cd86708460dd406440f3e75ec2e62a451f09e9c48dc7954978e945c98fb449bb",
+          "bytes": 103
+        },
+        {
+          "archive_member": "freexl-2.0.0/COPYING",
+          "filename": "freexl-2.0.0--freexl-2.0.0__COPYING",
+          "sha256": "122e48ceeb04ac94ee94acd4e6841059096e14d89f258243ff50165b41d5e369",
+          "bytes": 25872
+        }
+      ],
+      "sha256": "176705f1de58ab7c1eebbf5c6de46ab76fcd8b856508dbd28f5648f7c6e1a7f0",
+      "sha512": "663ccc321c2f0dcab8ad9255b2a77066c2046d531a0aa723fb114301fa27b53bf980787dd2548c46541036eceef988c5eedf2bec053adf628929470e67ddc17a",
+      "size_bytes": 991565,
+      "declared_source_input_checksum_matched": true,
+      "archive_file": "sources/freexl-2.0.0.tar.gz",
+      "status": "downloaded_source_and_extracted_original_notices"
+    },
+    {
+      "component": "spatialite-5.1.0",
+      "url": "https://www.gaia-gis.it/gaia-sins/libspatialite-sources/libspatialite-5.1.0.tar.gz",
+      "source_binary_correspondence": false,
+      "documents": [
+        {
+          "archive_member": "libspatialite-5.1.0/AUTHORS",
+          "filename": "spatialite-5.1.0--libspatialite-5.1.0__AUTHORS",
+          "sha256": "c7fba3d93fbe024276756796841d55ca3374db8043044ba39bf980e64b80d6fc",
+          "bytes": 427
+        },
+        {
+          "archive_member": "libspatialite-5.1.0/COPYING",
+          "filename": "spatialite-5.1.0--libspatialite-5.1.0__COPYING",
+          "sha256": "b81965482914858383484d7e63b5de1d0c4647fa7f527e78d4499e4a7b76aab5",
+          "bytes": 26152
+        }
+      ],
+      "sha256": "43be2dd349daffe016dd1400c5d11285828c22fea35ca5109f21f3ed50605080",
+      "sha512": "2745b373e31cea58623224def6090c491b58409803bb71231450dfa2cfdf3aafc3fc6f680585d55d085008f8cf362c3062ae67ffc7d80257775a22eb81ef1e57",
+      "size_bytes": 6517377,
+      "declared_source_input_checksum_matched": true,
+      "archive_file": "sources/libspatialite-5.1.0.tar.gz",
+      "status": "downloaded_source_and_extracted_original_notices"
+    },
+    {
+      "component": "geos-3.14.1",
+      "url": "https://download.osgeo.org/geos/geos-3.14.1.tar.bz2",
+      "source_binary_correspondence": false,
+      "documents": [
+        {
+          "archive_member": "geos-3.14.1/COPYING",
+          "filename": "geos-3.14.1--geos-3.14.1__COPYING",
+          "sha256": "dc626520dcd53a22f727af3ee42c770e56c97a64fe3adb063799d8ab032fe551",
+          "bytes": 26530
+        },
+        {
+          "archive_member": "geos-3.14.1/AUTHORS",
+          "filename": "geos-3.14.1--geos-3.14.1__AUTHORS",
+          "sha256": "289ba8fde56a09ccd36d197c221a5f6163f4523a45b8ced1e39b60490f135266",
+          "bytes": 2255
+        }
+      ],
+      "sha256": "3c20919cda9a505db07b5216baa980bacdaa0702da715b43f176fb07eff7e716",
+      "sha512": "a5a27c34249a6b7fa8bc5d6d557f278bcc3a81ca188f9f543bee7afb6e47d9f8a545e676c5884c0651530bccd24eb929feaaf95cda8e73b033296073e6626f0d",
+      "size_bytes": 7013834,
+      "declared_source_input_checksum_matched": false,
+      "archive_file": "sources/geos-3.14.1.tar.bz2",
+      "status": "downloaded_source_and_extracted_original_notices"
+    },
+    {
+      "component": "szip-2.1.1",
+      "url": "https://support.hdfgroup.org/ftp/lib-external/szip/2.1.1/src/szip-2.1.1.tar.gz",
+      "source_binary_correspondence": false,
+      "documents": [
+        {
+          "archive_member": "szip-2.1.1/COPYING",
+          "filename": "szip-2.1.1--szip-2.1.1__COPYING",
+          "sha256": "98cc66747133b26563fefc4630ad4c8c7848c722c7b8a60ecd4afbc4c7d7eb01",
+          "bytes": 1986
+        }
+      ],
+      "sha256": "21ee958b4f2d4be2c9cabfa5e1a94877043609ce86fde5f286f105f7ff84d412",
+      "sha512": "ada6406efb096cd8a2daf8f9217fe9111a96dcae87e29d1c31f58ddd2ad2aa7bac03f23c7205dc9360f3b62d259461759330c7189ef0c2fe559704b1ea9d40dd",
+      "size_bytes": 415774,
+      "declared_source_input_checksum_matched": true,
+      "status": "downloaded_source_and_extracted_original_notices"
+    },
+    {
+      "component": "tiff-4.6.0",
+      "url": "https://download.osgeo.org/libtiff/tiff-4.6.0.tar.gz",
+      "source_binary_correspondence": false,
+      "documents": [
+        {
+          "archive_member": "tiff-4.6.0/LICENSE.md",
+          "filename": "tiff-4.6.0--tiff-4.6.0__LICENSE.md",
+          "sha256": "0780558a8bfba0af1160ec1ff11ade4f41c0d7deafd6ecfc796b492a788e380d",
+          "bytes": 1164
+        }
+      ],
+      "sha256": "88b3979e6d5c7e32b50d7ec72fb15af724f6ab2cbf7e10880c360a77e4b5d99a",
+      "sha512": "80a117780fe5e2519b5c6661efa90a8a1e4591eb6300068b611ff9887285641c0782d9835482f589d6d109c3be6ffab8831c3561bb40e2456258deb1e896f08e",
+      "size_bytes": 3584534,
+      "declared_source_input_checksum_matched": false,
+      "archive_file": "sources/tiff-4.6.0.tar.gz",
+      "status": "downloaded_source_and_extracted_original_notices"
+    },
+    {
+      "component": "tiff-4.7.1",
+      "url": "https://download.osgeo.org/libtiff/tiff-4.7.1.tar.gz",
+      "source_binary_correspondence": false,
+      "documents": [
+        {
+          "archive_member": "tiff-4.7.1/LICENSE.md",
+          "filename": "tiff-4.7.1--tiff-4.7.1__LICENSE.md",
+          "sha256": "0e27c2382d7b8147972bbb746e04059a1152c8d0fda9d03ef1399d1a433c4ade",
+          "bytes": 2416
+        }
+      ],
+      "sha256": "f698d94f3103da8ca7438d84e0344e453fe0ba3b7486e04c5bf7a9a3fabe9b69",
+      "sha512": "89c5af880626888451caf8b78a2f57b2973719db837dce6530c1fb30318fc6fba7ef9f9d8e46c547821eae29322607cb5146bf3de39b3d7b70bcf5b68c4ee3b1",
+      "size_bytes": 4000609,
+      "declared_source_input_checksum_matched": false,
+      "archive_file": "sources/tiff-4.7.1.tar.gz",
+      "status": "downloaded_source_and_extracted_original_notices"
+    }
+  ],
+  "legal_approved": false,
+  "source_offer_complete": false,
+  "installation_performed": false
+}
