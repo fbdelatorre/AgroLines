@@ -7,6 +7,10 @@ enforce()
 if __name__ == "__main__":
     import argparse
 
+    from distribution.standalone_support import taskbar_identity
+
+    taskbar_identity()
+
     parser = argparse.ArgumentParser(add_help=False)
     parser.add_argument("--binding-report")
     parser.add_argument("--offline-network-report")

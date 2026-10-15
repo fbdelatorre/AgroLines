@@ -7,7 +7,9 @@
 #endif
 #ifdef Standalone
   #ifndef Experimental
-    #error Standalone commercial distribution is blocked pending signing and legal review.
+    #ifndef SigningTool
+      #error Standalone commercial distribution is blocked pending signing and legal review.
+    #endif
   #endif
   #ifndef CandidateId
     #error CandidateId is required for isolated version directories.
@@ -26,11 +28,17 @@
 AppId={{942C9844-703C-4B75-BE59-A66F3C3D9847}
 DefaultDirName={autopf}\AgroLines Experimental
 DefaultGroupName=AgroLines Experimental
+#ifdef Experimental
 OutputBaseFilename=AgroLines-Standalone-{#Version}-x64-{#CandidateId}-EXPERIMENTAL-UNSIGNED
+#else
+OutputBaseFilename=AgroLines-Standalone-{#Version}-x64-{#CandidateId}-HOMOLOGACAO-ASSINADO-SAC-PENDENTE
+#endif
 PrivilegesRequired=admin
 UninstallFilesDir={app}\uninstall
 DisableProgramGroupPage=yes
 RestartApplications=no
+AppMutex=Global\AgroLinesStandalone-942C9844-703C-4B75-BE59-A66F3C3D9847
+SetupMutex=Global\AgroLinesStandaloneInstall-942C9844
 #else
 AppId={{A38AA663-25B7-4E10-9CFB-8358238BB271}
 DefaultDirName={localappdata}\Programs\AgroLinesDistributionPoC
@@ -46,7 +54,11 @@ VersionInfoVersion={#Version}
 VersionInfoCompany={#Manufacturer}
 OutputDir=..\..\dist\installers
 SetupIconFile=..\..\build\distribution\AgroLines.ico
+#ifdef Standalone
+UninstallDisplayIcon={app}\AgroLines.exe
+#else
 UninstallDisplayIcon={#RuntimeDir}\{#BinaryName}.exe
+#endif
 ArchitecturesAllowed=x64compatible
 ArchitecturesInstallIn64BitMode=x64compatible
 MinVersion=10.0.22000
@@ -63,12 +75,20 @@ SignedUninstaller=yes
 [Files]
 #ifdef Standalone
 Source: "..\..\dist\AgroLines\*"; DestDir: "{#RuntimeDir}"; Flags: ignoreversion recursesubdirs createallsubdirs
+; Stable entrypoint; pointer is installed last, after the complete version tree.
+Source: "..\..\build\distribution\AgroLinesLauncher.exe"; DestDir: "{app}"; DestName: "AgroLines.exe"; Flags: ignoreversion
+Source: "..\..\build\distribution\AgroLines.current.txt"; DestDir: "{app}"; Flags: ignoreversion
 #else
 Source: "..\..\dist\AgroLinesPoC\*"; DestDir: "{app}\app"; Flags: ignoreversion recursesubdirs createallsubdirs
 #endif
 [Icons]
+#ifdef Standalone
+Name: "{group}\{#ProductName}"; Filename: "{app}\AgroLines.exe"; WorkingDir: "{app}"; AppUserModelID: "Delatorre.AgroLines.Standalone"
+Name: "{autodesktop}\{#ProductName}"; Filename: "{app}\AgroLines.exe"; WorkingDir: "{app}"; AppUserModelID: "Delatorre.AgroLines.Standalone"; Tasks: desktopicon
+#else
 Name: "{group}\{#ProductName}"; Filename: "{#RuntimeDir}\{#BinaryName}.exe"; WorkingDir: "{#RuntimeDir}"
 Name: "{autodesktop}\{#ProductName}"; Filename: "{#RuntimeDir}\{#BinaryName}.exe"; WorkingDir: "{#RuntimeDir}"; Tasks: desktopicon
+#endif
 [Tasks]
 Name: desktopicon; Description: "Criar atalho na área de trabalho"; Flags: unchecked
 [Run]

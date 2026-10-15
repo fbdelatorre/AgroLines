@@ -1,0 +1,831 @@
+[
+  {
+    "component": "geos-3.11.3",
+    "source_consumer_commit": "710a9664fe7112570775224909d174a7738f24a5",
+    "own_exe_sha256": "e9a497948ecd272f4ba4b5c9f3ece4bcfee4624a33c44055ee2b89bebbe05cd7",
+    "phases": {
+      "upstream-original": {
+        "snapshots": [
+          {
+            "errors": [],
+            "modules": [
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\upstream-original\\_internal\\PySide6\\Qt6Core.dll",
+                "sha256": "f57ed38afd95d0306cca9d88d997f639f70c7628a4f1f064eae291d579487121"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\upstream-original\\_internal\\fiona.libs\\geos_c-4d7a52e330cb609ee4db6bd3c1f7e7b5.dll",
+                "sha256": "32319599a30385938d2a74aa3273c6fa21d5b9f39bb64c379e488b4b168698b6",
+                "version": "3.11.3-CAPI-1.17.3"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\upstream-original\\_internal\\fiona.libs\\geos-cf4fccef073a506b3207c8a036a9d063.dll",
+                "sha256": "ee1a2bd7e61b7ae8d065975f909c0389f47118b154e0e3a1c26d36cbf0ff1255"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\upstream-original\\_internal\\Shapely.libs\\geos_c-6dd9fd915eef8a7928285416bef1e666.dll",
+                "sha256": "6e65985b30831761887de3217853a720147626b18cb41668cd2bdc43d1bcded1",
+                "version": "3.14.1-CAPI-1.20.5"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\upstream-original\\_internal\\Shapely.libs\\geos-bf067cd6ff74ee0ad5f3ff52c7ef08c9.dll",
+                "sha256": "0948bdb5c70b82e5055b55e9419b78d68372b1d0ec877277fa6e79276f6299b9"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\upstream-original\\_internal\\shapely\\_geos.cp312-win_amd64.pyd",
+                "sha256": "5de4fb9704e89549eab873cc7b0e92b49e602d407f61d8eb8d2575a67edd83cd"
+              }
+            ],
+            "sac_approved": false,
+            "qt_version": "6.12.0",
+            "frozen": true
+          },
+          {
+            "errors": [],
+            "modules": [
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\upstream-original\\_internal\\PySide6\\Qt6Core.dll",
+                "sha256": "f57ed38afd95d0306cca9d88d997f639f70c7628a4f1f064eae291d579487121"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\upstream-original\\_internal\\fiona.libs\\geos_c-4d7a52e330cb609ee4db6bd3c1f7e7b5.dll",
+                "sha256": "32319599a30385938d2a74aa3273c6fa21d5b9f39bb64c379e488b4b168698b6",
+                "version": "3.11.3-CAPI-1.17.3"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\upstream-original\\_internal\\fiona.libs\\geos-cf4fccef073a506b3207c8a036a9d063.dll",
+                "sha256": "ee1a2bd7e61b7ae8d065975f909c0389f47118b154e0e3a1c26d36cbf0ff1255"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\upstream-original\\_internal\\Shapely.libs\\geos_c-6dd9fd915eef8a7928285416bef1e666.dll",
+                "sha256": "6e65985b30831761887de3217853a720147626b18cb41668cd2bdc43d1bcded1",
+                "version": "3.14.1-CAPI-1.20.5"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\upstream-original\\_internal\\Shapely.libs\\geos-bf067cd6ff74ee0ad5f3ff52c7ef08c9.dll",
+                "sha256": "0948bdb5c70b82e5055b55e9419b78d68372b1d0ec877277fa6e79276f6299b9"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\upstream-original\\_internal\\shapely\\_geos.cp312-win_amd64.pyd",
+                "sha256": "5de4fb9704e89549eab873cc7b0e92b49e602d407f61d8eb8d2575a67edd83cd"
+              }
+            ],
+            "sac_approved": false,
+            "qt_version": "6.12.0",
+            "frozen": true
+          },
+          {
+            "errors": [],
+            "modules": [
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\upstream-original\\_internal\\PySide6\\Qt6Core.dll",
+                "sha256": "f57ed38afd95d0306cca9d88d997f639f70c7628a4f1f064eae291d579487121"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\upstream-original\\_internal\\fiona.libs\\geos_c-4d7a52e330cb609ee4db6bd3c1f7e7b5.dll",
+                "sha256": "32319599a30385938d2a74aa3273c6fa21d5b9f39bb64c379e488b4b168698b6",
+                "version": "3.11.3-CAPI-1.17.3"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\upstream-original\\_internal\\fiona.libs\\geos-cf4fccef073a506b3207c8a036a9d063.dll",
+                "sha256": "ee1a2bd7e61b7ae8d065975f909c0389f47118b154e0e3a1c26d36cbf0ff1255"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\upstream-original\\_internal\\Shapely.libs\\geos_c-6dd9fd915eef8a7928285416bef1e666.dll",
+                "sha256": "6e65985b30831761887de3217853a720147626b18cb41668cd2bdc43d1bcded1",
+                "version": "3.14.1-CAPI-1.20.5"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\upstream-original\\_internal\\Shapely.libs\\geos-bf067cd6ff74ee0ad5f3ff52c7ef08c9.dll",
+                "sha256": "0948bdb5c70b82e5055b55e9419b78d68372b1d0ec877277fa6e79276f6299b9"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\upstream-original\\_internal\\shapely\\_geos.cp312-win_amd64.pyd",
+                "sha256": "5de4fb9704e89549eab873cc7b0e92b49e602d407f61d8eb8d2575a67edd83cd"
+              }
+            ],
+            "sac_approved": false,
+            "qt_version": "6.12.0",
+            "frozen": true
+          }
+        ],
+        "computational_precision": "22/22",
+        "formats": [
+          "SHP",
+          "GPKG",
+          "KML",
+          "KMZ",
+          "GeoJSON"
+        ],
+        "offline_passed": true,
+        "webengine_ready": true,
+        "own_executable_unchanged": true
+      },
+      "modified": {
+        "snapshots": [
+          {
+            "errors": [],
+            "modules": [
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\modified\\_internal\\PySide6\\Qt6Core.dll",
+                "sha256": "f57ed38afd95d0306cca9d88d997f639f70c7628a4f1f064eae291d579487121"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\modified\\_internal\\fiona.libs\\geos_c-4d7a52e330cb609ee4db6bd3c1f7e7b5.dll",
+                "sha256": "0ce7d47996c57ac0b498f53f42d1ed466010fdc5c847792b43805899e3e90754",
+                "version": "3.11.3-CAPI-1.17.3-agrolines-synthetic"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\modified\\_internal\\fiona.libs\\geos-cf4fccef073a506b3207c8a036a9d063.dll",
+                "sha256": "ee1a2bd7e61b7ae8d065975f909c0389f47118b154e0e3a1c26d36cbf0ff1255"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\modified\\_internal\\Shapely.libs\\geos_c-6dd9fd915eef8a7928285416bef1e666.dll",
+                "sha256": "6e65985b30831761887de3217853a720147626b18cb41668cd2bdc43d1bcded1",
+                "version": "3.14.1-CAPI-1.20.5"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\modified\\_internal\\Shapely.libs\\geos-bf067cd6ff74ee0ad5f3ff52c7ef08c9.dll",
+                "sha256": "0948bdb5c70b82e5055b55e9419b78d68372b1d0ec877277fa6e79276f6299b9"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\modified\\_internal\\shapely\\_geos.cp312-win_amd64.pyd",
+                "sha256": "5de4fb9704e89549eab873cc7b0e92b49e602d407f61d8eb8d2575a67edd83cd"
+              }
+            ],
+            "sac_approved": false,
+            "qt_version": "6.12.0",
+            "frozen": true
+          },
+          {
+            "errors": [],
+            "modules": [
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\modified\\_internal\\PySide6\\Qt6Core.dll",
+                "sha256": "f57ed38afd95d0306cca9d88d997f639f70c7628a4f1f064eae291d579487121"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\modified\\_internal\\fiona.libs\\geos_c-4d7a52e330cb609ee4db6bd3c1f7e7b5.dll",
+                "sha256": "0ce7d47996c57ac0b498f53f42d1ed466010fdc5c847792b43805899e3e90754",
+                "version": "3.11.3-CAPI-1.17.3-agrolines-synthetic"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\modified\\_internal\\fiona.libs\\geos-cf4fccef073a506b3207c8a036a9d063.dll",
+                "sha256": "ee1a2bd7e61b7ae8d065975f909c0389f47118b154e0e3a1c26d36cbf0ff1255"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\modified\\_internal\\Shapely.libs\\geos_c-6dd9fd915eef8a7928285416bef1e666.dll",
+                "sha256": "6e65985b30831761887de3217853a720147626b18cb41668cd2bdc43d1bcded1",
+                "version": "3.14.1-CAPI-1.20.5"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\modified\\_internal\\Shapely.libs\\geos-bf067cd6ff74ee0ad5f3ff52c7ef08c9.dll",
+                "sha256": "0948bdb5c70b82e5055b55e9419b78d68372b1d0ec877277fa6e79276f6299b9"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\modified\\_internal\\shapely\\_geos.cp312-win_amd64.pyd",
+                "sha256": "5de4fb9704e89549eab873cc7b0e92b49e602d407f61d8eb8d2575a67edd83cd"
+              }
+            ],
+            "sac_approved": false,
+            "qt_version": "6.12.0",
+            "frozen": true
+          },
+          {
+            "errors": [],
+            "modules": [
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\modified\\_internal\\PySide6\\Qt6Core.dll",
+                "sha256": "f57ed38afd95d0306cca9d88d997f639f70c7628a4f1f064eae291d579487121"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\modified\\_internal\\fiona.libs\\geos_c-4d7a52e330cb609ee4db6bd3c1f7e7b5.dll",
+                "sha256": "0ce7d47996c57ac0b498f53f42d1ed466010fdc5c847792b43805899e3e90754",
+                "version": "3.11.3-CAPI-1.17.3-agrolines-synthetic"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\modified\\_internal\\fiona.libs\\geos-cf4fccef073a506b3207c8a036a9d063.dll",
+                "sha256": "ee1a2bd7e61b7ae8d065975f909c0389f47118b154e0e3a1c26d36cbf0ff1255"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\modified\\_internal\\Shapely.libs\\geos_c-6dd9fd915eef8a7928285416bef1e666.dll",
+                "sha256": "6e65985b30831761887de3217853a720147626b18cb41668cd2bdc43d1bcded1",
+                "version": "3.14.1-CAPI-1.20.5"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\modified\\_internal\\Shapely.libs\\geos-bf067cd6ff74ee0ad5f3ff52c7ef08c9.dll",
+                "sha256": "0948bdb5c70b82e5055b55e9419b78d68372b1d0ec877277fa6e79276f6299b9"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\modified\\_internal\\shapely\\_geos.cp312-win_amd64.pyd",
+                "sha256": "5de4fb9704e89549eab873cc7b0e92b49e602d407f61d8eb8d2575a67edd83cd"
+              }
+            ],
+            "sac_approved": false,
+            "qt_version": "6.12.0",
+            "frozen": true
+          }
+        ],
+        "computational_precision": "22/22",
+        "formats": [
+          "SHP",
+          "GPKG",
+          "KML",
+          "KMZ",
+          "GeoJSON"
+        ],
+        "offline_passed": true,
+        "webengine_ready": true,
+        "own_executable_unchanged": true
+      }
+    },
+    "production_payload_modified": false,
+    "legal_approved": false,
+    "sac_approved": false,
+    "source": {
+      "component": "geos-3.11.3",
+      "version": "3.11.3",
+      "repository": "https://github.com/libgeos/geos.git",
+      "commit": "17e3cb142d2592ce09c4530267ee2fb6ee1c6f79",
+      "filename": "geos-3.11.3-upstream.tar",
+      "sha256": "e6cd4eaa975f5b9f787248929c815349f43b13ddbed3043e6f8143f86ef9c967",
+      "bytes": 26839040,
+      "status": "official_git_commit_archived",
+      "exact_binary_correspondence": false,
+      "patches": "Upstream committed tree; Windows wheel patches/build correspondence not confirmed",
+      "git_tag_signature_verified": false
+    },
+    "configure": [
+      "cmake",
+      "-S",
+      "D:\\a\\_temp\\full-app-native\\source",
+      "-B",
+      "D:\\a\\_temp\\full-app-native\\build",
+      "-G",
+      "Ninja",
+      "-DCMAKE_BUILD_TYPE=Release",
+      "-DBUILD_SHARED_LIBS=ON",
+      "-DCMAKE_POLICY_VERSION_MINIMUM=3.5",
+      "-DBUILD_TESTING=OFF",
+      "-DBUILD_BENCHMARKS=OFF"
+    ],
+    "full_app_native_replacement_demonstrated": true
+  },
+  {
+    "component": "qtbase-6.12.0",
+    "source_consumer_commit": "710a9664fe7112570775224909d174a7738f24a5",
+    "own_exe_sha256": "e9a497948ecd272f4ba4b5c9f3ece4bcfee4624a33c44055ee2b89bebbe05cd7",
+    "phases": {
+      "upstream-original": {
+        "snapshots": [
+          {
+            "errors": [],
+            "modules": [
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\upstream-original\\_internal\\PySide6\\Qt6Core.dll",
+                "sha256": "282c92b3559885fd85b4dd8527c555812ec147d892992c1a75df040fa3c77d51"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\upstream-original\\_internal\\fiona.libs\\geos_c-4d7a52e330cb609ee4db6bd3c1f7e7b5.dll",
+                "sha256": "55c98109de46bd30b4c908743045ed4be5ed3ae8ddf45158a0bfd45679f08596",
+                "version": "3.11.3-CAPI-1.17.3"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\upstream-original\\_internal\\fiona.libs\\geos-cf4fccef073a506b3207c8a036a9d063.dll",
+                "sha256": "9f487eb3f67a0c929ecf8bc06bbdf130876855f57a942055ffd93698807bc781"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\upstream-original\\_internal\\Shapely.libs\\geos_c-6dd9fd915eef8a7928285416bef1e666.dll",
+                "sha256": "6e65985b30831761887de3217853a720147626b18cb41668cd2bdc43d1bcded1",
+                "version": "3.14.1-CAPI-1.20.5"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\upstream-original\\_internal\\Shapely.libs\\geos-bf067cd6ff74ee0ad5f3ff52c7ef08c9.dll",
+                "sha256": "0948bdb5c70b82e5055b55e9419b78d68372b1d0ec877277fa6e79276f6299b9"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\upstream-original\\_internal\\shapely\\_geos.cp312-win_amd64.pyd",
+                "sha256": "5de4fb9704e89549eab873cc7b0e92b49e602d407f61d8eb8d2575a67edd83cd"
+              }
+            ],
+            "sac_approved": false,
+            "qt_version": "6.12.0",
+            "frozen": true
+          },
+          {
+            "errors": [],
+            "modules": [
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\upstream-original\\_internal\\PySide6\\Qt6Core.dll",
+                "sha256": "282c92b3559885fd85b4dd8527c555812ec147d892992c1a75df040fa3c77d51"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\upstream-original\\_internal\\fiona.libs\\geos_c-4d7a52e330cb609ee4db6bd3c1f7e7b5.dll",
+                "sha256": "55c98109de46bd30b4c908743045ed4be5ed3ae8ddf45158a0bfd45679f08596",
+                "version": "3.11.3-CAPI-1.17.3"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\upstream-original\\_internal\\fiona.libs\\geos-cf4fccef073a506b3207c8a036a9d063.dll",
+                "sha256": "9f487eb3f67a0c929ecf8bc06bbdf130876855f57a942055ffd93698807bc781"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\upstream-original\\_internal\\Shapely.libs\\geos_c-6dd9fd915eef8a7928285416bef1e666.dll",
+                "sha256": "6e65985b30831761887de3217853a720147626b18cb41668cd2bdc43d1bcded1",
+                "version": "3.14.1-CAPI-1.20.5"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\upstream-original\\_internal\\Shapely.libs\\geos-bf067cd6ff74ee0ad5f3ff52c7ef08c9.dll",
+                "sha256": "0948bdb5c70b82e5055b55e9419b78d68372b1d0ec877277fa6e79276f6299b9"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\upstream-original\\_internal\\shapely\\_geos.cp312-win_amd64.pyd",
+                "sha256": "5de4fb9704e89549eab873cc7b0e92b49e602d407f61d8eb8d2575a67edd83cd"
+              }
+            ],
+            "sac_approved": false,
+            "qt_version": "6.12.0",
+            "frozen": true
+          },
+          {
+            "errors": [],
+            "modules": [
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\upstream-original\\_internal\\PySide6\\Qt6Core.dll",
+                "sha256": "282c92b3559885fd85b4dd8527c555812ec147d892992c1a75df040fa3c77d51"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\upstream-original\\_internal\\fiona.libs\\geos_c-4d7a52e330cb609ee4db6bd3c1f7e7b5.dll",
+                "sha256": "55c98109de46bd30b4c908743045ed4be5ed3ae8ddf45158a0bfd45679f08596",
+                "version": "3.11.3-CAPI-1.17.3"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\upstream-original\\_internal\\fiona.libs\\geos-cf4fccef073a506b3207c8a036a9d063.dll",
+                "sha256": "9f487eb3f67a0c929ecf8bc06bbdf130876855f57a942055ffd93698807bc781"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\upstream-original\\_internal\\Shapely.libs\\geos_c-6dd9fd915eef8a7928285416bef1e666.dll",
+                "sha256": "6e65985b30831761887de3217853a720147626b18cb41668cd2bdc43d1bcded1",
+                "version": "3.14.1-CAPI-1.20.5"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\upstream-original\\_internal\\Shapely.libs\\geos-bf067cd6ff74ee0ad5f3ff52c7ef08c9.dll",
+                "sha256": "0948bdb5c70b82e5055b55e9419b78d68372b1d0ec877277fa6e79276f6299b9"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\upstream-original\\_internal\\shapely\\_geos.cp312-win_amd64.pyd",
+                "sha256": "5de4fb9704e89549eab873cc7b0e92b49e602d407f61d8eb8d2575a67edd83cd"
+              }
+            ],
+            "sac_approved": false,
+            "qt_version": "6.12.0",
+            "frozen": true
+          }
+        ],
+        "computational_precision": "22/22",
+        "formats": [
+          "SHP",
+          "GPKG",
+          "KML",
+          "KMZ",
+          "GeoJSON"
+        ],
+        "offline_passed": true,
+        "webengine_ready": true,
+        "own_executable_unchanged": true
+      },
+      "modified": {
+        "snapshots": [
+          {
+            "errors": [],
+            "modules": [
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\modified\\_internal\\PySide6\\Qt6Core.dll",
+                "sha256": "fe87ca493480fe252e8fc56fa2d8942339380a2bc5083cec1cda6bf1bec70739"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\modified\\_internal\\fiona.libs\\geos_c-4d7a52e330cb609ee4db6bd3c1f7e7b5.dll",
+                "sha256": "55c98109de46bd30b4c908743045ed4be5ed3ae8ddf45158a0bfd45679f08596",
+                "version": "3.11.3-CAPI-1.17.3"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\modified\\_internal\\fiona.libs\\geos-cf4fccef073a506b3207c8a036a9d063.dll",
+                "sha256": "9f487eb3f67a0c929ecf8bc06bbdf130876855f57a942055ffd93698807bc781"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\modified\\_internal\\Shapely.libs\\geos_c-6dd9fd915eef8a7928285416bef1e666.dll",
+                "sha256": "6e65985b30831761887de3217853a720147626b18cb41668cd2bdc43d1bcded1",
+                "version": "3.14.1-CAPI-1.20.5"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\modified\\_internal\\Shapely.libs\\geos-bf067cd6ff74ee0ad5f3ff52c7ef08c9.dll",
+                "sha256": "0948bdb5c70b82e5055b55e9419b78d68372b1d0ec877277fa6e79276f6299b9"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\modified\\_internal\\shapely\\_geos.cp312-win_amd64.pyd",
+                "sha256": "5de4fb9704e89549eab873cc7b0e92b49e602d407f61d8eb8d2575a67edd83cd"
+              }
+            ],
+            "sac_approved": false,
+            "qt_version": "6.12.0-agrolines-synthetic",
+            "frozen": true
+          },
+          {
+            "errors": [],
+            "modules": [
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\modified\\_internal\\PySide6\\Qt6Core.dll",
+                "sha256": "fe87ca493480fe252e8fc56fa2d8942339380a2bc5083cec1cda6bf1bec70739"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\modified\\_internal\\fiona.libs\\geos_c-4d7a52e330cb609ee4db6bd3c1f7e7b5.dll",
+                "sha256": "55c98109de46bd30b4c908743045ed4be5ed3ae8ddf45158a0bfd45679f08596",
+                "version": "3.11.3-CAPI-1.17.3"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\modified\\_internal\\fiona.libs\\geos-cf4fccef073a506b3207c8a036a9d063.dll",
+                "sha256": "9f487eb3f67a0c929ecf8bc06bbdf130876855f57a942055ffd93698807bc781"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\modified\\_internal\\Shapely.libs\\geos_c-6dd9fd915eef8a7928285416bef1e666.dll",
+                "sha256": "6e65985b30831761887de3217853a720147626b18cb41668cd2bdc43d1bcded1",
+                "version": "3.14.1-CAPI-1.20.5"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\modified\\_internal\\Shapely.libs\\geos-bf067cd6ff74ee0ad5f3ff52c7ef08c9.dll",
+                "sha256": "0948bdb5c70b82e5055b55e9419b78d68372b1d0ec877277fa6e79276f6299b9"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\modified\\_internal\\shapely\\_geos.cp312-win_amd64.pyd",
+                "sha256": "5de4fb9704e89549eab873cc7b0e92b49e602d407f61d8eb8d2575a67edd83cd"
+              }
+            ],
+            "sac_approved": false,
+            "qt_version": "6.12.0-agrolines-synthetic",
+            "frozen": true
+          },
+          {
+            "errors": [],
+            "modules": [
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\modified\\_internal\\PySide6\\Qt6Core.dll",
+                "sha256": "fe87ca493480fe252e8fc56fa2d8942339380a2bc5083cec1cda6bf1bec70739"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\modified\\_internal\\fiona.libs\\geos_c-4d7a52e330cb609ee4db6bd3c1f7e7b5.dll",
+                "sha256": "55c98109de46bd30b4c908743045ed4be5ed3ae8ddf45158a0bfd45679f08596",
+                "version": "3.11.3-CAPI-1.17.3"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\modified\\_internal\\fiona.libs\\geos-cf4fccef073a506b3207c8a036a9d063.dll",
+                "sha256": "9f487eb3f67a0c929ecf8bc06bbdf130876855f57a942055ffd93698807bc781"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\modified\\_internal\\Shapely.libs\\geos_c-6dd9fd915eef8a7928285416bef1e666.dll",
+                "sha256": "6e65985b30831761887de3217853a720147626b18cb41668cd2bdc43d1bcded1",
+                "version": "3.14.1-CAPI-1.20.5"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\modified\\_internal\\Shapely.libs\\geos-bf067cd6ff74ee0ad5f3ff52c7ef08c9.dll",
+                "sha256": "0948bdb5c70b82e5055b55e9419b78d68372b1d0ec877277fa6e79276f6299b9"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\modified\\_internal\\shapely\\_geos.cp312-win_amd64.pyd",
+                "sha256": "5de4fb9704e89549eab873cc7b0e92b49e602d407f61d8eb8d2575a67edd83cd"
+              }
+            ],
+            "sac_approved": false,
+            "qt_version": "6.12.0-agrolines-synthetic",
+            "frozen": true
+          }
+        ],
+        "computational_precision": "22/22",
+        "formats": [
+          "SHP",
+          "GPKG",
+          "KML",
+          "KMZ",
+          "GeoJSON"
+        ],
+        "offline_passed": true,
+        "webengine_ready": true,
+        "own_executable_unchanged": true
+      }
+    },
+    "production_payload_modified": false,
+    "legal_approved": false,
+    "sac_approved": false,
+    "source": {
+      "component": "qtbase-6.12.0",
+      "version": "v6.12.0",
+      "repository": "https://github.com/qt/qtbase.git",
+      "commit": "025bdad181de241e81bf853c8a2d7bf3d19261a9",
+      "filename": "qtbase-6.12.0-upstream.tar",
+      "sha256": "e5317b2dfaf4cc2769be0cc8267fd9b209020fbb94a20b33da95f0e7df33bce4",
+      "bytes": 301772800,
+      "status": "official_git_commit_archived",
+      "exact_binary_correspondence": false,
+      "patches": "Upstream committed tree; Windows wheel patches/build correspondence not confirmed",
+      "git_tag_signature_verified": false
+    },
+    "configure": [
+      "cmake",
+      "-S",
+      "D:\\a\\_temp\\full-app-native\\source",
+      "-B",
+      "D:\\a\\_temp\\full-app-native\\build",
+      "-G",
+      "Ninja",
+      "-DCMAKE_BUILD_TYPE=Release",
+      "-DBUILD_SHARED_LIBS=ON",
+      "-DCMAKE_POLICY_VERSION_MINIMUM=3.5",
+      "-DQT_BUILD_TESTS=OFF",
+      "-DQT_BUILD_EXAMPLES=OFF",
+      "-DFEATURE_gui=OFF",
+      "-DFEATURE_widgets=OFF",
+      "-DFEATURE_network=OFF",
+      "-DFEATURE_sql=OFF",
+      "-DFEATURE_dbus=OFF",
+      "-DFEATURE_opengl=OFF",
+      "-DFEATURE_printsupport=OFF",
+      "-DFEATURE_concurrent=OFF",
+      "-DFEATURE_xml=OFF",
+      "-DFEATURE_testlib=OFF",
+      "-DFEATURE_icu=OFF",
+      "-DFEATURE_glib=OFF",
+      "-DFEATURE_windeployqt=OFF"
+    ],
+    "full_app_native_replacement_demonstrated": true
+  },
+  {
+    "component": "geos-3.14.1",
+    "source_consumer_commit": "710a9664fe7112570775224909d174a7738f24a5",
+    "own_exe_sha256": "e9a497948ecd272f4ba4b5c9f3ece4bcfee4624a33c44055ee2b89bebbe05cd7",
+    "phases": {
+      "upstream-original": {
+        "snapshots": [
+          {
+            "errors": [],
+            "modules": [
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\upstream-original\\_internal\\PySide6\\Qt6Core.dll",
+                "sha256": "f57ed38afd95d0306cca9d88d997f639f70c7628a4f1f064eae291d579487121"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\upstream-original\\_internal\\fiona.libs\\geos_c-4d7a52e330cb609ee4db6bd3c1f7e7b5.dll",
+                "sha256": "55c98109de46bd30b4c908743045ed4be5ed3ae8ddf45158a0bfd45679f08596",
+                "version": "3.11.3-CAPI-1.17.3"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\upstream-original\\_internal\\fiona.libs\\geos-cf4fccef073a506b3207c8a036a9d063.dll",
+                "sha256": "9f487eb3f67a0c929ecf8bc06bbdf130876855f57a942055ffd93698807bc781"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\upstream-original\\_internal\\Shapely.libs\\geos_c-6dd9fd915eef8a7928285416bef1e666.dll",
+                "sha256": "40aed793661620283dd6ec7df3dbfca8f9af4c03e1590566e26891b839ced2fb",
+                "version": "3.14.1-CAPI-1.20.5"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\upstream-original\\_internal\\Shapely.libs\\geos-bf067cd6ff74ee0ad5f3ff52c7ef08c9.dll",
+                "sha256": "52d9efd9395219237ff3579b324d8d590123e84f2a176f83ea580c86f870f9d4"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\upstream-original\\_internal\\shapely\\_geos.cp312-win_amd64.pyd",
+                "sha256": "5de4fb9704e89549eab873cc7b0e92b49e602d407f61d8eb8d2575a67edd83cd"
+              }
+            ],
+            "sac_approved": false,
+            "qt_version": "6.12.0",
+            "frozen": true
+          },
+          {
+            "errors": [],
+            "modules": [
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\upstream-original\\_internal\\PySide6\\Qt6Core.dll",
+                "sha256": "f57ed38afd95d0306cca9d88d997f639f70c7628a4f1f064eae291d579487121"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\upstream-original\\_internal\\fiona.libs\\geos_c-4d7a52e330cb609ee4db6bd3c1f7e7b5.dll",
+                "sha256": "55c98109de46bd30b4c908743045ed4be5ed3ae8ddf45158a0bfd45679f08596",
+                "version": "3.11.3-CAPI-1.17.3"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\upstream-original\\_internal\\fiona.libs\\geos-cf4fccef073a506b3207c8a036a9d063.dll",
+                "sha256": "9f487eb3f67a0c929ecf8bc06bbdf130876855f57a942055ffd93698807bc781"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\upstream-original\\_internal\\Shapely.libs\\geos_c-6dd9fd915eef8a7928285416bef1e666.dll",
+                "sha256": "40aed793661620283dd6ec7df3dbfca8f9af4c03e1590566e26891b839ced2fb",
+                "version": "3.14.1-CAPI-1.20.5"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\upstream-original\\_internal\\Shapely.libs\\geos-bf067cd6ff74ee0ad5f3ff52c7ef08c9.dll",
+                "sha256": "52d9efd9395219237ff3579b324d8d590123e84f2a176f83ea580c86f870f9d4"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\upstream-original\\_internal\\shapely\\_geos.cp312-win_amd64.pyd",
+                "sha256": "5de4fb9704e89549eab873cc7b0e92b49e602d407f61d8eb8d2575a67edd83cd"
+              }
+            ],
+            "sac_approved": false,
+            "qt_version": "6.12.0",
+            "frozen": true
+          },
+          {
+            "errors": [],
+            "modules": [
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\upstream-original\\_internal\\PySide6\\Qt6Core.dll",
+                "sha256": "f57ed38afd95d0306cca9d88d997f639f70c7628a4f1f064eae291d579487121"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\upstream-original\\_internal\\fiona.libs\\geos_c-4d7a52e330cb609ee4db6bd3c1f7e7b5.dll",
+                "sha256": "55c98109de46bd30b4c908743045ed4be5ed3ae8ddf45158a0bfd45679f08596",
+                "version": "3.11.3-CAPI-1.17.3"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\upstream-original\\_internal\\fiona.libs\\geos-cf4fccef073a506b3207c8a036a9d063.dll",
+                "sha256": "9f487eb3f67a0c929ecf8bc06bbdf130876855f57a942055ffd93698807bc781"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\upstream-original\\_internal\\Shapely.libs\\geos_c-6dd9fd915eef8a7928285416bef1e666.dll",
+                "sha256": "40aed793661620283dd6ec7df3dbfca8f9af4c03e1590566e26891b839ced2fb",
+                "version": "3.14.1-CAPI-1.20.5"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\upstream-original\\_internal\\Shapely.libs\\geos-bf067cd6ff74ee0ad5f3ff52c7ef08c9.dll",
+                "sha256": "52d9efd9395219237ff3579b324d8d590123e84f2a176f83ea580c86f870f9d4"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\upstream-original\\_internal\\shapely\\_geos.cp312-win_amd64.pyd",
+                "sha256": "5de4fb9704e89549eab873cc7b0e92b49e602d407f61d8eb8d2575a67edd83cd"
+              }
+            ],
+            "sac_approved": false,
+            "qt_version": "6.12.0",
+            "frozen": true
+          }
+        ],
+        "computational_precision": "22/22",
+        "formats": [
+          "SHP",
+          "GPKG",
+          "KML",
+          "KMZ",
+          "GeoJSON"
+        ],
+        "offline_passed": true,
+        "webengine_ready": true,
+        "own_executable_unchanged": true
+      },
+      "modified": {
+        "snapshots": [
+          {
+            "errors": [],
+            "modules": [
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\modified\\_internal\\PySide6\\Qt6Core.dll",
+                "sha256": "f57ed38afd95d0306cca9d88d997f639f70c7628a4f1f064eae291d579487121"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\modified\\_internal\\fiona.libs\\geos_c-4d7a52e330cb609ee4db6bd3c1f7e7b5.dll",
+                "sha256": "55c98109de46bd30b4c908743045ed4be5ed3ae8ddf45158a0bfd45679f08596",
+                "version": "3.11.3-CAPI-1.17.3"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\modified\\_internal\\fiona.libs\\geos-cf4fccef073a506b3207c8a036a9d063.dll",
+                "sha256": "9f487eb3f67a0c929ecf8bc06bbdf130876855f57a942055ffd93698807bc781"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\modified\\_internal\\Shapely.libs\\geos_c-6dd9fd915eef8a7928285416bef1e666.dll",
+                "sha256": "90e66c01c4c08225a6ad4c519d98a584067de0d9578d41eb8749364ea9d000fb",
+                "version": "3.14.1-CAPI-1.20.5-agrolines-synthetic"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\modified\\_internal\\Shapely.libs\\geos-bf067cd6ff74ee0ad5f3ff52c7ef08c9.dll",
+                "sha256": "52d9efd9395219237ff3579b324d8d590123e84f2a176f83ea580c86f870f9d4"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\modified\\_internal\\shapely\\_geos.cp312-win_amd64.pyd",
+                "sha256": "5de4fb9704e89549eab873cc7b0e92b49e602d407f61d8eb8d2575a67edd83cd"
+              }
+            ],
+            "sac_approved": false,
+            "qt_version": "6.12.0",
+            "frozen": true
+          },
+          {
+            "errors": [],
+            "modules": [
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\modified\\_internal\\PySide6\\Qt6Core.dll",
+                "sha256": "f57ed38afd95d0306cca9d88d997f639f70c7628a4f1f064eae291d579487121"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\modified\\_internal\\fiona.libs\\geos_c-4d7a52e330cb609ee4db6bd3c1f7e7b5.dll",
+                "sha256": "55c98109de46bd30b4c908743045ed4be5ed3ae8ddf45158a0bfd45679f08596",
+                "version": "3.11.3-CAPI-1.17.3"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\modified\\_internal\\fiona.libs\\geos-cf4fccef073a506b3207c8a036a9d063.dll",
+                "sha256": "9f487eb3f67a0c929ecf8bc06bbdf130876855f57a942055ffd93698807bc781"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\modified\\_internal\\Shapely.libs\\geos_c-6dd9fd915eef8a7928285416bef1e666.dll",
+                "sha256": "90e66c01c4c08225a6ad4c519d98a584067de0d9578d41eb8749364ea9d000fb",
+                "version": "3.14.1-CAPI-1.20.5-agrolines-synthetic"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\modified\\_internal\\Shapely.libs\\geos-bf067cd6ff74ee0ad5f3ff52c7ef08c9.dll",
+                "sha256": "52d9efd9395219237ff3579b324d8d590123e84f2a176f83ea580c86f870f9d4"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\modified\\_internal\\shapely\\_geos.cp312-win_amd64.pyd",
+                "sha256": "5de4fb9704e89549eab873cc7b0e92b49e602d407f61d8eb8d2575a67edd83cd"
+              }
+            ],
+            "sac_approved": false,
+            "qt_version": "6.12.0",
+            "frozen": true
+          },
+          {
+            "errors": [],
+            "modules": [
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\modified\\_internal\\PySide6\\Qt6Core.dll",
+                "sha256": "f57ed38afd95d0306cca9d88d997f639f70c7628a4f1f064eae291d579487121"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\modified\\_internal\\fiona.libs\\geos_c-4d7a52e330cb609ee4db6bd3c1f7e7b5.dll",
+                "sha256": "55c98109de46bd30b4c908743045ed4be5ed3ae8ddf45158a0bfd45679f08596",
+                "version": "3.11.3-CAPI-1.17.3"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\modified\\_internal\\fiona.libs\\geos-cf4fccef073a506b3207c8a036a9d063.dll",
+                "sha256": "9f487eb3f67a0c929ecf8bc06bbdf130876855f57a942055ffd93698807bc781"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\modified\\_internal\\Shapely.libs\\geos_c-6dd9fd915eef8a7928285416bef1e666.dll",
+                "sha256": "90e66c01c4c08225a6ad4c519d98a584067de0d9578d41eb8749364ea9d000fb",
+                "version": "3.14.1-CAPI-1.20.5-agrolines-synthetic"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\modified\\_internal\\Shapely.libs\\geos-bf067cd6ff74ee0ad5f3ff52c7ef08c9.dll",
+                "sha256": "52d9efd9395219237ff3579b324d8d590123e84f2a176f83ea580c86f870f9d4"
+              },
+              {
+                "path": "D:\\a\\_temp\\full-app-native\\modified\\_internal\\shapely\\_geos.cp312-win_amd64.pyd",
+                "sha256": "5de4fb9704e89549eab873cc7b0e92b49e602d407f61d8eb8d2575a67edd83cd"
+              }
+            ],
+            "sac_approved": false,
+            "qt_version": "6.12.0",
+            "frozen": true
+          }
+        ],
+        "computational_precision": "22/22",
+        "formats": [
+          "SHP",
+          "GPKG",
+          "KML",
+          "KMZ",
+          "GeoJSON"
+        ],
+        "offline_passed": true,
+        "webengine_ready": true,
+        "own_executable_unchanged": true
+      }
+    },
+    "production_payload_modified": false,
+    "legal_approved": false,
+    "sac_approved": false,
+    "source": {
+      "component": "geos-3.14.1",
+      "version": "3.14.1",
+      "repository": "https://github.com/libgeos/geos.git",
+      "commit": "c389f532d25fe6228861d9b19339f9cb57ca4bdb",
+      "filename": "geos-3.14.1-upstream.tar",
+      "sha256": "9ff4f171747da4e87a2f3cd1a79fdb43e7f6ef0ed83d20298b21cfedac6cff3a",
+      "bytes": 28405760,
+      "status": "official_git_commit_archived",
+      "exact_binary_correspondence": false,
+      "patches": "Upstream committed tree; Windows wheel patches/build correspondence not confirmed",
+      "git_tag_signature_verified": false
+    },
+    "configure": [
+      "cmake",
+      "-S",
+      "D:\\a\\_temp\\full-app-native\\source",
+      "-B",
+      "D:\\a\\_temp\\full-app-native\\build",
+      "-G",
+      "Ninja",
+      "-DCMAKE_BUILD_TYPE=Release",
+      "-DBUILD_SHARED_LIBS=ON",
+      "-DCMAKE_POLICY_VERSION_MINIMUM=3.5",
+      "-DBUILD_TESTING=OFF",
+      "-DBUILD_BENCHMARKS=OFF"
+    ],
+    "full_app_native_replacement_demonstrated": true
+  }
+]

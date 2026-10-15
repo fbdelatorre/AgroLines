@@ -1,0 +1,48 @@
+[
+  {
+    "name": "ssl-individual",
+    "url": "https://www.ssl.com/faqs/individual-code-signing-and-document-signing-certificate-validation-requirements/",
+    "status": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "name": "ssl-pricing",
+    "url": "https://www.ssl.com/certificates/code-signing/",
+    "status": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "name": "certum",
+    "url": "https://shop.certum.eu/code-signing-certificates.html",
+    "status": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "name": "digicert",
+    "url": "https://www.digicert.com/signing/code-signing-certificates",
+    "status": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "name": "globalsign",
+    "url": "https://www.globalsign.com/en/code-signing-certificate",
+    "status": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "name": "azure",
+    "url": "https://learn.microsoft.com/en-us/azure/artifact-signing/quickstart",
+    "status": 200,
+    "sha256": "102a1ddffd443b38f8aa48eff4fa2c349d00601be15f8fcb0496090e0735cf22",
+    "bytes": 104863
+  },
+  {
+    "name": "sac",
+    "url": "https://learn.microsoft.com/en-us/windows/apps/develop/smart-app-control/code-signing-for-smart-app-control",
+    "status": 200,
+    "sha256": "06733bb9b8bcb356a9c268fd187cb8ab1a2db71e4651eab26465da8be6c90394",
+    "bytes": 51808
+  },
+  {
+    "name": "sslaction",
+    "url": "https://raw.githubusercontent.com/SSLcom/esigner-codesign/main/README.md",
+    "status": 200,
+    "sha256": "566d588f32b8fba6d758869b949d6d91bd1c1385b912f228402e397826fff4a7",
+    "bytes": 2593
+  }
+]

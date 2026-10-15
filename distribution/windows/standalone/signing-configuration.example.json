@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "authorized": false,
+  "approval_reference": null,
+  "source_commit": null,
+  "manufacturer": "Delatorre Corporation",
+  "version": null,
+  "candidate_id": null,
+  "owned_output_directory": null,
+  "compiler_temporary_directory": null,
+  "compiler_path": null,
+  "compiler_sha256": null,
+  "python_executable": null,
+  "native_gate_path": null,
+  "native_gate_sha256": null,
+  "native_payload": null,
+  "native_payload_manifest_sha256": null,
+  "launcher_sha256": null,
+  "launcher_source_sha256": null,
+  "reviews": {
+    "licensing": {"approved": false, "evidence": null},
+    "lgpl_mechanism": {"approved": false, "evidence": null},
+    "privacy_readiness": {"approved": false, "evidence": null},
+    "owner_distribution": {"approved": false, "evidence": null}
+  },
+  "roles": {
+    "launcher": {"authorized": false, "rights_evidence": null},
+    "installer": {"authorized": false, "rights_evidence": null},
+    "uninstaller": {"authorized": false, "rights_evidence": null}
+  },
+  "certificate": {
+    "thumbprint": null,
+    "subject": null,
+    "key_provider": null,
+    "approved_public_roots": [],
+    "timestamp_url": null
+  }
+}
