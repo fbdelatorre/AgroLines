@@ -1,13 +1,17 @@
 name: Standalone native LGPL replacement in full AgroLines
 on:
+  push:
+    branches: [compliance/standalone-native-validation]
+    paths: ['tools/standalone-native-lab/**']
   pull_request:
+    types: [opened, reopened]
     paths: ['tools/standalone-native-lab/**', '.github/workflows/standalone-native-lgpl.yml']
 permissions:
   contents: read
   actions: read
 concurrency:
-  group: standalone-native-${{ github.head_ref }}
-  cancel-in-progress: true
+  group: standalone-native-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: false
 jobs:
   native-replacement:
     strategy:

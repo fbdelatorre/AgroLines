@@ -23,6 +23,8 @@ def _agrolines_capture_loaded_native():
         psapi = ctypes.WinDLL("psapi", use_last_error=True)
         kernel.GetCurrentProcess.restype = ctypes.c_void_p
         kernel.GetModuleFileNameW.argtypes = [ctypes.c_void_p, ctypes.c_wchar_p, ctypes.c_uint]
+        kernel.GetProcAddress.argtypes = [ctypes.c_void_p, ctypes.c_char_p]
+        kernel.GetProcAddress.restype = ctypes.c_void_p
         psapi.EnumProcessModulesEx.argtypes = [
             ctypes.c_void_p,
             ctypes.c_void_p,
@@ -48,9 +50,10 @@ def _agrolines_capture_loaded_native():
             record = {"path": str(path), "sha256": hashlib.sha256(path.read_bytes()).hexdigest()}
             if path.name.casefold().startswith("geos_c"):
                 # Wrap the ALREADY LOADED handle: never LoadLibrary a second test DLL.
-                library = ctypes.CDLL(None, handle=handle)
-                library.GEOSversion.restype = ctypes.c_char_p
-                record["version"] = library.GEOSversion().decode("ascii")
+                address = kernel.GetProcAddress(handle, b"GEOSversion")
+                if not address:
+                    raise RuntimeError("GEOSversion export missing on loaded C API handle")
+                record["version"] = ctypes.CFUNCTYPE(ctypes.c_char_p)(address)().decode("ascii")
             result["modules"].append(record)
     except Exception as error:
         result["errors"].append(type(error).__name__ + ": " + str(error))

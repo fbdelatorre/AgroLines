@@ -43,9 +43,12 @@ def imported_symbols(root, destination):
 def assert_exports(root, destination, replacement):
     import pefile
 
-    with pefile.PE(str(replacement), fast_load=True) as pe:
+    # Qt Core has more than pefile's default 8192 export symbols.
+    with pefile.PE(str(replacement), fast_load=True, max_symbol_exports=65536) as pe:
         pe.parse_data_directories(directories=[0])
         exports = {s.name for s in pe.DIRECTORY_ENTRY_EXPORT.symbols if s.name}
+        if len(exports) != pe.DIRECTORY_ENTRY_EXPORT.struct.NumberOfNames:
+            raise ValueError("Incomplete export-table observation; do not infer an ABI mismatch")
     missing = sorted(s.decode() for s in imported_symbols(root, destination) - exports)
     if missing:
         raise ValueError(
@@ -243,9 +246,11 @@ def main():
                     raise ValueError("Ambiguous compiled library: " + name)
                 source, destination = matches[0], variant / relative
                 lab.x64(source)
-                assert_exports(variant, destination, source)
                 shutil.copy2(source, destination)
                 replacements[destination] = source
+            # Check the coherent replacement pair, not an old C API/new C++ mixture.
+            for destination, source in replacements.items():
+                assert_exports(variant, destination, source)
             # Reject changes to any other native, application, map or project file.
             actual = {r["path"]: r["sha256"] for r in manifest(variant)["files"]}
             original = {r["path"]: r["sha256"] for r in baseline["files"]}

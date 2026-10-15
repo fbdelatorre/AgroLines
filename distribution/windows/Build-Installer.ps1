@@ -27,6 +27,11 @@ if ($Standalone) {
         & $PythonExecutable -m distribution.standalone_build --root dist/AgroLines --version $Version --manufacturer $Manufacturer
         if ($LASTEXITCODE) { throw 'Payload standalone invalido.' }
     } finally { Pop-Location }
+    $launcher=Join-Path $root 'build/distribution/AgroLinesLauncher.exe'
+    $launcherProvenance=Get-Content ($launcher + '.provenance.json') -Raw | ConvertFrom-Json
+    if ((Get-FileHash $launcher -Algorithm SHA256).Hash.ToLowerInvariant() -cne $launcherProvenance.sha256 -or
+        (Get-FileHash (Join-Path $PSScriptRoot 'standalone/launcher.cpp') -Algorithm SHA256).Hash.ToLowerInvariant() -cne $launcherProvenance.source_sha256) { throw 'Launcher build/source changed.' }
+    [IO.File]::WriteAllText((Join-Path $root 'build/distribution/AgroLines.current.txt'), "$Version-$CandidateId`n", [Text.Encoding]::ASCII)
     $arguments += @('/DStandalone', '/DExperimental', "/DCandidateId=$CandidateId")
 }
 if ($CertificateThumbprint) {

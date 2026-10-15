@@ -60,6 +60,8 @@ jobs:
         run: ./distribution/windows/standalone/Prepare-SigningPlan.ps1 -Payload dist/AgroLines -SourceCommit $env:GITHUB_SHA -PythonExecutable ./build-env/Scripts/python.exe
       - name: Prepare signed official Inno compiler; compile installer ONLY, never install AgroLines
         run: |
+          ./distribution/windows/standalone/Build-Launcher.ps1
+          ./distribution/windows/standalone/Test-Launcher.ps1 -Payload dist/AgroLines -Output evidence/standalone/launcher
           ./distribution/windows/standalone/Prepare-Compiler.ps1 -Directory "${{ runner.temp }}/agrolines-inno"
           $compiler = Join-Path '${{ runner.temp }}' 'agrolines-inno/compiler/ISCC.exe'
           Copy-Item (Join-Path '${{ runner.temp }}' 'agrolines-inno/provenance.json') evidence/standalone/compiler-provenance.json
@@ -88,7 +90,7 @@ jobs:
           Add-Content $env:GITHUB_STEP_SUMMARY ('SHA-256: `' + $report.sha256 + '`')
           Add-Content $env:GITHUB_STEP_SUMMARY 'UNSIGNED. Build/probes only. No installation, signing, SAC approval, publication or commercial authorization.'
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
-        if: always()
+        if: always() && github.head_ref != 'compliance/standalone-native-validation'
         with:
           name: agrolines-standalone-EXPERIMENTAL-UNSIGNED
           path: |
@@ -97,3 +99,9 @@ jobs:
             evidence/
           if-no-files-found: error
           retention-days: 30
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always() && github.head_ref == 'compliance/standalone-native-validation'
+        with:
+          name: agrolines-standalone-HOMOLOGATION-EVIDENCE-ONLY
+          path: evidence/
+          if-no-files-found: error
