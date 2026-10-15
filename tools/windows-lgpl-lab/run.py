@@ -159,6 +159,7 @@ def main():
                 "/nologo",
                 "/std:c++17",
                 "/Zc:__cplusplus",
+                "/permissive-",
                 "/EHsc",
                 "/MD",
                 "/I" + str(build / "include"),
