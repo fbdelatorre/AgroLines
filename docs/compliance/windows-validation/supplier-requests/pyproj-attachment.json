@@ -1,0 +1,71 @@
+{
+  "case": "U06",
+  "reference_msix_sha256": "e6a2ab8e65a91df3a2a1613d22b3ecc3c478d774e1d08b39561960085686068b",
+  "scope": "Only actual distributed files; bytes match immutable reference MSIX. No proprietary code or project data.",
+  "components": [
+    {
+      "component": "pyproj-bindings",
+      "version": "3.8.0",
+      "license_evidence": "MIT",
+      "existing_notices": [
+        "notices/reference/third-party-notices/pyproj/pyproj-3.8.0.dist-info_licenses_LICENSE",
+        "notices/reference/third-party-notices/pyproj/pyproj-3.8.0.dist-info_licenses_LICENSE_proj",
+        "notices/reference/third-party-notices/pyproj/pyproj_proj_dir_share_proj_copyright"
+      ]
+    },
+    {
+      "component": "PROJ-pyproj",
+      "version": "9.8.1",
+      "license_evidence": "MIT; database/data licensing separate",
+      "existing_notices": [
+        "notices/reference/third-party-notices/pyproj/pyproj-3.8.0.dist-info_licenses_LICENSE",
+        "notices/reference/third-party-notices/pyproj/pyproj-3.8.0.dist-info_licenses_LICENSE_proj",
+        "notices/reference/third-party-notices/pyproj/pyproj_proj_dir_share_proj_copyright"
+      ]
+    },
+    {
+      "component": "PROJ-data",
+      "version": "PROJ data 1.24 / EPSG v12.029 / ESRI ArcGIS Pro 3.6 / IGNF 3.1.0 / NKG 1.0.w (database metadata)",
+      "license_evidence": "Resource provenance/subcomponent review; no license inferred",
+      "existing_notices": []
+    },
+    {
+      "component": "libcurl-pyproj",
+      "version": "8.19.0 (PE file resource)",
+      "license_evidence": "curl license — versioned upstream text; Windows build/embedded scope not automatically cleared",
+      "existing_notices": [
+        "notices/upstream/libcurl-pyproj-COPYING.txt"
+      ]
+    },
+    {
+      "component": "liblzma-pyproj",
+      "version": "5.8.3 (PE file resource)",
+      "license_evidence": "XZ COPYING explains per-component terms; liblzma scope differs from tools — versioned upstream text; Windows build/embedded scope not automatically cleared",
+      "existing_notices": [
+        "notices/upstream/liblzma-pyproj-COPYING.txt"
+      ]
+    },
+    {
+      "component": "sqlite3-pyproj",
+      "version": "3.53.0 (PE file resource)",
+      "license_evidence": "SQLite public-domain dedication; extensions/build separate — versioned upstream text; Windows build/embedded scope not automatically cleared",
+      "existing_notices": [
+        "notices/upstream/sqlite3-pyproj-LICENSE.md.txt"
+      ]
+    },
+    {
+      "component": "tiff-pyproj",
+      "version": "4.7.1 (PE file resource)",
+      "license_evidence": "Exact component license pending supplier evidence",
+      "existing_notices": []
+    },
+    {
+      "component": "jpeg62-pyproj",
+      "version": "3.1.4.1 (PE file resource)",
+      "license_evidence": "Exact component license pending supplier evidence",
+      "existing_notices": []
+    }
+  ],
+  "files": [],
+  "requested_material": "Exact PROJ 9.8.1 and bundled native source/build mapping and patches; PROJ database/data release attribution and actual included dataset redistribution terms. No extra grids are requested."
+}

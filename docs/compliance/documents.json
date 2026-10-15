@@ -910,6 +910,196 @@
       "path": "sources-index.json",
       "sha256": "813027d1ca247713ec1fdfe6e7e9cff2a1d1089a5504ee7481483192e14b4f6a",
       "size_bytes": 13562
+    },
+    {
+      "path": "windows-validation/README.md",
+      "sha256": "b7f69b9ee101780a559e473fa6a1f14bf7aeddcae8bf79b6c7713e4acc7ded12",
+      "size_bytes": 4511
+    },
+    {
+      "path": "windows-validation/functional-results.template.json",
+      "sha256": "091ad018e58a39804fc1bde7507a8c916992210f1c5db58dc261756d7e0bf69a",
+      "size_bytes": 3430
+    },
+    {
+      "path": "windows-validation/gdal-inputs-verification.json",
+      "sha256": "4d231be0f0738d89028df6f86fe4231e3f4cf6c4939f1c387aed83f3f9c80937",
+      "size_bytes": 4050
+    },
+    {
+      "path": "windows-validation/geos-windows-experiment.md",
+      "sha256": "7ce1e3f187534ec94e4df9f8fb51a64dd95c54e3ef09026ac309f4dca2f871b9",
+      "size_bytes": 5434
+    },
+    {
+      "path": "windows-validation/lab-evidence-verification.json",
+      "sha256": "981378f5bfb015ae77e0dfda3f49b225489007d787fbe5af36cf4666b17db6fe",
+      "size_bytes": 1724
+    },
+    {
+      "path": "windows-validation/lab-geos-3.11.3.json",
+      "sha256": "f2a0ff8730d45f9ae0ed727f21b7d6a85c4dc4609db4c5d199de7bbc099adb07",
+      "size_bytes": 3935
+    },
+    {
+      "path": "windows-validation/lab-geos-3.14.1.json",
+      "sha256": "fb82128e26d6f9901699e787112b93c2f97161fe027c060e7a697294b1c68973",
+      "size_bytes": 3935
+    },
+    {
+      "path": "windows-validation/lab-hosts.json",
+      "sha256": "880f2be9550af8aeecd8b5e22efdb790dba9e3c5bbee4441b1ab0c03881bf959",
+      "size_bytes": 1439
+    },
+    {
+      "path": "windows-validation/lab-qtbase-6.12.0.json",
+      "sha256": "ded5d5692bb90dc3d99b67ba61c71cbd39e7ae845c53bef0b70aac6683d049d9",
+      "size_bytes": 2314
+    },
+    {
+      "path": "windows-validation/lab-source-headers.json",
+      "sha256": "47426990ed8be6c465f4e716e896ecf99bab82dbf45986b9e6a78a002bcdd043",
+      "size_bytes": 3335
+    },
+    {
+      "path": "windows-validation/legal-review-questions.md",
+      "sha256": "be032aaff6474168a00d5bcf8b0475f105a93db52dd7d7c986abf328d11a2d67",
+      "size_bytes": 4610
+    },
+    {
+      "path": "windows-validation/missing-upstream-materials.md",
+      "sha256": "94e732547a29d0428d217bb886c8631cc37c08de0fc25e9320ced73dd4cf1a3b",
+      "size_bytes": 4622
+    },
+    {
+      "path": "windows-validation/msix-lgpl-analysis.md",
+      "sha256": "18f977434cc98bdd0039b9070d47fa97fc62806c0968e1f8c60605f75705a702",
+      "size_bytes": 5856
+    },
+    {
+      "path": "windows-validation/official-research.json",
+      "sha256": "39677e505412917ca09b6fc6bac3ca0ffbd753804daaacea29b2f4b3bf20514e",
+      "size_bytes": 9129
+    },
+    {
+      "path": "windows-validation/preservation.json",
+      "sha256": "f00773f7d4c6baa4cbae4fd6745de8f2ac4bbb84e6c8ddae6a4623d13899e6ae",
+      "size_bytes": 501
+    },
+    {
+      "path": "windows-validation/qt-windows-experiment.md",
+      "sha256": "969613d51051816c602dbabd8e68b6b53e7814d283557503bfcedd1506545b69",
+      "size_bytes": 6135
+    },
+    {
+      "path": "windows-validation/reference-components.json",
+      "sha256": "acabc659360edb86ea760f44105dd6ee72e26a6bd490105456a307d92223408a",
+      "size_bytes": 129736
+    },
+    {
+      "path": "windows-validation/remaining-blockers.md",
+      "sha256": "81bbd22114c59912265ac03bffd2a52c5dfbd866634777ebb556b8e19631a9cc",
+      "size_bytes": 3900
+    },
+    {
+      "path": "windows-validation/reproduction.md",
+      "sha256": "1b8dd097a65a0524676cceb068858f381a2747789e3a6447b64b3a3f10d4f776",
+      "size_bytes": 2910
+    },
+    {
+      "path": "windows-validation/sac-test-procedure.md",
+      "sha256": "14393b8c38aef093f8667f9ecb0de49d3adc0910dbd0413ed07acc7201fff1cf",
+      "size_bytes": 6150
+    },
+    {
+      "path": "windows-validation/store-private-homologation.md",
+      "sha256": "c51da592c825ca66f69e8f30ac2ae7b8cf8ae6d13d31394a1ca60c51296a0f92",
+      "size_bytes": 8552
+    },
+    {
+      "path": "windows-validation/supplier-requests/channels.json",
+      "sha256": "0e08537f351641b13b090293f8e3e9f8aae71abb1da9e4f030c027f2f0258cd7",
+      "size_bytes": 2013
+    },
+    {
+      "path": "windows-validation/supplier-requests/fiona-attachment.json",
+      "sha256": "321937a9655fd84a0a4bbabb85b3bb92059c79f1eb89f93a89a68a4ef974eaef",
+      "size_bytes": 3413
+    },
+    {
+      "path": "windows-validation/supplier-requests/fiona.md",
+      "sha256": "2297e159429f3d4760d5657b08ababec574045f857fc7dd278c265119b942b5d",
+      "size_bytes": 4100
+    },
+    {
+      "path": "windows-validation/supplier-requests/microsoft-attachment.json",
+      "sha256": "29d9635154cedfc94cde56cf70749a8263e4cb089cc4d301750692bd61c9ae1b",
+      "size_bytes": 861
+    },
+    {
+      "path": "windows-validation/supplier-requests/microsoft.md",
+      "sha256": "811972170fddd875031915233799fdbb46e94e93e9938141e0c0c037274fe168",
+      "size_bytes": 3630
+    },
+    {
+      "path": "windows-validation/supplier-requests/numpy-attachment.json",
+      "sha256": "4bb9a030b5af69464d768b2db5b7fa3b4d9d8b5b3e6772ad00e0667d46ddbbe5",
+      "size_bytes": 5669
+    },
+    {
+      "path": "windows-validation/supplier-requests/numpy.md",
+      "sha256": "1fdb17e9770cb3644ed84cd18ea2bd8fc8b4ffdf281fd07600e70a745b639bbd",
+      "size_bytes": 3568
+    },
+    {
+      "path": "windows-validation/supplier-requests/pyproj-attachment.json",
+      "sha256": "c1f7f4d9a2606eb5b3b48b42e46a384bfde8eec6ee4d5da1e6200ab2ca094897",
+      "size_bytes": 3118
+    },
+    {
+      "path": "windows-validation/supplier-requests/pyproj.md",
+      "sha256": "c6e6fb8940436e60481978ab6dd781ff776d9bc5f596f761a6b9d866cb3208f1",
+      "size_bytes": 3452
+    },
+    {
+      "path": "windows-validation/supplier-requests/qt-pyside-attachment.json",
+      "sha256": "c5cc36e39ed583a72ff7141248496e3f8a53e344136fa6bad16b94482d995600",
+      "size_bytes": 5179
+    },
+    {
+      "path": "windows-validation/supplier-requests/qt-pyside.md",
+      "sha256": "88a16d7314bed65710619bc1b4a6d4ce088b2d7ed355a9bf512f6caeb6af28d2",
+      "size_bytes": 3858
+    },
+    {
+      "path": "windows-validation/supplier-requests/qt-webengine-attachment.json",
+      "sha256": "02c53b1a640a51a37c67d0fa366fd8260a810420f63f2d1523b7cbdc4c2b8c9d",
+      "size_bytes": 1519
+    },
+    {
+      "path": "windows-validation/supplier-requests/qt-webengine.md",
+      "sha256": "e63cde0000ba7e305173b8c68731425983b3e4b67dbd198d69b8ff857d919586",
+      "size_bytes": 3928
+    },
+    {
+      "path": "windows-validation/supplier-requests/shapely-attachment.json",
+      "sha256": "a96913d2cdc68ddc184cdf32779a6672614dd92dfa067f588a88749a62b6780e",
+      "size_bytes": 1570
+    },
+    {
+      "path": "windows-validation/supplier-requests/shapely.md",
+      "sha256": "001e785336144f2bc6a3c600c7c3807bf63e7d471265280ff3268e2642eff89a",
+      "size_bytes": 3466
+    },
+    {
+      "path": "windows-validation/upstream-cases.json",
+      "sha256": "f62f3858e2b08280f719154ea35c682b21b0e283b5f375a0073436a772fbf2b0",
+      "size_bytes": 4557
+    },
+    {
+      "path": "windows-validation/validation-results.json",
+      "sha256": "58cb105aed46aca7be6e03ec7a3336785a4766e31b2e33d2acec52149804efbf",
+      "size_bytes": 3569
     }
   ]
 }

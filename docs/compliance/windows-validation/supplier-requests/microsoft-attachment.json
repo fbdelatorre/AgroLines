@@ -1,0 +1,15 @@
+{
+  "case": "U08",
+  "reference_msix_sha256": "e6a2ab8e65a91df3a2a1613d22b3ecc3c478d774e1d08b39561960085686068b",
+  "scope": "Only actual distributed files; bytes match immutable reference MSIX. No proprietary code or project data.",
+  "components": [
+    {
+      "component": "Microsoft-VC-runtime",
+      "version": "multiple; see each PE product_version",
+      "license_evidence": "Microsoft distributable-code terms; no blanket right inferred from signature",
+      "existing_notices": []
+    }
+  ],
+  "files": [],
+  "requested_material": "Account-specific current developer agreement and standard/custom app license applicability; Individual account in Brazil with reserved publisher name, restricted capabilities, Store signing/catalog path and technical constraints relevant to LGPL replacement/recombination. No general legal approval is requested."
+}

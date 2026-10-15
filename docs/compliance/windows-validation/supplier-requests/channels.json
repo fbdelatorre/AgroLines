@@ -1,0 +1,54 @@
+[
+  {
+    "owner": "Qt/PySide and WebEngine routing",
+    "contact": "https://bugreports.qt.io/",
+    "verified_basis": "Official Qt for Python source identifies Qt Bug Tracker; specific component routing/login must be confirmed by owner",
+    "source": "https://github.com/pyside/pyside-setup/blob/f50facb83fc3dc5f3240c854668c7a6dd93871b2/doc/changelogs/changes-6.9.3",
+    "sha256": "483fc536b6acfd7fcee0467171252af8d67893dacc639771126082884365f114",
+    "live_contact_form_accessed": false,
+    "message_sent": false
+  },
+  {
+    "owner": "Toblerity/Fiona",
+    "contact": "https://github.com/Toblerity/Fiona/issues",
+    "repository_issues_enabled": true,
+    "repository_discussions_enabled": true,
+    "checked_utc": "2026-10-15",
+    "public_issue_requires_owner_authorization": true,
+    "message_sent": false
+  },
+  {
+    "owner": "shapely/shapely",
+    "contact": "https://github.com/shapely/shapely/issues",
+    "repository_issues_enabled": true,
+    "repository_discussions_enabled": true,
+    "checked_utc": "2026-10-15",
+    "public_issue_requires_owner_authorization": true,
+    "message_sent": false
+  },
+  {
+    "owner": "pyproj4/pyproj",
+    "contact": "https://github.com/pyproj4/pyproj/issues",
+    "repository_issues_enabled": true,
+    "repository_discussions_enabled": true,
+    "checked_utc": "2026-10-15",
+    "public_issue_requires_owner_authorization": true,
+    "message_sent": false
+  },
+  {
+    "owner": "numpy/numpy",
+    "contact": "https://github.com/numpy/numpy/issues",
+    "repository_issues_enabled": true,
+    "repository_discussions_enabled": false,
+    "checked_utc": "2026-10-15",
+    "public_issue_requires_owner_authorization": true,
+    "message_sent": false
+  },
+  {
+    "owner": "Microsoft",
+    "contact": "https://partner.microsoft.com/dashboard",
+    "verified_basis": "Official owner account workspace; use authenticated Help + support, product/category/eligibility not visible in this environment",
+    "account_accessed": false,
+    "message_sent": false
+  }
+]

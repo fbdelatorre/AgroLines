@@ -1,0 +1,119 @@
+{
+  "purpose": "Template for a future private physical test. NOT evidence of execution or approval. Keep completed copy private.",
+  "reference_msix_not_authorized_for_installation": true,
+  "installed_store_package_full_name": null,
+  "installed_version": null,
+  "store_obtainment_record": null,
+  "windows11_physical": null,
+  "sac_ui_state": null,
+  "defender_enabled": null,
+  "internet_physically_disconnected_during_functional_tests": null,
+  "no_user_python_installed": null,
+  "no_postgresql_installed": null,
+  "started_utc": null,
+  "finished_utc": null,
+  "tests": [
+    {
+      "id": "launch",
+      "action": "Abrir pelo menu Iniciar, sem login remoto",
+      "status": "not_run",
+      "actual_result": null,
+      "private_evidence_path": null
+    },
+    {
+      "id": "local-project",
+      "action": "Criar/salvar/reabrir .agrolines",
+      "status": "not_run",
+      "actual_result": null,
+      "private_evidence_path": null
+    },
+    {
+      "id": "shp",
+      "action": "Importar SHP e sidecars sintéticos",
+      "status": "not_run",
+      "actual_result": null,
+      "private_evidence_path": null
+    },
+    {
+      "id": "gpkg",
+      "action": "Importar GPKG sintético",
+      "status": "not_run",
+      "actual_result": null,
+      "private_evidence_path": null
+    },
+    {
+      "id": "kml",
+      "action": "Importar KML sintético",
+      "status": "not_run",
+      "actual_result": null,
+      "private_evidence_path": null
+    },
+    {
+      "id": "kmz",
+      "action": "Importar KMZ sintético",
+      "status": "not_run",
+      "actual_result": null,
+      "private_evidence_path": null
+    },
+    {
+      "id": "geojson",
+      "action": "Importar GeoJSON sintético",
+      "status": "not_run",
+      "actual_result": null,
+      "private_evidence_path": null
+    },
+    {
+      "id": "vertices",
+      "action": "Editar vértices numéricos e conferir coordenadas/SRC",
+      "status": "not_run",
+      "actual_result": null,
+      "private_evidence_path": null
+    },
+    {
+      "id": "undo-redo",
+      "action": "Desfazer/refazer e conferir snapshots",
+      "status": "not_run",
+      "actual_result": null,
+      "private_evidence_path": null
+    },
+    {
+      "id": "history",
+      "action": "Abrir versão anterior sem perda",
+      "status": "not_run",
+      "actual_result": null,
+      "private_evidence_path": null
+    },
+    {
+      "id": "backup-restore",
+      "action": "Backup e restauração preservam revisões/geometria",
+      "status": "not_run",
+      "actual_result": null,
+      "private_evidence_path": null
+    },
+    {
+      "id": "local-map",
+      "action": "Qt WebEngine/Leaflet e recursos locais visíveis sem rede",
+      "status": "not_run",
+      "actual_result": null,
+      "private_evidence_path": null
+    },
+    {
+      "id": "update",
+      "action": "Atualizar por pacote Store legítimo superior, preservando projeto",
+      "status": "not_run",
+      "actual_result": null,
+      "private_evidence_path": null
+    },
+    {
+      "id": "uninstall-reinstall",
+      "action": "Com backup sintético, verificar preservação externa e reabertura após reinstalação legítima",
+      "status": "not_run",
+      "actual_result": null,
+      "private_evidence_path": null
+    }
+  ],
+  "numerical_precision_actual_values": null,
+  "ci_22_references_are_not_field_accuracy_proof": true,
+  "sac_approved": false,
+  "submission_authorized": false
+}

@@ -1,0 +1,113 @@
+{
+  "case": "U01",
+  "reference_msix_sha256": "e6a2ab8e65a91df3a2a1613d22b3ecc3c478d774e1d08b39561960085686068b",
+  "scope": "Only actual distributed files; bytes match immutable reference MSIX. No proprietary code or project data.",
+  "components": [
+    {
+      "component": "PySide6-bindings",
+      "version": "6.12.0; WebEngine bindings wheel 6.12.0.140",
+      "license_evidence": "LGPL-3.0-only alternative in inspected versioned headers; all generated binding inputs/build pending",
+      "existing_notices": [
+        "notices/reference/third-party-notices/reviewed-texts/GPL-3.0-only.txt",
+        "notices/reference/third-party-notices/reviewed-texts/LGPL-3.0-only.txt",
+        "notices/upstream/pyside-pyside6-header.txt"
+      ]
+    },
+    {
+      "component": "Shiboken",
+      "version": "6.12.0",
+      "license_evidence": "LGPL-3.0-only alternative in versioned header",
+      "existing_notices": [
+        "notices/reference/third-party-notices/reviewed-texts/GPL-3.0-only.txt",
+        "notices/reference/third-party-notices/reviewed-texts/LGPL-3.0-only.txt",
+        "notices/upstream/pyside-shiboken-header.txt"
+      ]
+    },
+    {
+      "component": "Qt-Base",
+      "version": "6.12.0",
+      "license_evidence": "LGPL-3.0-only alternative in inspected versioned headers; embedded components not covered generically",
+      "existing_notices": [
+        "notices/reference/third-party-notices/reviewed-texts/GPL-3.0-only.txt",
+        "notices/reference/third-party-notices/reviewed-texts/LGPL-3.0-only.txt",
+        "notices/upstream/qt-base-header.txt",
+        "notices/upstream/qt-gui-header.txt",
+        "notices/upstream/qt-widgets-header.txt",
+        "notices/upstream/qt-network-header.txt",
+        "notices/upstream/qt-printsupport-header.txt",
+        "notices/upstream/qt-opengl-header.txt",
+        "notices/upstream/qt-windows-plugin-header.txt"
+      ]
+    },
+    {
+      "component": "Qt-Declarative",
+      "version": "6.12.0",
+      "license_evidence": "LGPL-3.0-only alternative in inspected versioned headers; embedded components not covered generically",
+      "existing_notices": [
+        "notices/reference/third-party-notices/reviewed-texts/GPL-3.0-only.txt",
+        "notices/reference/third-party-notices/reviewed-texts/LGPL-3.0-only.txt",
+        "notices/upstream/qt-qml-header.txt",
+        "notices/upstream/qt-quick-header.txt",
+        "notices/upstream/qt-quickwidgets-header.txt"
+      ]
+    },
+    {
+      "component": "Qt-Positioning",
+      "version": "6.12.0",
+      "license_evidence": "LGPL-3.0-only alternative in inspected versioned headers; embedded components not covered generically",
+      "existing_notices": [
+        "notices/reference/third-party-notices/reviewed-texts/GPL-3.0-only.txt",
+        "notices/reference/third-party-notices/reviewed-texts/LGPL-3.0-only.txt",
+        "notices/upstream/qt-positioning-header.txt"
+      ]
+    },
+    {
+      "component": "Qt-SerialPort",
+      "version": "6.12.0",
+      "license_evidence": "LGPL-3.0-only alternative in inspected versioned headers; embedded components not covered generically",
+      "existing_notices": [
+        "notices/reference/third-party-notices/reviewed-texts/GPL-3.0-only.txt",
+        "notices/reference/third-party-notices/reviewed-texts/LGPL-3.0-only.txt",
+        "notices/upstream/qt-serialport-header.txt"
+      ]
+    },
+    {
+      "component": "Qt-SVG",
+      "version": "6.12.0",
+      "license_evidence": "LGPL-3.0-only alternative in inspected versioned headers; embedded components not covered generically",
+      "existing_notices": [
+        "notices/reference/third-party-notices/reviewed-texts/GPL-3.0-only.txt",
+        "notices/reference/third-party-notices/reviewed-texts/LGPL-3.0-only.txt",
+        "notices/upstream/qt-svg-header.txt"
+      ]
+    },
+    {
+      "component": "Qt-WebChannel",
+      "version": "6.12.0",
+      "license_evidence": "LGPL-3.0-only alternative in inspected versioned headers; embedded components not covered generically",
+      "existing_notices": [
+        "notices/reference/third-party-notices/reviewed-texts/GPL-3.0-only.txt",
+        "notices/reference/third-party-notices/reviewed-texts/LGPL-3.0-only.txt",
+        "notices/upstream/qt-webchannel-header.txt"
+      ]
+    },
+    {
+      "component": "Qt-ImageFormats",
+      "version": "6.12.0",
+      "license_evidence": "LGPL-3.0-only alternative in inspected versioned headers; embedded components not covered generically",
+      "existing_notices": [
+        "notices/reference/third-party-notices/reviewed-texts/GPL-3.0-only.txt",
+        "notices/reference/third-party-notices/reviewed-texts/LGPL-3.0-only.txt",
+        "notices/upstream/qt-imageformats-header.txt"
+      ]
+    },
+    {
+      "component": "Software-OpenGL-Qt",
+      "version": null,
+      "license_evidence": "Mesa/software renderer attribution/build/license pending exact supplier SBOM",
+      "existing_notices": []
+    }
+  ],
+  "files": [],
+  "requested_material": "Exact Windows wheel source/build correspondence, configure flags, compiler/CRT versions, patches, static third-party BOM and notices; QML transitive and software OpenGL provenance."
+}

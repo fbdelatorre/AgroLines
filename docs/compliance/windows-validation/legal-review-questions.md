@@ -1,0 +1,22 @@
+# Questões delimitadas para revisão jurídica profissional
+
+Não substitui as minutas existentes: [Qt](../qt-lgplv3.md),
+[GEOS](../geos-lgplv21.md), [EULA proposta](../licenciamento-agrolines-minuta.md),
+[privacidade/Store](../privacidade-store-checklist.md). Nenhuma hipótese foi aprovada.
+
+| Fato técnico comprovado / referência | Obrigação ou dúvida | Alternativas e decisão jurídica necessária |
+| --- | --- | --- |
+| Qt/PySide Community no payload; headers versionados identificam alternativas LGPL em módulos inspecionados; inventário e referência de cada arquivo disponíveis | Cobertura exata do grant e cumprimento LGPLv3 §4 para Combined Work proprietário | Validar fontes/avisos e modalidade adequada, sem exigir abertura do código próprio por presunção. Qt Commercial é alternativa contratual, não conclusão técnica automática. |
+| Consumidor QtCore sintético e ensaios GEOS têm níveis separados; aplicação completa/MSIX confiável não recombinados | LGPL3 §4(d)(0)/(1), §4(e)/GPL3 §6 quando aplicáveis; materiais e Installation Information realmente necessários | Aprovar mecanismo demonstrado aplicável à cópia distribuída ou delimitar kit viável. Não prometer substituir DLL protegida nem entregar chave Microsoft; se precisar materiais proprietários, decisão específica antes de qualquer publicação. |
+| Dois pares GEOS, 3.11.3 e 3.14.1, ligados dinamicamente por Fiona/Shapely | LGPL2.1 §6(a)–(e), direitos de modificação/relinking/engenharia reversa para depuração | Selecionar condição aplicável e conferir fonte/build dos dois pares; não transportar automaticamente §4(e) LGPL3 para GEOS. |
+| 151 documentos e fontes candidatas reunidos; U03 fecha somente entradas GDAL, não todos os binários | Cobertura de copyright/notices, modificações, oferta/acesso a fontes e termos de cada componente | Revisar formato de disponibilização, escopo das fontes/receitas e como vinculá-las à cópia distribuída. Não converter links genéricos/pacote parcial em oferta completa. |
+| Chromium/PDFium/codecs, software OpenGL e vendors têm lacunas U01/U02/U04/U06/U07 | Licenças alternativas, obrigações estáticas, patentes/codecs e GCC Runtime Library Exception | Conferir respostas/fontes exatas e materialmente incluir o necessário no futuro candidato. Não concluir licença de cada binário por metadata do wheel ou assinatura válida. |
+| EULA própria e licenciamento futuro não implementam infraestrutura comercial completa | EULA não pode retirar direitos LGPL/engenharia reversa necessária; ativação/módulos não devem impedir direitos de terceiros | Revisar exceções expressas à restrição de engenharia reversa e termos de recombinação. Chaves privadas fora do cliente; não afirmar que PyInstaller impede extração. |
+| SQLite/backups locais sem criptografia própria; importados podem conter dados pessoais/metadados; aplicativo offline | LGPD e Store §10.5.4; divulgação não substitui proteção quando exigida | Delimitar dados/risco e medidas necessárias antes de submissão. Não alegar conformidade com criptografia baseada só no Windows/BitLocker sem comprovação. |
+| Programa privado 18+, Gmail pessoal futuro, sem histórico de suporte confirmado; retenção proposta 90d suporte/30d saída/12m direitos | Bases legais por finalidade, aceite, minimização, direitos e viabilidade das rotinas | Decidir hipóteses com documentação adequada; revisar minutas sem presumir consentimento ou legítimo interesse já adotados. Procedimentos manuais precisam ser configurados/executados. |
+| Google/Gmail, Microsoft/Partner Center e futuro GitHub Pages; contratos específicos e países/mecanismos não confirmados | Papéis reais, transferências internacionais e mecanismos LGPD aplicáveis a cada fluxo | Conferir documentos efetivamente aplicáveis à conta, não assumir Google Workspace DPA, SCC/DPF como prova de mecanismo LGPD ou fornecedores adicionais não usados. |
+| Conta Individual Brasil, publisher reservado contém COrporation; acordo aceito não conferido, §10.14 e caps restritas | Elegibilidade/apresentação de negócio, contrato Microsoft, EULA padrão/custom e direitos de terceiros | Obter esclarecimento Microsoft e revisão dos termos reais antes de decidir; não alterar identidade, conta, visibilidade ou classificação etária. |
+
+Registrar parecer e escolhas fora de repositório público quando contiverem informação
+confidencial. Atualizar somente o status efetivamente aprovado, com data/escopo;
+testes não substituem aprovação jurídica ou contratual.

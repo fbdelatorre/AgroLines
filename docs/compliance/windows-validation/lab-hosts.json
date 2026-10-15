@@ -1,0 +1,59 @@
+[
+  {
+    "os": {
+      "Caption": "Microsoft Windows Server 2025 Datacenter",
+      "Version": "10.0.26100",
+      "BuildNumber": "26100",
+      "OSArchitecture": "64-bit"
+    },
+    "registry_state": null,
+    "sac_active_confirmed": false,
+    "errors": [
+      "SAC registry evidence unavailable"
+    ],
+    "defender": {
+      "AMServiceEnabled": true,
+      "AntivirusEnabled": true,
+      "RealTimeProtectionEnabled": false
+    },
+    "physical_win11_approved": false
+  },
+  {
+    "os": {
+      "Caption": "Microsoft Windows Server 2025 Datacenter",
+      "Version": "10.0.26100",
+      "BuildNumber": "26100",
+      "OSArchitecture": "64-bit"
+    },
+    "registry_state": null,
+    "sac_active_confirmed": false,
+    "errors": [
+      "SAC registry evidence unavailable"
+    ],
+    "defender": {
+      "AMServiceEnabled": false,
+      "AntivirusEnabled": false,
+      "RealTimeProtectionEnabled": false
+    },
+    "physical_win11_approved": false
+  },
+  {
+    "os": {
+      "Caption": "Microsoft Windows Server 2025 Datacenter",
+      "Version": "10.0.26100",
+      "BuildNumber": "26100",
+      "OSArchitecture": "64-bit"
+    },
+    "registry_state": null,
+    "sac_active_confirmed": false,
+    "errors": [
+      "SAC registry evidence unavailable"
+    ],
+    "defender": {
+      "AMServiceEnabled": true,
+      "AntivirusEnabled": true,
+      "RealTimeProtectionEnabled": false
+    },
+    "physical_win11_approved": false
+  }
+]

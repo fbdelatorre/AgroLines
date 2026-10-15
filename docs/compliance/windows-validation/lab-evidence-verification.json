@@ -1,0 +1,36 @@
+{
+  "run": 38664013105,
+  "capture_run": 38664078921,
+  "check_run": 116191835887,
+  "reports": [
+    {
+      "component": "geos-3.14.1",
+      "report": "lab-geos-3.14.1.json",
+      "report_sha256": "fb82128e26d6f9901699e787112b93c2f97161fe027c060e7a697294b1c68973",
+      "matches_annotation_and_workflow_log": true
+    },
+    {
+      "component": "geos-3.11.3",
+      "report": "lab-geos-3.11.3.json",
+      "report_sha256": "f2a0ff8730d45f9ae0ed727f21b7d6a85c4dc4609db4c5d199de7bbc099adb07",
+      "matches_annotation_and_workflow_log": true
+    },
+    {
+      "component": "qtbase-6.12.0",
+      "report": "lab-qtbase-6.12.0.json",
+      "report_sha256": "ded5d5692bb90dc3d99b67ba61c71cbd39e7ae845c53bef0b70aac6683d049d9",
+      "matches_annotation_and_workflow_log": true
+    }
+  ],
+  "scope": "Exact report bytes reconstructed and verified against report-file SHA-256 computed in the capture job over downloaded original artifacts, plus equal data independently extracted from successful lab logs. No native binaries or own application source.",
+  "legal_approved": false,
+  "sac_approved": false,
+  "consolidated_artifact": {
+    "id": 11940062835,
+    "url": "https://github.com/fbdelatorre/AgroLines/actions/runs/38664078921/artifacts/11940062835",
+    "name": "windows-lgpl-consolidated-EVIDENCE-NOT-LEGAL-APPROVAL",
+    "zip_sha256_reported_by_github": "294f4f28fff11c5149cfdd5b887b868c435070197d8d8812743e9188a90ec5ee",
+    "zip_download_verified_in_this_environment": false,
+    "note": "Cloud download endpoint unavailable; original reports independently verified through authenticated GitHub check annotations and logs. GitHub capture job downloaded and supplemented original artifacts successfully."
+  }
+}

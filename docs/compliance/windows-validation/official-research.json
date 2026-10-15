@@ -1,0 +1,227 @@
+[
+  {
+    "id": "policies",
+    "url": "https://learn.microsoft.com/en-us/windows/apps/publish/store-policies",
+    "accessed_utc": "2026-10-15",
+    "status": 200,
+    "final_url": "https://learn.microsoft.com/en-us/windows/apps/publish/store-policies",
+    "sha256": "4cc644837d5d8a9c0f1ecddc6eae03f9320da93c0ea70186263f9cb3ec198d19",
+    "bytes": 111970
+  },
+  {
+    "id": "visibility",
+    "url": "https://learn.microsoft.com/en-us/windows/apps/publish/publish-your-app/msix/visibility-options",
+    "accessed_utc": "2026-10-15",
+    "status": 200,
+    "final_url": "https://learn.microsoft.com/en-us/windows/apps/publish/publish-your-app/msix/visibility-options",
+    "sha256": "4d413e034e169a2c2547c6a67f5def6c19ca5cfffff52839bc8169ee3e4f798c",
+    "bytes": 64329
+  },
+  {
+    "id": "publication",
+    "url": "https://learn.microsoft.com/en-us/windows/apps/publish/publish-your-app/msix/configure-app-submission",
+    "accessed_utc": "2026-10-15",
+    "status": "unavailable",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "id": "publish-options",
+    "url": "https://learn.microsoft.com/en-us/windows/apps/publish/publish-your-app/msix/publishing-options",
+    "accessed_utc": "2026-10-15",
+    "status": "unavailable",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "id": "signing",
+    "url": "https://learn.microsoft.com/en-us/windows/apps/package-and-deploy/code-signing-options",
+    "accessed_utc": "2026-10-15",
+    "status": 200,
+    "final_url": "https://learn.microsoft.com/en-us/windows/apps/package-and-deploy/code-signing-options",
+    "sha256": "2cd09baf0e7d8ea773e4148acc5c6c07b4a90d61384571d6150e8a70359ce82f",
+    "bytes": 61360
+  },
+  {
+    "id": "integrity",
+    "url": "https://learn.microsoft.com/en-us/windows/msix/desktop/desktop-to-uwp-behind-the-scenes",
+    "accessed_utc": "2026-10-15",
+    "status": 200,
+    "final_url": "https://learn.microsoft.com/en-us/windows/msix/desktop/desktop-to-uwp-behind-the-scenes",
+    "sha256": "e5badec72bca4df338dd24f951743b9e8ff31298dd26c35a4b9c014413e78de8",
+    "bytes": 65115
+  },
+  {
+    "id": "dll-search",
+    "url": "https://learn.microsoft.com/en-us/windows/win32/dlls/dynamic-link-library-search-order",
+    "accessed_utc": "2026-10-15",
+    "status": 200,
+    "final_url": "https://learn.microsoft.com/en-us/windows/win32/dlls/dynamic-link-library-search-order",
+    "sha256": "9dbd1bcdb5df831b6a97d2ac716065dd3f70df33b8f0df3b0e9bcd325ca173b6",
+    "bytes": 63837
+  },
+  {
+    "id": "loadlibrary",
+    "url": "https://learn.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-loadlibraryexw",
+    "accessed_utc": "2026-10-15",
+    "status": 200,
+    "final_url": "https://learn.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-loadlibraryexw",
+    "sha256": "118278e5ab6ac898409f5389410148d1ca8233859f51f92fc1bf80b528f061d8",
+    "bytes": 85974
+  },
+  {
+    "id": "capabilities",
+    "url": "https://learn.microsoft.com/en-us/windows/uwp/packaging/app-capability-declarations",
+    "accessed_utc": "2026-10-15",
+    "status": 200,
+    "final_url": "https://learn.microsoft.com/en-us/windows/uwp/packaging/app-capability-declarations",
+    "sha256": "abdeef52668da0efc028176371b1c7993616bdc9a9a717f8c19a1d5bff560c89",
+    "bytes": 51080
+  },
+  {
+    "id": "ci-tool",
+    "url": "https://learn.microsoft.com/en-us/windows/security/application-security/application-control/app-control-for-business/operations/citool-commands",
+    "accessed_utc": "2026-10-15",
+    "status": 200,
+    "final_url": "https://learn.microsoft.com/en-us/windows/security/application-security/application-control/app-control-for-business/operations/citool-commands",
+    "sha256": "0568e44d1e7ad9559177c923e31a7704dbb4fb3c58807ba66c592cb4fd1da13d",
+    "bytes": 54553
+  },
+  {
+    "id": "sac-faq",
+    "url": "https://learn.microsoft.com/en-us/windows/apps/develop/smart-app-control/overview",
+    "accessed_utc": "2026-10-15",
+    "status": 200,
+    "final_url": "https://learn.microsoft.com/en-us/windows/apps/develop/smart-app-control/overview",
+    "sha256": "b3a20957ea93fc6bb6975abd351eddea244ae8e1761931e6de2dc1133a6d3070",
+    "bytes": 54020
+  },
+  {
+    "id": "agreement",
+    "url": "https://learn.microsoft.com/en-us/legal/windows/agreements/app-developer-agreement",
+    "accessed_utc": "2026-10-15",
+    "status": "unavailable",
+    "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "id": "qt-contact",
+    "url": "https://wiki.qt.io/Qt_for_Python",
+    "accessed_utc": "2026-10-15",
+    "status": "unavailable",
+    "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "id": "qt-report",
+    "url": "https://doc.qt.io/qtforpython-6/bugs.html",
+    "accessed_utc": "2026-10-15",
+    "status": "unavailable",
+    "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "id": "qt-webengine-report",
+    "url": "https://doc.qt.io/qt-6/qtwebengine-index.html",
+    "accessed_utc": "2026-10-15",
+    "status": "unavailable",
+    "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  },
+  {
+    "id": "fiona-contact",
+    "url": "https://github.com/Toblerity/Fiona",
+    "accessed_utc": "2026-10-15",
+    "status": 200,
+    "final_url": "https://github.com/Toblerity/Fiona",
+    "sha256": "26331a135ff203b4d655e459cff72d49f9a3e549a6f79b22ed0cf78bbf176df0",
+    "bytes": 358969
+  },
+  {
+    "id": "shapely-contact",
+    "url": "https://github.com/shapely/shapely",
+    "accessed_utc": "2026-10-15",
+    "status": 200,
+    "final_url": "https://github.com/shapely/shapely",
+    "sha256": "b564d77381f905715f048b44a74f1e8e3ec215d0e4700afb954646319e165a58",
+    "bytes": 347997
+  },
+  {
+    "id": "pyproj-contact",
+    "url": "https://github.com/pyproj4/pyproj",
+    "accessed_utc": "2026-10-15",
+    "status": 200,
+    "final_url": "https://github.com/pyproj4/pyproj",
+    "sha256": "db94d2327f47720c5c51d3192c5aa8db8493f271c0e04dd20ad1f7f8a6298867",
+    "bytes": 414681
+  },
+  {
+    "id": "numpy-contact",
+    "url": "https://github.com/numpy/numpy",
+    "accessed_utc": "2026-10-15",
+    "status": 200,
+    "final_url": "https://github.com/numpy/numpy",
+    "sha256": "eee4e3a55618a212f0bb41961e8d5f8242c9641e94d19a5c3c0e8744d6c25f8f",
+    "bytes": 353024
+  },
+  {
+    "id": "ms-support",
+    "url": "https://learn.microsoft.com/en-us/windows/apps/publish/partner-center/support",
+    "accessed_utc": "2026-10-15",
+    "status": "unavailable",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "id": "submission-control",
+    "url": "https://learn.microsoft.com/en-us/windows/apps/publish/publish-your-app/msix/app-submission-control",
+    "accessed_utc": "2026-10-15",
+    "status": 200,
+    "final_url": "https://learn.microsoft.com/en-us/windows/apps/publish/publish-your-app/msix/app-submission-control",
+    "sha256": "5d1120b3be05c51a2c34004ed127d3dc6961ae2f013ce03b9aa488e4e373dc74",
+    "bytes": 51025
+  },
+  {
+    "id": "submission-options",
+    "url": "https://learn.microsoft.com/en-us/windows/apps/publish/publish-your-app/msix/manage-submission-options",
+    "accessed_utc": "2026-10-15",
+    "status": 200,
+    "final_url": "https://learn.microsoft.com/en-us/windows/apps/publish/publish-your-app/msix/manage-submission-options",
+    "sha256": "b77e191470e05fb340f98bcb8dd2a2d5cd17aae7e662c3d0ecd81527cec74d4d",
+    "bytes": 61909
+  },
+  {
+    "id": "upload-packages",
+    "url": "https://learn.microsoft.com/en-us/windows/apps/publish/publish-your-app/msix/upload-app-packages",
+    "accessed_utc": "2026-10-15",
+    "status": 200,
+    "final_url": "https://learn.microsoft.com/en-us/windows/apps/publish/publish-your-app/msix/upload-app-packages",
+    "sha256": "3aa0fa4a30bb5fdc1f3476f59914425a68846e9145c373e06014dfdc8cf40d48",
+    "bytes": 65154
+  },
+  {
+    "id": "certification",
+    "url": "https://learn.microsoft.com/en-us/windows/apps/publish/publish-your-app/msix/app-certification-process",
+    "accessed_utc": "2026-10-15",
+    "status": 200,
+    "final_url": "https://learn.microsoft.com/en-us/windows/apps/publish/publish-your-app/msix/app-certification-process",
+    "sha256": "58022e77792d5fe931b2b62958bcd6b58c2014a8a414f91c9cad5913734fa966",
+    "bytes": 56282
+  },
+  {
+    "id": "agreement-link",
+    "url": "https://learn.microsoft.com/en-us/windows/apps/publish/terms-and-conditions",
+    "accessed_utc": "2026-10-15",
+    "status": "unavailable",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "id": "qt-source-contacts",
+    "url": "https://raw.githubusercontent.com/pyside/pyside-setup/f50facb83fc3dc5f3240c854668c7a6dd93871b2/README.md",
+    "accessed_utc": "2026-10-15",
+    "status": 200,
+    "final_url": "https://raw.githubusercontent.com/pyside/pyside-setup/f50facb83fc3dc5f3240c854668c7a6dd93871b2/README.md",
+    "sha256": "94ba63b907235169b408b099606c91eaf5cd35ef1c71947a879c51dc239bb8c7",
+    "bytes": 9181
+  },
+  {
+    "id": "developer-agreement-official-link",
+    "url": "https://go.microsoft.com/fwlink/?linkid=528905",
+    "accessed_utc": "2026-10-15",
+    "status": "unavailable",
+    "error": "<urlopen error Tunnel connection failed: 403 Forbidden>"
+  }
+]

@@ -1,0 +1,71 @@
+{
+  "component": "qtbase-6.12.0",
+  "repository": "https://github.com/qt/qtbase.git",
+  "commit": "025bdad181de241e81bf853c8a2d7bf3d19261a9",
+  "source_archive_sha256": "e5317b2dfaf4cc2769be0cc8267fd9b209020fbb94a20b33da95f0e7df33bce4",
+  "consumer_sha256": "a0159d9315c21364bc67e7032592e5002b96099204b82e924d39cb572f426507",
+  "configure": [
+    "cmake",
+    "-S",
+    "D:\\a\\_temp\\lgpl-lab\\source",
+    "-B",
+    "D:\\a\\_temp\\lgpl-lab\\build",
+    "-G",
+    "Ninja",
+    "-DCMAKE_BUILD_TYPE=Release",
+    "-DBUILD_SHARED_LIBS=ON",
+    "-DQT_BUILD_TESTS=OFF",
+    "-DQT_BUILD_EXAMPLES=OFF",
+    "-DFEATURE_gui=OFF",
+    "-DFEATURE_widgets=OFF",
+    "-DFEATURE_network=OFF",
+    "-DFEATURE_sql=OFF",
+    "-DFEATURE_dbus=OFF",
+    "-DFEATURE_opengl=OFF",
+    "-DFEATURE_printsupport=OFF",
+    "-DFEATURE_concurrent=OFF",
+    "-DFEATURE_xml=OFF",
+    "-DFEATURE_testlib=OFF",
+    "-DFEATURE_icu=OFF",
+    "-DFEATURE_glib=OFF",
+    "-DFEATURE_windeployqt=OFF"
+  ],
+  "results": {
+    "original": {
+      "synthetic": {
+        "version": "6.12.0",
+        "length": 16,
+        "loaded_path": "D:/a/_temp/lgpl-lab/original/Qt6Core.dll",
+        "loaded_sha256": "0532ec4cd6d66c355ff5dedfe870327e24db7beb296c5ec4c798d1c45358b559"
+      },
+      "libraries": [
+        {
+          "name": "Qt6Core.dll",
+          "sha256": "0532ec4cd6d66c355ff5dedfe870327e24db7beb296c5ec4c798d1c45358b559",
+          "architecture": "x64"
+        }
+      ]
+    },
+    "modified": {
+      "synthetic": {
+        "version": "6.12.0-agrolines-synthetic",
+        "length": 16,
+        "loaded_path": "D:/a/_temp/lgpl-lab/modified/Qt6Core.dll",
+        "loaded_sha256": "3e7d3883a2a05dde1e036d302b27ea29dc7f212193cd8b08e9e589dc39e02a7f"
+      },
+      "libraries": [
+        {
+          "name": "Qt6Core.dll",
+          "sha256": "3e7d3883a2a05dde1e036d302b27ea29dc7f212193cd8b08e9e589dc39e02a7f",
+          "architecture": "x64"
+        }
+      ]
+    }
+  },
+  "windows": 26100,
+  "compiler": "Microsoft (R) C/C++ Optimizing Compiler Version 19.51.36260 for x64\nCopyright (C) Microsoft Corporation.  All rights reserved.",
+  "trusted_msix_demonstrated": false,
+  "agrolines_recombination_demonstrated": false,
+  "sac_approved": false,
+  "legal_approved": false
+}

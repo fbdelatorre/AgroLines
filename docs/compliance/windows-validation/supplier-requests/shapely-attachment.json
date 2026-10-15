@@ -1,0 +1,31 @@
+{
+  "case": "U05",
+  "reference_msix_sha256": "e6a2ab8e65a91df3a2a1613d22b3ecc3c478d774e1d08b39561960085686068b",
+  "scope": "Only actual distributed files; bytes match immutable reference MSIX. No proprietary code or project data.",
+  "components": [
+    {
+      "component": "Shapely-bindings",
+      "version": "2.2.0",
+      "license_evidence": "BSD-3-Clause",
+      "existing_notices": [
+        "notices/reference/third-party-notices/shapely/shapely-2.2.0.dist-info_licenses_LICENSE.txt",
+        "notices/reference/third-party-notices/shapely/shapely-2.2.0.dist-info_licenses_LICENSE_GEOS",
+        "notices/reference/third-party-notices/shapely/shapely-2.2.0.dist-info_licenses_LICENSE_win32"
+      ]
+    },
+    {
+      "component": "GEOS-Shapely",
+      "version": "3.14.1",
+      "license_evidence": "LGPL-2.1 per GEOS COPYING; version/patch review pending",
+      "existing_notices": [
+        "notices/reference/third-party-notices/shapely/shapely-2.2.0.dist-info_licenses_LICENSE.txt",
+        "notices/reference/third-party-notices/shapely/shapely-2.2.0.dist-info_licenses_LICENSE_GEOS",
+        "notices/reference/third-party-notices/shapely/shapely-2.2.0.dist-info_licenses_LICENSE_win32",
+        "notices/upstream/geos-3.14.1-AUTHORS",
+        "notices/upstream/geos-3.14.1-COPYING"
+      ]
+    }
+  ],
+  "files": [],
+  "requested_material": "Exact GEOS 3.14.1 source, patches, compiler/runtime, CMake flags and delvewheel import-repair recipe for the two renamed GEOS DLLs; all corresponding notices. LGPL-2.1 GEOS is separate from the BSD binding."
+}

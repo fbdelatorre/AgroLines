@@ -1,0 +1,121 @@
+{
+  "component": "geos-3.11.3",
+  "repository": "https://github.com/libgeos/geos.git",
+  "commit": "17e3cb142d2592ce09c4530267ee2fb6ee1c6f79",
+  "source_archive_sha256": "e6cd4eaa975f5b9f787248929c815349f43b13ddbed3043e6f8143f86ef9c967",
+  "consumer_sha256": "9fe77d858c461d40e38a4f7687f3be955c450fb62fcb62287a085c755444a7d1",
+  "configure": [
+    "cmake",
+    "-S",
+    "D:\\a\\_temp\\lgpl-lab\\source",
+    "-B",
+    "D:\\a\\_temp\\lgpl-lab\\build",
+    "-G",
+    "Ninja",
+    "-DCMAKE_BUILD_TYPE=Release",
+    "-DBUILD_SHARED_LIBS=ON",
+    "-DCMAKE_POLICY_VERSION_MINIMUM=3.5",
+    "-DBUILD_TESTING=OFF",
+    "-DBUILD_BENCHMARKS=OFF"
+  ],
+  "results": {
+    "original": {
+      "synthetic": {
+        "version": "3.11.3-CAPI-1.17.3",
+        "areas": [
+          1e-06,
+          1.0,
+          100.0,
+          10000.0
+        ],
+        "loaded_path": "D:\\a\\_temp\\lgpl-lab\\original\\geos_c.dll",
+        "geos_modules": [
+          "D:\\a\\_temp\\lgpl-lab\\original\\geos_c.dll",
+          "D:\\a\\_temp\\lgpl-lab\\original\\geos.dll"
+        ],
+        "frozen": false,
+        "loaded_sha256": "0dd895449c35f605a9911483815bf2956a32c5b0a1e286dd58f15cda291d98ed"
+      },
+      "frozen": {
+        "version": "3.11.3-CAPI-1.17.3",
+        "areas": [
+          1e-06,
+          1.0,
+          100.0,
+          10000.0
+        ],
+        "loaded_path": "D:\\a\\_temp\\lgpl-lab\\original\\geos_c.dll",
+        "geos_modules": [
+          "D:\\a\\_temp\\lgpl-lab\\original\\geos_c.dll",
+          "D:\\a\\_temp\\lgpl-lab\\original\\geos.dll"
+        ],
+        "frozen": true,
+        "loaded_sha256": "0dd895449c35f605a9911483815bf2956a32c5b0a1e286dd58f15cda291d98ed"
+      },
+      "libraries": [
+        {
+          "name": "geos.dll",
+          "sha256": "8621fa0e54fa2a41736971858cd65359229e2b2876e271ffb423ad1a4a032bfe",
+          "architecture": "x64"
+        },
+        {
+          "name": "geos_c.dll",
+          "sha256": "0dd895449c35f605a9911483815bf2956a32c5b0a1e286dd58f15cda291d98ed",
+          "architecture": "x64"
+        }
+      ]
+    },
+    "modified": {
+      "synthetic": {
+        "version": "3.11.3-CAPI-1.17.3-agrolines-synthetic",
+        "areas": [
+          1e-06,
+          1.0,
+          100.0,
+          10000.0
+        ],
+        "loaded_path": "D:\\a\\_temp\\lgpl-lab\\modified\\geos_c.dll",
+        "geos_modules": [
+          "D:\\a\\_temp\\lgpl-lab\\modified\\geos_c.dll",
+          "D:\\a\\_temp\\lgpl-lab\\modified\\geos.dll"
+        ],
+        "frozen": false,
+        "loaded_sha256": "0dc16cb0ebfad80880584ca0d321350b7a8e0f9549644bb9bd459c2a3576010e"
+      },
+      "frozen": {
+        "version": "3.11.3-CAPI-1.17.3-agrolines-synthetic",
+        "areas": [
+          1e-06,
+          1.0,
+          100.0,
+          10000.0
+        ],
+        "loaded_path": "D:\\a\\_temp\\lgpl-lab\\modified\\geos_c.dll",
+        "geos_modules": [
+          "D:\\a\\_temp\\lgpl-lab\\modified\\geos_c.dll",
+          "D:\\a\\_temp\\lgpl-lab\\modified\\geos.dll"
+        ],
+        "frozen": true,
+        "loaded_sha256": "0dc16cb0ebfad80880584ca0d321350b7a8e0f9549644bb9bd459c2a3576010e"
+      },
+      "libraries": [
+        {
+          "name": "geos.dll",
+          "sha256": "8621fa0e54fa2a41736971858cd65359229e2b2876e271ffb423ad1a4a032bfe",
+          "architecture": "x64"
+        },
+        {
+          "name": "geos_c.dll",
+          "sha256": "0dc16cb0ebfad80880584ca0d321350b7a8e0f9549644bb9bd459c2a3576010e",
+          "architecture": "x64"
+        }
+      ]
+    }
+  },
+  "windows": 26100,
+  "compiler": "Microsoft (R) C/C++ Optimizing Compiler Version 19.51.36260 for x64\nCopyright (C) Microsoft Corporation.  All rights reserved.",
+  "trusted_msix_demonstrated": false,
+  "agrolines_recombination_demonstrated": false,
+  "sac_approved": false,
+  "legal_approved": false
+}

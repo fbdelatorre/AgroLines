@@ -1,0 +1,63 @@
+{
+  "case": "U07",
+  "reference_msix_sha256": "e6a2ab8e65a91df3a2a1613d22b3ecc3c478d774e1d08b39561960085686068b",
+  "scope": "Only actual distributed files; bytes match immutable reference MSIX. No proprietary code or project data.",
+  "components": [
+    {
+      "component": "NumPy",
+      "version": "2.5.4",
+      "license_evidence": "BSD-3-Clause and full vendored terms in wheel license",
+      "existing_notices": [
+        "notices/reference/third-party-notices/numpy/numpy-2.5.4.dist-info_licenses_LICENSE.txt",
+        "notices/reference/third-party-notices/numpy/numpy-2.5.4.dist-info_licenses_numpy__core_include_numpy_libdivide_LICENSE.txt",
+        "notices/reference/third-party-notices/numpy/numpy-2.5.4.dist-info_licenses_numpy__core_src_common_pythoncapi-compat_COPYING",
+        "notices/reference/third-party-notices/numpy/numpy-2.5.4.dist-info_licenses_numpy__core_src_highway_LICENSE",
+        "notices/reference/third-party-notices/numpy/numpy-2.5.4.dist-info_licenses_numpy__core_src_multiarray_dragon4_LICENSE.txt",
+        "notices/reference/third-party-notices/numpy/numpy-2.5.4.dist-info_licenses_numpy__core_src_npysort_x86-simd-sort_LICENSE.md",
+        "notices/reference/third-party-notices/numpy/numpy-2.5.4.dist-info_licenses_numpy__core_src_umath_svml_LICENSE",
+        "notices/reference/third-party-notices/numpy/numpy-2.5.4.dist-info_licenses_numpy_fft_pocketfft_LICENSE.md",
+        "notices/reference/third-party-notices/numpy/numpy-2.5.4.dist-info_licenses_numpy_linalg_lapack_lite_LICENSE.txt",
+        "notices/reference/third-party-notices/numpy/numpy-2.5.4.dist-info_licenses_numpy_ma_LICENSE",
+        "notices/reference/third-party-notices/numpy/numpy-2.5.4.dist-info_licenses_numpy_random_LICENSE.md",
+        "notices/reference/third-party-notices/numpy/numpy-2.5.4.dist-info_licenses_numpy_random_src_distributions_LICENSE.md",
+        "notices/reference/third-party-notices/numpy/numpy-2.5.4.dist-info_licenses_numpy_random_src_mt19937_LICENSE.md",
+        "notices/reference/third-party-notices/numpy/numpy-2.5.4.dist-info_licenses_numpy_random_src_pcg64_LICENSE.md",
+        "notices/reference/third-party-notices/numpy/numpy-2.5.4.dist-info_licenses_numpy_random_src_philox_LICENSE.md",
+        "notices/reference/third-party-notices/numpy/numpy-2.5.4.dist-info_licenses_numpy_random_src_sfc64_LICENSE.md",
+        "notices/reference/third-party-notices/numpy/numpy-2.5.4.dist-info_licenses_numpy_random_src_splitmix64_LICENSE.md",
+        "notices/reference/third-party-notices/numpy/numpy__core_include_numpy_random_LICENSE.txt",
+        "notices/reference/third-party-notices/numpy/numpy_ma_LICENSE",
+        "notices/reference/third-party-notices/numpy/numpy_random_LICENSE.md"
+      ]
+    },
+    {
+      "component": "OpenBLAS-NumPy",
+      "version": "0.3.34.106.0 (wheel build configuration)",
+      "license_evidence": "BSD-3-Clause; LAPACK BSD; statically linked GCC GPL-3.0-or-later WITH GCC-exception-3.1",
+      "existing_notices": [
+        "notices/reference/third-party-notices/numpy/numpy-2.5.4.dist-info_licenses_LICENSE.txt",
+        "notices/reference/third-party-notices/numpy/numpy-2.5.4.dist-info_licenses_numpy__core_include_numpy_libdivide_LICENSE.txt",
+        "notices/reference/third-party-notices/numpy/numpy-2.5.4.dist-info_licenses_numpy__core_src_common_pythoncapi-compat_COPYING",
+        "notices/reference/third-party-notices/numpy/numpy-2.5.4.dist-info_licenses_numpy__core_src_highway_LICENSE",
+        "notices/reference/third-party-notices/numpy/numpy-2.5.4.dist-info_licenses_numpy__core_src_multiarray_dragon4_LICENSE.txt",
+        "notices/reference/third-party-notices/numpy/numpy-2.5.4.dist-info_licenses_numpy__core_src_npysort_x86-simd-sort_LICENSE.md",
+        "notices/reference/third-party-notices/numpy/numpy-2.5.4.dist-info_licenses_numpy__core_src_umath_svml_LICENSE",
+        "notices/reference/third-party-notices/numpy/numpy-2.5.4.dist-info_licenses_numpy_fft_pocketfft_LICENSE.md",
+        "notices/reference/third-party-notices/numpy/numpy-2.5.4.dist-info_licenses_numpy_linalg_lapack_lite_LICENSE.txt",
+        "notices/reference/third-party-notices/numpy/numpy-2.5.4.dist-info_licenses_numpy_ma_LICENSE",
+        "notices/reference/third-party-notices/numpy/numpy-2.5.4.dist-info_licenses_numpy_random_LICENSE.md",
+        "notices/reference/third-party-notices/numpy/numpy-2.5.4.dist-info_licenses_numpy_random_src_distributions_LICENSE.md",
+        "notices/reference/third-party-notices/numpy/numpy-2.5.4.dist-info_licenses_numpy_random_src_mt19937_LICENSE.md",
+        "notices/reference/third-party-notices/numpy/numpy-2.5.4.dist-info_licenses_numpy_random_src_pcg64_LICENSE.md",
+        "notices/reference/third-party-notices/numpy/numpy-2.5.4.dist-info_licenses_numpy_random_src_philox_LICENSE.md",
+        "notices/reference/third-party-notices/numpy/numpy-2.5.4.dist-info_licenses_numpy_random_src_sfc64_LICENSE.md",
+        "notices/reference/third-party-notices/numpy/numpy-2.5.4.dist-info_licenses_numpy_random_src_splitmix64_LICENSE.md",
+        "notices/reference/third-party-notices/numpy/numpy__core_include_numpy_random_LICENSE.txt",
+        "notices/reference/third-party-notices/numpy/numpy_ma_LICENSE",
+        "notices/reference/third-party-notices/numpy/numpy_random_LICENSE.md"
+      ]
+    }
+  ],
+  "files": [],
+  "requested_material": "Resolve OpenBLAS build identifier 0.3.34.106.0 to exact upstream commit/patches, bundled LAPACK version and build recipe; identify static GCC runtime components and eligible compilation-process evidence for GCC Runtime Library Exception 3.1. The full bundled wheel license is already retained."
+}
