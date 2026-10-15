@@ -34,7 +34,10 @@ def safe_entries(archive):
     names = archive.namelist()
     seen = set()
     for info in archive.infolist():
-        name = info.filename
+        # ZipInfo normalizes Windows separators on read as well as write. Validate
+        # the original decoded name, including NULs, before trusting the normalized key.
+        name = info.orig_filename
+        require(name == info.filename, "ZIP name was silently normalized or truncated")
         require(
             name
             and "\\" not in name

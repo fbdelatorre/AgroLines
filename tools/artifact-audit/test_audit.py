@@ -159,3 +159,14 @@ def test_actual_application_schema_snapshot(tmp_path):
     assert report["tables"]["project"]["rows"] == 1
     assert report["tables"]["revision"]["rows"] == 0
     assert path.read_bytes() == before
+
+
+def test_reader_normalization_cannot_hide_unsafe_original_name(tmp_path):
+    target = tmp_path / "normalized.zip"
+    with ZipFile(target, "w") as archive:
+        archive.writestr("a/b", b"synthetic")
+    with ZipFile(target) as archive:
+        # Reproduce ZipInfo's Windows reader state on every host.
+        archive.infolist()[0].orig_filename = "a\\b"
+        with pytest.raises(ValueError, match="normalized"):
+            audit.safe_entries(archive)
