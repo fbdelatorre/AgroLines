@@ -63,6 +63,7 @@ class CommercialWindow(LocalProjectsWindow):
         toolbar.setMovable(False)
         toolbar.addAction("Minha licença", self.license_dialog)
         toolbar.addAction("Exportar dados", self.export_data)
+        toolbar.addAction("Diagnóstico", self.diagnostic_dialog)
         self.license_status = QLabel()
         self.statusBar().addPermanentWidget(self.license_status)
         self.busy = False
@@ -74,6 +75,28 @@ class CommercialWindow(LocalProjectsWindow):
         )  # Online opportunity, never an offline expiry/grace period.
         self.update_status()
         QTimer.singleShot(0, self.first_run)
+
+    def diagnostic_dialog(self):
+        from desktop.diagnostics import review_export
+
+        self.run(lambda: review_export(self))
+
+    def run(self, callback):
+        def diagnosed():
+            try:
+                return callback()
+            except Exception:
+                import sys
+
+                from desktop.diagnostics import initialize, record_failure
+
+                try:
+                    record_failure(initialize(), *sys.exc_info())
+                except OSError:
+                    pass
+                raise
+
+        return super().run(diagnosed)
 
     def first_run(self):
         if self.manager.verify().read_only:

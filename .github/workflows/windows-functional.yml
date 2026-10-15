@@ -1,8 +1,19 @@
 name: Windows functional candidate (private binaries, evidence only)
 on:
   pull_request:
-    branches: ['compliance/webengine-source-linkage']
-    paths: ['distribution/**', 'desktop/**', 'core/**', 'scripts/Observe-NativeModules.ps1', 'tests/test_functional_candidate.py', '.github/workflows/windows-functional.yml', 'docs/distribution/functional/**']
+    branches: ['compliance/webengine-source-linkage', 'distribution/functional-candidate-1.0.0.5']
+    paths: ['distribution/**', 'desktop/**', 'core/**', 'scripts/Observe-NativeModules.ps1', 'tests/test_functional_candidate.py', 'tests/test_vm_homologation.py', 'scripts/vm_license_lab.py', 'scripts/prepare_vm_fixtures.py', 'scripts/prepare_license_lab.py', '.github/workflows/windows-functional.yml', 'docs/distribution/functional/**']
+  workflow_call:
+    inputs:
+      private_delivery:
+        type: boolean
+        default: false
+      authorized_repository:
+        type: string
+        default: ''
+      public_lab_inputs:
+        type: string
+        default: ''
 permissions:
   contents: read
 concurrency:
@@ -12,6 +23,10 @@ jobs:
   build-and-install-lab:
     runs-on: windows-latest
     timeout-minutes: 60
+    env:
+      CANDIDATE_VERSION: '1.0.0.7'
+      UPGRADE_VERSION: '1.0.0.8'
+      PUBLIC_LAB_INPUTS: ${{ inputs.public_lab_inputs || '' }}
     defaults:
       run:
         shell: pwsh
@@ -23,6 +38,17 @@ jobs:
         with:
           python-version: '3.12.10'
           architecture: x64
+      - name: Verify private destination before any binary build
+        if: inputs.private_delivery == true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CONFIRMED_REPOSITORY: ${{ inputs.authorized_repository }}
+          AUTHORIZED_TEST_BINARY_UPLOAD: ${{ vars.AUTHORIZED_TEST_BINARY_UPLOAD }}
+        run: |
+          gh api "repos/$env:GITHUB_REPOSITORY" --jq '{full_name, private, visibility}' > "$env:RUNNER_TEMP/private-destination.json"
+          if ($LASTEXITCODE) { throw 'Cannot establish repository privacy.' }
+          python -m distribution.private_delivery authorize --metadata "$env:RUNNER_TEMP/private-destination.json" --repository "$env:GITHUB_REPOSITORY" --confirmation "$env:CONFIRMED_REPOSITORY" --enabled "$env:AUTHORIZED_TEST_BINARY_UPLOAD" --event "$env:GITHUB_EVENT_NAME"
+          if ($LASTEXITCODE -or -not $env:PUBLIC_LAB_INPUTS) { throw 'Private owner authorization and public laboratory inputs required.' }
       - name: Refuse client Windows or SAC-active machine; preserve protections
         run: ./distribution/windows/standalone/Assert-Laboratory.ps1
       - name: Parse all maintainer PowerShell and install exact commercial build dependencies
@@ -37,6 +63,11 @@ jobs:
           if ($LASTEXITCODE) { throw 'Locked build inputs failed.' }
           ./build-env/Scripts/python.exe -m pip check
           if ($LASTEXITCODE) { throw 'Dependency consistency failed.' }
+          if (-not $env:PUBLIC_LAB_INPUTS) {
+            python -m venv build/lab-tools-env
+            ./build/lab-tools-env/Scripts/python.exe -m pip install --require-hashes --only-binary=:all: -r distribution/windows/requirements-lab-tools.lock
+            if ($LASTEXITCODE) { throw 'Isolated TLS build tools failed.' }
+          }
           $epoch=git show -s --format=%ct $env:GITHUB_SHA
           Add-Content $env:GITHUB_ENV "SOURCE_DATE_EPOCH=$epoch"
           Add-Content $env:GITHUB_ENV 'PYTHONHASHSEED=0'
@@ -48,15 +79,30 @@ jobs:
           ./build-env/Scripts/python.exe -m distribution.source_bundle --cache build/source-cache --output build/source-delivery/AgroLines-Third-Party-Sources.zip
           if ($LASTEXITCODE) { throw 'Source material integrity failed.' }
           ./distribution/windows/standalone/Build-GeosSources.ps1
-      - name: Compile the complete 1.0.0.5 TESTE onedir with public synthetic trust
+      - name: Compile the complete TESTE onedir with public synthetic trust
         run: |
-          ./build-env/Scripts/python.exe -m scripts.prepare_license_lab --output "$env:RUNNER_TEMP/licensing-fixture"
-          if ($LASTEXITCODE) { throw 'Synthetic public fixture failed.' }
-          ./build-env/Scripts/python.exe -m distribution.build --commercial --version 1.0.0.5 --license-origin https://licenses.example.test --public-keys "$env:RUNNER_TEMP/licensing-fixture/public.json" --experimental-licensing
+          $fixture=Join-Path $env:RUNNER_TEMP 'licensing-fixture'
+          if ($env:PUBLIC_LAB_INPUTS) {
+            $inputPath=[IO.Path]::GetFullPath($env:PUBLIC_LAB_INPUTS)
+            if (-not $inputPath.StartsWith((Get-Location).Path+[IO.Path]::DirectorySeparatorChar,[StringComparison]::OrdinalIgnoreCase)) { throw 'Build inputs must be explicitly provided within this authorized checkout.' }
+            $origin=./build-env/Scripts/python.exe -m distribution.private_delivery lab-inputs $inputPath
+            if ($LASTEXITCODE) { throw 'Invalid public laboratory inputs.' }
+            Copy-Item $inputPath $fixture -Recurse
+            $caArgs=@('--lab-tls-ca',"$fixture/tls-ca.pem")
+          } else {
+            ./build/lab-tools-env/Scripts/python.exe -m scripts.prepare_license_lab --output $fixture --tls-origin https://localhost --tls-private-directory "$env:RUNNER_TEMP/synthetic-tls-server-secrets"
+            if ($LASTEXITCODE) { throw 'Synthetic public trust preparation failed.' }
+            $origin='https://localhost'
+            $caArgs=@('--lab-tls-ca',"$fixture/tls-ca.pem")
+          }
+          Add-Content $env:GITHUB_ENV "LICENSE_ORIGIN=$origin"
+          ./build-env/Scripts/python.exe -m distribution.build --commercial --version $env:CANDIDATE_VERSION --license-origin $origin --public-keys "$fixture/public.json" --experimental-licensing @caArgs
           if ($LASTEXITCODE) { throw 'Complete commercial build failed.' }
-          Copy-Item dist/AgroLines/payload-manifest.json evidence/functional/payload-1.0.0.5.json
+          Copy-Item dist/AgroLines/payload-manifest.json "evidence/functional/payload-$env:CANDIDATE_VERSION.json"
           Copy-Item dist/AgroLines/standalone-layout.json evidence/functional/layout.json
           Copy-Item dist/AgroLines/legal evidence/functional/packaged-legal -Recurse
+          ./build-env/Scripts/python.exe -m scripts.prepare_vm_fixtures --output build/vm-fixtures
+          if ($LASTEXITCODE) { throw 'Synthetic manual GIS fixtures failed.' }
       - name: Execute frozen UI, map interactions, five GIS formats, DPAPI and revocation with system PATH
         run: |
           ./scripts/Observe-NativeModules.ps1 -Executable dist/AgroLines/AgroLines.exe -OutputDirectory evidence/functional/loads -CommercialFixture "$env:RUNNER_TEMP/licensing-fixture/fixture.json"
@@ -71,10 +117,12 @@ jobs:
         run: |
           $compiler=Join-Path $env:RUNNER_TEMP 'agrolines-inno/compiler/ISCC.exe'
           $candidate=$env:GITHUB_SHA.Substring(0,12)
-          foreach ($version in @('1.0.0.5','1.0.0.6')) {
-            if ($version -eq '1.0.0.6') {
-              Move-Item dist/AgroLines dist/AgroLines-1.0.0.5
-              ./build-env/Scripts/python.exe -m distribution.build --commercial --version $version --license-origin https://licenses.example.test --public-keys "$env:RUNNER_TEMP/licensing-fixture/public.json" --experimental-licensing
+          foreach ($version in @($env:CANDIDATE_VERSION,$env:UPGRADE_VERSION)) {
+            if ($version -eq $env:UPGRADE_VERSION) {
+              Move-Item dist/AgroLines "dist/AgroLines-$env:CANDIDATE_VERSION"
+              $caArgs=@()
+              $caArgs=@('--lab-tls-ca',"$env:RUNNER_TEMP/licensing-fixture/tls-ca.pem")
+              ./build-env/Scripts/python.exe -m distribution.build --commercial --version $version --license-origin $env:LICENSE_ORIGIN --public-keys "$env:RUNNER_TEMP/licensing-fixture/public.json" --experimental-licensing @caArgs
               if ($LASTEXITCODE) { throw 'Successor build failed.' }
             }
             ./distribution/windows/standalone/Build-Launcher.ps1
@@ -83,15 +131,37 @@ jobs:
             if ((Get-AuthenticodeSignature $setup).Status -ne 'NotSigned') { throw 'Unexpected signing of experimental installer.' }
             ./build-env/Scripts/python.exe -m distribution.functional_report --payload dist/AgroLines --installer $setup --commit $env:GITHUB_SHA --output "evidence/functional/artifact-$version.json"
             if ($LASTEXITCODE) { throw 'Candidate measurements failed.' }
+            Copy-Item dist/AgroLines/payload-manifest.json "evidence/functional/payload-$version.json"
             Copy-Item evidence/standalone/inno-compile.log "evidence/functional/inno-$version.log"
           }
       - name: Explicitly authorized installation lifecycle on disposable Windows Server only
         run: |
-          ./distribution/windows/standalone/Test-InstallationCycle.ps1 -Installer dist/installers/AgroLines-Setup-1.0.0.5-TESTE-x64.exe -Upgrade dist/installers/AgroLines-Setup-1.0.0.6-TESTE-x64.exe -Fixture "$env:RUNNER_TEMP/licensing-fixture/fixture.json"
+          ./distribution/windows/standalone/Test-InstallationCycle.ps1 -Installer "dist/installers/AgroLines-Setup-$env:CANDIDATE_VERSION-TESTE-x64.exe" -Upgrade "dist/installers/AgroLines-Setup-$env:UPGRADE_VERSION-TESTE-x64.exe" -Version $env:CANDIDATE_VERSION -UpgradeVersion $env:UPGRADE_VERSION -Fixture "$env:RUNNER_TEMP/licensing-fixture/fixture.json"
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
-          name: agrolines-1.0.0.5-FUNCTIONAL-EVIDENCE-ONLY
+          name: agrolines-${{ env.CANDIDATE_VERSION }}-FUNCTIONAL-EVIDENCE-ONLY
           path: evidence/
           if-no-files-found: error
           retention-days: 30
+      - name: Recheck privacy immediately before preparing the private handoff
+        if: success() && inputs.private_delivery == true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CONFIRMED_REPOSITORY: ${{ inputs.authorized_repository }}
+          AUTHORIZED_TEST_BINARY_UPLOAD: ${{ vars.AUTHORIZED_TEST_BINARY_UPLOAD }}
+        run: |
+          gh api "repos/$env:GITHUB_REPOSITORY" --jq '{full_name, private, visibility}' > "$env:RUNNER_TEMP/private-destination.json"
+          if ($LASTEXITCODE) { throw 'Cannot revalidate destination privacy.' }
+          ./build-env/Scripts/python.exe -m distribution.private_delivery authorize --metadata "$env:RUNNER_TEMP/private-destination.json" --repository "$env:GITHUB_REPOSITORY" --confirmation "$env:CONFIRMED_REPOSITORY" --enabled "$env:AUTHORIZED_TEST_BINARY_UPLOAD" --event "$env:GITHUB_EVENT_NAME"
+          if ($LASTEXITCODE) { throw 'Private binary publication denied.' }
+          ./build-env/Scripts/python.exe -m distribution.private_delivery stage --destination dist/private-vm-handoff --versions $env:CANDIDATE_VERSION $env:UPGRADE_VERSION
+          if ($LASTEXITCODE) { throw 'Private handoff manifest failed.' }
+      - name: Private authorized binaries only; never runs in the public source repository
+        if: success() && inputs.private_delivery == true
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: agrolines-vm-${{ env.CANDIDATE_VERSION }}-PRIVATE-UNSIGNED
+          path: dist/private-vm-handoff/
+          if-no-files-found: error
+          retention-days: 7

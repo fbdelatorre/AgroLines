@@ -1,6 +1,7 @@
 # Authorized disposable builder only; compile BSD source, never install or sign.
+param([switch]$AuthorizedHyperVBuildVM)
 $ErrorActionPreference='Stop'
-& (Join-Path $PSScriptRoot 'Assert-Laboratory.ps1')
+& (Join-Path $PSScriptRoot 'Assert-Laboratory.ps1') -AuthorizedHyperVBuildVM:$AuthorizedHyperVBuildVM -BuildOnly
 $vswhere=Join-Path ${env:ProgramFiles(x86)} 'Microsoft Visual Studio/Installer/vswhere.exe'
 $installation=& $vswhere -latest -products '*' -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath
 if (-not $installation) { throw 'MSVC x64 build tools required.' }

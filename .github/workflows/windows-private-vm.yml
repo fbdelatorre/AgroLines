@@ -1,0 +1,21 @@
+name: Private Windows VM installer delivery (owner authorization required)
+on:
+  workflow_dispatch:
+    inputs:
+      authorized_repository:
+        description: Exact owner/repository of the PRIVATE authorized destination
+        required: true
+        type: string
+      public_lab_inputs:
+        description: Relative directory with the four PUBLIC laboratory build inputs
+        required: true
+        type: string
+permissions:
+  contents: read
+jobs:
+  build-test-deliver:
+    uses: ./.github/workflows/windows-functional.yml
+    with:
+      private_delivery: true
+      authorized_repository: ${{ inputs.authorized_repository }}
+      public_lab_inputs: ${{ inputs.public_lab_inputs }}

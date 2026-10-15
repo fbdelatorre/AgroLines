@@ -3,6 +3,7 @@
 import argparse
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -72,6 +73,14 @@ def prepare(output, version, manufacturer, store=False, standalone=False, commer
     output.mkdir(parents=True, exist_ok=True)
     metadata = json.loads((ROOT / "distribution/windows/metadata.json").read_text())
     metadata.update(version=version, manufacturer=manufacturer)
+    commit = os.getenv("GITHUB_SHA", "")
+    if not commit:
+        commit = subprocess.run(
+            ["git", "rev-parse", "HEAD"], cwd=ROOT, capture_output=True, text=True, check=True
+        ).stdout.strip()
+    if not re.fullmatch(r"[a-f0-9]{40}", commit):
+        raise ValueError("Build requires an exact source commit")
+    metadata["source_commit"] = commit
     if store:
         from distribution.msix import identity
 
@@ -153,6 +162,7 @@ def main():
     parser.add_argument("--license-origin")
     parser.add_argument("--public-keys", type=Path)
     parser.add_argument("--experimental-licensing", action="store_true")
+    parser.add_argument("--lab-tls-ca", type=Path)
     args = parser.parse_args()
     if args.commercial:
         if not args.license_origin or not args.public_keys:
@@ -161,7 +171,13 @@ def main():
 
         trust = ROOT / "build/distribution/_agrolines_license_settings.py"
         trust.parent.mkdir(parents=True, exist_ok=True)
-        prepare_trust(trust, args.license_origin, args.public_keys, args.experimental_licensing)
+        prepare_trust(
+            trust,
+            args.license_origin,
+            args.public_keys,
+            args.experimental_licensing,
+            args.lab_tls_ca,
+        )
         args.standalone = True
     if sys.platform != "win32":
         raise SystemExit("Windows build requires a Windows builder")
