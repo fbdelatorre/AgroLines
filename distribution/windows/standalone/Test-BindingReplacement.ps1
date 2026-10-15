@@ -32,7 +32,10 @@ Copy-Item -LiteralPath $payload -Destination $copy -Recurse
 $marker = 'synthetic-standalone-lgpl-python-replacement-v1'
 foreach ($package in @('PySide6','shiboken6')) {
     $file = Join-Path $copy "_internal/$package/__init__.py"
-    [IO.File]::AppendAllText($file, "`n# Isolated laboratory modification; no algorithms changed.`nAGROLINES_LGPL_LAB_MARKER = '$marker'`n", [Text.UTF8Encoding]::new($false))
+    # PySide6 replaces its module dictionary at the end of __init__.py. A bare
+    # assignment appended afterwards updates the old globals, not the live module.
+    # Set the harmless marker on the actual imported module in both packages.
+    [IO.File]::AppendAllText($file, "`n# Isolated laboratory modification; no algorithms changed.`nsetattr(sys.modules[__name__], 'AGROLINES_LGPL_LAB_MARKER', '$marker')`n", [Text.UTF8Encoding]::new($false))
 }
 $modified = Invoke-BindingReport $copy (Join-Path $output 'bindings-modified.json')
 Write-Output ('AGROLINES_BINDINGS_MODIFIED=' + ($modified | ConvertTo-Json -Depth 8 -Compress))
