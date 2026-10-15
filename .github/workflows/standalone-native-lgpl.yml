@@ -1,0 +1,54 @@
+name: Standalone native LGPL replacement in full AgroLines
+on:
+  pull_request:
+    paths: ['tools/standalone-native-lab/**', '.github/workflows/standalone-native-lgpl.yml']
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: standalone-native-${{ github.head_ref }}
+  cancel-in-progress: true
+jobs:
+  native-replacement:
+    strategy:
+      fail-fast: false
+      matrix:
+        component: [qtbase-6.12.0, geos-3.11.3, geos-3.14.1]
+    runs-on: windows-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.12.10'
+      - name: Read-only host guard (no protection changes)
+        shell: pwsh
+        run: ./distribution/windows/standalone/Assert-Laboratory.ps1
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 38733288326
+          name: agrolines-standalone-EXPERIMENTAL-UNSIGNED
+          path: baseline
+      - name: Build-only dependencies (not delivered to customers)
+        run: python -m pip install "pefile==2024.8.26"
+      - name: Compile matching-version native libraries and exercise unchanged full frozen application
+        shell: cmd
+        env:
+          COMPONENT: ${{ matrix.component }}
+        run: |
+          for /f "usebackq tokens=*" %%i in (`"%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe" -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath`) do call "%%i\Common7\Tools\VsDevCmd.bat" -arch=x64 -host_arch=x64
+          if errorlevel 1 exit /b %errorlevel%
+          cmake --version
+          ninja --version
+          python tools/standalone-native-lab/run.py --component %COMPONENT% --payload baseline/dist/AgroLines --work "%RUNNER_TEMP%\full-app-native"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: full-agrolines-${{ matrix.component }}-EVIDENCE-ONLY
+          path: |
+            ${{ runner.temp }}/full-app-native/evidence/
+            evidence/standalone/laboratory.json
+          if-no-files-found: error
