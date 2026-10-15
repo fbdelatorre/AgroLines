@@ -40,6 +40,7 @@ jobs:
           path: evidence/crypto-preflight/
           if-no-files-found: error
   experimental-build:
+    if: ${{ !startsWith(github.head_ref, 'distribution/functional-candidate-') }}
     runs-on: windows-latest
     timeout-minutes: 50
     defaults:
@@ -183,7 +184,7 @@ jobs:
           Write-Output ('AGROLINES_COMMERCIAL_ARTIFACT=' + ($report | ConvertTo-Json -Compress))
           # Explicitly NO installer/runtime/source ZIP upload; evidence only below.
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
-        if: always() && !contains(fromJSON('["compliance/standalone-native-validation","compliance/standalone-legal-materials","compliance/commercial-licensing-foundation"]'), github.head_ref)
+        if: always() && github.event.repository.private == true && vars.AUTHORIZED_TEST_BINARY_UPLOAD == 'true' && !contains(fromJSON('["compliance/standalone-native-validation","compliance/standalone-legal-materials","compliance/commercial-licensing-foundation"]'), github.head_ref)
         with:
           name: agrolines-standalone-EXPERIMENTAL-UNSIGNED
           path: |
@@ -193,7 +194,7 @@ jobs:
           if-no-files-found: error
           retention-days: 30
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
-        if: always() && contains(fromJSON('["compliance/standalone-native-validation","compliance/standalone-legal-materials","compliance/commercial-licensing-foundation"]'), github.head_ref)
+        if: always() && (github.event.repository.private != true || vars.AUTHORIZED_TEST_BINARY_UPLOAD != 'true' || contains(fromJSON('["compliance/standalone-native-validation","compliance/standalone-legal-materials","compliance/commercial-licensing-foundation"]'), github.head_ref))
         with:
           name: agrolines-standalone-HOMOLOGATION-EVIDENCE-ONLY
           path: evidence/

@@ -19,6 +19,8 @@ def prepare_trust(output, origin, keyfile, experimental=False):
         raise ValueError("Only raw Ed25519 PUBLIC keys are accepted")
     if origin.endswith((".test", ".invalid", ".localhost")) and not experimental:
         raise ValueError("Synthetic licensing endpoint requires explicit experimental profile")
+    if not experimental and any(k == "synthetic-lab-only" for k in data):
+        raise ValueError("Synthetic licensing trust cannot be compiled into production")
     Path(output).write_text(
         "ORIGIN = "
         + repr(origin)

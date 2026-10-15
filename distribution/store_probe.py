@@ -142,13 +142,50 @@ def run(output, probe_url="http://127.0.0.1:9/forbidden"):
         result["webengine_external_requests_rejected"] = value
         if not value or not all(value.get(key) for key in ("fetch", "image", "websocket")):
             errors.append("WebEngine did not reject all synthetic network attempts")
+        interaction = value.get("interactions", {})
+        result["map_interactions"] = interaction
+        result["python_js_selection"] = window.map.current_id == "synthetic-bridge-probe"
+        if not interaction or not all(interaction.values()) or not result["python_js_selection"]:
+            errors.append("Map layers/navigation/selection bridge failed")
+        result["coordinate_display"] = "EPSG:32723" in window.map.state_label.text()
+        if not result["coordinate_display"]:
+            errors.append("Python/JavaScript coordinate display failed")
         app.quit()
 
     def ready():
+        window.map.set_collection(
+            {
+                "type": "FeatureCollection",
+                "features": [
+                    {
+                        "id": "synthetic-bridge-probe",
+                        "geometry": {
+                            "type": "Polygon",
+                            "coordinates": [
+                                [[-45, -22], [-44.999, -22], [-44.999, -21.999], [-45, -22]]
+                            ],
+                        },
+                        "properties": {"name": "Talhão inteiramente sintético"},
+                    }
+                ],
+            },
+            fit=True,
+        )
         target = json.dumps(probe_url)
         ws = json.dumps(probe_url.replace("http:", "ws:").replace("https:", "wss:"))
         window.map.page.runJavaScript(
             f"""window.offlineResults = {{}};
+            const id='synthetic-bridge-probe';
+            const before=window.agro.viewState(); window.agro.zoom(-1);
+            const zoomed=window.agro.viewState();
+            map.panBy([30,20],{{animate:false}});const panned=window.agro.viewState();
+            window.agro.layers([{{id,visible:false,color:'#39b980',opacity:1}}]);
+            const hidden=!map.hasLayer(shapes.get(id));
+            window.agro.layers([{{id,visible:true,color:'#39b980',opacity:1}}]);
+            window.agro.select(id);bridge.cursor(-45,-22);
+            window.offlineResults.interactions={{vector:before.count===1,
+              zoom:zoomed.zoom!==before.zoom,pan:panned.center.lat!==zoomed.center.lat,
+              hidden,restored:map.hasLayer(shapes.get(id)),selected:window.agro.viewState().selected===id}};
             fetch({target}).catch(() => window.offlineResults.fetch = true);
             let image = new Image(); image.onerror = () => window.offlineResults.image = true;
             image.src = {target};

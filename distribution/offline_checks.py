@@ -15,8 +15,8 @@ from core.offline_policy import require_local_path
 from desktop.local_projects import LocalVertexDialog
 
 
-def existing_project(root):
-    project = LocalProject(root / "project.agrolines")
+def existing_project(root, license_verifier=None):
+    project = LocalProject(root / "project.agrolines", license_verifier)
     try:
         assert project.name == "Offline"
         feature = project.features()[0]
@@ -26,7 +26,7 @@ def existing_project(root):
         project.close()
     digest = hashlib.sha256((root / "project.agrolines").read_bytes()).hexdigest()
     for name in ("backup.agrolines", "restored.agrolines"):
-        copied = LocalProject(root / name)
+        copied = LocalProject(root / name, license_verifier)
         try:
             assert copied.features()[0]["original_geometry"] == feature["original_geometry"]
         finally:
@@ -34,7 +34,7 @@ def existing_project(root):
     return digest
 
 
-def run_offline_checks(project_directory=None):
+def run_offline_checks(project_directory=None, license_verifier=None):
     def forbidden(*args, **kwargs):
         raise RuntimeError("Network prohibited during offline project probe")
 
@@ -54,7 +54,7 @@ def run_offline_checks(project_directory=None):
                 "network_calls_denied": True,
                 "reopened_exact": True,
                 "existing_project_preserved": True,
-                "project_sha256": existing_project(root),
+                "project_sha256": existing_project(root, license_verifier),
                 "physical_disconnection_validated": False,
             }
         source = root / "synthetic.geojson"
@@ -79,7 +79,9 @@ def run_offline_checks(project_directory=None):
                 }
             )
         )
-        project = LocalProject.create(root / "project.agrolines", "Offline")
+        project = LocalProject.create(
+            root / "project.agrolines", "Offline", license_verifier=license_verifier
+        )
         try:
             project.import_files([source], acknowledge_warnings=True)
             feature = project.features()[0]
@@ -98,13 +100,15 @@ def run_offline_checks(project_directory=None):
             project.backup(root / "backup.agrolines")
         finally:
             project.close()
-        reopened = LocalProject(root / "project.agrolines")
+        reopened = LocalProject(root / "project.agrolines", license_verifier)
         try:
             assert reopened.features()[0]["original_geometry"] == edited
             assert len(reopened.history(feature["id"])) == 2
         finally:
             reopened.close()
-        restored = LocalProject.restore(root / "backup.agrolines", root / "restored.agrolines")
+        restored = LocalProject.restore(
+            root / "backup.agrolines", root / "restored.agrolines", license_verifier
+        )
         try:
             assert restored.features()[0]["original_geometry"] == edited
         finally:
@@ -117,5 +121,5 @@ def run_offline_checks(project_directory=None):
         "backup_restored": True,
         "physical_disconnection_validated": False,
         "existing_project_preserved": False,
-        "project_sha256": existing_project(root) if project_directory else None,
+        "project_sha256": existing_project(root, license_verifier) if project_directory else None,
     }

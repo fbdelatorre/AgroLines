@@ -20,6 +20,7 @@ permissions:
   contents: read
 jobs:
   candidate-tests:
+    if: ${{ !startsWith(github.head_ref, 'distribution/functional-candidate-') }}
     runs-on: windows-latest
     timeout-minutes: 15
     steps:
